@@ -102,6 +102,20 @@ docker build -t data-quality-agent .
 docker run --rm -p 8000:8000 data-quality-agent
 ```
 
+## Contributing
+
+Contributions are welcome. Good starter tasks are labeled [`good first issue`](https://github.com/sunnnn2005/data-quality-agent/labels/good%20first%20issue), and broader tasks are labeled [`help wanted`](https://github.com/sunnnn2005/data-quality-agent/labels/help%20wanted).
+
+Useful first contributions:
+
+- Add one deterministic dataset scenario
+- Add one quality check
+- Add one test for an edge case
+- Improve dashboard accessibility
+- Improve documentation or examples
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [ROADMAP.md](ROADMAP.md) before opening a pull request.
+
 ## Repository Layout
 
 ```text
@@ -127,13 +141,7 @@ Data Quality Agent runs on local deterministic datasets. It does not connect to 
 
 ## Roadmap
 
-See the open issues for planned work:
-
-- YAML or JSON dataset contracts
-- Markdown export for quality reports
-- More sample datasets
-- Historical baselines for drift checks
-- Configurable severity rules
+See [ROADMAP.md](ROADMAP.md) and the open issues for planned work.
 
 ## License
 
