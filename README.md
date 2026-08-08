@@ -114,7 +114,7 @@ Useful first contributions:
 - Improve dashboard accessibility
 - Improve documentation or examples
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) and [ROADMAP.md](ROADMAP.md) before opening a pull request.
+See [CONTRIBUTING.md](CONTRIBUTING.md), [ROADMAP.md](ROADMAP.md), and [SECURITY.md](SECURITY.md) before opening a pull request.
 
 ## Repository Layout
 
@@ -138,6 +138,8 @@ tests/
 ## Safety and Scope
 
 Data Quality Agent runs on local deterministic datasets. It does not connect to a warehouse, upload data, or call external model providers. Future warehouse or CSV integrations should be explicit adapters with read-only defaults and tests.
+
+See [SECURITY.md](SECURITY.md) for integration guidelines.
 
 ## Roadmap
 

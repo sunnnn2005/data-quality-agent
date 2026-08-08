@@ -6,14 +6,20 @@ labels: enhancement
 assignees: ""
 ---
 
-## What should change?
+## Summary
 
-Describe the feature.
+What should change?
 
-## Why is it useful?
+## Motivation
 
-Explain the data-quality workflow this improves.
+Which data-quality workflow does this improve?
 
-## Suggested implementation
+## Proposed design
 
 Optional notes about files, tests, or API behavior.
+
+## Scope boundaries
+
+- Does this require external services?
+- Does this require secrets?
+- Can it run in the deterministic local demo?

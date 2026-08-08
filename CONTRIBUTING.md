@@ -50,3 +50,5 @@ Beginner-friendly tasks are labeled `good first issue`. A good first PR should u
 - Prefer typed Pydantic models over unstructured dictionaries for API contracts.
 - Keep quality checks explicit and testable.
 - Avoid large refactors unless they unlock a clear feature.
+
+See [SECURITY.md](SECURITY.md) before adding integrations that touch external systems, credentials, or datasets.

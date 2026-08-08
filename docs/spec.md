@@ -1,62 +1,89 @@
-# Spec: Data Quality Agent
+# Specification
 
-## Objective
-Build a data quality monitoring agent that simulates a large-company analytics or data platform internship project. The system profiles datasets, detects quality failures, explains likely causes, and recommends remediation actions in a structured report.
+Data Quality Agent is a deterministic data reliability agent for local experimentation with dataset validation workflows.
 
-Target users are data analysts, data scientists, data engineers, and ML platform interviewers reviewing whether this project demonstrates data quality, validation, analytics, and agentic reasoning.
+## Purpose
 
-## Tech Stack
-- Python 3.12
-- FastAPI
-- Pydantic
-- pandas and NumPy
-- pytest
-- In-memory deterministic sample datasets and baseline schemas
-- Optional future warehouse connector boundary, but default behavior must run without external services
+The system turns dataset records and metadata into a structured quality report. It is designed for inspection rather than automation theater: checks are explicit, findings are typed, and scoring can be tested.
+
+## Non-Goals
+
+- No production warehouse connection in the default path.
+- No upload of private data.
+- No required LLM provider.
+- No required external storage.
+- No hidden network calls in the default path.
+
+## Functional Requirements
+
+- List available datasets.
+- Return dataset metadata by id.
+- Generate a column-level profile for a known dataset.
+- Generate a quality report for a known dataset.
+- Include score, status, findings, likely causes, recommendations, timestamp, and trace.
+- Return a clear 404 for unknown datasets.
+- Render a browser dashboard with the same backend data.
+
+## Runtime Contracts
+
+### DatasetSummary
+
+A dataset summary describes ownership, primary key, expected columns, freshness metadata, and purpose.
+
+### DatasetProfile
+
+A dataset profile summarizes row count, column count, dtypes, missingness, uniqueness, and samples.
+
+### QualityFinding
+
+A finding is one failed or suspicious check. It includes severity, evidence, and a recommended remediation.
+
+### QualityReport
+
+The report is the final output. It should be useful both as JSON and as a source for future markdown/text exports.
+
+## Check Contracts
+
+Current checks are deterministic local functions:
+
+- required columns
+- schema drift
+- missing values
+- duplicate primary keys
+- freshness SLA
+- numeric outliers
+- negative business values
+- volume baseline
+
+Future checks should follow the same pattern:
+
+- explicit inputs
+- typed findings
+- deterministic evidence
+- no hidden mutation
+- tested edge cases
 
 ## Commands
-- Create venv: `python3.12 -m venv .venv && source .venv/bin/activate`
-- Install: `pip install -r requirements.txt -r requirements-dev.txt`
-- Run API: `uvicorn app.main:app --reload`
-- Test: `python -m pytest`
-- Docker: `docker build -t data-quality-agent . && docker run -p 8002:8000 data-quality-agent`
 
-## Project Structure
-- `app/main.py`: FastAPI entrypoint and routes
-- `app/models.py`: dataset and report schemas
-- `app/data.py`: sample datasets, baselines, and freshness metadata
-- `app/checks.py`: profiling, missingness, duplicates, schema drift, outliers, freshness checks
-- `app/agent.py`: report generation and remediation reasoning
-- `app/dashboard.py`: static data platform dashboard
-- `tests/`: unit and API tests
-- `docs/`: architecture and usage documentation
-
-## Code Style
-Keep checks pure and composable:
-
-```python
-def run_quality_checks(dataset: DatasetSnapshot, baseline: DatasetBaseline) -> list[QualityFinding]:
-    frame = pd.DataFrame(dataset.rows)
-    return [
-        *check_schema(frame, baseline),
-        *check_missing_values(frame),
-        *check_duplicates(frame, baseline.primary_key),
-    ]
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt -r requirements-dev.txt
+uvicorn app.main:app --reload
+python -m pytest
 ```
 
-## Testing Strategy
-- Unit tests for schema drift, missing values, duplicates, outliers, freshness, and scoring.
-- API tests for dataset listing, profiling, quality report generation, and dashboard rendering.
-- Tests must run without network, secrets, Docker, or external databases.
+Docker:
 
-## Boundaries
-- Always: use deterministic sample datasets, make findings explainable, validate incoming records.
-- Ask first: adding paid data warehouse connectors, external storage, or authentication.
-- Never: commit private data, require paid APIs, claim production warehouse integration unless implemented.
+```bash
+docker build -t data-quality-agent .
+docker run --rm -p 8000:8000 data-quality-agent
+```
 
-## Success Criteria
-- A user can run the API locally and open `/dashboard`.
-- At least three datasets produce meaningful and distinct data quality reports.
-- Reports include score, severity, findings, evidence, likely causes, and remediation steps.
-- Tests pass in CI and locally.
-- README clearly explains large-company internship relevance and resume bullets.
+## Quality Bar
+
+- Tests must pass locally and in CI.
+- New datasets should be deterministic.
+- New report fields should be represented as typed Pydantic models.
+- New integrations should not require secrets in the default path.
+- Documentation should describe behavior without overstating production readiness.
