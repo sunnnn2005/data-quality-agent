@@ -5,6 +5,8 @@
 
 Data Quality Agent is an automated data reliability assistant for analytics and machine learning datasets. It profiles datasets, detects quality problems, scores pipeline health, explains likely root causes, and recommends concrete remediation steps.
 
+![Data Quality Agent dashboard](docs/assets/data-quality-dashboard.png)
+
 ## Highlights
 
 - Detects schema drift, missing values, duplicate primary keys, freshness failures, volume anomalies, numeric outliers, and invalid negative values
