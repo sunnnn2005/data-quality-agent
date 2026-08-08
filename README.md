@@ -1,5 +1,8 @@
 # Data Quality Agent
 
+[![test](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml/badge.svg)](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Data Quality Agent is an automated data reliability assistant for analytics and machine learning datasets. It profiles datasets, detects quality problems, scores pipeline health, explains likely root causes, and recommends concrete remediation steps.
 
 ## Highlights
