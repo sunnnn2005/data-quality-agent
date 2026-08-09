@@ -1,5 +1,6 @@
 from app.agent import DataQualityAgent
 from app.data import DATASETS, load_dataset
+from app.reporting import report_to_text
 
 
 def analyze(dataset_id: str):
@@ -41,3 +42,14 @@ def test_agent_trace_records_tool_calls():
 
     assert any("dataset_profiler" in step for step in report.agent_trace)
     assert any("quality_check_runner" in step for step in report.agent_trace)
+
+def test_report_to_text_has_stable_output():
+    report = analyze("orders_daily")
+
+    text = report_to_text(report)
+
+    assert "Status:" in text
+    assert "Score:" in text
+    assert "Findings:" in text
+    assert "Likely Causes:" in text
+    assert "Next Steps:" in text
