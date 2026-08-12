@@ -1,7 +1,10 @@
-from fastapi import FastAPI, HTTPException
+from typing import Annotated
+
+from fastapi import Depends, FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
 
 from app.agent import DataQualityAgent
+from app.business_data import BusinessDataRequest, load_business_csv
 from app.dashboard import render_dashboard
 from app.data import DATASETS, load_dataset
 from app.models import AgentRunReport, DatasetProfile, DatasetSummary, QualityReport
@@ -54,6 +57,18 @@ def create_agent_report(dataset_id: str):
     if dataset is None:
         raise HTTPException(status_code=404, detail="Dataset not found")
     return llm_agent.run(dataset, load_dataset(dataset_id))
+
+
+@app.post("/business-data/quality-report", response_model=QualityReport)
+async def create_business_quality_report(request: Annotated[BusinessDataRequest, Depends()]):
+    dataset, frame = await load_business_csv(request)
+    return agent.analyze(dataset, frame)
+
+
+@app.post("/business-data/agent-report", response_model=AgentRunReport)
+async def create_business_agent_report(request: Annotated[BusinessDataRequest, Depends()]):
+    dataset, frame = await load_business_csv(request)
+    return llm_agent.run(dataset, frame)
 
 
 @app.get("/dashboard", response_class=HTMLResponse)

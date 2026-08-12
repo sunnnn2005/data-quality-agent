@@ -5,7 +5,7 @@
 
 Data Quality Agent is a local-first data reliability agent. It profiles a dataset, runs contract and quality checks, assigns severity, and returns a structured report with likely causes and recommended next steps.
 
-The project is designed to keep the data-quality loop visible. The default path is deterministic and runs without secrets, while an optional OpenAI-compatible LLM agent can choose tools, inspect evidence, build a source-of-truth report, and return a structured assessment when `OPENAI_API_KEY` is configured.
+The project is designed to keep the data-quality loop visible. The default path is deterministic and runs without secrets, while an optional OpenAI-compatible LLM agent can choose tools, inspect evidence, build a source-of-truth report, and return a structured assessment when `OPENAI_API_KEY` is configured. In addition to built-in demo datasets, the API accepts CSV exports from real business workflows with explicit dataset context.
 
 ![Data Quality Agent dashboard](docs/assets/data-quality-dashboard.png)
 
@@ -36,6 +36,27 @@ The point is not to generate a vague "data looks bad" paragraph. The report is s
 9. Return a report with remediation steps, LLM assessment, tool-call trace, and deterministic fallback behavior.
 
 The sample datasets are intentionally small and deterministic. They are not mock data for its own sake; they make the agent behavior reproducible and testable.
+
+## Business Data Upload
+
+The agent can analyze a real CSV export from a business workflow without adding a database connection or storing the file. The upload path is read-only and bounded by file, row, and column limits.
+
+```bash
+curl -X POST http://127.0.0.1:8000/business-data/agent-report \
+  -F "file=@support_tickets.csv" \
+  -F "dataset_name=Support Tickets" \
+  -F "owner=support-ops" \
+  -F "primary_key=ticket_id" \
+  -F "expected_columns=ticket_id,team,priority,status,amount" \
+  -F "description=Support ticket export used by operations dashboards."
+```
+
+Endpoints:
+
+- `POST /business-data/quality-report`: deterministic profiling and quality report for uploaded CSV data.
+- `POST /business-data/agent-report`: LLM tool-calling agent over uploaded CSV data, disabled safely when no model key is configured.
+
+This keeps the project useful for realistic business tables while avoiding unrestricted database credentials, background writes, or hidden external data movement.
 
 ## Why This Exists
 
@@ -103,6 +124,8 @@ GET  /datasets/{dataset_id}
 GET  /datasets/{dataset_id}/profile
 POST /datasets/{dataset_id}/quality-report
 POST /datasets/{dataset_id}/agent-report
+POST /business-data/quality-report
+POST /business-data/agent-report
 GET  /dashboard
 ```
 
@@ -153,6 +176,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md), [ROADMAP.md](ROADMAP.md), and [SECURITY.
 ```text
 app/
   agent.py       Report scoring and likely-cause analysis
+  business_data.py CSV upload adapter for real business data
   checks.py      Deterministic data-quality checks
   data.py        Local datasets and contracts
   dashboard.py   Demo UI
@@ -171,7 +195,7 @@ tests/
 
 ## Safety and Scope
 
-Data Quality Agent runs on local deterministic datasets by default. It does not connect to a warehouse, upload data, or call external model providers unless an optional model key is explicitly configured. Future warehouse or CSV integrations should be explicit adapters with read-only defaults and tests.
+Data Quality Agent runs on local deterministic datasets by default and accepts bounded CSV uploads for real business data analysis. It does not connect to a warehouse, persist uploaded files, or call external model providers unless an optional model key is explicitly configured. Future warehouse integrations should be explicit adapters with read-only defaults and tests.
 
 External model calls are opt-in through `OPENAI_API_KEY`. The default path makes no network calls and does not require paid APIs. The tool-calling route returns a disabled report when no key is configured.
 

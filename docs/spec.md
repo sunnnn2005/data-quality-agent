@@ -23,6 +23,7 @@ The system turns dataset records and metadata into a structured quality report. 
 - Include score, status, findings, likely causes, recommendations, timestamp, and trace.
 - Include an `llm_assessment` object that is disabled by default and populated when an OpenAI-compatible provider is configured.
 - Generate an optional `agent-report` where the LLM chooses data-quality tools and attaches the deterministic source-of-truth report.
+- Accept bounded CSV exports from business workflows with provided owner, primary key, expected columns, and description.
 - Return a clear 404 for unknown datasets.
 - Render a browser dashboard with the same backend data.
 
@@ -73,6 +74,17 @@ Future checks should follow the same pattern:
 - no hidden mutation
 - tested edge cases
 
+## Business Data Contracts
+
+CSV uploads must:
+
+- use a `.csv` filename
+- stay below the configured upload-size, row-count, and column-count limits
+- include the declared primary-key column
+- provide dataset owner and dataset name context through form fields
+
+Uploaded files are parsed for the current request and are not persisted by the app.
+
 ## Commands
 
 ```bash
@@ -99,3 +111,4 @@ docker run --rm -p 8000:8000 data-quality-agent
 - Documentation should describe behavior without overstating production readiness.
 - LLM features must preserve deterministic fallback behavior and avoid sending sensitive fields.
 - Tool-calling features must expose small explicit tools rather than unrestricted code execution.
+- Business-data uploads must be bounded, read-only, and validated before analysis.

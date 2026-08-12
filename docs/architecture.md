@@ -2,7 +2,7 @@
 
 Data Quality Agent is a local-first data reliability agent. It profiles datasets, runs deterministic quality checks, converts failures into typed findings, and returns a structured report with likely causes and next steps.
 
-The default implementation uses in-memory sample datasets. That keeps the system inspectable, reproducible, and safe to run without credentials or private data. An optional OpenAI-compatible tool-calling agent can be enabled with `OPENAI_API_KEY` to inspect dataset evidence through explicit tools.
+The default implementation uses in-memory sample datasets. That keeps the system inspectable, reproducible, and safe to run without credentials or private data. The business-data upload path accepts bounded CSV exports with explicit owner, primary-key, and expected-column context. An optional OpenAI-compatible tool-calling agent can be enabled with `OPENAI_API_KEY` to inspect dataset evidence through explicit tools.
 
 ## Runtime Loop
 
@@ -60,6 +60,8 @@ These models are the public shape of the system.
 ### Data Layer
 
 `app/data.py` contains deterministic sample datasets and dataset metadata. The sample datasets intentionally include quality failures so tests can assert specific behavior.
+
+`app/business_data.py` adapts real CSV exports into the same `DatasetSummary + DataFrame` contract. It validates file type, file size, row count, column count, and primary-key presence before analysis.
 
 ### Profiling Layer
 
@@ -132,7 +134,7 @@ Avoid mixing these layers in one large change. A good PR should usually update o
 Data Quality Agent does not:
 
 - connect to a warehouse by default
-- upload data
+- persist uploaded CSV files
 - call external model providers unless `OPENAI_API_KEY` is explicitly configured
 - require paid APIs
 - require secrets
@@ -153,6 +155,7 @@ The tests verify both the agent loop and the API contract:
 - structured LLM assessments can be attached to reports
 - the tool-calling agent can be skipped safely without a key
 - mocked tool-call loops attach a deterministic report before final answer
+- uploaded CSV business data can be analyzed through deterministic and agent endpoints
 
 The project should remain runnable with:
 
