@@ -2,7 +2,7 @@
 
 Data Quality Agent is a local-first data reliability agent. It profiles datasets, runs deterministic quality checks, converts failures into typed findings, and returns a structured report with likely causes and next steps.
 
-The default implementation uses in-memory sample datasets. That keeps the system inspectable, reproducible, and safe to run without credentials or private data.
+The default implementation uses in-memory sample datasets. That keeps the system inspectable, reproducible, and safe to run without credentials or private data. An optional OpenAI-compatible advisor can be enabled with `OPENAI_API_KEY` to generate a structured risk assessment from redacted evidence.
 
 ## Runtime Loop
 
@@ -13,6 +13,7 @@ DatasetSummary + DataFrame
   -> QualityFinding[]
   -> score/status
   -> likely causes
+  -> optional LLMDataQualityAdvisor
   -> QualityReport
 ```
 
@@ -41,6 +42,7 @@ The API returns Pydantic models rather than ad hoc dictionaries.
 - `ColumnProfile`
 - `DatasetProfile`
 - `QualityFinding`
+- `LLMAssessment`
 - `QualityReport`
 
 These models are the public shape of the system.
@@ -75,6 +77,19 @@ These models are the public shape of the system.
 
 `app/agent.py` coordinates profiling, check execution, scoring, likely-cause generation, and next-step recommendation.
 
+### LLM Advisor Layer
+
+`app/llm.py` is an optional model-integration boundary. It demonstrates:
+
+- OpenAI-compatible Chat Completions API usage
+- prompt design for strict JSON output
+- sensitive-field redaction before model calls
+- timeout, retry, and invalid-output handling
+- cost estimation from token usage
+- lightweight model-output evaluation against the deterministic findings
+
+The model does not replace the rule engine. It can only summarize and prioritize evidence already produced by typed checks.
+
 ### Dashboard Layer
 
 `app/dashboard.py` provides a zero-build demo UI. It is intentionally simple so the backend remains the source of truth.
@@ -97,7 +112,7 @@ Data Quality Agent does not:
 
 - connect to a warehouse by default
 - upload data
-- call external model providers
+- call external model providers unless `OPENAI_API_KEY` is explicitly configured
 - require paid APIs
 - require secrets
 
@@ -113,6 +128,8 @@ The tests verify both the agent loop and the API contract:
 - profiles include column-level summaries
 - the dashboard renders
 - the API returns typed reports
+- the optional LLM advisor can be skipped safely
+- structured LLM assessments can be attached to reports
 
 The project should remain runnable with:
 

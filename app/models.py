@@ -47,6 +47,19 @@ class QualityFinding(BaseModel):
     recommendation: str
 
 
+class LLMAssessment(BaseModel):
+    enabled: bool = False
+    provider: str = "disabled"
+    model: str | None = None
+    summary: str | None = None
+    risk_level: Literal["LOW", "MEDIUM", "HIGH", "CRITICAL"] | None = None
+    evidence_used: list[str] = Field(default_factory=list)
+    suggested_actions: list[str] = Field(default_factory=list)
+    evaluation: dict[str, Any] = Field(default_factory=dict)
+    cost_estimate_usd: float | None = None
+    error: str | None = None
+
+
 class QualityReport(BaseModel):
     dataset: DatasetSummary
     generated_at: datetime
@@ -56,4 +69,5 @@ class QualityReport(BaseModel):
     findings: list[QualityFinding]
     likely_causes: list[str]
     recommended_next_steps: list[str]
+    llm_assessment: LLMAssessment = Field(default_factory=LLMAssessment)
     agent_trace: list[str]

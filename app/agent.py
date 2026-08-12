@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 import pandas as pd
 
 from app.checks import QualityCheckRunner
+from app.llm import LLMDataQualityAdvisor
 from app.models import DatasetSummary, QualityFinding, QualityReport, Severity
 from app.profiler import DatasetProfiler
 
@@ -12,9 +13,11 @@ class DataQualityAgent:
         self,
         profiler: DatasetProfiler | None = None,
         check_runner: QualityCheckRunner | None = None,
+        llm_advisor: LLMDataQualityAdvisor | None = None,
     ) -> None:
         self.profiler = profiler or DatasetProfiler()
         self.check_runner = check_runner or QualityCheckRunner()
+        self.llm_advisor = llm_advisor or LLMDataQualityAdvisor()
 
     def analyze(self, dataset: DatasetSummary, frame: pd.DataFrame) -> QualityReport:
         trace = [f"loaded dataset {dataset.id} owned by {dataset.owner}"]
@@ -25,6 +28,12 @@ class DataQualityAgent:
         trace.append(f"called {self.check_runner.name}: {len(findings)} quality findings")
 
         score = self._score(findings)
+        llm_assessment = self.llm_advisor.assess(profile, findings)
+        if llm_assessment.enabled:
+            trace.append(f"called {self.llm_advisor.name}: {llm_assessment.risk_level or 'no risk level'}")
+        else:
+            trace.append(f"skipped {self.llm_advisor.name}: {llm_assessment.error}")
+
         return QualityReport(
             dataset=dataset,
             generated_at=datetime.now(timezone.utc),
@@ -34,6 +43,7 @@ class DataQualityAgent:
             findings=findings,
             likely_causes=self._likely_causes(findings),
             recommended_next_steps=self._next_steps(findings),
+            llm_assessment=llm_assessment,
             agent_trace=trace,
         )
 

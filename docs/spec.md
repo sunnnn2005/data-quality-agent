@@ -1,6 +1,6 @@
 # Specification
 
-Data Quality Agent is a deterministic data reliability agent for local experimentation with dataset validation workflows.
+Data Quality Agent is a data reliability agent for local experimentation with dataset validation workflows. The core checks are deterministic, and an optional OpenAI-compatible advisor can add structured AI-generated risk summaries.
 
 ## Purpose
 
@@ -21,6 +21,7 @@ The system turns dataset records and metadata into a structured quality report. 
 - Generate a column-level profile for a known dataset.
 - Generate a quality report for a known dataset.
 - Include score, status, findings, likely causes, recommendations, timestamp, and trace.
+- Include an `llm_assessment` object that is disabled by default and populated when an OpenAI-compatible provider is configured.
 - Return a clear 404 for unknown datasets.
 - Render a browser dashboard with the same backend data.
 
@@ -41,6 +42,10 @@ A finding is one failed or suspicious check. It includes severity, evidence, and
 ### QualityReport
 
 The report is the final output. It should be useful both as JSON and as a source for future markdown/text exports.
+
+### LLMAssessment
+
+The optional LLM assessment includes model/provider metadata, summary, risk level, evidence used, suggested actions, estimated cost, evaluation metadata, and error state. It must remain structured and testable.
 
 ## Check Contracts
 
@@ -87,3 +92,4 @@ docker run --rm -p 8000:8000 data-quality-agent
 - New report fields should be represented as typed Pydantic models.
 - New integrations should not require secrets in the default path.
 - Documentation should describe behavior without overstating production readiness.
+- LLM features must preserve deterministic fallback behavior and avoid sending sensitive fields.

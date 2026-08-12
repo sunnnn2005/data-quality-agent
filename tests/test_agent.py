@@ -1,5 +1,6 @@
 from app.agent import DataQualityAgent
 from app.data import DATASETS, load_dataset
+from app.models import LLMAssessment
 
 
 def analyze(dataset_id: str):
@@ -41,3 +42,36 @@ def test_agent_trace_records_tool_calls():
 
     assert any("dataset_profiler" in step for step in report.agent_trace)
     assert any("quality_check_runner" in step for step in report.agent_trace)
+    assert any("llm_data_quality_advisor" in step for step in report.agent_trace)
+
+
+def test_llm_assessment_is_safe_optional_default():
+    report = analyze("orders_daily")
+
+    assert report.llm_assessment.enabled is False
+    assert report.llm_assessment.error == "OPENAI_API_KEY is not configured"
+
+
+def test_agent_accepts_structured_llm_assessment():
+    class FakeAdvisor:
+        name = "llm_data_quality_advisor"
+
+        def assess(self, profile, findings):
+            return LLMAssessment(
+                enabled=True,
+                provider="test",
+                model="fake-model",
+                summary=f"Reviewed {profile.dataset.id} with {len(findings)} findings.",
+                risk_level="HIGH",
+                evidence_used=["duplicate_primary_key", "missing_values"],
+                suggested_actions=["Create an owner-reviewed remediation ticket."],
+                evaluation={"findings_referenced": 2, "unsupported_claims": []},
+                cost_estimate_usd=0.0001,
+            )
+
+    report = DataQualityAgent(llm_advisor=FakeAdvisor()).analyze(DATASETS["orders_daily"], load_dataset("orders_daily"))
+
+    assert report.llm_assessment.enabled is True
+    assert report.llm_assessment.risk_level == "HIGH"
+    assert report.llm_assessment.evaluation["findings_referenced"] == 2
+    assert any("called llm_data_quality_advisor" in step for step in report.agent_trace)

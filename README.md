@@ -5,17 +5,18 @@
 
 Data Quality Agent is a local-first data reliability agent. It profiles a dataset, runs contract and quality checks, assigns severity, and returns a structured report with likely causes and recommended next steps.
 
-The project is designed to keep the data-quality loop visible. There is no hidden external model call in the default path. The agent produces typed findings, a quality score, and an explicit trace of the checks it ran.
+The project is designed to keep the data-quality loop visible. The default path is deterministic and runs without secrets, while an optional OpenAI-compatible LLM advisor can summarize evidence, return structured JSON, and add an evaluated risk assessment when `OPENAI_API_KEY` is configured.
 
 ![Data Quality Agent dashboard](docs/assets/data-quality-dashboard.png)
 
 ## The Model
 
-Data Quality Agent is built around five objects:
+Data Quality Agent is built around six objects:
 
 - **DatasetSummary**: owner, primary key, expected columns, freshness metadata, and description.
 - **DatasetProfile**: row count, column count, dtypes, missingness, uniqueness, and sample values.
 - **QualityFinding**: one failing check with severity, evidence, and remediation.
+- **LLMAssessment**: optional model-generated JSON summary, risk level, evidence references, suggested actions, cost estimate, and evaluation metadata.
 - **QualityReport**: score, status, findings, likely causes, next steps, and trace.
 - **CheckRunner**: the deterministic tool that applies quality checks.
 
@@ -29,7 +30,9 @@ The point is not to generate a vague "data looks bad" paragraph. The report is s
 4. Convert failed checks into typed findings.
 5. Apply severity-weighted scoring.
 6. Infer likely causes from the pattern of failures.
-7. Return a report with remediation steps and an agent trace.
+7. Optionally call an OpenAI-compatible model with redacted evidence and a strict JSON-output prompt.
+8. Evaluate the model output for referenced findings, unsupported evidence claims, latency, and estimated cost.
+9. Return a report with remediation steps, LLM assessment, and an agent trace.
 
 The sample datasets are intentionally small and deterministic. They are not mock data for its own sake; they make the agent behavior reproducible and testable.
 
@@ -42,6 +45,24 @@ dataset -> profile -> checks -> findings -> likely causes -> action plan
 ```
 
 It is closer to a small internal data platform tool than a notebook. The backend exposes API contracts, the dashboard shows the report, and tests verify the agent's decisions.
+
+## Optional LLM Advisor
+
+The project can run entirely without a model provider. To demonstrate AI integration, set:
+
+```bash
+export OPENAI_API_KEY=...
+export OPENAI_MODEL=gpt-4o-mini
+```
+
+When enabled, `app/llm.py` sends only redacted profile and finding evidence to an OpenAI-compatible Chat Completions endpoint. The prompt requires strict JSON with:
+
+- `summary`
+- `risk_level`
+- `evidence_used`
+- `suggested_actions`
+
+The client includes timeout handling, bounded retries, invalid JSON handling, simple sensitive-field redaction, cost estimation from token usage, and lightweight output evaluation. The deterministic rule engine remains the source of truth, so the model is used to improve explanation quality rather than replace tested checks.
 
 ## Quick Start
 
@@ -137,7 +158,9 @@ tests/
 
 ## Safety and Scope
 
-Data Quality Agent runs on local deterministic datasets. It does not connect to a warehouse, upload data, or call external model providers. Future warehouse or CSV integrations should be explicit adapters with read-only defaults and tests.
+Data Quality Agent runs on local deterministic datasets by default. It does not connect to a warehouse, upload data, or call external model providers unless an optional model key is explicitly configured. Future warehouse or CSV integrations should be explicit adapters with read-only defaults and tests.
+
+External model calls are opt-in through `OPENAI_API_KEY`. The default path makes no network calls and does not require paid APIs.
 
 See [SECURITY.md](SECURITY.md) for integration guidelines.
 
