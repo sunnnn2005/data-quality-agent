@@ -1,6 +1,6 @@
 # Specification
 
-Data Quality Agent is a data reliability agent for local experimentation with dataset validation workflows. The core checks are deterministic, and an optional OpenAI-compatible advisor can add structured AI-generated risk summaries.
+Data Quality Agent is a data reliability agent for local experimentation with dataset validation workflows. The core checks are deterministic, and an optional OpenAI-compatible tool-calling agent can inspect datasets with explicit tools before returning a structured answer.
 
 ## Purpose
 
@@ -22,6 +22,7 @@ The system turns dataset records and metadata into a structured quality report. 
 - Generate a quality report for a known dataset.
 - Include score, status, findings, likely causes, recommendations, timestamp, and trace.
 - Include an `llm_assessment` object that is disabled by default and populated when an OpenAI-compatible provider is configured.
+- Generate an optional `agent-report` where the LLM chooses data-quality tools and attaches the deterministic source-of-truth report.
 - Return a clear 404 for unknown datasets.
 - Render a browser dashboard with the same backend data.
 
@@ -46,6 +47,10 @@ The report is the final output. It should be useful both as JSON and as a source
 ### LLMAssessment
 
 The optional LLM assessment includes model/provider metadata, summary, risk level, evidence used, suggested actions, estimated cost, evaluation metadata, and error state. It must remain structured and testable.
+
+### AgentRunReport
+
+The optional agent report includes model-selected tool calls, result previews, final answer, deterministic report attachment, evaluation metadata, and disabled/error states.
 
 ## Check Contracts
 
@@ -93,3 +98,4 @@ docker run --rm -p 8000:8000 data-quality-agent
 - New integrations should not require secrets in the default path.
 - Documentation should describe behavior without overstating production readiness.
 - LLM features must preserve deterministic fallback behavior and avoid sending sensitive fields.
+- Tool-calling features must expose small explicit tools rather than unrestricted code execution.

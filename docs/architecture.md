@@ -2,7 +2,7 @@
 
 Data Quality Agent is a local-first data reliability agent. It profiles datasets, runs deterministic quality checks, converts failures into typed findings, and returns a structured report with likely causes and next steps.
 
-The default implementation uses in-memory sample datasets. That keeps the system inspectable, reproducible, and safe to run without credentials or private data. An optional OpenAI-compatible advisor can be enabled with `OPENAI_API_KEY` to generate a structured risk assessment from redacted evidence.
+The default implementation uses in-memory sample datasets. That keeps the system inspectable, reproducible, and safe to run without credentials or private data. An optional OpenAI-compatible tool-calling agent can be enabled with `OPENAI_API_KEY` to inspect dataset evidence through explicit tools.
 
 ## Runtime Loop
 
@@ -15,6 +15,14 @@ DatasetSummary + DataFrame
   -> likely causes
   -> optional LLMDataQualityAdvisor
   -> QualityReport
+
+Optional LLM tool loop:
+
+User request
+  -> LLMDataQualityAgent
+  -> tool choice: get_dataset_contract | profile_dataset | run_quality_checks | build_quality_report
+  -> tool results
+  -> final answer + AgentRunReport
 ```
 
 The agent is deliberately not implemented as a single free-form prompt. Each step has an explicit typed boundary so behavior can be tested and extended.
@@ -43,6 +51,8 @@ The API returns Pydantic models rather than ad hoc dictionaries.
 - `DatasetProfile`
 - `QualityFinding`
 - `LLMAssessment`
+- `AgentToolCall`
+- `AgentRunReport`
 - `QualityReport`
 
 These models are the public shape of the system.
@@ -90,6 +100,17 @@ These models are the public shape of the system.
 
 The model does not replace the rule engine. It can only summarize and prioritize evidence already produced by typed checks.
 
+### Tool-Calling Agent Layer
+
+`app/tool_agent.py` implements a true LLM agent loop. It exposes a small toolbox:
+
+- `get_dataset_contract`
+- `profile_dataset`
+- `run_quality_checks`
+- `build_quality_report`
+
+The model decides which tools to call, receives JSON tool results, and must call `build_quality_report` before finalizing. The response includes an `AgentRunReport` with every tool call, result preview, final answer, attached deterministic report, and evaluation flags such as whether the required report tool was used.
+
 ### Dashboard Layer
 
 `app/dashboard.py` provides a zero-build demo UI. It is intentionally simple so the backend remains the source of truth.
@@ -130,6 +151,8 @@ The tests verify both the agent loop and the API contract:
 - the API returns typed reports
 - the optional LLM advisor can be skipped safely
 - structured LLM assessments can be attached to reports
+- the tool-calling agent can be skipped safely without a key
+- mocked tool-call loops attach a deterministic report before final answer
 
 The project should remain runnable with:
 

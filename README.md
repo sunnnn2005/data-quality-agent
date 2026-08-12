@@ -5,7 +5,7 @@
 
 Data Quality Agent is a local-first data reliability agent. It profiles a dataset, runs contract and quality checks, assigns severity, and returns a structured report with likely causes and recommended next steps.
 
-The project is designed to keep the data-quality loop visible. The default path is deterministic and runs without secrets, while an optional OpenAI-compatible LLM advisor can summarize evidence, return structured JSON, and add an evaluated risk assessment when `OPENAI_API_KEY` is configured.
+The project is designed to keep the data-quality loop visible. The default path is deterministic and runs without secrets, while an optional OpenAI-compatible LLM agent can choose tools, inspect evidence, build a source-of-truth report, and return a structured assessment when `OPENAI_API_KEY` is configured.
 
 ![Data Quality Agent dashboard](docs/assets/data-quality-dashboard.png)
 
@@ -17,6 +17,7 @@ Data Quality Agent is built around six objects:
 - **DatasetProfile**: row count, column count, dtypes, missingness, uniqueness, and sample values.
 - **QualityFinding**: one failing check with severity, evidence, and remediation.
 - **LLMAssessment**: optional model-generated JSON summary, risk level, evidence references, suggested actions, cost estimate, and evaluation metadata.
+- **AgentRunReport**: optional tool-calling agent result with tool trace, final answer, attached deterministic report, and agent evaluation.
 - **QualityReport**: score, status, findings, likely causes, next steps, and trace.
 - **CheckRunner**: the deterministic tool that applies quality checks.
 
@@ -30,9 +31,9 @@ The point is not to generate a vague "data looks bad" paragraph. The report is s
 4. Convert failed checks into typed findings.
 5. Apply severity-weighted scoring.
 6. Infer likely causes from the pattern of failures.
-7. Optionally call an OpenAI-compatible model with redacted evidence and a strict JSON-output prompt.
-8. Evaluate the model output for referenced findings, unsupported evidence claims, latency, and estimated cost.
-9. Return a report with remediation steps, LLM assessment, and an agent trace.
+7. Optionally run an LLM tool-calling loop that can call `profile_dataset`, `run_quality_checks`, and `build_quality_report`.
+8. Evaluate the agent run for tool usage, report attachment, latency, unsupported evidence claims, and estimated cost.
+9. Return a report with remediation steps, LLM assessment, tool-call trace, and deterministic fallback behavior.
 
 The sample datasets are intentionally small and deterministic. They are not mock data for its own sake; they make the agent behavior reproducible and testable.
 
@@ -46,7 +47,7 @@ dataset -> profile -> checks -> findings -> likely causes -> action plan
 
 It is closer to a small internal data platform tool than a notebook. The backend exposes API contracts, the dashboard shows the report, and tests verify the agent's decisions.
 
-## Optional LLM Advisor
+## Optional LLM Agent
 
 The project can run entirely without a model provider. To demonstrate AI integration, set:
 
@@ -55,7 +56,16 @@ export OPENAI_API_KEY=...
 export OPENAI_MODEL=gpt-4o-mini
 ```
 
-When enabled, `app/llm.py` sends only redacted profile and finding evidence to an OpenAI-compatible Chat Completions endpoint. The prompt requires strict JSON with:
+When enabled, `app/tool_agent.py` exposes data-quality tools to an OpenAI-compatible Chat Completions endpoint:
+
+- `get_dataset_contract`
+- `profile_dataset`
+- `run_quality_checks`
+- `build_quality_report`
+
+The agent is instructed to inspect evidence with tools and call `build_quality_report` before finalizing. The deterministic report remains the source of truth.
+
+For the lower-level LLM assessment, `app/llm.py` sends only redacted profile and finding evidence to the model. The prompt requires strict JSON with:
 
 - `summary`
 - `risk_level`
@@ -92,6 +102,7 @@ GET  /datasets
 GET  /datasets/{dataset_id}
 GET  /datasets/{dataset_id}/profile
 POST /datasets/{dataset_id}/quality-report
+POST /datasets/{dataset_id}/agent-report
 GET  /dashboard
 ```
 
@@ -145,9 +156,11 @@ app/
   checks.py      Deterministic data-quality checks
   data.py        Local datasets and contracts
   dashboard.py   Demo UI
+  llm.py         OpenAI-compatible structured-output advisor
   main.py        FastAPI routes
   models.py      Typed report contracts
   profiler.py    Column-level profiling
+  tool_agent.py  LLM tool-calling agent loop
 docs/
   architecture.md
   spec.md
@@ -160,7 +173,7 @@ tests/
 
 Data Quality Agent runs on local deterministic datasets by default. It does not connect to a warehouse, upload data, or call external model providers unless an optional model key is explicitly configured. Future warehouse or CSV integrations should be explicit adapters with read-only defaults and tests.
 
-External model calls are opt-in through `OPENAI_API_KEY`. The default path makes no network calls and does not require paid APIs.
+External model calls are opt-in through `OPENAI_API_KEY`. The default path makes no network calls and does not require paid APIs. The tool-calling route returns a disabled report when no key is configured.
 
 See [SECURITY.md](SECURITY.md) for integration guidelines.
 

@@ -60,6 +60,23 @@ class LLMAssessment(BaseModel):
     error: str | None = None
 
 
+class AgentToolCall(BaseModel):
+    tool_name: str
+    arguments: dict[str, Any] = Field(default_factory=dict)
+    result_preview: dict[str, Any] = Field(default_factory=dict)
+
+
+class AgentRunReport(BaseModel):
+    dataset: DatasetSummary
+    generated_at: datetime
+    status: Literal["PASS", "WARN", "FAIL", "DISABLED", "ERROR"]
+    final_answer: str
+    tool_calls: list[AgentToolCall]
+    quality_report: "QualityReport | None" = None
+    evaluation: dict[str, Any] = Field(default_factory=dict)
+    error: str | None = None
+
+
 class QualityReport(BaseModel):
     dataset: DatasetSummary
     generated_at: datetime

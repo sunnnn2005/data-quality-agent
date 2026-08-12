@@ -1,6 +1,7 @@
 from app.agent import DataQualityAgent
 from app.data import DATASETS, load_dataset
 from app.models import LLMAssessment
+from app.tool_agent import DataQualityToolbox, LLMDataQualityAgent
 
 
 def analyze(dataset_id: str):
@@ -75,3 +76,87 @@ def test_agent_accepts_structured_llm_assessment():
     assert report.llm_assessment.risk_level == "HIGH"
     assert report.llm_assessment.evaluation["findings_referenced"] == 2
     assert any("called llm_data_quality_advisor" in step for step in report.agent_trace)
+
+
+def test_toolbox_exposes_data_quality_tools():
+    toolbox = DataQualityToolbox(DATASETS["orders_daily"], load_dataset("orders_daily"))
+
+    contract = toolbox.dispatch("get_dataset_contract", {})
+    profile = toolbox.dispatch("profile_dataset", {})
+    checks = toolbox.dispatch("run_quality_checks", {})
+    report = toolbox.dispatch("build_quality_report", {})
+
+    assert contract["primary_key"] == DATASETS["orders_daily"].primary_key
+    assert profile["row_count"] > 0
+    assert len(checks["findings"]) >= 1
+    assert report["status"] == "FAIL"
+    assert report["llm_assessment"]["enabled"] is False
+
+
+def test_llm_tool_calling_agent_default_disabled():
+    report = LLMDataQualityAgent().run(DATASETS["orders_daily"], load_dataset("orders_daily"))
+
+    assert report.status == "DISABLED"
+    assert report.tool_calls == []
+    assert report.error == "OPENAI_API_KEY is not configured"
+
+
+def test_llm_tool_calling_agent_runs_tool_loop():
+    class FakeSettings:
+        api_key = "test-key"
+        base_url = "http://example.test/v1"
+        model = "fake-model"
+        timeout_seconds = 1
+        max_retries = 0
+
+    agent = LLMDataQualityAgent(settings=FakeSettings())
+    calls = [
+        {
+            "choices": [
+                {
+                    "message": {
+                        "role": "assistant",
+                        "tool_calls": [
+                            {
+                                "id": "call_1",
+                                "type": "function",
+                                "function": {"name": "profile_dataset", "arguments": "{}"},
+                            },
+                            {
+                                "id": "call_2",
+                                "type": "function",
+                                "function": {"name": "run_quality_checks", "arguments": "{}"},
+                            },
+                            {
+                                "id": "call_3",
+                                "type": "function",
+                                "function": {"name": "build_quality_report", "arguments": "{}"},
+                            },
+                        ],
+                    }
+                }
+            ]
+        },
+        {
+            "choices": [
+                {
+                    "message": {
+                        "role": "assistant",
+                        "content": "The dataset fails quality checks due to duplicate keys, missing values, and outliers.",
+                    }
+                }
+            ]
+        },
+    ]
+
+    def fake_post(_body):
+        return calls.pop(0), 1
+
+    agent.advisor._post_with_retries = fake_post
+
+    report = agent.run(DATASETS["orders_daily"], load_dataset("orders_daily"))
+
+    assert report.status == "FAIL"
+    assert report.quality_report is not None
+    assert [call.tool_name for call in report.tool_calls] == ["profile_dataset", "run_quality_checks", "build_quality_report"]
+    assert report.evaluation["used_required_report_tool"] is True
