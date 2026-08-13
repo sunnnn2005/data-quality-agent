@@ -24,7 +24,7 @@ This generated artifact turns public project evidence into resume-safe traction 
 | --- | --- | --- | --- |
 | public launch | Launched a public GitHub Pages demo for a business-data quality agent. | [https://sunnnn2005.github.io/data-quality-agent/](https://sunnnn2005.github.io/data-quality-agent/) | `claimable` |
 | public release | Published v0.3.0 release and runnable GHCR container image. | [https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.3.0](https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.3.0) | `claimable` |
-| verified engineering quality | Maintained 139 passing CI tests across agent, API, evidence, and safety checks. | [https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml) | `claimable` |
+| verified engineering quality | Maintained 140 passing CI tests across agent, API, evidence, and safety checks. | [https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml) | `claimable` |
 | evidence collection system | Built a reviewer evidence system with 5 public issue templates and 5 privacy/permission steps. | [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-evidence-kit.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-evidence-kit.md) | `claimable` |
 
 ## Future Outcome Claims

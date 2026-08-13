@@ -49,7 +49,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "139 passing CI tests",
+            "140 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -61,7 +61,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 139},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 140},
         "evidence_type": "json",
     },
     {
@@ -376,6 +376,7 @@ PUBLIC_CHECKS = [
             "scripts/build_reviewer_action_queue.py",
             "scripts/build_reviewer_outreach_execution_pack.py",
             "scripts/build_resume_outcome_metrics.py",
+            "scripts/build_reviewer_submission_hub.py",
             "scripts/build_public_metrics_summary.py",
             "git-auto-commit-action",
         ],
@@ -579,6 +580,24 @@ PUBLIC_CHECKS = [
             "business_case_feedback_items",
             "github_stars",
             "GitHub traffic is treated as repository interest, not as users.",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "reviewer-submission-hub",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-submission-hub.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "submission_path_count": 6,
+            "target_metric_count": 6,
+            "total_required_evidence_fields": 23,
+        },
+        "expected_text": "collection_ready_not_claimable",
+        "expected_texts": [
+            "confirmed_external_users",
+            "ai_engineer_review_items",
+            "github_stars",
+            "never asks for fake engagement",
         ],
         "evidence_type": "json",
     },

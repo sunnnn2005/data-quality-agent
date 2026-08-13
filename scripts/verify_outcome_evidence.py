@@ -32,6 +32,7 @@ RESUME_TRACTION_PROOF_PATH = ROOT / "docs" / "resume-traction-proof.json"
 REVIEWER_ACTION_QUEUE_PATH = ROOT / "docs" / "reviewer-action-queue.json"
 REVIEWER_OUTREACH_EXECUTION_PACK_PATH = ROOT / "docs" / "reviewer-outreach-execution-pack.json"
 RESUME_OUTCOME_METRICS_PATH = ROOT / "docs" / "resume-outcome-metrics.json"
+REVIEWER_SUBMISSION_HUB_PATH = ROOT / "docs" / "reviewer-submission-hub.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
@@ -107,6 +108,7 @@ def verify_manifest() -> dict[str, int]:
     reviewer_action_queue = load_payload(REVIEWER_ACTION_QUEUE_PATH)
     reviewer_outreach_execution = load_payload(REVIEWER_OUTREACH_EXECUTION_PACK_PATH)
     resume_outcome_metrics = load_payload(RESUME_OUTCOME_METRICS_PATH)
+    reviewer_submission_hub = load_payload(REVIEWER_SUBMISSION_HUB_PATH)
     api_smoke_report = load_payload(API_SMOKE_REPORT_PATH)
     performance_baseline = load_payload(PERFORMANCE_BASELINE_PATH)
     demo_usage_baseline = load_payload(DEMO_USAGE_BASELINE_PATH)
@@ -566,7 +568,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 139:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 140:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -762,6 +764,48 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("resume outcome metrics must include a dedicated test")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("resume_outcome_metrics claim must use metric_value=1")
+            elif metric_name == "reviewer_submission_hub":
+                hub_script = (ROOT / "scripts" / "build_reviewer_submission_hub.py").read_text()
+                hub_tests = (ROOT / "tests" / "test_reviewer_submission_hub.py").read_text()
+                expected = {
+                    "submission_path_count": 6,
+                    "target_metric_count": 6,
+                    "total_required_evidence_fields": 23,
+                }
+                for key, value in expected.items():
+                    if reviewer_submission_hub.get(key) != value:
+                        raise AssertionError(f"reviewer submission hub {key} expected {value!r}")
+                if reviewer_submission_hub.get("resume_status") != "collection_ready_not_claimable":
+                    raise AssertionError("reviewer submission hub must not be claimable by itself")
+                required_metrics = {
+                    "confirmed_external_users",
+                    "external_feedback_items",
+                    "reproducible_feedback_items",
+                    "business_case_feedback_items",
+                    "ai_engineer_review_items",
+                    "github_stars",
+                }
+                actual_metrics = {path.get("target_metric") for path in reviewer_submission_hub.get("submission_paths", [])}
+                if actual_metrics != required_metrics:
+                    raise AssertionError("reviewer submission hub must map every outcome metric to a submission path")
+                for path in reviewer_submission_hub.get("submission_paths", []):
+                    if not path.get("submission_url", "").startswith("https://github.com/"):
+                        raise AssertionError("reviewer submission hub submissions must use public GitHub URLs")
+                    if "Counts only" not in path.get("counting_rule", ""):
+                        raise AssertionError("reviewer submission hub must preserve conservative counting rules")
+                for status in reviewer_submission_hub.get("tracked_outcome_status", {}).values():
+                    if status.get("current_count") != 0 or status.get("resume_status") != "not_claimable_yet":
+                        raise AssertionError("reviewer submission hub must preserve zero-count blocked outcomes")
+                joined = json.dumps(reviewer_submission_hub, sort_keys=True).lower()
+                for required in ("permission", "evidence gate", "no raw production data", "never asks for fake engagement"):
+                    if required not in joined:
+                        raise AssertionError(f"reviewer submission hub missing safety signal: {required}")
+                if "verify_reviewer_submission_hub" not in hub_script:
+                    raise AssertionError("reviewer submission hub must include a script verifier")
+                if "test_reviewer_submission_hub_maps_every_outcome_to_public_evidence_path" not in hub_tests:
+                    raise AssertionError("reviewer submission hub must include a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("reviewer_submission_hub claim must use metric_value=1")
             elif metric_name == "persistent_trace_audit":
                 trace_tests = (ROOT / "tests" / "test_traces.py").read_text()
                 trace_source = (ROOT / "app" / "traces.py").read_text()
@@ -1057,7 +1101,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 139:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 140:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1857,6 +1901,7 @@ def verify_manifest() -> dict[str, int]:
             "scripts/build_public_metrics_summary.py",
             "scripts/build_reviewer_outreach_execution_pack.py",
             "scripts/build_resume_outcome_metrics.py",
+            "scripts/build_reviewer_submission_hub.py",
             "scripts/verify_outcome_evidence.py",
             "git-auto-commit-action",
         ):
@@ -1898,7 +1943,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 139", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 140", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

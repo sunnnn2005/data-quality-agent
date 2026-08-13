@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 139,
-      "resume_signal": "139 passing CI tests",
+      "metric_value": 140,
+      "resume_signal": "140 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 33 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 34 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 33,
+      "metric_value": 34,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -709,6 +709,16 @@
       "resume_signal": "CI-verified resume outcome metrics board",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-metrics.json"
+    },
+    {
+      "claim": "The project publishes a reviewer submission hub with 6 public submission paths, 6 tracked outcome categories, 23 required evidence fields, conservative counting rules, and zero current outcome claims upgraded.",
+      "evidence_type": "generated_artifact",
+      "id": "reviewer-submission-hub",
+      "metric_name": "reviewer_submission_hub",
+      "metric_value": 1,
+      "resume_signal": "CI-verified reviewer submission hub",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-submission-hub.json"
     }
   ],
   "not_claimed": [

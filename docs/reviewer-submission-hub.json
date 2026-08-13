@@ -1,0 +1,134 @@
+{
+  "generated_by": "scripts/build_reviewer_submission_hub.py",
+  "not_claimed": [
+    "No external users are claimed while confirmed_external_users is zero.",
+    "No customer feedback is claimed while external_feedback_items is zero.",
+    "No real business impact is claimed while business_case_feedback_items is zero.",
+    "No GitHub star growth is claimed while github_stars is zero.",
+    "GitHub traffic is treated as repository interest, not as users."
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Give reviewers one short public hub for submitting evidence that can turn zero-count resume outcomes into evidence-backed claims after the external evidence gate accepts them.",
+  "resume_safe_summary": "Published a CI-verified reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, 23 required evidence fields, and zero current outcome claims upgraded.",
+  "resume_status": "collection_ready_not_claimable",
+  "submission_path_count": 6,
+  "submission_paths": [
+    {
+      "counting_rule": "Counts only after a non-owner public issue grants permission and passes the evidence gate.",
+      "id": "try_public_demo",
+      "minimum_minutes": 5,
+      "required_evidence": [
+        "path tried",
+        "what was useful",
+        "what was confusing",
+        "permission to count publicly"
+      ],
+      "review_path": "https://sunnnn2005.github.io/data-quality-agent/",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_metric": "external_feedback_items"
+    },
+    {
+      "counting_rule": "Counts only when the reviewer ran or opened a runnable path and submitted observed-result evidence.",
+      "id": "confirm_external_run",
+      "minimum_minutes": 8,
+      "required_evidence": [
+        "command or URL used",
+        "observed result",
+        "environment",
+        "permission to count public run evidence"
+      ],
+      "review_path": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-quickstart.md",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md",
+      "target_metric": "confirmed_external_users"
+    },
+    {
+      "counting_rule": "Counts only when reproduction steps are specific enough for the maintainer to retry.",
+      "id": "submit_reproducible_issue",
+      "minimum_minutes": 10,
+      "required_evidence": [
+        "expected behavior",
+        "actual behavior",
+        "reproduction steps",
+        "safe logs or screenshots"
+      ],
+      "review_path": "https://github.com/sunnnn2005/data-quality-agent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md",
+      "target_metric": "reproducible_feedback_items"
+    },
+    {
+      "counting_rule": "Counts only when the business case is anonymized, permissioned, and contains no raw production data.",
+      "id": "submit_business_case",
+      "minimum_minutes": 12,
+      "required_evidence": [
+        "anonymized workflow",
+        "data-quality problem",
+        "business impact",
+        "project evidence mapping",
+        "permission to count anonymized case"
+      ],
+      "review_path": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-case-intake.md",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "target_metric": "business_case_feedback_items"
+    },
+    {
+      "counting_rule": "Counts only when an external reviewer inspects implementation evidence and grants permission.",
+      "id": "submit_ai_engineer_review",
+      "minimum_minutes": 12,
+      "required_evidence": [
+        "inspected implementation paths",
+        "strongest AI-agent signal",
+        "weakest AI-agent gap",
+        "permission to count public AI Engineer feedback"
+      ],
+      "review_path": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+      "target_metric": "ai_engineer_review_items"
+    },
+    {
+      "counting_rule": "Counts only from GitHub public star data; never asks for fake engagement.",
+      "id": "star_or_fork_if_useful",
+      "minimum_minutes": 1,
+      "required_evidence": [
+        "public GitHub star count above zero",
+        "no paid, traded, or fake engagement"
+      ],
+      "review_path": "https://github.com/sunnnn2005/data-quality-agent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/stargazers",
+      "target_metric": "github_stars"
+    }
+  ],
+  "target_metric_count": 6,
+  "total_required_evidence_fields": 23,
+  "tracked_outcome_status": {
+    "ai_engineer_review_items": {
+      "blocked_reason": "Needs a non-owner AI Engineer review issue with inspected paths and permission to count.",
+      "current_count": 0,
+      "resume_status": "not_claimable_yet"
+    },
+    "business_case_feedback_items": {
+      "blocked_reason": "Needs anonymized business-case issue evidence with explicit permission to count.",
+      "current_count": 0,
+      "resume_status": "not_claimable_yet"
+    },
+    "confirmed_external_users": {
+      "blocked_reason": "Needs a non-owner public reviewer issue that passes the external evidence gate.",
+      "current_count": 0,
+      "resume_status": "not_claimable_yet"
+    },
+    "external_feedback_items": {
+      "blocked_reason": "Needs accepted public feedback with permission to count and non-placeholder comments.",
+      "current_count": 0,
+      "resume_status": "not_claimable_yet"
+    },
+    "github_stars": {
+      "blocked_reason": "Needs public GitHub stars above zero; never buy, trade, or fake stars.",
+      "current_count": 0,
+      "resume_status": "not_claimable_yet"
+    },
+    "reproducible_feedback_items": {
+      "blocked_reason": "Needs reviewer-submitted command, URL, and observed-result evidence.",
+      "current_count": 0,
+      "resume_status": "not_claimable_yet"
+    }
+  }
+}
