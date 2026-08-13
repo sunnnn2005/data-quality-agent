@@ -208,6 +208,59 @@
       text-transform: uppercase;
     }
 
+    .report {
+      background: #071016;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      overflow: hidden;
+    }
+
+    .score {
+      align-items: center;
+      background: rgba(255, 122, 144, .09);
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .score strong {
+      color: var(--danger);
+      display: block;
+      font-size: 64px;
+      line-height: 1;
+    }
+
+    .score span {
+      color: var(--muted);
+      font-weight: 800;
+      margin-top: 10px;
+      text-transform: uppercase;
+    }
+
+    .report-body {
+      padding: 22px;
+    }
+
+    .report-body h3 {
+      font-size: 20px;
+      margin: 0 0 12px;
+    }
+
+    .report-body ul {
+      color: var(--muted);
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .report-body li + li {
+      margin-top: 8px;
+    }
+
     footer {
       color: var(--muted);
       padding: 28px 0 8px;
@@ -220,6 +273,15 @@
 
       header {
         min-height: auto;
+      }
+
+      .report {
+        grid-template-columns: 1fr;
+      }
+
+      .score {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
       }
     }
   </style>
@@ -243,7 +305,7 @@
       <div class="metric-grid" aria-label="Verified project metrics">
         <div class="metric"><strong>19</strong><span>automated tests passing locally and in CI</span></div>
         <div class="metric"><strong>10K × 80</strong><span>bounded CSV upload limit: rows × columns</span></div>
-        <div class="metric"><strong>4</strong><span>reproducible support-ticket findings</span></div>
+        <div class="metric"><strong>4</strong><span>reproducible support-ticket issue categories</span></div>
         <div class="metric"><strong>0 secrets</strong><span>default path runs without paid APIs or model keys</span></div>
       </div>
     </header>
@@ -275,6 +337,29 @@
           <h3>Extreme outlier</h3>
           <p><code>amount</code> contains one value outside the expected IQR band.</p>
         </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Report Snapshot</h2>
+      <p class="section-copy">
+        This is the verified output from running the deterministic engine on <code>examples/support_tickets.csv</code>.
+        The agent separates facts, likely causes, and remediation steps instead of returning a vague summary.
+      </p>
+      <div class="report">
+        <div class="score">
+          <strong>24</strong>
+          <span>Quality Score · FAIL</span>
+        </div>
+        <div class="report-body">
+          <h3>Evidence-backed findings</h3>
+          <ul>
+            <li><strong>Duplicate primary key:</strong> <code>ticket_id</code> contains 1 duplicate record.</li>
+            <li><strong>Missing values:</strong> <code>team</code> and <code>priority</code> each have a 12.5% missing rate.</li>
+            <li><strong>Negative value:</strong> <code>amount</code> contains 1 negative business value.</li>
+            <li><strong>Outlier:</strong> <code>amount</code> has 1 value outside the IQR band; expected range is -60.18 to 194.29.</li>
+          </ul>
+        </div>
       </div>
     </section>
 
