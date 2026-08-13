@@ -9,7 +9,7 @@ This page maps resume-ready claims for Data Quality Agent to public evidence. It
 | `public-demo` | Launched public demo | [GitHub Pages demo](https://sunnnn2005.github.io/data-quality-agent/) | The project is publicly viewable and has a product-style demo page. |
 | `public-release` | Published release | [v0.3.0 release](https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.3.0) | The project has a tagged public release. |
 | `container-image` | Published runnable container | [GHCR package](https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent) | The FastAPI service is packaged as a container image. |
-| `ci-tests` | 98 passing CI tests | [GitHub Actions CI](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml) | Tests, support-ticket demo verification, business-impact verification, evaluation summary verification, incident-pattern memory verification, agent observability verification, agent safety-boundary verification, local reviewer demo verification, API smoke report verification, performance baseline verification, demo usage baseline verification, business-data intake baseline verification, community growth baseline verification, impact review packet verification, business problem casebook verification, public traction dashboard verification, feedback intake quality verification, business case intake verification, star growth kit verification, live project scorecard verification, recruiter pitch verification, application evidence pack verification, pilot outreach kit verification, pilot program plan verification, pilot review tracker verification, pilot conversion board verification, external review evidence ledger verification, outcome upgrade playbook verification, reviewer feedback packet verification, OpenAPI contract verification, hypothesis feedback verification, feedback metrics verification, adoption metrics verification, and outcome evidence verification run in CI. |
+| `ci-tests` | 99 passing CI tests | [GitHub Actions CI](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml) | Tests, support-ticket demo verification, business-impact verification, evaluation summary verification, incident-pattern memory verification, agent observability verification, agent safety-boundary verification, local reviewer demo verification, API smoke report verification, performance baseline verification, demo usage baseline verification, business-data intake baseline verification, community growth baseline verification, impact review packet verification, business problem casebook verification, public traction dashboard verification, feedback intake quality verification, business case intake verification, star growth kit verification, live project scorecard verification, recruiter pitch verification, application evidence pack verification, pilot outreach kit verification, pilot program plan verification, pilot review tracker verification, pilot conversion board verification, resume outcome readiness verification, external review evidence ledger verification, outcome upgrade playbook verification, reviewer feedback packet verification, OpenAPI contract verification, hypothesis feedback verification, feedback metrics verification, adoption metrics verification, and outcome evidence verification run in CI. |
 | `support-ticket-artifact` | CI-verified support-ticket artifact | [Verified JSON artifact](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/verified-support-ticket-result.json) | The business-data case study result is machine-generated and checked for expected findings. |
 | `postgres-agent-route` | Read-only PostgreSQL agent route | [API source](https://github.com/sunnnn2005/data-quality-agent/blob/main/app/main.py) | The project exposes a PostgreSQL support-ticket agent endpoint that reuses the read-only database adapter and safely falls back when no model key is configured. |
 | `business-impact-artifact` | Quantified business-impact artifact | [Business impact JSON](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact.json) | The support-ticket case study quantifies 4 issue categories, 4 affected columns, and 5 recommended actions without claiming external adoption. |
@@ -41,11 +41,12 @@ This page maps resume-ready claims for Data Quality Agent to public evidence. It
 | `business-case-intake` | CI-verified business-case intake path | [Business case intake](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-case-intake.json) | The project publishes a GitHub issue template and generated artifact for collecting anonymized real-world data-quality problems, business context, tried route, outcome signal, and permission boundaries without claiming submitted external cases yet. |
 | `live-project-scorecard` | CI-verified live project scorecard | [Live project scorecard](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/live-project-scorecard.json) | The project gives reviewers one generated artifact for the demo, release, container image, CI tests, verified resume claims, agent capabilities, 14 reviewer paths, and honest zero-adoption baselines. |
 | `recruiter-pitch` | CI-verified recruiter pitch artifact | [Recruiter pitch](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json) | The project turns verified evidence into 3 resume bullets, a LinkedIn project description, a 30-second pitch, interview talking points, and evidence links without claiming unverified users or production usage. |
-| `application-evidence-pack` | CI-verified application evidence pack | [Application evidence pack](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json) | The project gives recruiters 16 application evidence links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines. |
+| `application-evidence-pack` | CI-verified application evidence pack | [Application evidence pack](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json) | The project gives recruiters 17 application evidence links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines. |
 | `pilot-outreach-kit` | CI-verified pilot outreach kit | [Pilot outreach kit](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-outreach-kit.json) | The project publishes 3 outreach messages, 9 review paths, tracking rules, and target feedback metrics to collect real public feedback without inflating current adoption. |
 | `pilot-program-plan` | CI-verified pilot program plan | [Pilot program plan](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-program-plan.json) | The project publishes 3 participant segments, a 3-week feedback plan, feedback evidence rules, success thresholds, issue labels, and resume upgrade rules before adoption claims are allowed. |
 | `pilot-review-tracker` | CI-verified pilot review tracker | [Pilot review tracker](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-review-tracker.json) | The project tracks 3 planned reviewer segments, public evidence links, status counts, and resume-upgrade rules without counting unverified outreach as users or feedback. |
 | `pilot-conversion-board` | CI-verified pilot conversion board | [Pilot conversion board](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-conversion-board.json) | The project separates 2 current readiness claims from 4 blocked outcome claims for public feedback, business-case validation, and reproducible replay until public evidence exists. |
+| `resume-outcome-readiness` | CI-verified resume outcome readiness evaluator | [Resume outcome readiness](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-readiness.json) | The project evaluates 6 outcome stages, 2 claimable readiness lines, 4 blocked outcome claims, and 4 missing-evidence items before stronger resume claims are allowed. |
 | `external-review-evidence-ledger` | CI-verified external review evidence ledger | [External review evidence ledger](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-review-evidence-ledger.json) | The project defines 4 public evidence types for demo feedback, confirmed runs, business-case reviews, and reproducible bugs before any resume outcome upgrade is allowed. |
 | `outcome-upgrade-playbook` | CI-verified outcome upgrade playbook | [Outcome upgrade playbook](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-upgrade-playbook.json) | The project defines 5 metric thresholds for feedback, confirmed runs, reproducible reports, business-case reviews, and repository interest before resume wording can be upgraded. |
 | `reviewer-feedback-packet` | CI-verified reviewer feedback packet | [Reviewer feedback packet](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-feedback-packet.json) | The project gives reviewers 3 public task paths, 5 evidence questions, and 4 metric conversion paths for collecting public feedback without claiming results before evidence exists. |
@@ -75,7 +76,7 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 11 |
-| Automated tests | 98 |
+| Automated tests | 99 |
 | Support-ticket issue categories | 4 |
 | Affected support-ticket columns | 4 |
 | Recommended support-ticket actions | 5 |
@@ -117,6 +118,10 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Pilot conversion stages | 6 |
 | Pilot conversion current readiness claims | 2 |
 | Pilot conversion blocked outcome claims | 4 |
+| Resume outcome readiness stages | 6 |
+| Resume outcome claimable stages | 2 |
+| Resume outcome blocked stages | 4 |
+| Resume outcome missing evidence items | 4 |
 | Business replay demo | 1 |
 | Business replay demo rows | 8 |
 | Business replay demo findings | 5 |
@@ -150,7 +155,7 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 16 |
+| Application evidence links | 17 |
 | Pilot outreach messages | 3 |
 | Pilot review paths | 9 |
 | Pilot review tracker | 1 |
@@ -231,11 +236,12 @@ Use wording that is true today:
 - Added a CI-verified live project scorecard with 14 reviewer paths for the demo, resume evidence, impact packet, business problem casebook, traction dashboard, feedback intake quality, business-data replay packet, OpenAPI contract, safety boundaries, agent capability matrix, local reviewer demo, and public metrics.
 - Added a CI-verified agent capability matrix with 13 implemented LLM-agent checklist items, 4 partial maturity areas, 7 allowed tools, and explicit not-claimed production adoption.
 - Added a CI-verified recruiter pitch artifact with 3 resume bullets, LinkedIn project description, 30-second pitch, interview talking points, and 14 evidence links.
-- Added a CI-verified application evidence pack with 16 recruiter review links, verified outcome numbers, resume bullets, an email note, and an interview opening.
+- Added a CI-verified application evidence pack with 17 recruiter review links, verified outcome numbers, resume bullets, an email note, and an interview opening.
 - Added a CI-verified pilot outreach kit with 3 outreach messages, 9 review paths, feedback tracking rules, and target feedback metrics.
 - Added a CI-verified pilot program plan with 3 participant segments, a 3-week feedback plan, success thresholds, issue labels, and resume upgrade rules.
 - Added a CI-verified pilot review tracker with 3 planned reviewer segments, public evidence links, status counts, and resume-upgrade rules without counting unverified outreach.
 - Added a CI-verified pilot conversion board with 6 outcome stages, 2 resume-safe readiness claims, and 4 blocked outcome claims until public evidence exists.
+- Added a CI-verified resume outcome readiness evaluator with 6 stages, 2 claimable readiness lines, 4 blocked outcome claims, and 4 missing-evidence items.
 - Added a CI-verified external review evidence ledger with 4 public evidence types, 3 linked planned reviews, and 0 current evidence entries.
 - Added a CI-verified feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups.
 - Added a CI-verified business-case intake path with 6 required sections, 5 tried paths, 5 outcome signals, and 6 captured evidence groups for future anonymized real-world data-quality problem feedback.
@@ -252,7 +258,7 @@ Use wording that is true today:
 - Added a scheduled public evidence health check for the live demo, release page, business-impact artifact, outcome evidence, and adoption metrics.
 - Added machine-readable feedback metrics that track public feedback and reproducible reports from an honest zero baseline.
 - Added a CI-verified star growth kit with 6 verified repo topics, 4 ethical growth actions, 3 resume-upgrade rules, and the current 0-star baseline.
-- Added deterministic report verification guardrails and 98 passing CI tests.
+- Added deterministic report verification guardrails and 99 passing CI tests.
 - Published an agent-readiness checklist that separates implemented tool-calling, business-data, OpenAPI contract, dataset memory, memory-informed planning, source-cited business-rule retrieval, incident-pattern memory, observability artifacts, safety boundaries, persistent trace, root-cause ranking, hypothesis feedback, guardrail, and fallback capabilities from planned embedding-backed RAG, observability, evaluation, and feedback-informed memory work.
 
 Avoid wording that is not true yet:

@@ -30,6 +30,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "pilot-outreach-kit",
         "pilot-program-plan",
         "pilot-conversion-board",
+        "resume-outcome-readiness",
         "feedback-metrics",
         "postgres-agent-route",
         "github-release",

@@ -79,6 +79,7 @@ def build_live_project_scorecard_payload() -> dict[str, Any]:
             "has_business_replay_demo": "business-replay-demo" in claim_ids,
             "has_real_model_runbook": "real-model-runbook" in claim_ids,
             "has_pilot_conversion_board": "pilot-conversion-board" in claim_ids,
+            "has_resume_outcome_readiness": "resume-outcome-readiness" in claim_ids,
         },
         "resume_safe_summary": (
             f"Live project scorecard: public demo, {metrics['release']} release, container image, "
@@ -144,8 +145,8 @@ def verify_live_project_scorecard(payload: dict[str, Any]) -> dict[str, Any]:
     headline = payload["headline_metrics"]
     footprint = payload["live_footprint"]
     expected = {
-        "passing_tests": 98,
-        "verified_resume_claims": 57,
+        "passing_tests": 99,
+        "verified_resume_claims": 58,
         "implemented_agent_capabilities": 16,
         "agent_tools_allowed": 7,
         "agent_matrix_implemented_capabilities": 13,

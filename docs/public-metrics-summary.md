@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 11 |
-| Passing CI tests | 98 |
+| Passing CI tests | 99 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -80,7 +80,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 16 |
+| Application evidence links | 17 |
 | Pilot outreach messages | 3 |
 | Pilot review paths | 9 |
 | Pilot program segments | 3 |
@@ -93,6 +93,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Pilot conversion stages | 6 |
 | Pilot conversion claimable stages | 2 |
 | Pilot conversion blocked stages | 4 |
+| Resume outcome readiness | 1 |
+| Resume outcome readiness stages | 6 |
+| Resume outcome claimable stages | 2 |
+| Resume outcome blocked stages | 4 |
+| Resume outcome missing evidence items | 4 |
 | External review evidence ledger | 1 |
 | External review ledger entries | 0 |
 | External review ledger requirement types | 4 |
@@ -149,7 +154,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 98 passing CI tests
+- 99 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -158,6 +163,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 3 human-reviewed root-cause feedback labels
 - Pilot review tracker with 3 planned reviewer segments, 3 not-contacted baseline entries, and 3 resume-upgrade rules
 - Pilot conversion board with 6 outcome stages, 2 resume-safe readiness claims, and 4 blocked outcome claims until public evidence exists
+- Resume outcome readiness evaluator with 6 stages, 2 claimable readiness lines, 4 blocked outcome claims, and 4 missing-evidence items
 - External review evidence ledger with 4 public evidence types, 3 linked planned reviews, and 0 current evidence entries
 - Outcome upgrade playbook with 5 metric thresholds, 5 blocked upgrade rules, and 6 baseline signals claimable now
 - Reviewer feedback packet with 3 task paths, 5 evidence questions, and 4 metric conversion paths
@@ -178,7 +184,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 14 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
-- 16 application evidence links in a recruiter-ready evidence pack
+- 17 application evidence links in a recruiter-ready evidence pack
 - 3 pilot outreach messages and 9 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
 - Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups

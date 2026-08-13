@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 98
+    assert payload["public_metrics"]["test_count"] == 99
     assert payload["verified_project_outcomes"]["root_cause_hypotheses"] == 3
     assert payload["verified_project_outcomes"]["business_risk_areas"] == 4
     assert payload["verified_project_outcomes"]["high_priority_actions"] == 3
@@ -71,7 +71,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["recruiter_pitch_resume_bullets"] == 3
     assert payload["verified_project_outcomes"]["recruiter_pitch_target_roles"] == 4
     assert payload["verified_project_outcomes"]["application_evidence_pack"] == 1
-    assert payload["verified_project_outcomes"]["application_evidence_links"] == 16
+    assert payload["verified_project_outcomes"]["application_evidence_links"] == 17
     assert payload["verified_project_outcomes"]["pilot_outreach_messages"] == 3
     assert payload["verified_project_outcomes"]["pilot_review_paths"] == 9
     assert payload["verified_project_outcomes"]["pilot_program_segments"] == 3
@@ -84,6 +84,11 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["pilot_conversion_stages"] == 6
     assert payload["verified_project_outcomes"]["pilot_conversion_claimable_stages"] == 2
     assert payload["verified_project_outcomes"]["pilot_conversion_blocked_stages"] == 4
+    assert payload["verified_project_outcomes"]["resume_outcome_readiness"] == 1
+    assert payload["verified_project_outcomes"]["resume_outcome_readiness_stages"] == 6
+    assert payload["verified_project_outcomes"]["resume_outcome_claimable_stages"] == 2
+    assert payload["verified_project_outcomes"]["resume_outcome_blocked_stages"] == 4
+    assert payload["verified_project_outcomes"]["resume_outcome_missing_evidence_items"] == 4
     assert payload["verified_project_outcomes"]["external_review_evidence_ledger"] == 1
     assert payload["verified_project_outcomes"]["external_review_ledger_entries"] == 0
     assert payload["verified_project_outcomes"]["external_review_ledger_requirement_types"] == 4
@@ -174,7 +179,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert "14 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
     assert "CI-verified OpenAPI contract covering 6 integration endpoints" in payload["resume_safe_signals"]
     assert "3 recruiter-safe resume bullets for 4 target roles" in payload["resume_safe_signals"]
-    assert "16 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
+    assert "17 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
     assert "3 pilot outreach messages and 9 review paths for collecting real feedback" in payload["resume_safe_signals"]
     assert (
         "Pilot review tracker with 3 planned reviewer segments, 3 not-contacted baseline entries, and 3 resume-upgrade rules"
@@ -182,6 +187,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     )
     assert (
         "Pilot conversion board with 6 outcome stages, 2 resume-safe readiness claims, and 4 blocked outcome claims until public evidence exists"
+        in payload["resume_safe_signals"]
+    )
+    assert (
+        "Resume outcome readiness evaluator with 6 stages, 2 claimable readiness lines, 4 blocked outcome claims, and 4 missing-evidence items"
         in payload["resume_safe_signals"]
     )
     assert (

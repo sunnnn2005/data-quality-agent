@@ -1,0 +1,127 @@
+{
+  "blocked_stage_count": 4,
+  "claimable_resume_lines": [
+    "Published a public demo and evidence-backed documentation for a data-quality LLM agent.",
+    "Built a pilot feedback pipeline with three reviewer segments and public evidence rules."
+  ],
+  "claimable_stage_count": 2,
+  "current_public_counts": {
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "forks": 1,
+    "reproducible_feedback_items": 0,
+    "stars": 0
+  },
+  "generated_by": "scripts/evaluate_resume_outcomes.py",
+  "missing_evidence": [
+    {
+      "current_value": 0,
+      "evidence_required": "Public GitHub issues labeled feedback with reproducible context",
+      "minimum_to_claim": 3,
+      "remaining_needed": 3,
+      "stage": "confirmed_external_feedback"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "Public issue or replay note labeled confirmed-user",
+      "minimum_to_claim": 1,
+      "remaining_needed": 1,
+      "stage": "confirmed_external_users"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "Public business-case review issue with anonymized workflow and permission boundary",
+      "minimum_to_claim": 1,
+      "remaining_needed": 1,
+      "stage": "business_case_validated"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "Public replay issues with commands, non-sensitive schema, status, and finding count",
+      "minimum_to_claim": 2,
+      "remaining_needed": 2,
+      "stage": "reproducible_replay_confirmed"
+    }
+  ],
+  "next_best_actions": [
+    "Ask 3 reviewers to submit public demo feedback issues with reproducible context.",
+    "Ask 1 reviewer to run the local Docker/PostgreSQL or CSV replay and label the issue confirmed-user.",
+    "Collect 1 anonymized business-case review with permission boundaries before claiming real-world validation.",
+    "Collect 2 reproducible replay issues with command, schema summary, status, and finding count.",
+    "Share the public demo/repo ethically; count stars only from GitHub's public metric."
+  ],
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "validated business impact",
+    "production adoption",
+    "GitHub stars beyond the current public count"
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Evaluate which public outcome signals are currently safe to use on a resume and exactly what evidence is still missing for stronger claims such as feedback, confirmed use, business-case validation, replay evidence, or GitHub interest.",
+  "resume_safe_summary": "2 resume-safe readiness signals are currently claimable; 4 stronger outcome claims remain blocked until public evidence reaches the defined thresholds.",
+  "stage_count": 6,
+  "stages": [
+    {
+      "current_value": 1,
+      "evidence_required": "GitHub Pages demo, README link, and public evidence health check",
+      "evidence_status": "claimable",
+      "minimum_to_claim": 1,
+      "remaining_needed": 0,
+      "resume_claim_allowed": true,
+      "resume_safe_wording": "Published a public demo and evidence-backed documentation for a data-quality LLM agent.",
+      "stage": "public_demo_available"
+    },
+    {
+      "current_value": 3,
+      "evidence_required": "CI-verified planned reviewer segments and public feedback entrypoints",
+      "evidence_status": "claimable",
+      "minimum_to_claim": 3,
+      "remaining_needed": 0,
+      "resume_claim_allowed": true,
+      "resume_safe_wording": "Built a pilot feedback pipeline with three reviewer segments and public evidence rules.",
+      "stage": "pilot_outreach_ready"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "Public GitHub issues labeled feedback with reproducible context",
+      "evidence_status": "blocked_until_public_evidence",
+      "minimum_to_claim": 3,
+      "remaining_needed": 3,
+      "resume_claim_allowed": false,
+      "resume_safe_wording": null,
+      "stage": "confirmed_external_feedback"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "Public issue or replay note labeled confirmed-user",
+      "evidence_status": "blocked_until_public_evidence",
+      "minimum_to_claim": 1,
+      "remaining_needed": 1,
+      "resume_claim_allowed": false,
+      "resume_safe_wording": null,
+      "stage": "confirmed_external_users"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "Public business-case review issue with anonymized workflow and permission boundary",
+      "evidence_status": "blocked_until_public_evidence",
+      "minimum_to_claim": 1,
+      "remaining_needed": 1,
+      "resume_claim_allowed": false,
+      "resume_safe_wording": null,
+      "stage": "business_case_validated"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "Public replay issues with commands, non-sensitive schema, status, and finding count",
+      "evidence_status": "blocked_until_public_evidence",
+      "minimum_to_claim": 2,
+      "remaining_needed": 2,
+      "resume_claim_allowed": false,
+      "resume_safe_wording": null,
+      "stage": "reproducible_replay_confirmed"
+    }
+  ]
+}

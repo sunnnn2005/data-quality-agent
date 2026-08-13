@@ -25,12 +25,12 @@
       "url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent"
     },
     {
-      "claim": "Automated test suite passes locally and in GitHub Actions, including the business problem casebook, business replay demo, feedback intake quality, business case intake, star growth kit, pilot conversion board, and real-model runbook verifiers.",
+      "claim": "Automated test suite passes locally and in GitHub Actions, including the business problem casebook, business replay demo, feedback intake quality, business case intake, star growth kit, pilot conversion board, resume outcome readiness evaluator, and real-model runbook verifiers.",
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 98,
-      "resume_signal": "98 passing CI tests",
+      "metric_value": 99,
+      "resume_signal": "99 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 16 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 17 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 16,
+      "metric_value": 17,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -347,6 +347,16 @@
       "resume_signal": "CI-verified pilot conversion board",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-conversion-board.json"
+    },
+    {
+      "claim": "The project publishes a resume outcome readiness evaluator that converts public evidence counts into claimable readiness lines and blocked outcome claims with remaining evidence requirements.",
+      "evidence_type": "artifact",
+      "id": "resume-outcome-readiness",
+      "metric_name": "resume_outcome_readiness",
+      "metric_value": 1,
+      "resume_signal": "CI-verified resume outcome readiness evaluator",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-readiness.json"
     },
     {
       "claim": "The project publishes a generated external review evidence ledger that defines public proof requirements for demo feedback, confirmed runs, business-case reviews, and reproducible bugs before resume outcome upgrades.",
