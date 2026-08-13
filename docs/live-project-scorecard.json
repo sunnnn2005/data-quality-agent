@@ -7,6 +7,7 @@
     "has_business_problem_casebook": true,
     "has_business_replay_demo": true,
     "has_container": true,
+    "has_external_reviewer_outreach_tracker": true,
     "has_external_run_quickstart": true,
     "has_feedback_baseline": true,
     "has_feedback_intake_quality": true,
@@ -29,10 +30,10 @@
     "agent_tools_allowed": 7,
     "implemented_agent_capabilities": 16,
     "openapi_required_endpoints": 6,
-    "passing_tests": 116,
+    "passing_tests": 117,
     "support_ticket_issue_categories": 4,
     "unsafe_postgres_queries_rejected": 3,
-    "verified_resume_claims": 62
+    "verified_resume_claims": 63
   },
   "live_footprint": {
     "confirmed_external_users": 0,
@@ -51,7 +52,7 @@
   "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
   "release": "v0.3.0",
   "repo": "https://github.com/sunnnn2005/data-quality-agent",
-  "resume_safe_summary": "Live project scorecard: public demo, v0.3.0 release, container image, 116 passing CI tests, 62 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
+  "resume_safe_summary": "Live project scorecard: public demo, v0.3.0 release, container image, 117 passing CI tests, 63 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
   "reviewer_paths": [
     {
       "label": "Try the public demo",
@@ -108,6 +109,10 @@
     {
       "label": "Use external run quickstart",
       "url": "https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html"
+    },
+    {
+      "label": "Use external reviewer outreach tracker",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-reviewer-outreach-tracker.md"
     },
     {
       "label": "Use external run evidence packet",

@@ -11,8 +11,8 @@ def test_live_project_scorecard_summarizes_public_resume_evidence_without_inflat
     markdown = render_markdown(payload)
 
     assert verification["live_project_scorecard_verified"] is True
-    assert payload["headline_metrics"]["passing_tests"] == 116
-    assert payload["headline_metrics"]["verified_resume_claims"] == 62
+    assert payload["headline_metrics"]["passing_tests"] == 117
+    assert payload["headline_metrics"]["verified_resume_claims"] == 63
     assert payload["headline_metrics"]["implemented_agent_capabilities"] == 16
     assert payload["headline_metrics"]["agent_matrix_implemented_capabilities"] == 13
     assert payload["live_footprint"]["stars"] == 0
@@ -26,6 +26,7 @@ def test_live_project_scorecard_summarizes_public_resume_evidence_without_inflat
     assert payload["claim_coverage"]["has_resume_outcome_readiness"] is True
     assert payload["claim_coverage"]["has_reviewer_funnel_board"] is True
     assert payload["claim_coverage"]["has_external_run_quickstart"] is True
+    assert payload["claim_coverage"]["has_external_reviewer_outreach_tracker"] is True
     assert any(path["label"] == "Inspect impact review packet" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Inspect business problem casebook" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Inspect public traction dashboard" for path in payload["reviewer_paths"])
@@ -36,6 +37,7 @@ def test_live_project_scorecard_summarizes_public_resume_evidence_without_inflat
     assert any(path["label"] == "Inspect agent capability matrix" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Run the local reviewer demo" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Use external run quickstart" for path in payload["reviewer_paths"])
+    assert any(path["label"] == "Use external reviewer outreach tracker" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Use external run evidence packet" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Use reviewer funnel board" for path in payload["reviewer_paths"])
     assert "Live Project Scorecard" in markdown

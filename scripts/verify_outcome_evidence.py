@@ -23,6 +23,7 @@ LOCAL_REVIEWER_DEMO_PATH = ROOT / "docs" / "local-reviewer-demo.json"
 EXTERNAL_RUN_EVIDENCE_PACKET_PATH = ROOT / "docs" / "external-run-evidence-packet.json"
 EXTERNAL_REVIEWER_REQUEST_PACK_PATH = ROOT / "docs" / "external-reviewer-request-pack.json"
 EXTERNAL_RUN_QUICKSTART_PATH = ROOT / "docs" / "external-run-quickstart.json"
+EXTERNAL_REVIEWER_OUTREACH_TRACKER_PATH = ROOT / "docs" / "external-reviewer-outreach-tracker.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
@@ -87,6 +88,7 @@ def verify_manifest() -> dict[str, int]:
     external_run_evidence = load_payload(EXTERNAL_RUN_EVIDENCE_PACKET_PATH)
     external_reviewer_request = load_payload(EXTERNAL_REVIEWER_REQUEST_PACK_PATH)
     external_run_quickstart = load_payload(EXTERNAL_RUN_QUICKSTART_PATH)
+    external_reviewer_outreach = load_payload(EXTERNAL_REVIEWER_OUTREACH_TRACKER_PATH)
     api_smoke_report = load_payload(API_SMOKE_REPORT_PATH)
     performance_baseline = load_payload(PERFORMANCE_BASELINE_PATH)
     demo_usage_baseline = load_payload(DEMO_USAGE_BASELINE_PATH)
@@ -545,7 +547,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 116:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 117:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -846,7 +848,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 116:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 117:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1392,6 +1394,40 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("external run quickstart script must include a verifier")
                 if "test_external_run_quickstart_routes_reviewers_to_countable_public_evidence" not in quickstart_tests:
                     raise AssertionError("external run quickstart must have a dedicated test")
+            elif metric_name == "external_reviewer_outreach_tracker":
+                outreach_script = (ROOT / "scripts" / "build_external_reviewer_outreach_tracker.py").read_text()
+                outreach_tests = (ROOT / "tests" / "test_external_reviewer_outreach_tracker.py").read_text()
+                outreach_page = (ROOT / "docs" / "external-reviewer-outreach-tracker.md").read_text()
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("external_reviewer_outreach_tracker claim must use metric_value=1")
+                if external_reviewer_outreach.get("queue_count") != 3:
+                    raise AssertionError("external reviewer outreach tracker must verify 3 queue entries")
+                if external_reviewer_outreach.get("source_message_count") != 3:
+                    raise AssertionError("external reviewer outreach tracker must verify 3 source messages")
+                if external_reviewer_outreach.get("quickstart_review_path_count") != 3:
+                    raise AssertionError("external reviewer outreach tracker must link 3 quickstart paths")
+                if external_reviewer_outreach.get("quickstart_submission_field_count") != 8:
+                    raise AssertionError("external reviewer outreach tracker must link 8 evidence fields")
+                if external_reviewer_outreach.get("status_counts", {}).get("not_contacted") != 3:
+                    raise AssertionError("external reviewer outreach tracker must preserve 3 not-contacted entries")
+                if external_reviewer_outreach.get("status_counts", {}).get("contacted") != 0:
+                    raise AssertionError("external reviewer outreach tracker must not count unsent outreach")
+                if external_reviewer_outreach.get("public_counts", {}).get("external_feedback_items") != 0:
+                    raise AssertionError("external reviewer outreach tracker must preserve zero feedback baseline")
+                for required in (
+                    "A sent message does not count as feedback.",
+                    "No outreach message has been sent yet.",
+                    "No contacted reviewer is claimed yet.",
+                ):
+                    if required not in outreach_page:
+                        raise AssertionError(f"external reviewer outreach tracker page missing {required!r}")
+                if "verify_external_reviewer_outreach_tracker" not in outreach_script:
+                    raise AssertionError("external reviewer outreach tracker script must include a verifier")
+                if (
+                    "test_external_reviewer_outreach_tracker_prepares_countable_review_requests_without_inflation"
+                    not in outreach_tests
+                ):
+                    raise AssertionError("external reviewer outreach tracker must have a dedicated test")
             elif metrics.get(metric_name) != claim.get("metric_value"):
                 raise AssertionError(
                     f"claim {claim['id']} metric mismatch: {metric_name}={claim.get('metric_value')} "
@@ -1444,7 +1480,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 116", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 117", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

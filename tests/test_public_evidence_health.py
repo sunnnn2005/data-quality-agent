@@ -21,6 +21,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "external-reviewer-request-pack",
         "external-run-review-template",
         "external-run-quickstart-page",
+        "external-reviewer-outreach-tracker",
         "api-smoke-report",
         "performance-baseline",
         "demo-usage-baseline",
@@ -93,6 +94,11 @@ def test_public_evidence_health_requires_core_public_signals():
     assert quickstart["url"].endswith("/external-run-quickstart.html")
     assert "Comment on Issue #18" in quickstart["expected_texts"]
     assert "No external reviewer run is claimed yet." in quickstart["expected_texts"]
+    outreach = next(check for check in PUBLIC_CHECKS if check["id"] == "external-reviewer-outreach-tracker")
+    assert outreach["url"].endswith("/external-reviewer-outreach-tracker.json")
+    assert outreach["expected_json"]["queue_count"] == 3
+    assert "No outreach message has been sent yet." in outreach["expected_texts"]
+    assert "counts_toward_resume" in outreach["expected_texts"]
 
 
 def test_public_evidence_health_verifier_rejects_failed_checks():
