@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 124
+    assert payload["public_metrics"]["test_count"] == 126
     assert payload["public_metrics"]["github_view_count"] >= 0
     assert payload["public_metrics"]["github_unique_visitors"] <= payload["public_metrics"]["github_view_count"]
     assert payload["public_metrics"]["github_clone_count"] >= 0
@@ -170,7 +170,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["business_replay_demo_root_causes"] == 3
     assert payload["verified_project_outcomes"]["real_model_runbook"] == 1
     assert payload["verified_project_outcomes"]["real_model_current_runs"] == 0
-    assert payload["verified_project_outcomes"]["real_model_run_commands"] == 4
+    assert payload["verified_project_outcomes"]["real_model_run_commands"] == 5
     assert payload["verified_project_outcomes"]["real_model_evidence_fields"] == 15
     assert payload["verified_project_outcomes"]["real_model_acceptance_criteria"] == 8
     assert payload["verified_project_outcomes"]["real_model_safety_gates"] == 5
@@ -284,7 +284,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-        "Real-model runbook with 4 run commands, 15 evidence fields, 8 acceptance criteria, 5 safety gates, and zero current real model run claims"
+        "Real-model runbook with 5 run commands, 15 evidence fields, 8 acceptance criteria, 5 safety gates, and zero current real model run claims"
         in payload["resume_safe_signals"]
     )
     assert "Dataset-level memory retrieval over recent sanitized traces" in payload["resume_safe_signals"]

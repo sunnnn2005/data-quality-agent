@@ -4,7 +4,7 @@ This generated pack gives recruiters and interviewers a compact review path for 
 
 ## One-Line Project Proof
 
-Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 124 tests, 66 verified resume claims, and honest adoption baselines.
+Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 126 tests, 66 verified resume claims, and honest adoption baselines.
 
 ## Application Links
 
@@ -38,7 +38,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 
 | Metric | Value |
 | --- | ---: |
-| Passing Tests | 124 |
+| Passing Tests | 126 |
 | Verified Resume Claims | 66 |
 | Implemented Agent Capabilities | 16 |
 | Agent Tools Allowed | 7 |
@@ -65,7 +65,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Reviewer Funnel Remaining Evidence Items | 7 |
 | Accepted Evidence Rollup Claimable Metrics | 4 |
 | Accepted Evidence Rollup Blocked Claims | 4 |
-| Real Model Run Commands | 4 |
+| Real Model Run Commands | 5 |
 | Real Model Evidence Fields | 15 |
 | Real Model Capture Required Fields | 17 |
 | Real Model Capture Accepted Runs | 0 |
@@ -76,7 +76,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 ## Resume Bullets
 
 - Built an LLM tool-calling data-quality agent for real business CSV and read-only PostgreSQL data, with 7 allowed tools, dynamic strategy selection, memory-informed planning, source-cited business-rule retrieval, 6 verified API integration endpoints, and safe model-key fallback.
-- Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 124 passing tests, 66 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
+- Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 126 passing tests, 66 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
 - Added enterprise-style guardrails for agent reliability, including read-only PostgreSQL query limits, 3 rejected unsafe SQL queries, sensitive-field redaction, trace observability, incident-pattern memory, evidence-backed root-cause hypotheses, and deterministic report verification.
 
 ## Email Attachment Note

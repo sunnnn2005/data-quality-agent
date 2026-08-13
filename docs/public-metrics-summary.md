@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 12 |
-| Passing CI tests | 124 |
+| Passing CI tests | 126 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -175,7 +175,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business replay demo root causes | 3 |
 | Real-model runbook | 1 |
 | Current real model runs | 0 |
-| Real-model run commands | 4 |
+| Real-model run commands | 5 |
 | Real-model evidence fields | 15 |
 | Real-model acceptance criteria | 8 |
 | Real-model safety gates | 5 |
@@ -193,7 +193,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 124 passing CI tests
+- 126 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -241,7 +241,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Business-case intake path with 6 required sections, 5 tried paths, 5 outcome signals, and 6 captured evidence groups
 - Business-data replay packet with 3 safe replay paths, 8 evidence fields, 5 safety requirements, and zero current external replay claims
 - Business replay demo with 8 anonymized rows, 5 findings, 4 failed check types, 4 business-rule references, and deterministic verification
-- Real-model runbook with 4 run commands, 15 evidence fields, 8 acceptance criteria, 5 safety gates, and zero current real model run claims
+- Real-model runbook with 5 run commands, 15 evidence fields, 8 acceptance criteria, 5 safety gates, and zero current real model run claims
 - Real-model evidence capture gate with 17 required fields, 0 accepted real-model runs, and 4 blocked outcome claims until redacted telemetry passes
 - 5 evidence-backed remediation actions
 - 16 implemented LLM agent-readiness capabilities

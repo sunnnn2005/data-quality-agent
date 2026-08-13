@@ -54,6 +54,11 @@ RUN_COMMANDS = [
         "command": "curl http://127.0.0.1:8000/runs/<trace_id>",
         "purpose": "Inspect sanitized trace, tool calls, final report attachment, and telemetry summary.",
     },
+    {
+        "id": "capture_real_model_evidence",
+        "command": "python scripts/capture_real_model_run.py --dataset-id orders_daily --write",
+        "purpose": "Capture a redacted real-model run artifact from the local API and verify it against the evidence gate.",
+    },
 ]
 
 ACCEPTANCE_CRITERIA = [
@@ -126,7 +131,7 @@ def build_real_model_runbook_payload() -> dict[str, Any]:
         ],
         "resume_status": "real_model_run_ready_not_claimable",
         "resume_safe_summary": (
-            "Published a CI-verified real-model runbook with 4 run commands, 15 evidence fields, "
+            "Published a CI-verified real-model runbook with 5 run commands, 15 evidence fields, "
             "8 acceptance criteria, and 5 safety gates without claiming a paid model run yet."
         ),
         "not_claimed": [
@@ -214,7 +219,7 @@ def verify_real_model_runbook(payload: dict[str, Any]) -> dict[str, Any]:
         "current_mock_model_calls": 2,
         "current_mock_tokens": 360,
         "tool_count": 7,
-        "run_command_count": 4,
+        "run_command_count": 5,
         "evidence_field_count": 15,
         "acceptance_criteria_count": 8,
         "safety_gate_count": 5,

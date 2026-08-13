@@ -57,6 +57,14 @@ Inspect sanitized trace, tool calls, final report attachment, and telemetry summ
 curl http://127.0.0.1:8000/runs/<trace_id>
 ```
 
+### capture_real_model_evidence
+
+Capture a redacted real-model run artifact from the local API and verify it against the evidence gate.
+
+```bash
+python scripts/capture_real_model_run.py --dataset-id orders_daily --write
+```
+
 ## Evidence Fields
 
 - `provider`
@@ -103,7 +111,7 @@ curl http://127.0.0.1:8000/runs/<trace_id>
 
 ## Resume-Safe Summary
 
-Published a CI-verified real-model runbook with 4 run commands, 15 evidence fields, 8 acceptance criteria, and 5 safety gates without claiming a paid model run yet.
+Published a CI-verified real-model runbook with 5 run commands, 15 evidence fields, 8 acceptance criteria, and 5 safety gates without claiming a paid model run yet.
 
 ## Not Claimed
 

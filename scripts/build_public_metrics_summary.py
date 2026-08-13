@@ -730,7 +730,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 124,
+        "test_count": 126,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -906,7 +906,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "business_replay_demo_root_causes": 3,
         "real_model_runbook": 1,
         "real_model_current_runs": 0,
-        "real_model_run_commands": 4,
+        "real_model_run_commands": 5,
         "real_model_evidence_fields": 15,
         "real_model_acceptance_criteria": 8,
         "real_model_safety_gates": 5,

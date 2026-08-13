@@ -48,7 +48,7 @@
   "project": "Data Quality Agent",
   "prompt_version": "tool-agent-v3",
   "purpose": "Define the exact evidence gate for converting the existing mocked tool-calling telemetry into a public, resume-safe real OpenAI-compatible model run once provider credentials are explicitly supplied.",
-  "resume_safe_summary": "Published a CI-verified real-model runbook with 4 run commands, 15 evidence fields, 8 acceptance criteria, and 5 safety gates without claiming a paid model run yet.",
+  "resume_safe_summary": "Published a CI-verified real-model runbook with 5 run commands, 15 evidence fields, 8 acceptance criteria, and 5 safety gates without claiming a paid model run yet.",
   "resume_status": "real_model_run_ready_not_claimable",
   "resume_upgrade_rules": [
     {
@@ -64,7 +64,7 @@
       "minimum_before_claim": 3
     }
   ],
-  "run_command_count": 4,
+  "run_command_count": 5,
   "run_commands": [
     {
       "command": "OPENAI_API_KEY=$OPENAI_API_KEY uvicorn app.main:app --reload",
@@ -85,6 +85,11 @@
       "command": "curl http://127.0.0.1:8000/runs/<trace_id>",
       "id": "inspect_trace",
       "purpose": "Inspect sanitized trace, tool calls, final report attachment, and telemetry summary."
+    },
+    {
+      "command": "python scripts/capture_real_model_run.py --dataset-id orders_daily --write",
+      "id": "capture_real_model_evidence",
+      "purpose": "Capture a redacted real-model run artifact from the local API and verify it against the evidence gate."
     }
   ],
   "safety_gate_count": 5,

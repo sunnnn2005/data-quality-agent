@@ -553,7 +553,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 124:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 126:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -854,7 +854,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 124:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 126:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1297,11 +1297,13 @@ def verify_manifest() -> dict[str, int]:
             elif metric_name == "real_model_runbook":
                 runbook_tests = (ROOT / "tests" / "test_real_model_runbook.py").read_text()
                 runbook_script = (ROOT / "scripts" / "build_real_model_runbook.py").read_text()
+                capture_script = (ROOT / "scripts" / "capture_real_model_run.py").read_text()
+                capture_tests = (ROOT / "tests" / "test_capture_real_model_run.py").read_text()
                 if claim.get("metric_value") != 1:
                     raise AssertionError("real model runbook claim must use metric_value=1")
                 expected = {
                     "current_real_model_runs": 0,
-                    "run_command_count": 4,
+                    "run_command_count": 5,
                     "evidence_field_count": 15,
                     "acceptance_criteria_count": 8,
                     "safety_gate_count": 5,
@@ -1327,6 +1329,12 @@ def verify_manifest() -> dict[str, int]:
                         raise AssertionError(f"real model runbook must not claim {required}")
                 if "verify_real_model_runbook" not in runbook_script:
                     raise AssertionError("real model runbook script must verify generated artifact")
+                if "capture_real_model_run.py --dataset-id orders_daily --write" not in runbook_script:
+                    raise AssertionError("real model runbook must document the capture command")
+                if "capture_real_model_run" not in capture_script or "build_capture_record" not in capture_script:
+                    raise AssertionError("real model runbook must have a capture CLI")
+                if "test_capture_real_model_run_calls_agent_and_trace_endpoints_then_verifies_gate" not in capture_tests:
+                    raise AssertionError("real model capture CLI must have a dedicated endpoint test")
                 if (
                     "test_real_model_runbook_defines_resume_safe_evidence_gate_without_claiming_paid_run"
                     not in runbook_tests
@@ -1588,7 +1596,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 124", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 126", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 
