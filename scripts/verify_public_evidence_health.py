@@ -376,9 +376,20 @@ PUBLIC_CHECKS = [
     {
         "id": "business-case-intake",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-case-intake.json",
-        "expected_json": {"project": "Data Quality Agent", "required_section_count": 6, "captured_field_count": 6},
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "required_section_count": 8,
+            "required_outcome_count": 8,
+            "captured_field_count": 8,
+        },
         "expected_text": "business-case",
-        "expected_texts": ["submitted external business cases", "permission_boundary"],
+        "expected_texts": [
+            "submitted external business cases",
+            "permission_boundary",
+            "resume_outcome_fields",
+            "manual investigation time",
+            "pilot readiness with anonymized data",
+        ],
         "evidence_type": "json",
     },
     {
