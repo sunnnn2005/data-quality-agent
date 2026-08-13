@@ -15,6 +15,7 @@ AGENT_OBSERVABILITY_PATH = ROOT / "docs" / "agent-observability.json"
 AGENT_SAFETY_PATH = ROOT / "docs" / "agent-safety-boundaries.json"
 LIVE_SCORECARD_PATH = ROOT / "docs" / "live-project-scorecard.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
+RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 
@@ -35,6 +36,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     safety = load_json(AGENT_SAFETY_PATH)
     scorecard = load_json(LIVE_SCORECARD_PATH)
     openapi = load_json(OPENAPI_PATH)
+    recruiter_pitch = load_json(RECRUITER_PITCH_PATH)
     verified_outcomes = outcome["verified_outcomes"]
     return {
         "project": "Data Quality Agent",
@@ -70,6 +72,8 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "scorecard_reviewer_paths": len(scorecard["reviewer_paths"]),
             "openapi_required_endpoints": 6,
             "openapi_paths": len(openapi["paths"]),
+            "recruiter_pitch_resume_bullets": len(recruiter_pitch["resume_bullets"]),
+            "recruiter_pitch_target_roles": len(recruiter_pitch["target_roles"]),
             "implemented_agent_capabilities": len(readiness["implemented"]),
             "partial_agent_capabilities": len(readiness["partial"]),
         },
@@ -91,6 +95,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
             f"{safety['tool_allowlist_count']} allowed agent tools and {safety['postgres_rejected_write_query_count']} rejected unsafe PostgreSQL queries",
             f"{len(scorecard['reviewer_paths'])} reviewer paths in a CI-verified live project scorecard",
             "CI-verified OpenAPI contract covering 6 integration endpoints",
+            f"{len(recruiter_pitch['resume_bullets'])} recruiter-safe resume bullets for {len(recruiter_pitch['target_roles'])} target roles",
             f"{verified_outcomes['recommended_action_count']} evidence-backed remediation actions",
             f"{len(readiness['implemented'])} implemented LLM agent-readiness capabilities",
             f"{adoption['forks']} public fork and {adoption['stars']} public stars as current honest adoption baseline",
@@ -146,6 +151,8 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Scorecard reviewer paths | {outcomes["scorecard_reviewer_paths"]} |
 | OpenAPI required integration endpoints | {outcomes["openapi_required_endpoints"]} |
 | OpenAPI paths | {outcomes["openapi_paths"]} |
+| Recruiter-safe resume bullets | {outcomes["recruiter_pitch_resume_bullets"]} |
+| Recruiter pitch target roles | {outcomes["recruiter_pitch_target_roles"]} |
 | Recommended remediation actions | {outcomes["recommended_actions"]} |
 | Implemented LLM agent-readiness capabilities | {outcomes["implemented_agent_capabilities"]} |
 | Partial agent-readiness capabilities documented | {outcomes["partial_agent_capabilities"]} |
@@ -170,7 +177,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 67,
+        "test_count": 68,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -191,6 +198,8 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "live_project_scorecard": 1,
         "scorecard_reviewer_paths": 5,
         "openapi_required_endpoints": 6,
+        "recruiter_pitch_resume_bullets": 3,
+        "recruiter_pitch_target_roles": 4,
         "recommended_actions": 5,
         "implemented_agent_capabilities": 14,
     }

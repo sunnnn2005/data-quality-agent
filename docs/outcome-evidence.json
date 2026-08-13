@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "67 passing CI tests",
+      "resume_signal": "68 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 67,
+      "metric_value": 68,
       "status": "verified"
     },
     {
@@ -138,6 +138,16 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/live-project-scorecard.json",
       "metric_name": "live_project_scorecard",
       "metric_value": 1,
+      "status": "verified"
+    },
+    {
+      "id": "recruiter-pitch",
+      "resume_signal": "CI-verified recruiter pitch artifact",
+      "claim": "The project publishes generated recruiter-facing resume bullets, a LinkedIn project description, a 30-second pitch, interview talking points, evidence links, and honest adoption baselines without claiming unverified adoption or production usage.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json",
+      "metric_name": "recruiter_pitch_resume_bullets",
+      "metric_value": 3,
       "status": "verified"
     },
     {

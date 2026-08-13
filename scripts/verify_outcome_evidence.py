@@ -20,6 +20,7 @@ AGENT_OBSERVABILITY_PATH = ROOT / "docs" / "agent-observability.json"
 AGENT_SAFETY_PATH = ROOT / "docs" / "agent-safety-boundaries.json"
 LIVE_SCORECARD_PATH = ROOT / "docs" / "live-project-scorecard.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
+RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
 PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
 RESUME_EVIDENCE_PATH = ROOT / "docs" / "resume-evidence.md"
@@ -54,6 +55,7 @@ def verify_manifest() -> dict[str, int]:
     safety = load_payload(AGENT_SAFETY_PATH)
     scorecard = load_payload(LIVE_SCORECARD_PATH)
     openapi = load_payload(OPENAPI_PATH)
+    recruiter_pitch = load_payload(RECRUITER_PITCH_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
     feedback_log = FEEDBACK_LOG_PATH.read_text().lower()
@@ -107,7 +109,7 @@ def verify_manifest() -> dict[str, int]:
                         f"but outcome summary has {actions}"
                     )
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 67:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 68:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -273,6 +275,28 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("OpenAPI artifact script must verify generated schema")
                 if "test_openapi_artifact_covers_core_integration_endpoints" not in openapi_tests:
                     raise AssertionError("OpenAPI artifact must have a dedicated test")
+            elif metric_name == "recruiter_pitch_resume_bullets":
+                pitch_tests = (ROOT / "tests" / "test_recruiter_pitch.py").read_text()
+                pitch_script = (ROOT / "scripts" / "build_recruiter_pitch.py").read_text()
+                if len(recruiter_pitch.get("resume_bullets", [])) != claim.get("metric_value"):
+                    raise AssertionError(
+                        f"claim {claim['id']} metric mismatch: recruiter_pitch_resume_bullets="
+                        f"{claim.get('metric_value')} but recruiter pitch has "
+                        f"{len(recruiter_pitch.get('resume_bullets', []))}"
+                    )
+                if len(recruiter_pitch.get("target_roles", [])) != 4:
+                    raise AssertionError("recruiter pitch must cover four target roles")
+                if recruiter_pitch.get("honest_baseline", {}).get("stars") != 0:
+                    raise AssertionError("recruiter pitch must preserve the zero-star baseline")
+                if recruiter_pitch.get("honest_baseline", {}).get("confirmed_external_users") != 0:
+                    raise AssertionError("recruiter pitch must preserve the zero-user baseline")
+                for required in ("external users", "customer feedback"):
+                    if required not in recruiter_pitch.get("not_claimed", []):
+                        raise AssertionError(f"recruiter pitch must not claim {required}")
+                if "verify_recruiter_pitch" not in pitch_script:
+                    raise AssertionError("recruiter pitch script must verify generated language")
+                if "test_recruiter_pitch_turns_verified_evidence_into_safe_application_language" not in pitch_tests:
+                    raise AssertionError("recruiter pitch must have a dedicated test")
             elif metrics.get(metric_name) != claim.get("metric_value"):
                 raise AssertionError(
                     f"claim {claim['id']} metric mismatch: {metric_name}={claim.get('metric_value')} "
@@ -325,7 +349,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 67", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 68", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

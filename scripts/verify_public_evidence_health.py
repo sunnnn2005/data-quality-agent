@@ -40,7 +40,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 67},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 68},
         "evidence_type": "json",
     },
     {
@@ -89,6 +89,14 @@ PUBLIC_CHECKS = [
         "expected_json": {"release": "v0.2.0"},
         "expected_text": "verified_resume_claims",
         "expected_texts": ["confirmed_external_users", "GitHub stars beyond the current public count"],
+        "evidence_type": "json",
+    },
+    {
+        "id": "recruiter-pitch",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json",
+        "expected_json": {"project": "Data Quality Agent"},
+        "expected_text": "AI Engineer Intern",
+        "expected_texts": ["honest_baseline", "external users"],
         "evidence_type": "json",
     },
     {
