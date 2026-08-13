@@ -567,8 +567,10 @@ def _current_commit() -> str:
 def _cache_busted_url(url: str, commit: str) -> str:
     if not url.startswith(RAW_GITHUB_HOST):
         return url
-    separator = "&" if "?" in url else "?"
-    return f"{url}{separator}cache_bust={commit}"
+    if commit == "unknown":
+        separator = "&" if "?" in url else "?"
+        return f"{url}{separator}cache_bust={commit}"
+    return url.replace("/data-quality-agent/main/", f"/data-quality-agent/{commit}/", 1)
 
 
 def _fetch(url: str, commit: str | None = None) -> tuple[int, str]:

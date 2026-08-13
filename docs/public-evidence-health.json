@@ -1,5 +1,5 @@
 {
-  "check_count": 30,
+  "check_count": 55,
   "checks": [
     {
       "evidence_type": "html",
@@ -122,6 +122,19 @@
     },
     {
       "evidence_type": "json",
+      "id": "real-model-evidence-capture",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/real-model-evidence-capture.json",
+      "verified_fields": [
+        "accepted_real_model_run_count",
+        "blocked_outcome_claim_count",
+        "capture_required_field_count",
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
       "id": "local-reviewer-demo",
       "passed": true,
       "status_code": 200,
@@ -129,6 +142,95 @@
       "verified_fields": [
         "project",
         "reviewer_command"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "runnable-release-packet",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/runnable-release-packet.json",
+      "verified_fields": [
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "external-run-evidence-packet",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-run-evidence-packet.json",
+      "verified_fields": [
+        "project",
+        "review_path_count"
+      ]
+    },
+    {
+      "evidence_type": "html",
+      "id": "external-run-collection-issue",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/18"
+    },
+    {
+      "evidence_type": "json",
+      "id": "external-reviewer-request-pack",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-reviewer-request-pack.json",
+      "verified_fields": [
+        "project",
+        "status"
+      ]
+    },
+    {
+      "evidence_type": "source",
+      "id": "external-run-review-template",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/.github/ISSUE_TEMPLATE/external_run_review.md"
+    },
+    {
+      "evidence_type": "html",
+      "id": "external-run-quickstart-page",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html"
+    },
+    {
+      "evidence_type": "json",
+      "id": "external-reviewer-outreach-tracker",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-reviewer-outreach-tracker.json",
+      "verified_fields": [
+        "linked_pilot_review_slots",
+        "queue_count",
+        "source_message_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "external-reviewer-evidence-gate",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-reviewer-evidence-gate.json",
+      "verified_fields": [
+        "accepted_issue_count",
+        "linked_outreach_queue_count",
+        "rejected_issue_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "accepted-evidence-rollup",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/accepted-evidence-rollup.json",
+      "verified_fields": [
+        "accepted_issue_count",
+        "blocked_outcome_claim_count",
+        "claimable_metric_count"
       ]
     },
     {
@@ -216,6 +318,28 @@
     },
     {
       "evidence_type": "json",
+      "id": "github-traffic-snapshot",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/github-traffic-snapshot.json",
+      "verified_fields": [
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "public-availability-snapshot",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-availability-snapshot.json",
+      "verified_fields": [
+        "endpoint_count",
+        "project",
+        "workflow_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
       "id": "star-growth-kit",
       "passed": true,
       "status_code": 200,
@@ -235,6 +359,52 @@
         "captured_field_count",
         "project",
         "required_section_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "business-case-intake",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-case-intake.json",
+      "verified_fields": [
+        "captured_field_count",
+        "project",
+        "required_section_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "business-data-replay-packet",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-data-replay-packet.json",
+      "verified_fields": [
+        "evidence_field_count",
+        "project",
+        "replay_path_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "business-replay-demo",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-replay-demo.json",
+      "verified_fields": [
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "real-model-runbook",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/real-model-runbook.json",
+      "verified_fields": [
+        "current_real_model_runs",
+        "evidence_field_count",
+        "project"
       ]
     },
     {
@@ -269,6 +439,35 @@
     },
     {
       "evidence_type": "json",
+      "id": "reviewer-funnel-board",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-funnel-board.json",
+      "verified_fields": [
+        "funnel_stage_count",
+        "project",
+        "total_remaining_evidence_items"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "reviewer-invitation-kit",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-invitation-kit.json",
+      "verified_fields": [
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "html",
+      "id": "reviewer-landing-page",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://sunnnn2005.github.io/data-quality-agent/review.html"
+    },
+    {
+      "evidence_type": "json",
       "id": "pilot-outreach-kit",
       "passed": true,
       "status_code": 200,
@@ -285,6 +484,78 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-program-plan.json",
       "verified_fields": [
         "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "pilot-review-tracker",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-review-tracker.json",
+      "verified_fields": [
+        "planned_review_count",
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "pilot-conversion-board",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-conversion-board.json",
+      "verified_fields": [
+        "claimable_stage_count",
+        "project",
+        "stage_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "resume-outcome-readiness",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-readiness.json",
+      "verified_fields": [
+        "claimable_stage_count",
+        "project",
+        "stage_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "external-review-evidence-ledger",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-review-evidence-ledger.json",
+      "verified_fields": [
+        "entry_count",
+        "evidence_requirement_count",
+        "project",
+        "self_authored_planning_excluded"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "outcome-upgrade-playbook",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-upgrade-playbook.json",
+      "verified_fields": [
+        "blocked_upgrade_rule_count",
+        "project",
+        "upgrade_rule_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "reviewer-feedback-packet",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-feedback-packet.json",
+      "verified_fields": [
+        "conversion_path_count",
+        "project",
+        "reviewer_task_count"
       ]
     },
     {
@@ -316,6 +587,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 30,
+  "passed_count": 55,
   "status": "PASS"
 }
