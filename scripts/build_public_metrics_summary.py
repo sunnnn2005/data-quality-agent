@@ -492,7 +492,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
             (
                 f"Star growth kit with {len(star_growth['topic_readiness']['required_topics'])} verified repo topics, "
                 f"{len(star_growth['ethical_growth_actions'])} ethical growth actions, and "
-                f"{len(star_growth['resume_upgrade_rules'])} resume upgrade rules without inflating current stars"
+                f"{len(star_growth['resume_upgrade_rules'])} resume upgrade rules with traffic context without inflating current stars"
             ),
             (
                 f"Business-case intake path with {business_case_intake['required_section_count']} required sections, "
@@ -922,7 +922,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "star_growth_kit": 1,
         "star_growth_required_topics": 6,
         "star_growth_ethical_actions": 4,
-        "star_growth_resume_upgrade_rules": 3,
+        "star_growth_resume_upgrade_rules": 4,
         "business_case_intake": 1,
         "business_case_intake_required_sections": 6,
         "business_case_intake_try_paths": 5,

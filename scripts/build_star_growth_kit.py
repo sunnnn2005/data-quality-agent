@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ADOPTION_METRICS_PATH = ROOT / "docs" / "adoption-metrics.json"
 COMMUNITY_GROWTH_PATH = ROOT / "docs" / "community-growth-baseline.json"
 PUBLIC_TRACTION_PATH = ROOT / "docs" / "public-traction-dashboard.json"
+GITHUB_TRAFFIC_PATH = ROOT / "docs" / "github-traffic-snapshot.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "star-growth-kit.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "star-growth-kit.md"
 
@@ -29,6 +30,7 @@ def build_star_growth_kit_payload() -> dict[str, Any]:
     adoption = load_json(ADOPTION_METRICS_PATH)
     community = load_json(COMMUNITY_GROWTH_PATH)
     traction = load_json(PUBLIC_TRACTION_PATH)
+    traffic = load_json(GITHUB_TRAFFIC_PATH)
     repo_topics = _load_repo_topics()
     missing_topics = sorted(REQUIRED_TOPICS - set(repo_topics))
     return {
@@ -43,6 +45,16 @@ def build_star_growth_kit_payload() -> dict[str, Any]:
             "issues_total": adoption["issues_total"],
             "external_feedback_items": adoption["external_feedback_items"],
             "confirmed_external_users": adoption["confirmed_external_users"],
+            "github_views_14d": traffic["traffic_metrics"]["view_count"],
+            "github_unique_visitors_14d": traffic["traffic_metrics"]["unique_visitors"],
+            "github_clones_14d": traffic["traffic_metrics"]["clone_count"],
+            "github_unique_cloners_14d": traffic["traffic_metrics"]["unique_cloners"],
+        },
+        "traffic_snapshot": {
+            "source": traffic["traffic_window"],
+            "traffic_available": traffic["traffic_available"],
+            "snapshot_url": f"{adoption['repo']}/blob/main/docs/github-traffic-snapshot.md",
+            "resume_policy": traffic["resume_policy"],
         },
         "topic_readiness": {
             "required_topics": sorted(REQUIRED_TOPICS),
@@ -100,6 +112,13 @@ def build_star_growth_kit_payload() -> dict[str, Any]:
                 "evidence_required": "public feedback issues linked from the pilot tracker",
                 "resume_status": "not_claimable_yet",
             },
+            {
+                "signal": "repository interest",
+                "current_value": traffic["traffic_metrics"]["unique_visitors"],
+                "minimum_before_claim": 25,
+                "evidence_required": "GitHub traffic snapshot showing unique visitors in the rolling 14-day window",
+                "resume_status": "not_claimable_yet",
+            },
         ],
         "current_growth_channels": traction["growth_channel_count"],
         "community_growth_channels": len(community["public_growth_channels"]),
@@ -109,10 +128,11 @@ def build_star_growth_kit_payload() -> dict[str, Any]:
             "community adoption",
             "paid promotion",
             "fake or incentivized stars",
+            "confirmed users from traffic alone",
         ],
         "resume_safe_summary": (
             "Published a CI-verified star growth kit with repository topic readiness, ethical growth actions, "
-            "growth assets, and resume-upgrade rules while keeping current stars at the verified public count."
+            "GitHub traffic context, growth assets, and resume-upgrade rules while keeping current stars at the verified public count."
         ),
     }
 
@@ -151,6 +171,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
     )
     assets = "\n".join(f"- {key.replace('_', ' ').title()}: [{value}]({value})" for key, value in payload["growth_assets"].items() if isinstance(value, str))
     actions = "\n".join(f"- {item['channel']}: {item['action']}" for item in payload["ethical_growth_actions"])
+    traffic = payload["traffic_snapshot"]
     rules = "\n".join(
         f"| {item['signal']} | {item['current_value']} | {item['minimum_before_claim']} | {item['evidence_required']} | `{item['resume_status']}` |"
         for item in payload["resume_upgrade_rules"]
@@ -181,6 +202,13 @@ Topic readiness: `{topics["ready"]}`
 ## Ethical Growth Actions
 
 {actions}
+
+## Traffic Snapshot
+
+- Source: {traffic["source"]}
+- Traffic available: `{traffic["traffic_available"]}`
+- Snapshot: [{traffic["snapshot_url"]}]({traffic["snapshot_url"]})
+- Policy: {traffic["resume_policy"]}
 
 ## Resume Upgrade Rules
 
@@ -215,15 +243,20 @@ def verify_star_growth_kit(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("star growth kit must verify required repository topics")
     if len(payload["ethical_growth_actions"]) != 4:
         raise AssertionError("star growth kit must include four ethical growth actions")
-    if len(payload["resume_upgrade_rules"]) != 3:
-        raise AssertionError("star growth kit must include three resume upgrade rules")
+    if len(payload["resume_upgrade_rules"]) != 4:
+        raise AssertionError("star growth kit must include four resume upgrade rules")
+    traffic_snapshot = payload["traffic_snapshot"]
+    if traffic_snapshot["source"] != "GitHub traffic API rolling 14-day window":
+        raise AssertionError("star growth kit must link the GitHub traffic snapshot source")
+    if "confirmed users" not in traffic_snapshot["resume_policy"]:
+        raise AssertionError("star growth kit must separate traffic from confirmed users")
     if not all(rule["resume_status"] == "not_claimable_yet" for rule in payload["resume_upgrade_rules"]):
         raise AssertionError("star growth kit must keep zero-traction signals not claimable")
     forbidden_text = json.dumps(payload, sort_keys=True).lower()
     for forbidden in ("buy stars", "paid stars", "star exchange"):
         if forbidden in forbidden_text:
             raise AssertionError(f"star growth kit must not recommend {forbidden}")
-    for required in ("fake or incentivized stars", "external contributors", "community adoption"):
+    for required in ("fake or incentivized stars", "external contributors", "community adoption", "confirmed users from traffic alone"):
         if required not in payload["not_claimed"]:
             raise AssertionError(f"star growth kit must not claim {required}")
     return {

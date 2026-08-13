@@ -171,7 +171,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-traction-dashboard.json"
     },
     {
-      "claim": "The project publishes a generated star growth kit with repository topic readiness, ethical growth actions, growth assets, and resume-upgrade rules without inflating current stars.",
+      "claim": "The project publishes a generated star growth kit with repository topic readiness, ethical growth actions, GitHub traffic context, growth assets, and resume-upgrade rules without inflating current stars or converting traffic into user claims.",
       "evidence_type": "artifact",
       "id": "star-growth-kit",
       "metric_name": "star_growth_kit",

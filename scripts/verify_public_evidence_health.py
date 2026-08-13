@@ -338,7 +338,14 @@ PUBLIC_CHECKS = [
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/star-growth-kit.json",
         "expected_json": {"project": "Data Quality Agent", "generated_by": "scripts/build_star_growth_kit.py"},
         "expected_text": "fake or incentivized stars",
-        "expected_texts": ["topic_readiness", "ethical_growth_actions", "resume_upgrade_rules"],
+        "expected_texts": [
+            "topic_readiness",
+            "ethical_growth_actions",
+            "resume_upgrade_rules",
+            "traffic_snapshot",
+            "repository interest",
+            "confirmed users from traffic alone",
+        ],
         "evidence_type": "json",
     },
     {

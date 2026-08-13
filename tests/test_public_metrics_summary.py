@@ -156,7 +156,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["star_growth_kit"] == 1
     assert payload["verified_project_outcomes"]["star_growth_required_topics"] == 6
     assert payload["verified_project_outcomes"]["star_growth_ethical_actions"] == 4
-    assert payload["verified_project_outcomes"]["star_growth_resume_upgrade_rules"] == 3
+    assert payload["verified_project_outcomes"]["star_growth_resume_upgrade_rules"] == 4
     assert payload["verified_project_outcomes"]["business_case_intake"] == 1
     assert payload["verified_project_outcomes"]["business_case_intake_required_sections"] == 6
     assert payload["verified_project_outcomes"]["business_case_intake_try_paths"] == 5
@@ -276,7 +276,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-        "Star growth kit with 6 verified repo topics, 4 ethical growth actions, and 3 resume upgrade rules without inflating current stars"
+        "Star growth kit with 6 verified repo topics, 4 ethical growth actions, and 4 resume upgrade rules with traffic context without inflating current stars"
         in payload["resume_safe_signals"]
     )
     assert (

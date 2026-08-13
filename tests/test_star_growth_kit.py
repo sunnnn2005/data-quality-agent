@@ -16,8 +16,13 @@ def test_star_growth_kit_tracks_ethical_growth_without_inflating_stars():
     assert payload["current_public_counts"]["issues_total"] == 13
     assert payload["topic_readiness"]["ready"] is True
     assert len(payload["ethical_growth_actions"]) == 4
-    assert len(payload["resume_upgrade_rules"]) == 3
+    assert len(payload["resume_upgrade_rules"]) == 4
+    assert payload["traffic_snapshot"]["source"] == "GitHub traffic API rolling 14-day window"
+    assert "confirmed users" in payload["traffic_snapshot"]["resume_policy"]
+    assert "repository interest" in {rule["signal"] for rule in payload["resume_upgrade_rules"]}
     assert all(rule["resume_status"] == "not_claimable_yet" for rule in payload["resume_upgrade_rules"])
     assert "fake or incentivized stars" in payload["not_claimed"]
+    assert "confirmed users from traffic alone" in payload["not_claimed"]
     assert "Star Growth Kit" in markdown
+    assert "Traffic Snapshot" in markdown
     assert "Topic readiness: `True`" in markdown

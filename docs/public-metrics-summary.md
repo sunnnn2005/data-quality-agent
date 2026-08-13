@@ -161,7 +161,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Star growth kit | 1 |
 | Star growth required topics | 6 |
 | Star growth ethical actions | 4 |
-| Star growth resume upgrade rules | 3 |
+| Star growth resume upgrade rules | 4 |
 | Business-case intake | 1 |
 | Business-case intake required sections | 6 |
 | Business-case intake tried paths | 5 |
@@ -247,7 +247,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 3 pilot outreach messages and 10 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
 - Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups
-- Star growth kit with 6 verified repo topics, 4 ethical growth actions, and 3 resume upgrade rules without inflating current stars
+- Star growth kit with 6 verified repo topics, 4 ethical growth actions, and 4 resume upgrade rules with traffic context without inflating current stars
 - Business-case intake path with 6 required sections, 5 tried paths, 5 outcome signals, and 6 captured evidence groups
 - Business-data replay packet with 3 safe replay paths, 8 evidence fields, 5 safety requirements, and zero current external replay claims
 - Business replay demo with 8 anonymized rows, 5 findings, 4 failed check types, 4 business-rule references, and deterministic verification

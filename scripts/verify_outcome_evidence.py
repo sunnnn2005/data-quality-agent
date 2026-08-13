@@ -1398,12 +1398,21 @@ def verify_manifest() -> dict[str, int]:
                 if len(star_growth.get("ethical_growth_actions", [])) != 4:
                     raise AssertionError("star growth kit must verify 4 ethical growth actions")
                 rules = star_growth.get("resume_upgrade_rules", [])
-                if len(rules) != 3:
-                    raise AssertionError("star growth kit must verify 3 resume upgrade rules")
+                if len(rules) != 4:
+                    raise AssertionError("star growth kit must verify 4 resume upgrade rules")
+                if "repository interest" not in {rule.get("signal") for rule in rules}:
+                    raise AssertionError("star growth kit must include repository interest upgrade rule")
+                traffic_snapshot = star_growth.get("traffic_snapshot", {})
+                if traffic_snapshot.get("source") != "GitHub traffic API rolling 14-day window":
+                    raise AssertionError("star growth kit must link GitHub traffic snapshot")
+                if "confirmed users" not in traffic_snapshot.get("resume_policy", ""):
+                    raise AssertionError("star growth kit must separate traffic from confirmed users")
                 if not all(rule.get("resume_status") == "not_claimable_yet" for rule in rules):
                     raise AssertionError("star growth kit must keep growth signals not claimable before evidence")
                 if "fake or incentivized stars" not in star_growth.get("not_claimed", []):
                     raise AssertionError("star growth kit must explicitly reject fake or incentivized stars")
+                if "confirmed users from traffic alone" not in star_growth.get("not_claimed", []):
+                    raise AssertionError("star growth kit must not convert traffic into user claims")
                 if "verify_star_growth_kit" not in star_script:
                     raise AssertionError("star growth kit must include a script verifier")
                 if "test_star_growth_kit_tracks_ethical_growth_without_inflating_stars" not in star_tests:

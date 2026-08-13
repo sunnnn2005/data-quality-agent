@@ -5,6 +5,10 @@
     "confirmed_external_users": 0,
     "external_feedback_items": 0,
     "forks": 1,
+    "github_clones_14d": 79,
+    "github_unique_cloners_14d": 50,
+    "github_unique_visitors_14d": 3,
+    "github_views_14d": 9,
     "issues_total": 13,
     "stars": 0,
     "watchers": 0
@@ -43,12 +47,13 @@
     "external contributors",
     "community adoption",
     "paid promotion",
-    "fake or incentivized stars"
+    "fake or incentivized stars",
+    "confirmed users from traffic alone"
   ],
   "project": "Data Quality Agent",
   "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
   "repo": "https://github.com/sunnnn2005/data-quality-agent",
-  "resume_safe_summary": "Published a CI-verified star growth kit with repository topic readiness, ethical growth actions, growth assets, and resume-upgrade rules while keeping current stars at the verified public count.",
+  "resume_safe_summary": "Published a CI-verified star growth kit with repository topic readiness, ethical growth actions, GitHub traffic context, growth assets, and resume-upgrade rules while keeping current stars at the verified public count.",
   "resume_upgrade_rules": [
     {
       "current_value": 0,
@@ -70,6 +75,13 @@
       "minimum_before_claim": 3,
       "resume_status": "not_claimable_yet",
       "signal": "public pilot feedback"
+    },
+    {
+      "current_value": 3,
+      "evidence_required": "GitHub traffic snapshot showing unique visitors in the rolling 14-day window",
+      "minimum_before_claim": 25,
+      "resume_status": "not_claimable_yet",
+      "signal": "repository interest"
     }
   ],
   "topic_readiness": {
@@ -93,5 +105,11 @@
       "github-actions",
       "python"
     ]
+  },
+  "traffic_snapshot": {
+    "resume_policy": "Traffic, views, and clones are repository-interest signals only. Do not claim these as confirmed users, customer feedback, production adoption, or successful business outcomes.",
+    "snapshot_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md",
+    "source": "GitHub traffic API rolling 14-day window",
+    "traffic_available": true
   }
 }
