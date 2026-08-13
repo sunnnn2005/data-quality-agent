@@ -1,0 +1,57 @@
+{
+  "benchmark_count": 2,
+  "checks": [
+    {
+      "avg_ms": 1.737,
+      "failure_reasons": [],
+      "id": "quality_report_local_baseline",
+      "iterations": 12,
+      "max_ms": 1.964,
+      "max_p95_ms": 80.0,
+      "method": "POST",
+      "min_ms": 1.568,
+      "p95_ms": 1.89,
+      "passed": true,
+      "path": "/datasets/orders_daily/quality-report",
+      "payload_preview": {
+        "quality_score": 52,
+        "row_count": 7,
+        "status": "FAIL",
+        "trace_id": "run_77df273e519d4ce2"
+      },
+      "warmup_iterations": 2
+    },
+    {
+      "avg_ms": 1.162,
+      "failure_reasons": [],
+      "id": "profile_local_baseline",
+      "iterations": 12,
+      "max_ms": 1.274,
+      "max_p95_ms": 40.0,
+      "method": "GET",
+      "min_ms": 1.083,
+      "p95_ms": 1.261,
+      "passed": true,
+      "path": "/datasets/orders_daily/profile",
+      "payload_preview": {
+        "quality_score": null,
+        "row_count": 7,
+        "status": null,
+        "trace_id": null
+      },
+      "warmup_iterations": 2
+    }
+  ],
+  "environment": "local FastAPI TestClient, built-in sample datasets, no network server",
+  "failed_count": 0,
+  "generated_by": "scripts/build_performance_baseline.py",
+  "not_claimed": [
+    "No production latency SLA is claimed.",
+    "No hosted traffic benchmark is claimed.",
+    "No external load test is claimed."
+  ],
+  "passed_count": 2,
+  "project": "Data Quality Agent",
+  "resume_safe_summary": "Published a CI-verified local performance baseline for 2 core FastAPI report/profile routes using 24 measured endpoint calls over built-in sample data.",
+  "status": "PASS"
+}

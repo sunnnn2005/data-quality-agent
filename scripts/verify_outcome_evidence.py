@@ -20,6 +20,7 @@ AGENT_OBSERVABILITY_PATH = ROOT / "docs" / "agent-observability.json"
 AGENT_SAFETY_PATH = ROOT / "docs" / "agent-safety-boundaries.json"
 LOCAL_REVIEWER_DEMO_PATH = ROOT / "docs" / "local-reviewer-demo.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
+PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 LIVE_SCORECARD_PATH = ROOT / "docs" / "live-project-scorecard.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
@@ -60,6 +61,7 @@ def verify_manifest() -> dict[str, int]:
     safety = load_payload(AGENT_SAFETY_PATH)
     local_reviewer_demo = load_payload(LOCAL_REVIEWER_DEMO_PATH)
     api_smoke_report = load_payload(API_SMOKE_REPORT_PATH)
+    performance_baseline = load_payload(PERFORMANCE_BASELINE_PATH)
     scorecard = load_payload(LIVE_SCORECARD_PATH)
     openapi = load_payload(OPENAPI_PATH)
     recruiter_pitch = load_payload(RECRUITER_PITCH_PATH)
@@ -171,8 +173,30 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("API smoke report must include a dedicated test")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("api_smoke_report claim must use metric_value=1")
+            elif metric_name == "performance_baseline":
+                perf_script = (ROOT / "scripts" / "build_performance_baseline.py").read_text()
+                perf_tests = (ROOT / "tests" / "test_performance_baseline.py").read_text()
+                if performance_baseline.get("benchmark_count") != 2:
+                    raise AssertionError("performance baseline must verify 2 route benchmarks")
+                if performance_baseline.get("passed_count") != 2 or performance_baseline.get("status") != "PASS":
+                    raise AssertionError("performance baseline must pass every benchmark")
+                measured_calls = sum(check.get("iterations", 0) for check in performance_baseline.get("checks", []))
+                if measured_calls != 24:
+                    raise AssertionError("performance baseline must include 24 measured endpoint calls")
+                paths = {check.get("path") for check in performance_baseline.get("checks", [])}
+                for required in {"/datasets/orders_daily/quality-report", "/datasets/orders_daily/profile"}:
+                    if required not in paths:
+                        raise AssertionError(f"performance baseline missing {required}")
+                if "production latency sla" not in " ".join(performance_baseline.get("not_claimed", [])).lower():
+                    raise AssertionError("performance baseline must not claim production latency SLA")
+                if "verify_performance_baseline" not in perf_script:
+                    raise AssertionError("performance baseline must include a script verifier")
+                if "test_performance_baseline_verifies_local_latency_without_sla_claims" not in perf_tests:
+                    raise AssertionError("performance baseline must include a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("performance_baseline claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 79:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 80:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -450,7 +474,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 79:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 80:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -555,7 +579,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 79", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 80", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 
