@@ -1,0 +1,110 @@
+{
+  "blocked_outcome_count": 6,
+  "blocked_resume_lines": [
+    {
+      "blocked_reason": "Needs a non-owner public reviewer issue that passes the external evidence gate.",
+      "metric": "confirmed_external_users"
+    },
+    {
+      "blocked_reason": "Needs accepted public feedback with permission to count and non-placeholder comments.",
+      "metric": "external_feedback_items"
+    },
+    {
+      "blocked_reason": "Needs reviewer-submitted command, URL, and observed-result evidence.",
+      "metric": "reproducible_feedback_items"
+    },
+    {
+      "blocked_reason": "Needs anonymized business-case issue evidence with explicit permission to count.",
+      "metric": "business_case_feedback_items"
+    },
+    {
+      "blocked_reason": "Needs a non-owner AI Engineer review issue with inspected paths and permission to count.",
+      "metric": "ai_engineer_review_items"
+    },
+    {
+      "blocked_reason": "Needs public GitHub stars above zero; never buy, trade, or fake stars.",
+      "metric": "github_stars"
+    }
+  ],
+  "claimable_outcome_count": 0,
+  "claimable_resume_lines": [],
+  "generated_by": "scripts/build_resume_outcome_metrics.py",
+  "not_claimed": [
+    "No external users are claimed while confirmed_external_users is zero.",
+    "No customer feedback is claimed while external_feedback_items is zero.",
+    "No real business impact is claimed while business_case_feedback_items is zero.",
+    "No GitHub star growth is claimed while github_stars is zero.",
+    "GitHub traffic is treated as repository interest, not as users."
+  ],
+  "outreach_readiness": {
+    "evidence_goal_count": 5,
+    "follow_up_rule_count": 8,
+    "not_sent_count": 8,
+    "ready_message_count": 8,
+    "resume_status": "ready_to_send_not_claimable"
+  },
+  "project": "Data Quality Agent",
+  "public_interest_signals": {
+    "feature_feedback_items": 8,
+    "github_clones_14_day": 79,
+    "github_forks": 1,
+    "github_stars": 0,
+    "github_unique_cloners_14_day": 50,
+    "github_unique_visitors_14_day": 3,
+    "github_views_14_day": 9,
+    "issue_count": 13
+  },
+  "purpose": "Convert public metrics, accepted evidence, and outreach readiness into resume-safe outcome wording without claiming users, feedback, business impact, or GitHub stars before evidence exists.",
+  "resume_safe_summary": "Published a CI-verified resume outcome metrics board tracking 6 outcome metrics, 0 currently claimable outcome lines, 6 blocked outcome lines, 8 ready reviewer messages, and honest public-interest baselines.",
+  "tracked_outcome_count": 6,
+  "tracked_outcomes": [
+    {
+      "blocked_reason": "Needs a non-owner public reviewer issue that passes the external evidence gate.",
+      "current_count": 0,
+      "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/accepted-evidence-rollup.md",
+      "metric": "confirmed_external_users",
+      "resume_status": "not_claimable_yet",
+      "resume_wording": null
+    },
+    {
+      "blocked_reason": "Needs accepted public feedback with permission to count and non-placeholder comments.",
+      "current_count": 0,
+      "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/accepted-evidence-rollup.md",
+      "metric": "external_feedback_items",
+      "resume_status": "not_claimable_yet",
+      "resume_wording": null
+    },
+    {
+      "blocked_reason": "Needs reviewer-submitted command, URL, and observed-result evidence.",
+      "current_count": 0,
+      "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/accepted-evidence-rollup.md",
+      "metric": "reproducible_feedback_items",
+      "resume_status": "not_claimable_yet",
+      "resume_wording": null
+    },
+    {
+      "blocked_reason": "Needs anonymized business-case issue evidence with explicit permission to count.",
+      "current_count": 0,
+      "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/accepted-evidence-rollup.md",
+      "metric": "business_case_feedback_items",
+      "resume_status": "not_claimable_yet",
+      "resume_wording": null
+    },
+    {
+      "blocked_reason": "Needs a non-owner AI Engineer review issue with inspected paths and permission to count.",
+      "current_count": 0,
+      "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/accepted-evidence-rollup.md",
+      "metric": "ai_engineer_review_items",
+      "resume_status": "not_claimable_yet",
+      "resume_wording": null
+    },
+    {
+      "blocked_reason": "Needs public GitHub stars above zero; never buy, trade, or fake stars.",
+      "current_count": 0,
+      "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/stargazers",
+      "metric": "github_stars",
+      "resume_status": "not_claimable_yet",
+      "resume_wording": null
+    }
+  ]
+}

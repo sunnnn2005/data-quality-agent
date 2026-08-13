@@ -31,6 +31,7 @@ REVIEWER_EVIDENCE_KIT_PATH = ROOT / "docs" / "reviewer-evidence-kit.json"
 RESUME_TRACTION_PROOF_PATH = ROOT / "docs" / "resume-traction-proof.json"
 REVIEWER_ACTION_QUEUE_PATH = ROOT / "docs" / "reviewer-action-queue.json"
 REVIEWER_OUTREACH_EXECUTION_PACK_PATH = ROOT / "docs" / "reviewer-outreach-execution-pack.json"
+RESUME_OUTCOME_METRICS_PATH = ROOT / "docs" / "resume-outcome-metrics.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
@@ -105,6 +106,7 @@ def verify_manifest() -> dict[str, int]:
     resume_traction_proof = load_payload(RESUME_TRACTION_PROOF_PATH)
     reviewer_action_queue = load_payload(REVIEWER_ACTION_QUEUE_PATH)
     reviewer_outreach_execution = load_payload(REVIEWER_OUTREACH_EXECUTION_PACK_PATH)
+    resume_outcome_metrics = load_payload(RESUME_OUTCOME_METRICS_PATH)
     api_smoke_report = load_payload(API_SMOKE_REPORT_PATH)
     performance_baseline = load_payload(PERFORMANCE_BASELINE_PATH)
     demo_usage_baseline = load_payload(DEMO_USAGE_BASELINE_PATH)
@@ -564,7 +566,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 138:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 139:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -711,6 +713,55 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("reviewer outreach execution pack must include a dedicated test")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("reviewer_outreach_execution_pack claim must use metric_value=1")
+            elif metric_name == "resume_outcome_metrics":
+                outcome_metrics_script = (ROOT / "scripts" / "build_resume_outcome_metrics.py").read_text()
+                outcome_metrics_tests = (ROOT / "tests" / "test_resume_outcome_metrics.py").read_text()
+                expected = {
+                    "tracked_outcome_count": 6,
+                    "claimable_outcome_count": 0,
+                    "blocked_outcome_count": 6,
+                }
+                for key, value in expected.items():
+                    if resume_outcome_metrics.get(key) != value:
+                        raise AssertionError(f"resume outcome metrics {key} expected {value!r}")
+                required_metrics = {
+                    "confirmed_external_users",
+                    "external_feedback_items",
+                    "reproducible_feedback_items",
+                    "business_case_feedback_items",
+                    "ai_engineer_review_items",
+                    "github_stars",
+                }
+                outcomes = {item.get("metric"): item for item in resume_outcome_metrics.get("tracked_outcomes", [])}
+                if set(outcomes) != required_metrics:
+                    raise AssertionError("resume outcome metrics must track all outcome categories")
+                for metric in required_metrics:
+                    item = outcomes[metric]
+                    if item.get("current_count") != 0:
+                        raise AssertionError(f"resume outcome metrics must keep {metric} at zero until evidence exists")
+                    if item.get("resume_status") != "not_claimable_yet":
+                        raise AssertionError(f"resume outcome metrics must block {metric} at zero")
+                    if not item.get("blocked_reason"):
+                        raise AssertionError(f"resume outcome metrics must explain why {metric} is blocked")
+                if resume_outcome_metrics.get("outreach_readiness", {}).get("ready_message_count") != 8:
+                    raise AssertionError("resume outcome metrics must link 8 ready reviewer messages")
+                if resume_outcome_metrics.get("outreach_readiness", {}).get("not_sent_count") != 8:
+                    raise AssertionError("resume outcome metrics must preserve the zero-sent baseline")
+                for required in (
+                    "No external users are claimed while confirmed_external_users is zero.",
+                    "No customer feedback is claimed while external_feedback_items is zero.",
+                    "No real business impact is claimed while business_case_feedback_items is zero.",
+                    "No GitHub star growth is claimed while github_stars is zero.",
+                    "GitHub traffic is treated as repository interest, not as users.",
+                ):
+                    if required not in resume_outcome_metrics.get("not_claimed", []):
+                        raise AssertionError(f"resume outcome metrics must preserve not-claimed signal: {required}")
+                if "verify_resume_outcome_metrics" not in outcome_metrics_script:
+                    raise AssertionError("resume outcome metrics must include a script verifier")
+                if "test_resume_outcome_metrics_blocks_unproven_outcome_claims" not in outcome_metrics_tests:
+                    raise AssertionError("resume outcome metrics must include a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("resume_outcome_metrics claim must use metric_value=1")
             elif metric_name == "persistent_trace_audit":
                 trace_tests = (ROOT / "tests" / "test_traces.py").read_text()
                 trace_source = (ROOT / "app" / "traces.py").read_text()
@@ -1006,7 +1057,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 138:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 139:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1805,6 +1856,7 @@ def verify_manifest() -> dict[str, int]:
             "scripts/build_star_growth_kit.py",
             "scripts/build_public_metrics_summary.py",
             "scripts/build_reviewer_outreach_execution_pack.py",
+            "scripts/build_resume_outcome_metrics.py",
             "scripts/verify_outcome_evidence.py",
             "git-auto-commit-action",
         ):
@@ -1846,7 +1898,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 138", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 139", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

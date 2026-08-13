@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 138,
-      "resume_signal": "138 passing CI tests",
+      "metric_value": 139,
+      "resume_signal": "139 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 32 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 33 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 32,
+      "metric_value": 33,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -699,6 +699,16 @@
       "resume_signal": "CI-verified reviewer outreach execution pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-outreach-execution-pack.json"
+    },
+    {
+      "claim": "The project publishes a resume outcome metrics board that tracks 6 evidence-gated outcome categories for external adoption, feedback, reproducible runs, business-case validation, AI Engineer review, and GitHub stars while keeping all zero-count outcome claims blocked.",
+      "evidence_type": "generated_artifact",
+      "id": "resume-outcome-metrics",
+      "metric_name": "resume_outcome_metrics",
+      "metric_value": 1,
+      "resume_signal": "CI-verified resume outcome metrics board",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-metrics.json"
     }
   ],
   "not_claimed": [
