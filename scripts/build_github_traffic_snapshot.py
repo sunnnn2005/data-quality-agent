@@ -40,6 +40,10 @@ def build_github_traffic_snapshot(payloads: dict[str, Any] | None = None) -> dic
     views = traffic.get("views", {})
     clones = traffic.get("clones", {})
     traffic_available = "count" in views and "count" in clones
+    view_count = int(views.get("count", 0)) if isinstance(views, dict) else 0
+    unique_visitors = int(views.get("uniques", 0)) if isinstance(views, dict) else 0
+    clone_count = int(clones.get("count", 0)) if isinstance(clones, dict) else 0
+    unique_cloners = int(clones.get("uniques", 0)) if isinstance(clones, dict) else 0
     return {
         "project": "Data Quality Agent",
         "generated_by": "scripts/build_github_traffic_snapshot.py",
@@ -47,14 +51,20 @@ def build_github_traffic_snapshot(payloads: dict[str, Any] | None = None) -> dic
         "repo": f"https://github.com/{REPO}",
         "traffic_window": "GitHub traffic API rolling 14-day window",
         "traffic_available": traffic_available,
+        "traffic_metrics": {
+            "view_count": view_count,
+            "unique_visitors": unique_visitors,
+            "clone_count": clone_count,
+            "unique_cloners": unique_cloners,
+        },
         "views": {
-            "count": int(views.get("count", 0)) if isinstance(views, dict) else 0,
-            "uniques": int(views.get("uniques", 0)) if isinstance(views, dict) else 0,
+            "count": view_count,
+            "uniques": unique_visitors,
             "daily": views.get("views", []) if isinstance(views, dict) else [],
         },
         "clones": {
-            "count": int(clones.get("count", 0)) if isinstance(clones, dict) else 0,
-            "uniques": int(clones.get("uniques", 0)) if isinstance(clones, dict) else 0,
+            "count": clone_count,
+            "uniques": unique_cloners,
             "daily": clones.get("clones", []) if isinstance(clones, dict) else [],
         },
         "top_referrers": traffic.get("referrers", []) if isinstance(traffic.get("referrers"), list) else [],
@@ -146,10 +156,10 @@ def verify_github_traffic_snapshot(payload: dict[str, Any]) -> dict[str, Any]:
     return {
         "github_traffic_snapshot_verified": True,
         "traffic_available": payload["traffic_available"],
-        "view_count": payload["views"]["count"],
-        "unique_visitors": payload["views"]["uniques"],
-        "clone_count": payload["clones"]["count"],
-        "unique_cloners": payload["clones"]["uniques"],
+        "view_count": payload["traffic_metrics"]["view_count"],
+        "unique_visitors": payload["traffic_metrics"]["unique_visitors"],
+        "clone_count": payload["traffic_metrics"]["clone_count"],
+        "unique_cloners": payload["traffic_metrics"]["unique_cloners"],
     }
 
 
