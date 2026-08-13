@@ -16,6 +16,8 @@ Turn external reviewer runs into public, resume-safe evidence by requiring comma
 
 Submission URL: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md)
 
+External run review template: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md)
+
 Public collection issue: [#18](https://github.com/sunnnn2005/data-quality-agent/issues/18)
 
 Counting status: `collection_open_not_counted_yet`

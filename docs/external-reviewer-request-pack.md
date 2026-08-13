@@ -16,6 +16,8 @@ Issue #18: [https://github.com/sunnnn2005/data-quality-agent/issues/18](https://
 
 Public collection point for external reviewer run evidence.
 
+Separate issue template: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md)
+
 ## Current Counts
 
 | Metric | Current value |
@@ -32,8 +34,9 @@ Public collection point for external reviewer run evidence.
 - Run path: `public_demo_review`
 - Entry: [https://sunnnn2005.github.io/data-quality-agent/](https://sunnnn2005.github.io/data-quality-agent/)
 - Collection issue: [https://github.com/sunnnn2005/data-quality-agent/issues/18](https://github.com/sunnnn2005/data-quality-agent/issues/18)
+- Separate issue template: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md)
 
-Could you spend 8 minutes trying my Data Quality Agent public demo, then leave a short comment on issue #18 with what worked, what was confusing, and whether I may count your review publicly? No private data needed.
+Could you spend 8 minutes trying my Data Quality Agent public demo, then leave a short comment on issue #18, or open the External Run Review template, with what worked, what was confusing, and whether I may count your review publicly? No private data needed.
 
 ### developer_container_smoke_run -> student developer comfortable with Docker
 
@@ -41,8 +44,9 @@ Could you spend 8 minutes trying my Data Quality Agent public demo, then leave a
 - Run path: `container_smoke_run`
 - Entry: [https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent](https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent)
 - Collection issue: [https://github.com/sunnnn2005/data-quality-agent/issues/18](https://github.com/sunnnn2005/data-quality-agent/issues/18)
+- Separate issue template: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md)
 
-Could you run the GHCR container smoke test for my Data Quality Agent and comment on issue #18 with your OS, commands, observed result, and permission to count it publicly? The command is: docker run --rm -p 8000:8000 ghcr.io/sunnnn2005/data-quality-agent:latest
+Could you run the GHCR container smoke test for my Data Quality Agent and comment on issue #18, or open the External Run Review template, with your OS, commands, observed result, and permission to count it publicly? The command is: docker run --rm -p 8000:8000 ghcr.io/sunnnn2005/data-quality-agent:latest
 
 ### mentor_postgres_replay -> mentor, data practitioner, or AI engineer
 
@@ -50,8 +54,9 @@ Could you run the GHCR container smoke test for my Data Quality Agent and commen
 - Run path: `postgres_replay_run`
 - Entry: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docker-compose.yml](https://github.com/sunnnn2005/data-quality-agent/blob/main/docker-compose.yml)
 - Collection issue: [https://github.com/sunnnn2005/data-quality-agent/issues/18](https://github.com/sunnnn2005/data-quality-agent/issues/18)
+- Separate issue template: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md)
 
-Could you try the Docker Compose PostgreSQL replay for my read-only Data Quality Agent and comment on issue #18 with whether the seeded business-data run is reproducible and credible? Please do not upload private data; a redacted run summary is enough.
+Could you try the Docker Compose PostgreSQL replay for my read-only Data Quality Agent and comment on issue #18, or open the External Run Review template, with whether the seeded business-data run is reproducible and credible? Please do not upload private data; a redacted run summary is enough.
 
 ## Required Comment Fields
 

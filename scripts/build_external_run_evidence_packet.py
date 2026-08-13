@@ -9,6 +9,9 @@ FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "external-run-evidence-packet.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "external-run-evidence-packet.md"
 PUBLIC_COLLECTION_ISSUE_URL = "https://github.com/sunnnn2005/data-quality-agent/issues/18"
+EXTERNAL_RUN_REVIEW_TEMPLATE_URL = (
+    "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md"
+)
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -100,6 +103,11 @@ def build_external_run_evidence_packet() -> dict[str, Any]:
         "review_path_count": len(review_paths),
         "review_paths": review_paths,
         "submission_url": feedback_url,
+        "external_run_review_template": {
+            "path": ".github/ISSUE_TEMPLATE/external_run_review.md",
+            "url": EXTERNAL_RUN_REVIEW_TEMPLATE_URL,
+            "purpose": "Structured issue template for one reviewer run when a separate issue is easier than commenting on issue #18.",
+        },
         "public_collection_issue": {
             "number": 18,
             "url": PUBLIC_COLLECTION_ISSUE_URL,
@@ -173,6 +181,8 @@ This generated packet defines how an outside reviewer can run the project and su
 
 Submission URL: [{payload["submission_url"]}]({payload["submission_url"]})
 
+External run review template: [{payload["external_run_review_template"]["url"]}]({payload["external_run_review_template"]["url"]})
+
 Public collection issue: [#{payload["public_collection_issue"]["number"]}]({payload["public_collection_issue"]["url"]})
 
 Counting status: `{payload["public_collection_issue"]["counting_status"]}`
@@ -222,6 +232,8 @@ def verify_external_run_evidence_packet(payload: dict[str, Any]) -> dict[str, An
         raise AssertionError("external run evidence packet must link 4 acceptance checks")
     if payload["public_collection_issue"]["url"] != PUBLIC_COLLECTION_ISSUE_URL:
         raise AssertionError("external run evidence packet must link the public collection issue")
+    if payload["external_run_review_template"]["url"] != EXTERNAL_RUN_REVIEW_TEMPLATE_URL:
+        raise AssertionError("external run evidence packet must link the external run review template")
     if payload["public_collection_issue"]["counting_status"] != "collection_open_not_counted_yet":
         raise AssertionError("external run evidence packet must keep collection open but uncounted")
     commands = " ".join(path.get("command", "") for path in payload["review_paths"])

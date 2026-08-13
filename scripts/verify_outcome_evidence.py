@@ -201,6 +201,7 @@ def verify_manifest() -> dict[str, int]:
             elif metric_name == "external_run_evidence_packet":
                 external_run_script = (ROOT / "scripts" / "build_external_run_evidence_packet.py").read_text()
                 external_run_tests = (ROOT / "tests" / "test_external_run_evidence_packet.py").read_text()
+                external_run_template = (ROOT / ".github" / "ISSUE_TEMPLATE" / "external_run_review.md").read_text()
                 if external_run_evidence.get("review_path_count") != 3:
                     raise AssertionError("external run evidence packet must define 3 reviewer run paths")
                 if external_run_evidence.get("submission_field_count") != 8:
@@ -211,6 +212,10 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("external run evidence packet must preserve zero confirmed-user baseline")
                 if external_run_evidence.get("public_collection_issue", {}).get("url", "").endswith("/issues/18") is False:
                     raise AssertionError("external run evidence packet must link public collection issue #18")
+                if "external_run_review.md" not in json.dumps(external_run_evidence):
+                    raise AssertionError("external run evidence packet must link the external run review issue template")
+                if "This can be counted as public external run evidence." not in external_run_template:
+                    raise AssertionError("external run review template must collect countable public evidence")
                 if (
                     external_run_evidence.get("public_collection_issue", {}).get("counting_status")
                     != "collection_open_not_counted_yet"
@@ -233,10 +238,13 @@ def verify_manifest() -> dict[str, int]:
             elif metric_name == "external_reviewer_request_pack":
                 request_script = (ROOT / "scripts" / "build_external_reviewer_request_pack.py").read_text()
                 request_tests = (ROOT / "tests" / "test_external_reviewer_request_pack.py").read_text()
+                template_tests = (ROOT / "tests" / "test_external_run_issue_template.py").read_text()
                 if external_reviewer_request.get("status") != "outreach_ready_not_counted":
                     raise AssertionError("external reviewer request pack must keep outreach uncounted")
                 if external_reviewer_request.get("public_collection_issue", {}).get("number") != 18:
                     raise AssertionError("external reviewer request pack must link issue #18")
+                if "external_run_review.md" not in json.dumps(external_reviewer_request):
+                    raise AssertionError("external reviewer request pack must link the external run issue template")
                 if len(external_reviewer_request.get("outreach_messages", [])) != 3:
                     raise AssertionError("external reviewer request pack must include three outreach messages")
                 run_paths = {item.get("run_path") for item in external_reviewer_request.get("outreach_messages", [])}
@@ -256,6 +264,8 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("external reviewer request pack must have a script verifier")
                 if "test_external_reviewer_request_pack_routes_real_runs_to_issue_18" not in request_tests:
                     raise AssertionError("external reviewer request pack must have a dedicated test")
+                if "test_external_run_issue_template_collects_countable_public_evidence" not in template_tests:
+                    raise AssertionError("external run issue template must have a dedicated test")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("external_reviewer_request_pack claim must use metric_value=1")
             elif metric_name == "api_smoke_report":
@@ -365,12 +375,14 @@ def verify_manifest() -> dict[str, int]:
             elif metric_name == "community_growth_baseline":
                 community_script = (ROOT / "scripts" / "build_community_growth_baseline.py").read_text()
                 community_tests = (ROOT / "tests" / "test_community_growth_baseline.py").read_text()
-                if community_growth.get("issue_template_count") != 6:
-                    raise AssertionError("community growth baseline must verify 6 issue templates")
+                if community_growth.get("issue_template_count") != 7:
+                    raise AssertionError("community growth baseline must verify 7 issue templates")
+                if "external_run_review.md" not in community_growth.get("issue_templates", []):
+                    raise AssertionError("community growth baseline must include the external run review template")
                 if community_growth.get("label_count") != 7:
                     raise AssertionError("community growth baseline must verify 7 labels")
-                if len(community_growth.get("public_growth_channels", [])) != 7:
-                    raise AssertionError("community growth baseline must verify 7 public growth channels")
+                if len(community_growth.get("public_growth_channels", [])) != 8:
+                    raise AssertionError("community growth baseline must verify 8 public growth channels")
                 if not all(community_growth.get("contribution_paths", {}).values()):
                     raise AssertionError("community growth baseline must verify contribution paths")
                 counts = community_growth.get("current_public_counts", {})
@@ -488,8 +500,8 @@ def verify_manifest() -> dict[str, int]:
                 traction_tests = (ROOT / "tests" / "test_public_traction_dashboard.py").read_text()
                 if traction.get("traction_surface_count") != 4:
                     raise AssertionError("public traction dashboard must verify 4 traction surfaces")
-                if traction.get("growth_channel_count") != 17:
-                    raise AssertionError("public traction dashboard must verify 17 growth or review channels")
+                if traction.get("growth_channel_count") != 18:
+                    raise AssertionError("public traction dashboard must verify 18 growth or review channels")
                 if traction.get("tracked_funnel_steps") != 5:
                     raise AssertionError("public traction dashboard must verify 5 tracked funnel steps")
                 if traction.get("demo_entrypoints_verified") != 6:
@@ -531,7 +543,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 114:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 115:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -832,7 +844,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 114:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 115:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1397,9 +1409,17 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 114", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 115", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
+
+    if "community-growth-baseline" in claim_ids:
+        if "7 issue templates" not in resume_page or "8 public contribution or feedback channels" not in resume_page:
+            raise AssertionError("resume evidence page must reflect the current community growth counts")
+
+    if "public-traction-dashboard" in claim_ids:
+        if "18 growth or review channels" not in resume_page:
+            raise AssertionError("resume evidence page must reflect the current public traction channel count")
 
     not_claimed = {item["metric"] for item in evidence.get("not_claimed", [])}
     for required in {"users", "customer_feedback", "production_company_usage"}:

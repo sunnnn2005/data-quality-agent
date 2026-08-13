@@ -19,6 +19,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "external-run-evidence-packet",
         "external-run-collection-issue",
         "external-reviewer-request-pack",
+        "external-run-review-template",
         "api-smoke-report",
         "performance-baseline",
         "demo-usage-baseline",
@@ -74,6 +75,7 @@ def test_public_evidence_health_requires_core_public_signals():
     assert external_run["expected_json"]["review_path_count"] == 3
     assert "permission_to_count_publicly" == external_run["expected_text"]
     assert "issues/18" in external_run["expected_texts"]
+    assert "external_run_review.md" in external_run["expected_texts"]
     assert "No external reviewer run is claimed yet." in external_run["expected_texts"]
     external_issue = next(check for check in PUBLIC_CHECKS if check["id"] == "external-run-collection-issue")
     assert external_issue["url"].endswith("/issues/18")
@@ -81,7 +83,11 @@ def test_public_evidence_health_requires_core_public_signals():
     external_request = next(check for check in PUBLIC_CHECKS if check["id"] == "external-reviewer-request-pack")
     assert external_request["expected_json"]["status"] == "outreach_ready_not_counted"
     assert "issues/18" in external_request["expected_texts"]
+    assert "external_run_review.md" in external_request["expected_texts"]
     assert "permission_to_count_publicly" in external_request["expected_texts"]
+    template = next(check for check in PUBLIC_CHECKS if check["id"] == "external-run-review-template")
+    assert "Permission to count publicly" in template["expected_texts"]
+    assert "This can be counted as public external run evidence." in template["expected_texts"]
 
 
 def test_public_evidence_health_verifier_rejects_failed_checks():

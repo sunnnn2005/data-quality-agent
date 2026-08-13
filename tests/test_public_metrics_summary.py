@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 114
+    assert payload["public_metrics"]["test_count"] == 115
     assert payload["public_metrics"]["github_view_count"] >= 0
     assert payload["public_metrics"]["github_unique_visitors"] <= payload["public_metrics"]["github_view_count"]
     assert payload["public_metrics"]["github_clone_count"] >= 0
@@ -72,9 +72,9 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["business_data_intake_max_rows"] == 10_000
     assert payload["verified_project_outcomes"]["business_data_intake_max_columns"] == 80
     assert payload["verified_project_outcomes"]["community_growth_baseline"] == 1
-    assert payload["verified_project_outcomes"]["community_issue_templates"] == 6
+    assert payload["verified_project_outcomes"]["community_issue_templates"] == 7
     assert payload["verified_project_outcomes"]["community_labels"] == 7
-    assert payload["verified_project_outcomes"]["community_public_growth_channels"] == 7
+    assert payload["verified_project_outcomes"]["community_public_growth_channels"] == 8
     assert payload["verified_project_outcomes"]["impact_review_packet"] == 1
     assert payload["verified_project_outcomes"]["impact_review_business_metrics"] == 12
     assert payload["verified_project_outcomes"]["impact_review_evidence_links"] == 8
@@ -84,7 +84,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["business_problem_owner_handoffs"] == 4
     assert payload["verified_project_outcomes"]["public_traction_dashboard"] == 1
     assert payload["verified_project_outcomes"]["public_traction_surfaces"] == 4
-    assert payload["verified_project_outcomes"]["public_traction_growth_channels"] == 17
+    assert payload["verified_project_outcomes"]["public_traction_growth_channels"] == 18
     assert payload["verified_project_outcomes"]["public_traction_resume_upgrade_rules"] == 3
     assert payload["verified_project_outcomes"]["github_traffic_snapshot"] == 1
     assert payload["verified_project_outcomes"]["public_availability_snapshot"] == 1
@@ -201,7 +201,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-        "Community growth baseline with 6 issue templates, 7 configured labels, and 7 public contribution or feedback channels"
+        "Community growth baseline with 7 issue templates, 7 configured labels, and 8 public contribution or feedback channels"
         in payload["resume_safe_signals"]
     )
     assert (
@@ -213,7 +213,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-            "Public traction dashboard with 4 live project surfaces, 17 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules"
+            "Public traction dashboard with 4 live project surfaces, 18 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules"
         in payload["resume_safe_signals"]
     )
     assert any("GitHub traffic snapshot with" in signal for signal in payload["resume_safe_signals"])

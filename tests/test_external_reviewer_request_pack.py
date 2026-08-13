@@ -14,6 +14,7 @@ def test_external_reviewer_request_pack_routes_real_runs_to_issue_18():
     assert payload["status"] == "outreach_ready_not_counted"
     assert payload["public_collection_issue"]["number"] == 18
     assert payload["public_collection_issue"]["url"].endswith("/issues/18")
+    assert payload["external_run_review_template"]["url"].endswith("template=external_run_review.md")
     assert len(payload["outreach_messages"]) == 3
     assert {item["run_path"] for item in payload["outreach_messages"]} == {
         "public_demo_review",
@@ -21,6 +22,7 @@ def test_external_reviewer_request_pack_routes_real_runs_to_issue_18():
         "postgres_replay_run",
     }
     assert all(item["collection_url"].endswith("/issues/18") for item in payload["outreach_messages"])
+    assert all(item["template_url"].endswith("template=external_run_review.md") for item in payload["outreach_messages"])
     assert len(payload["required_comment_fields"]) == 8
     assert {field["name"] for field in payload["required_comment_fields"]} >= {
         "reviewer_role",

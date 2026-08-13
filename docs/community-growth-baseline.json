@@ -15,12 +15,13 @@
     "stars": 0
   },
   "generated_by": "scripts/build_community_growth_baseline.py",
-  "issue_template_count": 6,
+  "issue_template_count": 7,
   "issue_templates": [
     "bug_report.md",
     "business_case_review.md",
     "business_data_replay.md",
     "demo_feedback.md",
+    "external_run_review.md",
     "feature_request.md",
     "good_first_issue.md"
   ],
@@ -68,6 +69,11 @@
       "name": "Business data replay issue",
       "purpose": "confirmed anonymized replay evidence for CSV or read-only data runs",
       "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md"
+    },
+    {
+      "name": "External run review issue",
+      "purpose": "structured public evidence when a reviewer runs the demo, container, or PostgreSQL replay",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md"
     }
   ],
   "required_issue_templates": [
@@ -75,6 +81,7 @@
     "business_case_review.md",
     "business_data_replay.md",
     "demo_feedback.md",
+    "external_run_review.md",
     "feature_request.md",
     "good_first_issue.md"
   ],
@@ -89,5 +96,5 @@
     "reproducible"
   ],
   "required_labels_present": true,
-  "resume_safe_signal": "Published a CI-verified community growth baseline with 6 issue templates, 7 configured labels, 7 public growth channels, contribution guidance, and honest current public counts."
+  "resume_safe_signal": "Published a CI-verified community growth baseline with 7 issue templates, 7 configured labels, 8 public growth channels, contribution guidance, and honest current public counts."
 }

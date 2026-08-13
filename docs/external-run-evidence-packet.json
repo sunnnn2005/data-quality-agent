@@ -5,6 +5,11 @@
     "external_feedback_items": 0,
     "reproducible_feedback_items": 0
   },
+  "external_run_review_template": {
+    "path": ".github/ISSUE_TEMPLATE/external_run_review.md",
+    "purpose": "Structured issue template for one reviewer run when a separate issue is easier than commenting on issue #18.",
+    "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md"
+  },
   "generated_by": "scripts/build_external_run_evidence_packet.py",
   "input_artifacts": {
     "feedback_metrics": "docs/feedback-metrics.json",

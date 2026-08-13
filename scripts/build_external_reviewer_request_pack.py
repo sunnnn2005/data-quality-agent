@@ -9,6 +9,9 @@ FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "external-reviewer-request-pack.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "external-reviewer-request-pack.md"
 PUBLIC_COLLECTION_ISSUE_URL = "https://github.com/sunnnn2005/data-quality-agent/issues/18"
+EXTERNAL_RUN_REVIEW_TEMPLATE_URL = (
+    "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md"
+)
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -37,6 +40,10 @@ def build_external_reviewer_request_pack_payload() -> dict[str, Any]:
             "url": PUBLIC_COLLECTION_ISSUE_URL,
             "purpose": "Public collection point for external reviewer run evidence.",
         },
+        "external_run_review_template": {
+            "url": EXTERNAL_RUN_REVIEW_TEMPLATE_URL,
+            "purpose": "Use this when a reviewer prefers opening a separate structured run issue.",
+        },
         "current_counts": {
             "external_feedback_items": feedback["external_feedback_items"],
             "confirmed_external_users": feedback["confirmed_external_users"],
@@ -50,10 +57,11 @@ def build_external_reviewer_request_pack_payload() -> dict[str, Any]:
                 "run_path": "public_demo_review",
                 "entry_url": entry_urls["public_demo_review"],
                 "collection_url": PUBLIC_COLLECTION_ISSUE_URL,
+                "template_url": EXTERNAL_RUN_REVIEW_TEMPLATE_URL,
                 "message": (
                     "Could you spend 8 minutes trying my Data Quality Agent public demo, then leave a short comment "
-                    "on issue #18 with what worked, what was confusing, and whether I may count your review publicly? "
-                    "No private data needed."
+                    "on issue #18, or open the External Run Review template, with what worked, what was confusing, "
+                    "and whether I may count your review publicly? No private data needed."
                 ),
             },
             {
@@ -63,10 +71,12 @@ def build_external_reviewer_request_pack_payload() -> dict[str, Any]:
                 "run_path": "container_smoke_run",
                 "entry_url": entry_urls["container_smoke_run"],
                 "collection_url": PUBLIC_COLLECTION_ISSUE_URL,
+                "template_url": EXTERNAL_RUN_REVIEW_TEMPLATE_URL,
                 "message": (
-                    "Could you run the GHCR container smoke test for my Data Quality Agent and comment on issue #18 "
-                    "with your OS, commands, observed result, and permission to count it publicly? The command is: "
-                    "docker run --rm -p 8000:8000 ghcr.io/sunnnn2005/data-quality-agent:latest"
+                    "Could you run the GHCR container smoke test for my Data Quality Agent and comment on issue #18, "
+                    "or open the External Run Review template, with your OS, commands, observed result, and permission "
+                    "to count it publicly? The command is: docker run --rm -p 8000:8000 "
+                    "ghcr.io/sunnnn2005/data-quality-agent:latest"
                 ),
             },
             {
@@ -76,10 +86,12 @@ def build_external_reviewer_request_pack_payload() -> dict[str, Any]:
                 "run_path": "postgres_replay_run",
                 "entry_url": entry_urls["postgres_replay_run"],
                 "collection_url": PUBLIC_COLLECTION_ISSUE_URL,
+                "template_url": EXTERNAL_RUN_REVIEW_TEMPLATE_URL,
                 "message": (
                     "Could you try the Docker Compose PostgreSQL replay for my read-only Data Quality Agent and "
-                    "comment on issue #18 with whether the seeded business-data run is reproducible and credible? "
-                    "Please do not upload private data; a redacted run summary is enough."
+                    "comment on issue #18, or open the External Run Review template, with whether the seeded "
+                    "business-data run is reproducible and credible? Please do not upload private data; a redacted "
+                    "run summary is enough."
                 ),
             },
         ],
@@ -114,6 +126,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
                 f"- Run path: `{item['run_path']}`",
                 f"- Entry: [{item['entry_url']}]({item['entry_url']})",
                 f"- Collection issue: [{item['collection_url']}]({item['collection_url']})",
+                f"- Separate issue template: [{item['template_url']}]({item['template_url']})",
                 "",
                 item["message"],
             ]
@@ -144,6 +157,8 @@ This generated pack turns the public issue #18 evidence workflow into copy-ready
 Issue #{issue["number"]}: [{issue["url"]}]({issue["url"]})
 
 {issue["purpose"]}
+
+Separate issue template: [{payload["external_run_review_template"]["url"]}]({payload["external_run_review_template"]["url"]})
 
 ## Current Counts
 
@@ -191,6 +206,8 @@ def verify_external_reviewer_request_pack(payload: dict[str, Any]) -> dict[str, 
         raise AssertionError("external reviewer request pack must link issue #18")
     if not payload["public_collection_issue"]["url"].endswith("/issues/18"):
         raise AssertionError("external reviewer request pack must link the public collection issue")
+    if not payload["external_run_review_template"]["url"].endswith("template=external_run_review.md"):
+        raise AssertionError("external reviewer request pack must link the external run issue template")
     if len(payload["outreach_messages"]) != expected["message_count"]:
         raise AssertionError("external reviewer request pack must include three copy-ready messages")
     run_paths = {item["run_path"] for item in payload["outreach_messages"]}
@@ -205,6 +222,8 @@ def verify_external_reviewer_request_pack(payload: dict[str, Any]) -> dict[str, 
     for item in payload["outreach_messages"]:
         if item["collection_url"] != PUBLIC_COLLECTION_ISSUE_URL:
             raise AssertionError("each outreach message must route to issue #18")
+        if item["template_url"] != EXTERNAL_RUN_REVIEW_TEMPLATE_URL:
+            raise AssertionError("each outreach message must include the separate external run issue template")
         if "private data" not in item["message"].lower() and item["run_path"] != "container_smoke_run":
             raise AssertionError("reviewer messages must protect private data")
     if "No outreach recipient has completed a run yet." not in payload["not_claimed"]:

@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 114,
-      "resume_signal": "114 passing CI tests",
+      "metric_value": 115,
+      "resume_signal": "115 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -131,7 +131,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-data-intake-baseline.json"
     },
     {
-      "claim": "The project publishes a generated community growth baseline covering 6 issue templates, 7 configured labels, contribution guidance, public feedback entrypoints, and current public counts without claiming community adoption.",
+      "claim": "The project publishes a generated community growth baseline covering 7 issue templates, 7 configured labels, 8 public growth channels, contribution guidance, public feedback entrypoints, and current public counts without claiming community adoption.",
       "evidence_type": "artifact",
       "id": "community-growth-baseline",
       "metric_name": "community_growth_baseline",
@@ -573,7 +573,7 @@
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-readiness.md"
     },
     {
-      "claim": "The project publishes an external-run evidence packet with 3 reviewer run paths, 8 required submission fields, 3 resume-upgrade rules, and privacy boundaries for converting future reviewer runs into public evidence while preserving the current zero-adoption baseline.",
+      "claim": "The project publishes an external-run evidence packet with public issue #18, a dedicated external run review issue template, 3 reviewer run paths, 8 required submission fields, 3 resume-upgrade rules, and privacy boundaries while preserving the current zero-adoption baseline.",
       "evidence_type": "json",
       "id": "external-run-evidence-packet",
       "metric_name": "external_run_evidence_packet",

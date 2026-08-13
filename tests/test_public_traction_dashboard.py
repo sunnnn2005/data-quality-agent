@@ -12,8 +12,9 @@ def test_public_traction_dashboard_tracks_growth_surfaces_without_inflating_trac
 
     assert verification["public_traction_dashboard_verified"] is True
     assert payload["traction_surface_count"] == 4
-    assert payload["growth_channel_count"] == 17
+    assert payload["growth_channel_count"] == 18
     assert any(item["name"] == "pilot_feedback_tracker" for item in payload["growth_channels"])
+    assert any(item["name"] == "External run review issue" for item in payload["growth_channels"])
     assert payload["tracked_funnel_steps"] == 5
     assert payload["demo_entrypoints_verified"] == 6
     assert payload["public_counts"]["stars"] == 0

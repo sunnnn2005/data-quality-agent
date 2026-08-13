@@ -19,6 +19,7 @@ def test_external_run_evidence_packet_defines_public_reviewer_run_proof():
     assert payload["public_collection_issue"]["number"] == 18
     assert payload["public_collection_issue"]["url"].endswith("/issues/18")
     assert payload["public_collection_issue"]["counting_status"] == "collection_open_not_counted_yet"
+    assert payload["external_run_review_template"]["url"].endswith("template=external_run_review.md")
     assert payload["current_counts"] == {
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
@@ -32,6 +33,7 @@ def test_external_run_evidence_packet_defines_public_reviewer_run_proof():
     assert "docker run" in markdown
     assert "docker compose up --build" in markdown
     assert "issues/18" in markdown
+    assert "external_run_review.md" in markdown
     assert "No external reviewer run is claimed yet." in markdown
 
 

@@ -20,7 +20,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert "reviewer_funnel_board" in payload["application_links"]
     assert "external_run_evidence_packet" in payload["application_links"]
     assert len(payload["resume_bullets"]) == 3
-    assert payload["verified_outcome_numbers"]["passing_tests"] == 114
+    assert payload["verified_outcome_numbers"]["passing_tests"] == 115
     assert payload["verified_outcome_numbers"]["verified_resume_claims"] == 61
     assert payload["verified_outcome_numbers"]["business_data_replay_paths"] == 3
     assert payload["verified_outcome_numbers"]["business_data_replay_evidence_fields"] == 8
@@ -34,7 +34,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert payload["verified_outcome_numbers"]["business_problem_cases"] == 1
     assert payload["verified_outcome_numbers"]["business_problem_detected_risks"] == 4
     assert payload["verified_outcome_numbers"]["public_traction_surfaces"] == 4
-    assert payload["verified_outcome_numbers"]["public_traction_growth_channels"] == 17
+    assert payload["verified_outcome_numbers"]["public_traction_growth_channels"] == 18
     assert payload["verified_outcome_numbers"]["feedback_intake_required_sections"] == 5
     assert payload["verified_outcome_numbers"]["feedback_intake_captured_fields"] == 5
     assert payload["verified_outcome_numbers"]["reviewer_funnel_stages"] == 4
