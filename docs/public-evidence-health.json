@@ -1,5 +1,5 @@
 {
-  "check_count": 62,
+  "check_count": 64,
   "checks": [
     {
       "evidence_type": "html",
@@ -548,6 +548,26 @@
       ]
     },
     {
+      "evidence_type": "json",
+      "id": "public-reviewer-call",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-reviewer-call.json",
+      "verified_fields": [
+        "linked_submission_paths",
+        "project",
+        "required_public_evidence_fields",
+        "reviewer_segment_count"
+      ]
+    },
+    {
+      "evidence_type": "html",
+      "id": "public-reviewer-call-issue",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/19"
+    },
+    {
       "evidence_type": "html",
       "id": "reviewer-landing-page",
       "passed": true,
@@ -675,6 +695,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 62,
+  "passed_count": 64,
   "status": "PASS"
 }
