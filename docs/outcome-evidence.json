@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "62 passing CI tests",
+      "resume_signal": "63 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 62,
+      "metric_value": 63,
       "status": "verified"
     },
     {
@@ -131,6 +131,16 @@
       "status": "verified"
     },
     {
+      "id": "openapi-contract",
+      "resume_signal": "CI-verified OpenAPI contract",
+      "claim": "The project publishes a generated OpenAPI contract covering 6 core integration endpoints for business data, agent reports, trace lookup, dataset memory, and incident export.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/openapi.json",
+      "metric_name": "openapi_required_endpoint_count",
+      "metric_value": 6,
+      "status": "verified"
+    },
+    {
       "id": "adoption-baseline",
       "resume_signal": "Public adoption baseline",
       "claim": "Public metrics are tracked without inflating stars, forks, watchers, issues, release, container, or test count.",
@@ -201,7 +211,7 @@
       "evidence_type": "documentation",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-readiness.md",
       "metric_name": "implemented_agent_capabilities",
-      "metric_value": 10,
+      "metric_value": 11,
       "status": "verified"
     }
   ],

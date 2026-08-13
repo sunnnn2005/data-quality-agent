@@ -1,6 +1,6 @@
 {
   "project": "Data Quality Agent",
-  "updated_at": "2026-08-13T07:10:00Z",
+  "updated_at": "2026-08-13T07:35:00Z",
   "summary": "Current readiness assessment against a practical LLM agent checklist. This file separates implemented capabilities from partial and planned work so resume claims stay evidence-backed.",
   "implemented": [
     {
@@ -17,6 +17,11 @@
       "id": "real-business-data",
       "capability": "Agent can analyze real business CSV exports and read-only PostgreSQL tables",
       "evidence": "FastAPI exposes /business-data/agent-report and /postgres/support-tickets/agent-report."
+    },
+    {
+      "id": "openapi-contract",
+      "capability": "API surface is published as a generated OpenAPI contract",
+      "evidence": "docs/openapi.json is generated from FastAPI and verified for business-data, agent, trace, memory, and incident endpoints."
     },
     {
       "id": "deterministic-guardrails",

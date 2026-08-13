@@ -26,6 +26,8 @@ jobs:
         run: python scripts/build_eval_summary.py
       - name: Verify hypothesis feedback artifact
         run: python scripts/build_hypothesis_feedback.py
+      - name: Verify OpenAPI contract artifact
+        run: python scripts/build_openapi_artifact.py
       - name: Verify feedback metrics artifact
         env:
           FEEDBACK_ITEMS: "0"

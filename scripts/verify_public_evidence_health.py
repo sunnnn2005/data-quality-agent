@@ -40,7 +40,14 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 62},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 63},
+        "evidence_type": "json",
+    },
+    {
+        "id": "openapi-contract",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/openapi.json",
+        "expected_text": "/business-data/agent-report",
+        "expected_texts": ["/datasets/{dataset_id}/memory", "/postgres/support-tickets/agent-report"],
         "evidence_type": "json",
     },
     {

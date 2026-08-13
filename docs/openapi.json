@@ -1,0 +1,1374 @@
+{
+  "components": {
+    "schemas": {
+      "AgentRunReport": {
+        "properties": {
+          "dataset": {
+            "$ref": "#/components/schemas/DatasetSummary"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "evaluation": {
+            "title": "Evaluation",
+            "type": "object"
+          },
+          "final_answer": {
+            "title": "Final Answer",
+            "type": "string"
+          },
+          "generated_at": {
+            "format": "date-time",
+            "title": "Generated At",
+            "type": "string"
+          },
+          "quality_report": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/QualityReport"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "WARN",
+              "FAIL",
+              "DISABLED",
+              "ERROR"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "tool_calls": {
+            "items": {
+              "$ref": "#/components/schemas/AgentToolCall"
+            },
+            "title": "Tool Calls",
+            "type": "array"
+          },
+          "trace_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trace Id"
+          }
+        },
+        "required": [
+          "dataset",
+          "generated_at",
+          "status",
+          "final_answer",
+          "tool_calls"
+        ],
+        "title": "AgentRunReport",
+        "type": "object"
+      },
+      "AgentToolCall": {
+        "properties": {
+          "arguments": {
+            "title": "Arguments",
+            "type": "object"
+          },
+          "result_preview": {
+            "title": "Result Preview",
+            "type": "object"
+          },
+          "tool_name": {
+            "title": "Tool Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tool_name"
+        ],
+        "title": "AgentToolCall",
+        "type": "object"
+      },
+      "Body_create_business_agent_report_business_data_agent_report_post": {
+        "properties": {
+          "dataset_name": {
+            "description": "Human-readable business dataset name",
+            "title": "Dataset Name",
+            "type": "string"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Business use case for this dataset",
+            "title": "Description"
+          },
+          "expected_columns": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Comma-separated expected column list",
+            "title": "Expected Columns"
+          },
+          "file": {
+            "description": "CSV file exported from a business workflow",
+            "format": "binary",
+            "title": "File",
+            "type": "string"
+          },
+          "owner": {
+            "description": "Owning team or business function",
+            "title": "Owner",
+            "type": "string"
+          },
+          "primary_key": {
+            "description": "Column that should uniquely identify rows",
+            "title": "Primary Key",
+            "type": "string"
+          }
+        },
+        "required": [
+          "file",
+          "dataset_name",
+          "owner",
+          "primary_key"
+        ],
+        "title": "Body_create_business_agent_report_business_data_agent_report_post",
+        "type": "object"
+      },
+      "Body_create_business_quality_report_business_data_quality_report_post": {
+        "properties": {
+          "dataset_name": {
+            "description": "Human-readable business dataset name",
+            "title": "Dataset Name",
+            "type": "string"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Business use case for this dataset",
+            "title": "Description"
+          },
+          "expected_columns": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Comma-separated expected column list",
+            "title": "Expected Columns"
+          },
+          "file": {
+            "description": "CSV file exported from a business workflow",
+            "format": "binary",
+            "title": "File",
+            "type": "string"
+          },
+          "owner": {
+            "description": "Owning team or business function",
+            "title": "Owner",
+            "type": "string"
+          },
+          "primary_key": {
+            "description": "Column that should uniquely identify rows",
+            "title": "Primary Key",
+            "type": "string"
+          }
+        },
+        "required": [
+          "file",
+          "dataset_name",
+          "owner",
+          "primary_key"
+        ],
+        "title": "Body_create_business_quality_report_business_data_quality_report_post",
+        "type": "object"
+      },
+      "BusinessRuleReference": {
+        "properties": {
+          "matched_checks": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Matched Checks",
+            "type": "array"
+          },
+          "rule_id": {
+            "title": "Rule Id",
+            "type": "string"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "rule_id",
+          "source",
+          "title",
+          "text"
+        ],
+        "title": "BusinessRuleReference",
+        "type": "object"
+      },
+      "ColumnProfile": {
+        "properties": {
+          "column": {
+            "title": "Column",
+            "type": "string"
+          },
+          "dtype": {
+            "title": "Dtype",
+            "type": "string"
+          },
+          "missing_count": {
+            "title": "Missing Count",
+            "type": "integer"
+          },
+          "missing_rate": {
+            "title": "Missing Rate",
+            "type": "number"
+          },
+          "sample_values": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Sample Values",
+            "type": "array"
+          },
+          "unique_count": {
+            "title": "Unique Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "column",
+          "dtype",
+          "missing_count",
+          "missing_rate",
+          "unique_count",
+          "sample_values"
+        ],
+        "title": "ColumnProfile",
+        "type": "object"
+      },
+      "DatasetMemorySummary": {
+        "properties": {
+          "dataset_id": {
+            "title": "Dataset Id",
+            "type": "string"
+          },
+          "latest_generated_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Generated At"
+          },
+          "recent_traces": {
+            "items": {
+              "$ref": "#/components/schemas/StoredRunTrace"
+            },
+            "title": "Recent Traces",
+            "type": "array"
+          },
+          "recurring_checks": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Recurring Checks",
+            "type": "array"
+          },
+          "recurring_root_causes": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Recurring Root Causes",
+            "type": "array"
+          },
+          "trace_count": {
+            "title": "Trace Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "dataset_id",
+          "trace_count"
+        ],
+        "title": "DatasetMemorySummary",
+        "type": "object"
+      },
+      "DatasetProfile": {
+        "properties": {
+          "column_count": {
+            "title": "Column Count",
+            "type": "integer"
+          },
+          "columns": {
+            "items": {
+              "$ref": "#/components/schemas/ColumnProfile"
+            },
+            "title": "Columns",
+            "type": "array"
+          },
+          "dataset": {
+            "$ref": "#/components/schemas/DatasetSummary"
+          },
+          "row_count": {
+            "title": "Row Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "dataset",
+          "row_count",
+          "column_count",
+          "columns"
+        ],
+        "title": "DatasetProfile",
+        "type": "object"
+      },
+      "DatasetSummary": {
+        "properties": {
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "expected_columns": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Expected Columns",
+            "type": "array"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "last_loaded_at": {
+            "format": "date-time",
+            "title": "Last Loaded At",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "owner": {
+            "title": "Owner",
+            "type": "string"
+          },
+          "primary_key": {
+            "title": "Primary Key",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "owner",
+          "primary_key",
+          "expected_columns",
+          "description",
+          "last_loaded_at"
+        ],
+        "title": "DatasetSummary",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "LLMAssessment": {
+        "properties": {
+          "cost_estimate_usd": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cost Estimate Usd"
+          },
+          "enabled": {
+            "default": false,
+            "title": "Enabled",
+            "type": "boolean"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "evaluation": {
+            "title": "Evaluation",
+            "type": "object"
+          },
+          "evidence_used": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Evidence Used",
+            "type": "array"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          },
+          "provider": {
+            "default": "disabled",
+            "title": "Provider",
+            "type": "string"
+          },
+          "risk_level": {
+            "anyOf": [
+              {
+                "enum": [
+                  "LOW",
+                  "MEDIUM",
+                  "HIGH",
+                  "CRITICAL"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Risk Level"
+          },
+          "suggested_actions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Suggested Actions",
+            "type": "array"
+          },
+          "summary": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Summary"
+          }
+        },
+        "title": "LLMAssessment",
+        "type": "object"
+      },
+      "QualityFinding": {
+        "properties": {
+          "check_name": {
+            "title": "Check Name",
+            "type": "string"
+          },
+          "column": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Column"
+          },
+          "evidence": {
+            "title": "Evidence",
+            "type": "object"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "recommendation": {
+            "title": "Recommendation",
+            "type": "string"
+          },
+          "severity": {
+            "$ref": "#/components/schemas/Severity"
+          }
+        },
+        "required": [
+          "check_name",
+          "severity",
+          "message",
+          "evidence",
+          "recommendation"
+        ],
+        "title": "QualityFinding",
+        "type": "object"
+      },
+      "QualityReport": {
+        "properties": {
+          "agent_trace": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Agent Trace",
+            "type": "array"
+          },
+          "business_rule_references": {
+            "items": {
+              "$ref": "#/components/schemas/BusinessRuleReference"
+            },
+            "title": "Business Rule References",
+            "type": "array"
+          },
+          "dataset": {
+            "$ref": "#/components/schemas/DatasetSummary"
+          },
+          "findings": {
+            "items": {
+              "$ref": "#/components/schemas/QualityFinding"
+            },
+            "title": "Findings",
+            "type": "array"
+          },
+          "generated_at": {
+            "format": "date-time",
+            "title": "Generated At",
+            "type": "string"
+          },
+          "likely_causes": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Likely Causes",
+            "type": "array"
+          },
+          "llm_assessment": {
+            "$ref": "#/components/schemas/LLMAssessment"
+          },
+          "quality_score": {
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Quality Score",
+            "type": "integer"
+          },
+          "recommended_next_steps": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Recommended Next Steps",
+            "type": "array"
+          },
+          "root_cause_hypotheses": {
+            "items": {
+              "$ref": "#/components/schemas/RootCauseHypothesis"
+            },
+            "title": "Root Cause Hypotheses",
+            "type": "array"
+          },
+          "row_count": {
+            "title": "Row Count",
+            "type": "integer"
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "WARN",
+              "FAIL"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "trace_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trace Id"
+          },
+          "verification": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ReportVerification"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "dataset",
+          "generated_at",
+          "quality_score",
+          "status",
+          "row_count",
+          "findings",
+          "likely_causes",
+          "recommended_next_steps",
+          "agent_trace"
+        ],
+        "title": "QualityReport",
+        "type": "object"
+      },
+      "ReportVerification": {
+        "properties": {
+          "checked_rules": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Checked Rules",
+            "type": "array"
+          },
+          "evidence_support_rate": {
+            "title": "Evidence Support Rate",
+            "type": "number"
+          },
+          "issue_count": {
+            "title": "Issue Count",
+            "type": "integer"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/VerificationIssue"
+            },
+            "title": "Issues",
+            "type": "array"
+          },
+          "passed": {
+            "title": "Passed",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "passed",
+          "issue_count",
+          "evidence_support_rate",
+          "checked_rules"
+        ],
+        "title": "ReportVerification",
+        "type": "object"
+      },
+      "RootCauseHypothesis": {
+        "properties": {
+          "confidence": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence",
+            "type": "number"
+          },
+          "evidence": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Evidence",
+            "type": "array"
+          },
+          "recommended_action": {
+            "title": "Recommended Action",
+            "type": "string"
+          },
+          "supporting_checks": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Supporting Checks",
+            "type": "array"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "confidence",
+          "recommended_action"
+        ],
+        "title": "RootCauseHypothesis",
+        "type": "object"
+      },
+      "Severity": {
+        "enum": [
+          "LOW",
+          "MEDIUM",
+          "HIGH",
+          "CRITICAL"
+        ],
+        "title": "Severity",
+        "type": "string"
+      },
+      "StoredRunTrace": {
+        "properties": {
+          "dataset_id": {
+            "title": "Dataset Id",
+            "type": "string"
+          },
+          "dataset_name": {
+            "title": "Dataset Name",
+            "type": "string"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "evaluation": {
+            "title": "Evaluation",
+            "type": "object"
+          },
+          "fallback_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fallback Status"
+          },
+          "generated_at": {
+            "format": "date-time",
+            "title": "Generated At",
+            "type": "string"
+          },
+          "owner": {
+            "title": "Owner",
+            "type": "string"
+          },
+          "report_type": {
+            "enum": [
+              "quality_report",
+              "agent_report"
+            ],
+            "title": "Report Type",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "summary": {
+            "title": "Summary",
+            "type": "object"
+          },
+          "tool_calls": {
+            "items": {
+              "$ref": "#/components/schemas/AgentToolCall"
+            },
+            "title": "Tool Calls",
+            "type": "array"
+          },
+          "trace_id": {
+            "title": "Trace Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "trace_id",
+          "dataset_id",
+          "dataset_name",
+          "owner",
+          "generated_at",
+          "status",
+          "report_type"
+        ],
+        "title": "StoredRunTrace",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      },
+      "VerificationIssue": {
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH"
+            ],
+            "title": "Severity",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "severity",
+          "message"
+        ],
+        "title": "VerificationIssue",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "title": "Data Quality Agent",
+    "version": "1.0.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/business-data/agent-report": {
+      "post": {
+        "operationId": "create_business_agent_report_business_data_agent_report_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_create_business_agent_report_business_data_agent_report_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentRunReport"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Business Agent Report"
+      }
+    },
+    "/business-data/quality-report": {
+      "post": {
+        "operationId": "create_business_quality_report_business_data_quality_report_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_create_business_quality_report_business_data_quality_report_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QualityReport"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Business Quality Report"
+      }
+    },
+    "/dashboard": {
+      "get": {
+        "operationId": "dashboard_dashboard_get",
+        "responses": {
+          "200": {
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Dashboard"
+      }
+    },
+    "/datasets": {
+      "get": {
+        "operationId": "list_datasets_datasets_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/DatasetSummary"
+                  },
+                  "title": "Response List Datasets Datasets Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "List Datasets"
+      }
+    },
+    "/datasets/{dataset_id}": {
+      "get": {
+        "operationId": "get_dataset_datasets__dataset_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "dataset_id",
+            "required": true,
+            "schema": {
+              "title": "Dataset Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DatasetSummary"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Dataset"
+      }
+    },
+    "/datasets/{dataset_id}/agent-report": {
+      "post": {
+        "operationId": "create_agent_report_datasets__dataset_id__agent_report_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "dataset_id",
+            "required": true,
+            "schema": {
+              "title": "Dataset Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentRunReport"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Agent Report"
+      }
+    },
+    "/datasets/{dataset_id}/incident-report.md": {
+      "post": {
+        "operationId": "create_incident_report_markdown_datasets__dataset_id__incident_report_md_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "dataset_id",
+            "required": true,
+            "schema": {
+              "title": "Dataset Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Incident Report Markdown"
+      }
+    },
+    "/datasets/{dataset_id}/memory": {
+      "get": {
+        "operationId": "get_dataset_memory_datasets__dataset_id__memory_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "dataset_id",
+            "required": true,
+            "schema": {
+              "title": "Dataset Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 5,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DatasetMemorySummary"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Dataset Memory"
+      }
+    },
+    "/datasets/{dataset_id}/profile": {
+      "get": {
+        "operationId": "profile_dataset_datasets__dataset_id__profile_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "dataset_id",
+            "required": true,
+            "schema": {
+              "title": "Dataset Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DatasetProfile"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Profile Dataset"
+      }
+    },
+    "/datasets/{dataset_id}/quality-report": {
+      "post": {
+        "operationId": "create_quality_report_datasets__dataset_id__quality_report_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "dataset_id",
+            "required": true,
+            "schema": {
+              "title": "Dataset Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QualityReport"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Quality Report"
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Health"
+      }
+    },
+    "/postgres/support-tickets/agent-report": {
+      "post": {
+        "operationId": "create_postgres_support_ticket_agent_report_postgres_support_tickets_agent_report_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentRunReport"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Create Postgres Support Ticket Agent Report"
+      }
+    },
+    "/postgres/support-tickets/quality-report": {
+      "post": {
+        "operationId": "create_postgres_support_ticket_report_postgres_support_tickets_quality_report_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QualityReport"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Create Postgres Support Ticket Report"
+      }
+    },
+    "/runs/{trace_id}": {
+      "get": {
+        "operationId": "get_run_trace_runs__trace_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trace_id",
+            "required": true,
+            "schema": {
+              "title": "Trace Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Run Trace"
+      }
+    }
+  }
+}

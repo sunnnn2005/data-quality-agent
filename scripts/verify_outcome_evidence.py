@@ -15,6 +15,7 @@ PUBLIC_METRICS_SUMMARY_PATH = ROOT / "docs" / "public-metrics-summary.json"
 AGENT_READINESS_PATH = ROOT / "docs" / "agent-readiness.json"
 EVAL_SUMMARY_PATH = ROOT / "docs" / "eval-summary.json"
 HYPOTHESIS_FEEDBACK_PATH = ROOT / "docs" / "hypothesis-feedback.json"
+OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
 PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
 RESUME_EVIDENCE_PATH = ROOT / "docs" / "resume-evidence.md"
@@ -44,6 +45,7 @@ def verify_manifest() -> dict[str, int]:
     agent_readiness = load_payload(AGENT_READINESS_PATH)
     eval_summary = load_payload(EVAL_SUMMARY_PATH)
     hypothesis_feedback = load_payload(HYPOTHESIS_FEEDBACK_PATH)
+    openapi = load_payload(OPENAPI_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
     feedback_log = FEEDBACK_LOG_PATH.read_text().lower()
@@ -97,7 +99,7 @@ def verify_manifest() -> dict[str, int]:
                         f"but outcome summary has {actions}"
                     )
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 62:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 63:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -166,6 +168,27 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("hypothesis feedback script must verify generated labels")
                 if "test_hypothesis_feedback_labels_root_cause_hypotheses_without_external_claims" not in feedback_tests:
                     raise AssertionError("hypothesis feedback must have a dedicated test")
+            elif metric_name == "openapi_required_endpoint_count":
+                openapi_tests = (ROOT / "tests" / "test_openapi_artifact.py").read_text()
+                openapi_script = (ROOT / "scripts" / "build_openapi_artifact.py").read_text()
+                required_paths = {
+                    "/business-data/quality-report": "post",
+                    "/business-data/agent-report": "post",
+                    "/postgres/support-tickets/agent-report": "post",
+                    "/datasets/{dataset_id}/memory": "get",
+                    "/runs/{trace_id}": "get",
+                    "/datasets/{dataset_id}/incident-report.md": "post",
+                }
+                paths = openapi.get("paths", {})
+                for path, method in required_paths.items():
+                    if method not in paths.get(path, {}):
+                        raise AssertionError(f"OpenAPI artifact missing {method.upper()} {path}")
+                if len(required_paths) != claim.get("metric_value"):
+                    raise AssertionError("OpenAPI required endpoint count must match the claim")
+                if "verify_openapi_payload" not in openapi_script:
+                    raise AssertionError("OpenAPI artifact script must verify generated schema")
+                if "test_openapi_artifact_covers_core_integration_endpoints" not in openapi_tests:
+                    raise AssertionError("OpenAPI artifact must have a dedicated test")
             elif metrics.get(metric_name) != claim.get("metric_value"):
                 raise AssertionError(
                     f"claim {claim['id']} metric mismatch: {metric_name}={claim.get('metric_value')} "
@@ -218,7 +241,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 62", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 63", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

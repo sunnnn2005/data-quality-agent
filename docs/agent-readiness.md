@@ -9,6 +9,7 @@ This page tracks how close Data Quality Agent is to a mature LLM agent. It is in
 | LLM chooses among data-quality tools | `app/tool_agent.py` exposes `get_dataset_contract`, `profile_dataset`, `select_quality_strategy`, `run_quality_checks`, and `build_quality_report` as tool-calling functions. |
 | Tool results feed back into a multi-step agent loop | `LLMDataQualityAgent.run` appends tool results back into model messages and continues for up to six rounds. |
 | Real business data entrypoints | `/business-data/agent-report` accepts bounded CSV exports and `/postgres/support-tickets/agent-report` uses a read-only PostgreSQL adapter. |
+| OpenAPI contract artifact | `docs/openapi.json` is generated from FastAPI and verified for core business-data, agent, trace, memory, and incident endpoints. |
 | Deterministic report guardrails | `ReportVerifier` validates evidence support, known field references, sensitive evidence, unsupported LLM evidence, recommended actions, and score bounds. |
 | Persistent trace audit trail | `TRACE_DB_PATH` enables SQLite persistence for sanitized run traces, allowing `/runs/{trace_id}` records to be recovered after process restart. |
 | Dataset memory retrieval | `/datasets/{dataset_id}/memory` retrieves recent sanitized traces, recurring checks, and recurring root-cause titles for a dataset. |
@@ -41,5 +42,5 @@ This page tracks how close Data Quality Agent is to a mature LLM agent. It is in
 
 ## Resume-Safe Wording
 
-- Built an LLM tool-calling data-quality agent with dynamic tool selection, read-only PostgreSQL analysis, dataset memory retrieval, persistent SQLite trace audit logging, evidence-ranked root-cause hypotheses, human-reviewed hypothesis feedback labels, structured report guardrails, and safe model-key fallback.
+- Built an LLM tool-calling data-quality agent with dynamic tool selection, read-only PostgreSQL analysis, CI-verified OpenAPI contract, dataset memory retrieval, persistent SQLite trace audit logging, evidence-ranked root-cause hypotheses, human-reviewed hypothesis feedback labels, structured report guardrails, and safe model-key fallback.
 - Published an agent-readiness checklist that separates implemented LLM agent capabilities from partial RAG, observability, evaluation, and deeper incident-memory work.
