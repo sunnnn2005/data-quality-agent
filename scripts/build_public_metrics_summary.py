@@ -29,6 +29,7 @@ APPLICATION_EVIDENCE_PACK_PATH = ROOT / "docs" / "application-evidence-pack.json
 PILOT_OUTREACH_KIT_PATH = ROOT / "docs" / "pilot-outreach-kit.json"
 PILOT_PROGRAM_PLAN_PATH = ROOT / "docs" / "pilot-program-plan.json"
 FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
+STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 
@@ -63,6 +64,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     pilot_outreach = load_json(PILOT_OUTREACH_KIT_PATH)
     pilot_plan = load_json(PILOT_PROGRAM_PLAN_PATH)
     feedback_intake = load_json(FEEDBACK_INTAKE_QUALITY_PATH)
+    star_growth = load_json(STAR_GROWTH_KIT_PATH)
     verified_outcomes = outcome["verified_outcomes"]
     return {
         "project": "Data Quality Agent",
@@ -154,6 +156,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "feedback_intake_try_paths": feedback_intake["required_try_path_count"],
             "feedback_intake_outcomes": feedback_intake["required_outcome_count"],
             "feedback_intake_captured_fields": feedback_intake["captured_field_count"],
+            "star_growth_kit": 1,
+            "star_growth_required_topics": len(star_growth["topic_readiness"]["required_topics"]),
+            "star_growth_ethical_actions": len(star_growth["ethical_growth_actions"]),
+            "star_growth_resume_upgrade_rules": len(star_growth["resume_upgrade_rules"]),
             "implemented_agent_capabilities": len(readiness["implemented"]),
             "partial_agent_capabilities": len(readiness["partial"]),
         },
@@ -240,6 +246,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{feedback_intake['required_try_path_count']} demo paths, "
                 f"{feedback_intake['required_outcome_count']} outcome signals, and "
                 f"{feedback_intake['captured_field_count']} captured evidence groups"
+            ),
+            (
+                f"Star growth kit with {len(star_growth['topic_readiness']['required_topics'])} verified repo topics, "
+                f"{len(star_growth['ethical_growth_actions'])} ethical growth actions, and "
+                f"{len(star_growth['resume_upgrade_rules'])} resume upgrade rules without inflating current stars"
             ),
             f"{verified_outcomes['recommended_action_count']} evidence-backed remediation actions",
             f"{len(readiness['implemented'])} implemented LLM agent-readiness capabilities",
@@ -352,6 +363,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Feedback intake demo paths | {outcomes["feedback_intake_try_paths"]} |
 | Feedback intake outcome signals | {outcomes["feedback_intake_outcomes"]} |
 | Feedback intake captured evidence groups | {outcomes["feedback_intake_captured_fields"]} |
+| Star growth kit | {outcomes["star_growth_kit"]} |
+| Star growth required topics | {outcomes["star_growth_required_topics"]} |
+| Star growth ethical actions | {outcomes["star_growth_ethical_actions"]} |
+| Star growth resume upgrade rules | {outcomes["star_growth_resume_upgrade_rules"]} |
 | Recommended remediation actions | {outcomes["recommended_actions"]} |
 | Implemented LLM agent-readiness capabilities | {outcomes["implemented_agent_capabilities"]} |
 | Partial agent-readiness capabilities documented | {outcomes["partial_agent_capabilities"]} |
@@ -376,7 +391,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 88,
+        "test_count": 89,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -452,6 +467,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "feedback_intake_try_paths": 5,
         "feedback_intake_outcomes": 4,
         "feedback_intake_captured_fields": 5,
+        "star_growth_kit": 1,
+        "star_growth_required_topics": 6,
+        "star_growth_ethical_actions": 4,
+        "star_growth_resume_upgrade_rules": 3,
         "recommended_actions": 5,
         "implemented_agent_capabilities": 16,
     }

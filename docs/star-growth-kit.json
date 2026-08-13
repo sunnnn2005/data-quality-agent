@@ -1,0 +1,97 @@
+{
+  "community_growth_channels": 5,
+  "current_growth_channels": 13,
+  "current_public_counts": {
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "forks": 1,
+    "issues_total": 11,
+    "stars": 0,
+    "watchers": 0
+  },
+  "ethical_growth_actions": [
+    {
+      "action": "Ask reviewers to try the demo, leave feedback, and star only if they genuinely want to follow the project.",
+      "channel": "classmates_or_club"
+    },
+    {
+      "action": "Keep the first screen clear: demo, release, tests, container, evidence links, and contribution entrypoints.",
+      "channel": "github_readme"
+    },
+    {
+      "action": "Maintain beginner-friendly issues so contributors have a low-friction first task.",
+      "channel": "good_first_issues"
+    },
+    {
+      "action": "Share the public demo and evidence pack as a technical project, not as a request for fake engagement.",
+      "channel": "linkedin_or_email"
+    }
+  ],
+  "generated_by": "scripts/build_star_growth_kit.py",
+  "growth_assets": {
+    "container_image": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent",
+    "contributing_guide": "https://github.com/sunnnn2005/data-quality-agent/blob/main/CONTRIBUTING.md",
+    "good_first_issues": "https://github.com/sunnnn2005/data-quality-agent/labels/good%20first%20issue",
+    "pilot_feedback_tracker": "https://github.com/sunnnn2005/data-quality-agent/issues/16",
+    "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
+    "public_traction_dashboard": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-traction-dashboard.md",
+    "readme_badges": true,
+    "release": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.3.0"
+  },
+  "not_claimed": [
+    "GitHub star growth beyond the current public count",
+    "external contributors",
+    "community adoption",
+    "paid promotion",
+    "fake or incentivized stars"
+  ],
+  "project": "Data Quality Agent",
+  "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
+  "repo": "https://github.com/sunnnn2005/data-quality-agent",
+  "resume_safe_summary": "Published a CI-verified star growth kit with repository topic readiness, ethical growth actions, growth assets, and resume-upgrade rules while keeping current stars at the verified public count.",
+  "resume_upgrade_rules": [
+    {
+      "current_value": 0,
+      "evidence_required": "GitHub stargazer count from the public repository",
+      "minimum_before_claim": 5,
+      "resume_status": "not_claimable_yet",
+      "signal": "github stars"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "merged pull request or public issue from a non-owner contributor",
+      "minimum_before_claim": 1,
+      "resume_status": "not_claimable_yet",
+      "signal": "external contributors"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "public feedback issues linked from the pilot tracker",
+      "minimum_before_claim": 3,
+      "resume_status": "not_claimable_yet",
+      "signal": "public pilot feedback"
+    }
+  ],
+  "topic_readiness": {
+    "current_topics": [
+      "ai-agent",
+      "data-engineering",
+      "data-quality",
+      "docker",
+      "fastapi",
+      "github-actions",
+      "pandas",
+      "python"
+    ],
+    "missing_topics": [],
+    "ready": true,
+    "required_topics": [
+      "ai-agent",
+      "data-engineering",
+      "data-quality",
+      "fastapi",
+      "github-actions",
+      "python"
+    ]
+  }
+}

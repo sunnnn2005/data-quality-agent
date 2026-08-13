@@ -33,7 +33,7 @@
     "issues_total": 11,
     "reproducible_feedback_items": 0,
     "stars": 0,
-    "test_count": 88,
+    "test_count": 89,
     "watchers": 0
   },
   "release": "v0.3.0",
@@ -41,7 +41,7 @@
   "resume_policy": "Use public demo, release, CI, container, support-ticket outcomes, and readiness metrics now. Do not claim external users, customer feedback, or production adoption until corresponding public metrics are greater than zero.",
   "resume_safe_signals": [
     "Public demo and v0.3.0 release",
-    "88 passing CI tests",
+    "89 passing CI tests",
     "4 support-ticket issue categories",
     "3 evidence-ranked root-cause hypotheses",
     "4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs",
@@ -69,6 +69,7 @@
     "3 pilot outreach messages and 8 review paths for collecting real feedback",
     "3 pilot participant segments across a 3-week feedback plan",
     "Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups",
+    "Star growth kit with 6 verified repo topics, 4 ethical growth actions, and 3 resume upgrade rules without inflating current stars",
     "5 evidence-backed remediation actions",
     "16 implemented LLM agent-readiness capabilities",
     "1 public fork and 0 public stars as current honest adoption baseline"
@@ -144,6 +145,10 @@
     "recruiter_pitch_target_roles": 4,
     "root_cause_hypotheses": 3,
     "scorecard_reviewer_paths": 11,
+    "star_growth_ethical_actions": 4,
+    "star_growth_kit": 1,
+    "star_growth_required_topics": 6,
+    "star_growth_resume_upgrade_rules": 3,
     "support_ticket_findings": 5,
     "support_ticket_issue_categories": 4,
     "tool_allowlist_count": 7,

@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 11 |
-| Passing CI tests | 88 |
+| Passing CI tests | 89 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -90,6 +90,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Feedback intake demo paths | 5 |
 | Feedback intake outcome signals | 4 |
 | Feedback intake captured evidence groups | 5 |
+| Star growth kit | 1 |
+| Star growth required topics | 6 |
+| Star growth ethical actions | 4 |
+| Star growth resume upgrade rules | 3 |
 | Recommended remediation actions | 5 |
 | Implemented LLM agent-readiness capabilities | 16 |
 | Partial agent-readiness capabilities documented | 4 |
@@ -103,7 +107,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 88 passing CI tests
+- 89 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -131,6 +135,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 3 pilot outreach messages and 8 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
 - Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups
+- Star growth kit with 6 verified repo topics, 4 ethical growth actions, and 3 resume upgrade rules without inflating current stars
 - 5 evidence-backed remediation actions
 - 16 implemented LLM agent-readiness capabilities
 - 1 public fork and 0 public stars as current honest adoption baseline

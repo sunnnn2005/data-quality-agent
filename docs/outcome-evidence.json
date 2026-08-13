@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "88 passing CI tests",
-      "claim": "Automated test suite passes locally and in GitHub Actions, including the business problem casebook and feedback intake quality verifiers.",
+      "resume_signal": "89 passing CI tests",
+      "claim": "Automated test suite passes locally and in GitHub Actions, including the business problem casebook, feedback intake quality, and star growth kit verifiers.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 88,
+      "metric_value": 89,
       "status": "verified"
     },
     {
@@ -169,6 +169,16 @@
       "evidence_type": "artifact",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-traction-dashboard.json",
       "metric_name": "public_traction_dashboard",
+      "metric_value": 1,
+      "status": "verified"
+    },
+    {
+      "id": "star-growth-kit",
+      "resume_signal": "CI-verified star growth kit",
+      "claim": "The project publishes a generated star growth kit with repository topic readiness, ethical growth actions, growth assets, and resume-upgrade rules without inflating current stars.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/star-growth-kit.json",
+      "metric_name": "star_growth_kit",
       "metric_value": 1,
       "status": "verified"
     },

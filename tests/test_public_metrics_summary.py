@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 88
+    assert payload["public_metrics"]["test_count"] == 89
     assert payload["verified_project_outcomes"]["root_cause_hypotheses"] == 3
     assert payload["verified_project_outcomes"]["business_risk_areas"] == 4
     assert payload["verified_project_outcomes"]["high_priority_actions"] == 3
@@ -81,6 +81,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["feedback_intake_try_paths"] == 5
     assert payload["verified_project_outcomes"]["feedback_intake_outcomes"] == 4
     assert payload["verified_project_outcomes"]["feedback_intake_captured_fields"] == 5
+    assert payload["verified_project_outcomes"]["star_growth_kit"] == 1
+    assert payload["verified_project_outcomes"]["star_growth_required_topics"] == 6
+    assert payload["verified_project_outcomes"]["star_growth_ethical_actions"] == 4
+    assert payload["verified_project_outcomes"]["star_growth_resume_upgrade_rules"] == 3
     assert payload["verified_project_outcomes"]["recommended_actions"] == 5
     assert payload["verified_project_outcomes"]["implemented_agent_capabilities"] == 16
     assert "3-scenario agent evaluation harness" in payload["resume_safe_signals"]
@@ -134,6 +138,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert "3 pilot participant segments across a 3-week feedback plan" in payload["resume_safe_signals"]
     assert (
         "Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups"
+        in payload["resume_safe_signals"]
+    )
+    assert (
+        "Star growth kit with 6 verified repo topics, 4 ethical growth actions, and 3 resume upgrade rules without inflating current stars"
         in payload["resume_safe_signals"]
     )
     assert "Dataset-level memory retrieval over recent sanitized traces" in payload["resume_safe_signals"]

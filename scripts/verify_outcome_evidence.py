@@ -35,6 +35,7 @@ APPLICATION_EVIDENCE_PACK_PATH = ROOT / "docs" / "application-evidence-pack.json
 PILOT_OUTREACH_KIT_PATH = ROOT / "docs" / "pilot-outreach-kit.json"
 PILOT_PROGRAM_PLAN_PATH = ROOT / "docs" / "pilot-program-plan.json"
 FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
+STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
 PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
 RESUME_EVIDENCE_PATH = ROOT / "docs" / "resume-evidence.md"
@@ -84,6 +85,7 @@ def verify_manifest() -> dict[str, int]:
     pilot_outreach = load_payload(PILOT_OUTREACH_KIT_PATH)
     pilot_plan = load_payload(PILOT_PROGRAM_PLAN_PATH)
     feedback_intake = load_payload(FEEDBACK_INTAKE_QUALITY_PATH)
+    star_growth = load_payload(STAR_GROWTH_KIT_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
     feedback_log = FEEDBACK_LOG_PATH.read_text().lower()
@@ -443,7 +445,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 88:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 89:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -744,7 +746,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 88:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 89:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -825,6 +827,41 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("feedback intake script must verify generated artifact")
                 if "test_feedback_intake_quality_verifies_public_feedback_template_without_usage_claims" not in intake_tests:
                     raise AssertionError("feedback intake must have a dedicated test")
+            elif metric_name == "star_growth_kit":
+                star_script = (ROOT / "scripts" / "build_star_growth_kit.py").read_text()
+                star_tests = (ROOT / "tests" / "test_star_growth_kit.py").read_text()
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("star growth kit claim must use metric_value=1")
+                counts = star_growth.get("current_public_counts", {})
+                expected_counts = {
+                    "stars": 0,
+                    "forks": 1,
+                    "watchers": 0,
+                    "issues_total": 11,
+                    "external_feedback_items": 0,
+                    "confirmed_external_users": 0,
+                }
+                for key, expected in expected_counts.items():
+                    if counts.get(key) != expected:
+                        raise AssertionError(f"star growth kit {key} expected {expected!r}")
+                topics = star_growth.get("topic_readiness", {})
+                if topics.get("ready") is not True:
+                    raise AssertionError("star growth kit must verify topic readiness")
+                if len(topics.get("required_topics", [])) != 6:
+                    raise AssertionError("star growth kit must verify 6 required topics")
+                if len(star_growth.get("ethical_growth_actions", [])) != 4:
+                    raise AssertionError("star growth kit must verify 4 ethical growth actions")
+                rules = star_growth.get("resume_upgrade_rules", [])
+                if len(rules) != 3:
+                    raise AssertionError("star growth kit must verify 3 resume upgrade rules")
+                if not all(rule.get("resume_status") == "not_claimable_yet" for rule in rules):
+                    raise AssertionError("star growth kit must keep growth signals not claimable before evidence")
+                if "fake or incentivized stars" not in star_growth.get("not_claimed", []):
+                    raise AssertionError("star growth kit must explicitly reject fake or incentivized stars")
+                if "verify_star_growth_kit" not in star_script:
+                    raise AssertionError("star growth kit must include a script verifier")
+                if "test_star_growth_kit_tracks_ethical_growth_without_inflating_stars" not in star_tests:
+                    raise AssertionError("star growth kit must include a dedicated test")
             elif metrics.get(metric_name) != claim.get("metric_value"):
                 raise AssertionError(
                     f"claim {claim['id']} metric mismatch: {metric_name}={claim.get('metric_value')} "
@@ -877,7 +914,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 88", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 89", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 
