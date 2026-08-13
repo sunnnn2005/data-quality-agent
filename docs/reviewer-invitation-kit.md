@@ -14,6 +14,7 @@ Provide copy-ready invitations that route real reviewers into public GitHub evid
 | Confirmed External Users | 0 |
 | Reproducible Feedback Items | 0 |
 | Business Case Feedback Items | 0 |
+| Ai Engineer Review Items | 0 |
 
 ## Public Review Request
 
@@ -46,12 +47,22 @@ Could you clone my Data Quality Agent repo, run the local replay path, and submi
 ### mentor_ai_engineer_review -> mentor, engineer, or AI/data practitioner
 
 - Minutes: 12
+- Funnel stage: `ai_engineer_review`
+- Counts toward: `ai_engineer_review_items`
+- Entry: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md)
+- Submission: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md)
+
+I am improving this project for AI Engineer internship applications. Could you review whether the LLM tool-calling loop, business-data connector, structured output, guardrails, and evidence trail look credible enough for an intern interview? If yes, please leave a public AI Engineer review issue with the path you inspected.
+
+### confirmed_use_note -> reviewer who tried the demo or local repo
+
+- Minutes: 5
 - Funnel stage: `confirm_external_use`
 - Counts toward: `confirmed_external_users`
 - Entry: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-feedback-packet.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-feedback-packet.md)
 - Submission: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md)
 
-I am improving this project for AI Engineer internship applications. Could you review whether the tool-calling agent, safety boundaries, and evidence trail look credible, then leave a public note if you tried the demo or repo?
+If you already tried the Data Quality Agent demo or ran the repo locally, could you leave a short public note saying what path you used and whether the result was understandable? I only count confirmed external use when it is public and specific.
 
 ### data_practitioner_business_case -> data analyst, operations teammate, or small-business operator
 
@@ -81,6 +92,7 @@ I am collecting public review evidence for a data-quality LLM agent project. If 
 | Resume Feedback Signal | 3 |
 | Confirmed External User Signal | 1 |
 | Business Case Signal | 1 |
+| Ai Engineer Review Signal | 1 |
 
 ## Counting Rules
 
@@ -88,10 +100,11 @@ I am collecting public review evidence for a data-quality LLM agent project. If 
 - Count confirmed users only when the reviewer states they tried the demo or ran the repo.
 - Do not count private messages, self-tests, application submissions, or unverifiable compliments.
 - Do not collect raw customer data, secrets, addresses, emails, or production rows.
+- Count AI Engineer reviews only when the reviewer names an inspected path or command and grants public permission.
 
 ## Resume-Safe Summary
 
-Published 5 copy-ready reviewer invitations tied to 4 public evidence paths and explicit zero-feedback baselines.
+Published 6 copy-ready reviewer invitations tied to 5 public evidence paths, including AI Engineer review evidence, with explicit zero-feedback baselines.
 
 ## Not Claimed
 

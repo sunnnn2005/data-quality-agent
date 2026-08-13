@@ -430,11 +430,18 @@ PUBLIC_CHECKS = [
     {
         "id": "reviewer-invitation-kit",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-invitation-kit.json",
-        "expected_json": {"project": "Data Quality Agent"},
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "invitation_count": 6,
+            "distinct_funnel_stage_count": 5,
+            "public_evidence_path_count": 5,
+        },
         "expected_text": "copy-ready invitations",
         "expected_texts": [
             "classmate_quick_demo",
             "technical_friend_local_replay",
+            "mentor_ai_engineer_review",
+            "ai_engineer_review_items",
             "business_case_feedback_items",
             "explicit zero-feedback baselines",
         ],

@@ -3,15 +3,19 @@
     "Count only public GitHub issues or reproducible public notes.",
     "Count confirmed users only when the reviewer states they tried the demo or ran the repo.",
     "Do not count private messages, self-tests, application submissions, or unverifiable compliments.",
-    "Do not collect raw customer data, secrets, addresses, emails, or production rows."
+    "Do not collect raw customer data, secrets, addresses, emails, or production rows.",
+    "Count AI Engineer reviews only when the reviewer names an inspected path or command and grants public permission."
   ],
   "current_baseline": {
+    "ai_engineer_review_items": 0,
     "business_case_feedback_items": 0,
     "confirmed_external_users": 0,
     "external_feedback_items": 0,
     "reproducible_feedback_items": 0
   },
+  "distinct_funnel_stage_count": 5,
   "generated_by": "scripts/build_reviewer_invitation_kit.py",
+  "invitation_count": 6,
   "invitation_targets": [
     {
       "audience": "UC Davis classmate or student developer",
@@ -35,13 +39,23 @@
     },
     {
       "audience": "mentor, engineer, or AI/data practitioner",
+      "counts_toward": "ai_engineer_review_items",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md",
+      "funnel_stage": "ai_engineer_review",
+      "message": "I am improving this project for AI Engineer internship applications. Could you review whether the LLM tool-calling loop, business-data connector, structured output, guardrails, and evidence trail look credible enough for an intern interview? If yes, please leave a public AI Engineer review issue with the path you inspected.",
+      "minutes": 12,
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+      "target": "mentor_ai_engineer_review"
+    },
+    {
+      "audience": "reviewer who tried the demo or local repo",
       "counts_toward": "confirmed_external_users",
       "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-feedback-packet.md",
       "funnel_stage": "confirm_external_use",
-      "message": "I am improving this project for AI Engineer internship applications. Could you review whether the tool-calling agent, safety boundaries, and evidence trail look credible, then leave a public note if you tried the demo or repo?",
-      "minutes": 12,
+      "message": "If you already tried the Data Quality Agent demo or ran the repo locally, could you leave a short public note saying what path you used and whether the result was understandable? I only count confirmed external use when it is public and specific.",
+      "minutes": 5,
       "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
-      "target": "mentor_ai_engineer_review"
+      "target": "confirmed_use_note"
     },
     {
       "audience": "data analyst, operations teammate, or small-business operator",
@@ -72,6 +86,7 @@
     "GitHub stars beyond the current public count"
   ],
   "project": "Data Quality Agent",
+  "public_evidence_path_count": 5,
   "public_review_request": {
     "issue_number": 17,
     "purpose": "Single public issue for sharing review paths and collecting the first external feedback item.",
@@ -79,8 +94,9 @@
     "url": "https://github.com/sunnnn2005/data-quality-agent/issues/17"
   },
   "purpose": "Provide copy-ready invitations that route real reviewers into public GitHub evidence, so feedback and usage claims can be upgraded only after public proof exists.",
-  "resume_safe_summary": "Published 5 copy-ready reviewer invitations tied to 4 public evidence paths and explicit zero-feedback baselines.",
+  "resume_safe_summary": "Published 6 copy-ready reviewer invitations tied to 5 public evidence paths, including AI Engineer review evidence, with explicit zero-feedback baselines.",
   "success_thresholds": {
+    "ai_engineer_review_signal": 1,
     "business_case_signal": 1,
     "confirmed_external_user_signal": 1,
     "first_feedback": 1,
