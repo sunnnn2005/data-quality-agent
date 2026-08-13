@@ -19,6 +19,13 @@ PUBLIC_CHECKS = [
         "evidence_type": "html",
     },
     {
+        "id": "demo-feedback-entrypoints",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/index.html",
+        "expected_text": "Try It & Leave Feedback",
+        "expected_texts": ["feedback-metrics.json", "bug_report.md", "feature_request.md"],
+        "evidence_type": "source",
+    },
+    {
         "id": "business-impact-artifact",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact.json",
         "expected_json": {"issue_category_count": 4, "affected_column_count": 4, "recommended_action_count": 5},
@@ -33,7 +40,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 53},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 54},
         "evidence_type": "json",
     },
     {
@@ -87,6 +94,13 @@ def _verify_check(check: dict[str, Any]) -> dict[str, Any]:
         result["passed"] = False
         result["error"] = f"missing expected text: {expected_text}"
         return result
+
+    expected_texts = check.get("expected_texts", [])
+    for item in expected_texts:
+        if item not in body:
+            result["passed"] = False
+            result["error"] = f"missing expected text: {item}"
+            return result
 
     expected_json = check.get("expected_json")
     if expected_json:

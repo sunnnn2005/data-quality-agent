@@ -94,6 +94,11 @@
       color: var(--text);
     }
 
+    .button.feedback {
+      background: var(--accent);
+      color: #06201b;
+    }
+
     .metric-grid {
       display: grid;
       gap: 12px;
@@ -116,6 +121,26 @@
     .metric span {
       color: var(--muted);
       font-size: 14px;
+    }
+
+    .feedback-panel {
+      background: linear-gradient(135deg, rgba(94, 234, 212, .16), rgba(138, 180, 255, .12));
+      border: 1px solid rgba(94, 234, 212, .34);
+      border-radius: 8px;
+      margin-top: 22px;
+      padding: 18px;
+    }
+
+    .feedback-panel h2 {
+      border: 0;
+      font-size: 22px;
+      margin: 0 0 8px;
+      padding: 0;
+    }
+
+    .feedback-panel p {
+      color: var(--muted);
+      margin: 0 0 14px;
     }
 
     section {
@@ -298,6 +323,7 @@
         </p>
         <div class="actions">
           <a class="button" href="https://github.com/sunnnn2005/data-quality-agent">Open GitHub Repo</a>
+          <a class="button feedback" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md">Try It & Leave Feedback</a>
           <a class="button secondary" href="resume-evidence.md">Resume Evidence</a>
           <a class="button secondary" href="feedback-log.md">Feedback Log</a>
           <a class="button secondary" href="support-ticket-case-study.md">Read Case Study</a>
@@ -305,14 +331,28 @@
           <a class="button secondary" href="public-evidence-health.json">Public Health</a>
           <a class="button secondary" href="feedback-metrics.json">Feedback Metrics</a>
           <a class="button secondary" href="outcome-evidence.json">View Evidence</a>
-          <a class="button secondary" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md">Leave Feedback</a>
+          <a class="button secondary" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md">Report Bug</a>
+          <a class="button secondary" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md">Request Feature</a>
+        </div>
+        <div class="feedback-panel">
+          <h2>Help validate the demo</h2>
+          <p>
+            Try the public page, support-ticket case study, CSV endpoint, PostgreSQL demo, or LLM agent route.
+            Public GitHub issues are counted by label in <code>feedback-metrics.json</code>; current external feedback and confirmed-user counts start at 0.
+          </p>
+          <div class="actions">
+            <a class="button feedback" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md">Submit demo feedback</a>
+            <a class="button secondary" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md">Open bug report</a>
+            <a class="button secondary" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md">Open feature request</a>
+          </div>
         </div>
       </div>
 
       <div class="metric-grid" aria-label="Verified project metrics">
-        <div class="metric"><strong>47</strong><span>automated tests passing locally and in CI</span></div>
+        <div class="metric"><strong>53</strong><span>automated tests passing locally and in CI</span></div>
         <div class="metric"><strong>10K × 80</strong><span>bounded CSV upload limit: rows × columns</span></div>
         <div class="metric"><strong>4</strong><span>reproducible support-ticket issue categories</span></div>
+        <div class="metric"><strong>0</strong><span>external feedback items tracked from public GitHub issues</span></div>
         <div class="metric"><strong>Guardrails</strong><span>deterministic report verification before incident export</span></div>
       </div>
     </header>

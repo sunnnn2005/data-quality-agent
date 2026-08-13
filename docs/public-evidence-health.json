@@ -1,5 +1,5 @@
 {
-  "check_count": 7,
+  "check_count": 8,
   "checks": [
     {
       "evidence_type": "html",
@@ -7,6 +7,13 @@
       "passed": true,
       "status_code": 200,
       "url": "https://sunnnn2005.github.io/data-quality-agent/"
+    },
+    {
+      "evidence_type": "source",
+      "id": "demo-feedback-entrypoints",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/index.html"
     },
     {
       "evidence_type": "json",
@@ -68,6 +75,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 7,
+  "passed_count": 8,
   "status": "PASS"
 }

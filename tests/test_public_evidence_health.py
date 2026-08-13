@@ -6,12 +6,19 @@ def test_public_evidence_health_requires_core_public_signals():
 
     assert {
         "public-demo",
+        "demo-feedback-entrypoints",
         "business-impact-artifact",
         "outcome-evidence-manifest",
         "adoption-metrics",
         "feedback-metrics",
+        "postgres-agent-route",
         "github-release",
     } <= check_ids
+    feedback_entrypoints = next(check for check in PUBLIC_CHECKS if check["id"] == "demo-feedback-entrypoints")
+    assert feedback_entrypoints["expected_text"] == "Try It & Leave Feedback"
+    assert {"feedback-metrics.json", "bug_report.md", "feature_request.md"} <= set(
+        feedback_entrypoints["expected_texts"]
+    )
 
 
 def test_public_evidence_health_verifier_rejects_failed_checks():
