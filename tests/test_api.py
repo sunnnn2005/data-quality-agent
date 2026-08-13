@@ -45,6 +45,7 @@ def test_quality_report_endpoint_returns_findings():
     assert payload["status"] == "FAIL"
     assert payload["trace_id"].startswith("run_")
     assert payload["findings"]
+    assert payload["verification"]["passed"] is True
     assert payload["agent_trace"]
 
 
@@ -213,7 +214,9 @@ def test_run_trace_endpoint_returns_sanitized_quality_report_trace():
     assert payload["report_type"] == "quality_report"
     assert payload["summary"]["finding_count"] >= 1
     assert "business_rule_count" in payload["summary"]
+    assert payload["summary"]["verification_passed"] is True
     assert payload["evaluation"]["final_report_attached"] is True
+    assert payload["evaluation"]["verification_passed"] is True
     assert "agent_trace" not in payload
 
 

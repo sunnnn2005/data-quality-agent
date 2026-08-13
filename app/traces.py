@@ -34,10 +34,15 @@ class RunTraceStore:
                     "business_rule_ids": [rule.rule_id for rule in report.business_rule_references],
                     "likely_causes": report.likely_causes[:3],
                     "recommended_next_steps": report.recommended_next_steps[:3],
+                    "verification_passed": report.verification.passed if report.verification else None,
+                    "verification_issue_count": report.verification.issue_count if report.verification else None,
                 },
                 evaluation={
-                    "evidence_support_rate": self._evidence_support_rate(report),
+                    "evidence_support_rate": (
+                        report.verification.evidence_support_rate if report.verification else self._evidence_support_rate(report)
+                    ),
                     "final_report_attached": True,
+                    "verification_passed": report.verification.passed if report.verification else None,
                 },
                 fallback_status="llm_assessment_disabled" if not report.llm_assessment.enabled else None,
                 error=report.llm_assessment.error,
@@ -62,6 +67,12 @@ class RunTraceStore:
                     "finding_checks": sorted({finding.check_name for finding in report.quality_report.findings}),
                     "business_rule_count": len(report.quality_report.business_rule_references),
                     "business_rule_ids": [rule.rule_id for rule in report.quality_report.business_rule_references],
+                    "verification_passed": (
+                        report.quality_report.verification.passed if report.quality_report.verification else None
+                    ),
+                    "verification_issue_count": (
+                        report.quality_report.verification.issue_count if report.quality_report.verification else None
+                    ),
                 }
             )
         self._save(

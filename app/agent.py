@@ -7,6 +7,7 @@ from app.business_rules import BusinessRuleRetriever
 from app.llm import LLMDataQualityAdvisor
 from app.models import DatasetSummary, QualityFinding, QualityReport, Severity
 from app.profiler import DatasetProfiler
+from app.verifier import ReportVerifier
 
 
 class DataQualityAgent:
@@ -16,11 +17,13 @@ class DataQualityAgent:
         check_runner: QualityCheckRunner | None = None,
         rule_retriever: BusinessRuleRetriever | None = None,
         llm_advisor: LLMDataQualityAdvisor | None = None,
+        verifier: ReportVerifier | None = None,
     ) -> None:
         self.profiler = profiler or DatasetProfiler()
         self.check_runner = check_runner or QualityCheckRunner()
         self.rule_retriever = rule_retriever or BusinessRuleRetriever()
         self.llm_advisor = llm_advisor or LLMDataQualityAdvisor()
+        self.verifier = verifier or ReportVerifier()
 
     def analyze(self, dataset: DatasetSummary, frame: pd.DataFrame) -> QualityReport:
         trace = [f"loaded dataset {dataset.id} owned by {dataset.owner}"]
@@ -39,7 +42,7 @@ class DataQualityAgent:
         else:
             trace.append(f"skipped {self.llm_advisor.name}: {llm_assessment.error}")
 
-        return QualityReport(
+        report = QualityReport(
             dataset=dataset,
             generated_at=datetime.now(timezone.utc),
             quality_score=score,
@@ -52,6 +55,9 @@ class DataQualityAgent:
             llm_assessment=llm_assessment,
             agent_trace=trace,
         )
+        report.verification = self.verifier.verify(report)
+        report.agent_trace.append(f"called {self.verifier.name}: passed={report.verification.passed}")
+        return report
 
     def _score(self, findings: list[QualityFinding]) -> int:
         penalty = 0

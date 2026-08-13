@@ -33,6 +33,17 @@ def render_incident_markdown(report: QualityReport) -> str:
     if not report.findings:
         lines.append("- No evidence required.")
 
+    if report.verification:
+        lines.extend(["", "## Verification", ""])
+        lines.append(f"- Passed: `{report.verification.passed}`")
+        lines.append(f"- Evidence support rate: `{report.verification.evidence_support_rate}`")
+        lines.append(f"- Checked rules: {', '.join(f'`{rule}`' for rule in report.verification.checked_rules)}")
+        if report.verification.issues:
+            for issue in report.verification.issues:
+                lines.append(f"- `{issue.severity}` `{issue.code}`: {issue.message}")
+        else:
+            lines.append("- No verification issues found.")
+
     lines.extend(["", "## Likely Causes", ""])
     for cause in report.likely_causes:
         lines.append(f"- {cause}")

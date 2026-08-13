@@ -121,6 +121,10 @@ The model does not replace the rule engine. It can only summarize and prioritize
 
 The model decides which tools to call, receives JSON tool results, and must call `build_quality_report` before finalizing. `select_quality_strategy` gives the model a compact planning tool so payment, customer/profile, and generic datasets can trigger different recommended checks. The response includes an `AgentRunReport` with every tool call, result preview, final answer, attached deterministic report, and evaluation flags such as whether the strategy and required report tools were used.
 
+### Verification Layer
+
+`app/verifier.py` adds deterministic guardrails after report generation. It validates that findings are evidence-backed, referenced columns exist, sensitive terms are not exposed in evidence, LLM evidence references map back to actual findings, recommended actions are present, and the quality score stays within contract bounds. Verification results are included in `QualityReport`, incident Markdown exports, and sanitized run traces so reviewers can audit whether a report is safe to share.
+
 ### Dashboard Layer
 
 `app/dashboard.py` provides a zero-build demo UI. It is intentionally simple so the backend remains the source of truth.

@@ -74,6 +74,20 @@ class AgentToolCall(BaseModel):
     result_preview: dict[str, Any] = Field(default_factory=dict)
 
 
+class VerificationIssue(BaseModel):
+    code: str
+    severity: Literal["LOW", "MEDIUM", "HIGH"]
+    message: str
+
+
+class ReportVerification(BaseModel):
+    passed: bool
+    issue_count: int
+    evidence_support_rate: float
+    checked_rules: list[str]
+    issues: list[VerificationIssue] = Field(default_factory=list)
+
+
 class AgentRunReport(BaseModel):
     trace_id: str | None = None
     dataset: DatasetSummary
@@ -98,6 +112,7 @@ class QualityReport(BaseModel):
     likely_causes: list[str]
     recommended_next_steps: list[str]
     llm_assessment: LLMAssessment = Field(default_factory=LLMAssessment)
+    verification: ReportVerification | None = None
     agent_trace: list[str]
 
 

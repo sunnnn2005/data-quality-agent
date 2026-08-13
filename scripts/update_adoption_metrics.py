@@ -69,7 +69,7 @@ def collect_metrics() -> dict[str, Any]:
             "package_url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent",
         },
         "verified_demo_artifact": "docs/verified-support-ticket-result.json",
-        "test_count": 42,
+        "test_count": 45,
     }
     return metrics
 
