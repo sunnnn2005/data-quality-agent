@@ -69,6 +69,16 @@
       "evidence_type": "documentation",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-evidence.md",
       "status": "verified"
+    },
+    {
+      "id": "feedback-log",
+      "resume_signal": "Public feedback tracking loop",
+      "claim": "The project has a public feedback issue template and a feedback log that starts from an honest zero-feedback baseline.",
+      "evidence_type": "documentation",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/feedback-log.md",
+      "metric_name": "external_feedback_items",
+      "metric_value": 0,
+      "status": "verified"
     }
   ],
   "not_claimed": [

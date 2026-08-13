@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE_PATH = ROOT / "docs" / "outcome-evidence.json"
 METRICS_PATH = ROOT / "docs" / "adoption-metrics.json"
 RESUME_EVIDENCE_PATH = ROOT / "docs" / "resume-evidence.md"
+FEEDBACK_LOG_PATH = ROOT / "docs" / "feedback-log.md"
 REQUIRED_CLAIM_FIELDS = {"id", "resume_signal", "claim", "evidence_type", "url", "status"}
 FORBIDDEN_UNVERIFIED_TERMS = {"users", "customers", "enterprise production", "github stars gained"}
 
@@ -25,6 +26,7 @@ def verify_manifest() -> dict[str, int]:
     evidence = load_payload(EVIDENCE_PATH)
     metrics = load_payload(METRICS_PATH)
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
+    feedback_log = FEEDBACK_LOG_PATH.read_text().lower()
     claims = evidence.get("claims", [])
     if len(claims) < 6:
         raise AssertionError("outcome evidence manifest must include at least six public claims")
@@ -48,7 +50,10 @@ def verify_manifest() -> dict[str, int]:
 
         metric_name = claim.get("metric_name")
         if metric_name:
-            if metrics.get(metric_name) != claim.get("metric_value"):
+            if metric_name == "external_feedback_items":
+                if claim.get("metric_value") != 0:
+                    raise AssertionError("external feedback must stay at 0 until public feedback evidence exists")
+            elif metrics.get(metric_name) != claim.get("metric_value"):
                 raise AssertionError(
                     f"claim {claim['id']} metric mismatch: {metric_name}={claim.get('metric_value')} "
                     f"but adoption metrics has {metrics.get(metric_name)}"
@@ -63,10 +68,16 @@ def verify_manifest() -> dict[str, int]:
         if required.replace("_", " ") not in resume_page and required not in resume_page:
             raise AssertionError(f"resume evidence page must mention not-claimed signal: {required}")
 
+    if "external feedback items | 0" not in feedback_log:
+        raise AssertionError("feedback log must keep an explicit zero external feedback baseline")
+    if "confirmed external users | 0" not in feedback_log:
+        raise AssertionError("feedback log must keep an explicit zero external user baseline")
+
     return {
         "claim_count": len(claims),
         "not_claimed_count": len(not_claimed),
         "resume_evidence_page": 1,
+        "feedback_log": 1,
     }
 
 
