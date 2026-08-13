@@ -62,6 +62,8 @@ jobs:
         run: python scripts/build_pilot_outreach_kit.py
       - name: Verify pilot program plan
         run: python scripts/build_pilot_program_plan.py
+      - name: Verify pilot review tracker
+        run: python scripts/build_pilot_review_tracker.py
       - name: Verify feedback intake quality
         run: python scripts/build_feedback_intake_quality.py
       - name: Verify business case intake
@@ -83,7 +85,7 @@ jobs:
           ADOPTION_FORKS: "1"
           ADOPTION_WATCHERS: "0"
           ADOPTION_ISSUES_TOTAL: "11"
-          ADOPTION_TEST_COUNT: "90"
+          ADOPTION_TEST_COUNT: "91"
         run: python scripts/update_adoption_metrics.py
       - name: Verify outcome evidence manifest
         run: python scripts/verify_outcome_evidence.py

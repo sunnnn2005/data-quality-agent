@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 11 |
-| Passing CI tests | 90 |
+| Passing CI tests | 91 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -71,7 +71,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business problem owner handoffs | 4 |
 | Public traction dashboard | 1 |
 | Public traction surfaces | 4 |
-| Public traction growth channels | 14 |
+| Public traction growth channels | 15 |
 | Public traction resume upgrade rules | 3 |
 | Live project scorecard | 1 |
 | Scorecard reviewer paths | 11 |
@@ -82,7 +82,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Application evidence pack | 1 |
 | Application evidence links | 13 |
 | Pilot outreach messages | 3 |
-| Pilot review paths | 8 |
+| Pilot review paths | 9 |
 | Pilot program segments | 3 |
 | Pilot program weeks | 3 |
 | Feedback intake quality | 1 |
@@ -113,13 +113,14 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 90 passing CI tests
+- 91 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
 - Dataset-level memory retrieval over recent sanitized traces
 - 3-scenario agent evaluation harness
 - 3 human-reviewed root-cause feedback labels
+- Pilot review tracker with 3 planned reviewer segments, 3 not-contacted baseline entries, and 3 resume-upgrade rules
 - 3 recurring incident patterns retrieved from sanitized traces
 - 2 observed run traces with fallback and verification status
 - 2 mocked LLM calls with 360 tokens, prompt version, latency, retry budget, and estimated cost telemetry
@@ -133,12 +134,12 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Community growth baseline with 5 issue templates, 6 configured labels, and 6 public contribution or feedback channels
 - Impact review packet with 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs
 - Business problem casebook with 1 verified case, 4 detected business risks, and 4 owner handoffs
-- Public traction dashboard with 4 live project surfaces, 14 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
+- Public traction dashboard with 4 live project surfaces, 15 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
 - 11 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
 - 13 application evidence links in a recruiter-ready evidence pack
-- 3 pilot outreach messages and 8 review paths for collecting real feedback
+- 3 pilot outreach messages and 9 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
 - Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups
 - Star growth kit with 6 verified repo topics, 4 ethical growth actions, and 3 resume upgrade rules without inflating current stars

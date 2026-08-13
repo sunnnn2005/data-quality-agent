@@ -48,6 +48,7 @@ Run a small public pilot to turn the current zero-feedback baseline into verifie
 | Metric | GitHub Label |
 | --- | --- |
 | Bug Feedback Items | `bug` |
+| Business Case Feedback Items | `business-case` |
 | Confirmed External Users | `confirmed-user` |
 | External Feedback Items | `feedback` |
 | Feature Feedback Items | `enhancement` |
@@ -57,6 +58,7 @@ Run a small public pilot to turn the current zero-feedback baseline into verifie
 
 - Application Evidence Pack: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/application-evidence-pack.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/application-evidence-pack.md)
 - Bug Report: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md)
+- Business Case Review: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md)
 - Feature Request: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md)
 - Feedback Issue: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md)
 - Github Repo: [https://github.com/sunnnn2005/data-quality-agent](https://github.com/sunnnn2005/data-quality-agent)

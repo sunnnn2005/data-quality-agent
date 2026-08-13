@@ -40,7 +40,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 90},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 91},
         "evidence_type": "json",
     },
     {
@@ -150,7 +150,7 @@ PUBLIC_CHECKS = [
     {
         "id": "public-traction-dashboard",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-traction-dashboard.json",
-        "expected_json": {"project": "Data Quality Agent", "traction_surface_count": 4, "growth_channel_count": 14},
+        "expected_json": {"project": "Data Quality Agent", "traction_surface_count": 4, "growth_channel_count": 15},
         "expected_text": "not_claimable_yet",
         "expected_texts": ["public_demo", "feedback_issue_template", "GitHub star growth beyond the current public count"],
         "evidence_type": "json",
@@ -217,6 +217,14 @@ PUBLIC_CHECKS = [
         "expected_json": {"project": "Data Quality Agent"},
         "expected_text": "participant_segments",
         "expected_texts": ["success_thresholds", "resume_upgrade_rules", "minimum_feedback_items_before_resume_claim"],
+        "evidence_type": "json",
+    },
+    {
+        "id": "pilot-review-tracker",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-review-tracker.json",
+        "expected_json": {"project": "Data Quality Agent", "planned_review_count": 3},
+        "expected_text": "not_contacted",
+        "expected_texts": ["counts_toward_resume", "business_case_feedback_items", "not_claimable_yet"],
         "evidence_type": "json",
     },
     {

@@ -1,0 +1,91 @@
+{
+  "generated_by": "scripts/build_pilot_review_tracker.py",
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "enterprise production usage",
+    "GitHub stars beyond the current public count"
+  ],
+  "planned_review_count": 3,
+  "planned_reviews": [
+    {
+      "counts_toward_resume": false,
+      "id": "student-review-1",
+      "next_step": "Send a short demo-review request to one UC Davis classmate or club member.",
+      "primary_review_path": "https://sunnnn2005.github.io/data-quality-agent/",
+      "public_evidence_link": null,
+      "requested_action": "Try the public demo and leave one feedback issue.",
+      "secondary_review_path": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "segment": "student_reviewers",
+      "status": "not_contacted",
+      "target_source": "UC Davis classmates or data/AI club members"
+    },
+    {
+      "counts_toward_resume": false,
+      "id": "developer-review-1",
+      "next_step": "Ask one student developer to run the repo locally or inspect the API contract.",
+      "primary_review_path": "https://github.com/sunnnn2005/data-quality-agent",
+      "public_evidence_link": null,
+      "requested_action": "Run the repo locally or inspect the API contract and leave a bug or feature issue.",
+      "secondary_review_path": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md",
+      "segment": "developer_reviewers",
+      "status": "not_contacted",
+      "target_source": "student developers or open-source reviewers"
+    },
+    {
+      "counts_toward_resume": false,
+      "id": "career-review-1",
+      "next_step": "Ask one mentor, recruiter, or hiring manager to review the evidence pack.",
+      "primary_review_path": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/application-evidence-pack.md",
+      "public_evidence_link": null,
+      "requested_action": "Review the evidence pack and comment on project clarity for AI Engineer Intern roles.",
+      "secondary_review_path": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "segment": "career_reviewers",
+      "status": "not_contacted",
+      "target_source": "recruiters, mentors, or hiring managers"
+    }
+  ],
+  "project": "Data Quality Agent",
+  "public_counts": {
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
+  "purpose": "Track planned pilot review requests, public evidence links, and resume-safe status without counting private messages or unverified compliments as users or feedback.",
+  "resume_safe_summary": "Published a CI-verified pilot review tracker with 3 planned reviewer segments, public evidence links, status counts, and resume-upgrade rules while preserving zero verified feedback and user claims.",
+  "resume_upgrade_rules": [
+    {
+      "current_value": 0,
+      "minimum_before_claim": 3,
+      "required_evidence": "public GitHub issue labeled feedback",
+      "resume_status": "not_claimable_yet",
+      "signal": "public pilot feedback"
+    },
+    {
+      "current_value": 0,
+      "minimum_before_claim": 1,
+      "required_evidence": "public issue or note labeled confirmed-user",
+      "resume_status": "not_claimable_yet",
+      "signal": "external reviewer tried the project"
+    },
+    {
+      "current_value": 0,
+      "minimum_before_claim": 1,
+      "required_evidence": "public issue using the business-case template",
+      "resume_status": "not_claimable_yet",
+      "signal": "real-world business case feedback"
+    }
+  ],
+  "status_counts": {
+    "contacted": 0,
+    "feedback_received": 0,
+    "not_contacted": 3
+  },
+  "tracking_rules": [
+    "Only count feedback that is linked from a public GitHub issue or reproducible external note.",
+    "Only count a user after they explicitly confirm they tried the demo or ran the project.",
+    "Do not count private compliments, application submissions, or self-testing as external users.",
+    "Keep stars, users, and feedback as zero until public metrics prove otherwise."
+  ]
+}

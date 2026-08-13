@@ -28,6 +28,7 @@ RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
 APPLICATION_EVIDENCE_PACK_PATH = ROOT / "docs" / "application-evidence-pack.json"
 PILOT_OUTREACH_KIT_PATH = ROOT / "docs" / "pilot-outreach-kit.json"
 PILOT_PROGRAM_PLAN_PATH = ROOT / "docs" / "pilot-program-plan.json"
+PILOT_REVIEW_TRACKER_PATH = ROOT / "docs" / "pilot-review-tracker.json"
 FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
@@ -64,6 +65,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     application_pack = load_json(APPLICATION_EVIDENCE_PACK_PATH)
     pilot_outreach = load_json(PILOT_OUTREACH_KIT_PATH)
     pilot_plan = load_json(PILOT_PROGRAM_PLAN_PATH)
+    pilot_tracker = load_json(PILOT_REVIEW_TRACKER_PATH)
     feedback_intake = load_json(FEEDBACK_INTAKE_QUALITY_PATH)
     star_growth = load_json(STAR_GROWTH_KIT_PATH)
     business_case_intake = load_json(BUSINESS_CASE_INTAKE_PATH)
@@ -153,6 +155,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "pilot_review_paths": len(pilot_outreach["review_paths"]),
             "pilot_program_segments": len(pilot_plan["participant_segments"]),
             "pilot_program_weeks": len(pilot_plan["weekly_plan"]),
+            "pilot_review_tracker": 1,
+            "pilot_review_tracker_planned_reviews": pilot_tracker["planned_review_count"],
+            "pilot_review_tracker_not_contacted": pilot_tracker["status_counts"]["not_contacted"],
+            "pilot_review_tracker_resume_rules": len(pilot_tracker["resume_upgrade_rules"]),
             "feedback_intake_quality": 1,
             "feedback_intake_required_sections": feedback_intake["required_section_count"],
             "feedback_intake_try_paths": feedback_intake["required_try_path_count"],
@@ -188,6 +194,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "Dataset-level memory retrieval over recent sanitized traces",
             f"{eval_summary['scenario_count']}-scenario agent evaluation harness",
             f"{hypothesis_feedback['label_count']} human-reviewed root-cause feedback labels",
+            (
+                f"Pilot review tracker with {pilot_tracker['planned_review_count']} planned reviewer segments, "
+                f"{pilot_tracker['status_counts']['not_contacted']} not-contacted baseline entries, and "
+                f"{len(pilot_tracker['resume_upgrade_rules'])} resume-upgrade rules"
+            ),
             f"{incident_memory['incident_pattern_count']} recurring incident patterns retrieved from sanitized traces",
             f"{observability['observed_trace_count']} observed run traces with fallback and verification status",
             (
@@ -409,7 +420,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 90,
+        "test_count": 91,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -467,7 +478,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "business_problem_owner_handoffs": 4,
         "public_traction_dashboard": 1,
         "public_traction_surfaces": 4,
-        "public_traction_growth_channels": 14,
+        "public_traction_growth_channels": 15,
         "public_traction_resume_upgrade_rules": 3,
         "live_project_scorecard": 1,
         "scorecard_reviewer_paths": 11,
@@ -477,9 +488,13 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "application_evidence_pack": 1,
         "application_evidence_links": 13,
         "pilot_outreach_messages": 3,
-            "pilot_review_paths": 8,
+        "pilot_review_paths": 9,
         "pilot_program_segments": 3,
         "pilot_program_weeks": 3,
+        "pilot_review_tracker": 1,
+        "pilot_review_tracker_planned_reviews": 3,
+        "pilot_review_tracker_not_contacted": 3,
+        "pilot_review_tracker_resume_rules": 3,
         "feedback_intake_quality": 1,
         "feedback_intake_required_sections": 5,
         "feedback_intake_try_paths": 5,

@@ -1,4 +1,5 @@
 import json
+from types import SimpleNamespace
 
 from scripts import update_adoption_metrics
 from scripts.update_adoption_metrics import append_history, collect_metrics
@@ -11,6 +12,15 @@ def test_adoption_metrics_uses_safe_fallback_values(monkeypatch):
     monkeypatch.setenv("ADOPTION_ISSUES_TOTAL", "11")
     monkeypatch.setenv("ADOPTION_TEST_COUNT", "90")
     monkeypatch.setattr(update_adoption_metrics, "_load_existing_metrics", lambda: {})
+
+    def fake_run(args, **_kwargs):
+        if args[:3] == [update_adoption_metrics.sys.executable, "-m", "pytest"]:
+            raise FileNotFoundError()
+        if args[:3] == ["git", "rev-parse", "--short"]:
+            return SimpleNamespace(stdout="abc1234\n")
+        return SimpleNamespace(stdout="{}")
+
+    monkeypatch.setattr(update_adoption_metrics.subprocess, "run", fake_run)
 
     metrics = collect_metrics()
 

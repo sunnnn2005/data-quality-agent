@@ -12,7 +12,7 @@ def test_pilot_outreach_kit_supports_real_feedback_without_inflating_usage():
 
     assert verification["pilot_outreach_kit_verified"] is True
     assert len(payload["target_audiences"]) == 4
-    assert len(payload["review_paths"]) == 8
+    assert len(payload["review_paths"]) == 9
     assert payload["review_paths"]["pilot_feedback_tracker"].endswith("/issues/16")
     assert len(payload["outreach_messages"]) == 3
     assert payload["success_metrics"]["external_feedback_items"] == 0

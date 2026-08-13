@@ -23,6 +23,7 @@ Collect real public feedback from people who try the demo, read the scorecard, o
 - Feedback Issue: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md)
 - Bug Report: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md)
 - Feature Request: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md)
+- Business Case Review: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md)
 
 ## Outreach Messages
 

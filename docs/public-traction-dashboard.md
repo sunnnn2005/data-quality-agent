@@ -33,6 +33,7 @@ This generated dashboard separates what is live and trackable from what is not y
 - [Business case review issue](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md) -> anonymized real-world business workflow feedback
 - [application_evidence_pack](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/application-evidence-pack.md) -> pilot review path
 - [bug_report](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md) -> pilot review path
+- [business_case_review](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md) -> pilot review path
 - [feature_request](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md) -> pilot review path
 - [feedback_issue](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md) -> pilot review path
 - [github_repo](https://github.com/sunnnn2005/data-quality-agent) -> pilot review path
@@ -50,7 +51,7 @@ This generated dashboard separates what is live and trackable from what is not y
 
 ## Resume-Safe Summary
 
-Published a public traction dashboard covering 4 live project surfaces, 14 growth or review channels, 5 tracked demo funnel steps, and explicit resume-upgrade rules for users, feedback, and stars.
+Published a public traction dashboard covering 4 live project surfaces, 15 growth or review channels, 5 tracked demo funnel steps, and explicit resume-upgrade rules for users, feedback, and stars.
 
 ## Not Claimed
 

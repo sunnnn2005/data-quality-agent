@@ -41,6 +41,7 @@ def build_pilot_outreach_kit_payload() -> dict[str, Any]:
             "feedback_issue": feedback_channels["Demo feedback"],
             "bug_report": feedback_channels["Bug report"],
             "feature_request": feedback_channels["Feature request"],
+            "business_case_review": feedback_channels["Business case review"],
         },
         "outreach_messages": [
             {
@@ -135,7 +136,7 @@ This generated kit helps collect real public feedback without inflating adoption
 def verify_pilot_outreach_kit(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
         "target_audience_count": 4,
-        "review_path_count": 8,
+        "review_path_count": 9,
         "outreach_message_count": 3,
         "tracking_rule_count": 4,
         "current_external_feedback_items": 0,
@@ -144,7 +145,7 @@ def verify_pilot_outreach_kit(payload: dict[str, Any]) -> dict[str, Any]:
     if len(payload["target_audiences"]) != expected["target_audience_count"]:
         raise AssertionError("pilot outreach kit must include four target audiences")
     if len(payload["review_paths"]) != expected["review_path_count"]:
-        raise AssertionError("pilot outreach kit must include eight review paths")
+        raise AssertionError("pilot outreach kit must include nine review paths")
     if len(payload["outreach_messages"]) != expected["outreach_message_count"]:
         raise AssertionError("pilot outreach kit must include three outreach messages")
     if len(payload["tracking_rules"]) != expected["tracking_rule_count"]:
