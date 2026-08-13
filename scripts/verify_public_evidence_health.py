@@ -40,7 +40,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 64},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 65},
         "evidence_type": "json",
     },
     {
@@ -67,6 +67,13 @@ PUBLIC_CHECKS = [
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/incident-pattern-memory.json",
         "expected_json": {"trace_count": 2, "incident_pattern_count": 3},
         "expected_text": "external production incidents",
+        "evidence_type": "json",
+    },
+    {
+        "id": "agent-observability",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-observability.json",
+        "expected_json": {"observed_trace_count": 2, "fallback_event_count": 2},
+        "expected_text": "production monitoring dashboard",
         "evidence_type": "json",
     },
     {

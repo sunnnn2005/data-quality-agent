@@ -1,6 +1,6 @@
 {
   "project": "Data Quality Agent",
-  "updated_at": "2026-08-13T08:20:00Z",
+  "updated_at": "2026-08-13T08:45:00Z",
   "summary": "Current readiness assessment against a practical LLM agent checklist. This file separates implemented capabilities from partial and planned work so resume claims stay evidence-backed.",
   "implemented": [
     {
@@ -44,6 +44,11 @@
       "evidence": "docs/incident-pattern-memory.json is generated in CI and verifies 3 recurring support-ticket incident patterns from 2 sanitized traces."
     },
     {
+      "id": "agent-observability",
+      "capability": "Agent runs publish trace, fallback, verification, and memory observability",
+      "evidence": "docs/agent-observability.json is generated in CI and summarizes trace ids, report types, fallback statuses, verification status, dataset memory, and tool-call previews."
+    },
+    {
       "id": "root-cause-ranking",
       "capability": "Reports include evidence-ranked root-cause hypotheses",
       "evidence": "QualityReport.root_cause_hypotheses ranks likely causes by confidence and attaches supporting checks, evidence, and recommended actions."
@@ -79,8 +84,8 @@
     },
     {
       "id": "observability",
-      "capability": "Trace summaries exist, but production-grade observability is incomplete",
-      "current_state": "The API exposes sanitized run summaries and tool-call previews.",
+      "capability": "Trace summaries and run artifacts exist, but production-grade observability is incomplete",
+      "current_state": "The API exposes sanitized run summaries, tool-call previews, and a generated observability artifact for trace, fallback, verification, and memory status.",
       "next_step": "Track model version, prompt version, token usage, latency breakdown, retries, and estimated cost."
     },
     {

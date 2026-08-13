@@ -1,0 +1,38 @@
+{
+  "dataset_id": "orders_daily",
+  "fallback_event_count": 2,
+  "fallback_statuses": [
+    "agent_disabled",
+    "llm_assessment_disabled"
+  ],
+  "generated_by": "scripts/build_agent_observability.py",
+  "memory_incident_pattern_count": 0,
+  "memory_trace_count": 2,
+  "not_claimed": [
+    "production monitoring dashboard",
+    "real user traffic",
+    "paid model cost telemetry"
+  ],
+  "observability_fields": [
+    "trace_id",
+    "dataset_id",
+    "report_type",
+    "fallback_status",
+    "verification_passed",
+    "memory_trace_count",
+    "incident_pattern_count"
+  ],
+  "observed_trace_count": 2,
+  "project": "Data Quality Agent",
+  "report_types": [
+    "agent_report",
+    "quality_report"
+  ],
+  "resume_safe_summary": "Generated an observability artifact covering trace ids, report types, fallback status, verification status, dataset memory, incident-pattern memory, and tool-call previews.",
+  "tool_call_preview_count": 0,
+  "trace_ids": [
+    "run_fa601a8df4a84f87",
+    "run_82f403312a244aa0"
+  ],
+  "verification_passed_trace_count": 1
+}

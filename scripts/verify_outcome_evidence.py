@@ -16,6 +16,7 @@ AGENT_READINESS_PATH = ROOT / "docs" / "agent-readiness.json"
 EVAL_SUMMARY_PATH = ROOT / "docs" / "eval-summary.json"
 HYPOTHESIS_FEEDBACK_PATH = ROOT / "docs" / "hypothesis-feedback.json"
 INCIDENT_PATTERN_MEMORY_PATH = ROOT / "docs" / "incident-pattern-memory.json"
+AGENT_OBSERVABILITY_PATH = ROOT / "docs" / "agent-observability.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
 PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
@@ -47,6 +48,7 @@ def verify_manifest() -> dict[str, int]:
     eval_summary = load_payload(EVAL_SUMMARY_PATH)
     hypothesis_feedback = load_payload(HYPOTHESIS_FEEDBACK_PATH)
     incident_memory = load_payload(INCIDENT_PATTERN_MEMORY_PATH)
+    observability = load_payload(AGENT_OBSERVABILITY_PATH)
     openapi = load_payload(OPENAPI_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
@@ -101,7 +103,7 @@ def verify_manifest() -> dict[str, int]:
                         f"but outcome summary has {actions}"
                     )
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 64:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 65:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -189,6 +191,25 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("incident pattern memory script must verify generated patterns")
                 if "test_incident_pattern_memory_retrieves_recurring_sanitized_patterns" not in incident_tests:
                     raise AssertionError("incident pattern memory must have a dedicated test")
+            elif metric_name == "observed_trace_count":
+                observability_tests = (ROOT / "tests" / "test_agent_observability.py").read_text()
+                observability_script = (ROOT / "scripts" / "build_agent_observability.py").read_text()
+                if observability.get("observed_trace_count") != claim.get("metric_value"):
+                    raise AssertionError(
+                        f"claim {claim['id']} metric mismatch: observed_trace_count="
+                        f"{claim.get('metric_value')} but observability has "
+                        f"{observability.get('observed_trace_count')}"
+                    )
+                if observability.get("fallback_event_count") != 2:
+                    raise AssertionError("agent observability must capture disabled fallback events")
+                if "agent_disabled" not in observability.get("fallback_statuses", []):
+                    raise AssertionError("agent observability must capture agent_disabled fallback status")
+                if "production monitoring dashboard" not in observability.get("not_claimed", []):
+                    raise AssertionError("agent observability must not claim production monitoring")
+                if "verify_agent_observability" not in observability_script:
+                    raise AssertionError("agent observability script must verify generated metrics")
+                if "test_agent_observability_artifact_tracks_trace_fallback_and_memory" not in observability_tests:
+                    raise AssertionError("agent observability must have a dedicated test")
             elif metric_name == "openapi_required_endpoint_count":
                 openapi_tests = (ROOT / "tests" / "test_openapi_artifact.py").read_text()
                 openapi_script = (ROOT / "scripts" / "build_openapi_artifact.py").read_text()
@@ -262,7 +283,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 64", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 65", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

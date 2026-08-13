@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "64 passing CI tests",
+      "resume_signal": "65 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 64,
+      "metric_value": 65,
       "status": "verified"
     },
     {
@@ -108,6 +108,16 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/incident-pattern-memory.json",
       "metric_name": "incident_pattern_count",
       "metric_value": 3,
+      "status": "verified"
+    },
+    {
+      "id": "agent-observability",
+      "resume_signal": "CI-verified agent observability artifact",
+      "claim": "The project publishes a generated observability artifact covering trace ids, report types, fallback status, verification status, dataset memory, and tool-call previews without claiming production monitoring.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-observability.json",
+      "metric_name": "observed_trace_count",
+      "metric_value": 2,
       "status": "verified"
     },
     {
@@ -221,7 +231,7 @@
       "evidence_type": "documentation",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-readiness.md",
       "metric_name": "implemented_agent_capabilities",
-      "metric_value": 12,
+      "metric_value": 13,
       "status": "verified"
     }
   ],
