@@ -1,0 +1,86 @@
+{
+  "business_case_count": 1,
+  "case_count": 1,
+  "casebook": [
+    {
+      "agent_outputs": {
+        "business_rule_reference_count": 4,
+        "finding_count": 5,
+        "owner_handoff_count": 4,
+        "quality_score": 24,
+        "recommended_action_count": 5,
+        "root_cause_hypothesis_count": 3,
+        "status": "FAIL"
+      },
+      "business_problem": "Internal support dashboards can silently mislead operators when ticket exports contain duplicate ticket ids, missing routing fields, negative customer-impact amounts, and amount outliers.",
+      "business_workflow": "Support operations dashboard refresh",
+      "case_id": "support-operations-dashboard-quality",
+      "detected_risks": [
+        {
+          "affected_field": "ticket_id",
+          "evidence": "1 duplicate ticket_id was detected.",
+          "owner_handoff": "Data Engineering",
+          "risk": "Dashboard double counting",
+          "tool_check": "duplicate_primary_key"
+        },
+        {
+          "affected_field": "priority, team",
+          "evidence": "2 required routing fields were missing across priority and team.",
+          "owner_handoff": "Support Operations",
+          "risk": "Unreliable ticket routing",
+          "tool_check": "missing_values"
+        },
+        {
+          "affected_field": "amount",
+          "evidence": "1 negative amount was mixed into positive customer-impact facts.",
+          "owner_handoff": "Analytics Engineering",
+          "risk": "Incorrect customer-impact reporting",
+          "tool_check": "negative_amount"
+        },
+        {
+          "affected_field": "amount",
+          "evidence": "1 amount outlier can distort aggregate reporting.",
+          "owner_handoff": "Data Analytics",
+          "risk": "Skewed executive metrics",
+          "tool_check": "numeric_outliers"
+        }
+      ],
+      "evidence_links": {
+        "business_impact": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-impact.json",
+        "casebook": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md",
+        "impact_review_packet": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/impact-review-packet.md",
+        "support_ticket_case_study": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/support-ticket-case-study.md",
+        "verified_result": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/verified-support-ticket-result.json"
+      },
+      "input_context": {
+        "dataset_id": "support_tickets",
+        "owner": "support-ops",
+        "primary_key": "ticket_id",
+        "rows_analyzed": 8,
+        "scenario": "Support-operations ticket export used by internal dashboards."
+      },
+      "interview_answer": "The project models a common internal analytics failure: a dashboard may keep refreshing even when the underlying export has duplicate identities, missing routing metadata, and invalid amount values. The agent turns those raw checks into evidence-backed root-cause hypotheses and owner-specific remediation steps.",
+      "not_claimed": [
+        "real customer dataset",
+        "external users",
+        "customer feedback",
+        "production deployment",
+        "production financial impact avoided"
+      ],
+      "resume_safe_result": "Converted a support-operations CSV export into a verified data-quality casebook with 4 business risks, 5 evidence-backed findings, 3 ranked root-cause hypotheses, and 4 remediation owner handoffs."
+    }
+  ],
+  "detected_risk_count": 4,
+  "evidence_link_count": 5,
+  "generated_by": "scripts/build_business_problem_casebook.py",
+  "not_claimed": [
+    "real customer dataset",
+    "external users",
+    "customer feedback",
+    "production deployment",
+    "production financial impact avoided"
+  ],
+  "owner_handoff_count": 4,
+  "project": "Data Quality Agent",
+  "resume_safe_summary": "Converted a support-operations CSV export into a verified data-quality casebook with 4 business risks, 5 evidence-backed findings, 3 ranked root-cause hypotheses, and 4 remediation owner handoffs."
+}

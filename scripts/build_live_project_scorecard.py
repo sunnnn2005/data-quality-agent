@@ -47,6 +47,7 @@ def build_live_project_scorecard_payload() -> dict[str, Any]:
             {"label": "Try the public demo", "url": metrics["public_demo"]},
             {"label": "Inspect resume evidence", "url": f"{metrics['repo']}/blob/main/docs/resume-evidence.md"},
             {"label": "Inspect impact review packet", "url": f"{metrics['repo']}/blob/main/docs/impact-review-packet.md"},
+            {"label": "Inspect business problem casebook", "url": f"{metrics['repo']}/blob/main/docs/business-problem-casebook.md"},
             {"label": "Inspect public traction dashboard", "url": f"{metrics['repo']}/blob/main/docs/public-traction-dashboard.md"},
             {"label": "Inspect OpenAPI contract", "url": f"{metrics['repo']}/blob/main/docs/api-contract.md"},
             {"label": "Inspect safety boundaries", "url": f"{metrics['repo']}/blob/main/docs/agent-safety-boundaries.md"},
@@ -63,6 +64,7 @@ def build_live_project_scorecard_payload() -> dict[str, Any]:
             "has_observability": "agent-observability" in claim_ids,
             "has_feedback_baseline": "feedback-metrics" in claim_ids,
             "has_impact_review_packet": "impact-review-packet" in claim_ids,
+            "has_business_problem_casebook": "business-problem-casebook" in claim_ids,
             "has_public_traction_dashboard": "public-traction-dashboard" in claim_ids,
         },
         "resume_safe_summary": (
@@ -129,8 +131,8 @@ def verify_live_project_scorecard(payload: dict[str, Any]) -> dict[str, Any]:
     headline = payload["headline_metrics"]
     footprint = payload["live_footprint"]
     expected = {
-        "passing_tests": 85,
-        "verified_resume_claims": 44,
+        "passing_tests": 86,
+        "verified_resume_claims": 45,
         "implemented_agent_capabilities": 16,
         "agent_tools_allowed": 7,
         "unsafe_postgres_queries_rejected": 3,

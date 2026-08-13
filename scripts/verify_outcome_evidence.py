@@ -25,6 +25,7 @@ DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
 BUSINESS_DATA_INTAKE_BASELINE_PATH = ROOT / "docs" / "business-data-intake-baseline.json"
 COMMUNITY_GROWTH_BASELINE_PATH = ROOT / "docs" / "community-growth-baseline.json"
 IMPACT_REVIEW_PACKET_PATH = ROOT / "docs" / "impact-review-packet.json"
+BUSINESS_PROBLEM_CASEBOOK_PATH = ROOT / "docs" / "business-problem-casebook.json"
 PUBLIC_TRACTION_DASHBOARD_PATH = ROOT / "docs" / "public-traction-dashboard.json"
 LIVE_SCORECARD_PATH = ROOT / "docs" / "live-project-scorecard.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
@@ -71,6 +72,7 @@ def verify_manifest() -> dict[str, int]:
     business_data_intake = load_payload(BUSINESS_DATA_INTAKE_BASELINE_PATH)
     community_growth = load_payload(COMMUNITY_GROWTH_BASELINE_PATH)
     impact_review = load_payload(IMPACT_REVIEW_PACKET_PATH)
+    business_casebook = load_payload(BUSINESS_PROBLEM_CASEBOOK_PATH)
     traction = load_payload(PUBLIC_TRACTION_DASHBOARD_PATH)
     scorecard = load_payload(LIVE_SCORECARD_PATH)
     openapi = load_payload(OPENAPI_PATH)
@@ -346,6 +348,49 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("impact review packet must include a dedicated test")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("impact_review_packet claim must use metric_value=1")
+            elif metric_name == "business_problem_casebook":
+                casebook_script = (ROOT / "scripts" / "build_business_problem_casebook.py").read_text()
+                casebook_tests = (ROOT / "tests" / "test_business_problem_casebook.py").read_text()
+                if business_casebook.get("business_case_count") != 1:
+                    raise AssertionError("business problem casebook must verify 1 business case")
+                if business_casebook.get("detected_risk_count") != 4:
+                    raise AssertionError("business problem casebook must verify 4 detected business risks")
+                if business_casebook.get("owner_handoff_count") != 4:
+                    raise AssertionError("business problem casebook must verify 4 owner handoffs")
+                if business_casebook.get("evidence_link_count") != 5:
+                    raise AssertionError("business problem casebook must verify 5 evidence links")
+                case = business_casebook.get("casebook", [{}])[0]
+                outputs = case.get("agent_outputs", {})
+                expected_outputs = {
+                    "quality_score": 24,
+                    "status": "FAIL",
+                    "finding_count": 5,
+                    "business_rule_reference_count": 4,
+                    "root_cause_hypothesis_count": 3,
+                    "recommended_action_count": 5,
+                    "owner_handoff_count": 4,
+                }
+                for key, expected in expected_outputs.items():
+                    if outputs.get(key) != expected:
+                        raise AssertionError(f"business problem casebook {key} expected {expected!r}")
+                for required in (
+                    "real customer dataset",
+                    "external users",
+                    "customer feedback",
+                    "production deployment",
+                    "production financial impact avoided",
+                ):
+                    if required not in business_casebook.get("not_claimed", []):
+                        raise AssertionError(f"business problem casebook must not claim {required}")
+                if "verify_business_problem_casebook" not in casebook_script:
+                    raise AssertionError("business problem casebook must include a script verifier")
+                if (
+                    "test_business_problem_casebook_explains_enterprise_problem_without_usage_claims"
+                    not in casebook_tests
+                ):
+                    raise AssertionError("business problem casebook must include a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("business_problem_casebook claim must use metric_value=1")
             elif metric_name == "public_traction_dashboard":
                 traction_script = (ROOT / "scripts" / "build_public_traction_dashboard.py").read_text()
                 traction_tests = (ROOT / "tests" / "test_public_traction_dashboard.py").read_text()
@@ -394,7 +439,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 85:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 86:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -672,7 +717,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 85:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 86:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -777,7 +822,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 85", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 86", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

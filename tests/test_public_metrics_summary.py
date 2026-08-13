@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 85
+    assert payload["public_metrics"]["test_count"] == 86
     assert payload["verified_project_outcomes"]["root_cause_hypotheses"] == 3
     assert payload["verified_project_outcomes"]["business_risk_areas"] == 4
     assert payload["verified_project_outcomes"]["high_priority_actions"] == 3
@@ -53,17 +53,21 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["impact_review_packet"] == 1
     assert payload["verified_project_outcomes"]["impact_review_business_metrics"] == 12
     assert payload["verified_project_outcomes"]["impact_review_evidence_links"] == 8
+    assert payload["verified_project_outcomes"]["business_problem_casebook"] == 1
+    assert payload["verified_project_outcomes"]["business_problem_cases"] == 1
+    assert payload["verified_project_outcomes"]["business_problem_detected_risks"] == 4
+    assert payload["verified_project_outcomes"]["business_problem_owner_handoffs"] == 4
     assert payload["verified_project_outcomes"]["public_traction_dashboard"] == 1
     assert payload["verified_project_outcomes"]["public_traction_surfaces"] == 4
     assert payload["verified_project_outcomes"]["public_traction_growth_channels"] == 12
     assert payload["verified_project_outcomes"]["public_traction_resume_upgrade_rules"] == 3
     assert payload["verified_project_outcomes"]["live_project_scorecard"] == 1
-    assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 8
+    assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 9
     assert payload["verified_project_outcomes"]["openapi_required_endpoints"] == 6
     assert payload["verified_project_outcomes"]["recruiter_pitch_resume_bullets"] == 3
     assert payload["verified_project_outcomes"]["recruiter_pitch_target_roles"] == 4
     assert payload["verified_project_outcomes"]["application_evidence_pack"] == 1
-    assert payload["verified_project_outcomes"]["application_evidence_links"] == 10
+    assert payload["verified_project_outcomes"]["application_evidence_links"] == 11
     assert payload["verified_project_outcomes"]["pilot_outreach_messages"] == 3
     assert payload["verified_project_outcomes"]["pilot_review_paths"] == 7
     assert payload["verified_project_outcomes"]["pilot_program_segments"] == 3
@@ -106,13 +110,17 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
+        "Business problem casebook with 1 verified case, 4 detected business risks, and 4 owner handoffs"
+        in payload["resume_safe_signals"]
+    )
+    assert (
         "Public traction dashboard with 4 live project surfaces, 12 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules"
         in payload["resume_safe_signals"]
     )
-    assert "8 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
+    assert "9 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
     assert "CI-verified OpenAPI contract covering 6 integration endpoints" in payload["resume_safe_signals"]
     assert "3 recruiter-safe resume bullets for 4 target roles" in payload["resume_safe_signals"]
-    assert "10 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
+    assert "11 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
     assert "3 pilot outreach messages and 7 review paths for collecting real feedback" in payload["resume_safe_signals"]
     assert "3 pilot participant segments across a 3-week feedback plan" in payload["resume_safe_signals"]
     assert "Dataset-level memory retrieval over recent sanitized traces" in payload["resume_safe_signals"]

@@ -18,6 +18,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "performance-baseline",
         "demo-usage-baseline",
         "impact-review-packet",
+        "business-problem-casebook",
         "live-project-scorecard",
         "recruiter-pitch",
         "application-evidence-pack",
