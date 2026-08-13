@@ -26,6 +26,7 @@ PUBLIC_CHECKS = [
             "feedback-metrics.json",
             "bug_report.md",
             "feature_request.md",
+            "review.html",
             "reviewer-feedback-packet.md",
             "reviewer-funnel-board.md",
             "reviewer-invitation-kit.md",
@@ -48,7 +49,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 101},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 102},
         "evidence_type": "json",
     },
     {
@@ -269,6 +270,19 @@ PUBLIC_CHECKS = [
             "explicit zero-feedback baselines",
         ],
         "evidence_type": "json",
+    },
+    {
+        "id": "reviewer-landing-page",
+        "url": "https://sunnnn2005.github.io/data-quality-agent/review.html",
+        "expected_text": "8-minute public review",
+        "expected_texts": [
+            "Open Demo",
+            "Submit Feedback",
+            "issues/17",
+            "External feedback starts at zero",
+            "102 tests",
+        ],
+        "evidence_type": "html",
     },
     {
         "id": "pilot-outreach-kit",

@@ -19,7 +19,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert "reviewer_feedback_packet" in payload["application_links"]
     assert "reviewer_funnel_board" in payload["application_links"]
     assert len(payload["resume_bullets"]) == 3
-    assert payload["verified_outcome_numbers"]["passing_tests"] == 101
+    assert payload["verified_outcome_numbers"]["passing_tests"] == 102
     assert payload["verified_outcome_numbers"]["verified_resume_claims"] == 59
     assert payload["verified_outcome_numbers"]["business_data_replay_paths"] == 3
     assert payload["verified_outcome_numbers"]["business_data_replay_evidence_fields"] == 8
