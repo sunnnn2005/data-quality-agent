@@ -8,6 +8,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_PATH = ROOT / "docs" / "adoption-metrics.json"
+HISTORY_PATH = ROOT / "docs" / "adoption-history.jsonl"
 REPO = "sunnnn2005/data-quality-agent"
 
 
@@ -69,7 +70,8 @@ def collect_metrics() -> dict[str, Any]:
             "package_url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent",
         },
         "verified_demo_artifact": "docs/verified-support-ticket-result.json",
-        "test_count": 46,
+        "test_count": 47,
+        "commit": _current_commit(),
     }
     return metrics
 
@@ -94,7 +96,46 @@ def _read_nested_int(payload: dict[str, Any] | None, keys: list[str], env_name: 
 def main() -> None:
     metrics = collect_metrics()
     OUTPUT_PATH.write_text(json.dumps(metrics, indent=2, sort_keys=True) + "\n")
+    append_history(metrics)
     print(json.dumps(metrics, indent=2, sort_keys=True))
+
+
+def append_history(metrics: dict[str, Any]) -> None:
+    point = {
+        "date": metrics["generated_at"][:10],
+        "commit": metrics.get("commit"),
+        "stars": metrics["stars"],
+        "forks": metrics["forks"],
+        "watchers": metrics["watchers"],
+        "issues_total": metrics["issues_total"],
+        "test_count": metrics["test_count"],
+        "release": metrics["release"]["tagName"],
+    }
+    existing = []
+    if HISTORY_PATH.exists():
+        existing = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
+
+    deduped = [
+        item
+        for item in existing
+        if not (item.get("date") == point["date"] and item.get("commit") == point["commit"])
+    ]
+    deduped.append(point)
+    HISTORY_PATH.write_text("\n".join(json.dumps(item, sort_keys=True) for item in deduped) + "\n")
+
+
+def _current_commit() -> str | None:
+    try:
+        completed = subprocess.run(
+            ["git", "rev-parse", "--short", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+            cwd=ROOT,
+        )
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        return None
+    return completed.stdout.strip()
 
 
 if __name__ == "__main__":

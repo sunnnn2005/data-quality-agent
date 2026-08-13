@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "46 passing CI tests",
+      "resume_signal": "47 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 46,
+      "metric_value": 47,
       "status": "verified"
     },
     {
@@ -78,6 +78,14 @@
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/feedback-log.md",
       "metric_name": "external_feedback_items",
       "metric_value": 0,
+      "status": "verified"
+    },
+    {
+      "id": "adoption-history",
+      "resume_signal": "Public adoption history timeline",
+      "claim": "Stars, forks, watchers, issues, release, commit, and test count are tracked as an append-only JSONL history.",
+      "evidence_type": "metrics_history",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-history.jsonl",
       "status": "verified"
     }
   ],

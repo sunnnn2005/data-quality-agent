@@ -6,6 +6,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE_PATH = ROOT / "docs" / "outcome-evidence.json"
 METRICS_PATH = ROOT / "docs" / "adoption-metrics.json"
+HISTORY_PATH = ROOT / "docs" / "adoption-history.jsonl"
 RESUME_EVIDENCE_PATH = ROOT / "docs" / "resume-evidence.md"
 FEEDBACK_LOG_PATH = ROOT / "docs" / "feedback-log.md"
 REQUIRED_CLAIM_FIELDS = {"id", "resume_signal", "claim", "evidence_type", "url", "status"}
@@ -25,6 +26,7 @@ def validate_url(value: str) -> None:
 def verify_manifest() -> dict[str, int]:
     evidence = load_payload(EVIDENCE_PATH)
     metrics = load_payload(METRICS_PATH)
+    history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
     feedback_log = FEEDBACK_LOG_PATH.read_text().lower()
     claims = evidence.get("claims", [])
@@ -72,12 +74,19 @@ def verify_manifest() -> dict[str, int]:
         raise AssertionError("feedback log must keep an explicit zero external feedback baseline")
     if "confirmed external users | 0" not in feedback_log:
         raise AssertionError("feedback log must keep an explicit zero external user baseline")
+    if not history:
+        raise AssertionError("adoption history must include at least one point")
+    latest = history[-1]
+    for key in ("stars", "forks", "watchers", "issues_total", "test_count"):
+        if latest.get(key) != metrics.get(key):
+            raise AssertionError(f"adoption history latest {key} must match adoption metrics")
 
     return {
         "claim_count": len(claims),
         "not_claimed_count": len(not_claimed),
         "resume_evidence_page": 1,
         "feedback_log": 1,
+        "adoption_history_count": len(history),
     }
 
 
