@@ -29,6 +29,7 @@ APPLICATION_EVIDENCE_PACK_PATH = ROOT / "docs" / "application-evidence-pack.json
 PILOT_OUTREACH_KIT_PATH = ROOT / "docs" / "pilot-outreach-kit.json"
 PILOT_PROGRAM_PLAN_PATH = ROOT / "docs" / "pilot-program-plan.json"
 PILOT_REVIEW_TRACKER_PATH = ROOT / "docs" / "pilot-review-tracker.json"
+EXTERNAL_REVIEW_EVIDENCE_LEDGER_PATH = ROOT / "docs" / "external-review-evidence-ledger.json"
 FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
@@ -66,6 +67,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     pilot_outreach = load_json(PILOT_OUTREACH_KIT_PATH)
     pilot_plan = load_json(PILOT_PROGRAM_PLAN_PATH)
     pilot_tracker = load_json(PILOT_REVIEW_TRACKER_PATH)
+    external_ledger = load_json(EXTERNAL_REVIEW_EVIDENCE_LEDGER_PATH)
     feedback_intake = load_json(FEEDBACK_INTAKE_QUALITY_PATH)
     star_growth = load_json(STAR_GROWTH_KIT_PATH)
     business_case_intake = load_json(BUSINESS_CASE_INTAKE_PATH)
@@ -159,6 +161,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "pilot_review_tracker_planned_reviews": pilot_tracker["planned_review_count"],
             "pilot_review_tracker_not_contacted": pilot_tracker["status_counts"]["not_contacted"],
             "pilot_review_tracker_resume_rules": len(pilot_tracker["resume_upgrade_rules"]),
+            "external_review_evidence_ledger": 1,
+            "external_review_ledger_entries": external_ledger["entry_count"],
+            "external_review_ledger_requirement_types": external_ledger["evidence_requirement_count"],
+            "external_review_ledger_linked_reviews": external_ledger["linked_planned_reviews"],
             "feedback_intake_quality": 1,
             "feedback_intake_required_sections": feedback_intake["required_section_count"],
             "feedback_intake_try_paths": feedback_intake["required_try_path_count"],
@@ -198,6 +204,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"Pilot review tracker with {pilot_tracker['planned_review_count']} planned reviewer segments, "
                 f"{pilot_tracker['status_counts']['not_contacted']} not-contacted baseline entries, and "
                 f"{len(pilot_tracker['resume_upgrade_rules'])} resume-upgrade rules"
+            ),
+            (
+                f"External review evidence ledger with {external_ledger['evidence_requirement_count']} public evidence types, "
+                f"{external_ledger['linked_planned_reviews']} linked planned reviews, and "
+                f"{external_ledger['entry_count']} current evidence entries"
             ),
             f"{incident_memory['incident_pattern_count']} recurring incident patterns retrieved from sanitized traces",
             f"{observability['observed_trace_count']} observed run traces with fallback and verification status",
@@ -382,6 +393,14 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Pilot review paths | {outcomes["pilot_review_paths"]} |
 | Pilot program segments | {outcomes["pilot_program_segments"]} |
 | Pilot program weeks | {outcomes["pilot_program_weeks"]} |
+| Pilot review tracker | {outcomes["pilot_review_tracker"]} |
+| Pilot review tracker planned reviews | {outcomes["pilot_review_tracker_planned_reviews"]} |
+| Pilot review tracker not-contacted entries | {outcomes["pilot_review_tracker_not_contacted"]} |
+| Pilot review tracker resume rules | {outcomes["pilot_review_tracker_resume_rules"]} |
+| External review evidence ledger | {outcomes["external_review_evidence_ledger"]} |
+| External review ledger entries | {outcomes["external_review_ledger_entries"]} |
+| External review ledger requirement types | {outcomes["external_review_ledger_requirement_types"]} |
+| External review ledger linked reviews | {outcomes["external_review_ledger_linked_reviews"]} |
 | Feedback intake quality | {outcomes["feedback_intake_quality"]} |
 | Feedback intake required sections | {outcomes["feedback_intake_required_sections"]} |
 | Feedback intake demo paths | {outcomes["feedback_intake_try_paths"]} |
@@ -420,7 +439,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 91,
+        "test_count": 92,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -495,6 +514,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "pilot_review_tracker_planned_reviews": 3,
         "pilot_review_tracker_not_contacted": 3,
         "pilot_review_tracker_resume_rules": 3,
+        "external_review_evidence_ledger": 1,
+        "external_review_ledger_entries": 0,
+        "external_review_ledger_requirement_types": 4,
+        "external_review_ledger_linked_reviews": 3,
         "feedback_intake_quality": 1,
         "feedback_intake_required_sections": 5,
         "feedback_intake_try_paths": 5,

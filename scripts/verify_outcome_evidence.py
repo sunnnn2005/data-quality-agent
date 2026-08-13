@@ -35,6 +35,7 @@ APPLICATION_EVIDENCE_PACK_PATH = ROOT / "docs" / "application-evidence-pack.json
 PILOT_OUTREACH_KIT_PATH = ROOT / "docs" / "pilot-outreach-kit.json"
 PILOT_PROGRAM_PLAN_PATH = ROOT / "docs" / "pilot-program-plan.json"
 PILOT_REVIEW_TRACKER_PATH = ROOT / "docs" / "pilot-review-tracker.json"
+EXTERNAL_REVIEW_EVIDENCE_LEDGER_PATH = ROOT / "docs" / "external-review-evidence-ledger.json"
 FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
@@ -87,6 +88,7 @@ def verify_manifest() -> dict[str, int]:
     pilot_outreach = load_payload(PILOT_OUTREACH_KIT_PATH)
     pilot_plan = load_payload(PILOT_PROGRAM_PLAN_PATH)
     pilot_tracker = load_payload(PILOT_REVIEW_TRACKER_PATH)
+    external_ledger = load_payload(EXTERNAL_REVIEW_EVIDENCE_LEDGER_PATH)
     feedback_intake = load_payload(FEEDBACK_INTAKE_QUALITY_PATH)
     star_growth = load_payload(STAR_GROWTH_KIT_PATH)
     business_case_intake = load_payload(BUSINESS_CASE_INTAKE_PATH)
@@ -449,7 +451,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 91:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 92:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -750,7 +752,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 91:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 92:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -834,6 +836,40 @@ def verify_manifest() -> dict[str, int]:
                     not in tracker_tests
                 ):
                     raise AssertionError("pilot review tracker must have a dedicated test")
+            elif metric_name == "external_review_evidence_ledger":
+                ledger_tests = (ROOT / "tests" / "test_external_review_evidence_ledger.py").read_text()
+                ledger_script = (ROOT / "scripts" / "build_external_review_evidence_ledger.py").read_text()
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("external review evidence ledger claim must use metric_value=1")
+                if external_ledger.get("entry_count") != 0:
+                    raise AssertionError("external review evidence ledger must start with zero entries")
+                if external_ledger.get("evidence_requirement_count") != 4:
+                    raise AssertionError("external review evidence ledger must define four evidence types")
+                if external_ledger.get("linked_planned_reviews") != 3:
+                    raise AssertionError("external review evidence ledger must link three planned reviews")
+                if external_ledger.get("resume_status") != "not_claimable_yet":
+                    raise AssertionError("external review evidence ledger must not be claimable before proof")
+                evidence_types = {item.get("evidence_type") for item in external_ledger.get("evidence_requirements", [])}
+                for required in {"demo_feedback", "confirmed_run", "business_case_review", "reproducible_bug"}:
+                    if required not in evidence_types:
+                        raise AssertionError(f"external review evidence ledger missing {required}")
+                public_counts = external_ledger.get("public_counts", {})
+                expected_counts = {
+                    "external_feedback_items": 0,
+                    "confirmed_external_users": 0,
+                    "reproducible_feedback_items": 0,
+                    "business_case_feedback_items": 0,
+                }
+                for key, expected in expected_counts.items():
+                    if public_counts.get(key) != expected:
+                        raise AssertionError(f"external review evidence ledger {key} expected {expected!r}")
+                if "verify_external_review_evidence_ledger" not in ledger_script:
+                    raise AssertionError("external review evidence ledger script must verify generated ledger")
+                if (
+                    "test_external_review_evidence_ledger_defines_public_proof_before_resume_claims"
+                    not in ledger_tests
+                ):
+                    raise AssertionError("external review evidence ledger must have a dedicated test")
             elif metric_name == "feedback_intake_quality":
                 intake_tests = (ROOT / "tests" / "test_feedback_intake_quality.py").read_text()
                 intake_script = (ROOT / "scripts" / "build_feedback_intake_quality.py").read_text()
@@ -988,7 +1024,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 91", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 92", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

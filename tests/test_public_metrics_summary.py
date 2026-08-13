@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 91
+    assert payload["public_metrics"]["test_count"] == 92
     assert payload["verified_project_outcomes"]["root_cause_hypotheses"] == 3
     assert payload["verified_project_outcomes"]["business_risk_areas"] == 4
     assert payload["verified_project_outcomes"]["high_priority_actions"] == 3
@@ -76,6 +76,14 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["pilot_review_paths"] == 9
     assert payload["verified_project_outcomes"]["pilot_program_segments"] == 3
     assert payload["verified_project_outcomes"]["pilot_program_weeks"] == 3
+    assert payload["verified_project_outcomes"]["pilot_review_tracker"] == 1
+    assert payload["verified_project_outcomes"]["pilot_review_tracker_planned_reviews"] == 3
+    assert payload["verified_project_outcomes"]["pilot_review_tracker_not_contacted"] == 3
+    assert payload["verified_project_outcomes"]["pilot_review_tracker_resume_rules"] == 3
+    assert payload["verified_project_outcomes"]["external_review_evidence_ledger"] == 1
+    assert payload["verified_project_outcomes"]["external_review_ledger_entries"] == 0
+    assert payload["verified_project_outcomes"]["external_review_ledger_requirement_types"] == 4
+    assert payload["verified_project_outcomes"]["external_review_ledger_linked_reviews"] == 3
     assert payload["verified_project_outcomes"]["feedback_intake_quality"] == 1
     assert payload["verified_project_outcomes"]["feedback_intake_required_sections"] == 5
     assert payload["verified_project_outcomes"]["feedback_intake_try_paths"] == 5
@@ -142,6 +150,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert "3 pilot outreach messages and 9 review paths for collecting real feedback" in payload["resume_safe_signals"]
     assert (
         "Pilot review tracker with 3 planned reviewer segments, 3 not-contacted baseline entries, and 3 resume-upgrade rules"
+        in payload["resume_safe_signals"]
+    )
+    assert (
+        "External review evidence ledger with 4 public evidence types, 3 linked planned reviews, and 0 current evidence entries"
         in payload["resume_safe_signals"]
     )
     assert "3 pilot participant segments across a 3-week feedback plan" in payload["resume_safe_signals"]

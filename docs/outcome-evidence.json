@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "91 passing CI tests",
+      "resume_signal": "92 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions, including the business problem casebook, feedback intake quality, business case intake, and star growth kit verifiers.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 91,
+      "metric_value": 92,
       "status": "verified"
     },
     {
@@ -337,6 +337,16 @@
       "evidence_type": "artifact",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-review-tracker.json",
       "metric_name": "pilot_review_tracker",
+      "metric_value": 1,
+      "status": "verified"
+    },
+    {
+      "id": "external-review-evidence-ledger",
+      "resume_signal": "CI-verified external review evidence ledger",
+      "claim": "The project publishes a generated external review evidence ledger that defines public proof requirements for demo feedback, confirmed runs, business-case reviews, and reproducible bugs before resume outcome upgrades.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-review-evidence-ledger.json",
+      "metric_name": "external_review_evidence_ledger",
       "metric_value": 1,
       "status": "verified"
     },

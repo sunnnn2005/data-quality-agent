@@ -1,0 +1,90 @@
+{
+  "entries": [],
+  "entry_count": 0,
+  "evidence_requirement_count": 4,
+  "evidence_requirements": [
+    {
+      "counts_toward": "external_feedback_items",
+      "evidence_type": "demo_feedback",
+      "required_labels": [
+        "feedback"
+      ],
+      "required_public_source": "GitHub issue created from demo_feedback.md",
+      "resume_upgrade_after": 3
+    },
+    {
+      "counts_toward": "confirmed_external_users",
+      "evidence_type": "confirmed_run",
+      "required_labels": [
+        "confirmed-user"
+      ],
+      "required_public_source": "GitHub issue or reproducible note confirming the reviewer tried the demo or ran the repo",
+      "resume_upgrade_after": 1
+    },
+    {
+      "counts_toward": "business_case_feedback_items",
+      "evidence_type": "business_case_review",
+      "required_labels": [
+        "business-case"
+      ],
+      "required_public_source": "GitHub issue created from business_case_review.md",
+      "resume_upgrade_after": 1
+    },
+    {
+      "counts_toward": "reproducible_feedback_items",
+      "evidence_type": "reproducible_bug",
+      "required_labels": [
+        "bug",
+        "reproducible"
+      ],
+      "required_public_source": "GitHub issue with steps, environment, expected result, and actual result",
+      "resume_upgrade_after": 1
+    }
+  ],
+  "generated_by": "scripts/build_external_review_evidence_ledger.py",
+  "linked_planned_reviews": 3,
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "enterprise production usage",
+    "GitHub stars beyond the current public count"
+  ],
+  "project": "Data Quality Agent",
+  "public_counts": {
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
+  "purpose": "Define the public evidence required before pilot reviews, feedback, confirmed runs, or business-case reviews can be converted into resume outcome claims.",
+  "resume_safe_summary": "Published a CI-verified external review evidence ledger defining 4 public evidence types, 3 linked pilot review slots, and zero current evidence entries before any feedback or adoption claims.",
+  "resume_status": "not_claimable_yet",
+  "resume_upgrade_rules": [
+    {
+      "current_value": 0,
+      "minimum_before_claim": 3,
+      "required_evidence": "public GitHub issue labeled feedback",
+      "resume_status": "not_claimable_yet",
+      "signal": "public pilot feedback"
+    },
+    {
+      "current_value": 0,
+      "minimum_before_claim": 1,
+      "required_evidence": "public issue or note labeled confirmed-user",
+      "resume_status": "not_claimable_yet",
+      "signal": "external reviewer tried the project"
+    },
+    {
+      "current_value": 0,
+      "minimum_before_claim": 1,
+      "required_evidence": "public issue using the business-case template",
+      "resume_status": "not_claimable_yet",
+      "signal": "real-world business case feedback"
+    }
+  ],
+  "review_status_counts": {
+    "contacted": 0,
+    "feedback_received": 0,
+    "not_contacted": 3
+  }
+}

@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 11 |
-| Passing CI tests | 91 |
+| Passing CI tests | 92 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -85,6 +85,14 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Pilot review paths | 9 |
 | Pilot program segments | 3 |
 | Pilot program weeks | 3 |
+| Pilot review tracker | 1 |
+| Pilot review tracker planned reviews | 3 |
+| Pilot review tracker not-contacted entries | 3 |
+| Pilot review tracker resume rules | 3 |
+| External review evidence ledger | 1 |
+| External review ledger entries | 0 |
+| External review ledger requirement types | 4 |
+| External review ledger linked reviews | 3 |
 | Feedback intake quality | 1 |
 | Feedback intake required sections | 5 |
 | Feedback intake demo paths | 5 |
@@ -113,7 +121,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 91 passing CI tests
+- 92 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -121,6 +129,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 3-scenario agent evaluation harness
 - 3 human-reviewed root-cause feedback labels
 - Pilot review tracker with 3 planned reviewer segments, 3 not-contacted baseline entries, and 3 resume-upgrade rules
+- External review evidence ledger with 4 public evidence types, 3 linked planned reviews, and 0 current evidence entries
 - 3 recurring incident patterns retrieved from sanitized traces
 - 2 observed run traces with fallback and verification status
 - 2 mocked LLM calls with 360 tokens, prompt version, latency, retry budget, and estimated cost telemetry
