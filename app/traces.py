@@ -1,5 +1,9 @@
 from collections import OrderedDict
 from datetime import datetime, timezone
+import json
+import os
+from pathlib import Path
+import sqlite3
 from uuid import uuid4
 
 from app.models import AgentRunReport, QualityReport, StoredRunTrace
@@ -9,9 +13,12 @@ MAX_TRACES = 100
 
 
 class RunTraceStore:
-    def __init__(self, max_traces: int = MAX_TRACES) -> None:
+    def __init__(self, max_traces: int = MAX_TRACES, db_path: str | Path | None = None) -> None:
         self.max_traces = max_traces
+        self.db_path = Path(db_path) if db_path else self._configured_db_path()
         self._traces: OrderedDict[str, StoredRunTrace] = OrderedDict()
+        if self.db_path:
+            self._init_db()
 
     def save_quality_report(self, report: QualityReport) -> QualityReport:
         trace_id = report.trace_id or self._new_trace_id()
@@ -94,13 +101,20 @@ class RunTraceStore:
         return traced_report
 
     def get(self, trace_id: str) -> StoredRunTrace | None:
-        return self._traces.get(trace_id)
+        trace = self._traces.get(trace_id)
+        if trace is not None:
+            return trace
+        if self.db_path is None:
+            return None
+        return self._get_persisted(trace_id)
 
     def _save(self, trace: StoredRunTrace) -> None:
         self._traces[trace.trace_id] = trace
         self._traces.move_to_end(trace.trace_id)
         while len(self._traces) > self.max_traces:
             self._traces.popitem(last=False)
+        if self.db_path:
+            self._save_persisted(trace)
 
     def _new_trace_id(self) -> str:
         return f"run_{uuid4().hex[:16]}"
@@ -110,3 +124,81 @@ class RunTraceStore:
             return 1.0
         supported = sum(1 for finding in report.findings if finding.evidence)
         return round(supported / len(report.findings), 3)
+
+    def _configured_db_path(self) -> Path | None:
+        value = os.getenv("TRACE_DB_PATH")
+        if not value:
+            return None
+        return Path(value)
+
+    def _connect(self) -> sqlite3.Connection:
+        if self.db_path is None:
+            raise RuntimeError("TRACE_DB_PATH is not configured")
+        self.db_path.parent.mkdir(parents=True, exist_ok=True)
+        return sqlite3.connect(self.db_path)
+
+    def _init_db(self) -> None:
+        with self._connect() as connection:
+            connection.execute(
+                """
+                CREATE TABLE IF NOT EXISTS run_traces (
+                    trace_id TEXT PRIMARY KEY,
+                    dataset_id TEXT NOT NULL,
+                    dataset_name TEXT NOT NULL,
+                    owner TEXT NOT NULL,
+                    generated_at TEXT NOT NULL,
+                    status TEXT NOT NULL,
+                    report_type TEXT NOT NULL,
+                    payload_json TEXT NOT NULL
+                )
+                """
+            )
+            connection.execute("CREATE INDEX IF NOT EXISTS idx_run_traces_dataset ON run_traces(dataset_id)")
+            connection.execute("CREATE INDEX IF NOT EXISTS idx_run_traces_generated_at ON run_traces(generated_at)")
+
+    def _save_persisted(self, trace: StoredRunTrace) -> None:
+        payload = trace.model_dump_json()
+        with self._connect() as connection:
+            connection.execute(
+                """
+                INSERT INTO run_traces (
+                    trace_id,
+                    dataset_id,
+                    dataset_name,
+                    owner,
+                    generated_at,
+                    status,
+                    report_type,
+                    payload_json
+                )
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(trace_id) DO UPDATE SET
+                    dataset_id = excluded.dataset_id,
+                    dataset_name = excluded.dataset_name,
+                    owner = excluded.owner,
+                    generated_at = excluded.generated_at,
+                    status = excluded.status,
+                    report_type = excluded.report_type,
+                    payload_json = excluded.payload_json
+                """,
+                (
+                    trace.trace_id,
+                    trace.dataset_id,
+                    trace.dataset_name,
+                    trace.owner,
+                    trace.generated_at.isoformat(),
+                    trace.status,
+                    trace.report_type,
+                    payload,
+                ),
+            )
+
+    def _get_persisted(self, trace_id: str) -> StoredRunTrace | None:
+        with self._connect() as connection:
+            row = connection.execute(
+                "SELECT payload_json FROM run_traces WHERE trace_id = ?",
+                (trace_id,),
+            ).fetchone()
+        if row is None:
+            return None
+        return StoredRunTrace.model_validate(json.loads(row[0]))

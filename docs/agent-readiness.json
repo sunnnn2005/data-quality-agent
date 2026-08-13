@@ -24,6 +24,11 @@
       "evidence": "ReportVerifier validates finding evidence, known field references, sensitive evidence, unsupported LLM evidence, action coverage, and score bounds."
     },
     {
+      "id": "persistent-trace-audit",
+      "capability": "Sanitized run traces can be persisted for auditability",
+      "evidence": "TRACE_DB_PATH enables SQLite persistence for StoredRunTrace records, and tests verify recovery across RunTraceStore instances."
+    },
+    {
       "id": "safe-fallback",
       "capability": "Agent degrades safely when no model key is configured",
       "evidence": "LLMDataQualityAgent returns DISABLED with an explicit fallback error instead of failing the API."
@@ -37,9 +42,9 @@
   "partial": [
     {
       "id": "memory",
-      "capability": "Short-term run state exists, but long-term memory is not persistent",
-      "current_state": "Run traces are stored in a bounded in-memory store and disappear after process restart.",
-      "next_step": "Persist run traces, findings, and tool-call summaries in SQLite or PostgreSQL."
+      "capability": "Run trace persistence exists, but retrieval memory is still basic",
+      "current_state": "Sanitized run traces can be stored in SQLite and recovered by trace_id after process restart.",
+      "next_step": "Add dataset-level and incident-level retrieval over previous runs."
     },
     {
       "id": "rag",
@@ -62,9 +67,9 @@
   ],
   "planned": [
     {
-      "id": "persistent-agent-runs",
-      "deliverable": "Persist agent runs and tool-call traces",
-      "resume_value": "Shows production-oriented state management and auditability."
+      "id": "dataset-memory-retrieval",
+      "deliverable": "Retrieve previous trace summaries by dataset and incident pattern",
+      "resume_value": "Shows agent memory beyond single-run audit storage."
     },
     {
       "id": "root-cause-ranking",

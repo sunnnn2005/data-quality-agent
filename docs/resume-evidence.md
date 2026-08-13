@@ -9,12 +9,13 @@ This page maps resume-ready claims for Data Quality Agent to public evidence. It
 | `public-demo` | Launched public demo | [GitHub Pages demo](https://sunnnn2005.github.io/data-quality-agent/) | The project is publicly viewable and has a product-style demo page. |
 | `public-release` | Published release | [v0.2.0 release](https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.2.0) | The project has a tagged public release. |
 | `container-image` | Published runnable container | [GHCR package](https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent) | The FastAPI service is packaged as a container image. |
-| `ci-tests` | 55 passing CI tests | [GitHub Actions CI](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml) | Tests, support-ticket demo verification, business-impact verification, feedback metrics verification, adoption metrics verification, and outcome evidence verification run in CI. |
+| `ci-tests` | 56 passing CI tests | [GitHub Actions CI](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml) | Tests, support-ticket demo verification, business-impact verification, feedback metrics verification, adoption metrics verification, and outcome evidence verification run in CI. |
 | `support-ticket-artifact` | CI-verified support-ticket artifact | [Verified JSON artifact](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/verified-support-ticket-result.json) | The business-data case study result is machine-generated and checked for expected findings. |
 | `postgres-agent-route` | Read-only PostgreSQL agent route | [API source](https://github.com/sunnnn2005/data-quality-agent/blob/main/app/main.py) | The project exposes a PostgreSQL support-ticket agent endpoint that reuses the read-only database adapter and safely falls back when no model key is configured. |
 | `business-impact-artifact` | Quantified business-impact artifact | [Business impact JSON](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact.json) | The support-ticket case study quantifies 4 issue categories, 4 affected columns, and 5 recommended actions without claiming external adoption. |
 | `outcome-summary` | Resume-safe business outcome summary | [Outcome summary](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/outcome-summary.md) | The business-impact artifact is translated into a public business problem, issue category, risk, and remediation summary. |
 | `report-guardrails` | Report verification guardrails | [Verifier tests](https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_verifier.py) | Reports are checked for evidence support, valid field references, sensitive evidence values, unsupported LLM evidence, actions, and score bounds. |
+| `persistent-trace-audit` | Persistent SQLite trace audit trail | [Trace tests](https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_traces.py) | Sanitized run traces can be persisted with `TRACE_DB_PATH` and recovered by trace id after process restart. |
 | `adoption-baseline` | Public adoption baseline | [Adoption metrics](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json) | Stars, forks, watchers, issue count, release, container image, and test count are tracked without inflation. |
 | `adoption-history` | Public adoption history timeline | [Adoption history JSONL](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-history.jsonl) | Stars, forks, watchers, issues, release, commit, and test count can be audited over time. |
 | `public-metrics-summary` | Unified public metrics summary | [Public metrics summary](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-metrics-summary.md) | Adoption, feedback, CI, release, outcome, and agent-readiness metrics are combined into one resume-safe public artifact. |
@@ -35,7 +36,7 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 10 |
-| Automated tests | 55 |
+| Automated tests | 56 |
 | Support-ticket issue categories | 4 |
 | Affected support-ticket columns | 4 |
 | Recommended support-ticket actions | 5 |
@@ -46,7 +47,7 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
 | Adoption history entries | 3 |
-| Implemented agent-readiness capabilities | 6 |
+| Implemented agent-readiness capabilities | 7 |
 
 ## Not Claimed Yet
 
@@ -65,11 +66,12 @@ Use wording that is true today:
 - Launched a public GitHub Pages demo and v0.2.0 release for an LLM-powered data reliability agent.
 - Published a GHCR container image and CI-verified support-ticket artifact for a reproducible business data-quality case study.
 - Added a read-only PostgreSQL agent route that analyzes a seeded business support-ticket table with model-key fallback.
+- Added optional SQLite persistence for sanitized agent run traces, enabling audit lookup after process restart.
 - Quantified 4 support-ticket data quality issue categories across 8 rows, including duplicate ticket IDs, missing routing fields, negative amounts, and amount outliers.
 - Added a scheduled public evidence health check for the live demo, release page, business-impact artifact, outcome evidence, and adoption metrics.
 - Added machine-readable feedback metrics that track public feedback and reproducible reports from an honest zero baseline.
-- Added deterministic report verification guardrails and 55 passing CI tests.
-- Published an agent-readiness checklist that separates implemented tool-calling, business-data, guardrail, and fallback capabilities from planned memory, RAG, observability, and evaluation work.
+- Added deterministic report verification guardrails and 56 passing CI tests.
+- Published an agent-readiness checklist that separates implemented tool-calling, business-data, persistent trace, guardrail, and fallback capabilities from planned RAG, observability, and evaluation work.
 
 Avoid wording that is not true yet:
 

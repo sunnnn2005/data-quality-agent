@@ -91,12 +91,21 @@ def verify_manifest() -> dict[str, int]:
                         f"but outcome summary has {actions}"
                     )
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 55:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 56:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_metrics_summary claim must use metric_value=1")
+            elif metric_name == "persistent_trace_audit":
+                trace_tests = (ROOT / "tests" / "test_traces.py").read_text()
+                trace_source = (ROOT / "app" / "traces.py").read_text()
+                if "test_run_trace_store_can_persist_sanitized_trace_across_instances" not in trace_tests:
+                    raise AssertionError("persistent trace audit must have a dedicated persistence test")
+                if "TRACE_DB_PATH" not in trace_source or "sqlite3" not in trace_source:
+                    raise AssertionError("persistent trace audit must use the SQLite-backed TRACE_DB_PATH path")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("persistent_trace_audit claim must use metric_value=1")
             elif metrics.get(metric_name) != claim.get("metric_value"):
                 raise AssertionError(
                     f"claim {claim['id']} metric mismatch: {metric_name}={claim.get('metric_value')} "
@@ -123,8 +132,8 @@ def verify_manifest() -> dict[str, int]:
 
     if "agent-readiness" in claim_ids:
         readiness_page = (ROOT / "docs" / "agent-readiness.md").read_text().lower()
-        if len(agent_readiness.get("implemented", [])) < 6:
-            raise AssertionError("agent readiness must document at least six implemented capabilities")
+        if len(agent_readiness.get("implemented", [])) < 7:
+            raise AssertionError("agent readiness must document at least seven implemented capabilities")
         if len(agent_readiness.get("partial", [])) < 4:
             raise AssertionError("agent readiness must document partial capabilities instead of overstating maturity")
         if len(agent_readiness.get("planned", [])) < 3:
@@ -149,7 +158,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 55", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 56", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

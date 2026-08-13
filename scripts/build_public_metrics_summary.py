@@ -121,7 +121,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 55,
+        "test_count": 56,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -131,7 +131,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_outcomes = {
         "support_ticket_issue_categories": 4,
         "recommended_actions": 5,
-        "implemented_agent_capabilities": 6,
+        "implemented_agent_capabilities": 7,
     }
     for key, expected in expected_outcomes.items():
         if outcomes.get(key) != expected:
