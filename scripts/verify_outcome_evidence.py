@@ -115,7 +115,7 @@ def verify_manifest() -> dict[str, int]:
                         f"but outcome summary has {actions}"
                     )
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 75:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 76:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -200,6 +200,25 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("eval summary script must verify generated metrics")
                 if "test_eval_summary_publishes_resume_safe_agent_metrics" not in eval_tests:
                     raise AssertionError("eval summary must have a dedicated test")
+            elif metric_name == "tool_planning_eval":
+                eval_tests = (ROOT / "tests" / "test_eval_summary.py").read_text()
+                eval_script = (ROOT / "scripts" / "build_eval_summary.py").read_text()
+                planning = eval_summary.get("tool_planning_coverage", {})
+                if planning.get("available_tool_count") != 7:
+                    raise AssertionError("tool-planning eval must verify the 7-tool allowlist")
+                if planning.get("required_tools_present") is not True:
+                    raise AssertionError("tool-planning eval must verify required tools are present")
+                if planning.get("scenario_strategy_recommendation_recall", 0) < 0.88:
+                    raise AssertionError("tool-planning eval must meet the strategy recommendation threshold")
+                for tool in ("select_quality_strategy", "retrieve_dataset_memory", "retrieve_business_rules"):
+                    if tool not in planning.get("tool_names", []):
+                        raise AssertionError(f"tool-planning eval missing agent tool: {tool}")
+                if "build_tool_planning_coverage" not in eval_script:
+                    raise AssertionError("eval summary script must build tool-planning coverage")
+                if "test_eval_summary_verifies_tool_planning_coverage_for_agent_claims" not in eval_tests:
+                    raise AssertionError("tool-planning eval must have a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("tool_planning_eval claim must use metric_value=1")
             elif metric_name == "hypothesis_feedback_label_count":
                 feedback_tests = (ROOT / "tests" / "test_hypothesis_feedback.py").read_text()
                 feedback_script = (ROOT / "scripts" / "build_hypothesis_feedback.py").read_text()
@@ -344,7 +363,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 75:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 76:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -449,7 +468,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 75", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 76", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

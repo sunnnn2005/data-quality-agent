@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 10 |
-| Passing CI tests | 75 |
+| Passing CI tests | 76 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -55,7 +55,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.2.0 release
-- 75 passing CI tests
+- 76 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - Dataset-level memory retrieval over recent sanitized traces

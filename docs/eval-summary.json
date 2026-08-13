@@ -1,6 +1,6 @@
 {
   "deterministic_baseline": {
-    "average_latency_ms": 1.33,
+    "average_latency_ms": 3.33,
     "evidence_support_rate": 1.0,
     "finding_recall": 1.0,
     "status_accuracy": 1.0
@@ -12,7 +12,7 @@
     "external human-labeled evaluation set"
   ],
   "project": "Data Quality Agent",
-  "resume_safe_summary": "Built a 3-scenario eval harness measuring status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, report attachment, and latency.",
+  "resume_safe_summary": "Built a 3-scenario eval harness measuring status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, report attachment, latency, and 7-tool planning coverage.",
   "scenario_count": 3,
   "tool_agent_disabled_fallback": {
     "average_latency_ms": 0,
@@ -20,5 +20,91 @@
     "final_report_attachment_rate": 0.0,
     "required_report_tool_rate": 0.0,
     "status_accuracy": 1.0
+  },
+  "tool_planning_coverage": {
+    "available_tool_count": 7,
+    "required_tools": [
+      "get_dataset_contract",
+      "profile_dataset",
+      "select_quality_strategy",
+      "retrieve_dataset_memory",
+      "run_quality_checks",
+      "retrieve_business_rules",
+      "build_quality_report"
+    ],
+    "required_tools_present": true,
+    "scenario_strategy_recommendation_recall": 0.889,
+    "scenario_strategy_rows": [
+      {
+        "dataset_id": "orders_daily",
+        "expected_findings": [
+          "duplicate_primary_key",
+          "missing_values",
+          "numeric_outliers"
+        ],
+        "matched_expected_findings": [
+          "duplicate_primary_key",
+          "missing_values"
+        ],
+        "recommendation_recall": 0.667,
+        "recommended_checks": [
+          "duplicate_primary_key",
+          "email_completeness",
+          "missing_values",
+          "schema_drift",
+          "schema_required_columns"
+        ],
+        "scenario_id": "orders_daily_core_failures"
+      },
+      {
+        "dataset_id": "payments_events",
+        "expected_findings": [
+          "freshness_sla",
+          "negative_amount"
+        ],
+        "matched_expected_findings": [
+          "freshness_sla",
+          "negative_amount"
+        ],
+        "recommendation_recall": 1.0,
+        "recommended_checks": [
+          "freshness_sla",
+          "missing_values",
+          "negative_amount",
+          "numeric_outliers",
+          "schema_required_columns"
+        ],
+        "scenario_id": "payments_events_freshness_negative_amount"
+      },
+      {
+        "dataset_id": "customer_profiles",
+        "expected_findings": [
+          "missing_values",
+          "schema_drift"
+        ],
+        "matched_expected_findings": [
+          "missing_values",
+          "schema_drift"
+        ],
+        "recommendation_recall": 1.0,
+        "recommended_checks": [
+          "duplicate_primary_key",
+          "email_completeness",
+          "missing_values",
+          "schema_drift",
+          "schema_required_columns"
+        ],
+        "scenario_id": "customer_profiles_schema_missingness"
+      }
+    ],
+    "tool_names": [
+      "get_dataset_contract",
+      "profile_dataset",
+      "select_quality_strategy",
+      "retrieve_dataset_memory",
+      "run_quality_checks",
+      "retrieve_business_rules",
+      "build_quality_report"
+    ]
   }
 }

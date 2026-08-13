@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "75 passing CI tests",
+      "resume_signal": "76 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 75,
+      "metric_value": 76,
       "status": "verified"
     },
     {
@@ -218,6 +218,16 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json",
       "metric_name": "eval_scenario_count",
       "metric_value": 3,
+      "status": "verified"
+    },
+    {
+      "id": "tool-planning-eval",
+      "resume_signal": "CI-verified tool-planning evaluation",
+      "claim": "The project publishes an eval artifact that verifies the LLM agent exposes 7 allowed tools and recommends relevant quality checks across 3 dataset scenarios without claiming paid model benchmark results.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json",
+      "metric_name": "tool_planning_eval",
+      "metric_value": 1,
       "status": "verified"
     },
     {
