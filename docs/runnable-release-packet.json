@@ -1,0 +1,95 @@
+{
+  "acceptance_checks": [
+    {
+      "command": "curl http://127.0.0.1:8000/health",
+      "expected": "{\"status\":\"ok\",\"service\":\"data-quality-agent\"}",
+      "label": "Health check"
+    },
+    {
+      "command": "curl -X POST http://127.0.0.1:8000/datasets/orders_daily/quality-report",
+      "expected": "QualityReport JSON with evidence-backed findings and verification metadata",
+      "label": "Deterministic built-in report"
+    },
+    {
+      "command": "curl -X POST http://127.0.0.1:8000/postgres/support-tickets/quality-report",
+      "expected": "Report over 8 seeded support-ticket rows with duplicate, missing, negative, and outlier findings",
+      "label": "Read-only PostgreSQL report"
+    },
+    {
+      "command": "curl -X POST http://127.0.0.1:8000/postgres/support-tickets/agent-report",
+      "expected": "Structured DISABLED fallback when OPENAI_API_KEY is not configured",
+      "label": "LLM agent fallback route"
+    }
+  ],
+  "container_image": {
+    "image": "ghcr.io/sunnnn2005/data-quality-agent:latest",
+    "package_url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent"
+  },
+  "generated_by": "scripts/build_runnable_release_packet.py",
+  "not_claimed": [
+    "No package download count is claimed.",
+    "No external installs are claimed.",
+    "No production deployment is claimed.",
+    "No customer usage is claimed."
+  ],
+  "openapi_coverage": {
+    "path_count": 14,
+    "published_paths": [
+      "/business-data/agent-report",
+      "/business-data/quality-report",
+      "/dashboard",
+      "/datasets",
+      "/datasets/{dataset_id}",
+      "/datasets/{dataset_id}/agent-report",
+      "/datasets/{dataset_id}/incident-report.md",
+      "/datasets/{dataset_id}/memory",
+      "/datasets/{dataset_id}/profile",
+      "/datasets/{dataset_id}/quality-report",
+      "/health",
+      "/postgres/support-tickets/agent-report",
+      "/postgres/support-tickets/quality-report",
+      "/runs/{trace_id}"
+    ],
+    "required_paths": [
+      "/health",
+      "/datasets/{dataset_id}/quality-report",
+      "/datasets/{dataset_id}/agent-report",
+      "/business-data/agent-report",
+      "/postgres/support-tickets/agent-report",
+      "/runs/{trace_id}"
+    ]
+  },
+  "project": "Data Quality Agent",
+  "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
+  "release": {
+    "isDraft": false,
+    "isPrerelease": false,
+    "publishedAt": "2026-08-13T12:05:26Z",
+    "tagName": "v0.3.0",
+    "url": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.3.0"
+  },
+  "repo": "https://github.com/sunnnn2005/data-quality-agent",
+  "resume_safe_summary": "Published a runnable release packet covering a public demo, GHCR container command, Docker Compose PostgreSQL demo, 4 acceptance checks, and a CI-verified OpenAPI surface.",
+  "runnable_surfaces": [
+    {
+      "name": "public_demo",
+      "type": "hosted_static_demo",
+      "url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "verification": "public availability snapshot checks this URL for Data Quality Agent text"
+    },
+    {
+      "command": "docker run --rm -p 8000:8000 ghcr.io/sunnnn2005/data-quality-agent:latest",
+      "name": "ghcr_container",
+      "type": "container_image",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent",
+      "verification": "publish-image.yml builds and publishes the GHCR package from main"
+    },
+    {
+      "command": "docker compose up --build",
+      "name": "docker_compose_business_demo",
+      "type": "local_postgres_plus_api",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docker-compose.yml",
+      "verification": "local reviewer demo verifies a read-only PostgreSQL user and seeded support-ticket table"
+    }
+  ]
+}

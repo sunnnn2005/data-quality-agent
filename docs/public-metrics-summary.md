@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 12 |
-| Passing CI tests | 108 |
+| Passing CI tests | 110 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -50,6 +50,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Local reviewer demo | 1 |
 | Local reviewer seeded rows | 8 |
 | Local reviewer routes | 3 |
+| Runnable release packet | 1 |
+| Runnable release surfaces | 3 |
+| Runnable release acceptance checks | 4 |
+| Runnable release required API paths | 6 |
 | API smoke report | 1 |
 | API smoke checks | 6 |
 | API smoke passed checks | 6 |
@@ -166,7 +170,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 108 passing CI tests
+- 110 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -186,6 +190,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 7 allowed agent tools and 3 rejected unsafe PostgreSQL queries
 - CI-verified agent capability matrix with 13 implemented LLM-agent checklist items, 4 partial maturity areas, and 1 explicit not-claimed area
 - Local Docker Compose reviewer demo with 8 seeded PostgreSQL rows and 3 review paths
+- Runnable release packet with 3 runnable surfaces, 4 acceptance checks, and 6 required API paths
 - CI-verified API smoke report covering 6 passing FastAPI route checks
 - CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls
 - Public demo usage baseline with 5 tracked funnel steps and 6 verified entrypoints

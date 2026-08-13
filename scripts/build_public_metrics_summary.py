@@ -15,6 +15,7 @@ AGENT_OBSERVABILITY_PATH = ROOT / "docs" / "agent-observability.json"
 AGENT_SAFETY_PATH = ROOT / "docs" / "agent-safety-boundaries.json"
 AGENT_CAPABILITY_MATRIX_PATH = ROOT / "docs" / "agent-capability-matrix.json"
 LOCAL_REVIEWER_DEMO_PATH = ROOT / "docs" / "local-reviewer-demo.json"
+RUNNABLE_RELEASE_PACKET_PATH = ROOT / "docs" / "runnable-release-packet.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
@@ -66,6 +67,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     safety = load_json(AGENT_SAFETY_PATH)
     capability_matrix = load_json(AGENT_CAPABILITY_MATRIX_PATH)
     local_demo = load_json(LOCAL_REVIEWER_DEMO_PATH)
+    runnable_release = load_json(RUNNABLE_RELEASE_PACKET_PATH)
     api_smoke = load_json(API_SMOKE_REPORT_PATH)
     performance = load_json(PERFORMANCE_BASELINE_PATH)
     demo_usage = load_json(DEMO_USAGE_BASELINE_PATH)
@@ -148,6 +150,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "local_reviewer_demo": 1,
             "local_reviewer_seeded_rows": local_demo["seeded_business_table"]["row_count"],
             "local_reviewer_routes": len(local_demo["reviewer_routes"]),
+            "runnable_release_packet": 1,
+            "runnable_release_surfaces": len(runnable_release["runnable_surfaces"]),
+            "runnable_release_acceptance_checks": len(runnable_release["acceptance_checks"]),
+            "runnable_release_required_api_paths": len(runnable_release["openapi_coverage"]["required_paths"]),
             "api_smoke_report": 1,
             "api_smoke_checks": api_smoke["check_count"],
             "api_smoke_passed_checks": api_smoke["passed_count"],
@@ -327,6 +333,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"Local Docker Compose reviewer demo with {local_demo['seeded_business_table']['row_count']} seeded "
                 f"PostgreSQL rows and {len(local_demo['reviewer_routes'])} review paths"
             ),
+            (
+                f"Runnable release packet with {len(runnable_release['runnable_surfaces'])} runnable surfaces, "
+                f"{len(runnable_release['acceptance_checks'])} acceptance checks, and "
+                f"{len(runnable_release['openapi_coverage']['required_paths'])} required API paths"
+            ),
             f"CI-verified API smoke report covering {api_smoke['passed_count']} passing FastAPI route checks",
             (
                 f"CI-verified local performance baseline covering {performance['benchmark_count']} route benchmarks "
@@ -487,6 +498,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Local reviewer demo | {outcomes["local_reviewer_demo"]} |
 | Local reviewer seeded rows | {outcomes["local_reviewer_seeded_rows"]} |
 | Local reviewer routes | {outcomes["local_reviewer_routes"]} |
+| Runnable release packet | {outcomes["runnable_release_packet"]} |
+| Runnable release surfaces | {outcomes["runnable_release_surfaces"]} |
+| Runnable release acceptance checks | {outcomes["runnable_release_acceptance_checks"]} |
+| Runnable release required API paths | {outcomes["runnable_release_required_api_paths"]} |
 | API smoke report | {outcomes["api_smoke_report"]} |
 | API smoke checks | {outcomes["api_smoke_checks"]} |
 | API smoke passed checks | {outcomes["api_smoke_passed_checks"]} |
@@ -613,7 +628,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 108,
+        "test_count": 110,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -664,6 +679,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "local_reviewer_demo": 1,
         "local_reviewer_seeded_rows": 8,
         "local_reviewer_routes": 3,
+        "runnable_release_packet": 1,
+        "runnable_release_surfaces": 3,
+        "runnable_release_acceptance_checks": 4,
+        "runnable_release_required_api_paths": 6,
         "api_smoke_report": 1,
         "api_smoke_checks": 6,
         "api_smoke_passed_checks": 6,

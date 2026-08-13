@@ -51,7 +51,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 108},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 110},
         "evidence_type": "json",
     },
     {
@@ -108,6 +108,19 @@ PUBLIC_CHECKS = [
         "expected_json": {"project": "Data Quality Agent", "reviewer_command": "docker compose up --build"},
         "expected_text": "readonly_agent",
         "expected_texts": ["support_tickets", "external reviewer completion"],
+        "evidence_type": "json",
+    },
+    {
+        "id": "runnable-release-packet",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/runnable-release-packet.json",
+        "expected_json": {"project": "Data Quality Agent"},
+        "expected_text": "ghcr_container",
+        "expected_texts": [
+            "docker run",
+            "docker compose up --build",
+            "No external installs are claimed.",
+            "/postgres/support-tickets/agent-report",
+        ],
         "evidence_type": "json",
     },
     {
@@ -308,7 +321,7 @@ PUBLIC_CHECKS = [
             "Submit Feedback",
             "issues/17",
             "External feedback starts at zero",
-            "108 tests",
+            "110 tests",
         ],
         "evidence_type": "html",
     },

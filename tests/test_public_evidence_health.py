@@ -15,6 +15,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "agent-safety-boundaries",
         "agent-capability-matrix",
         "local-reviewer-demo",
+        "runnable-release-packet",
         "api-smoke-report",
         "performance-baseline",
         "demo-usage-baseline",
@@ -63,6 +64,9 @@ def test_public_evidence_health_requires_core_public_signals():
     availability = next(check for check in PUBLIC_CHECKS if check["id"] == "public-availability-snapshot")
     assert availability["expected_json"]["endpoint_count"] == 4
     assert "production uptime SLA" in availability["expected_texts"]
+    runnable = next(check for check in PUBLIC_CHECKS if check["id"] == "runnable-release-packet")
+    assert "docker run" in runnable["expected_texts"]
+    assert "No external installs are claimed." in runnable["expected_texts"]
 
 
 def test_public_evidence_health_verifier_rejects_failed_checks():
