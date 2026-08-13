@@ -217,6 +217,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-reviewer-evidence-gate.json",
       "verified_fields": [
         "accepted_issue_count",
+        "evaluated_issue_count",
         "linked_outreach_queue_count",
         "rejected_issue_count"
       ]

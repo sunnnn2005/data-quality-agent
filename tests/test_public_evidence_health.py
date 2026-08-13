@@ -107,6 +107,8 @@ def test_public_evidence_health_requires_core_public_signals():
     gate = next(check for check in PUBLIC_CHECKS if check["id"] == "external-reviewer-evidence-gate")
     assert gate["url"].endswith("/external-reviewer-evidence-gate.json")
     assert gate["expected_json"]["accepted_issue_count"] == 0
+    assert gate["minimum_json"]["rejected_issue_count"] == 0
+    assert "The default artifact collects tracked public GitHub issues before applying the evidence gate." in gate["expected_texts"]
     assert "Reviewer must grant explicit permission before a run or feedback is counted." in gate["expected_texts"]
 
 

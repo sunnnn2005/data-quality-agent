@@ -233,12 +233,14 @@ PUBLIC_CHECKS = [
     {
         "id": "external-reviewer-evidence-gate",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-reviewer-evidence-gate.json",
-        "expected_json": {"linked_outreach_queue_count": 3, "accepted_issue_count": 0, "rejected_issue_count": 0},
+        "expected_json": {"linked_outreach_queue_count": 3, "accepted_issue_count": 0},
+        "minimum_json": {"evaluated_issue_count": 0, "rejected_issue_count": 0},
         "expected_text": "external reviewer evidence gate",
         "expected_texts": [
             "Self-authored issues do not count as external evidence.",
             "Reviewer must grant explicit permission before a run or feedback is counted.",
             "Issues containing sensitive-data risk terms are rejected until redacted.",
+            "The default artifact collects tracked public GitHub issues before applying the evidence gate.",
             "No accepted external reviewer issue exists yet.",
         ],
         "evidence_type": "json",
@@ -859,7 +861,14 @@ def _verify_check(check: dict[str, Any]) -> dict[str, Any]:
                 result["passed"] = False
                 result["error"] = f"{key} expected {expected_value!r}, got {actual_value!r}"
                 return result
-        result["verified_fields"] = sorted(expected_json)
+        minimum_json = check.get("minimum_json", {})
+        for key, minimum_value in minimum_json.items():
+            actual_value = payload.get(key)
+            if not isinstance(actual_value, int | float) or actual_value < minimum_value:
+                result["passed"] = False
+                result["error"] = f"{key} expected at least {minimum_value!r}, got {actual_value!r}"
+                return result
+        result["verified_fields"] = sorted(set(expected_json) | set(minimum_json))
 
     return result
 
