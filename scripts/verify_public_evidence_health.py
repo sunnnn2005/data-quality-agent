@@ -40,7 +40,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 83},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 84},
         "evidence_type": "json",
     },
     {
@@ -121,6 +121,14 @@ PUBLIC_CHECKS = [
         "expected_json": {"project": "Data Quality Agent", "issue_template_count": 4, "label_count": 5},
         "expected_text": "external contributors",
         "expected_texts": ["public_growth_channels", "good%20first%20issue", "demo_feedback.md"],
+        "evidence_type": "json",
+    },
+    {
+        "id": "impact-review-packet",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/impact-review-packet.json",
+        "expected_json": {"project": "Data Quality Agent", "business_metric_count": 12, "evidence_link_count": 8},
+        "expected_text": "support-operations data-quality case study",
+        "expected_texts": ["production financial impact avoided", "company adoption"],
         "evidence_type": "json",
     },
     {

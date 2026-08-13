@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "83 passing CI tests",
+      "resume_signal": "84 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 83,
+      "metric_value": 84,
       "status": "verified"
     },
     {
@@ -139,6 +139,16 @@
       "evidence_type": "artifact",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/community-growth-baseline.json",
       "metric_name": "community_growth_baseline",
+      "metric_value": 1,
+      "status": "verified"
+    },
+    {
+      "id": "impact-review-packet",
+      "resume_signal": "CI-verified impact review packet",
+      "claim": "The project publishes a generated impact review packet that maps a support-operations data-quality case study to verified business-risk metrics, evidence links, and not-claimed adoption limits.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/impact-review-packet.json",
+      "metric_name": "impact_review_packet",
       "metric_value": 1,
       "status": "verified"
     },
@@ -257,7 +267,7 @@
       "evidence_type": "artifact",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 8,
+      "metric_value": 9,
       "status": "verified"
     },
     {

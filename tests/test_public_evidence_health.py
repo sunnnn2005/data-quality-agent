@@ -17,6 +17,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "api-smoke-report",
         "performance-baseline",
         "demo-usage-baseline",
+        "impact-review-packet",
         "live-project-scorecard",
         "recruiter-pitch",
         "application-evidence-pack",

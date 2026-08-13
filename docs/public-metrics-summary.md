@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 10 |
-| Passing CI tests | 83 |
+| Passing CI tests | 84 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -58,6 +58,9 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Community issue templates | 4 |
 | Community labels | 5 |
 | Community public growth channels | 5 |
+| Impact review packet | 1 |
+| Impact review business metrics | 12 |
+| Impact review evidence links | 8 |
 | Live project scorecard | 1 |
 | Scorecard reviewer paths | 6 |
 | OpenAPI required integration endpoints | 6 |
@@ -65,7 +68,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 8 |
+| Application evidence links | 9 |
 | Pilot outreach messages | 3 |
 | Pilot review paths | 7 |
 | Pilot program segments | 3 |
@@ -83,7 +86,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.2.0 release
-- 83 passing CI tests
+- 84 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -100,10 +103,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Public demo usage baseline with 5 tracked funnel steps and 4 verified entrypoints
 - Business-data intake baseline covering 4 integration endpoints, 6 API tests, and bounded CSV uploads up to 10000 rows / 80 columns
 - Community growth baseline with 4 issue templates, 5 configured labels, and 5 public contribution or feedback channels
+- Impact review packet with 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs
 - 6 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
-- 8 application evidence links in a recruiter-ready evidence pack
+- 9 application evidence links in a recruiter-ready evidence pack
 - 3 pilot outreach messages and 7 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
 - 5 evidence-backed remediation actions

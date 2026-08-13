@@ -1,0 +1,49 @@
+{
+  "business_metric_count": 12,
+  "business_metrics": {
+    "affected_columns": 4,
+    "business_risk_areas": 4,
+    "business_rule_references": 4,
+    "findings": 5,
+    "high_priority_actions": 3,
+    "issue_categories": 4,
+    "owner_handoffs": 4,
+    "quality_score": 24,
+    "recommended_actions": 5,
+    "root_cause_hypotheses": 3,
+    "rows_analyzed": 8,
+    "status": "FAIL"
+  },
+  "business_problem": "Support operations dashboard data can be distorted by duplicate ticket ids, missing routing fields, negative customer-impact amounts, and amount outliers.",
+  "current_public_counts": {
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "forks": 1,
+    "issues_total": 10,
+    "reproducible_feedback_items": 0,
+    "stars": 0
+  },
+  "evidence_link_count": 8,
+  "evidence_links": {
+    "application_evidence_pack": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/application-evidence-pack.md",
+    "business_impact_json": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-impact.json",
+    "github_repo": "https://github.com/sunnnn2005/data-quality-agent",
+    "outcome_summary": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/outcome-summary.md",
+    "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
+    "public_metrics": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-metrics-summary.md",
+    "resume_evidence": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-evidence.md",
+    "verified_support_ticket_result": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/verified-support-ticket-result.json"
+  },
+  "expected_reviewer_question": "Can the project show a real business problem, quantified evidence, and honest adoption limits?",
+  "generated_by": "scripts/build_impact_review_packet.py",
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "production deployment",
+    "production financial impact avoided",
+    "company adoption"
+  ],
+  "project": "Data Quality Agent",
+  "resume_safe_summary": "Published a CI-verified impact review packet for a support-operations data-quality case study with 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs.",
+  "reviewer_takeaway": "The project demonstrates a reviewable internal-data workflow: ingest bounded business data, detect quality risks, rank evidence-backed root causes, map risks to remediation owners, and publish the evidence without claiming external adoption."
+}

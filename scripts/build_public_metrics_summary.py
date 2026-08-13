@@ -19,6 +19,7 @@ PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
 BUSINESS_DATA_INTAKE_BASELINE_PATH = ROOT / "docs" / "business-data-intake-baseline.json"
 COMMUNITY_GROWTH_BASELINE_PATH = ROOT / "docs" / "community-growth-baseline.json"
+IMPACT_REVIEW_PACKET_PATH = ROOT / "docs" / "impact-review-packet.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
 APPLICATION_EVIDENCE_PACK_PATH = ROOT / "docs" / "application-evidence-pack.json"
@@ -48,6 +49,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     demo_usage = load_json(DEMO_USAGE_BASELINE_PATH)
     business_data_intake = load_json(BUSINESS_DATA_INTAKE_BASELINE_PATH)
     community_growth = load_json(COMMUNITY_GROWTH_BASELINE_PATH)
+    impact_review = load_json(IMPACT_REVIEW_PACKET_PATH)
     openapi = load_json(OPENAPI_PATH)
     recruiter_pitch = load_json(RECRUITER_PITCH_PATH)
     application_pack = load_json(APPLICATION_EVIDENCE_PACK_PATH)
@@ -112,6 +114,9 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "community_issue_templates": community_growth["issue_template_count"],
             "community_labels": community_growth["label_count"],
             "community_public_growth_channels": len(community_growth["public_growth_channels"]),
+            "impact_review_packet": 1,
+            "impact_review_business_metrics": impact_review["business_metric_count"],
+            "impact_review_evidence_links": impact_review["evidence_link_count"],
             "live_project_scorecard": 1,
             "scorecard_reviewer_paths": 6,
             "openapi_required_endpoints": 6,
@@ -176,6 +181,12 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"Community growth baseline with {community_growth['issue_template_count']} issue templates, "
                 f"{community_growth['label_count']} configured labels, and "
                 f"{len(community_growth['public_growth_channels'])} public contribution or feedback channels"
+            ),
+            (
+                f"Impact review packet with {impact_review['business_metric_count']} verified business metrics, "
+                f"{impact_review['evidence_link_count']} evidence links, "
+                f"{impact_review['business_metrics']['recommended_actions']} remediation actions, and "
+                f"{impact_review['business_metrics']['owner_handoffs']} owner handoffs"
             ),
             "6 reviewer paths in a CI-verified live project scorecard",
             "CI-verified OpenAPI contract covering 6 integration endpoints",
@@ -262,6 +273,9 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Community issue templates | {outcomes["community_issue_templates"]} |
 | Community labels | {outcomes["community_labels"]} |
 | Community public growth channels | {outcomes["community_public_growth_channels"]} |
+| Impact review packet | {outcomes["impact_review_packet"]} |
+| Impact review business metrics | {outcomes["impact_review_business_metrics"]} |
+| Impact review evidence links | {outcomes["impact_review_evidence_links"]} |
 | Live project scorecard | {outcomes["live_project_scorecard"]} |
 | Scorecard reviewer paths | {outcomes["scorecard_reviewer_paths"]} |
 | OpenAPI required integration endpoints | {outcomes["openapi_required_endpoints"]} |
@@ -298,7 +312,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 83,
+        "test_count": 84,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -343,13 +357,16 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "community_issue_templates": 4,
         "community_labels": 5,
         "community_public_growth_channels": 5,
+        "impact_review_packet": 1,
+        "impact_review_business_metrics": 12,
+        "impact_review_evidence_links": 8,
         "live_project_scorecard": 1,
         "scorecard_reviewer_paths": 6,
         "openapi_required_endpoints": 6,
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 8,
+        "application_evidence_links": 9,
         "pilot_outreach_messages": 3,
         "pilot_review_paths": 7,
         "pilot_program_segments": 3,

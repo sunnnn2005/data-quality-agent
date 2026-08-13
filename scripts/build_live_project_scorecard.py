@@ -46,6 +46,7 @@ def build_live_project_scorecard_payload() -> dict[str, Any]:
         "reviewer_paths": [
             {"label": "Try the public demo", "url": metrics["public_demo"]},
             {"label": "Inspect resume evidence", "url": f"{metrics['repo']}/blob/main/docs/resume-evidence.md"},
+            {"label": "Inspect impact review packet", "url": f"{metrics['repo']}/blob/main/docs/impact-review-packet.md"},
             {"label": "Inspect OpenAPI contract", "url": f"{metrics['repo']}/blob/main/docs/api-contract.md"},
             {"label": "Inspect safety boundaries", "url": f"{metrics['repo']}/blob/main/docs/agent-safety-boundaries.md"},
             {"label": "Run the local reviewer demo", "url": f"{metrics['repo']}/blob/main/docs/local-reviewer-demo.md"},
@@ -60,6 +61,7 @@ def build_live_project_scorecard_payload() -> dict[str, Any]:
             "has_local_reviewer_demo": "local-reviewer-demo" in claim_ids,
             "has_observability": "agent-observability" in claim_ids,
             "has_feedback_baseline": "feedback-metrics" in claim_ids,
+            "has_impact_review_packet": "impact-review-packet" in claim_ids,
         },
         "resume_safe_summary": (
             f"Live project scorecard: public demo, {metrics['release']} release, container image, "
@@ -125,8 +127,8 @@ def verify_live_project_scorecard(payload: dict[str, Any]) -> dict[str, Any]:
     headline = payload["headline_metrics"]
     footprint = payload["live_footprint"]
     expected = {
-        "passing_tests": 83,
-        "verified_resume_claims": 42,
+        "passing_tests": 84,
+        "verified_resume_claims": 43,
         "implemented_agent_capabilities": 16,
         "agent_tools_allowed": 7,
         "unsafe_postgres_queries_rejected": 3,
