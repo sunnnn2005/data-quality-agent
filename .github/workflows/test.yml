@@ -27,3 +27,5 @@ jobs:
           ADOPTION_WATCHERS: "0"
           ADOPTION_ISSUES_TOTAL: "10"
         run: python scripts/update_adoption_metrics.py
+      - name: Verify outcome evidence manifest
+        run: python scripts/verify_outcome_evidence.py

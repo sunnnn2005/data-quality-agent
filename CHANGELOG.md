@@ -2,9 +2,11 @@
 
 ## Unreleased
 
+- Added a public outcome evidence manifest that maps resume claims to URLs for the demo, release, container image, CI tests, verified artifact, report guardrails, and adoption baseline.
+- Added CI verification for the outcome evidence manifest so resume claims cannot quietly drift into unsupported user, feedback, or enterprise adoption claims.
 - Added deterministic report verification guardrails for evidence support, known column references, sensitive evidence values, unsupported LLM evidence, recommended actions, and score bounds.
 - Exposed verification status in API reports, incident Markdown exports, and sanitized run traces.
-- Increased the verified test suite from 42 to 45 tests.
+- Increased the verified test suite from 42 to 46 tests.
 
 ## v0.1.0 - 2026-08-13
 
@@ -27,6 +29,6 @@ Initial public release of Data Quality Agent.
 
 ### Verified
 
-- `45` automated tests passing locally and in GitHub Actions.
+- `46` automated tests passing locally and in GitHub Actions.
 - Support-ticket demo verifies `FAIL` status, quality score `24`, row count `8`, four expected check categories, and four source-cited business-rule references.
 - Default path runs without paid APIs, secrets, or external model calls.

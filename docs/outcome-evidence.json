@@ -1,0 +1,80 @@
+{
+  "project": "Data Quality Agent",
+  "updated_at": "2026-08-13T03:55:00Z",
+  "claims": [
+    {
+      "id": "public-demo",
+      "resume_signal": "Launched public demo",
+      "claim": "Public GitHub Pages demo for a reproducible business data-quality case study.",
+      "evidence_type": "public_url",
+      "url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "status": "verified"
+    },
+    {
+      "id": "public-release",
+      "resume_signal": "Published v0.1.0 release",
+      "claim": "Public v0.1.0 release is available on GitHub.",
+      "evidence_type": "release",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.1.0",
+      "status": "verified"
+    },
+    {
+      "id": "container-image",
+      "resume_signal": "Published runnable container image",
+      "claim": "GHCR container image is published from main and can run the FastAPI service.",
+      "evidence_type": "package",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent",
+      "status": "verified"
+    },
+    {
+      "id": "ci-tests",
+      "resume_signal": "46 passing CI tests",
+      "claim": "Automated test suite passes locally and in GitHub Actions.",
+      "evidence_type": "ci",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
+      "metric_name": "test_count",
+      "metric_value": 46,
+      "status": "verified"
+    },
+    {
+      "id": "support-ticket-artifact",
+      "resume_signal": "CI-verified support-ticket artifact",
+      "claim": "Support-ticket case study detects duplicate IDs, missing routing fields, negative amounts, and outliers.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/verified-support-ticket-result.json",
+      "status": "verified"
+    },
+    {
+      "id": "report-guardrails",
+      "resume_signal": "Deterministic report verification guardrails",
+      "claim": "Reports include deterministic verification for evidence support, field references, sensitive values, unsupported LLM evidence, action coverage, and score bounds.",
+      "evidence_type": "source_and_tests",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_verifier.py",
+      "status": "verified"
+    },
+    {
+      "id": "adoption-baseline",
+      "resume_signal": "Public adoption baseline",
+      "claim": "Public metrics are tracked without inflating stars, forks, watchers, issues, release, container, or test count.",
+      "evidence_type": "metrics",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
+      "metric_name": "stars",
+      "metric_value": 0,
+      "status": "verified"
+    }
+  ],
+  "not_claimed": [
+    {
+      "metric": "users",
+      "reason": "No verified external users yet."
+    },
+    {
+      "metric": "customer_feedback",
+      "reason": "No external feedback issue has been submitted yet."
+    },
+    {
+      "metric": "production_company_usage",
+      "reason": "The project demonstrates a realistic business workflow, not verified enterprise production adoption."
+    }
+  ]
+}
