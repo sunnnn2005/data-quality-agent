@@ -123,10 +123,10 @@ def verify_live_project_scorecard(payload: dict[str, Any]) -> dict[str, Any]:
     headline = payload["headline_metrics"]
     footprint = payload["live_footprint"]
     expected = {
-        "passing_tests": 73,
-        "verified_resume_claims": 32,
-        "implemented_agent_capabilities": 15,
-        "agent_tools_allowed": 6,
+        "passing_tests": 75,
+        "verified_resume_claims": 33,
+        "implemented_agent_capabilities": 16,
+        "agent_tools_allowed": 7,
         "unsafe_postgres_queries_rejected": 3,
     }
     for key, value in expected.items():

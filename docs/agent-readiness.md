@@ -15,6 +15,7 @@ This page tracks how close Data Quality Agent is to a mature LLM agent. It is in
 | Dataset memory retrieval | `/datasets/{dataset_id}/memory` retrieves recent sanitized traces, recurring checks, and recurring root-cause titles for a dataset. |
 | Incident-pattern memory | `docs/incident-pattern-memory.json` verifies recurring incident-pattern retrieval from sanitized support-ticket traces. |
 | Memory-informed planning | `retrieve_dataset_memory` lets the LLM agent inspect sanitized prior traces and recurring checks inside the tool-calling loop before continuing its plan. |
+| Source-cited business-rule retrieval | `retrieve_business_rules` lets the LLM agent retrieve relevant business rules with source citations after quality checks. |
 | Agent observability artifact | `docs/agent-observability.json` summarizes trace ids, report types, fallback status, verification status, dataset memory, incident-pattern memory, and tool-call previews. |
 | Agent safety boundaries | `docs/agent-safety-boundaries.json` verifies tool allowlists, read-only PostgreSQL query limits, sensitive-field redaction, disabled fallback, and report verifier rules. |
 | Evidence-ranked root-cause hypotheses | `QualityReport.root_cause_hypotheses` ranks likely causes by confidence and attaches supporting checks, evidence, and recommended actions. |
@@ -27,7 +28,7 @@ This page tracks how close Data Quality Agent is to a mature LLM agent. It is in
 | Capability | Current state | Next step |
 | --- | --- | --- |
 | Memory | The LLM agent can retrieve sanitized trace memory during planning. | Use accepted or needs-review hypothesis labels to tune future root-cause ranking. |
-| RAG | Business-rule retrieval uses local source-cited Markdown rules. | Add optional embedding-backed retrieval with source citations and permission filtering. |
+| RAG | Source-cited business-rule retrieval is available inside the LLM tool loop for local Markdown rules. | Add optional embedding-backed retrieval with permission filtering for larger policy and incident documents. |
 | Observability | Sanitized trace summaries, tool-call previews, and a generated run observability artifact are available. | Track prompt version, model version, token use, latency breakdown, retries, and estimated cost. |
 | Evaluation | Tests cover fallback, tool use, evidence support, and public artifacts. | Add a larger labeled eval set for tool-choice accuracy, finding recall, false positives, and cost. |
 
@@ -46,5 +47,5 @@ This page tracks how close Data Quality Agent is to a mature LLM agent. It is in
 
 ## Resume-Safe Wording
 
-- Built an LLM tool-calling data-quality agent with dynamic tool selection, memory-informed planning, read-only PostgreSQL analysis, CI-verified OpenAPI contract, dataset memory retrieval, incident-pattern memory, run observability artifacts, safety-boundary evidence, persistent SQLite trace audit logging, evidence-ranked root-cause hypotheses, human-reviewed hypothesis feedback labels, structured report guardrails, and safe model-key fallback.
-- Published an agent-readiness checklist that separates implemented LLM agent capabilities from partial RAG, observability, evaluation, and feedback-informed memory work.
+- Built an LLM tool-calling data-quality agent with dynamic tool selection, memory-informed planning, source-cited business-rule retrieval, read-only PostgreSQL analysis, CI-verified OpenAPI contract, dataset memory retrieval, incident-pattern memory, run observability artifacts, safety-boundary evidence, persistent SQLite trace audit logging, evidence-ranked root-cause hypotheses, human-reviewed hypothesis feedback labels, structured report guardrails, and safe model-key fallback.
+- Published an agent-readiness checklist that separates implemented LLM agent capabilities from partial embedding-backed RAG, observability, evaluation, and feedback-informed memory work.

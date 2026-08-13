@@ -119,6 +119,28 @@ def test_toolbox_retrieves_sanitized_dataset_memory():
     assert "agent_trace" not in str(memory)
 
 
+def test_toolbox_retrieves_source_cited_business_rules():
+    frame = load_dataset("orders_daily").rename(columns={"order_id": "ticket_id", "order_total": "amount"})
+    dataset = DATASETS["orders_daily"].model_copy(
+        update={
+            "id": "support_tickets",
+            "name": "Support Tickets",
+            "owner": "support-ops",
+            "primary_key": "ticket_id",
+            "expected_columns": ["ticket_id", "team", "priority", "status", "amount"],
+            "description": "Support ticket export used by operations dashboards.",
+        }
+    )
+    toolbox = DataQualityToolbox(dataset, frame)
+
+    rules = toolbox.dispatch("retrieve_business_rules", {"limit": 3})
+
+    assert rules["rule_count"] >= 1
+    assert rules["source_cited"] is True
+    assert all(rule["source"].startswith("business-rules/support_tickets.md#") for rule in rules["rules"])
+    assert any("support_tickets:R1" == rule["rule_id"] for rule in rules["rules"])
+
+
 def test_toolbox_selects_different_quality_strategies_by_dataset_shape():
     payments_strategy = DataQualityToolbox(DATASETS["payments_events"], load_dataset("payments_events")).dispatch(
         "select_quality_strategy", {}
@@ -405,3 +427,95 @@ def test_llm_tool_calling_agent_can_use_memory_to_inform_planning():
     ]
     assert report.evaluation["used_memory_tool"] is True
     assert report.tool_calls[0].result_preview["trace_count"] == 2
+
+
+def test_llm_tool_calling_agent_can_retrieve_business_rules_after_checks():
+    class FakeSettings:
+        api_key = "test-key"
+        base_url = "http://example.test/v1"
+        model = "fake-model"
+        timeout_seconds = 1
+        max_retries = 0
+
+    frame = load_dataset("orders_daily").rename(columns={"order_id": "ticket_id", "order_total": "amount"})
+    dataset = DATASETS["orders_daily"].model_copy(
+        update={
+            "id": "support_tickets",
+            "name": "Support Tickets",
+            "owner": "support-ops",
+            "primary_key": "ticket_id",
+            "expected_columns": ["ticket_id", "team", "priority", "status", "amount"],
+            "description": "Support ticket export used by operations dashboards.",
+        }
+    )
+    agent = LLMDataQualityAgent(settings=FakeSettings())
+    calls = [
+        {
+            "choices": [
+                {
+                    "message": {
+                        "role": "assistant",
+                        "tool_calls": [
+                            {
+                                "id": "call_checks",
+                                "type": "function",
+                                "function": {"name": "run_quality_checks", "arguments": "{}"},
+                            },
+                            {
+                                "id": "call_rules",
+                                "type": "function",
+                                "function": {"name": "retrieve_business_rules", "arguments": '{"limit": 3}'},
+                            },
+                        ],
+                    }
+                }
+            ]
+        },
+        {
+            "choices": [
+                {
+                    "message": {
+                        "role": "assistant",
+                        "tool_calls": [
+                            {
+                                "id": "call_report",
+                                "type": "function",
+                                "function": {"name": "build_quality_report", "arguments": "{}"},
+                            }
+                        ],
+                    }
+                }
+            ]
+        },
+        {
+            "choices": [
+                {
+                    "message": {
+                        "role": "assistant",
+                        "content": "Business rules show duplicate ticket IDs can distort SLA reporting.",
+                    }
+                }
+            ]
+        },
+    ]
+
+    def fake_post(body):
+        tool_results_seen = [message for message in body["messages"] if message.get("role") == "tool"]
+        if tool_results_seen:
+            joined_results = " ".join(message["content"] for message in tool_results_seen)
+            assert "support_tickets:R1" in joined_results
+            assert "source_cited" in joined_results
+        return calls.pop(0), 1
+
+    agent.advisor._post_with_retries = fake_post
+
+    report = agent.run(dataset, frame)
+
+    assert report.status == "FAIL"
+    assert [call.tool_name for call in report.tool_calls] == [
+        "run_quality_checks",
+        "retrieve_business_rules",
+        "build_quality_report",
+    ]
+    assert report.evaluation["used_business_rules_tool"] is True
+    assert report.tool_calls[1].result_preview["rule_count"] >= 1

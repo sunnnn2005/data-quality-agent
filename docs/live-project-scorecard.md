@@ -6,12 +6,12 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 
 | Metric | Value |
 | --- | ---: |
-| Passing Tests | 73 |
-| Verified Resume Claims | 32 |
-| Implemented Agent Capabilities | 15 |
+| Passing Tests | 75 |
+| Verified Resume Claims | 33 |
+| Implemented Agent Capabilities | 16 |
 | Support Ticket Issue Categories | 4 |
 | Openapi Required Endpoints | 6 |
-| Agent Tools Allowed | 6 |
+| Agent Tools Allowed | 7 |
 | Unsafe Postgres Queries Rejected | 3 |
 
 ## Live Footprint
@@ -46,7 +46,7 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 
 ## Resume-Safe Summary
 
-Live project scorecard: public demo, v0.2.0 release, container image, 73 passing CI tests, 32 verified resume claims, and 15 implemented LLM agent-readiness capabilities.
+Live project scorecard: public demo, v0.2.0 release, container image, 75 passing CI tests, 33 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
 
 ## Not Claimed
 

@@ -19,9 +19,10 @@
     "select_quality_strategy",
     "retrieve_dataset_memory",
     "run_quality_checks",
+    "retrieve_business_rules",
     "build_quality_report"
   ],
-  "tool_allowlist_count": 6,
+  "tool_allowlist_count": 7,
   "verifier_rule_count": 6,
   "verifier_rules": [
     "finding_evidence_required",

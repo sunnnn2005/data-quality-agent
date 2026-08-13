@@ -115,7 +115,7 @@ def verify_manifest() -> dict[str, int]:
                         f"but outcome summary has {actions}"
                     )
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 73:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 75:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -159,6 +159,24 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("agent API routes must inject the shared trace store")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("memory_informed_planning claim must use metric_value=1")
+            elif metric_name == "source_cited_business_rule_tool":
+                agent_tests = (ROOT / "tests" / "test_agent.py").read_text()
+                agent_source = (ROOT / "app" / "tool_agent.py").read_text()
+                rules_source = (ROOT / "app" / "business_rules.py").read_text()
+                if "retrieve_business_rules" not in agent_source:
+                    raise AssertionError("source-cited business-rule retrieval must expose retrieve_business_rules")
+                if "used_business_rules_tool" not in agent_source:
+                    raise AssertionError("business-rule tool use must be recorded in agent evaluation")
+                if "BusinessRuleRetriever" not in agent_source:
+                    raise AssertionError("business-rule tool must reuse BusinessRuleRetriever")
+                if "test_llm_tool_calling_agent_can_retrieve_business_rules_after_checks" not in agent_tests:
+                    raise AssertionError("business-rule tool must have a dedicated LLM tool-loop test")
+                if "test_toolbox_retrieves_source_cited_business_rules" not in agent_tests:
+                    raise AssertionError("business-rule tool must have a direct toolbox test")
+                if "source=f\"" not in rules_source:
+                    raise AssertionError("business-rule retrieval must produce source citations")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("source_cited_business_rule_tool claim must use metric_value=1")
             elif metric_name == "root_cause_hypothesis_count":
                 hypotheses = support_ticket_artifact.get("root_cause_hypotheses", [])
                 if len(hypotheses) != claim.get("metric_value"):
@@ -326,7 +344,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 73:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 75:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -431,7 +449,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 73", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 75", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

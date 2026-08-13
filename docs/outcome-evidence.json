@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "73 passing CI tests",
+      "resume_signal": "75 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 73,
+      "metric_value": 75,
       "status": "verified"
     },
     {
@@ -121,6 +121,16 @@
       "status": "verified"
     },
     {
+      "id": "source-cited-business-rule-tool",
+      "resume_signal": "Source-cited business-rule retrieval tool",
+      "claim": "The LLM tool-calling agent can retrieve source-cited business rules after quality checks so remediation guidance can reference business constraints instead of only generic data statistics.",
+      "evidence_type": "source_and_tests",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_agent.py",
+      "metric_name": "source_cited_business_rule_tool",
+      "metric_value": 1,
+      "status": "verified"
+    },
+    {
       "id": "agent-observability",
       "resume_signal": "CI-verified agent observability artifact",
       "claim": "The project publishes a generated observability artifact covering trace ids, report types, fallback status, verification status, dataset memory, and tool-call previews without claiming production monitoring.",
@@ -133,11 +143,11 @@
     {
       "id": "agent-safety-boundaries",
       "resume_signal": "CI-verified agent safety boundaries",
-      "claim": "The project verifies 6 allowed agent tools, 3 rejected unsafe PostgreSQL queries, sensitive-field redaction, disabled fallback, and 6 report verifier rules without claiming a formal security audit.",
+      "claim": "The project verifies 7 allowed agent tools, 3 rejected unsafe PostgreSQL queries, sensitive-field redaction, disabled fallback, and 6 report verifier rules without claiming a formal security audit.",
       "evidence_type": "artifact",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-safety-boundaries.json",
       "metric_name": "tool_allowlist_count",
-      "metric_value": 6,
+      "metric_value": 7,
       "status": "verified"
     },
     {
@@ -297,11 +307,11 @@
     {
       "id": "agent-readiness",
       "resume_signal": "Public LLM agent readiness checklist",
-      "claim": "The project documents implemented LLM agent capabilities separately from partial RAG, observability, evaluation, and feedback-informed memory work.",
+      "claim": "The project documents implemented LLM agent capabilities separately from partial embedding-backed RAG, observability, evaluation, and feedback-informed memory work.",
       "evidence_type": "documentation",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-readiness.md",
       "metric_name": "implemented_agent_capabilities",
-      "metric_value": 15,
+      "metric_value": 16,
       "status": "verified"
     }
   ],

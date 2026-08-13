@@ -49,6 +49,11 @@
       "evidence": "app/tool_agent.py exposes retrieve_dataset_memory and tests verify that recurring checks from prior traces are returned to the LLM before follow-up planning."
     },
     {
+      "id": "source-cited-business-rule-tool",
+      "capability": "LLM agent can retrieve source-cited business rules during investigation",
+      "evidence": "app/tool_agent.py exposes retrieve_business_rules and tests verify that support-ticket business rules are returned to the LLM with source citations after quality checks."
+    },
+    {
       "id": "agent-observability",
       "capability": "Agent runs publish trace, fallback, verification, and memory observability",
       "evidence": "docs/agent-observability.json is generated in CI and summarizes trace ids, report types, fallback statuses, verification status, dataset memory, and tool-call previews."
@@ -89,8 +94,8 @@
     {
       "id": "rag",
       "capability": "Business-rule retrieval exists, but there is no embedding/vector-search RAG layer",
-      "current_state": "Support-ticket rules are source-cited from local Markdown rules.",
-      "next_step": "Add optional embedding-backed retrieval with source citations and permission filtering."
+      "current_state": "Source-cited business-rule retrieval is available inside the LLM tool loop for local Markdown rules.",
+      "next_step": "Add optional embedding-backed retrieval with permission filtering for larger policy and incident documents."
     },
     {
       "id": "observability",

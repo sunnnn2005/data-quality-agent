@@ -6,6 +6,7 @@ from typing import Any, Callable
 import pandas as pd
 
 from app.agent import DataQualityAgent
+from app.business_rules import BusinessRuleRetriever
 from app.checks import QualityCheckRunner
 from app.llm import LLMDataQualityAdvisor, LLMSettings
 from app.models import AgentRunReport, AgentToolCall, DatasetSummary, QualityReport
@@ -24,13 +25,19 @@ class DataQualityToolbox:
         profiler: DatasetProfiler | None = None,
         check_runner: QualityCheckRunner | None = None,
         trace_store: RunTraceStore | None = None,
+        rule_retriever: BusinessRuleRetriever | None = None,
     ) -> None:
         self.dataset = dataset
         self.frame = frame
         self.profiler = profiler or DatasetProfiler()
         self.check_runner = check_runner or QualityCheckRunner()
         self.trace_store = trace_store
-        self.det_agent = DataQualityAgent(profiler=self.profiler, check_runner=self.check_runner)
+        self.rule_retriever = rule_retriever or BusinessRuleRetriever()
+        self.det_agent = DataQualityAgent(
+            profiler=self.profiler,
+            check_runner=self.check_runner,
+            rule_retriever=self.rule_retriever,
+        )
 
     def schemas(self) -> list[dict[str, Any]]:
         return [
@@ -95,6 +102,28 @@ class DataQualityToolbox:
             {
                 "type": "function",
                 "function": {
+                    "name": "retrieve_business_rules",
+                    "description": (
+                        "Retrieve source-cited business rules relevant to the current dataset and quality findings. "
+                        "Use this after run_quality_checks when remediation needs business context."
+                    ),
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "limit": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 8,
+                                "description": "Maximum number of source-cited business rules to return.",
+                            }
+                        },
+                        "additionalProperties": False,
+                    },
+                },
+            },
+            {
+                "type": "function",
+                "function": {
                     "name": "build_quality_report",
                     "description": "Build the final deterministic quality report used as the source of truth.",
                     "parameters": {"type": "object", "properties": {}, "additionalProperties": False},
@@ -109,6 +138,7 @@ class DataQualityToolbox:
             "select_quality_strategy": self._select_quality_strategy,
             "retrieve_dataset_memory": self._retrieve_dataset_memory,
             "run_quality_checks": self._run_quality_checks,
+            "retrieve_business_rules": self._retrieve_business_rules,
             "build_quality_report": self._build_quality_report,
         }
         if tool_name not in tools:
@@ -206,6 +236,20 @@ class DataQualityToolbox:
         findings = self.check_runner.run(self.dataset, self.frame)
         return {"findings": [finding.model_dump(mode="json") for finding in findings]}
 
+    def _retrieve_business_rules(self, arguments: dict[str, Any]) -> dict[str, Any]:
+        raw_limit = arguments.get("limit", 4)
+        limit = raw_limit if isinstance(raw_limit, int) else 4
+        limit = max(1, min(limit, 8))
+        findings = self.check_runner.run(self.dataset, self.frame)
+        rules = self.rule_retriever.retrieve(self.dataset, findings, limit=limit)
+        return {
+            "dataset_id": self.dataset.id,
+            "finding_count": len(findings),
+            "rule_count": len(rules),
+            "rules": [rule.model_dump(mode="json") for rule in rules],
+            "source_cited": all(bool(rule.source) for rule in rules),
+        }
+
     def _build_quality_report(self, _: dict[str, Any]) -> dict[str, Any]:
         report = self.det_agent.analyze(self.dataset, self.frame)
         return report.model_dump(mode="json")
@@ -247,6 +291,7 @@ class LLMDataQualityAgent:
                     "Use tool evidence only. Do not invent columns, owners, failures, or private data. "
                     "Use select_quality_strategy to adapt the investigation plan to the dataset shape. "
                     "Use retrieve_dataset_memory when previous sanitized runs can inform root-cause ranking. "
+                    "Use retrieve_business_rules after checks when source-cited business context can improve remediation. "
                     "After each tool result, decide whether evidence is sufficient or another tool is needed. "
                     "Before finalizing, call build_quality_report. Final answer must be concise."
                 ),
@@ -363,5 +408,6 @@ class LLMDataQualityAgent:
             "used_profile_tool": "profile_dataset" in names,
             "used_check_tool": "run_quality_checks" in names,
             "used_memory_tool": "retrieve_dataset_memory" in names,
+            "used_business_rules_tool": "retrieve_business_rules" in names,
             "final_report_attached": quality_report is not None,
         }
