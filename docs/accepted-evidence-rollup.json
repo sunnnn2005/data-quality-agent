@@ -86,7 +86,7 @@
     "external_feedback_items": 0,
     "reproducible_feedback_items": 0
   },
-  "evaluated_issue_count": 0,
+  "evaluated_issue_count": 4,
   "generated_by": "scripts/build_accepted_evidence_rollup.py",
   "linked_outreach_queue_count": 3,
   "not_claimed": [
@@ -96,7 +96,67 @@
   ],
   "project": "Data Quality Agent",
   "purpose": "Summarize accepted public reviewer evidence into resume-safe outcome metrics while preserving blocked claims until the external reviewer evidence gate accepts proof.",
-  "rejected_issue_count": 0,
-  "rejected_issue_summaries": [],
+  "rejected_issue_count": 4,
+  "rejected_issue_summaries": [
+    {
+      "failure_reasons": [
+        "self-authored issue",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 16,
+      "title": "Pilot feedback tracker: collect external reviewer evidence",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/16"
+    },
+    {
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 17,
+      "title": "Review request: collect first public external feedback",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/17"
+    },
+    {
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 18,
+      "title": "External run evidence: reviewer run collection point",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/18"
+    },
+    {
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 19,
+      "title": "Public reviewer call: collect external review and pilot evidence",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/19"
+    }
+  ],
   "resume_safe_summary": "Published a CI-verified accepted evidence rollup that summarizes 0 accepted reviewer issues, 0 confirmed users, 0 feedback items, 0 reproducible runs, and 0 business-case feedback items, and 0 AI Engineer review items before stronger resume outcome claims are allowed."
 }

@@ -31,7 +31,7 @@ This generated board keeps real outcome claims separate from readiness signals.
 | Github Unique Visitors 14 Day | 3 |
 | Github Clones 14 Day | 79 |
 | Github Unique Cloners 14 Day | 50 |
-| Issue Count | 13 |
+| Issue Count | 14 |
 | Feature Feedback Items | 8 |
 
 ## Outreach Readiness

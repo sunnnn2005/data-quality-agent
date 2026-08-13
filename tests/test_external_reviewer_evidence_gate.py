@@ -153,7 +153,8 @@ def test_external_reviewer_evidence_gate_starts_from_zero_without_fake_claims():
     markdown = render_markdown(payload)
 
     assert verification["external_reviewer_evidence_gate_verified"] is True
-    assert payload["evaluated_issue_count"] == 0
+    assert payload["issue_collection"]["source"] in {"github_issues", "provided_issues"}
+    assert payload["issue_collection"]["collected_issue_count"] == payload["evaluated_issue_count"]
     assert payload["accepted_issue_count"] == 0
     assert payload["accepted_counts"]["external_feedback_items"] == 0
     assert payload["accepted_counts"]["confirmed_external_users"] == 0

@@ -1877,8 +1877,10 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("external reviewer evidence gate must link 3 outreach queue entries")
                 if external_reviewer_gate.get("accepted_issue_count") != 0:
                     raise AssertionError("external reviewer evidence gate must preserve zero accepted issue baseline")
-                if len(external_reviewer_gate.get("gate_rules", [])) != 6:
-                    raise AssertionError("external reviewer evidence gate must document 6 validation rules")
+                if len(external_reviewer_gate.get("gate_rules", [])) != 7:
+                    raise AssertionError("external reviewer evidence gate must document 7 validation rules")
+                if external_reviewer_gate.get("issue_collection", {}).get("source") != "github_issues":
+                    raise AssertionError("external reviewer evidence gate must collect public GitHub issues by default")
                 for key in (
                     "external_feedback_items",
                     "confirmed_external_users",
@@ -1892,6 +1894,7 @@ def verify_manifest() -> dict[str, int]:
                     "Self-authored issues do not count as external evidence.",
                     "Reviewer must grant explicit permission before a run or feedback is counted.",
                     "Issues containing sensitive-data risk terms are rejected until redacted.",
+                    "The default artifact collects tracked public GitHub issues before applying the evidence gate.",
                 ):
                     if required not in external_reviewer_gate.get("gate_rules", []):
                         raise AssertionError(f"external reviewer evidence gate missing rule: {required}")

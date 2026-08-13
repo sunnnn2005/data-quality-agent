@@ -48,6 +48,8 @@ jobs:
           python scripts/build_resume_traction_proof.py
           python scripts/build_reviewer_action_queue.py
           python scripts/build_reviewer_outreach_execution_pack.py
+          python scripts/build_external_reviewer_evidence_gate.py
+          python scripts/build_accepted_evidence_rollup.py
           python scripts/build_resume_outcome_metrics.py
           python scripts/build_reviewer_submission_hub.py
           python scripts/build_public_reviewer_call.py

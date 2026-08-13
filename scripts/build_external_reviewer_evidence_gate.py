@@ -1,5 +1,6 @@
 import json
 import re
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -14,6 +15,8 @@ SENSITIVE_TERMS = ("ssn", "api_key", "secret", "token", "password", "customer em
 EXTERNAL_RUN_LABELS = {"feedback", "pilot", "reproducible"}
 BUSINESS_CASE_LABELS = {"business-case"}
 AI_ENGINEER_REVIEW_LABELS = {"ai-engineer-review"}
+REPO = "sunnnn2005/data-quality-agent"
+TRACKED_LABELS = sorted(EXTERNAL_RUN_LABELS | BUSINESS_CASE_LABELS | AI_ENGINEER_REVIEW_LABELS)
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -174,10 +177,66 @@ def count_accepted(evaluations: list[dict[str, Any]]) -> dict[str, int]:
     return counts
 
 
+def collect_public_reviewer_issues() -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    issues_by_number: dict[int, dict[str, Any]] = {}
+    errors: list[str] = []
+    for label in TRACKED_LABELS:
+        try:
+            completed = subprocess.run(
+                [
+                    "gh",
+                    "issue",
+                    "list",
+                    "--repo",
+                    REPO,
+                    "--label",
+                    label,
+                    "--state",
+                    "all",
+                    "--limit",
+                    "1000",
+                    "--json",
+                    "number,title,url,author,labels,body",
+                ],
+                check=True,
+                capture_output=True,
+                text=True,
+                cwd=ROOT,
+            )
+        except (FileNotFoundError, subprocess.CalledProcessError) as exc:
+            errors.append(f"{label}: {exc}")
+            continue
+        for issue in json.loads(completed.stdout):
+            number = issue.get("number")
+            if isinstance(number, int):
+                issues_by_number[number] = issue
+
+    issues = [issues_by_number[number] for number in sorted(issues_by_number)]
+    return issues, {
+        "source": "github_issues",
+        "repo": REPO,
+        "tracked_labels": TRACKED_LABELS,
+        "collected_issue_count": len(issues),
+        "error_count": len(errors),
+        "errors": errors,
+    }
+
+
 def build_external_reviewer_evidence_gate(issues: list[dict[str, Any]] | None = None) -> dict[str, Any]:
     feedback = load_json(FEEDBACK_METRICS_PATH)
     outreach = load_json(OUTREACH_TRACKER_PATH)
-    evaluations = evaluate_issues([] if issues is None else issues)
+    if issues is None:
+        issues, collection = collect_public_reviewer_issues()
+    else:
+        collection = {
+            "source": "provided_issues",
+            "repo": REPO,
+            "tracked_labels": TRACKED_LABELS,
+            "collected_issue_count": len(issues),
+            "error_count": 0,
+            "errors": [],
+        }
+    evaluations = evaluate_issues(issues)
     accepted_counts = count_accepted(evaluations)
     return {
         "project": "Data Quality Agent",
@@ -187,6 +246,7 @@ def build_external_reviewer_evidence_gate(issues: list[dict[str, Any]] | None = 
             "business-case, or AI Engineer review metrics."
         ),
         "evaluated_issue_count": len(evaluations),
+        "issue_collection": collection,
         "accepted_issue_count": sum(1 for item in evaluations if item["accepted"]),
         "rejected_issue_count": sum(1 for item in evaluations if not item["accepted"]),
         "evaluations": evaluations,
@@ -206,6 +266,7 @@ def build_external_reviewer_evidence_gate(issues: list[dict[str, Any]] | None = 
             "Commands or URLs used, observed result, and main feedback must be non-placeholder text.",
             "AI Engineer review issues require explicit permission plus inspected paths and concrete signal feedback.",
             "Issues containing sensitive-data risk terms are rejected until redacted.",
+            "The default artifact collects tracked public GitHub issues before applying the evidence gate.",
         ],
         "resume_safe_summary": (
             "Published a CI-verified external reviewer evidence gate that validates issue body fields, explicit "
@@ -250,6 +311,8 @@ This generated gate validates public reviewer issues before they can become resu
 | Evaluated issues | {payload["evaluated_issue_count"]} |
 | Accepted issues | {payload["accepted_issue_count"]} |
 | Rejected issues | {payload["rejected_issue_count"]} |
+| Collected public issues | {payload["issue_collection"]["collected_issue_count"]} |
+| Collection errors | {payload["issue_collection"]["error_count"]} |
 | Linked outreach queue | {payload["linked_outreach_queue_count"]} |
 
 ## Accepted Counts
@@ -290,16 +353,19 @@ def verify_external_reviewer_evidence_gate(payload: dict[str, Any]) -> dict[str,
         raise AssertionError("external reviewer evidence gate must link the 3 queued reviewer segments")
     if payload["accepted_counts"] != expected_zero:
         raise AssertionError("external reviewer evidence gate must not count evidence before accepted public issues")
-    if len(payload["gate_rules"]) != 6:
-        raise AssertionError("external reviewer evidence gate must document six counting rules")
+    if len(payload["gate_rules"]) != 7:
+        raise AssertionError("external reviewer evidence gate must document seven counting rules")
     for required in (
         "Self-authored issues do not count as external evidence.",
         "Reviewer must grant explicit permission before a run or feedback is counted.",
         "AI Engineer review issues require explicit permission plus inspected paths and concrete signal feedback.",
         "Issues containing sensitive-data risk terms are rejected until redacted.",
+        "The default artifact collects tracked public GitHub issues before applying the evidence gate.",
     ):
         if required not in payload["gate_rules"]:
             raise AssertionError(f"external reviewer evidence gate missing rule: {required}")
+    if payload["issue_collection"]["source"] not in {"github_issues", "provided_issues"}:
+        raise AssertionError("external reviewer evidence gate must document issue collection source")
     for required in (
         "No accepted external reviewer issue exists yet.",
         "No private business data is accepted as evidence.",

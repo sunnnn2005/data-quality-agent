@@ -211,6 +211,9 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "external_reviewer_outreach_source_messages": external_reviewer_outreach["source_message_count"],
             "external_reviewer_evidence_gate": 1,
             "external_reviewer_gate_rules": len(external_reviewer_gate["gate_rules"]),
+            "external_reviewer_gate_collected_issues": external_reviewer_gate["issue_collection"][
+                "collected_issue_count"
+            ],
             "external_reviewer_gate_accepted_issues": external_reviewer_gate["accepted_issue_count"],
             "external_reviewer_gate_linked_queue": external_reviewer_gate["linked_outreach_queue_count"],
             "accepted_evidence_rollup": 1,
@@ -479,6 +482,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
             ),
             (
                 f"External reviewer evidence gate with {len(external_reviewer_gate['gate_rules'])} validation rules, "
+                f"{external_reviewer_gate['issue_collection']['collected_issue_count']} collected public GitHub issues, "
                 f"{external_reviewer_gate['linked_outreach_queue_count']} linked outreach queue entries, "
                 f"{external_reviewer_gate['accepted_issue_count']} accepted public reviewer issues, and sensitive-data safeguards"
             ),
@@ -733,6 +737,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | External reviewer outreach source messages | {outcomes["external_reviewer_outreach_source_messages"]} |
 | External reviewer evidence gate | {outcomes["external_reviewer_evidence_gate"]} |
 | External reviewer evidence gate rules | {outcomes["external_reviewer_gate_rules"]} |
+| External reviewer evidence gate collected public issues | {outcomes["external_reviewer_gate_collected_issues"]} |
 | External reviewer evidence gate accepted issues | {outcomes["external_reviewer_gate_accepted_issues"]} |
 | External reviewer evidence gate linked queue entries | {outcomes["external_reviewer_gate_linked_queue"]} |
 | Accepted evidence rollup | {outcomes["accepted_evidence_rollup"]} |
@@ -987,7 +992,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "external_reviewer_outreach_not_contacted": 3,
         "external_reviewer_outreach_source_messages": 3,
         "external_reviewer_evidence_gate": 1,
-        "external_reviewer_gate_rules": 6,
+        "external_reviewer_gate_rules": 7,
         "external_reviewer_gate_accepted_issues": 0,
         "external_reviewer_gate_linked_queue": 3,
         "accepted_evidence_rollup": 1,
@@ -1157,6 +1162,8 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     for key, expected in expected_outcomes.items():
         if outcomes.get(key) != expected:
             raise AssertionError(f"{key} expected {expected!r}, got {outcomes.get(key)!r}")
+    if outcomes.get("external_reviewer_gate_collected_issues", -1) < 0:
+        raise AssertionError("external reviewer gate collected issue count must be non-negative")
     for required in ("external users", "customer feedback", "enterprise production usage"):
         if required not in payload["not_claimed"]:
             raise AssertionError(f"public metrics summary must not claim {required}")

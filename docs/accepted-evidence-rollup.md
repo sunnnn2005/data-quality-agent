@@ -6,9 +6,9 @@ This generated rollup turns accepted public reviewer issues into resume-safe out
 
 | Metric | Value |
 | --- | ---: |
-| Evaluated issues | 0 |
+| Evaluated issues | 4 |
 | Accepted issues | 0 |
-| Rejected issues | 0 |
+| Rejected issues | 4 |
 | Linked outreach queue | 3 |
 | Claimable metrics tracked | 5 |
 | Blocked outcome claims | 5 |
@@ -41,7 +41,10 @@ This generated rollup turns accepted public reviewer issues into resume-safe out
 
 | Issue | Title | Failure Reasons |
 | --- | --- | --- |
-| - | - | - |
+| #16 | [Pilot feedback tracker: collect external reviewer evidence](https://github.com/sunnnn2005/data-quality-agent/issues/16) | self-authored issue, missing no-private-data checkbox, missing public external run permission, missing runnable path tried, missing command or URL evidence, missing observed result evidence, missing main feedback |
+| #17 | [Review request: collect first public external feedback](https://github.com/sunnnn2005/data-quality-agent/issues/17) | self-authored issue, contains sensitive-data risk terms, missing no-private-data checkbox, missing public external run permission, missing runnable path tried, missing command or URL evidence, missing observed result evidence, missing main feedback |
+| #18 | [External run evidence: reviewer run collection point](https://github.com/sunnnn2005/data-quality-agent/issues/18) | self-authored issue, contains sensitive-data risk terms, missing no-private-data checkbox, missing public external run permission, missing runnable path tried, missing command or URL evidence, missing observed result evidence, missing main feedback |
+| #19 | [Public reviewer call: collect external review and pilot evidence](https://github.com/sunnnn2005/data-quality-agent/issues/19) | self-authored issue, contains sensitive-data risk terms, missing no-private-data checkbox, missing public external run permission, missing runnable path tried, missing command or URL evidence, missing observed result evidence, missing main feedback |
 
 ## Resume-Safe Summary
 

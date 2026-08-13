@@ -65,7 +65,8 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["external_reviewer_outreach_not_contacted"] == 3
     assert payload["verified_project_outcomes"]["external_reviewer_outreach_source_messages"] == 3
     assert payload["verified_project_outcomes"]["external_reviewer_evidence_gate"] == 1
-    assert payload["verified_project_outcomes"]["external_reviewer_gate_rules"] == 6
+    assert payload["verified_project_outcomes"]["external_reviewer_gate_rules"] == 7
+    assert payload["verified_project_outcomes"]["external_reviewer_gate_collected_issues"] >= 0
     assert payload["verified_project_outcomes"]["external_reviewer_gate_accepted_issues"] == 0
     assert payload["verified_project_outcomes"]["external_reviewer_gate_linked_queue"] == 3
     assert payload["verified_project_outcomes"]["accepted_evidence_rollup"] == 1
@@ -308,7 +309,11 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert any("External reviewer outreach tracker with 3 queued reviewer segments" in signal for signal in payload["resume_safe_signals"])
-    assert any("External reviewer evidence gate with 6 validation rules" in signal for signal in payload["resume_safe_signals"])
+    assert any(
+        "External reviewer evidence gate with 7 validation rules" in signal
+        and "collected public GitHub issues" in signal
+        for signal in payload["resume_safe_signals"]
+    )
     assert any("Accepted evidence rollup with 5 tracked outcome metrics" in signal for signal in payload["resume_safe_signals"])
     assert "Reviewer funnel board with 4 public evidence paths and 7 remaining evidence items" in payload["resume_safe_signals"]
     assert "3 pilot outreach messages and 10 review paths for collecting real feedback" in payload["resume_safe_signals"]
