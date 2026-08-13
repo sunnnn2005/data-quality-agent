@@ -49,11 +49,12 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "142 passing CI tests",
+            "143 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
             "reviewer-outreach-execution-pack",
+            "reviewer-outreach-status-board",
             "resume-outcome-metrics",
         ],
         "evidence_type": "json",
@@ -61,7 +62,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 142},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 143},
         "evidence_type": "json",
     },
     {
@@ -379,10 +380,29 @@ PUBLIC_CHECKS = [
             "scripts/build_reviewer_submission_hub.py",
             "scripts/build_public_reviewer_call.py",
             "scripts/build_reviewer_share_kit.py",
+            "scripts/build_reviewer_outreach_status_board.py",
             "scripts/build_public_metrics_summary.py",
             "git-auto-commit-action",
         ],
         "evidence_type": "workflow",
+    },
+    {
+        "id": "reviewer-outreach-status-board",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-outreach-status-board.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "outreach_slot_count": 8,
+            "status_stage_count": 5,
+            "accepted_evidence_count": 0,
+        },
+        "expected_text": "tracking_ready_not_claimable",
+        "expected_texts": [
+            "not_sent",
+            "replied_private",
+            "non-owner public GitHub issue",
+            "evidence gate",
+        ],
+        "evidence_type": "json",
     },
     {
         "id": "public-availability-snapshot",

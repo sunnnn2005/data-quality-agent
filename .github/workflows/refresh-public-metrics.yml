@@ -52,13 +52,14 @@ jobs:
           python scripts/build_reviewer_submission_hub.py
           python scripts/build_public_reviewer_call.py
           python scripts/build_reviewer_share_kit.py
+          python scripts/build_reviewer_outreach_status_board.py
           python scripts/build_public_metrics_summary.py
           python scripts/build_live_project_scorecard.py
           python scripts/build_application_evidence_pack.py
       - name: Verify resume evidence
         run: |
           python scripts/verify_outcome_evidence.py
-          python -m pytest tests/test_star_growth_kit.py tests/test_public_metrics_summary.py tests/test_business_impact_ledger.py tests/test_reviewer_evidence_kit.py tests/test_resume_traction_proof.py tests/test_reviewer_action_queue.py tests/test_reviewer_outreach_execution_pack.py tests/test_resume_outcome_metrics.py tests/test_reviewer_submission_hub.py tests/test_public_reviewer_call.py tests/test_reviewer_share_kit.py
+          python -m pytest tests/test_star_growth_kit.py tests/test_public_metrics_summary.py tests/test_business_impact_ledger.py tests/test_reviewer_evidence_kit.py tests/test_resume_traction_proof.py tests/test_reviewer_action_queue.py tests/test_reviewer_outreach_execution_pack.py tests/test_reviewer_outreach_status_board.py tests/test_resume_outcome_metrics.py tests/test_reviewer_submission_hub.py tests/test_public_reviewer_call.py tests/test_reviewer_share_kit.py
       - name: Commit refreshed metrics
         uses: stefanzweifel/git-auto-commit-action@v5
         with:

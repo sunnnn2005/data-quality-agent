@@ -1,0 +1,188 @@
+{
+  "accepted_evidence_count": 0,
+  "current_outcome_counts": {
+    "ai_engineer_review_items": 0,
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
+  "generated_by": "scripts/build_reviewer_outreach_status_board.py",
+  "manual_update_schema": {
+    "evidence_gate_status": "pending | accepted | rejected",
+    "external_author": "Non-owner reviewer identity or public GitHub handle",
+    "no_private_data": "Required before counting",
+    "permission_to_count": "Required before counting",
+    "public_evidence_url": "Public GitHub issue URL, if submitted",
+    "sent_at": "ISO-8601 timestamp after the message is actually sent",
+    "slot_id": "review_slot_01"
+  },
+  "not_sent_count": 8,
+  "outreach_slot_count": 8,
+  "outreach_slots": [
+    {
+      "accepted_by_gate": false,
+      "channel": "LinkedIn, class Discord, club Slack, or direct message",
+      "counts_toward": "external_feedback_items",
+      "next_action": "Send manually only after choosing a real reviewer.",
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "public_evidence_url": null,
+      "reply_received": false,
+      "resume_counting_rule": "Does not count until a non-owner public GitHub issue passes the evidence gate.",
+      "reviewer_segment": "UC Davis data science peer",
+      "sent_at": null,
+      "slot_id": "review_slot_01",
+      "source_outreach_id": "outreach_01_review_uc_davis_ds_peer_demo",
+      "status": "not_sent"
+    },
+    {
+      "accepted_by_gate": false,
+      "channel": "LinkedIn, class Discord, club Slack, or direct message",
+      "counts_toward": "external_feedback_items",
+      "next_action": "Send manually only after choosing a real reviewer.",
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "public_evidence_url": null,
+      "reply_received": false,
+      "resume_counting_rule": "Does not count until a non-owner public GitHub issue passes the evidence gate.",
+      "reviewer_segment": "student software engineer peer",
+      "sent_at": null,
+      "slot_id": "review_slot_02",
+      "source_outreach_id": "outreach_02_review_student_swe_peer_demo",
+      "status": "not_sent"
+    },
+    {
+      "accepted_by_gate": false,
+      "channel": "LinkedIn, email, or mentor message",
+      "counts_toward": "reproducible_feedback_items",
+      "next_action": "Send manually only after choosing a real reviewer.",
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "public_evidence_url": null,
+      "reply_received": false,
+      "resume_counting_rule": "Does not count until a non-owner public GitHub issue passes the evidence gate.",
+      "reviewer_segment": "engineer comfortable with Docker or local setup",
+      "sent_at": null,
+      "slot_id": "review_slot_03",
+      "source_outreach_id": "outreach_03_review_local_replay_engineer",
+      "status": "not_sent"
+    },
+    {
+      "accepted_by_gate": false,
+      "channel": "LinkedIn, email, or mentor message",
+      "counts_toward": "confirmed_external_users",
+      "next_action": "Send manually only after choosing a real reviewer.",
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "public_evidence_url": null,
+      "reply_received": false,
+      "resume_counting_rule": "Does not count until a non-owner public GitHub issue passes the evidence gate.",
+      "reviewer_segment": "reviewer who tried demo or local repo",
+      "sent_at": null,
+      "slot_id": "review_slot_04",
+      "source_outreach_id": "outreach_04_review_confirmed_external_use",
+      "status": "not_sent"
+    },
+    {
+      "accepted_by_gate": false,
+      "channel": "LinkedIn, class Discord, club Slack, or direct message",
+      "counts_toward": "business_case_feedback_items",
+      "next_action": "Send manually only after choosing a real reviewer.",
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "public_evidence_url": null,
+      "reply_received": false,
+      "resume_counting_rule": "Does not count until a non-owner public GitHub issue passes the evidence gate.",
+      "reviewer_segment": "data analyst or analytics student",
+      "sent_at": null,
+      "slot_id": "review_slot_05",
+      "source_outreach_id": "outreach_05_review_data_analyst_business_case",
+      "status": "not_sent"
+    },
+    {
+      "accepted_by_gate": false,
+      "channel": "LinkedIn or email to someone who has seen messy CSV, support, sales, or operations data",
+      "counts_toward": "business_case_feedback_items",
+      "next_action": "Send manually only after choosing a real reviewer.",
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "public_evidence_url": null,
+      "reply_received": false,
+      "resume_counting_rule": "Does not count until a non-owner public GitHub issue passes the evidence gate.",
+      "reviewer_segment": "small-business operator or operations teammate",
+      "sent_at": null,
+      "slot_id": "review_slot_06",
+      "source_outreach_id": "outreach_06_review_operator_business_case",
+      "status": "not_sent"
+    },
+    {
+      "accepted_by_gate": false,
+      "channel": "LinkedIn, email, or mentor message",
+      "counts_toward": "ai_engineer_review_items",
+      "next_action": "Send manually only after choosing a real reviewer.",
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "public_evidence_url": null,
+      "reply_received": false,
+      "resume_counting_rule": "Does not count until a non-owner public GitHub issue passes the evidence gate.",
+      "reviewer_segment": "AI engineer, mentor, or ML systems reviewer",
+      "sent_at": null,
+      "slot_id": "review_slot_07",
+      "source_outreach_id": "outreach_07_review_ai_engineer_agent_readiness",
+      "status": "not_sent"
+    },
+    {
+      "accepted_by_gate": false,
+      "channel": "GitHub discussion, maintainer DM, or project community channel",
+      "counts_toward": "external_feedback_items",
+      "next_action": "Send manually only after choosing a real reviewer.",
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "public_evidence_url": null,
+      "reply_received": false,
+      "resume_counting_rule": "Does not count until a non-owner public GitHub issue passes the evidence gate.",
+      "reviewer_segment": "open-source maintainer or GitHub contributor",
+      "sent_at": null,
+      "slot_id": "review_slot_08",
+      "source_outreach_id": "outreach_08_review_open_source_maintainer",
+      "status": "not_sent"
+    }
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Track real reviewer outreach from planned to sent, replied, public issue, and accepted evidence without converting private outreach into resume claims.",
+  "reply_count": 0,
+  "resume_safe_summary": "Published a CI-verified outreach status board tracking 8 reviewer slots across 5 status stages, 5 evidence goals, and zero sent, replied, accepted-evidence, or resume-upgrade claims.",
+  "resume_status": "tracking_ready_not_claimable",
+  "resume_upgrade_count": 0,
+  "resume_upgrade_rules": [
+    "No resume outcome is upgraded until a public issue URL exists.",
+    "Private replies are useful notes but never public evidence.",
+    "Evidence must include permission to count the reviewer submission publicly.",
+    "Self-authored issues and owner-authored planning issues are excluded.",
+    "Accepted evidence updates resume-outcome-metrics only after the evidence gate passes."
+  ],
+  "sent_count": 0,
+  "source_outreach_item_count": 8,
+  "source_share_channel_count": 5,
+  "status_stage_count": 5,
+  "status_stages": [
+    {
+      "meaning": "The outreach slot exists, but no real reviewer has been contacted.",
+      "resume_countable": false,
+      "status": "not_sent"
+    },
+    {
+      "meaning": "A message was actually sent to a real reviewer.",
+      "resume_countable": false,
+      "status": "sent"
+    },
+    {
+      "meaning": "The reviewer replied privately; private replies are notes only and do not count as public evidence.",
+      "resume_countable": false,
+      "status": "replied_private"
+    },
+    {
+      "meaning": "A reviewer submitted a public, redacted GitHub issue with permission to count it.",
+      "resume_countable": false,
+      "status": "public_issue_submitted"
+    },
+    {
+      "meaning": "A non-owner public GitHub issue passed the evidence gate and can update outcome metrics.",
+      "resume_countable": true,
+      "status": "accepted_evidence"
+    }
+  ]
+}

@@ -4,7 +4,7 @@ This generated pack gives recruiters and interviewers a compact review path for 
 
 ## One-Line Project Proof
 
-Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 142 tests, 76 verified resume claims, and honest adoption baselines.
+Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 143 tests, 77 verified resume claims, and honest adoption baselines.
 
 ## Application Links
 
@@ -40,6 +40,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 - Resume Traction Proof: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-traction-proof.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-traction-proof.md)
 - Reviewer Action Queue: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-action-queue.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-action-queue.md)
 - Reviewer Outreach Execution Pack: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-outreach-execution-pack.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-outreach-execution-pack.md)
+- Reviewer Outreach Status Board: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-outreach-status-board.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-outreach-status-board.md)
 - Resume Outcome Metrics: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-outcome-metrics.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-outcome-metrics.md)
 - Reviewer Submission Hub: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-submission-hub.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-submission-hub.md)
 - Public Reviewer Call: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-reviewer-call.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-reviewer-call.md)
@@ -49,8 +50,8 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 
 | Metric | Value |
 | --- | ---: |
-| Passing Tests | 142 |
-| Verified Resume Claims | 76 |
+| Passing Tests | 143 |
+| Verified Resume Claims | 77 |
 | Implemented Agent Capabilities | 16 |
 | Agent Tools Allowed | 7 |
 | Openapi Required Endpoints | 6 |
@@ -88,6 +89,9 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Reviewer Outreach Ready Messages | 8 |
 | Reviewer Outreach Follow Up Rules | 8 |
 | Reviewer Outreach Not Sent | 8 |
+| Reviewer Outreach Status Slots | 8 |
+| Reviewer Outreach Status Stages | 5 |
+| Reviewer Outreach Status Accepted Evidence | 0 |
 | Resume Outcome Metrics Tracked | 6 |
 | Resume Outcome Metrics Claimable | 0 |
 | Resume Outcome Metrics Blocked | 6 |
@@ -112,7 +116,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 ## Resume Bullets
 
 - Built an LLM tool-calling data-quality agent for real business CSV and read-only PostgreSQL data, with 7 allowed tools, dynamic strategy selection, memory-informed planning, source-cited business-rule retrieval, 6 verified API integration endpoints, and safe model-key fallback.
-- Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 142 passing tests, 76 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
+- Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 143 passing tests, 77 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
 - Added enterprise-style guardrails for agent reliability, including read-only PostgreSQL query limits, 3 rejected unsafe SQL queries, sensitive-field redaction, trace observability, incident-pattern memory, evidence-backed root-cause hypotheses, and deterministic report verification.
 
 ## Email Attachment Note

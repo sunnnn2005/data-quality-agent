@@ -27,6 +27,7 @@ REVIEWER_EVIDENCE_KIT_PATH = ROOT / "docs" / "reviewer-evidence-kit.json"
 RESUME_TRACTION_PROOF_PATH = ROOT / "docs" / "resume-traction-proof.json"
 REVIEWER_ACTION_QUEUE_PATH = ROOT / "docs" / "reviewer-action-queue.json"
 REVIEWER_OUTREACH_EXECUTION_PACK_PATH = ROOT / "docs" / "reviewer-outreach-execution-pack.json"
+REVIEWER_OUTREACH_STATUS_BOARD_PATH = ROOT / "docs" / "reviewer-outreach-status-board.json"
 RESUME_OUTCOME_METRICS_PATH = ROOT / "docs" / "resume-outcome-metrics.json"
 REVIEWER_SUBMISSION_HUB_PATH = ROOT / "docs" / "reviewer-submission-hub.json"
 PUBLIC_REVIEWER_CALL_PATH = ROOT / "docs" / "public-reviewer-call.json"
@@ -66,7 +67,7 @@ REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 SCORECARD_REVIEWER_PATH_COUNT = 23
-APPLICATION_EVIDENCE_LINK_COUNT = 36
+APPLICATION_EVIDENCE_LINK_COUNT = 37
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -97,6 +98,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     resume_traction_proof = load_json(RESUME_TRACTION_PROOF_PATH)
     reviewer_action_queue = load_json(REVIEWER_ACTION_QUEUE_PATH)
     reviewer_outreach_execution = load_json(REVIEWER_OUTREACH_EXECUTION_PACK_PATH)
+    reviewer_outreach_status = load_json(REVIEWER_OUTREACH_STATUS_BOARD_PATH)
     resume_outcome_metrics = load_json(RESUME_OUTCOME_METRICS_PATH)
     reviewer_submission_hub = load_json(REVIEWER_SUBMISSION_HUB_PATH)
     public_reviewer_call = load_json(PUBLIC_REVIEWER_CALL_PATH)
@@ -233,6 +235,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "reviewer_outreach_follow_up_rules": reviewer_outreach_execution["follow_up_rule_count"],
             "reviewer_outreach_not_sent": reviewer_outreach_execution["send_status_counts"]["not_sent"],
             "reviewer_outreach_evidence_goals": reviewer_outreach_execution["evidence_goal_count"],
+            "reviewer_outreach_status_board": 1,
+            "reviewer_outreach_status_slots": reviewer_outreach_status["outreach_slot_count"],
+            "reviewer_outreach_status_stages": reviewer_outreach_status["status_stage_count"],
+            "reviewer_outreach_status_not_sent": reviewer_outreach_status["not_sent_count"],
+            "reviewer_outreach_status_accepted_evidence": reviewer_outreach_status["accepted_evidence_count"],
             "resume_outcome_metrics": 1,
             "resume_outcome_metrics_tracked": resume_outcome_metrics["tracked_outcome_count"],
             "resume_outcome_metrics_claimable": resume_outcome_metrics["claimable_outcome_count"],
@@ -505,6 +512,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{reviewer_outreach_execution['send_status_counts']['not_sent']} not-sent baseline entries, and zero sent outreach claimed"
             ),
             (
+                f"Reviewer outreach status board tracking {reviewer_outreach_status['outreach_slot_count']} reviewer slots, "
+                f"{reviewer_outreach_status['status_stage_count']} status stages, and zero sent/replied/accepted outreach claims"
+            ),
+            (
                 f"Resume outcome metrics board tracking {resume_outcome_metrics['tracked_outcome_count']} outcome metrics, "
                 f"{resume_outcome_metrics['claimable_outcome_count']} claimable outcome lines, "
                 f"{resume_outcome_metrics['blocked_outcome_count']} blocked outcome lines, and honest user/feedback/star baselines"
@@ -746,6 +757,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Reviewer outreach follow-up rules | {outcomes["reviewer_outreach_follow_up_rules"]} |
 | Reviewer outreach not-sent entries | {outcomes["reviewer_outreach_not_sent"]} |
 | Reviewer outreach evidence goals | {outcomes["reviewer_outreach_evidence_goals"]} |
+| Reviewer outreach status board | {outcomes["reviewer_outreach_status_board"]} |
+| Reviewer outreach status slots | {outcomes["reviewer_outreach_status_slots"]} |
+| Reviewer outreach status stages | {outcomes["reviewer_outreach_status_stages"]} |
+| Reviewer outreach status not-sent entries | {outcomes["reviewer_outreach_status_not_sent"]} |
+| Reviewer outreach status accepted evidence | {outcomes["reviewer_outreach_status_accepted_evidence"]} |
 | Resume outcome metrics | {outcomes["resume_outcome_metrics"]} |
 | Resume outcome metrics tracked | {outcomes["resume_outcome_metrics_tracked"]} |
 | Resume outcome metrics claimable | {outcomes["resume_outcome_metrics_claimable"]} |
@@ -900,7 +916,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 142,
+        "test_count": 143,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -996,6 +1012,11 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "reviewer_outreach_follow_up_rules": 8,
         "reviewer_outreach_not_sent": 8,
         "reviewer_outreach_evidence_goals": 5,
+        "reviewer_outreach_status_board": 1,
+        "reviewer_outreach_status_slots": 8,
+        "reviewer_outreach_status_stages": 5,
+        "reviewer_outreach_status_not_sent": 8,
+        "reviewer_outreach_status_accepted_evidence": 0,
         "resume_outcome_metrics": 1,
         "resume_outcome_metrics_tracked": 6,
         "resume_outcome_metrics_claimable": 0,
@@ -1053,7 +1074,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 36,
+        "application_evidence_links": 37,
         "ai_engineer_review_intake": 1,
         "ai_engineer_review_paths": 6,
         "ai_engineer_review_questions": 6,

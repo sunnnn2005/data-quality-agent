@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 142
+    assert payload["public_metrics"]["test_count"] == 143
     assert payload["public_metrics"]["github_view_count"] >= 0
     assert payload["public_metrics"]["github_unique_visitors"] <= payload["public_metrics"]["github_view_count"]
     assert payload["public_metrics"]["github_clone_count"] >= 0
@@ -89,6 +89,11 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["reviewer_outreach_ready_messages"] == 8
     assert payload["verified_project_outcomes"]["reviewer_outreach_follow_up_rules"] == 8
     assert payload["verified_project_outcomes"]["reviewer_outreach_not_sent"] == 8
+    assert payload["verified_project_outcomes"]["reviewer_outreach_status_board"] == 1
+    assert payload["verified_project_outcomes"]["reviewer_outreach_status_slots"] == 8
+    assert payload["verified_project_outcomes"]["reviewer_outreach_status_stages"] == 5
+    assert payload["verified_project_outcomes"]["reviewer_outreach_status_not_sent"] == 8
+    assert payload["verified_project_outcomes"]["reviewer_outreach_status_accepted_evidence"] == 0
     assert payload["verified_project_outcomes"]["resume_outcome_metrics"] == 1
     assert payload["verified_project_outcomes"]["resume_outcome_metrics_tracked"] == 6
     assert payload["verified_project_outcomes"]["resume_outcome_metrics_claimable"] == 0
@@ -140,7 +145,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["recruiter_pitch_resume_bullets"] == 3
     assert payload["verified_project_outcomes"]["recruiter_pitch_target_roles"] == 4
     assert payload["verified_project_outcomes"]["application_evidence_pack"] == 1
-    assert payload["verified_project_outcomes"]["application_evidence_links"] == 36
+    assert payload["verified_project_outcomes"]["application_evidence_links"] == 37
     assert payload["verified_project_outcomes"]["reviewer_share_channels"] == 5
     assert payload["verified_project_outcomes"]["reviewer_share_ready_messages"] == 5
     assert payload["verified_project_outcomes"]["reviewer_share_not_sent"] == 5
@@ -294,7 +299,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         "Public reviewer call linked to 3 reviewer segments, 6 submission paths, 8 outreach tasks, and 23 evidence fields without claiming outcomes"
         in payload["resume_safe_signals"]
     )
-    assert "36 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
+    assert "37 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
     assert any("Reviewer share kit with 5 copy-ready messages" in signal for signal in payload["resume_safe_signals"])
     assert any("Business impact ledger with 0 accepted business-impact signals" in signal for signal in payload["resume_safe_signals"])
     assert any("Resume traction proof with 4 claimable launch/quality signals" in signal for signal in payload["resume_safe_signals"])

@@ -31,6 +31,7 @@ REVIEWER_EVIDENCE_KIT_PATH = ROOT / "docs" / "reviewer-evidence-kit.json"
 RESUME_TRACTION_PROOF_PATH = ROOT / "docs" / "resume-traction-proof.json"
 REVIEWER_ACTION_QUEUE_PATH = ROOT / "docs" / "reviewer-action-queue.json"
 REVIEWER_OUTREACH_EXECUTION_PACK_PATH = ROOT / "docs" / "reviewer-outreach-execution-pack.json"
+REVIEWER_OUTREACH_STATUS_BOARD_PATH = ROOT / "docs" / "reviewer-outreach-status-board.json"
 RESUME_OUTCOME_METRICS_PATH = ROOT / "docs" / "resume-outcome-metrics.json"
 REVIEWER_SUBMISSION_HUB_PATH = ROOT / "docs" / "reviewer-submission-hub.json"
 PUBLIC_REVIEWER_CALL_PATH = ROOT / "docs" / "public-reviewer-call.json"
@@ -109,6 +110,7 @@ def verify_manifest() -> dict[str, int]:
     resume_traction_proof = load_payload(RESUME_TRACTION_PROOF_PATH)
     reviewer_action_queue = load_payload(REVIEWER_ACTION_QUEUE_PATH)
     reviewer_outreach_execution = load_payload(REVIEWER_OUTREACH_EXECUTION_PACK_PATH)
+    reviewer_outreach_status = load_payload(REVIEWER_OUTREACH_STATUS_BOARD_PATH)
     resume_outcome_metrics = load_payload(RESUME_OUTCOME_METRICS_PATH)
     reviewer_submission_hub = load_payload(REVIEWER_SUBMISSION_HUB_PATH)
     public_reviewer_call = load_payload(PUBLIC_REVIEWER_CALL_PATH)
@@ -572,7 +574,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 142:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 143:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -719,6 +721,55 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("reviewer outreach execution pack must include a dedicated test")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("reviewer_outreach_execution_pack claim must use metric_value=1")
+            elif metric_name == "reviewer_outreach_status_board":
+                status_script = (ROOT / "scripts" / "build_reviewer_outreach_status_board.py").read_text()
+                status_tests = (ROOT / "tests" / "test_reviewer_outreach_status_board.py").read_text()
+                expected = {
+                    "source_outreach_item_count": 8,
+                    "source_share_channel_count": 5,
+                    "status_stage_count": 5,
+                    "outreach_slot_count": 8,
+                    "not_sent_count": 8,
+                    "sent_count": 0,
+                    "reply_count": 0,
+                    "accepted_evidence_count": 0,
+                    "resume_upgrade_count": 0,
+                }
+                for key, value in expected.items():
+                    if reviewer_outreach_status.get(key) != value:
+                        raise AssertionError(f"reviewer outreach status board {key} expected {value!r}")
+                if reviewer_outreach_status.get("resume_status") != "tracking_ready_not_claimable":
+                    raise AssertionError("reviewer outreach status board must keep resume status not claimable")
+                for value in reviewer_outreach_status.get("current_outcome_counts", {}).values():
+                    if value != 0:
+                        raise AssertionError("reviewer outreach status board must preserve zero outcome counts")
+                for slot in reviewer_outreach_status.get("outreach_slots", []):
+                    if slot.get("status") != "not_sent":
+                        raise AssertionError("reviewer outreach status board slots must start as not_sent")
+                    if slot.get("sent_at") is not None:
+                        raise AssertionError("reviewer outreach status board must not fabricate sent timestamps")
+                    if slot.get("reply_received") is not False:
+                        raise AssertionError("reviewer outreach status board must not fabricate replies")
+                    if slot.get("public_evidence_url") is not None:
+                        raise AssertionError("reviewer outreach status board must not fabricate public evidence")
+                    if slot.get("accepted_by_gate") is not False:
+                        raise AssertionError("reviewer outreach status board must not fabricate accepted evidence")
+                joined = json.dumps(reviewer_outreach_status, sort_keys=True).lower()
+                for required in (
+                    "non-owner public github issue",
+                    "permission",
+                    "self-authored",
+                    "private replies",
+                    "evidence gate",
+                ):
+                    if required not in joined:
+                        raise AssertionError(f"reviewer outreach status board missing boundary: {required}")
+                if "verify_reviewer_outreach_status_board" not in status_script:
+                    raise AssertionError("reviewer outreach status board must include a script verifier")
+                if "test_reviewer_outreach_status_board_tracks_slots_without_claiming_results" not in status_tests:
+                    raise AssertionError("reviewer outreach status board must include a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("reviewer_outreach_status_board claim must use metric_value=1")
             elif metric_name == "resume_outcome_metrics":
                 outcome_metrics_script = (ROOT / "scripts" / "build_resume_outcome_metrics.py").read_text()
                 outcome_metrics_tests = (ROOT / "tests" / "test_resume_outcome_metrics.py").read_text()
@@ -1176,7 +1227,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 142:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 143:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1979,6 +2030,7 @@ def verify_manifest() -> dict[str, int]:
             "scripts/build_reviewer_submission_hub.py",
             "scripts/build_public_reviewer_call.py",
             "scripts/build_reviewer_share_kit.py",
+            "scripts/build_reviewer_outreach_status_board.py",
             "scripts/verify_outcome_evidence.py",
             "git-auto-commit-action",
         ):
@@ -2020,7 +2072,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 142", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 143", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 
