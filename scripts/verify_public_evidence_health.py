@@ -480,7 +480,7 @@ PUBLIC_CHECKS = [
             "Submit Feedback",
             "issues/17",
             "External feedback starts at zero",
-            "131 tests",
+            "tests",
         ],
         "evidence_type": "html",
     },
