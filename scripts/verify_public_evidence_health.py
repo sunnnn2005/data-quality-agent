@@ -40,7 +40,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 66},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 67},
         "evidence_type": "json",
     },
     {
@@ -81,6 +81,14 @@ PUBLIC_CHECKS = [
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-safety-boundaries.json",
         "expected_json": {"tool_allowlist_count": 5, "postgres_rejected_write_query_count": 3},
         "expected_text": "formal security audit",
+        "evidence_type": "json",
+    },
+    {
+        "id": "live-project-scorecard",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/live-project-scorecard.json",
+        "expected_json": {"release": "v0.2.0"},
+        "expected_text": "verified_resume_claims",
+        "expected_texts": ["confirmed_external_users", "GitHub stars beyond the current public count"],
         "evidence_type": "json",
     },
     {

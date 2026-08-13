@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "66 passing CI tests",
+      "resume_signal": "67 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 66,
+      "metric_value": 67,
       "status": "verified"
     },
     {
@@ -128,6 +128,16 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-safety-boundaries.json",
       "metric_name": "tool_allowlist_count",
       "metric_value": 5,
+      "status": "verified"
+    },
+    {
+      "id": "live-project-scorecard",
+      "resume_signal": "CI-verified live project scorecard",
+      "claim": "The project publishes a generated scorecard summarizing the public demo, release, container image, CI tests, verified resume claims, agent capabilities, reviewer paths, and honest zero-adoption baselines.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/live-project-scorecard.json",
+      "metric_name": "live_project_scorecard",
+      "metric_value": 1,
       "status": "verified"
     },
     {

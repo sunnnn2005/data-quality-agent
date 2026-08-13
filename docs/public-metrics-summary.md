@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 10 |
-| Passing CI tests | 66 |
+| Passing CI tests | 67 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -30,6 +30,8 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Allowed agent tools | 5 |
 | Rejected unsafe PostgreSQL queries | 3 |
 | Report verifier rules | 6 |
+| Live project scorecard | 1 |
+| Scorecard reviewer paths | 5 |
 | OpenAPI required integration endpoints | 6 |
 | OpenAPI paths | 14 |
 | Recommended remediation actions | 5 |
@@ -45,7 +47,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.2.0 release
-- 66 passing CI tests
+- 67 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - Dataset-level memory retrieval over recent sanitized traces
@@ -54,6 +56,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 3 recurring incident patterns retrieved from sanitized traces
 - 2 observed run traces with fallback and verification status
 - 5 allowed agent tools and 3 rejected unsafe PostgreSQL queries
+- 5 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 5 evidence-backed remediation actions
 - 14 implemented LLM agent-readiness capabilities

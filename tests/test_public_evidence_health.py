@@ -13,6 +13,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "incident-pattern-memory",
         "agent-observability",
         "agent-safety-boundaries",
+        "live-project-scorecard",
         "feedback-metrics",
         "postgres-agent-route",
         "github-release",

@@ -13,6 +13,7 @@ HYPOTHESIS_FEEDBACK_PATH = ROOT / "docs" / "hypothesis-feedback.json"
 INCIDENT_PATTERN_MEMORY_PATH = ROOT / "docs" / "incident-pattern-memory.json"
 AGENT_OBSERVABILITY_PATH = ROOT / "docs" / "agent-observability.json"
 AGENT_SAFETY_PATH = ROOT / "docs" / "agent-safety-boundaries.json"
+LIVE_SCORECARD_PATH = ROOT / "docs" / "live-project-scorecard.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
@@ -32,6 +33,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     incident_memory = load_json(INCIDENT_PATTERN_MEMORY_PATH)
     observability = load_json(AGENT_OBSERVABILITY_PATH)
     safety = load_json(AGENT_SAFETY_PATH)
+    scorecard = load_json(LIVE_SCORECARD_PATH)
     openapi = load_json(OPENAPI_PATH)
     verified_outcomes = outcome["verified_outcomes"]
     return {
@@ -64,6 +66,8 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "tool_allowlist_count": safety["tool_allowlist_count"],
             "postgres_rejected_write_query_count": safety["postgres_rejected_write_query_count"],
             "verifier_rule_count": safety["verifier_rule_count"],
+            "live_project_scorecard": 1,
+            "scorecard_reviewer_paths": len(scorecard["reviewer_paths"]),
             "openapi_required_endpoints": 6,
             "openapi_paths": len(openapi["paths"]),
             "implemented_agent_capabilities": len(readiness["implemented"]),
@@ -85,6 +89,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
             f"{incident_memory['incident_pattern_count']} recurring incident patterns retrieved from sanitized traces",
             f"{observability['observed_trace_count']} observed run traces with fallback and verification status",
             f"{safety['tool_allowlist_count']} allowed agent tools and {safety['postgres_rejected_write_query_count']} rejected unsafe PostgreSQL queries",
+            f"{len(scorecard['reviewer_paths'])} reviewer paths in a CI-verified live project scorecard",
             "CI-verified OpenAPI contract covering 6 integration endpoints",
             f"{verified_outcomes['recommended_action_count']} evidence-backed remediation actions",
             f"{len(readiness['implemented'])} implemented LLM agent-readiness capabilities",
@@ -137,6 +142,8 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Allowed agent tools | {outcomes["tool_allowlist_count"]} |
 | Rejected unsafe PostgreSQL queries | {outcomes["postgres_rejected_write_query_count"]} |
 | Report verifier rules | {outcomes["verifier_rule_count"]} |
+| Live project scorecard | {outcomes["live_project_scorecard"]} |
+| Scorecard reviewer paths | {outcomes["scorecard_reviewer_paths"]} |
 | OpenAPI required integration endpoints | {outcomes["openapi_required_endpoints"]} |
 | OpenAPI paths | {outcomes["openapi_paths"]} |
 | Recommended remediation actions | {outcomes["recommended_actions"]} |
@@ -163,7 +170,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 66,
+        "test_count": 67,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -181,6 +188,8 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "tool_allowlist_count": 5,
         "postgres_rejected_write_query_count": 3,
         "verifier_rule_count": 6,
+        "live_project_scorecard": 1,
+        "scorecard_reviewer_paths": 5,
         "openapi_required_endpoints": 6,
         "recommended_actions": 5,
         "implemented_agent_capabilities": 14,

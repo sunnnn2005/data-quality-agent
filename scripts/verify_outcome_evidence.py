@@ -18,6 +18,7 @@ HYPOTHESIS_FEEDBACK_PATH = ROOT / "docs" / "hypothesis-feedback.json"
 INCIDENT_PATTERN_MEMORY_PATH = ROOT / "docs" / "incident-pattern-memory.json"
 AGENT_OBSERVABILITY_PATH = ROOT / "docs" / "agent-observability.json"
 AGENT_SAFETY_PATH = ROOT / "docs" / "agent-safety-boundaries.json"
+LIVE_SCORECARD_PATH = ROOT / "docs" / "live-project-scorecard.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
 PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
@@ -51,6 +52,7 @@ def verify_manifest() -> dict[str, int]:
     incident_memory = load_payload(INCIDENT_PATTERN_MEMORY_PATH)
     observability = load_payload(AGENT_OBSERVABILITY_PATH)
     safety = load_payload(AGENT_SAFETY_PATH)
+    scorecard = load_payload(LIVE_SCORECARD_PATH)
     openapi = load_payload(OPENAPI_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
@@ -105,7 +107,7 @@ def verify_manifest() -> dict[str, int]:
                         f"but outcome summary has {actions}"
                     )
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 66:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 67:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -233,6 +235,23 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("agent safety script must verify generated boundaries")
                 if "test_agent_safety_boundaries_capture_tool_permissions_and_guardrails" not in safety_tests:
                     raise AssertionError("agent safety boundaries must have a dedicated test")
+            elif metric_name == "live_project_scorecard":
+                scorecard_tests = (ROOT / "tests" / "test_live_project_scorecard.py").read_text()
+                scorecard_script = (ROOT / "scripts" / "build_live_project_scorecard.py").read_text()
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("live project scorecard claim must use metric_value=1")
+                if scorecard.get("headline_metrics", {}).get("verified_resume_claims") != len(claims):
+                    raise AssertionError("live project scorecard must summarize the current claim count")
+                if scorecard.get("live_footprint", {}).get("stars") != 0:
+                    raise AssertionError("live project scorecard must preserve the zero-star baseline")
+                if scorecard.get("live_footprint", {}).get("confirmed_external_users") != 0:
+                    raise AssertionError("live project scorecard must preserve the zero-user baseline")
+                if not all(scorecard.get("claim_coverage", {}).values()):
+                    raise AssertionError("live project scorecard must cover core public evidence claims")
+                if "verify_live_project_scorecard" not in scorecard_script:
+                    raise AssertionError("live project scorecard script must verify generated metrics")
+                if "test_live_project_scorecard_summarizes_public_resume_evidence_without_inflation" not in scorecard_tests:
+                    raise AssertionError("live project scorecard must have a dedicated test")
             elif metric_name == "openapi_required_endpoint_count":
                 openapi_tests = (ROOT / "tests" / "test_openapi_artifact.py").read_text()
                 openapi_script = (ROOT / "scripts" / "build_openapi_artifact.py").read_text()
@@ -306,7 +325,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 66", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 67", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

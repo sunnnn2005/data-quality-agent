@@ -1,0 +1,62 @@
+{
+  "claim_coverage": {
+    "has_agent_safety": true,
+    "has_container": true,
+    "has_feedback_baseline": true,
+    "has_observability": true,
+    "has_openapi_contract": true,
+    "has_public_demo": true,
+    "has_release": true
+  },
+  "container_image": "ghcr.io/sunnnn2005/data-quality-agent:latest",
+  "generated_by": "scripts/build_live_project_scorecard.py",
+  "headline_metrics": {
+    "agent_tools_allowed": 5,
+    "implemented_agent_capabilities": 14,
+    "openapi_required_endpoints": 6,
+    "passing_tests": 67,
+    "support_ticket_issue_categories": 4,
+    "unsafe_postgres_queries_rejected": 3,
+    "verified_resume_claims": 27
+  },
+  "live_footprint": {
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "forks": 1,
+    "stars": 0,
+    "watchers": 0
+  },
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "enterprise production usage",
+    "GitHub stars beyond the current public count"
+  ],
+  "project": "Data Quality Agent",
+  "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
+  "release": "v0.2.0",
+  "repo": "https://github.com/sunnnn2005/data-quality-agent",
+  "resume_safe_summary": "Live project scorecard: public demo, v0.2.0 release, container image, 67 passing CI tests, 27 verified resume claims, and 14 implemented LLM agent-readiness capabilities.",
+  "reviewer_paths": [
+    {
+      "label": "Try the public demo",
+      "url": "https://sunnnn2005.github.io/data-quality-agent/"
+    },
+    {
+      "label": "Inspect resume evidence",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-evidence.md"
+    },
+    {
+      "label": "Inspect OpenAPI contract",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/api-contract.md"
+    },
+    {
+      "label": "Inspect safety boundaries",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-safety-boundaries.md"
+    },
+    {
+      "label": "Inspect public metrics",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-metrics-summary.md"
+    }
+  ]
+}

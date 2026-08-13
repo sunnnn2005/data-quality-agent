@@ -10,8 +10,8 @@
   "patterns": [
     {
       "evidence_trace_ids": [
-        "run_a0cb0083fcaa49d1",
-        "run_0fc759bc920e4ffc"
+        "run_285ad75d833049c3",
+        "run_a15e4840efc940b9"
       ],
       "pattern_id": "incident_pattern_1",
       "recommended_actions": [
@@ -28,8 +28,8 @@
     },
     {
       "evidence_trace_ids": [
-        "run_a0cb0083fcaa49d1",
-        "run_0fc759bc920e4ffc"
+        "run_285ad75d833049c3",
+        "run_a15e4840efc940b9"
       ],
       "pattern_id": "incident_pattern_2",
       "recommended_actions": [
@@ -45,8 +45,8 @@
     },
     {
       "evidence_trace_ids": [
-        "run_a0cb0083fcaa49d1",
-        "run_0fc759bc920e4ffc"
+        "run_285ad75d833049c3",
+        "run_a15e4840efc940b9"
       ],
       "pattern_id": "incident_pattern_3",
       "recommended_actions": [
