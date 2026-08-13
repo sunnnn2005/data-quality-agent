@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 10 |
-| Passing CI tests | 68 |
+| Passing CI tests | 69 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -36,6 +36,8 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | OpenAPI paths | 14 |
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
+| Application evidence pack | 1 |
+| Application evidence links | 8 |
 | Recommended remediation actions | 5 |
 | Implemented LLM agent-readiness capabilities | 14 |
 | Partial agent-readiness capabilities documented | 4 |
@@ -49,7 +51,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.2.0 release
-- 68 passing CI tests
+- 69 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - Dataset-level memory retrieval over recent sanitized traces
@@ -61,6 +63,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 5 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
+- 8 application evidence links in a recruiter-ready evidence pack
 - 5 evidence-backed remediation actions
 - 14 implemented LLM agent-readiness capabilities
 - 1 public fork and 0 public stars as current honest adoption baseline

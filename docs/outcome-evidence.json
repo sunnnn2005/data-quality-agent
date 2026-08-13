@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "68 passing CI tests",
+      "resume_signal": "69 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 68,
+      "metric_value": 69,
       "status": "verified"
     },
     {
@@ -148,6 +148,16 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json",
       "metric_name": "recruiter_pitch_resume_bullets",
       "metric_value": 3,
+      "status": "verified"
+    },
+    {
+      "id": "application-evidence-pack",
+      "resume_signal": "CI-verified application evidence pack",
+      "claim": "The project publishes a recruiter-ready evidence pack with application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json",
+      "metric_name": "application_evidence_link_count",
+      "metric_value": 8,
       "status": "verified"
     },
     {

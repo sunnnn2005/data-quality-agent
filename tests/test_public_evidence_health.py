@@ -15,6 +15,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "agent-safety-boundaries",
         "live-project-scorecard",
         "recruiter-pitch",
+        "application-evidence-pack",
         "feedback-metrics",
         "postgres-agent-route",
         "github-release",
