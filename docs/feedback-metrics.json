@@ -1,5 +1,6 @@
 {
   "bug_feedback_items": 0,
+  "business_case_feedback_items": 0,
   "confirmed_external_users": 0,
   "external_feedback_items": 0,
   "feature_feedback_items": 8,
@@ -18,16 +19,22 @@
       "counts_toward": "feature_feedback_items",
       "name": "Feature request",
       "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md"
+    },
+    {
+      "counts_toward": "business_case_feedback_items",
+      "name": "Business case review",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md"
     }
   ],
   "feedback_issue_template": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
-  "generated_at": "2026-08-13T12:23:28.241329+00:00",
+  "generated_at": "2026-08-13T12:39:42.512943+00:00",
   "repo": "https://github.com/sunnnn2005/data-quality-agent",
   "reproducible_feedback_items": 0,
   "resume_policy": "Do not claim users, customer feedback, or production adoption until these metrics are greater than zero and backed by public issues.",
   "status": "TRACKING",
   "tracking_labels": {
     "bug_feedback_items": "bug",
+    "business_case_feedback_items": "business-case",
     "confirmed_external_users": "confirmed-user",
     "external_feedback_items": "feedback",
     "feature_feedback_items": "enhancement",

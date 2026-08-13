@@ -23,5 +23,10 @@
     "name": "enhancement",
     "color": "a2eeef",
     "description": "New feature or improvement"
+  },
+  {
+    "name": "business-case",
+    "color": "fbca04",
+    "description": "Anonymized real-world business workflow or data-quality problem feedback"
   }
 ]

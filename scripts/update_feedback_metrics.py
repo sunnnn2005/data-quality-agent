@@ -10,12 +10,14 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_PATH = ROOT / "docs" / "feedback-metrics.json"
 REPO = "sunnnn2005/data-quality-agent"
 FEEDBACK_ISSUE_URL = "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+BUSINESS_CASE_ISSUE_URL = "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md"
 TRACKING_LABELS = {
     "external_feedback_items": "feedback",
     "confirmed_external_users": "confirmed-user",
     "reproducible_feedback_items": "reproducible",
     "bug_feedback_items": "bug",
     "feature_feedback_items": "enhancement",
+    "business_case_feedback_items": "business-case",
 }
 
 
@@ -31,6 +33,9 @@ def collect_feedback_metrics() -> dict[str, Any]:
         ),
         "bug_feedback_items": _read_count("BUG_FEEDBACK_ITEMS", TRACKING_LABELS["bug_feedback_items"]),
         "feature_feedback_items": _read_count("FEATURE_FEEDBACK_ITEMS", TRACKING_LABELS["feature_feedback_items"]),
+        "business_case_feedback_items": _read_count(
+            "BUSINESS_CASE_FEEDBACK_ITEMS", TRACKING_LABELS["business_case_feedback_items"]
+        ),
         "tracking_labels": TRACKING_LABELS,
         "feedback_channels": [
             {
@@ -47,6 +52,11 @@ def collect_feedback_metrics() -> dict[str, Any]:
                 "name": "Feature request",
                 "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md",
                 "counts_toward": "feature_feedback_items",
+            },
+            {
+                "name": "Business case review",
+                "url": BUSINESS_CASE_ISSUE_URL,
+                "counts_toward": "business_case_feedback_items",
             },
         ],
         "status": "TRACKING",

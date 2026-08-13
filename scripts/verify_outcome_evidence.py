@@ -36,6 +36,7 @@ PILOT_OUTREACH_KIT_PATH = ROOT / "docs" / "pilot-outreach-kit.json"
 PILOT_PROGRAM_PLAN_PATH = ROOT / "docs" / "pilot-program-plan.json"
 FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
+BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
 PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
 RESUME_EVIDENCE_PATH = ROOT / "docs" / "resume-evidence.md"
@@ -86,6 +87,7 @@ def verify_manifest() -> dict[str, int]:
     pilot_plan = load_payload(PILOT_PROGRAM_PLAN_PATH)
     feedback_intake = load_payload(FEEDBACK_INTAKE_QUALITY_PATH)
     star_growth = load_payload(STAR_GROWTH_KIT_PATH)
+    business_case_intake = load_payload(BUSINESS_CASE_INTAKE_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
     feedback_log = FEEDBACK_LOG_PATH.read_text().lower()
@@ -279,12 +281,12 @@ def verify_manifest() -> dict[str, int]:
             elif metric_name == "community_growth_baseline":
                 community_script = (ROOT / "scripts" / "build_community_growth_baseline.py").read_text()
                 community_tests = (ROOT / "tests" / "test_community_growth_baseline.py").read_text()
-                if community_growth.get("issue_template_count") != 4:
-                    raise AssertionError("community growth baseline must verify 4 issue templates")
-                if community_growth.get("label_count") != 5:
-                    raise AssertionError("community growth baseline must verify 5 labels")
-                if len(community_growth.get("public_growth_channels", [])) != 5:
-                    raise AssertionError("community growth baseline must verify 5 public growth channels")
+                if community_growth.get("issue_template_count") != 5:
+                    raise AssertionError("community growth baseline must verify 5 issue templates")
+                if community_growth.get("label_count") != 6:
+                    raise AssertionError("community growth baseline must verify 6 labels")
+                if len(community_growth.get("public_growth_channels", [])) != 6:
+                    raise AssertionError("community growth baseline must verify 6 public growth channels")
                 if not all(community_growth.get("contribution_paths", {}).values()):
                     raise AssertionError("community growth baseline must verify contribution paths")
                 counts = community_growth.get("current_public_counts", {})
@@ -402,8 +404,8 @@ def verify_manifest() -> dict[str, int]:
                 traction_tests = (ROOT / "tests" / "test_public_traction_dashboard.py").read_text()
                 if traction.get("traction_surface_count") != 4:
                     raise AssertionError("public traction dashboard must verify 4 traction surfaces")
-                if traction.get("growth_channel_count") != 13:
-                    raise AssertionError("public traction dashboard must verify 13 growth or review channels")
+                if traction.get("growth_channel_count") != 14:
+                    raise AssertionError("public traction dashboard must verify 14 growth or review channels")
                 if traction.get("tracked_funnel_steps") != 5:
                     raise AssertionError("public traction dashboard must verify 5 tracked funnel steps")
                 if traction.get("demo_entrypoints_verified") != 4:
@@ -445,7 +447,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 89:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 90:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -746,7 +748,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 89:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 90:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -827,6 +829,45 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("feedback intake script must verify generated artifact")
                 if "test_feedback_intake_quality_verifies_public_feedback_template_without_usage_claims" not in intake_tests:
                     raise AssertionError("feedback intake must have a dedicated test")
+            elif metric_name == "business_case_intake":
+                case_tests = (ROOT / "tests" / "test_business_case_intake.py").read_text()
+                case_script = (ROOT / "scripts" / "build_business_case_intake.py").read_text()
+                template_text = (ROOT / ".github" / "ISSUE_TEMPLATE" / "business_case_review.md").read_text()
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("business case intake claim must use metric_value=1")
+                expected = {
+                    "required_section_count": 6,
+                    "required_context_field_count": 3,
+                    "required_try_path_count": 5,
+                    "required_outcome_count": 5,
+                    "captured_field_count": 6,
+                }
+                for key, value in expected.items():
+                    if business_case_intake.get(key) != value:
+                        raise AssertionError(f"business case intake {key} expected {value}")
+                if not all(business_case_intake.get("captured_fields", {}).values()):
+                    raise AssertionError("business case intake must verify all captured field groups")
+                if business_case_intake.get("tracking_label") != "business-case":
+                    raise AssertionError("business case intake must use the business-case label")
+                if business_case_intake.get("current_public_counts", {}).get("business_case_feedback_items") != 0:
+                    raise AssertionError("business case intake must preserve zero submitted-case baseline")
+                if business_case_intake.get("current_public_counts", {}).get("confirmed_external_users") != 0:
+                    raise AssertionError("business case intake must preserve zero confirmed-user baseline")
+                for required in (
+                    "Industry or team:",
+                    "Workflow affected:",
+                    "Data source type:",
+                    "Do not quote my organization, name, or raw data.",
+                ):
+                    if required not in template_text:
+                        raise AssertionError(f"business case template missing required prompt: {required}")
+                if "verify_business_case_intake" not in case_script:
+                    raise AssertionError("business case intake script must verify generated artifact")
+                if (
+                    "test_business_case_intake_collects_real_problem_context_without_claiming_cases"
+                    not in case_tests
+                ):
+                    raise AssertionError("business case intake must have a dedicated test")
             elif metric_name == "star_growth_kit":
                 star_script = (ROOT / "scripts" / "build_star_growth_kit.py").read_text()
                 star_tests = (ROOT / "tests" / "test_star_growth_kit.py").read_text()
@@ -914,7 +955,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 89", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 90", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

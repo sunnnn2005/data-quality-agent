@@ -25,6 +25,7 @@ def build_community_growth_baseline() -> dict[str, Any]:
 
     required_issue_templates = {
         "bug_report.md",
+        "business_case_review.md",
         "demo_feedback.md",
         "feature_request.md",
         "good_first_issue.md",
@@ -34,6 +35,7 @@ def build_community_growth_baseline() -> dict[str, Any]:
         "confirmed-user",
         "reproducible",
         "bug",
+        "business-case",
         "enhancement",
     }
     contribution_paths = {
@@ -80,6 +82,11 @@ def build_community_growth_baseline() -> dict[str, Any]:
                 "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md",
                 "purpose": "public improvement requests",
             },
+            {
+                "name": "Business case review issue",
+                "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+                "purpose": "anonymized real-world business workflow feedback",
+            },
         ],
         "current_public_counts": {
             "stars": adoption["stars"],
@@ -90,8 +97,8 @@ def build_community_growth_baseline() -> dict[str, Any]:
             "reproducible_feedback_items": feedback["reproducible_feedback_items"],
         },
         "resume_safe_signal": (
-            "Published a CI-verified community growth baseline with 4 issue templates, 5 configured labels, "
-            "5 public growth channels, contribution guidance, and honest current public counts."
+            "Published a CI-verified community growth baseline with 5 issue templates, 6 configured labels, "
+            "6 public growth channels, contribution guidance, and honest current public counts."
         ),
         "not_claimed": [
             "external contributors",
@@ -149,18 +156,18 @@ This generated artifact verifies the public contribution and feedback paths that
 
 
 def verify_community_growth_baseline(payload: dict[str, Any]) -> dict[str, Any]:
-    if payload["issue_template_count"] != 4:
-        raise AssertionError("community growth baseline must verify 4 issue templates")
-    if payload["label_count"] != 5:
-        raise AssertionError("community growth baseline must verify 5 labels")
+    if payload["issue_template_count"] != 5:
+        raise AssertionError("community growth baseline must verify 5 issue templates")
+    if payload["label_count"] != 6:
+        raise AssertionError("community growth baseline must verify 6 labels")
     if payload["required_issue_templates_present"] is not True:
         raise AssertionError("community growth baseline must verify required issue templates")
     if payload["required_labels_present"] is not True:
         raise AssertionError("community growth baseline must verify required labels")
     if not all(payload["contribution_paths"].values()):
         raise AssertionError("community growth baseline must verify contribution paths")
-    if len(payload["public_growth_channels"]) != 5:
-        raise AssertionError("community growth baseline must expose 5 public growth channels")
+    if len(payload["public_growth_channels"]) != 6:
+        raise AssertionError("community growth baseline must expose 6 public growth channels")
     counts = payload["current_public_counts"]
     expected_counts = {
         "stars": 0,

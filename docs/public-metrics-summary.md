@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 11 |
-| Passing CI tests | 89 |
+| Passing CI tests | 90 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -59,9 +59,9 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business-data intake max rows | 10000 |
 | Business-data intake max columns | 80 |
 | Community growth baseline | 1 |
-| Community issue templates | 4 |
-| Community labels | 5 |
-| Community public growth channels | 5 |
+| Community issue templates | 5 |
+| Community labels | 6 |
+| Community public growth channels | 6 |
 | Impact review packet | 1 |
 | Impact review business metrics | 12 |
 | Impact review evidence links | 8 |
@@ -71,7 +71,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business problem owner handoffs | 4 |
 | Public traction dashboard | 1 |
 | Public traction surfaces | 4 |
-| Public traction growth channels | 13 |
+| Public traction growth channels | 14 |
 | Public traction resume upgrade rules | 3 |
 | Live project scorecard | 1 |
 | Scorecard reviewer paths | 11 |
@@ -94,6 +94,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Star growth required topics | 6 |
 | Star growth ethical actions | 4 |
 | Star growth resume upgrade rules | 3 |
+| Business-case intake | 1 |
+| Business-case intake required sections | 6 |
+| Business-case intake tried paths | 5 |
+| Business-case intake outcome signals | 5 |
+| Business-case intake captured evidence groups | 6 |
 | Recommended remediation actions | 5 |
 | Implemented LLM agent-readiness capabilities | 16 |
 | Partial agent-readiness capabilities documented | 4 |
@@ -103,11 +108,12 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - [Demo feedback](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md) -> `external_feedback_items`
 - [Bug report](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md) -> `bug_feedback_items`
 - [Feature request](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md) -> `feature_feedback_items`
+- [Business case review](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md) -> `business_case_feedback_items`
 
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 89 passing CI tests
+- 90 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -124,10 +130,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls
 - Public demo usage baseline with 5 tracked funnel steps and 4 verified entrypoints
 - Business-data intake baseline covering 4 integration endpoints, 6 API tests, and bounded CSV uploads up to 10000 rows / 80 columns
-- Community growth baseline with 4 issue templates, 5 configured labels, and 5 public contribution or feedback channels
+- Community growth baseline with 5 issue templates, 6 configured labels, and 6 public contribution or feedback channels
 - Impact review packet with 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs
 - Business problem casebook with 1 verified case, 4 detected business risks, and 4 owner handoffs
-- Public traction dashboard with 4 live project surfaces, 13 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
+- Public traction dashboard with 4 live project surfaces, 14 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
 - 11 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
@@ -136,6 +142,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 3 pilot participant segments across a 3-week feedback plan
 - Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups
 - Star growth kit with 6 verified repo topics, 4 ethical growth actions, and 3 resume upgrade rules without inflating current stars
+- Business-case intake path with 6 required sections, 5 tried paths, 5 outcome signals, and 6 captured evidence groups
 - 5 evidence-backed remediation actions
 - 16 implemented LLM agent-readiness capabilities
 - 1 public fork and 0 public stars as current honest adoption baseline

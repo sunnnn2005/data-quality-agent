@@ -40,7 +40,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 89},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 90},
         "evidence_type": "json",
     },
     {
@@ -126,7 +126,7 @@ PUBLIC_CHECKS = [
     {
         "id": "community-growth-baseline",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/community-growth-baseline.json",
-        "expected_json": {"project": "Data Quality Agent", "issue_template_count": 4, "label_count": 5},
+        "expected_json": {"project": "Data Quality Agent", "issue_template_count": 5, "label_count": 6},
         "expected_text": "external contributors",
         "expected_texts": ["public_growth_channels", "good%20first%20issue", "demo_feedback.md"],
         "evidence_type": "json",
@@ -169,6 +169,14 @@ PUBLIC_CHECKS = [
         "expected_json": {"project": "Data Quality Agent", "required_section_count": 5, "captured_field_count": 5},
         "expected_text": "CI-verified feedback intake system",
         "expected_texts": ["external users", "survey responses"],
+        "evidence_type": "json",
+    },
+    {
+        "id": "business-case-intake",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-case-intake.json",
+        "expected_json": {"project": "Data Quality Agent", "required_section_count": 6, "captured_field_count": 6},
+        "expected_text": "business-case",
+        "expected_texts": ["submitted external business cases", "permission_boundary"],
         "evidence_type": "json",
     },
     {

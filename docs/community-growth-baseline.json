@@ -15,14 +15,15 @@
     "stars": 0
   },
   "generated_by": "scripts/build_community_growth_baseline.py",
-  "issue_template_count": 4,
+  "issue_template_count": 5,
   "issue_templates": [
     "bug_report.md",
+    "business_case_review.md",
     "demo_feedback.md",
     "feature_request.md",
     "good_first_issue.md"
   ],
-  "label_count": 5,
+  "label_count": 6,
   "not_claimed": [
     "external contributors",
     "community adoption",
@@ -56,10 +57,16 @@
       "name": "Feature request issue",
       "purpose": "public improvement requests",
       "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md"
+    },
+    {
+      "name": "Business case review issue",
+      "purpose": "anonymized real-world business workflow feedback",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md"
     }
   ],
   "required_issue_templates": [
     "bug_report.md",
+    "business_case_review.md",
     "demo_feedback.md",
     "feature_request.md",
     "good_first_issue.md"
@@ -67,11 +74,12 @@
   "required_issue_templates_present": true,
   "required_labels": [
     "bug",
+    "business-case",
     "confirmed-user",
     "enhancement",
     "feedback",
     "reproducible"
   ],
   "required_labels_present": true,
-  "resume_safe_signal": "Published a CI-verified community growth baseline with 4 issue templates, 5 configured labels, 5 public growth channels, contribution guidance, and honest current public counts."
+  "resume_safe_signal": "Published a CI-verified community growth baseline with 5 issue templates, 6 configured labels, 6 public growth channels, contribution guidance, and honest current public counts."
 }

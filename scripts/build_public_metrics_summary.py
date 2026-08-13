@@ -30,6 +30,7 @@ PILOT_OUTREACH_KIT_PATH = ROOT / "docs" / "pilot-outreach-kit.json"
 PILOT_PROGRAM_PLAN_PATH = ROOT / "docs" / "pilot-program-plan.json"
 FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
+BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 
@@ -65,6 +66,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     pilot_plan = load_json(PILOT_PROGRAM_PLAN_PATH)
     feedback_intake = load_json(FEEDBACK_INTAKE_QUALITY_PATH)
     star_growth = load_json(STAR_GROWTH_KIT_PATH)
+    business_case_intake = load_json(BUSINESS_CASE_INTAKE_PATH)
     verified_outcomes = outcome["verified_outcomes"]
     return {
         "project": "Data Quality Agent",
@@ -160,6 +162,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "star_growth_required_topics": len(star_growth["topic_readiness"]["required_topics"]),
             "star_growth_ethical_actions": len(star_growth["ethical_growth_actions"]),
             "star_growth_resume_upgrade_rules": len(star_growth["resume_upgrade_rules"]),
+            "business_case_intake": 1,
+            "business_case_intake_required_sections": business_case_intake["required_section_count"],
+            "business_case_intake_try_paths": business_case_intake["required_try_path_count"],
+            "business_case_intake_outcomes": business_case_intake["required_outcome_count"],
+            "business_case_intake_captured_fields": business_case_intake["captured_field_count"],
             "implemented_agent_capabilities": len(readiness["implemented"]),
             "partial_agent_capabilities": len(readiness["partial"]),
         },
@@ -251,6 +258,12 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"Star growth kit with {len(star_growth['topic_readiness']['required_topics'])} verified repo topics, "
                 f"{len(star_growth['ethical_growth_actions'])} ethical growth actions, and "
                 f"{len(star_growth['resume_upgrade_rules'])} resume upgrade rules without inflating current stars"
+            ),
+            (
+                f"Business-case intake path with {business_case_intake['required_section_count']} required sections, "
+                f"{business_case_intake['required_try_path_count']} tried paths, "
+                f"{business_case_intake['required_outcome_count']} outcome signals, and "
+                f"{business_case_intake['captured_field_count']} captured evidence groups"
             ),
             f"{verified_outcomes['recommended_action_count']} evidence-backed remediation actions",
             f"{len(readiness['implemented'])} implemented LLM agent-readiness capabilities",
@@ -367,6 +380,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Star growth required topics | {outcomes["star_growth_required_topics"]} |
 | Star growth ethical actions | {outcomes["star_growth_ethical_actions"]} |
 | Star growth resume upgrade rules | {outcomes["star_growth_resume_upgrade_rules"]} |
+| Business-case intake | {outcomes["business_case_intake"]} |
+| Business-case intake required sections | {outcomes["business_case_intake_required_sections"]} |
+| Business-case intake tried paths | {outcomes["business_case_intake_try_paths"]} |
+| Business-case intake outcome signals | {outcomes["business_case_intake_outcomes"]} |
+| Business-case intake captured evidence groups | {outcomes["business_case_intake_captured_fields"]} |
 | Recommended remediation actions | {outcomes["recommended_actions"]} |
 | Implemented LLM agent-readiness capabilities | {outcomes["implemented_agent_capabilities"]} |
 | Partial agent-readiness capabilities documented | {outcomes["partial_agent_capabilities"]} |
@@ -391,7 +409,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 89,
+        "test_count": 90,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -437,9 +455,9 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "business_data_intake_max_rows": 10_000,
         "business_data_intake_max_columns": 80,
         "community_growth_baseline": 1,
-        "community_issue_templates": 4,
-        "community_labels": 5,
-        "community_public_growth_channels": 5,
+        "community_issue_templates": 5,
+        "community_labels": 6,
+        "community_public_growth_channels": 6,
         "impact_review_packet": 1,
         "impact_review_business_metrics": 12,
         "impact_review_evidence_links": 8,
@@ -449,7 +467,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "business_problem_owner_handoffs": 4,
         "public_traction_dashboard": 1,
         "public_traction_surfaces": 4,
-            "public_traction_growth_channels": 13,
+        "public_traction_growth_channels": 14,
         "public_traction_resume_upgrade_rules": 3,
         "live_project_scorecard": 1,
         "scorecard_reviewer_paths": 11,
@@ -471,6 +489,11 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "star_growth_required_topics": 6,
         "star_growth_ethical_actions": 4,
         "star_growth_resume_upgrade_rules": 3,
+        "business_case_intake": 1,
+        "business_case_intake_required_sections": 6,
+        "business_case_intake_try_paths": 5,
+        "business_case_intake_outcomes": 5,
+        "business_case_intake_captured_fields": 6,
         "recommended_actions": 5,
         "implemented_agent_capabilities": 16,
     }

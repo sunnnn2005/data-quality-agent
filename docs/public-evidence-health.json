@@ -1,5 +1,5 @@
 {
-  "check_count": 29,
+  "check_count": 30,
   "checks": [
     {
       "evidence_type": "html",
@@ -216,6 +216,17 @@
     },
     {
       "evidence_type": "json",
+      "id": "star-growth-kit",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/star-growth-kit.json",
+      "verified_fields": [
+        "generated_by",
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
       "id": "feedback-intake-quality",
       "passed": true,
       "status_code": 200,
@@ -305,6 +316,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 29,
+  "passed_count": 30,
   "status": "PASS"
 }

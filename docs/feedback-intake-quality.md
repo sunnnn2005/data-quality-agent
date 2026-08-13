@@ -17,6 +17,7 @@ This generated artifact verifies that the public feedback template collects usef
 | Metric | Label |
 | --- | --- |
 | bug_feedback_items | `bug` |
+| business_case_feedback_items | `business-case` |
 | confirmed_external_users | `confirmed-user` |
 | external_feedback_items | `feedback` |
 | feature_feedback_items | `enhancement` |

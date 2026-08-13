@@ -1,0 +1,39 @@
+{
+  "business_case_issue_template": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+  "captured_field_count": 6,
+  "captured_fields": {
+    "business_context": true,
+    "data_quality_problem": true,
+    "field_scope": true,
+    "outcome_signals": true,
+    "permission_boundary": true,
+    "try_path": true
+  },
+  "current_public_counts": {
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0
+  },
+  "generated_by": "scripts/build_business_case_intake.py",
+  "not_claimed": [
+    "submitted external business cases",
+    "customer feedback",
+    "enterprise production usage",
+    "raw customer data"
+  ],
+  "project": "Data Quality Agent",
+  "required_context_field_count": 3,
+  "required_outcome_count": 5,
+  "required_section_count": 6,
+  "required_try_path_count": 5,
+  "resume_safe_summary": "Published a CI-verified business-case intake path for collecting anonymized real-world data-quality problems, business context, tried route, outcome signal, and permission boundaries without claiming any submitted external business cases yet.",
+  "resume_upgrade_rule": {
+    "current_value": 0,
+    "evidence_required": "public GitHub issue using the business-case template and business-case label",
+    "minimum_before_claim": 1,
+    "resume_status": "not_claimable_yet",
+    "signal": "anonymized public business-case feedback"
+  },
+  "template_path": ".github/ISSUE_TEMPLATE/business_case_review.md",
+  "tracking_label": "business-case"
+}
