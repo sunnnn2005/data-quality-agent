@@ -20,6 +20,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "external-run-collection-issue",
         "external-reviewer-request-pack",
         "external-run-review-template",
+        "external-run-quickstart-page",
         "api-smoke-report",
         "performance-baseline",
         "demo-usage-baseline",
@@ -88,6 +89,10 @@ def test_public_evidence_health_requires_core_public_signals():
     template = next(check for check in PUBLIC_CHECKS if check["id"] == "external-run-review-template")
     assert "Permission to count publicly" in template["expected_texts"]
     assert "This can be counted as public external run evidence." in template["expected_texts"]
+    quickstart = next(check for check in PUBLIC_CHECKS if check["id"] == "external-run-quickstart-page")
+    assert quickstart["url"].endswith("/external-run-quickstart.html")
+    assert "Comment on Issue #18" in quickstart["expected_texts"]
+    assert "No external reviewer run is claimed yet." in quickstart["expected_texts"]
 
 
 def test_public_evidence_health_verifier_rejects_failed_checks():

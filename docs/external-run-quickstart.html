@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>External Run Quickstart | Data Quality Agent</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #070b10;
+      --panel: #111923;
+      --panel-2: #182434;
+      --text: #f8fafc;
+      --muted: #aab6c7;
+      --line: #293548;
+      --accent: #5eead4;
+      --accent-2: #93c5fd;
+      --warn: #fbbf24;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, rgba(94, 234, 212, .10), transparent 34%), var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    a { color: inherit; }
+    .shell { width: min(1100px, calc(100% - 36px)); margin: 0 auto; padding: 44px 0; }
+    header { min-height: 54vh; display: grid; align-items: center; }
+    .eyebrow { color: var(--accent); font-size: 13px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    h1 { font-size: clamp(40px, 7vw, 82px); letter-spacing: 0; line-height: .96; margin: 12px 0 18px; max-width: 920px; }
+    .lede { color: var(--muted); font-size: clamp(18px, 2vw, 22px); max-width: 800px; margin: 0 0 24px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button { align-items: center; background: var(--text); border-radius: 8px; color: #071016; display: inline-flex; font-weight: 850; min-height: 46px; padding: 0 16px; text-decoration: none; }
+    .button.feedback { background: var(--accent); color: #06201b; }
+    .button.secondary { background: rgba(255, 255, 255, .07); border: 1px solid var(--line); color: var(--text); }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .card, .panel { background: rgba(17, 25, 35, .92); border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
+    .card strong { color: var(--accent); display: block; font-size: 13px; margin-bottom: 10px; text-transform: uppercase; }
+    .card h2, .panel h2 { margin: 0 0 10px; }
+    .card p, .card li, .panel li, .panel p { color: var(--muted); }
+    .panel { margin: 16px 0; }
+    pre { background: #05080c; border: 1px solid var(--line); border-radius: 8px; overflow: auto; padding: 12px; }
+    code { color: #dbeafe; }
+    .warning { border-color: rgba(251, 191, 36, .45); }
+    .warning strong { color: var(--warn); }
+    footer { border-top: 1px solid var(--line); color: var(--muted); margin-top: 42px; padding-top: 22px; }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div>
+        <div class="eyebrow">External run quickstart</div>
+        <h1>Run it, leave evidence, keep the claim honest.</h1>
+        <p class="lede">
+          Choose one path below, record what happened, then comment on the public collection issue or open the
+          structured External Run Review template. A run only counts after public permission is given.
+        </p>
+        <div class="actions">
+          <a class="button feedback" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md">Open External Run Review</a>
+          <a class="button" href="https://github.com/sunnnn2005/data-quality-agent/issues/18">Comment on Issue #18</a>
+          <a class="button secondary" href="https://sunnnn2005.github.io/data-quality-agent/">Open Public Demo</a>
+          <a class="button secondary" href="https://github.com/sunnnn2005/data-quality-agent">Open Repository</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="grid" aria-label="External run paths">
+      
+        <article class="card">
+          <strong>public demo review</strong>
+          <h2>Public Demo</h2>
+          <p>Time box: 8 minutes.</p>
+          <p>Counts toward: <code>external_feedback_items</code> only after public evidence and permission.</p>
+          
+          <ul>
+            <li>public demo URL opened</li><li>support-ticket finding inspected</li><li>one useful or confusing point written by reviewer</li>
+          </ul>
+        </article>
+        
+
+        <article class="card">
+          <strong>container smoke run</strong>
+          <h2>Ghcr Container</h2>
+          <p>Time box: 12 minutes.</p>
+          <p>Counts toward: <code>confirmed_external_users</code> only after public evidence and permission.</p>
+          <pre><code>docker run --rm -p 8000:8000 ghcr.io/sunnnn2005/data-quality-agent:latest</code></pre>
+          <ul>
+            <li>host OS and Docker version</li><li>health endpoint response</li><li>quality-report endpoint response status</li>
+          </ul>
+        </article>
+        
+
+        <article class="card">
+          <strong>postgres replay run</strong>
+          <h2>Docker Compose Business Demo</h2>
+          <p>Time box: 15 minutes.</p>
+          <p>Counts toward: <code>reproducible_feedback_items</code> only after public evidence and permission.</p>
+          <pre><code>docker compose up --build</code></pre>
+          <ul>
+            <li>compose command completed</li><li>PostgreSQL support-ticket route called</li><li>agent-report fallback or model-backed status captured</li>
+          </ul>
+        </article>
+        
+    </section>
+
+    <section class="panel">
+      <h2>Required evidence fields</h2>
+      <p>These 8 fields make the result countable without asking for private data.</p>
+      <ul><li><code>reviewer_role</code> - example: student developer, data analyst, recruiter, mentor</li>
+<li><code>path_tried</code> - example: public_demo_review or container_smoke_run</li>
+<li><code>environment</code> - example: macOS 15, Docker Desktop 4.x, Chrome</li>
+<li><code>commands_or_urls_used</code> - example: docker compose up --build</li>
+<li><code>observed_result</code> - example: health returned ok and support-ticket report loaded</li>
+<li><code>usefulness_score_1_to_5</code> - example: 4</li>
+<li><code>main_feedback</code> - example: setup was clear, but report explanation could be shorter</li>
+<li><code>permission_to_count_publicly</code> - example: yes</li></ul>
+    </section>
+
+    <section class="panel warning">
+      <strong>Privacy boundary</strong>
+      <h2>No private business data</h2>
+      <ul><li>Do not ask reviewers to upload private business data.</li>
+<li>Do not store raw reviewer datasets in this repository.</li>
+<li>Ask for anonymized field names, command output summaries, and screenshots only when safe.</li>
+<li>Count only public GitHub issues where the reviewer gave permission to count the run.</li></ul>
+    </section>
+
+    <section class="panel">
+      <h2>Current public counts</h2>
+      <p>These stay at zero until a reviewer leaves public evidence and permission.</p>
+      <ul><li><code>confirmed_external_users</code>: 0</li>
+<li><code>external_feedback_items</code>: 0</li>
+<li><code>reproducible_feedback_items</code>: 0</li></ul>
+    </section>
+
+    <section class="panel">
+      <h2>Not claimed yet</h2>
+      <ul><li>No external reviewer run is claimed yet.</li>
+<li>No external users are claimed yet.</li>
+<li>No customer feedback is claimed yet.</li>
+<li>No private business data is requested or stored.</li></ul>
+    </section>
+
+    <section class="panel">
+      <h2>Resume-safe summary</h2>
+      <p>Published a GitHub Pages external-run quickstart that routes reviewers through 3 run paths, 8 evidence fields, a public collection issue, a structured review template, and explicit privacy boundaries before any external-user or feedback claim can be counted.</p>
+    </section>
+
+    <footer>
+      Generated by <code>scripts/build_external_run_quickstart_page.py</code>. Container image:
+      <code>ghcr.io/sunnnn2005/data-quality-agent:latest</code>.
+    </footer>
+  </main>
+</body>
+</html>

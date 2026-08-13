@@ -6,8 +6,8 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 
 | Metric | Value |
 | --- | ---: |
-| Passing Tests | 115 |
-| Verified Resume Claims | 61 |
+| Passing Tests | 116 |
+| Verified Resume Claims | 62 |
 | Implemented Agent Capabilities | 16 |
 | Support Ticket Issue Categories | 4 |
 | Openapi Required Endpoints | 6 |
@@ -40,6 +40,7 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 - [Inspect safety boundaries](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-safety-boundaries.md)
 - [Inspect agent capability matrix](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-capability-matrix.md)
 - [Run the local reviewer demo](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/local-reviewer-demo.md)
+- [Use external run quickstart](https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html)
 - [Use external run evidence packet](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-evidence-packet.md)
 - [Inspect public metrics](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-metrics-summary.md)
 - [Use reviewer funnel board](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-funnel-board.md)
@@ -68,10 +69,11 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 | Has Pilot Conversion Board | True |
 | Has Resume Outcome Readiness | True |
 | Has Reviewer Funnel Board | True |
+| Has External Run Quickstart | True |
 
 ## Resume-Safe Summary
 
-Live project scorecard: public demo, v0.3.0 release, container image, 115 passing CI tests, 61 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
+Live project scorecard: public demo, v0.3.0 release, container image, 116 passing CI tests, 62 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
 
 ## Not Claimed
 

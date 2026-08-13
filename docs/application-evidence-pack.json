@@ -8,6 +8,7 @@
     "container_image": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent",
     "demo": "https://sunnnn2005.github.io/data-quality-agent/",
     "external_run_evidence_packet": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-evidence-packet.md",
+    "external_run_quickstart": "https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html",
     "feedback_intake_quality": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/feedback-intake-quality.md",
     "github_repo": "https://github.com/sunnnn2005/data-quality-agent",
     "impact_review_packet": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/impact-review-packet.md",
@@ -48,11 +49,11 @@
     "enterprise production usage",
     "GitHub stars beyond the current public count"
   ],
-  "one_line_project_proof": "Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 115 tests, 61 verified resume claims, and honest adoption baselines.",
+  "one_line_project_proof": "Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 116 tests, 62 verified resume claims, and honest adoption baselines.",
   "project": "Data Quality Agent",
   "resume_bullets": [
     "Built an LLM tool-calling data-quality agent for real business CSV and read-only PostgreSQL data, with 7 allowed tools, dynamic strategy selection, memory-informed planning, source-cited business-rule retrieval, 6 verified API integration endpoints, and safe model-key fallback.",
-    "Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 115 passing tests, 61 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
+    "Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 116 passing tests, 62 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
     "Added enterprise-style guardrails for agent reliability, including read-only PostgreSQL query limits, 3 rejected unsafe SQL queries, sensitive-field redaction, trace observability, incident-pattern memory, evidence-backed root-cause hypotheses, and deterministic report verification."
   ],
   "target_roles": [
@@ -76,7 +77,7 @@
     "impact_review_evidence_links": 8,
     "implemented_agent_capabilities": 16,
     "openapi_required_endpoints": 6,
-    "passing_tests": 115,
+    "passing_tests": 116,
     "public_traction_growth_channels": 18,
     "public_traction_surfaces": 4,
     "real_model_evidence_fields": 15,
@@ -90,6 +91,6 @@
     "reviewer_funnel_stages": 4,
     "support_ticket_issue_categories": 4,
     "target_roles": 4,
-    "verified_resume_claims": 61
+    "verified_resume_claims": 62
   }
 }

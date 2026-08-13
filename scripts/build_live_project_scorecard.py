@@ -58,6 +58,7 @@ def build_live_project_scorecard_payload() -> dict[str, Any]:
             {"label": "Inspect safety boundaries", "url": f"{metrics['repo']}/blob/main/docs/agent-safety-boundaries.md"},
             {"label": "Inspect agent capability matrix", "url": f"{metrics['repo']}/blob/main/docs/agent-capability-matrix.md"},
             {"label": "Run the local reviewer demo", "url": f"{metrics['repo']}/blob/main/docs/local-reviewer-demo.md"},
+            {"label": "Use external run quickstart", "url": "https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html"},
             {"label": "Use external run evidence packet", "url": f"{metrics['repo']}/blob/main/docs/external-run-evidence-packet.md"},
             {"label": "Inspect public metrics", "url": f"{metrics['repo']}/blob/main/docs/public-metrics-summary.md"},
             {"label": "Use reviewer funnel board", "url": f"{metrics['repo']}/blob/main/docs/reviewer-funnel-board.md"},
@@ -83,6 +84,7 @@ def build_live_project_scorecard_payload() -> dict[str, Any]:
             "has_pilot_conversion_board": "pilot-conversion-board" in claim_ids,
             "has_resume_outcome_readiness": "resume-outcome-readiness" in claim_ids,
             "has_reviewer_funnel_board": "reviewer-funnel-board" in claim_ids,
+            "has_external_run_quickstart": "external-run-quickstart" in claim_ids,
         },
         "resume_safe_summary": (
             f"Live project scorecard: public demo, {metrics['release']} release, container image, "
@@ -148,8 +150,8 @@ def verify_live_project_scorecard(payload: dict[str, Any]) -> dict[str, Any]:
     headline = payload["headline_metrics"]
     footprint = payload["live_footprint"]
     expected = {
-        "passing_tests": 115,
-        "verified_resume_claims": 61,
+        "passing_tests": 116,
+        "verified_resume_claims": 62,
         "implemented_agent_capabilities": 16,
         "agent_tools_allowed": 7,
         "agent_matrix_implemented_capabilities": 13,
@@ -162,6 +164,8 @@ def verify_live_project_scorecard(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("scorecard must preserve honest zero adoption baselines")
     if not all(payload["claim_coverage"].values()):
         raise AssertionError("scorecard must cover core public evidence claims")
+    if len(payload["reviewer_paths"]) != 17:
+        raise AssertionError("scorecard must include 17 reviewer paths")
     for required in ("external users", "customer feedback", "enterprise production usage"):
         if required not in payload["not_claimed"]:
             raise AssertionError(f"scorecard must not claim {required}")
