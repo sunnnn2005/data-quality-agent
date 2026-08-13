@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "76 passing CI tests",
+      "resume_signal": "77 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 76,
+      "metric_value": 77,
       "status": "verified"
     },
     {
@@ -138,6 +138,16 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-observability.json",
       "metric_name": "observed_trace_count",
       "metric_value": 2,
+      "status": "verified"
+    },
+    {
+      "id": "model-telemetry-artifact",
+      "resume_signal": "CI-verified model telemetry artifact",
+      "claim": "The project publishes deterministic model telemetry for a mocked LLM agent run, including model name, prompt version, model call count, token count, estimated cost, latency, timeout, retry budget, and raw-prompt logging status without claiming paid model benchmark results.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-observability.json",
+      "metric_name": "model_telemetry_artifact",
+      "metric_value": 1,
       "status": "verified"
     },
     {

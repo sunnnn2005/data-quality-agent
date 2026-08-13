@@ -257,6 +257,7 @@ class DataQualityToolbox:
 
 class LLMDataQualityAgent:
     name = "llm_tool_calling_data_quality_agent"
+    prompt_version = "tool-agent-v3"
 
     def __init__(self, settings: LLMSettings | None = None) -> None:
         self.settings = settings or LLMSettings()
@@ -305,11 +306,12 @@ class LLMDataQualityAgent:
             },
         ]
         tool_calls: list[AgentToolCall] = []
+        model_calls: list[dict[str, Any]] = []
         quality_report: QualityReport | None = None
         started = time.monotonic()
 
         for _ in range(6):
-            response, _ = self.advisor._post_with_retries(
+            response, latency_ms = self.advisor._post_with_retries(
                 {
                     "model": self.settings.model,
                     "temperature": 0.1,
@@ -318,6 +320,7 @@ class LLMDataQualityAgent:
                     "tool_choice": "auto",
                 }
             )
+            model_calls.append(self._build_model_call_telemetry(response, latency_ms))
             message = response["choices"][0]["message"]
             requested_tools = message.get("tool_calls") or []
             messages.append(message)
@@ -330,7 +333,7 @@ class LLMDataQualityAgent:
                     final_answer=final_answer,
                     tool_calls=tool_calls,
                     quality_report=quality_report,
-                    evaluation=self._evaluate(tool_calls, quality_report, started),
+                    evaluation=self._evaluate(tool_calls, quality_report, started, model_calls),
                 )
 
             for call in requested_tools:
@@ -366,9 +369,28 @@ class LLMDataQualityAgent:
             final_answer="Agent stopped after reaching the tool-call limit.",
             tool_calls=tool_calls,
             quality_report=quality_report,
-            evaluation=self._evaluate(tool_calls, quality_report, started),
+            evaluation=self._evaluate(tool_calls, quality_report, started, model_calls),
             error="tool-call limit reached",
         )
+
+    def _build_model_call_telemetry(self, response: dict[str, Any], latency_ms: int) -> dict[str, Any]:
+        usage = response.get("usage", {})
+        prompt_tokens = usage.get("prompt_tokens")
+        completion_tokens = usage.get("completion_tokens")
+        total_tokens = usage.get("total_tokens")
+        estimated_cost = self.advisor._estimate_cost(usage)
+        return {
+            "provider": "openai-compatible",
+            "model": self.settings.model,
+            "prompt_version": self.prompt_version,
+            "latency_ms": latency_ms,
+            "prompt_tokens": prompt_tokens if isinstance(prompt_tokens, int) else None,
+            "completion_tokens": completion_tokens if isinstance(completion_tokens, int) else None,
+            "total_tokens": total_tokens if isinstance(total_tokens, int) else None,
+            "estimated_cost_usd": estimated_cost,
+            "timeout_seconds": self.settings.timeout_seconds,
+            "max_retries": self.settings.max_retries,
+        }
 
     def _preview_result(self, result: dict[str, Any]) -> dict[str, Any]:
         if "findings" in result:
@@ -395,11 +417,24 @@ class LLMDataQualityAgent:
         tool_calls: list[AgentToolCall],
         quality_report: QualityReport | None,
         started: float,
+        model_calls: list[dict[str, Any]] | None = None,
     ) -> dict[str, Any]:
         names = [call.tool_name for call in tool_calls]
         duplicate_tools = sorted({name for name in names if names.count(name) > 1})
+        calls = model_calls or []
+        token_counts = [call["total_tokens"] for call in calls if isinstance(call.get("total_tokens"), int)]
+        costs = [call["estimated_cost_usd"] for call in calls if isinstance(call.get("estimated_cost_usd"), (int, float))]
         return {
             "latency_ms": int((time.monotonic() - started) * 1000),
+            "model": self.settings.model,
+            "provider": "openai-compatible" if self.enabled else "disabled",
+            "prompt_version": self.prompt_version,
+            "model_call_count": len(calls),
+            "model_calls": calls,
+            "total_tokens": sum(token_counts) if token_counts else None,
+            "estimated_cost_usd": round(sum(costs), 6) if costs else None,
+            "timeout_seconds": self.settings.timeout_seconds,
+            "max_retries": self.settings.max_retries,
             "tool_call_count": len(tool_calls),
             "distinct_tool_count": len(set(names)),
             "duplicate_tools": duplicate_tools,

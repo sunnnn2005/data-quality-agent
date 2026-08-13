@@ -115,7 +115,7 @@ def verify_manifest() -> dict[str, int]:
                         f"but outcome summary has {actions}"
                     )
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 76:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 77:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -273,6 +273,32 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("agent observability script must verify generated metrics")
                 if "test_agent_observability_artifact_tracks_trace_fallback_and_memory" not in observability_tests:
                     raise AssertionError("agent observability must have a dedicated test")
+            elif metric_name == "model_telemetry_artifact":
+                observability_tests = (ROOT / "tests" / "test_agent_observability.py").read_text()
+                observability_script = (ROOT / "scripts" / "build_agent_observability.py").read_text()
+                telemetry = observability.get("model_telemetry", {})
+                if telemetry.get("model_call_count") != 2:
+                    raise AssertionError("model telemetry artifact must verify model call count")
+                if telemetry.get("total_tokens") != 360:
+                    raise AssertionError("model telemetry artifact must verify token count")
+                if telemetry.get("estimated_cost_usd") != 0.000081:
+                    raise AssertionError("model telemetry artifact must verify estimated cost")
+                if telemetry.get("prompt_version") != "tool-agent-v3":
+                    raise AssertionError("model telemetry artifact must verify prompt version")
+                if telemetry.get("raw_prompt_logged") is not False:
+                    raise AssertionError("model telemetry artifact must prove raw prompts are not logged")
+                if "_run_mock_telemetry_agent" not in observability_script:
+                    raise AssertionError("observability script must build deterministic model telemetry")
+                if "test_llm_tool_calling_agent_records_model_telemetry_without_raw_prompt" not in (
+                    ROOT / "tests" / "test_agent.py"
+                ).read_text():
+                    raise AssertionError("model telemetry must have a dedicated agent test")
+                if "Mock total tokens | 360" not in (ROOT / "docs" / "agent-observability.md").read_text():
+                    raise AssertionError("agent observability page must show model token telemetry")
+                if "paid model benchmark results" not in observability.get("not_claimed", []):
+                    raise AssertionError("model telemetry artifact must not claim paid benchmark results")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("model_telemetry_artifact claim must use metric_value=1")
             elif metric_name == "tool_allowlist_count":
                 safety_tests = (ROOT / "tests" / "test_agent_safety_boundaries.py").read_text()
                 safety_script = (ROOT / "scripts" / "build_agent_safety_boundaries.py").read_text()
@@ -363,7 +389,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 76:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 77:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -468,7 +494,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 76", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 77", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

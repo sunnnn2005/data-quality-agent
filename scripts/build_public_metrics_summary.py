@@ -71,6 +71,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "incident_pattern_count": incident_memory["incident_pattern_count"],
             "observed_trace_count": observability["observed_trace_count"],
             "fallback_event_count": observability["fallback_event_count"],
+            "model_telemetry_artifact": 1,
+            "mock_model_calls": observability["model_telemetry"]["model_call_count"],
+            "mock_model_tokens": observability["model_telemetry"]["total_tokens"],
+            "mock_estimated_cost_usd": observability["model_telemetry"]["estimated_cost_usd"],
             "tool_allowlist_count": safety["tool_allowlist_count"],
             "postgres_rejected_write_query_count": safety["postgres_rejected_write_query_count"],
             "verifier_rule_count": safety["verifier_rule_count"],
@@ -104,6 +108,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
             f"{hypothesis_feedback['label_count']} human-reviewed root-cause feedback labels",
             f"{incident_memory['incident_pattern_count']} recurring incident patterns retrieved from sanitized traces",
             f"{observability['observed_trace_count']} observed run traces with fallback and verification status",
+            (
+                f"{observability['model_telemetry']['model_call_count']} mocked LLM calls with "
+                f"{observability['model_telemetry']['total_tokens']} tokens, prompt version, latency, "
+                "retry budget, and estimated cost telemetry"
+            ),
             f"{safety['tool_allowlist_count']} allowed agent tools and {safety['postgres_rejected_write_query_count']} rejected unsafe PostgreSQL queries",
             f"{len(scorecard['reviewer_paths'])} reviewer paths in a CI-verified live project scorecard",
             "CI-verified OpenAPI contract covering 6 integration endpoints",
@@ -159,6 +168,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recurring incident patterns | {outcomes["incident_pattern_count"]} |
 | Observed run traces | {outcomes["observed_trace_count"]} |
 | Fallback events captured | {outcomes["fallback_event_count"]} |
+| Model telemetry artifact | {outcomes["model_telemetry_artifact"]} |
+| Mock LLM calls | {outcomes["mock_model_calls"]} |
+| Mock LLM tokens | {outcomes["mock_model_tokens"]} |
+| Mock estimated cost USD | {outcomes["mock_estimated_cost_usd"]} |
 | Allowed agent tools | {outcomes["tool_allowlist_count"]} |
 | Rejected unsafe PostgreSQL queries | {outcomes["postgres_rejected_write_query_count"]} |
 | Report verifier rules | {outcomes["verifier_rule_count"]} |
@@ -198,7 +211,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 76,
+        "test_count": 77,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -213,6 +226,9 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "incident_pattern_count": 3,
         "observed_trace_count": 2,
         "fallback_event_count": 2,
+        "model_telemetry_artifact": 1,
+        "mock_model_calls": 2,
+        "mock_model_tokens": 360,
         "tool_allowlist_count": 7,
         "postgres_rejected_write_query_count": 3,
         "verifier_rule_count": 6,

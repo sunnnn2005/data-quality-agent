@@ -8,10 +8,22 @@
   "generated_by": "scripts/build_agent_observability.py",
   "memory_incident_pattern_count": 0,
   "memory_trace_count": 2,
+  "model_telemetry": {
+    "estimated_cost_usd": 8.1e-05,
+    "latency_ms": 1,
+    "max_retries": 1,
+    "model": "fake-model",
+    "model_call_count": 2,
+    "prompt_version": "tool-agent-v3",
+    "provider": "openai-compatible",
+    "raw_prompt_logged": false,
+    "timeout_seconds": 3,
+    "total_tokens": 360
+  },
   "not_claimed": [
     "production monitoring dashboard",
     "real user traffic",
-    "paid model cost telemetry"
+    "paid model benchmark results"
   ],
   "observability_fields": [
     "trace_id",
@@ -20,7 +32,12 @@
     "fallback_status",
     "verification_passed",
     "memory_trace_count",
-    "incident_pattern_count"
+    "incident_pattern_count",
+    "model",
+    "prompt_version",
+    "model_call_count",
+    "total_tokens",
+    "estimated_cost_usd"
   ],
   "observed_trace_count": 2,
   "project": "Data Quality Agent",
@@ -28,11 +45,11 @@
     "agent_report",
     "quality_report"
   ],
-  "resume_safe_summary": "Generated an observability artifact covering trace ids, report types, fallback status, verification status, dataset memory, incident-pattern memory, and tool-call previews.",
+  "resume_safe_summary": "Generated an observability artifact covering trace ids, report types, fallback status, verification status, dataset memory, incident-pattern memory, tool-call previews, and mocked model token/cost telemetry.",
   "tool_call_preview_count": 0,
   "trace_ids": [
-    "run_defda444cf50408d",
-    "run_182fae72ef32436d"
+    "run_ea7b6119df934292",
+    "run_a653b1f6d99243aa"
   ],
   "verification_passed_trace_count": 1
 }

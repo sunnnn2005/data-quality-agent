@@ -239,6 +239,70 @@ def test_llm_tool_calling_agent_runs_tool_loop():
     assert report.evaluation["used_required_report_tool"] is True
 
 
+def test_llm_tool_calling_agent_records_model_telemetry_without_raw_prompt():
+    class FakeSettings:
+        api_key = "test-key"
+        base_url = "http://example.test/v1"
+        model = "fake-model"
+        timeout_seconds = 3
+        max_retries = 1
+
+    agent = LLMDataQualityAgent(settings=FakeSettings())
+    calls = [
+        {
+            "choices": [
+                {
+                    "message": {
+                        "role": "assistant",
+                        "tool_calls": [
+                            {
+                                "id": "call_strategy",
+                                "type": "function",
+                                "function": {"name": "select_quality_strategy", "arguments": "{}"},
+                            },
+                            {
+                                "id": "call_report",
+                                "type": "function",
+                                "function": {"name": "build_quality_report", "arguments": "{}"},
+                            },
+                        ],
+                    }
+                }
+            ],
+            "usage": {"prompt_tokens": 120, "completion_tokens": 40, "total_tokens": 160},
+        },
+        {
+            "choices": [
+                {
+                    "message": {
+                        "role": "assistant",
+                        "content": "The dataset fails quality checks with evidence-backed remediation steps.",
+                    }
+                }
+            ],
+            "usage": {"prompt_tokens": 180, "completion_tokens": 20, "total_tokens": 200},
+        },
+    ]
+
+    def fake_post(_body):
+        return calls.pop(0), 7
+
+    agent.advisor._post_with_retries = fake_post
+
+    report = agent.run(DATASETS["orders_daily"], load_dataset("orders_daily"))
+
+    assert report.status == "FAIL"
+    assert report.evaluation["model"] == "fake-model"
+    assert report.evaluation["provider"] == "openai-compatible"
+    assert report.evaluation["prompt_version"] == "tool-agent-v3"
+    assert report.evaluation["model_call_count"] == 2
+    assert report.evaluation["total_tokens"] == 360
+    assert report.evaluation["estimated_cost_usd"] == 0.000081
+    assert report.evaluation["timeout_seconds"] == 3
+    assert report.evaluation["max_retries"] == 1
+    assert all("messages" not in call for call in report.evaluation["model_calls"])
+
+
 def test_llm_tool_calling_agent_replans_across_tool_feedback():
     class FakeSettings:
         api_key = "test-key"

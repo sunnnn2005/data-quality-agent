@@ -23,6 +23,7 @@ def build_agent_observability_payload() -> dict[str, Any]:
     frame = load_dataset(dataset.id)
     quality_report = store.save_quality_report(DataQualityAgent().analyze(dataset, frame))
     agent_report = store.save_agent_report(LLMDataQualityAgent().run(dataset, frame))
+    telemetry_report = _run_mock_telemetry_agent(dataset, frame)
     memory = store.list_by_dataset(dataset.id, limit=5)
     traces = [trace for trace in (store.get(quality_report.trace_id), store.get(agent_report.trace_id)) if trace]
     fallback_events = [trace for trace in traces if trace.fallback_status]
@@ -44,6 +45,18 @@ def build_agent_observability_payload() -> dict[str, Any]:
         "memory_trace_count": memory.trace_count,
         "memory_incident_pattern_count": len(memory.incident_patterns),
         "tool_call_preview_count": sum(len(trace.tool_calls) for trace in traces),
+        "model_telemetry": {
+            "provider": telemetry_report.evaluation.get("provider"),
+            "model": telemetry_report.evaluation.get("model"),
+            "prompt_version": telemetry_report.evaluation.get("prompt_version"),
+            "model_call_count": telemetry_report.evaluation.get("model_call_count"),
+            "total_tokens": telemetry_report.evaluation.get("total_tokens"),
+            "estimated_cost_usd": telemetry_report.evaluation.get("estimated_cost_usd"),
+            "latency_ms": telemetry_report.evaluation.get("latency_ms"),
+            "timeout_seconds": telemetry_report.evaluation.get("timeout_seconds"),
+            "max_retries": telemetry_report.evaluation.get("max_retries"),
+            "raw_prompt_logged": any("messages" in call for call in telemetry_report.evaluation.get("model_calls", [])),
+        },
         "observability_fields": [
             "trace_id",
             "dataset_id",
@@ -52,17 +65,75 @@ def build_agent_observability_payload() -> dict[str, Any]:
             "verification_passed",
             "memory_trace_count",
             "incident_pattern_count",
+            "model",
+            "prompt_version",
+            "model_call_count",
+            "total_tokens",
+            "estimated_cost_usd",
         ],
         "resume_safe_summary": (
             "Generated an observability artifact covering trace ids, report types, fallback status, "
-            "verification status, dataset memory, incident-pattern memory, and tool-call previews."
+            "verification status, dataset memory, incident-pattern memory, tool-call previews, and "
+            "mocked model token/cost telemetry."
         ),
         "not_claimed": [
             "production monitoring dashboard",
             "real user traffic",
-            "paid model cost telemetry",
+            "paid model benchmark results",
         ],
     }
+
+
+def _run_mock_telemetry_agent(dataset, frame):
+    class FakeSettings:
+        api_key = "test-key"
+        base_url = "http://example.test/v1"
+        model = "fake-model"
+        timeout_seconds = 3
+        max_retries = 1
+
+    agent = LLMDataQualityAgent(settings=FakeSettings())
+    calls = [
+        {
+            "choices": [
+                {
+                    "message": {
+                        "role": "assistant",
+                        "tool_calls": [
+                            {
+                                "id": "call_strategy",
+                                "type": "function",
+                                "function": {"name": "select_quality_strategy", "arguments": "{}"},
+                            },
+                            {
+                                "id": "call_report",
+                                "type": "function",
+                                "function": {"name": "build_quality_report", "arguments": "{}"},
+                            },
+                        ],
+                    }
+                }
+            ],
+            "usage": {"prompt_tokens": 120, "completion_tokens": 40, "total_tokens": 160},
+        },
+        {
+            "choices": [
+                {
+                    "message": {
+                        "role": "assistant",
+                        "content": "Mocked telemetry run produced an evidence-backed quality report.",
+                    }
+                }
+            ],
+            "usage": {"prompt_tokens": 180, "completion_tokens": 20, "total_tokens": 200},
+        },
+    ]
+
+    def fake_post(_body):
+        return calls.pop(0), 7
+
+    agent.advisor._post_with_retries = fake_post
+    return agent.run(dataset, frame)
 
 
 def render_markdown(payload: dict[str, Any]) -> str:
@@ -82,6 +153,10 @@ This generated artifact summarizes local agent run observability. It is a reprod
 | Dataset memory traces | {payload["memory_trace_count"]} |
 | Memory incident patterns | {payload["memory_incident_pattern_count"]} |
 | Tool-call previews | {payload["tool_call_preview_count"]} |
+| Mock model calls | {payload["model_telemetry"]["model_call_count"]} |
+| Mock total tokens | {payload["model_telemetry"]["total_tokens"]} |
+| Mock estimated cost USD | {payload["model_telemetry"]["estimated_cost_usd"]} |
+| Raw prompt logged | {payload["model_telemetry"]["raw_prompt_logged"]} |
 
 ## Observability Fields
 
@@ -116,6 +191,19 @@ def verify_agent_observability(payload: dict[str, Any]) -> dict[str, Any]:
             raise AssertionError(f"observability fields missing {required}")
     if "production monitoring dashboard" not in payload["not_claimed"]:
         raise AssertionError("observability artifact must not claim production monitoring")
+    telemetry = payload["model_telemetry"]
+    if telemetry.get("model_call_count") != 2:
+        raise AssertionError("observability must include model-call telemetry")
+    if telemetry.get("total_tokens") != 360:
+        raise AssertionError("observability must include token telemetry")
+    if telemetry.get("estimated_cost_usd") != 0.000081:
+        raise AssertionError("observability must include estimated mock cost")
+    if telemetry.get("prompt_version") != "tool-agent-v3":
+        raise AssertionError("observability must include prompt version")
+    if telemetry.get("raw_prompt_logged") is not False:
+        raise AssertionError("observability must not log raw prompts")
+    if "paid model benchmark results" not in payload["not_claimed"]:
+        raise AssertionError("observability artifact must not claim paid benchmark results")
     return {"agent_observability_verified": True, **expected}
 
 

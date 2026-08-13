@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 10 |
-| Passing CI tests | 76 |
+| Passing CI tests | 77 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -27,6 +27,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recurring incident patterns | 3 |
 | Observed run traces | 2 |
 | Fallback events captured | 2 |
+| Model telemetry artifact | 1 |
+| Mock LLM calls | 2 |
+| Mock LLM tokens | 360 |
+| Mock estimated cost USD | 8.1e-05 |
 | Allowed agent tools | 7 |
 | Rejected unsafe PostgreSQL queries | 3 |
 | Report verifier rules | 6 |
@@ -55,7 +59,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.2.0 release
-- 76 passing CI tests
+- 77 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - Dataset-level memory retrieval over recent sanitized traces
@@ -63,6 +67,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 3 human-reviewed root-cause feedback labels
 - 3 recurring incident patterns retrieved from sanitized traces
 - 2 observed run traces with fallback and verification status
+- 2 mocked LLM calls with 360 tokens, prompt version, latency, retry budget, and estimated cost telemetry
 - 7 allowed agent tools and 3 rejected unsafe PostgreSQL queries
 - 5 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
