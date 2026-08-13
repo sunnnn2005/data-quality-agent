@@ -31,3 +31,5 @@ jobs:
         run: python scripts/update_adoption_metrics.py
       - name: Verify outcome evidence manifest
         run: python scripts/verify_outcome_evidence.py
+      - name: Verify public evidence health contract
+        run: python -m pytest tests/test_public_evidence_health.py

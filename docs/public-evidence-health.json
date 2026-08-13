@@ -1,0 +1,54 @@
+{
+  "check_count": 5,
+  "checks": [
+    {
+      "evidence_type": "html",
+      "id": "public-demo",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://sunnnn2005.github.io/data-quality-agent/"
+    },
+    {
+      "evidence_type": "json",
+      "id": "business-impact-artifact",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact.json",
+      "verified_fields": [
+        "affected_column_count",
+        "issue_category_count",
+        "recommended_action_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "outcome-evidence-manifest",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-evidence.json"
+    },
+    {
+      "evidence_type": "json",
+      "id": "adoption-metrics",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
+      "verified_fields": [
+        "forks",
+        "stars",
+        "test_count"
+      ]
+    },
+    {
+      "evidence_type": "release_page",
+      "id": "github-release",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.1.0"
+    }
+  ],
+  "failed_count": 0,
+  "generated_by": "scripts/verify_public_evidence_health.py",
+  "passed_count": 5,
+  "status": "PASS"
+}

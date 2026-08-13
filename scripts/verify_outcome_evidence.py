@@ -8,6 +8,8 @@ EVIDENCE_PATH = ROOT / "docs" / "outcome-evidence.json"
 METRICS_PATH = ROOT / "docs" / "adoption-metrics.json"
 HISTORY_PATH = ROOT / "docs" / "adoption-history.jsonl"
 BUSINESS_IMPACT_PATH = ROOT / "docs" / "business-impact.json"
+PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
+PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
 RESUME_EVIDENCE_PATH = ROOT / "docs" / "resume-evidence.md"
 FEEDBACK_LOG_PATH = ROOT / "docs" / "feedback-log.md"
 REQUIRED_CLAIM_FIELDS = {"id", "resume_signal", "claim", "evidence_type", "url", "status"}
@@ -70,6 +72,15 @@ def verify_manifest() -> dict[str, int]:
                 )
         if claim["id"] not in resume_page:
             raise AssertionError(f"resume evidence page must mention claim id or anchor text: {claim['id']}")
+
+    if "public-evidence-health" in claim_ids:
+        workflow_text = PUBLIC_HEALTH_WORKFLOW_PATH.read_text()
+        script_text = PUBLIC_HEALTH_SCRIPT_PATH.read_text()
+        if "schedule:" not in workflow_text or "workflow_dispatch:" not in workflow_text:
+            raise AssertionError("public evidence health workflow must support scheduled and manual runs")
+        for required in ["public-demo", "business-impact-artifact", "github-release"]:
+            if required not in script_text:
+                raise AssertionError(f"public evidence health script must check {required}")
 
     not_claimed = {item["metric"] for item in evidence.get("not_claimed", [])}
     for required in {"users", "customer_feedback", "production_company_usage"}:

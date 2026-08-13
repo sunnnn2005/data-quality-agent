@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "48 passing CI tests",
+      "resume_signal": "50 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 48,
+      "metric_value": 50,
       "status": "verified"
     },
     {
@@ -96,6 +96,14 @@
       "claim": "Stars, forks, watchers, issues, release, commit, and test count are tracked as an append-only JSONL history.",
       "evidence_type": "metrics_history",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-history.jsonl",
+      "status": "verified"
+    },
+    {
+      "id": "public-evidence-health",
+      "resume_signal": "Scheduled public evidence health check",
+      "claim": "A scheduled GitHub Actions workflow verifies the public demo, release page, business-impact artifact, outcome evidence manifest, and adoption metrics remain reachable.",
+      "evidence_type": "scheduled_ci",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/public-evidence-health.yml",
       "status": "verified"
     }
   ],
