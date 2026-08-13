@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 135,
-      "resume_signal": "135 passing CI tests",
+      "metric_value": 136,
+      "resume_signal": "136 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 29 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 30 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 29,
+      "metric_value": 30,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -669,6 +669,16 @@
       "resume_signal": "CI-verified reviewer evidence kit",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-evidence-kit.json"
+    },
+    {
+      "claim": "The project publishes a resume traction proof that separates 4 currently claimable launch and quality signals from 4 future outcome claims and 5 blocked overclaiming rules for adoption, feedback, production use, and GitHub stars.",
+      "evidence_type": "generated_artifact",
+      "id": "resume-traction-proof",
+      "metric_name": "resume_traction_proof",
+      "metric_value": 1,
+      "resume_signal": "CI-verified resume traction proof",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-traction-proof.json"
     }
   ],
   "not_claimed": [

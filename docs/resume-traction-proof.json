@@ -1,0 +1,91 @@
+{
+  "blocked_claim_count": 5,
+  "blocked_claims": [
+    "Do not claim active users until confirmed_external_users is greater than zero and publicly evidenced.",
+    "Do not claim customer feedback until accepted feedback issues exist.",
+    "Do not claim enterprise or production adoption without permissioned business-case evidence.",
+    "Do not claim star growth beyond the current public GitHub count.",
+    "Do not convert GitHub traffic views into user counts."
+  ],
+  "claimable_now": [
+    {
+      "evidence": "https://sunnnn2005.github.io/data-quality-agent/",
+      "resume_phrase": "Launched a public GitHub Pages demo for a business-data quality agent.",
+      "signal": "public launch",
+      "status": "claimable"
+    },
+    {
+      "evidence": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.3.0",
+      "resume_phrase": "Published v0.3.0 release and runnable GHCR container image.",
+      "signal": "public release",
+      "status": "claimable"
+    },
+    {
+      "evidence": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
+      "resume_phrase": "Maintained 136 passing CI tests across agent, API, evidence, and safety checks.",
+      "signal": "verified engineering quality",
+      "status": "claimable"
+    },
+    {
+      "evidence": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-evidence-kit.md",
+      "resume_phrase": "Built a reviewer evidence system with 5 public issue templates and 5 privacy/permission steps.",
+      "signal": "evidence collection system",
+      "status": "claimable"
+    }
+  ],
+  "claimable_now_count": 4,
+  "future_claim_count": 4,
+  "future_claims": [
+    {
+      "current_value": 0,
+      "evidence_required": "accepted non-owner GitHub issues with confirmed-user label and permission to count",
+      "resume_phrase_after_threshold": "Validated the agent with 3+ external reviewers/users using public evidence issues.",
+      "signal": "external users",
+      "status": "not_claimable_yet",
+      "threshold": 3
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "accepted GitHub feedback issues with concrete tried path, result, and permission",
+      "resume_phrase_after_threshold": "Collected and triaged 3+ public feedback items from external reviewers.",
+      "signal": "user feedback",
+      "status": "not_claimable_yet",
+      "threshold": 3
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "public issue with reproduction steps and linked fix or accepted triage result",
+      "resume_phrase_after_threshold": "Used reproducible reviewer feedback to improve the public agent demo.",
+      "signal": "reproducible product feedback",
+      "status": "not_claimable_yet",
+      "threshold": 1
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "public GitHub stargazer count",
+      "resume_phrase_after_threshold": "Earned 5+ GitHub stars for a public data-quality agent project.",
+      "signal": "GitHub stars",
+      "status": "not_claimable_yet",
+      "threshold": 5
+    }
+  ],
+  "generated_by": "scripts/build_resume_traction_proof.py",
+  "linked_growth_channels": 19,
+  "linked_public_traction_surfaces": 4,
+  "project": "Data Quality Agent",
+  "public_counts": {
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "forks": 1,
+    "github_clones": 79,
+    "github_unique_cloners": 50,
+    "github_unique_visitors": 3,
+    "github_views": 9,
+    "issues_total": 13,
+    "reproducible_feedback_items": 0,
+    "stars": 0,
+    "watchers": 0
+  },
+  "resume_safe_summary": "Published a CI-verified resume traction proof with 4 claimable launch/quality signals, 4 threshold-based future outcome claims, and 5 blocked claims to prevent overstating users, feedback, production adoption, or stars.",
+  "resume_status": "baseline_claimable_growth_not_yet_claimable"
+}

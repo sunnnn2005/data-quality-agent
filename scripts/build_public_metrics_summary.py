@@ -24,6 +24,7 @@ EXTERNAL_REVIEWER_EVIDENCE_GATE_PATH = ROOT / "docs" / "external-reviewer-eviden
 ACCEPTED_EVIDENCE_ROLLUP_PATH = ROOT / "docs" / "accepted-evidence-rollup.json"
 BUSINESS_IMPACT_LEDGER_PATH = ROOT / "docs" / "business-impact-ledger.json"
 REVIEWER_EVIDENCE_KIT_PATH = ROOT / "docs" / "reviewer-evidence-kit.json"
+RESUME_TRACTION_PROOF_PATH = ROOT / "docs" / "resume-traction-proof.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
@@ -59,7 +60,7 @@ REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 SCORECARD_REVIEWER_PATH_COUNT = 23
-APPLICATION_EVIDENCE_LINK_COUNT = 29
+APPLICATION_EVIDENCE_LINK_COUNT = 30
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -87,6 +88,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     accepted_evidence_rollup = load_json(ACCEPTED_EVIDENCE_ROLLUP_PATH)
     business_impact_ledger = load_json(BUSINESS_IMPACT_LEDGER_PATH)
     reviewer_evidence_kit = load_json(REVIEWER_EVIDENCE_KIT_PATH)
+    resume_traction_proof = load_json(RESUME_TRACTION_PROOF_PATH)
     api_smoke = load_json(API_SMOKE_REPORT_PATH)
     performance = load_json(PERFORMANCE_BASELINE_PATH)
     demo_usage = load_json(DEMO_USAGE_BASELINE_PATH)
@@ -206,6 +208,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "reviewer_evidence_kit": 1,
             "reviewer_evidence_forms": reviewer_evidence_kit["evidence_form_count"],
             "reviewer_evidence_script_steps": reviewer_evidence_kit["reviewer_script_step_count"],
+            "resume_traction_proof": 1,
+            "resume_traction_claimable_now": resume_traction_proof["claimable_now_count"],
+            "resume_traction_future_claims": resume_traction_proof["future_claim_count"],
+            "resume_traction_blocked_claims": resume_traction_proof["blocked_claim_count"],
             "api_smoke_report": 1,
             "api_smoke_checks": api_smoke["check_count"],
             "api_smoke_passed_checks": api_smoke["passed_count"],
@@ -443,6 +449,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{reviewer_evidence_kit['reviewer_script_step_count']} copy-ready privacy and permission steps, "
                 "and zero current external outcome counts"
             ),
+            (
+                f"Resume traction proof with {resume_traction_proof['claimable_now_count']} claimable launch/quality signals, "
+                f"{resume_traction_proof['future_claim_count']} threshold-based future outcome claims, and "
+                f"{resume_traction_proof['blocked_claim_count']} blocked overclaiming rules"
+            ),
             f"CI-verified API smoke report covering {api_smoke['passed_count']} passing FastAPI route checks",
             (
                 f"CI-verified local performance baseline covering {performance['benchmark_count']} route benchmarks "
@@ -651,6 +662,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Reviewer evidence kit | {outcomes["reviewer_evidence_kit"]} |
 | Reviewer evidence forms | {outcomes["reviewer_evidence_forms"]} |
 | Reviewer evidence script steps | {outcomes["reviewer_evidence_script_steps"]} |
+| Resume traction proof | {outcomes["resume_traction_proof"]} |
+| Resume traction claimable now | {outcomes["resume_traction_claimable_now"]} |
+| Resume traction future claims | {outcomes["resume_traction_future_claims"]} |
+| Resume traction blocked claims | {outcomes["resume_traction_blocked_claims"]} |
 | API smoke report | {outcomes["api_smoke_report"]} |
 | API smoke checks | {outcomes["api_smoke_checks"]} |
 | API smoke passed checks | {outcomes["api_smoke_passed_checks"]} |
@@ -786,7 +801,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 135,
+        "test_count": 136,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -869,6 +884,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "reviewer_evidence_kit": 1,
         "reviewer_evidence_forms": 5,
         "reviewer_evidence_script_steps": 5,
+        "resume_traction_proof": 1,
+        "resume_traction_claimable_now": 4,
+        "resume_traction_future_claims": 4,
+        "resume_traction_blocked_claims": 5,
         "api_smoke_report": 1,
         "api_smoke_checks": 6,
         "api_smoke_passed_checks": 6,
@@ -907,7 +926,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 29,
+        "application_evidence_links": 30,
         "ai_engineer_review_intake": 1,
         "ai_engineer_review_paths": 6,
         "ai_engineer_review_questions": 6,

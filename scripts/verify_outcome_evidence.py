@@ -28,6 +28,7 @@ EXTERNAL_REVIEWER_EVIDENCE_GATE_PATH = ROOT / "docs" / "external-reviewer-eviden
 ACCEPTED_EVIDENCE_ROLLUP_PATH = ROOT / "docs" / "accepted-evidence-rollup.json"
 BUSINESS_IMPACT_LEDGER_PATH = ROOT / "docs" / "business-impact-ledger.json"
 REVIEWER_EVIDENCE_KIT_PATH = ROOT / "docs" / "reviewer-evidence-kit.json"
+RESUME_TRACTION_PROOF_PATH = ROOT / "docs" / "resume-traction-proof.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
@@ -99,6 +100,7 @@ def verify_manifest() -> dict[str, int]:
     accepted_evidence_rollup = load_payload(ACCEPTED_EVIDENCE_ROLLUP_PATH)
     business_impact_ledger = load_payload(BUSINESS_IMPACT_LEDGER_PATH)
     reviewer_evidence_kit = load_payload(REVIEWER_EVIDENCE_KIT_PATH)
+    resume_traction_proof = load_payload(RESUME_TRACTION_PROOF_PATH)
     api_smoke_report = load_payload(API_SMOKE_REPORT_PATH)
     performance_baseline = load_payload(PERFORMANCE_BASELINE_PATH)
     demo_usage_baseline = load_payload(DEMO_USAGE_BASELINE_PATH)
@@ -558,12 +560,50 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 135:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 136:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_metrics_summary claim must use metric_value=1")
+            elif metric_name == "resume_traction_proof":
+                traction_proof_script = (ROOT / "scripts" / "build_resume_traction_proof.py").read_text()
+                traction_proof_tests = (ROOT / "tests" / "test_resume_traction_proof.py").read_text()
+                expected_counts = {
+                    "stars": 0,
+                    "confirmed_external_users": 0,
+                    "external_feedback_items": 0,
+                    "reproducible_feedback_items": 0,
+                }
+                for key, expected in expected_counts.items():
+                    if resume_traction_proof.get("public_counts", {}).get(key) != expected:
+                        raise AssertionError(f"resume traction proof {key} expected {expected!r}")
+                if resume_traction_proof.get("claimable_now_count") != 4:
+                    raise AssertionError("resume traction proof must include 4 claimable current signals")
+                if resume_traction_proof.get("future_claim_count") != 4:
+                    raise AssertionError("resume traction proof must include 4 future outcome claims")
+                if resume_traction_proof.get("blocked_claim_count") != 5:
+                    raise AssertionError("resume traction proof must include 5 blocked claim rules")
+                if not all(
+                    item.get("status") == "claimable"
+                    for item in resume_traction_proof.get("claimable_now", [])
+                ):
+                    raise AssertionError("resume traction proof current launch/quality signals must be claimable")
+                if not all(
+                    item.get("status") == "not_claimable_yet"
+                    for item in resume_traction_proof.get("future_claims", [])
+                ):
+                    raise AssertionError("resume traction proof must keep zero outcome claims blocked")
+                blocked = " ".join(resume_traction_proof.get("blocked_claims", [])).lower()
+                for required in ("active users", "customer feedback", "production adoption", "github traffic views"):
+                    if required not in blocked:
+                        raise AssertionError(f"resume traction proof must block {required}")
+                if "verify_resume_traction_proof" not in traction_proof_script:
+                    raise AssertionError("resume traction proof must include a script verifier")
+                if "test_resume_traction_proof_separates_claimable_launch_from_unproven_growth" not in traction_proof_tests:
+                    raise AssertionError("resume traction proof must include a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("resume_traction_proof claim must use metric_value=1")
             elif metric_name == "persistent_trace_audit":
                 trace_tests = (ROOT / "tests" / "test_traces.py").read_text()
                 trace_source = (ROOT / "app" / "traces.py").read_text()
@@ -859,7 +899,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 135:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 136:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1698,7 +1738,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 135", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 136", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

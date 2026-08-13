@@ -5,7 +5,7 @@ This generated artifact turns verified project evidence into recruiter-facing la
 ## Resume Bullets
 
 - Built an LLM tool-calling data-quality agent for real business CSV and read-only PostgreSQL data, with 7 allowed tools, dynamic strategy selection, memory-informed planning, source-cited business-rule retrieval, 6 verified API integration endpoints, and safe model-key fallback.
-- Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 135 passing tests, 69 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
+- Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 136 passing tests, 70 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
 - Added enterprise-style guardrails for agent reliability, including read-only PostgreSQL query limits, 3 rejected unsafe SQL queries, sensitive-field redaction, trace observability, incident-pattern memory, evidence-backed root-cause hypotheses, and deterministic report verification.
 
 ## LinkedIn Project Description
