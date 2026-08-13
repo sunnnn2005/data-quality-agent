@@ -1,0 +1,3 @@
+{"id":"orders_daily_core_failures","dataset_id":"orders_daily","expected_status":"FAIL","expected_findings":["duplicate_primary_key","missing_values","numeric_outliers"],"expected_report_tool":false}
+{"id":"payments_events_freshness_negative_amount","dataset_id":"payments_events","expected_status":"FAIL","expected_findings":["freshness_sla","negative_amount"],"expected_report_tool":false}
+{"id":"customer_profiles_schema_missingness","dataset_id":"customer_profiles","expected_status":"FAIL","expected_findings":["schema_drift","missing_values"],"expected_report_tool":false}

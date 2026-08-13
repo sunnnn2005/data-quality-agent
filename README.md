@@ -18,12 +18,41 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Signal | Verified result |
 | --- | --- |
 | Public demo | [sunnnn2005.github.io/data-quality-agent](https://sunnnn2005.github.io/data-quality-agent/) |
-| Test suite | 19 automated tests passing locally and in GitHub Actions |
+| Test suite | 22 automated tests passing locally and in GitHub Actions |
 | CSV safety limit | 10,000 rows, 80 columns, 2 MB upload limit |
 | Report score | 24 / 100, status `FAIL` |
 | Evidence-backed findings | duplicate `ticket_id`, missing `team` / `priority`, negative `amount`, and an `amount` outlier |
 
 This makes the project reviewable without private data or paid model access: open the demo for the output snapshot, or run the same CSV locally through the FastAPI upload route.
+
+## Agent Evaluation
+
+The repo includes a lightweight evaluation harness for known data-quality scenarios:
+
+```bash
+python -m app.evals --mode all
+```
+
+The default eval does not require `OPENAI_API_KEY`. It measures:
+
+- status accuracy
+- finding recall
+- evidence support rate
+- disabled-agent fallback success rate
+- required report-tool usage
+- final report attachment rate
+- average latency
+
+Current deterministic baseline on three built-in scenarios:
+
+| Metric | Result |
+| --- | --- |
+| Status accuracy | 1.0 |
+| Finding recall | 1.0 |
+| Evidence support rate | 1.0 |
+| Fallback success rate | 1.0 |
+
+The tool-calling agent eval also runs in CI without a model key and verifies safe disabled fallback behavior. Real model evals should be run separately with explicit provider credentials and cost tracking.
 
 ## The Model
 
