@@ -21,7 +21,7 @@
   ],
   "project": "Data Quality Agent",
   "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
-  "release": "v0.2.0",
+  "release": "v0.3.0",
   "repo": "https://github.com/sunnnn2005/data-quality-agent",
   "resume_safe_summary": "Published a public demo usage baseline that verifies demo entrypoints and tracks stars, forks, feedback issues, and reproducible feedback from an honest zero-adoption baseline.",
   "tracked_counts": {

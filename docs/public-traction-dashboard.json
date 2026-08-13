@@ -116,8 +116,8 @@
     {
       "name": "github_release",
       "resume_signal": "public release",
-      "status": "v0.2.0",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.2.0"
+      "status": "v0.3.0",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.3.0"
     },
     {
       "name": "container_image",

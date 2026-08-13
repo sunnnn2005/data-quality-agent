@@ -182,7 +182,7 @@
       "id": "github-release",
       "passed": true,
       "status_code": 200,
-      "url": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.2.0"
+      "url": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.3.0"
     }
   ],
   "failed_count": 0,

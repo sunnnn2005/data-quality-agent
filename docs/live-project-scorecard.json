@@ -41,9 +41,9 @@
   ],
   "project": "Data Quality Agent",
   "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
-  "release": "v0.2.0",
+  "release": "v0.3.0",
   "repo": "https://github.com/sunnnn2005/data-quality-agent",
-  "resume_safe_summary": "Live project scorecard: public demo, v0.2.0 release, container image, 88 passing CI tests, 47 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
+  "resume_safe_summary": "Live project scorecard: public demo, v0.3.0 release, container image, 88 passing CI tests, 47 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
   "reviewer_paths": [
     {
       "label": "Try the public demo",

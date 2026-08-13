@@ -7,7 +7,7 @@ This page maps resume-ready claims for Data Quality Agent to public evidence. It
 | Claim ID | Resume signal | Evidence | What it proves |
 | --- | --- | --- | --- |
 | `public-demo` | Launched public demo | [GitHub Pages demo](https://sunnnn2005.github.io/data-quality-agent/) | The project is publicly viewable and has a product-style demo page. |
-| `public-release` | Published release | [v0.2.0 release](https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.2.0) | The project has a tagged public release. |
+| `public-release` | Published release | [v0.3.0 release](https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.3.0) | The project has a tagged public release. |
 | `container-image` | Published runnable container | [GHCR package](https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent) | The FastAPI service is packaged as a container image. |
 | `ci-tests` | 88 passing CI tests | [GitHub Actions CI](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml) | Tests, support-ticket demo verification, business-impact verification, evaluation summary verification, incident-pattern memory verification, agent observability verification, agent safety-boundary verification, local reviewer demo verification, API smoke report verification, performance baseline verification, demo usage baseline verification, business-data intake baseline verification, community growth baseline verification, impact review packet verification, business problem casebook verification, public traction dashboard verification, feedback intake quality verification, live project scorecard verification, recruiter pitch verification, application evidence pack verification, pilot outreach kit verification, pilot program plan verification, OpenAPI contract verification, hypothesis feedback verification, feedback metrics verification, adoption metrics verification, and outcome evidence verification run in CI. |
 | `support-ticket-artifact` | CI-verified support-ticket artifact | [Verified JSON artifact](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/verified-support-ticket-result.json) | The business-data case study result is machine-generated and checked for expected findings. |
@@ -133,7 +133,7 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Feedback intake outcome signals | 4 |
 | Feedback intake captured evidence groups | 5 |
 | Public evidence health checks | 19 |
-| Public release | v0.2.0 |
+| Public release | v0.3.0 |
 | Public metrics summary | 1 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
@@ -155,7 +155,7 @@ These signals should not be written on the resume until there is evidence:
 
 Use wording that is true today:
 
-- Launched a public GitHub Pages demo and v0.2.0 release for an LLM-powered data reliability agent.
+- Launched a public GitHub Pages demo and v0.3.0 release for an LLM-powered data reliability agent.
 - Published a GHCR container image and CI-verified support-ticket artifact for a reproducible business data-quality case study.
 - Added a read-only PostgreSQL agent route that analyzes a seeded business support-ticket table with model-key fallback.
 - Added optional SQLite persistence for sanitized agent run traces, enabling audit lookup after process restart.

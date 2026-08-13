@@ -19,7 +19,7 @@ This generated dashboard separates what is live and trackable from what is not y
 | Surface | URL | Resume signal | Status |
 | --- | --- | --- | --- |
 | public_demo | [https://sunnnn2005.github.io/data-quality-agent/](https://sunnnn2005.github.io/data-quality-agent/) | publicly launched demo | `live` |
-| github_release | [https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.2.0](https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.2.0) | public release | `v0.2.0` |
+| github_release | [https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.3.0](https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.3.0) | public release | `v0.3.0` |
 | container_image | [https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent](https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent) | runnable deployment artifact | `published` |
 | feedback_issue_template | [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md) | public feedback channel | `tracking` |
 

@@ -13,7 +13,7 @@ OUTPUT_PATH = ROOT / "docs" / "adoption-metrics.json"
 HISTORY_PATH = ROOT / "docs" / "adoption-history.jsonl"
 FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
 REPO = "sunnnn2005/data-quality-agent"
-CURRENT_RELEASE_TAG = "v0.2.0"
+CURRENT_RELEASE_TAG = "v0.3.0"
 
 
 def _run_gh(args: list[str]) -> dict[str, Any] | None:

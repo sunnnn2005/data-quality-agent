@@ -102,7 +102,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 
 ## Resume-Safe Signals
 
-- Public demo and v0.2.0 release
+- Public demo and v0.3.0 release
 - 88 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses

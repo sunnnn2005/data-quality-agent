@@ -118,7 +118,7 @@ PUBLIC_CHECKS = [
     {
         "id": "demo-usage-baseline",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/demo-usage-baseline.json",
-        "expected_json": {"project": "Data Quality Agent", "release": "v0.2.0"},
+        "expected_json": {"project": "Data Quality Agent", "release": "v0.3.0"},
         "expected_text": "visitor analytics",
         "expected_texts": ["tracked_usage_funnel", "confirmed_external_users", "star_repository"],
         "evidence_type": "json",
@@ -166,7 +166,7 @@ PUBLIC_CHECKS = [
     {
         "id": "live-project-scorecard",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/live-project-scorecard.json",
-        "expected_json": {"release": "v0.2.0"},
+        "expected_json": {"release": "v0.3.0"},
         "expected_text": "verified_resume_claims",
         "expected_texts": ["confirmed_external_users", "GitHub stars beyond the current public count"],
         "evidence_type": "json",
@@ -217,8 +217,8 @@ PUBLIC_CHECKS = [
     },
     {
         "id": "github-release",
-        "url": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.2.0",
-        "expected_text": "v0.2.0",
+        "url": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.3.0",
+        "expected_text": "v0.3.0",
         "evidence_type": "release_page",
     },
 ]
