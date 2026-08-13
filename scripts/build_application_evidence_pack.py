@@ -63,6 +63,7 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "business_impact_ledger": f"{scorecard['repo']}/blob/main/docs/business-impact-ledger.md",
             "reviewer_evidence_kit": f"{scorecard['repo']}/blob/main/docs/reviewer-evidence-kit.md",
             "resume_traction_proof": f"{scorecard['repo']}/blob/main/docs/resume-traction-proof.md",
+            "reviewer_action_queue": f"{scorecard['repo']}/blob/main/docs/reviewer-action-queue.md",
         },
         "verified_outcome_numbers": {
             "passing_tests": headline["passing_tests"],
@@ -98,6 +99,9 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "resume_traction_claimable_now": outcomes["resume_traction_claimable_now"],
             "resume_traction_future_claims": outcomes["resume_traction_future_claims"],
             "resume_traction_blocked_claims": outcomes["resume_traction_blocked_claims"],
+            "reviewer_action_tasks": outcomes["reviewer_action_tasks"],
+            "reviewer_action_evidence_goals": outcomes["reviewer_action_evidence_goals"],
+            "reviewer_action_not_contacted": outcomes["reviewer_action_not_contacted"],
             "real_model_run_commands": outcomes["real_model_run_commands"],
             "real_model_evidence_fields": outcomes["real_model_evidence_fields"],
             "real_model_capture_required_fields": outcomes["real_model_capture_required_fields"],
@@ -183,14 +187,14 @@ This generated pack gives recruiters and interviewers a compact review path for 
 
 def verify_application_evidence_pack(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
-        "application_link_count": 30,
+        "application_link_count": 31,
         "resume_bullet_count": 3,
         "target_role_count": 4,
-        "passing_tests": 136,
-        "verified_resume_claims": 70,
+        "passing_tests": 137,
+        "verified_resume_claims": 71,
     }
     if len(payload["application_links"]) != expected["application_link_count"]:
-            raise AssertionError("application evidence pack must include 30 application links")
+            raise AssertionError("application evidence pack must include 31 application links")
     if len(payload["resume_bullets"]) != expected["resume_bullet_count"]:
         raise AssertionError("application evidence pack must include 3 resume bullets")
     if len(payload["target_roles"]) != expected["target_role_count"]:

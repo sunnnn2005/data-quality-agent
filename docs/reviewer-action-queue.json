@@ -1,0 +1,175 @@
+{
+  "baseline": {
+    "ai_engineer_review_items": 0,
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0,
+    "stars": 0
+  },
+  "blocked_resume_claims": [
+    "active users",
+    "customer feedback",
+    "enterprise production usage",
+    "earned GitHub stars beyond the current public count",
+    "completed external reviews"
+  ],
+  "evidence_goal_count": 5,
+  "evidence_goals": [
+    "ai_engineer_review_items",
+    "business_case_feedback_items",
+    "confirmed_external_users",
+    "external_feedback_items",
+    "reproducible_feedback_items"
+  ],
+  "generated_by": "scripts/build_reviewer_action_queue.py",
+  "not_contacted_count": 8,
+  "project": "Data Quality Agent",
+  "purpose": "Turn the zero-user, zero-feedback baseline into a concrete public reviewer action queue without claiming any reviewer has been contacted or completed.",
+  "queue_count": 8,
+  "resume_safe_summary": "Published a CI-verified reviewer action queue with 8 concrete outreach tasks mapped to 5 evidence goals and zero contacted or completed reviewers.",
+  "resume_status": "outreach_queue_ready_not_claimable",
+  "status_counts": {
+    "completed": 0,
+    "contacted": 0,
+    "not_contacted": 8
+  },
+  "tasks": [
+    {
+      "claimable_when": "Counts only after a public GitHub issue is accepted by the evidence gate.",
+      "counts_toward": "external_feedback_items",
+      "entry_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "id": "review_uc_davis_ds_peer_demo",
+      "message_template": "Could you spend 8 minutes trying my public Data Quality Agent demo and leave one GitHub issue with anything confusing, useful, or broken? I am tracking feedback publicly instead of claiming users without proof.",
+      "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "required_public_evidence": [
+        "Public GitHub issue with demo path tried",
+        "One concrete confusing, useful, or broken behavior",
+        "Permission to count the issue as external feedback"
+      ],
+      "reviewer_segment": "UC Davis data science peer",
+      "status": "not_contacted",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    },
+    {
+      "claimable_when": "Counts toward feedback only after the issue names a reviewed project surface.",
+      "counts_toward": "external_feedback_items",
+      "entry_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "id": "review_student_swe_peer_demo",
+      "message_template": "I am collecting public review evidence for a data-quality LLM agent project. If anyone can try the demo, please leave one GitHub issue with what worked, what broke, or what would make it more useful for real data workflows.",
+      "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "required_public_evidence": [
+        "Public GitHub issue with reviewed URL",
+        "Specific product or engineering feedback",
+        "Permission to count the issue as external feedback"
+      ],
+      "reviewer_segment": "student software engineer peer",
+      "status": "not_contacted",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    },
+    {
+      "claimable_when": "Counts as reproducible feedback only after the reviewer confirms a local or container replay.",
+      "counts_toward": "reproducible_feedback_items",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent",
+      "id": "review_local_replay_engineer",
+      "message_template": "Could you clone my Data Quality Agent repo, run the local replay path, and submit whether the result was reproducible? Please avoid raw private data; a short redacted run summary is enough.",
+      "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "required_public_evidence": [
+        "Command or run path used",
+        "Redacted result summary",
+        "Whether the run was reproducible"
+      ],
+      "reviewer_segment": "engineer comfortable with Docker or local setup",
+      "status": "not_contacted",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md"
+    },
+    {
+      "claimable_when": "Counts as external use only after public confirmation names the path used.",
+      "counts_toward": "confirmed_external_users",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-feedback-packet.md",
+      "id": "review_confirmed_external_use",
+      "message_template": "If you already tried the Data Quality Agent demo or ran the repo locally, could you leave a short public note saying what path you used and whether the result was understandable? I only count confirmed external use when it is public and specific.",
+      "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "required_public_evidence": [
+        "Public confirmation of demo or repo usage",
+        "Path used",
+        "Permission to count as confirmed external use"
+      ],
+      "reviewer_segment": "reviewer who tried demo or local repo",
+      "status": "not_contacted",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    },
+    {
+      "claimable_when": "Counts as a business case only after it includes an anonymized problem and impact description.",
+      "counts_toward": "business_case_feedback_items",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md",
+      "id": "review_data_analyst_business_case",
+      "message_template": "Do you have an anonymized data-quality problem this project should handle, such as duplicate IDs, stale exports, missing routing fields, or suspicious numeric values? A public business-case issue with no raw data would help me test real usefulness.",
+      "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "required_public_evidence": [
+        "Anonymized business-data quality problem",
+        "Expected business impact",
+        "No private rows or sensitive fields"
+      ],
+      "reviewer_segment": "data analyst or analytics student",
+      "status": "not_contacted",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md"
+    },
+    {
+      "claimable_when": "Counts only when a real workflow impact is described without exposing private data.",
+      "counts_toward": "business_case_feedback_items",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md",
+      "id": "review_operator_business_case",
+      "message_template": "Do you have an anonymized data-quality problem this project should handle, such as duplicate IDs, stale exports, missing routing fields, or suspicious numeric values? A public business-case issue with no raw data would help me test real usefulness.",
+      "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "required_public_evidence": [
+        "Workflow affected by data-quality failure",
+        "What decision would be wrong if the data is bad",
+        "Permission to count the anonymized case as business feedback"
+      ],
+      "reviewer_segment": "small-business operator or operations teammate",
+      "status": "not_contacted",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md"
+    },
+    {
+      "claimable_when": "Counts as AI Engineer review evidence only after the reviewer names an inspected path.",
+      "counts_toward": "ai_engineer_review_items",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md",
+      "id": "review_ai_engineer_agent_readiness",
+      "message_template": "I am improving this project for AI Engineer internship applications. Could you review whether the LLM tool-calling loop, business-data connector, structured output, guardrails, and evidence trail look credible enough for an intern interview? If yes, please leave a public AI Engineer review issue with the path you inspected.",
+      "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "required_public_evidence": [
+        "Inspected LLM tool-calling or agent-readiness path",
+        "Concrete AI Engineer credibility feedback",
+        "Permission to count as AI Engineer review evidence"
+      ],
+      "reviewer_segment": "AI engineer, mentor, or ML systems reviewer",
+      "status": "not_contacted",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md"
+    },
+    {
+      "claimable_when": "Counts as feedback only after the issue gives contributor-facing evidence.",
+      "counts_toward": "external_feedback_items",
+      "entry_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "id": "review_open_source_maintainer",
+      "message_template": "Could you review whether this repo is understandable for an outside contributor? I am especially looking for feedback on README clarity, issue templates, evidence artifacts, and whether a first-time contributor could run the project.",
+      "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "required_public_evidence": [
+        "Public issue with contributor-readiness feedback",
+        "One suggested improvement for README, setup, tests, or issue templates",
+        "Permission to count the issue as external feedback"
+      ],
+      "reviewer_segment": "open-source maintainer or GitHub contributor",
+      "status": "not_contacted",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    }
+  ]
+}

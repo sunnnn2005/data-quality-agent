@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 136,
-      "resume_signal": "136 passing CI tests",
+      "metric_value": 137,
+      "resume_signal": "137 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 30 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 31 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 30,
+      "metric_value": 31,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -679,6 +679,16 @@
       "resume_signal": "CI-verified resume traction proof",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-traction-proof.json"
+    },
+    {
+      "claim": "The project publishes a reviewer action queue with 8 concrete outreach tasks, 5 public evidence goals, privacy boundaries, permission-to-count rules, and a zero contacted or completed baseline.",
+      "evidence_type": "generated_artifact",
+      "id": "reviewer-action-queue",
+      "metric_name": "reviewer_action_queue",
+      "metric_value": 1,
+      "resume_signal": "CI-verified reviewer action queue",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-action-queue.json"
     }
   ],
   "not_claimed": [

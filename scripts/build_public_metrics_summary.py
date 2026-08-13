@@ -25,6 +25,7 @@ ACCEPTED_EVIDENCE_ROLLUP_PATH = ROOT / "docs" / "accepted-evidence-rollup.json"
 BUSINESS_IMPACT_LEDGER_PATH = ROOT / "docs" / "business-impact-ledger.json"
 REVIEWER_EVIDENCE_KIT_PATH = ROOT / "docs" / "reviewer-evidence-kit.json"
 RESUME_TRACTION_PROOF_PATH = ROOT / "docs" / "resume-traction-proof.json"
+REVIEWER_ACTION_QUEUE_PATH = ROOT / "docs" / "reviewer-action-queue.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
@@ -60,7 +61,7 @@ REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 SCORECARD_REVIEWER_PATH_COUNT = 23
-APPLICATION_EVIDENCE_LINK_COUNT = 30
+APPLICATION_EVIDENCE_LINK_COUNT = 31
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -89,6 +90,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     business_impact_ledger = load_json(BUSINESS_IMPACT_LEDGER_PATH)
     reviewer_evidence_kit = load_json(REVIEWER_EVIDENCE_KIT_PATH)
     resume_traction_proof = load_json(RESUME_TRACTION_PROOF_PATH)
+    reviewer_action_queue = load_json(REVIEWER_ACTION_QUEUE_PATH)
     api_smoke = load_json(API_SMOKE_REPORT_PATH)
     performance = load_json(PERFORMANCE_BASELINE_PATH)
     demo_usage = load_json(DEMO_USAGE_BASELINE_PATH)
@@ -212,6 +214,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "resume_traction_claimable_now": resume_traction_proof["claimable_now_count"],
             "resume_traction_future_claims": resume_traction_proof["future_claim_count"],
             "resume_traction_blocked_claims": resume_traction_proof["blocked_claim_count"],
+            "reviewer_action_queue": 1,
+            "reviewer_action_tasks": reviewer_action_queue["queue_count"],
+            "reviewer_action_not_contacted": reviewer_action_queue["not_contacted_count"],
+            "reviewer_action_evidence_goals": reviewer_action_queue["evidence_goal_count"],
             "api_smoke_report": 1,
             "api_smoke_checks": api_smoke["check_count"],
             "api_smoke_passed_checks": api_smoke["passed_count"],
@@ -454,6 +460,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{resume_traction_proof['future_claim_count']} threshold-based future outcome claims, and "
                 f"{resume_traction_proof['blocked_claim_count']} blocked overclaiming rules"
             ),
+            (
+                f"Reviewer action queue with {reviewer_action_queue['queue_count']} concrete outreach tasks, "
+                f"{reviewer_action_queue['evidence_goal_count']} public evidence goals, "
+                f"{reviewer_action_queue['not_contacted_count']} not-contacted baseline entries, and zero completed reviews claimed"
+            ),
             f"CI-verified API smoke report covering {api_smoke['passed_count']} passing FastAPI route checks",
             (
                 f"CI-verified local performance baseline covering {performance['benchmark_count']} route benchmarks "
@@ -666,6 +677,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Resume traction claimable now | {outcomes["resume_traction_claimable_now"]} |
 | Resume traction future claims | {outcomes["resume_traction_future_claims"]} |
 | Resume traction blocked claims | {outcomes["resume_traction_blocked_claims"]} |
+| Reviewer action queue | {outcomes["reviewer_action_queue"]} |
+| Reviewer action tasks | {outcomes["reviewer_action_tasks"]} |
+| Reviewer action not-contacted entries | {outcomes["reviewer_action_not_contacted"]} |
+| Reviewer action evidence goals | {outcomes["reviewer_action_evidence_goals"]} |
 | API smoke report | {outcomes["api_smoke_report"]} |
 | API smoke checks | {outcomes["api_smoke_checks"]} |
 | API smoke passed checks | {outcomes["api_smoke_passed_checks"]} |
@@ -801,7 +816,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 136,
+        "test_count": 137,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -888,6 +903,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "resume_traction_claimable_now": 4,
         "resume_traction_future_claims": 4,
         "resume_traction_blocked_claims": 5,
+        "reviewer_action_queue": 1,
+        "reviewer_action_tasks": 8,
+        "reviewer_action_not_contacted": 8,
+        "reviewer_action_evidence_goals": 5,
         "api_smoke_report": 1,
         "api_smoke_checks": 6,
         "api_smoke_passed_checks": 6,
@@ -926,7 +945,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 30,
+        "application_evidence_links": 31,
         "ai_engineer_review_intake": 1,
         "ai_engineer_review_paths": 6,
         "ai_engineer_review_questions": 6,

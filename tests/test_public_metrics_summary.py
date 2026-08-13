@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 136
+    assert payload["public_metrics"]["test_count"] == 137
     assert payload["public_metrics"]["github_view_count"] >= 0
     assert payload["public_metrics"]["github_unique_visitors"] <= payload["public_metrics"]["github_view_count"]
     assert payload["public_metrics"]["github_clone_count"] >= 0
@@ -119,7 +119,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["recruiter_pitch_resume_bullets"] == 3
     assert payload["verified_project_outcomes"]["recruiter_pitch_target_roles"] == 4
     assert payload["verified_project_outcomes"]["application_evidence_pack"] == 1
-    assert payload["verified_project_outcomes"]["application_evidence_links"] == 30
+    assert payload["verified_project_outcomes"]["application_evidence_links"] == 31
     assert payload["verified_project_outcomes"]["ai_engineer_review_intake"] == 1
     assert payload["verified_project_outcomes"]["ai_engineer_review_paths"] == 6
     assert payload["verified_project_outcomes"]["ai_engineer_review_questions"] == 6
@@ -254,7 +254,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert "23 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
     assert "CI-verified OpenAPI contract covering 6 integration endpoints" in payload["resume_safe_signals"]
     assert "3 recruiter-safe resume bullets for 4 target roles" in payload["resume_safe_signals"]
-    assert "30 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
+    assert "31 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
     assert any("Business impact ledger with 0 accepted business-impact signals" in signal for signal in payload["resume_safe_signals"])
     assert any("Resume traction proof with 4 claimable launch/quality signals" in signal for signal in payload["resume_safe_signals"])
     assert (
