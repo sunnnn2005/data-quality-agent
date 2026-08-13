@@ -74,13 +74,13 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Public traction growth channels | 15 |
 | Public traction resume upgrade rules | 3 |
 | Live project scorecard | 1 |
-| Scorecard reviewer paths | 11 |
+| Scorecard reviewer paths | 12 |
 | OpenAPI required integration endpoints | 6 |
 | OpenAPI paths | 14 |
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 13 |
+| Application evidence links | 14 |
 | Pilot outreach messages | 3 |
 | Pilot review paths | 9 |
 | Pilot program segments | 3 |
@@ -115,6 +115,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business-case intake tried paths | 5 |
 | Business-case intake outcome signals | 5 |
 | Business-case intake captured evidence groups | 6 |
+| Business-data replay packet | 1 |
+| Business-data replay paths | 3 |
+| Business-data replay evidence fields | 8 |
+| Business-data replay safety requirements | 5 |
 | Recommended remediation actions | 5 |
 | Implemented LLM agent-readiness capabilities | 16 |
 | Partial agent-readiness capabilities documented | 4 |
@@ -154,15 +158,16 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Impact review packet with 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs
 - Business problem casebook with 1 verified case, 4 detected business risks, and 4 owner handoffs
 - Public traction dashboard with 4 live project surfaces, 15 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
-- 11 reviewer paths in a CI-verified live project scorecard
+- 12 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
-- 13 application evidence links in a recruiter-ready evidence pack
+- 14 application evidence links in a recruiter-ready evidence pack
 - 3 pilot outreach messages and 9 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
 - Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups
 - Star growth kit with 6 verified repo topics, 4 ethical growth actions, and 3 resume upgrade rules without inflating current stars
 - Business-case intake path with 6 required sections, 5 tried paths, 5 outcome signals, and 6 captured evidence groups
+- Business-data replay packet with 3 safe replay paths, 8 evidence fields, 5 safety requirements, and zero current external replay claims
 - 5 evidence-backed remediation actions
 - 16 implemented LLM agent-readiness capabilities
 - 1 public fork and 0 public stars as current honest adoption baseline

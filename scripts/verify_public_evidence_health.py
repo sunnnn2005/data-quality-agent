@@ -186,6 +186,14 @@ PUBLIC_CHECKS = [
         "evidence_type": "json",
     },
     {
+        "id": "business-data-replay-packet",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-data-replay-packet.json",
+        "expected_json": {"project": "Data Quality Agent", "replay_path_count": 3, "evidence_field_count": 8},
+        "expected_text": "replay_ready_not_claimable",
+        "expected_texts": ["sanitized_csv_upload", "readonly_postgres_table", "real company data analyzed"],
+        "evidence_type": "json",
+    },
+    {
         "id": "live-project-scorecard",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/live-project-scorecard.json",
         "expected_json": {"release": "v0.3.0"},

@@ -41,6 +41,7 @@ REVIEWER_FEEDBACK_PACKET_PATH = ROOT / "docs" / "reviewer-feedback-packet.json"
 FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
+BUSINESS_DATA_REPLAY_PACKET_PATH = ROOT / "docs" / "business-data-replay-packet.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
 PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
 RESUME_EVIDENCE_PATH = ROOT / "docs" / "resume-evidence.md"
@@ -96,6 +97,7 @@ def verify_manifest() -> dict[str, int]:
     feedback_intake = load_payload(FEEDBACK_INTAKE_QUALITY_PATH)
     star_growth = load_payload(STAR_GROWTH_KIT_PATH)
     business_case_intake = load_payload(BUSINESS_CASE_INTAKE_PATH)
+    replay_packet = load_payload(BUSINESS_DATA_REPLAY_PACKET_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
     feedback_log = FEEDBACK_LOG_PATH.read_text().lower()
@@ -1007,6 +1009,56 @@ def verify_manifest() -> dict[str, int]:
                     not in case_tests
                 ):
                     raise AssertionError("business case intake must have a dedicated test")
+            elif metric_name == "business_data_replay_packet":
+                replay_tests = (ROOT / "tests" / "test_business_data_replay_packet.py").read_text()
+                replay_script = (ROOT / "scripts" / "build_business_data_replay_packet.py").read_text()
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("business data replay packet claim must use metric_value=1")
+                expected = {
+                    "replay_path_count": 3,
+                    "evidence_field_count": 8,
+                    "safety_requirement_count": 5,
+                }
+                for key, value in expected.items():
+                    if replay_packet.get(key) != value:
+                        raise AssertionError(f"business data replay packet {key} expected {value}")
+                boundaries = replay_packet.get("verified_input_boundaries", {})
+                expected_boundaries = {
+                    "business_data_endpoint_verified": True,
+                    "postgres_agent_endpoint_verified": True,
+                    "max_rows": 10_000,
+                    "max_columns": 80,
+                    "csv_only": True,
+                    "primary_key_required": True,
+                }
+                for key, value in expected_boundaries.items():
+                    if boundaries.get(key) != value:
+                        raise AssertionError(f"business data replay boundary {key} expected {value}")
+                counts = replay_packet.get("current_public_counts", {})
+                for key in (
+                    "external_feedback_items",
+                    "confirmed_external_users",
+                    "business_case_feedback_items",
+                    "reproducible_feedback_items",
+                ):
+                    if counts.get(key) != 0:
+                        raise AssertionError(f"business data replay packet must preserve zero {key}")
+                if replay_packet.get("resume_status") != "replay_ready_not_claimable":
+                    raise AssertionError("business data replay packet must not be claimable before public evidence")
+                for required in (
+                    "external replay completed",
+                    "real company data analyzed",
+                    "enterprise production usage",
+                ):
+                    if required not in replay_packet.get("not_claimed", []):
+                        raise AssertionError(f"business data replay packet must not claim {required}")
+                if "verify_business_data_replay_packet" not in replay_script:
+                    raise AssertionError("business data replay packet script must verify generated artifact")
+                if (
+                    "test_business_data_replay_packet_turns_realistic_data_runs_into_public_evidence"
+                    not in replay_tests
+                ):
+                    raise AssertionError("business data replay packet must have a dedicated test")
             elif metric_name == "star_growth_kit":
                 star_script = (ROOT / "scripts" / "build_star_growth_kit.py").read_text()
                 star_tests = (ROOT / "tests" / "test_star_growth_kit.py").read_text()

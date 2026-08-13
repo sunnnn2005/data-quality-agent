@@ -51,6 +51,7 @@ def build_live_project_scorecard_payload() -> dict[str, Any]:
             {"label": "Inspect business problem casebook", "url": f"{metrics['repo']}/blob/main/docs/business-problem-casebook.md"},
             {"label": "Inspect public traction dashboard", "url": f"{metrics['repo']}/blob/main/docs/public-traction-dashboard.md"},
             {"label": "Inspect feedback intake quality", "url": f"{metrics['repo']}/blob/main/docs/feedback-intake-quality.md"},
+            {"label": "Inspect business-data replay packet", "url": f"{metrics['repo']}/blob/main/docs/business-data-replay-packet.md"},
             {"label": "Inspect OpenAPI contract", "url": f"{metrics['repo']}/blob/main/docs/api-contract.md"},
             {"label": "Inspect safety boundaries", "url": f"{metrics['repo']}/blob/main/docs/agent-safety-boundaries.md"},
             {"label": "Inspect agent capability matrix", "url": f"{metrics['repo']}/blob/main/docs/agent-capability-matrix.md"},
@@ -72,6 +73,7 @@ def build_live_project_scorecard_payload() -> dict[str, Any]:
             "has_public_traction_dashboard": "public-traction-dashboard" in claim_ids,
             "has_feedback_intake_quality": "feedback-intake-quality" in claim_ids,
             "has_business_case_intake": "business-case-intake" in claim_ids,
+            "has_business_data_replay_packet": "business-data-replay-packet" in claim_ids,
         },
         "resume_safe_summary": (
             f"Live project scorecard: public demo, {metrics['release']} release, container image, "
@@ -138,7 +140,7 @@ def verify_live_project_scorecard(payload: dict[str, Any]) -> dict[str, Any]:
     footprint = payload["live_footprint"]
     expected = {
         "passing_tests": 94,
-        "verified_resume_claims": 53,
+        "verified_resume_claims": 54,
         "implemented_agent_capabilities": 16,
         "agent_tools_allowed": 7,
         "agent_matrix_implemented_capabilities": 13,

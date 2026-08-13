@@ -66,12 +66,12 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["public_traction_growth_channels"] == 15
     assert payload["verified_project_outcomes"]["public_traction_resume_upgrade_rules"] == 3
     assert payload["verified_project_outcomes"]["live_project_scorecard"] == 1
-    assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 11
+    assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 12
     assert payload["verified_project_outcomes"]["openapi_required_endpoints"] == 6
     assert payload["verified_project_outcomes"]["recruiter_pitch_resume_bullets"] == 3
     assert payload["verified_project_outcomes"]["recruiter_pitch_target_roles"] == 4
     assert payload["verified_project_outcomes"]["application_evidence_pack"] == 1
-    assert payload["verified_project_outcomes"]["application_evidence_links"] == 13
+    assert payload["verified_project_outcomes"]["application_evidence_links"] == 14
     assert payload["verified_project_outcomes"]["pilot_outreach_messages"] == 3
     assert payload["verified_project_outcomes"]["pilot_review_paths"] == 9
     assert payload["verified_project_outcomes"]["pilot_program_segments"] == 3
@@ -106,6 +106,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["business_case_intake_try_paths"] == 5
     assert payload["verified_project_outcomes"]["business_case_intake_outcomes"] == 5
     assert payload["verified_project_outcomes"]["business_case_intake_captured_fields"] == 6
+    assert payload["verified_project_outcomes"]["business_data_replay_packet"] == 1
+    assert payload["verified_project_outcomes"]["business_data_replay_paths"] == 3
+    assert payload["verified_project_outcomes"]["business_data_replay_evidence_fields"] == 8
+    assert payload["verified_project_outcomes"]["business_data_replay_safety_requirements"] == 5
     assert payload["verified_project_outcomes"]["recommended_actions"] == 5
     assert payload["verified_project_outcomes"]["implemented_agent_capabilities"] == 16
     assert "14-scenario agent evaluation harness" in payload["resume_safe_signals"]
@@ -151,10 +155,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
             "Public traction dashboard with 4 live project surfaces, 15 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules"
         in payload["resume_safe_signals"]
     )
-    assert "11 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
+    assert "12 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
     assert "CI-verified OpenAPI contract covering 6 integration endpoints" in payload["resume_safe_signals"]
     assert "3 recruiter-safe resume bullets for 4 target roles" in payload["resume_safe_signals"]
-    assert "13 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
+    assert "14 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
     assert "3 pilot outreach messages and 9 review paths for collecting real feedback" in payload["resume_safe_signals"]
     assert (
         "Pilot review tracker with 3 planned reviewer segments, 3 not-contacted baseline entries, and 3 resume-upgrade rules"
@@ -175,6 +179,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     )
     assert (
         "Business-case intake path with 6 required sections, 5 tried paths, 5 outcome signals, and 6 captured evidence groups"
+        in payload["resume_safe_signals"]
+    )
+    assert (
+        "Business-data replay packet with 3 safe replay paths, 8 evidence fields, 5 safety requirements, and zero current external replay claims"
         in payload["resume_safe_signals"]
     )
     assert "Dataset-level memory retrieval over recent sanitized traces" in payload["resume_safe_signals"]

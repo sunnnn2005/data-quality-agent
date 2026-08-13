@@ -11,10 +11,13 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     markdown = render_markdown(payload)
 
     assert verification["application_evidence_pack_verified"] is True
-    assert len(payload["application_links"]) == 13
+    assert len(payload["application_links"]) == 14
+    assert "business_data_replay_packet" in payload["application_links"]
     assert len(payload["resume_bullets"]) == 3
     assert payload["verified_outcome_numbers"]["passing_tests"] == 94
-    assert payload["verified_outcome_numbers"]["verified_resume_claims"] == 53
+    assert payload["verified_outcome_numbers"]["verified_resume_claims"] == 54
+    assert payload["verified_outcome_numbers"]["business_data_replay_paths"] == 3
+    assert payload["verified_outcome_numbers"]["business_data_replay_evidence_fields"] == 8
     assert payload["verified_outcome_numbers"]["impact_review_business_metrics"] == 12
     assert payload["verified_outcome_numbers"]["impact_review_evidence_links"] == 8
     assert payload["verified_outcome_numbers"]["business_problem_cases"] == 1

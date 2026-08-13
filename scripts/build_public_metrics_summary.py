@@ -23,6 +23,7 @@ COMMUNITY_GROWTH_BASELINE_PATH = ROOT / "docs" / "community-growth-baseline.json
 IMPACT_REVIEW_PACKET_PATH = ROOT / "docs" / "impact-review-packet.json"
 BUSINESS_PROBLEM_CASEBOOK_PATH = ROOT / "docs" / "business-problem-casebook.json"
 PUBLIC_TRACTION_DASHBOARD_PATH = ROOT / "docs" / "public-traction-dashboard.json"
+LIVE_PROJECT_SCORECARD_PATH = ROOT / "docs" / "live-project-scorecard.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
 APPLICATION_EVIDENCE_PACK_PATH = ROOT / "docs" / "application-evidence-pack.json"
@@ -35,6 +36,7 @@ REVIEWER_FEEDBACK_PACKET_PATH = ROOT / "docs" / "reviewer-feedback-packet.json"
 FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
+BUSINESS_DATA_REPLAY_PACKET_PATH = ROOT / "docs" / "business-data-replay-packet.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 
@@ -63,6 +65,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     impact_review = load_json(IMPACT_REVIEW_PACKET_PATH)
     business_casebook = load_json(BUSINESS_PROBLEM_CASEBOOK_PATH)
     traction = load_json(PUBLIC_TRACTION_DASHBOARD_PATH)
+    scorecard = load_json(LIVE_PROJECT_SCORECARD_PATH)
     openapi = load_json(OPENAPI_PATH)
     recruiter_pitch = load_json(RECRUITER_PITCH_PATH)
     application_pack = load_json(APPLICATION_EVIDENCE_PACK_PATH)
@@ -75,6 +78,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     feedback_intake = load_json(FEEDBACK_INTAKE_QUALITY_PATH)
     star_growth = load_json(STAR_GROWTH_KIT_PATH)
     business_case_intake = load_json(BUSINESS_CASE_INTAKE_PATH)
+    replay_packet = load_json(BUSINESS_DATA_REPLAY_PACKET_PATH)
     verified_outcomes = outcome["verified_outcomes"]
     return {
         "project": "Data Quality Agent",
@@ -150,7 +154,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "public_traction_growth_channels": traction["growth_channel_count"],
             "public_traction_resume_upgrade_rules": len(traction["resume_upgrade_rules"]),
             "live_project_scorecard": 1,
-            "scorecard_reviewer_paths": 11,
+            "scorecard_reviewer_paths": len(scorecard["reviewer_paths"]),
             "openapi_required_endpoints": 6,
             "openapi_paths": len(openapi["paths"]),
             "recruiter_pitch_resume_bullets": len(recruiter_pitch["resume_bullets"]),
@@ -191,6 +195,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "business_case_intake_try_paths": business_case_intake["required_try_path_count"],
             "business_case_intake_outcomes": business_case_intake["required_outcome_count"],
             "business_case_intake_captured_fields": business_case_intake["captured_field_count"],
+            "business_data_replay_packet": 1,
+            "business_data_replay_paths": replay_packet["replay_path_count"],
+            "business_data_replay_evidence_fields": replay_packet["evidence_field_count"],
+            "business_data_replay_safety_requirements": replay_packet["safety_requirement_count"],
             "implemented_agent_capabilities": len(readiness["implemented"]),
             "partial_agent_capabilities": len(readiness["partial"]),
         },
@@ -286,10 +294,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{traction['tracked_funnel_steps']} tracked funnel steps, and "
                 f"{len(traction['resume_upgrade_rules'])} resume upgrade rules"
             ),
-            "11 reviewer paths in a CI-verified live project scorecard",
+            f"{len(scorecard['reviewer_paths'])} reviewer paths in a CI-verified live project scorecard",
             "CI-verified OpenAPI contract covering 6 integration endpoints",
             f"{len(recruiter_pitch['resume_bullets'])} recruiter-safe resume bullets for {len(recruiter_pitch['target_roles'])} target roles",
-            "13 application evidence links in a recruiter-ready evidence pack",
+            f"{len(application_pack['application_links'])} application evidence links in a recruiter-ready evidence pack",
             f"{len(pilot_outreach['outreach_messages'])} pilot outreach messages and {len(pilot_outreach['review_paths'])} review paths for collecting real feedback",
             f"{len(pilot_plan['participant_segments'])} pilot participant segments across a {len(pilot_plan['weekly_plan'])}-week feedback plan",
             (
@@ -308,6 +316,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{business_case_intake['required_try_path_count']} tried paths, "
                 f"{business_case_intake['required_outcome_count']} outcome signals, and "
                 f"{business_case_intake['captured_field_count']} captured evidence groups"
+            ),
+            (
+                f"Business-data replay packet with {replay_packet['replay_path_count']} safe replay paths, "
+                f"{replay_packet['evidence_field_count']} evidence fields, "
+                f"{replay_packet['safety_requirement_count']} safety requirements, and zero current external replay claims"
             ),
             f"{verified_outcomes['recommended_action_count']} evidence-backed remediation actions",
             f"{len(readiness['implemented'])} implemented LLM agent-readiness capabilities",
@@ -445,6 +458,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business-case intake tried paths | {outcomes["business_case_intake_try_paths"]} |
 | Business-case intake outcome signals | {outcomes["business_case_intake_outcomes"]} |
 | Business-case intake captured evidence groups | {outcomes["business_case_intake_captured_fields"]} |
+| Business-data replay packet | {outcomes["business_data_replay_packet"]} |
+| Business-data replay paths | {outcomes["business_data_replay_paths"]} |
+| Business-data replay evidence fields | {outcomes["business_data_replay_evidence_fields"]} |
+| Business-data replay safety requirements | {outcomes["business_data_replay_safety_requirements"]} |
 | Recommended remediation actions | {outcomes["recommended_actions"]} |
 | Implemented LLM agent-readiness capabilities | {outcomes["implemented_agent_capabilities"]} |
 | Partial agent-readiness capabilities documented | {outcomes["partial_agent_capabilities"]} |
@@ -530,12 +547,12 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "public_traction_growth_channels": 15,
         "public_traction_resume_upgrade_rules": 3,
         "live_project_scorecard": 1,
-        "scorecard_reviewer_paths": 11,
+        "scorecard_reviewer_paths": 12,
         "openapi_required_endpoints": 6,
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 13,
+        "application_evidence_links": 14,
         "pilot_outreach_messages": 3,
         "pilot_review_paths": 9,
         "pilot_program_segments": 3,
@@ -570,6 +587,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "business_case_intake_try_paths": 5,
         "business_case_intake_outcomes": 5,
         "business_case_intake_captured_fields": 6,
+        "business_data_replay_packet": 1,
+        "business_data_replay_paths": 3,
+        "business_data_replay_evidence_fields": 8,
+        "business_data_replay_safety_requirements": 5,
         "recommended_actions": 5,
         "implemented_agent_capabilities": 16,
     }

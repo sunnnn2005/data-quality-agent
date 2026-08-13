@@ -303,7 +303,7 @@
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 13,
+      "metric_value": 14,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -387,6 +387,16 @@
       "resume_signal": "CI-verified business-case intake path",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-case-intake.json"
+    },
+    {
+      "claim": "The project publishes a generated replay packet with 3 safe replay paths, 8 evidence fields, 5 safety requirements, bounded CSV/PostgreSQL agent endpoints, and zero current external replay claims.",
+      "evidence_type": "artifact",
+      "id": "business-data-replay-packet",
+      "metric_name": "business_data_replay_packet",
+      "metric_value": 1,
+      "resume_signal": "CI-verified business-data replay packet",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-data-replay-packet.json"
     },
     {
       "claim": "Reports rank root-cause hypotheses by confidence and attach supporting checks, tool evidence, and recommended actions.",

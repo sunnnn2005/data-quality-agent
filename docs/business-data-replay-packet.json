@@ -1,0 +1,102 @@
+{
+  "current_public_counts": {
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
+  "evidence_field_count": 8,
+  "evidence_fields": [
+    "path_tried",
+    "data_source_type",
+    "row_count_or_table_size",
+    "selected_tools",
+    "report_status",
+    "finding_count",
+    "usefulness_rating",
+    "permission_boundary"
+  ],
+  "generated_by": "scripts/build_business_data_replay_packet.py",
+  "not_claimed": [
+    "external replay completed",
+    "real company data analyzed",
+    "customer feedback",
+    "enterprise production usage",
+    "raw production data stored"
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Give reviewers a safe, repeatable way to replay the agent against their own anonymized business-shaped CSV or read-only database data, then submit public evidence that can later upgrade resume outcomes.",
+  "replay_path_count": 3,
+  "replay_paths": [
+    {
+      "audience": "student_developer_or_data_practitioner",
+      "command": "curl -X POST http://127.0.0.1:8000/business-data/agent-report -F file=@sample.csv -F dataset_name='Replay Dataset' -F owner='reviewer' -F primary_key='id' -F expected_columns='id,status,amount,created_at'",
+      "counts_toward": "confirmed_external_users",
+      "data_source": "non-sensitive CSV export",
+      "endpoint": "POST /business-data/agent-report",
+      "evidence_required": "GitHub issue with dataset shape, command used, status, finding count, and redacted output summary",
+      "id": "sanitized_csv_upload"
+    },
+    {
+      "audience": "backend_or_data_engineering_reviewer",
+      "command": "docker compose up --build && curl -X POST http://127.0.0.1:8000/postgres/support-tickets/agent-report",
+      "counts_toward": "confirmed_external_users",
+      "data_source": "read-only PostgreSQL table or local compose table",
+      "endpoint": "POST /postgres/support-tickets/agent-report",
+      "evidence_required": "GitHub issue confirming read-only run, table row count, selected tools, and report status",
+      "id": "readonly_postgres_table"
+    },
+    {
+      "audience": "mentor_recruiter_or_data_practitioner",
+      "command": "Open the business-case issue template and submit only anonymized context, tried path, outcome, and permission boundary.",
+      "counts_toward": "business_case_feedback_items",
+      "data_source": "anonymized description of a real workflow problem",
+      "endpoint": "docs/business-case-intake.md",
+      "evidence_required": "Public business-case issue with business-case label and no raw customer data",
+      "id": "business_case_replay"
+    }
+  ],
+  "resume_safe_summary": "Published a CI-verified business-data replay packet with 3 safe replay paths, 8 evidence fields, 5 safety requirements, and zero current external replay claims.",
+  "resume_status": "replay_ready_not_claimable",
+  "resume_upgrade_rules": [
+    {
+      "claim_when_met": "at least one external reviewer replayed the agent on a business-shaped dataset",
+      "current_value": 0,
+      "metric": "confirmed_external_users",
+      "minimum_before_claim": 1
+    },
+    {
+      "claim_when_met": "at least one anonymized real-world data-quality problem was reviewed publicly",
+      "current_value": 0,
+      "metric": "business_case_feedback_items",
+      "minimum_before_claim": 1
+    },
+    {
+      "claim_when_met": "at least one reproducible issue or missed quality rule was submitted publicly",
+      "current_value": 0,
+      "metric": "reproducible_feedback_items",
+      "minimum_before_claim": 1
+    }
+  ],
+  "safety_requirement_count": 5,
+  "safety_requirements": [
+    "Use non-sensitive, anonymized, or synthetic-but-business-shaped data only.",
+    "Do not upload customer names, emails, addresses, tokens, secrets, or raw production exports.",
+    "Use read-only database credentials and bounded row limits.",
+    "Submit public evidence summaries, not raw data.",
+    "Mark whether the replay can be counted as feedback, confirmed run, reproducible issue, or business case."
+  ],
+  "submission_urls": {
+    "business_case_feedback_items": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+    "confirmed_external_users": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+    "external_feedback_items": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+  },
+  "verified_input_boundaries": {
+    "business_data_endpoint_verified": true,
+    "csv_only": true,
+    "max_columns": 80,
+    "max_rows": 10000,
+    "postgres_agent_endpoint_verified": true,
+    "primary_key_required": true
+  }
+}
