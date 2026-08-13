@@ -1,6 +1,6 @@
 {
   "deterministic_baseline": {
-    "average_latency_ms": 1,
+    "average_latency_ms": 1.33,
     "evidence_support_rate": 1.0,
     "finding_recall": 1.0,
     "status_accuracy": 1.0

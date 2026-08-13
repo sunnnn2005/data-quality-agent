@@ -4,9 +4,9 @@ This generated artifact proves that dataset memory can retrieve recurring incide
 
 | Pattern ID | Title | Recurrence count | Supporting checks | Evidence trace IDs |
 | --- | --- | ---: | --- | --- |
-| `incident_pattern_1` | Business-rule validation is not separating exceptional transactions from standard facts. | 2 | negative_amount, numeric_outliers | run_cbfaf4e1ef6a4696, run_2b9a4bd042024920 |
-| `incident_pattern_2` | Source API or transform logic is producing incomplete fields for required analytics columns. | 2 | missing_values | run_cbfaf4e1ef6a4696, run_2b9a4bd042024920 |
-| `incident_pattern_3` | The ingestion pipeline may be replaying events without idempotent merge logic. | 2 | duplicate_primary_key | run_cbfaf4e1ef6a4696, run_2b9a4bd042024920 |
+| `incident_pattern_1` | Business-rule validation is not separating exceptional transactions from standard facts. | 2 | negative_amount, numeric_outliers | run_a0cb0083fcaa49d1, run_0fc759bc920e4ffc |
+| `incident_pattern_2` | Source API or transform logic is producing incomplete fields for required analytics columns. | 2 | missing_values | run_a0cb0083fcaa49d1, run_0fc759bc920e4ffc |
+| `incident_pattern_3` | The ingestion pipeline may be replaying events without idempotent merge logic. | 2 | duplicate_primary_key | run_a0cb0083fcaa49d1, run_0fc759bc920e4ffc |
 
 ## Summary
 

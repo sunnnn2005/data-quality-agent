@@ -1,6 +1,6 @@
 {
   "project": "Data Quality Agent",
-  "updated_at": "2026-08-13T08:45:00Z",
+  "updated_at": "2026-08-13T09:10:00Z",
   "summary": "Current readiness assessment against a practical LLM agent checklist. This file separates implemented capabilities from partial and planned work so resume claims stay evidence-backed.",
   "implemented": [
     {
@@ -47,6 +47,11 @@
       "id": "agent-observability",
       "capability": "Agent runs publish trace, fallback, verification, and memory observability",
       "evidence": "docs/agent-observability.json is generated in CI and summarizes trace ids, report types, fallback statuses, verification status, dataset memory, and tool-call previews."
+    },
+    {
+      "id": "agent-safety-boundaries",
+      "capability": "Agent safety boundaries are published as a generated evidence artifact",
+      "evidence": "docs/agent-safety-boundaries.json is generated in CI and verifies tool allowlists, read-only PostgreSQL query limits, sensitive-field redaction, disabled fallback, and report verifier rules."
     },
     {
       "id": "root-cause-ranking",

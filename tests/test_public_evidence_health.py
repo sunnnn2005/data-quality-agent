@@ -12,6 +12,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "adoption-metrics",
         "incident-pattern-memory",
         "agent-observability",
+        "agent-safety-boundaries",
         "feedback-metrics",
         "postgres-agent-route",
         "github-release",

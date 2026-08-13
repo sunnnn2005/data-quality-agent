@@ -12,6 +12,7 @@ EVAL_SUMMARY_PATH = ROOT / "docs" / "eval-summary.json"
 HYPOTHESIS_FEEDBACK_PATH = ROOT / "docs" / "hypothesis-feedback.json"
 INCIDENT_PATTERN_MEMORY_PATH = ROOT / "docs" / "incident-pattern-memory.json"
 AGENT_OBSERVABILITY_PATH = ROOT / "docs" / "agent-observability.json"
+AGENT_SAFETY_PATH = ROOT / "docs" / "agent-safety-boundaries.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
@@ -30,6 +31,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     hypothesis_feedback = load_json(HYPOTHESIS_FEEDBACK_PATH)
     incident_memory = load_json(INCIDENT_PATTERN_MEMORY_PATH)
     observability = load_json(AGENT_OBSERVABILITY_PATH)
+    safety = load_json(AGENT_SAFETY_PATH)
     openapi = load_json(OPENAPI_PATH)
     verified_outcomes = outcome["verified_outcomes"]
     return {
@@ -59,6 +61,9 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "incident_pattern_count": incident_memory["incident_pattern_count"],
             "observed_trace_count": observability["observed_trace_count"],
             "fallback_event_count": observability["fallback_event_count"],
+            "tool_allowlist_count": safety["tool_allowlist_count"],
+            "postgres_rejected_write_query_count": safety["postgres_rejected_write_query_count"],
+            "verifier_rule_count": safety["verifier_rule_count"],
             "openapi_required_endpoints": 6,
             "openapi_paths": len(openapi["paths"]),
             "implemented_agent_capabilities": len(readiness["implemented"]),
@@ -79,6 +84,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
             f"{hypothesis_feedback['label_count']} human-reviewed root-cause feedback labels",
             f"{incident_memory['incident_pattern_count']} recurring incident patterns retrieved from sanitized traces",
             f"{observability['observed_trace_count']} observed run traces with fallback and verification status",
+            f"{safety['tool_allowlist_count']} allowed agent tools and {safety['postgres_rejected_write_query_count']} rejected unsafe PostgreSQL queries",
             "CI-verified OpenAPI contract covering 6 integration endpoints",
             f"{verified_outcomes['recommended_action_count']} evidence-backed remediation actions",
             f"{len(readiness['implemented'])} implemented LLM agent-readiness capabilities",
@@ -128,6 +134,9 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recurring incident patterns | {outcomes["incident_pattern_count"]} |
 | Observed run traces | {outcomes["observed_trace_count"]} |
 | Fallback events captured | {outcomes["fallback_event_count"]} |
+| Allowed agent tools | {outcomes["tool_allowlist_count"]} |
+| Rejected unsafe PostgreSQL queries | {outcomes["postgres_rejected_write_query_count"]} |
+| Report verifier rules | {outcomes["verifier_rule_count"]} |
 | OpenAPI required integration endpoints | {outcomes["openapi_required_endpoints"]} |
 | OpenAPI paths | {outcomes["openapi_paths"]} |
 | Recommended remediation actions | {outcomes["recommended_actions"]} |
@@ -154,7 +163,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 65,
+        "test_count": 66,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -169,9 +178,12 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "incident_pattern_count": 3,
         "observed_trace_count": 2,
         "fallback_event_count": 2,
+        "tool_allowlist_count": 5,
+        "postgres_rejected_write_query_count": 3,
+        "verifier_rule_count": 6,
         "openapi_required_endpoints": 6,
         "recommended_actions": 5,
-        "implemented_agent_capabilities": 13,
+        "implemented_agent_capabilities": 14,
     }
     for key, expected in expected_outcomes.items():
         if outcomes.get(key) != expected:

@@ -1,0 +1,33 @@
+{
+  "agent_disabled_fallback_verified": true,
+  "generated_by": "scripts/build_agent_safety_boundaries.py",
+  "llm_sensitive_redaction_verified": true,
+  "not_claimed": [
+    "formal security audit",
+    "penetration test",
+    "SOC 2 compliance"
+  ],
+  "postgres_max_row_limit": 10000,
+  "postgres_rejected_write_query_count": 3,
+  "postgres_row_limit": 1000,
+  "project": "Data Quality Agent",
+  "prompt_payload_column_count": 6,
+  "resume_safe_summary": "Generated a safety-boundary artifact covering tool allowlists, read-only PostgreSQL query limits, sensitive-field redaction, disabled-agent fallback, and deterministic report verification rules.",
+  "tool_allowlist": [
+    "get_dataset_contract",
+    "profile_dataset",
+    "select_quality_strategy",
+    "run_quality_checks",
+    "build_quality_report"
+  ],
+  "tool_allowlist_count": 5,
+  "verifier_rule_count": 6,
+  "verifier_rules": [
+    "finding_evidence_required",
+    "known_column_references",
+    "sensitive_value_redaction",
+    "llm_evidence_must_match_findings",
+    "recommended_actions_required",
+    "quality_score_bounds"
+  ]
+}

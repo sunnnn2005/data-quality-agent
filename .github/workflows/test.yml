@@ -30,6 +30,8 @@ jobs:
         run: python scripts/build_incident_pattern_memory.py
       - name: Verify agent observability artifact
         run: python scripts/build_agent_observability.py
+      - name: Verify agent safety boundaries artifact
+        run: python scripts/build_agent_safety_boundaries.py
       - name: Verify OpenAPI contract artifact
         run: python scripts/build_openapi_artifact.py
       - name: Verify feedback metrics artifact
@@ -46,7 +48,7 @@ jobs:
           ADOPTION_FORKS: "1"
           ADOPTION_WATCHERS: "0"
           ADOPTION_ISSUES_TOTAL: "10"
-          ADOPTION_TEST_COUNT: "65"
+          ADOPTION_TEST_COUNT: "66"
         run: python scripts/update_adoption_metrics.py
       - name: Verify outcome evidence manifest
         run: python scripts/verify_outcome_evidence.py

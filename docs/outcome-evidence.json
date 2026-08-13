@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "65 passing CI tests",
+      "resume_signal": "66 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 65,
+      "metric_value": 66,
       "status": "verified"
     },
     {
@@ -118,6 +118,16 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-observability.json",
       "metric_name": "observed_trace_count",
       "metric_value": 2,
+      "status": "verified"
+    },
+    {
+      "id": "agent-safety-boundaries",
+      "resume_signal": "CI-verified agent safety boundaries",
+      "claim": "The project publishes a generated safety-boundary artifact covering tool allowlists, read-only PostgreSQL query limits, sensitive-field redaction, disabled fallback, and report verifier rules without claiming a formal security audit.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-safety-boundaries.json",
+      "metric_name": "tool_allowlist_count",
+      "metric_value": 5,
       "status": "verified"
     },
     {
@@ -231,7 +241,7 @@
       "evidence_type": "documentation",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-readiness.md",
       "metric_name": "implemented_agent_capabilities",
-      "metric_value": 13,
+      "metric_value": 14,
       "status": "verified"
     }
   ],

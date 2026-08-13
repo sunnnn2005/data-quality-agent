@@ -17,6 +17,7 @@ EVAL_SUMMARY_PATH = ROOT / "docs" / "eval-summary.json"
 HYPOTHESIS_FEEDBACK_PATH = ROOT / "docs" / "hypothesis-feedback.json"
 INCIDENT_PATTERN_MEMORY_PATH = ROOT / "docs" / "incident-pattern-memory.json"
 AGENT_OBSERVABILITY_PATH = ROOT / "docs" / "agent-observability.json"
+AGENT_SAFETY_PATH = ROOT / "docs" / "agent-safety-boundaries.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
 PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
@@ -49,6 +50,7 @@ def verify_manifest() -> dict[str, int]:
     hypothesis_feedback = load_payload(HYPOTHESIS_FEEDBACK_PATH)
     incident_memory = load_payload(INCIDENT_PATTERN_MEMORY_PATH)
     observability = load_payload(AGENT_OBSERVABILITY_PATH)
+    safety = load_payload(AGENT_SAFETY_PATH)
     openapi = load_payload(OPENAPI_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
@@ -103,7 +105,7 @@ def verify_manifest() -> dict[str, int]:
                         f"but outcome summary has {actions}"
                     )
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 65:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 66:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -210,6 +212,27 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("agent observability script must verify generated metrics")
                 if "test_agent_observability_artifact_tracks_trace_fallback_and_memory" not in observability_tests:
                     raise AssertionError("agent observability must have a dedicated test")
+            elif metric_name == "tool_allowlist_count":
+                safety_tests = (ROOT / "tests" / "test_agent_safety_boundaries.py").read_text()
+                safety_script = (ROOT / "scripts" / "build_agent_safety_boundaries.py").read_text()
+                if safety.get("tool_allowlist_count") != claim.get("metric_value"):
+                    raise AssertionError(
+                        f"claim {claim['id']} metric mismatch: tool_allowlist_count="
+                        f"{claim.get('metric_value')} but safety artifact has "
+                        f"{safety.get('tool_allowlist_count')}"
+                    )
+                if safety.get("postgres_rejected_write_query_count") != 3:
+                    raise AssertionError("agent safety artifact must verify rejected unsafe PostgreSQL queries")
+                if safety.get("llm_sensitive_redaction_verified") is not True:
+                    raise AssertionError("agent safety artifact must verify sensitive-field redaction")
+                if safety.get("agent_disabled_fallback_verified") is not True:
+                    raise AssertionError("agent safety artifact must verify disabled fallback")
+                if "formal security audit" not in safety.get("not_claimed", []):
+                    raise AssertionError("agent safety artifact must not claim a formal security audit")
+                if "verify_agent_safety_boundaries" not in safety_script:
+                    raise AssertionError("agent safety script must verify generated boundaries")
+                if "test_agent_safety_boundaries_capture_tool_permissions_and_guardrails" not in safety_tests:
+                    raise AssertionError("agent safety boundaries must have a dedicated test")
             elif metric_name == "openapi_required_endpoint_count":
                 openapi_tests = (ROOT / "tests" / "test_openapi_artifact.py").read_text()
                 openapi_script = (ROOT / "scripts" / "build_openapi_artifact.py").read_text()
@@ -283,7 +306,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 65", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 66", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 
