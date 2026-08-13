@@ -1,5 +1,5 @@
 {
-  "check_count": 19,
+  "check_count": 29,
   "checks": [
     {
       "evidence_type": "html",
@@ -110,6 +110,124 @@
     },
     {
       "evidence_type": "json",
+      "id": "agent-capability-matrix",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-capability-matrix.json",
+      "verified_fields": [
+        "implemented_count",
+        "partial_count",
+        "tool_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "local-reviewer-demo",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/local-reviewer-demo.json",
+      "verified_fields": [
+        "project",
+        "reviewer_command"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "api-smoke-report",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/api-smoke-report.json",
+      "verified_fields": [
+        "check_count",
+        "passed_count",
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "performance-baseline",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/performance-baseline.json",
+      "verified_fields": [
+        "benchmark_count",
+        "passed_count",
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "demo-usage-baseline",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/demo-usage-baseline.json",
+      "verified_fields": [
+        "project",
+        "release"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "community-growth-baseline",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/community-growth-baseline.json",
+      "verified_fields": [
+        "issue_template_count",
+        "label_count",
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "impact-review-packet",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/impact-review-packet.json",
+      "verified_fields": [
+        "business_metric_count",
+        "evidence_link_count",
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "business-problem-casebook",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-problem-casebook.json",
+      "verified_fields": [
+        "business_case_count",
+        "detected_risk_count",
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "public-traction-dashboard",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-traction-dashboard.json",
+      "verified_fields": [
+        "growth_channel_count",
+        "project",
+        "traction_surface_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "feedback-intake-quality",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/feedback-intake-quality.json",
+      "verified_fields": [
+        "captured_field_count",
+        "project",
+        "required_section_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
       "id": "live-project-scorecard",
       "passed": true,
       "status_code": 200,
@@ -187,6 +305,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 19,
+  "passed_count": 29,
   "status": "PASS"
 }
