@@ -6,7 +6,7 @@ from pathlib import Path
 import sqlite3
 from uuid import uuid4
 
-from app.models import AgentRunReport, DatasetMemorySummary, QualityReport, StoredRunTrace
+from app.models import AgentRunReport, DatasetMemorySummary, IncidentPatternMemory, QualityReport, StoredRunTrace
 
 
 MAX_TRACES = 100
@@ -250,6 +250,10 @@ class RunTraceStore:
     def _build_memory_summary(self, dataset_id: str, traces: list[StoredRunTrace]) -> DatasetMemorySummary:
         check_counts: dict[str, int] = {}
         cause_counts: dict[str, int] = {}
+        pattern_counts: dict[str, int] = {}
+        pattern_checks: dict[str, set[str]] = {}
+        pattern_traces: dict[str, list[str]] = {}
+        pattern_actions: dict[str, list[str]] = {}
         for trace in traces:
             for check in trace.summary.get("finding_checks", []):
                 check_counts[str(check)] = check_counts.get(str(check), 0) + 1
@@ -257,12 +261,26 @@ class RunTraceStore:
                 title = str(hypothesis.get("title", "")).strip()
                 if title:
                     cause_counts[title] = cause_counts.get(title, 0) + 1
+                    pattern_counts[title] = pattern_counts.get(title, 0) + 1
+                    pattern_checks.setdefault(title, set()).update(
+                        str(check) for check in hypothesis.get("supporting_checks", [])
+                    )
+                    pattern_traces.setdefault(title, [])
+                    if trace.trace_id not in pattern_traces[title]:
+                        pattern_traces[title].append(trace.trace_id)
+                    for action in trace.summary.get("recommended_next_steps", []):
+                        action_text = str(action).strip()
+                        if action_text:
+                            pattern_actions.setdefault(title, [])
+                            if action_text not in pattern_actions[title]:
+                                pattern_actions[title].append(action_text)
         return DatasetMemorySummary(
             dataset_id=dataset_id,
             trace_count=len(traces),
             latest_generated_at=traces[0].generated_at if traces else None,
             recurring_checks=self._rank_repeated_items(check_counts),
             recurring_root_causes=self._rank_repeated_items(cause_counts),
+            incident_patterns=self._build_incident_patterns(pattern_counts, pattern_checks, pattern_traces, pattern_actions),
             recent_traces=traces,
         )
 
@@ -272,3 +290,29 @@ class RunTraceStore:
             for item, count in sorted(counts.items(), key=lambda pair: (-pair[1], pair[0]))
             if count > 1
         ][:5]
+
+    def _build_incident_patterns(
+        self,
+        counts: dict[str, int],
+        checks: dict[str, set[str]],
+        traces: dict[str, list[str]],
+        actions: dict[str, list[str]],
+    ) -> list[IncidentPatternMemory]:
+        patterns: list[IncidentPatternMemory] = []
+        for index, (title, count) in enumerate(
+            sorted(counts.items(), key=lambda pair: (-pair[1], pair[0])),
+            start=1,
+        ):
+            if count <= 1:
+                continue
+            patterns.append(
+                IncidentPatternMemory(
+                    pattern_id=f"incident_pattern_{index}",
+                    title=title,
+                    recurrence_count=count,
+                    supporting_checks=sorted(checks.get(title, set()))[:5],
+                    evidence_trace_ids=traces.get(title, [])[:5],
+                    recommended_actions=actions.get(title, [])[:3],
+                )
+            )
+        return patterns[:5]

@@ -40,5 +40,11 @@ def test_run_trace_store_retrieves_dataset_memory_from_persisted_traces(tmp_path
     assert memory.latest_generated_at is not None
     assert "duplicate_primary_key" in memory.recurring_checks
     assert memory.recurring_root_causes
+    assert memory.incident_patterns
+    first_pattern = memory.incident_patterns[0]
+    assert first_pattern.recurrence_count == 2
+    assert first_pattern.evidence_trace_ids
+    assert first_pattern.supporting_checks
+    assert first_pattern.recommended_actions
     assert all(trace.dataset_id == dataset.id for trace in memory.recent_traces)
     assert "agent_trace" not in memory.model_dump_json()

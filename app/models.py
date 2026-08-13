@@ -140,10 +140,20 @@ class StoredRunTrace(BaseModel):
     error: str | None = None
 
 
+class IncidentPatternMemory(BaseModel):
+    pattern_id: str
+    title: str
+    recurrence_count: int
+    supporting_checks: list[str] = Field(default_factory=list)
+    evidence_trace_ids: list[str] = Field(default_factory=list)
+    recommended_actions: list[str] = Field(default_factory=list)
+
+
 class DatasetMemorySummary(BaseModel):
     dataset_id: str
     trace_count: int
     latest_generated_at: datetime | None = None
     recurring_checks: list[str] = Field(default_factory=list)
     recurring_root_causes: list[str] = Field(default_factory=list)
+    incident_patterns: list[IncidentPatternMemory] = Field(default_factory=list)
     recent_traces: list[StoredRunTrace] = Field(default_factory=list)

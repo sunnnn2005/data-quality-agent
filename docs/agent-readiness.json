@@ -1,6 +1,6 @@
 {
   "project": "Data Quality Agent",
-  "updated_at": "2026-08-13T07:35:00Z",
+  "updated_at": "2026-08-13T08:20:00Z",
   "summary": "Current readiness assessment against a practical LLM agent checklist. This file separates implemented capabilities from partial and planned work so resume claims stay evidence-backed.",
   "implemented": [
     {
@@ -39,6 +39,11 @@
       "evidence": "RunTraceStore.list_by_dataset and /datasets/{dataset_id}/memory return recent sanitized traces, recurring checks, and recurring root-cause titles."
     },
     {
+      "id": "incident-pattern-memory",
+      "capability": "Dataset memory retrieves recurring incident patterns from sanitized traces",
+      "evidence": "docs/incident-pattern-memory.json is generated in CI and verifies 3 recurring support-ticket incident patterns from 2 sanitized traces."
+    },
+    {
       "id": "root-cause-ranking",
       "capability": "Reports include evidence-ranked root-cause hypotheses",
       "evidence": "QualityReport.root_cause_hypotheses ranks likely causes by confidence and attaches supporting checks, evidence, and recommended actions."
@@ -62,9 +67,9 @@
   "partial": [
     {
       "id": "memory",
-      "capability": "Dataset-level retrieval exists, but incident-pattern memory is still basic",
-      "current_state": "Sanitized trace summaries can be retrieved by dataset with recurring checks and recurring root-cause titles.",
-      "next_step": "Add incident-pattern retrieval and feed retrieved memory into the LLM tool loop."
+      "capability": "Incident-pattern memory exists, but retrieved memory is not yet fed into the LLM tool loop",
+      "current_state": "Sanitized trace summaries now produce recurring incident patterns with evidence trace ids, checks, and recommended actions.",
+      "next_step": "Feed retrieved incident patterns into the LLM tool loop so historical patterns can change tool choice and final reasoning."
     },
     {
       "id": "rag",
@@ -88,8 +93,8 @@
   "planned": [
     {
       "id": "incident-pattern-memory",
-      "deliverable": "Retrieve previous trace summaries by issue pattern and root-cause title",
-      "resume_value": "Shows deeper agent memory beyond dataset-level audit lookup."
+      "deliverable": "Feed incident-pattern memory into the LLM tool-calling loop",
+      "resume_value": "Shows historical memory changes agent planning instead of only appearing in API output."
     },
     {
       "id": "approval-boundary",

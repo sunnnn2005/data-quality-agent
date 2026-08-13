@@ -9,7 +9,7 @@ This page maps resume-ready claims for Data Quality Agent to public evidence. It
 | `public-demo` | Launched public demo | [GitHub Pages demo](https://sunnnn2005.github.io/data-quality-agent/) | The project is publicly viewable and has a product-style demo page. |
 | `public-release` | Published release | [v0.2.0 release](https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.2.0) | The project has a tagged public release. |
 | `container-image` | Published runnable container | [GHCR package](https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent) | The FastAPI service is packaged as a container image. |
-| `ci-tests` | 63 passing CI tests | [GitHub Actions CI](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml) | Tests, support-ticket demo verification, business-impact verification, evaluation summary verification, OpenAPI contract verification, hypothesis feedback verification, feedback metrics verification, adoption metrics verification, and outcome evidence verification run in CI. |
+| `ci-tests` | 64 passing CI tests | [GitHub Actions CI](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml) | Tests, support-ticket demo verification, business-impact verification, evaluation summary verification, incident-pattern memory verification, OpenAPI contract verification, hypothesis feedback verification, feedback metrics verification, adoption metrics verification, and outcome evidence verification run in CI. |
 | `support-ticket-artifact` | CI-verified support-ticket artifact | [Verified JSON artifact](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/verified-support-ticket-result.json) | The business-data case study result is machine-generated and checked for expected findings. |
 | `postgres-agent-route` | Read-only PostgreSQL agent route | [API source](https://github.com/sunnnn2005/data-quality-agent/blob/main/app/main.py) | The project exposes a PostgreSQL support-ticket agent endpoint that reuses the read-only database adapter and safely falls back when no model key is configured. |
 | `business-impact-artifact` | Quantified business-impact artifact | [Business impact JSON](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact.json) | The support-ticket case study quantifies 4 issue categories, 4 affected columns, and 5 recommended actions without claiming external adoption. |
@@ -17,6 +17,7 @@ This page maps resume-ready claims for Data Quality Agent to public evidence. It
 | `report-guardrails` | Report verification guardrails | [Verifier tests](https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_verifier.py) | Reports are checked for evidence support, valid field references, sensitive evidence values, unsupported LLM evidence, actions, and score bounds. |
 | `persistent-trace-audit` | Persistent SQLite trace audit trail | [Trace tests](https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_traces.py) | Sanitized run traces can be persisted with `TRACE_DB_PATH` and recovered by trace id after process restart. |
 | `dataset-memory-retrieval` | Dataset-level agent memory retrieval | [Trace tests](https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_traces.py) | The API retrieves recent sanitized traces, recurring checks, and recurring root-cause titles for a dataset. |
+| `incident-pattern-memory` | CI-verified incident-pattern memory | [Incident pattern memory](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/incident-pattern-memory.json) | The project retrieves 3 recurring incident patterns from 2 sanitized support-ticket traces without claiming external production incidents. |
 | `root-cause-ranking` | Evidence-ranked root-cause hypotheses | [Agent tests](https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_agent.py) | Reports rank likely causes by confidence and include supporting checks, evidence, and recommended actions. |
 | `eval-summary` | CI-verified agent evaluation harness | [Eval summary](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json) | The project publishes a 3-scenario evaluation summary for status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, report attachment, and latency. |
 | `hypothesis-feedback` | Human-reviewed root-cause feedback labels | [Hypothesis feedback](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/hypothesis-feedback.json) | The project publishes accepted / needs-review labels for 3 root-cause hypotheses without claiming external product feedback. |
@@ -41,23 +42,24 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 10 |
-| Automated tests | 63 |
+| Automated tests | 64 |
 | Support-ticket issue categories | 4 |
 | Affected support-ticket columns | 4 |
 | Recommended support-ticket actions | 5 |
 | Ranked support-ticket root-cause hypotheses | 3 |
 | Agent evaluation scenarios | 3 |
 | Root-cause feedback labels | 3 |
+| Recurring incident patterns | 3 |
 | OpenAPI required integration endpoints | 6 |
 | OpenAPI paths | 14 |
-| Public evidence health checks | 11 |
+| Public evidence health checks | 12 |
 | Public release | v0.2.0 |
 | Public metrics summary | 1 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
 | Adoption history entries | 3 |
-| Implemented agent-readiness capabilities | 11 |
+| Implemented agent-readiness capabilities | 12 |
 
 ## Not Claimed Yet
 
@@ -78,6 +80,7 @@ Use wording that is true today:
 - Added a read-only PostgreSQL agent route that analyzes a seeded business support-ticket table with model-key fallback.
 - Added optional SQLite persistence for sanitized agent run traces, enabling audit lookup after process restart.
 - Added dataset-level memory retrieval over recent sanitized trace summaries, recurring checks, and recurring root-cause titles.
+- Added CI-verified incident-pattern memory that retrieves 3 recurring support-ticket incident patterns from sanitized traces.
 - Added evidence-ranked root-cause hypotheses with confidence, supporting checks, and recommended actions.
 - Added a CI-verified 3-scenario agent evaluation summary measuring status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, report attachment, and latency.
 - Added 3 human-reviewed root-cause feedback labels for accepted / needs-review hypotheses without claiming external product feedback.
@@ -85,8 +88,8 @@ Use wording that is true today:
 - Quantified 4 support-ticket data quality issue categories across 8 rows, including duplicate ticket IDs, missing routing fields, negative amounts, and amount outliers.
 - Added a scheduled public evidence health check for the live demo, release page, business-impact artifact, outcome evidence, and adoption metrics.
 - Added machine-readable feedback metrics that track public feedback and reproducible reports from an honest zero baseline.
-- Added deterministic report verification guardrails and 63 passing CI tests.
-- Published an agent-readiness checklist that separates implemented tool-calling, business-data, OpenAPI contract, dataset memory, persistent trace, root-cause ranking, hypothesis feedback, guardrail, and fallback capabilities from planned RAG, observability, evaluation, and deeper incident-memory work.
+- Added deterministic report verification guardrails and 64 passing CI tests.
+- Published an agent-readiness checklist that separates implemented tool-calling, business-data, OpenAPI contract, dataset memory, incident-pattern memory, persistent trace, root-cause ranking, hypothesis feedback, guardrail, and fallback capabilities from planned RAG, observability, evaluation, and deeper incident-memory work.
 
 Avoid wording that is not true yet:
 

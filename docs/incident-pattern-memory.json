@@ -1,0 +1,67 @@
+{
+  "dataset_id": "support_tickets",
+  "generated_by": "scripts/build_incident_pattern_memory.py",
+  "incident_pattern_count": 3,
+  "not_claimed": [
+    "external production incidents",
+    "enterprise incident database",
+    "customer-validated root causes"
+  ],
+  "patterns": [
+    {
+      "evidence_trace_ids": [
+        "run_33ef7c1d033d405e",
+        "run_9e5e331d816444cd"
+      ],
+      "pattern_id": "incident_pattern_1",
+      "recommended_actions": [
+        "Deduplicate by the latest event timestamp, add idempotent merge logic, and enforce a uniqueness constraint in the pipeline.",
+        "Validate refund handling and separate credit events from positive payment facts.",
+        "Trace null generation for team in the upstream transform or source API."
+      ],
+      "recurrence_count": 2,
+      "supporting_checks": [
+        "negative_amount",
+        "numeric_outliers"
+      ],
+      "title": "Business-rule validation is not separating exceptional transactions from standard facts."
+    },
+    {
+      "evidence_trace_ids": [
+        "run_33ef7c1d033d405e",
+        "run_9e5e331d816444cd"
+      ],
+      "pattern_id": "incident_pattern_2",
+      "recommended_actions": [
+        "Deduplicate by the latest event timestamp, add idempotent merge logic, and enforce a uniqueness constraint in the pipeline.",
+        "Validate refund handling and separate credit events from positive payment facts.",
+        "Trace null generation for team in the upstream transform or source API."
+      ],
+      "recurrence_count": 2,
+      "supporting_checks": [
+        "missing_values"
+      ],
+      "title": "Source API or transform logic is producing incomplete fields for required analytics columns."
+    },
+    {
+      "evidence_trace_ids": [
+        "run_33ef7c1d033d405e",
+        "run_9e5e331d816444cd"
+      ],
+      "pattern_id": "incident_pattern_3",
+      "recommended_actions": [
+        "Deduplicate by the latest event timestamp, add idempotent merge logic, and enforce a uniqueness constraint in the pipeline.",
+        "Validate refund handling and separate credit events from positive payment facts.",
+        "Trace null generation for team in the upstream transform or source API."
+      ],
+      "recurrence_count": 2,
+      "supporting_checks": [
+        "duplicate_primary_key"
+      ],
+      "title": "The ingestion pipeline may be replaying events without idempotent merge logic."
+    }
+  ],
+  "project": "Data Quality Agent",
+  "resume_safe_summary": "Generated dataset memory that retrieved 3 recurring incident patterns from 2 sanitized support-ticket traces.",
+  "trace_count": 2
+}

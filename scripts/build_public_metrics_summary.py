@@ -10,6 +10,7 @@ OUTCOME_SUMMARY_PATH = ROOT / "docs" / "outcome-summary.json"
 AGENT_READINESS_PATH = ROOT / "docs" / "agent-readiness.json"
 EVAL_SUMMARY_PATH = ROOT / "docs" / "eval-summary.json"
 HYPOTHESIS_FEEDBACK_PATH = ROOT / "docs" / "hypothesis-feedback.json"
+INCIDENT_PATTERN_MEMORY_PATH = ROOT / "docs" / "incident-pattern-memory.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
@@ -26,6 +27,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     readiness = load_json(AGENT_READINESS_PATH)
     eval_summary = load_json(EVAL_SUMMARY_PATH)
     hypothesis_feedback = load_json(HYPOTHESIS_FEEDBACK_PATH)
+    incident_memory = load_json(INCIDENT_PATTERN_MEMORY_PATH)
     openapi = load_json(OPENAPI_PATH)
     verified_outcomes = outcome["verified_outcomes"]
     return {
@@ -52,6 +54,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "root_cause_hypotheses": verified_outcomes["root_cause_hypothesis_count"],
             "eval_scenarios": eval_summary["scenario_count"],
             "hypothesis_feedback_labels": hypothesis_feedback["label_count"],
+            "incident_pattern_count": incident_memory["incident_pattern_count"],
             "openapi_required_endpoints": 6,
             "openapi_paths": len(openapi["paths"]),
             "implemented_agent_capabilities": len(readiness["implemented"]),
@@ -70,6 +73,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "Dataset-level memory retrieval over recent sanitized traces",
             f"{eval_summary['scenario_count']}-scenario agent evaluation harness",
             f"{hypothesis_feedback['label_count']} human-reviewed root-cause feedback labels",
+            f"{incident_memory['incident_pattern_count']} recurring incident patterns retrieved from sanitized traces",
             "CI-verified OpenAPI contract covering 6 integration endpoints",
             f"{verified_outcomes['recommended_action_count']} evidence-backed remediation actions",
             f"{len(readiness['implemented'])} implemented LLM agent-readiness capabilities",
@@ -116,6 +120,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Evidence-ranked root-cause hypotheses | {outcomes["root_cause_hypotheses"]} |
 | Agent evaluation scenarios | {outcomes["eval_scenarios"]} |
 | Root-cause feedback labels | {outcomes["hypothesis_feedback_labels"]} |
+| Recurring incident patterns | {outcomes["incident_pattern_count"]} |
 | OpenAPI required integration endpoints | {outcomes["openapi_required_endpoints"]} |
 | OpenAPI paths | {outcomes["openapi_paths"]} |
 | Recommended remediation actions | {outcomes["recommended_actions"]} |
@@ -142,7 +147,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 63,
+        "test_count": 64,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -154,9 +159,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "root_cause_hypotheses": 3,
         "eval_scenarios": 3,
         "hypothesis_feedback_labels": 3,
+        "incident_pattern_count": 3,
         "openapi_required_endpoints": 6,
         "recommended_actions": 5,
-        "implemented_agent_capabilities": 11,
+        "implemented_agent_capabilities": 12,
     }
     for key, expected in expected_outcomes.items():
         if outcomes.get(key) != expected:

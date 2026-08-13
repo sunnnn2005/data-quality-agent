@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "63 passing CI tests",
+      "resume_signal": "64 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 63,
+      "metric_value": 64,
       "status": "verified"
     },
     {
@@ -98,6 +98,16 @@
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_traces.py",
       "metric_name": "dataset_memory_retrieval",
       "metric_value": 1,
+      "status": "verified"
+    },
+    {
+      "id": "incident-pattern-memory",
+      "resume_signal": "CI-verified incident-pattern memory",
+      "claim": "The project publishes a generated artifact that retrieves 3 recurring incident patterns from sanitized support-ticket traces without claiming external production incidents.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/incident-pattern-memory.json",
+      "metric_name": "incident_pattern_count",
+      "metric_value": 3,
       "status": "verified"
     },
     {
@@ -211,7 +221,7 @@
       "evidence_type": "documentation",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-readiness.md",
       "metric_name": "implemented_agent_capabilities",
-      "metric_value": 11,
+      "metric_value": 12,
       "status": "verified"
     }
   ],

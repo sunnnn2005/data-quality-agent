@@ -10,6 +10,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "business-impact-artifact",
         "outcome-evidence-manifest",
         "adoption-metrics",
+        "incident-pattern-memory",
         "feedback-metrics",
         "postgres-agent-route",
         "github-release",

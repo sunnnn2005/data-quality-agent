@@ -297,6 +297,13 @@
             "title": "Dataset Id",
             "type": "string"
           },
+          "incident_patterns": {
+            "items": {
+              "$ref": "#/components/schemas/IncidentPatternMemory"
+            },
+            "title": "Incident Patterns",
+            "type": "array"
+          },
           "latest_generated_at": {
             "anyOf": [
               {
@@ -430,6 +437,50 @@
           }
         },
         "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "IncidentPatternMemory": {
+        "properties": {
+          "evidence_trace_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Evidence Trace Ids",
+            "type": "array"
+          },
+          "pattern_id": {
+            "title": "Pattern Id",
+            "type": "string"
+          },
+          "recommended_actions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Recommended Actions",
+            "type": "array"
+          },
+          "recurrence_count": {
+            "title": "Recurrence Count",
+            "type": "integer"
+          },
+          "supporting_checks": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Supporting Checks",
+            "type": "array"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "pattern_id",
+          "title",
+          "recurrence_count"
+        ],
+        "title": "IncidentPatternMemory",
         "type": "object"
       },
       "LLMAssessment": {
