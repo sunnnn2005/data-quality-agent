@@ -108,7 +108,7 @@ This generated artifact summarizes the local safety boundaries around the LLM ag
 
 def verify_agent_safety_boundaries(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
-        "tool_allowlist_count": 5,
+        "tool_allowlist_count": 6,
         "postgres_rejected_write_query_count": 3,
         "verifier_rule_count": 6,
     }

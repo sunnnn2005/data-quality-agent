@@ -71,7 +71,7 @@ def create_agent_report(dataset_id: str):
     dataset = DATASETS.get(dataset_id)
     if dataset is None:
         raise HTTPException(status_code=404, detail="Dataset not found")
-    return trace_store.save_agent_report(llm_agent.run(dataset, load_dataset(dataset_id)))
+    return trace_store.save_agent_report(llm_agent.run(dataset, load_dataset(dataset_id), trace_store=trace_store))
 
 
 @app.post("/business-data/quality-report", response_model=QualityReport)
@@ -83,7 +83,7 @@ async def create_business_quality_report(request: Annotated[BusinessDataRequest,
 @app.post("/business-data/agent-report", response_model=AgentRunReport)
 async def create_business_agent_report(request: Annotated[BusinessDataRequest, Depends()]):
     dataset, frame = await load_business_csv(request)
-    return trace_store.save_agent_report(llm_agent.run(dataset, frame))
+    return trace_store.save_agent_report(llm_agent.run(dataset, frame, trace_store=trace_store))
 
 
 @app.post("/postgres/support-tickets/quality-report", response_model=QualityReport)
@@ -95,7 +95,7 @@ def create_postgres_support_ticket_report():
 @app.post("/postgres/support-tickets/agent-report", response_model=AgentRunReport)
 def create_postgres_support_ticket_agent_report():
     dataset, frame = _load_postgres_support_tickets()
-    return trace_store.save_agent_report(llm_agent.run(dataset, frame))
+    return trace_store.save_agent_report(llm_agent.run(dataset, frame, trace_store=trace_store))
 
 
 def _load_postgres_support_tickets():

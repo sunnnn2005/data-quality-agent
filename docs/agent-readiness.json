@@ -44,6 +44,11 @@
       "evidence": "docs/incident-pattern-memory.json is generated in CI and verifies 3 recurring support-ticket incident patterns from 2 sanitized traces."
     },
     {
+      "id": "memory-informed-planning",
+      "capability": "LLM agent can retrieve sanitized dataset memory inside the tool-calling loop",
+      "evidence": "app/tool_agent.py exposes retrieve_dataset_memory and tests verify that recurring checks from prior traces are returned to the LLM before follow-up planning."
+    },
+    {
       "id": "agent-observability",
       "capability": "Agent runs publish trace, fallback, verification, and memory observability",
       "evidence": "docs/agent-observability.json is generated in CI and summarizes trace ids, report types, fallback statuses, verification status, dataset memory, and tool-call previews."
@@ -77,9 +82,9 @@
   "partial": [
     {
       "id": "memory",
-      "capability": "Incident-pattern memory exists, but retrieved memory is not yet fed into the LLM tool loop",
-      "current_state": "Sanitized trace summaries now produce recurring incident patterns with evidence trace ids, checks, and recommended actions.",
-      "next_step": "Feed retrieved incident patterns into the LLM tool loop so historical patterns can change tool choice and final reasoning."
+      "capability": "Memory now feeds into the LLM tool loop, but ranking does not yet learn from accepted human labels",
+      "current_state": "The agent can call retrieve_dataset_memory to inspect sanitized prior traces, recurring checks, and incident patterns before continuing its plan.",
+      "next_step": "Use accepted or needs-review hypothesis labels to tune future root-cause ranking."
     },
     {
       "id": "rag",
@@ -103,8 +108,8 @@
   "planned": [
     {
       "id": "incident-pattern-memory",
-      "deliverable": "Feed incident-pattern memory into the LLM tool-calling loop",
-      "resume_value": "Shows historical memory changes agent planning instead of only appearing in API output."
+      "deliverable": "Use accepted hypothesis labels to adjust incident-pattern ranking",
+      "resume_value": "Shows feedback-informed memory, not only historical trace retrieval."
     },
     {
       "id": "approval-boundary",

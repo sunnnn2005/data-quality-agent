@@ -24,7 +24,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Public demo | [sunnnn2005.github.io/data-quality-agent](https://sunnnn2005.github.io/data-quality-agent/) |
 | Public release | [`v0.2.0`](docs/releases/v0.2.0.md) release notes and GitHub Release |
 | Container image | `ghcr.io/sunnnn2005/data-quality-agent:latest` published from `main` |
-| Test suite | 71 automated tests passing locally and in GitHub Actions |
+| Test suite | 73 automated tests passing locally and in GitHub Actions |
 | Live project scorecard | [`docs/live-project-scorecard.md`](docs/live-project-scorecard.md) gives reviewers one page for the demo, release, container, CI, claims, agent capabilities, and honest adoption baselines |
 | Application evidence pack | [`docs/application-evidence-pack.md`](docs/application-evidence-pack.md) gives recruiters 8 review links, verified outcome numbers, resume bullets, an email note, and an interview opening |
 | Pilot outreach kit | [`docs/pilot-outreach-kit.md`](docs/pilot-outreach-kit.md) provides 3 outreach messages, 7 review paths, tracking rules, and feedback targets without inflating adoption |
@@ -44,7 +44,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Adoption history | [`docs/adoption-history.jsonl`](docs/adoption-history.jsonl) keeps an append-only history of public metrics by date and commit |
 | Public metrics summary | [`docs/public-metrics-summary.md`](docs/public-metrics-summary.md) combines adoption, feedback, CI, release, outcome, and agent-readiness metrics into one resume-safe artifact |
 | Outcome evidence | [`docs/outcome-evidence.json`](docs/outcome-evidence.json) maps resume claims to public evidence and explicitly excludes unverified users or production adoption |
-| Agent readiness | [`docs/agent-readiness.md`](docs/agent-readiness.md) separates implemented LLM agent capabilities from partial RAG, observability, evaluation, and deeper incident-memory work |
+| Agent readiness | [`docs/agent-readiness.md`](docs/agent-readiness.md) separates implemented LLM agent capabilities from partial RAG, observability, evaluation, and feedback-informed memory work |
 | Resume evidence | [`docs/resume-evidence.md`](docs/resume-evidence.md) summarizes verified resume-safe wording and current public metrics for human review |
 | Feedback log | [`docs/feedback-log.md`](docs/feedback-log.md) tracks external feedback from an honest zero baseline |
 | Feedback metrics | [`docs/feedback-metrics.json`](docs/feedback-metrics.json) tracks feedback, reproducible reports, and confirmed external users from public issue labels |

@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 10 |
-| Passing CI tests | 71 |
+| Passing CI tests | 73 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -27,7 +27,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recurring incident patterns | 3 |
 | Observed run traces | 2 |
 | Fallback events captured | 2 |
-| Allowed agent tools | 5 |
+| Allowed agent tools | 6 |
 | Rejected unsafe PostgreSQL queries | 3 |
 | Report verifier rules | 6 |
 | Live project scorecard | 1 |
@@ -43,7 +43,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Pilot program segments | 3 |
 | Pilot program weeks | 3 |
 | Recommended remediation actions | 5 |
-| Implemented LLM agent-readiness capabilities | 14 |
+| Implemented LLM agent-readiness capabilities | 15 |
 | Partial agent-readiness capabilities documented | 4 |
 
 ## Feedback Channels
@@ -55,7 +55,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.2.0 release
-- 71 passing CI tests
+- 73 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - Dataset-level memory retrieval over recent sanitized traces
@@ -63,7 +63,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 3 human-reviewed root-cause feedback labels
 - 3 recurring incident patterns retrieved from sanitized traces
 - 2 observed run traces with fallback and verification status
-- 5 allowed agent tools and 3 rejected unsafe PostgreSQL queries
+- 6 allowed agent tools and 3 rejected unsafe PostgreSQL queries
 - 5 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
@@ -71,7 +71,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 3 pilot outreach messages and 7 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
 - 5 evidence-backed remediation actions
-- 14 implemented LLM agent-readiness capabilities
+- 15 implemented LLM agent-readiness capabilities
 - 1 public fork and 0 public stars as current honest adoption baseline
 
 ## Not Claimed

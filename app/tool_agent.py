@@ -10,6 +10,7 @@ from app.checks import QualityCheckRunner
 from app.llm import LLMDataQualityAdvisor, LLMSettings
 from app.models import AgentRunReport, AgentToolCall, DatasetSummary, QualityReport
 from app.profiler import DatasetProfiler
+from app.traces import RunTraceStore
 
 
 ToolFn = Callable[[dict[str, Any]], dict[str, Any]]
@@ -22,11 +23,13 @@ class DataQualityToolbox:
         frame: pd.DataFrame,
         profiler: DatasetProfiler | None = None,
         check_runner: QualityCheckRunner | None = None,
+        trace_store: RunTraceStore | None = None,
     ) -> None:
         self.dataset = dataset
         self.frame = frame
         self.profiler = profiler or DatasetProfiler()
         self.check_runner = check_runner or QualityCheckRunner()
+        self.trace_store = trace_store
         self.det_agent = DataQualityAgent(profiler=self.profiler, check_runner=self.check_runner)
 
     def schemas(self) -> list[dict[str, Any]]:
@@ -61,6 +64,29 @@ class DataQualityToolbox:
             {
                 "type": "function",
                 "function": {
+                    "name": "retrieve_dataset_memory",
+                    "description": (
+                        "Retrieve recent sanitized run history, recurring failed checks, and recurring root-cause "
+                        "patterns for this dataset. Use this when historical evidence could change the investigation "
+                        "plan or root-cause ranking."
+                    ),
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "limit": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 10,
+                                "description": "Maximum number of recent sanitized traces to inspect.",
+                            }
+                        },
+                        "additionalProperties": False,
+                    },
+                },
+            },
+            {
+                "type": "function",
+                "function": {
                     "name": "run_quality_checks",
                     "description": "Run schema, freshness, missingness, duplicate-key, volume, domain, and outlier checks.",
                     "parameters": {"type": "object", "properties": {}, "additionalProperties": False},
@@ -81,6 +107,7 @@ class DataQualityToolbox:
             "get_dataset_contract": self._get_dataset_contract,
             "profile_dataset": self._profile_dataset,
             "select_quality_strategy": self._select_quality_strategy,
+            "retrieve_dataset_memory": self._retrieve_dataset_memory,
             "run_quality_checks": self._run_quality_checks,
             "build_quality_report": self._build_quality_report,
         }
@@ -128,6 +155,53 @@ class DataQualityToolbox:
             "recommended_next_tools": ["profile_dataset", "run_quality_checks", "build_quality_report"],
         }
 
+    def _retrieve_dataset_memory(self, arguments: dict[str, Any]) -> dict[str, Any]:
+        if self.trace_store is None:
+            return {
+                "dataset_id": self.dataset.id,
+                "trace_count": 0,
+                "recurring_checks": [],
+                "recurring_root_causes": [],
+                "incident_patterns": [],
+                "recent_trace_previews": [],
+                "memory_available": False,
+                "reason": "No RunTraceStore was provided for this agent run.",
+            }
+
+        raw_limit = arguments.get("limit", 5)
+        limit = raw_limit if isinstance(raw_limit, int) else 5
+        limit = max(1, min(limit, 10))
+        memory = self.trace_store.list_by_dataset(self.dataset.id, limit=limit)
+        return {
+            "dataset_id": memory.dataset_id,
+            "trace_count": memory.trace_count,
+            "latest_generated_at": memory.latest_generated_at.isoformat() if memory.latest_generated_at else None,
+            "recurring_checks": memory.recurring_checks,
+            "recurring_root_causes": memory.recurring_root_causes,
+            "incident_patterns": [
+                {
+                    "pattern_id": pattern.pattern_id,
+                    "title": pattern.title,
+                    "recurrence_count": pattern.recurrence_count,
+                    "supporting_checks": pattern.supporting_checks,
+                    "recommended_actions": pattern.recommended_actions,
+                }
+                for pattern in memory.incident_patterns
+            ],
+            "recent_trace_previews": [
+                {
+                    "trace_id": trace.trace_id,
+                    "status": trace.status,
+                    "report_type": trace.report_type,
+                    "finding_checks": trace.summary.get("finding_checks", []),
+                    "quality_score": trace.summary.get("quality_score"),
+                    "verification_passed": trace.summary.get("verification_passed"),
+                }
+                for trace in memory.recent_traces[:limit]
+            ],
+            "memory_available": True,
+        }
+
     def _run_quality_checks(self, _: dict[str, Any]) -> dict[str, Any]:
         findings = self.check_runner.run(self.dataset, self.frame)
         return {"findings": [finding.model_dump(mode="json") for finding in findings]}
@@ -148,7 +222,12 @@ class LLMDataQualityAgent:
     def enabled(self) -> bool:
         return bool(self.settings.api_key)
 
-    def run(self, dataset: DatasetSummary, frame: pd.DataFrame) -> AgentRunReport:
+    def run(
+        self,
+        dataset: DatasetSummary,
+        frame: pd.DataFrame,
+        trace_store: RunTraceStore | None = None,
+    ) -> AgentRunReport:
         if not self.enabled:
             return AgentRunReport(
                 dataset=dataset,
@@ -159,7 +238,7 @@ class LLMDataQualityAgent:
                 error="OPENAI_API_KEY is not configured",
             )
 
-        toolbox = DataQualityToolbox(dataset, frame)
+        toolbox = DataQualityToolbox(dataset, frame, trace_store=trace_store)
         messages: list[dict[str, Any]] = [
             {
                 "role": "system",
@@ -167,6 +246,7 @@ class LLMDataQualityAgent:
                     "You are a data quality LLM agent. Select tools to inspect the dataset before answering. "
                     "Use tool evidence only. Do not invent columns, owners, failures, or private data. "
                     "Use select_quality_strategy to adapt the investigation plan to the dataset shape. "
+                    "Use retrieve_dataset_memory when previous sanitized runs can inform root-cause ranking. "
                     "After each tool result, decide whether evidence is sufficient or another tool is needed. "
                     "Before finalizing, call build_quality_report. Final answer must be concise."
                 ),
@@ -282,5 +362,6 @@ class LLMDataQualityAgent:
             "used_required_report_tool": "build_quality_report" in names,
             "used_profile_tool": "profile_dataset" in names,
             "used_check_tool": "run_quality_checks" in names,
+            "used_memory_tool": "retrieve_dataset_memory" in names,
             "final_report_attached": quality_report is not None,
         }

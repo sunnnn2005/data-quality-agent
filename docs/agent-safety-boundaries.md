@@ -6,7 +6,7 @@ This generated artifact summarizes the local safety boundaries around the LLM ag
 
 | Boundary | Value |
 | --- | ---: |
-| Tool allowlist count | 5 |
+| Tool allowlist count | 6 |
 | Rejected unsafe PostgreSQL queries | 3 |
 | Default PostgreSQL row limit | 1000 |
 | Verifier rule count | 6 |
@@ -18,6 +18,7 @@ This generated artifact summarizes the local safety boundaries around the LLM ag
 - `get_dataset_contract`
 - `profile_dataset`
 - `select_quality_strategy`
+- `retrieve_dataset_memory`
 - `run_quality_checks`
 - `build_quality_report`
 

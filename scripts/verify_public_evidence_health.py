@@ -40,7 +40,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 71},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 73},
         "evidence_type": "json",
     },
     {
@@ -79,7 +79,7 @@ PUBLIC_CHECKS = [
     {
         "id": "agent-safety-boundaries",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-safety-boundaries.json",
-        "expected_json": {"tool_allowlist_count": 5, "postgres_rejected_write_query_count": 3},
+        "expected_json": {"tool_allowlist_count": 6, "postgres_rejected_write_query_count": 3},
         "expected_text": "formal security audit",
         "evidence_type": "json",
     },

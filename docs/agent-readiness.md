@@ -14,6 +14,7 @@ This page tracks how close Data Quality Agent is to a mature LLM agent. It is in
 | Persistent trace audit trail | `TRACE_DB_PATH` enables SQLite persistence for sanitized run traces, allowing `/runs/{trace_id}` records to be recovered after process restart. |
 | Dataset memory retrieval | `/datasets/{dataset_id}/memory` retrieves recent sanitized traces, recurring checks, and recurring root-cause titles for a dataset. |
 | Incident-pattern memory | `docs/incident-pattern-memory.json` verifies recurring incident-pattern retrieval from sanitized support-ticket traces. |
+| Memory-informed planning | `retrieve_dataset_memory` lets the LLM agent inspect sanitized prior traces and recurring checks inside the tool-calling loop before continuing its plan. |
 | Agent observability artifact | `docs/agent-observability.json` summarizes trace ids, report types, fallback status, verification status, dataset memory, incident-pattern memory, and tool-call previews. |
 | Agent safety boundaries | `docs/agent-safety-boundaries.json` verifies tool allowlists, read-only PostgreSQL query limits, sensitive-field redaction, disabled fallback, and report verifier rules. |
 | Evidence-ranked root-cause hypotheses | `QualityReport.root_cause_hypotheses` ranks likely causes by confidence and attaches supporting checks, evidence, and recommended actions. |
@@ -25,14 +26,14 @@ This page tracks how close Data Quality Agent is to a mature LLM agent. It is in
 
 | Capability | Current state | Next step |
 | --- | --- | --- |
-| Memory | Dataset-level retrieval and incident-pattern memory exist over sanitized trace summaries. | Use retrieved incident patterns inside the LLM tool loop so historical memory can affect tool choice and final reasoning. |
+| Memory | The LLM agent can retrieve sanitized trace memory during planning. | Use accepted or needs-review hypothesis labels to tune future root-cause ranking. |
 | RAG | Business-rule retrieval uses local source-cited Markdown rules. | Add optional embedding-backed retrieval with source citations and permission filtering. |
 | Observability | Sanitized trace summaries, tool-call previews, and a generated run observability artifact are available. | Track prompt version, model version, token use, latency breakdown, retries, and estimated cost. |
 | Evaluation | Tests cover fallback, tool use, evidence support, and public artifacts. | Add a larger labeled eval set for tool-choice accuracy, finding recall, false positives, and cost. |
 
 ## Planned
 
-- Feed incident-pattern memory into the LLM tool-calling loop.
+- Use accepted hypothesis labels to adjust incident-pattern ranking.
 - Add a human approval boundary before exporting remediation SQL or ticket actions.
 - Add issue-pattern memory retrieval that reuses accepted or needs-review root-cause labels.
 
@@ -45,5 +46,5 @@ This page tracks how close Data Quality Agent is to a mature LLM agent. It is in
 
 ## Resume-Safe Wording
 
-- Built an LLM tool-calling data-quality agent with dynamic tool selection, read-only PostgreSQL analysis, CI-verified OpenAPI contract, dataset memory retrieval, incident-pattern memory, run observability artifacts, safety-boundary evidence, persistent SQLite trace audit logging, evidence-ranked root-cause hypotheses, human-reviewed hypothesis feedback labels, structured report guardrails, and safe model-key fallback.
-- Published an agent-readiness checklist that separates implemented LLM agent capabilities from partial RAG, observability, evaluation, and deeper incident-memory work.
+- Built an LLM tool-calling data-quality agent with dynamic tool selection, memory-informed planning, read-only PostgreSQL analysis, CI-verified OpenAPI contract, dataset memory retrieval, incident-pattern memory, run observability artifacts, safety-boundary evidence, persistent SQLite trace audit logging, evidence-ranked root-cause hypotheses, human-reviewed hypothesis feedback labels, structured report guardrails, and safe model-key fallback.
+- Published an agent-readiness checklist that separates implemented LLM agent capabilities from partial RAG, observability, evaluation, and feedback-informed memory work.

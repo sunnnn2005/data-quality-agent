@@ -2,6 +2,7 @@ from app.agent import DataQualityAgent
 from app.data import DATASETS, load_dataset
 from app.models import LLMAssessment
 from app.tool_agent import DataQualityToolbox, LLMDataQualityAgent
+from app.traces import RunTraceStore
 
 
 def analyze(dataset_id: str):
@@ -98,6 +99,24 @@ def test_toolbox_exposes_data_quality_tools():
     assert report["llm_assessment"]["enabled"] is False
     assert report["root_cause_hypotheses"]
     assert strategy["recommended_next_tools"] == ["profile_dataset", "run_quality_checks", "build_quality_report"]
+
+
+def test_toolbox_retrieves_sanitized_dataset_memory():
+    dataset = DATASETS["orders_daily"]
+    store = RunTraceStore()
+    historical_report = DataQualityAgent().analyze(dataset, load_dataset(dataset.id))
+    store.save_quality_report(historical_report)
+    store.save_quality_report(historical_report)
+    toolbox = DataQualityToolbox(dataset, load_dataset(dataset.id), trace_store=store)
+
+    memory = toolbox.dispatch("retrieve_dataset_memory", {"limit": 5})
+
+    assert memory["memory_available"] is True
+    assert memory["trace_count"] == 2
+    assert "duplicate_primary_key" in memory["recurring_checks"]
+    assert memory["incident_patterns"]
+    assert memory["recent_trace_previews"]
+    assert "agent_trace" not in str(memory)
 
 
 def test_toolbox_selects_different_quality_strategies_by_dataset_shape():
@@ -299,3 +318,90 @@ def test_llm_tool_calling_agent_replans_across_tool_feedback():
     assert report.evaluation["used_strategy_tool"] is True
     assert report.evaluation["distinct_tool_count"] == 4
     assert "negative_amount" in report.tool_calls[0].result_preview.get("recommended_checks", [])
+
+
+def test_llm_tool_calling_agent_can_use_memory_to_inform_planning():
+    class FakeSettings:
+        api_key = "test-key"
+        base_url = "http://example.test/v1"
+        model = "fake-model"
+        timeout_seconds = 1
+        max_retries = 0
+
+    dataset = DATASETS["orders_daily"]
+    store = RunTraceStore()
+    historical_report = DataQualityAgent().analyze(dataset, load_dataset(dataset.id))
+    store.save_quality_report(historical_report)
+    store.save_quality_report(historical_report)
+
+    agent = LLMDataQualityAgent(settings=FakeSettings())
+    calls = [
+        {
+            "choices": [
+                {
+                    "message": {
+                        "role": "assistant",
+                        "tool_calls": [
+                            {
+                                "id": "call_memory",
+                                "type": "function",
+                                "function": {"name": "retrieve_dataset_memory", "arguments": '{"limit": 5}'},
+                            }
+                        ],
+                    }
+                }
+            ]
+        },
+        {
+            "choices": [
+                {
+                    "message": {
+                        "role": "assistant",
+                        "tool_calls": [
+                            {
+                                "id": "call_strategy",
+                                "type": "function",
+                                "function": {"name": "select_quality_strategy", "arguments": "{}"},
+                            },
+                            {
+                                "id": "call_report",
+                                "type": "function",
+                                "function": {"name": "build_quality_report", "arguments": "{}"},
+                            },
+                        ],
+                    }
+                }
+            ]
+        },
+        {
+            "choices": [
+                {
+                    "message": {
+                        "role": "assistant",
+                        "content": "Recurring duplicate keys should be prioritized because memory shows repeated failures.",
+                    }
+                }
+            ]
+        },
+    ]
+
+    def fake_post(body):
+        tool_results_seen = [message for message in body["messages"] if message.get("role") == "tool"]
+        if tool_results_seen:
+            joined_results = " ".join(message["content"] for message in tool_results_seen)
+            assert "recurring_checks" in joined_results
+            assert "duplicate_primary_key" in joined_results
+        return calls.pop(0), 1
+
+    agent.advisor._post_with_retries = fake_post
+
+    report = agent.run(dataset, load_dataset(dataset.id), trace_store=store)
+
+    assert report.status == "FAIL"
+    assert [call.tool_name for call in report.tool_calls] == [
+        "retrieve_dataset_memory",
+        "select_quality_strategy",
+        "build_quality_report",
+    ]
+    assert report.evaluation["used_memory_tool"] is True
+    assert report.tool_calls[0].result_preview["trace_count"] == 2

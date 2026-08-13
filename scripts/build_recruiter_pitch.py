@@ -30,6 +30,7 @@ def build_recruiter_pitch_payload() -> dict[str, Any]:
             (
                 "Built an LLM tool-calling data-quality agent for real business CSV and read-only PostgreSQL data, "
                 f"with {metrics['agent_tools_allowed']} allowed tools, dynamic strategy selection, "
+                "memory-informed planning over sanitized run traces, "
                 f"{metrics['openapi_required_endpoints']} verified API integration endpoints, and safe model-key fallback."
             ),
             (

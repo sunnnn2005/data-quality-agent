@@ -17,10 +17,11 @@
     "get_dataset_contract",
     "profile_dataset",
     "select_quality_strategy",
+    "retrieve_dataset_memory",
     "run_quality_checks",
     "build_quality_report"
   ],
-  "tool_allowlist_count": 5,
+  "tool_allowlist_count": 6,
   "verifier_rule_count": 6,
   "verifier_rules": [
     "finding_evidence_required",
