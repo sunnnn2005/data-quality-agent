@@ -9,7 +9,7 @@ def test_adoption_metrics_uses_safe_fallback_values(monkeypatch):
     monkeypatch.setenv("ADOPTION_FORKS", "1")
     monkeypatch.setenv("ADOPTION_WATCHERS", "0")
     monkeypatch.setenv("ADOPTION_ISSUES_TOTAL", "10")
-    monkeypatch.setenv("ADOPTION_TEST_COUNT", "82")
+    monkeypatch.setenv("ADOPTION_TEST_COUNT", "83")
     monkeypatch.setattr(update_adoption_metrics, "_load_existing_metrics", lambda: {})
 
     metrics = collect_metrics()
@@ -20,7 +20,7 @@ def test_adoption_metrics_uses_safe_fallback_values(monkeypatch):
     assert metrics["issues_total"] == 10
     assert metrics["external_feedback_items"] == 0
     assert metrics["confirmed_external_users"] == 0
-    assert metrics["test_count"] == 82
+    assert metrics["test_count"] == 83
     assert metrics["commit"] is not None
     assert metrics["container_image"]["image"] == "ghcr.io/sunnnn2005/data-quality-agent:latest"
     assert metrics["release"]["tagName"] == "v0.2.0"

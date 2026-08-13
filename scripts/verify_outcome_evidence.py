@@ -23,6 +23,7 @@ API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
 BUSINESS_DATA_INTAKE_BASELINE_PATH = ROOT / "docs" / "business-data-intake-baseline.json"
+COMMUNITY_GROWTH_BASELINE_PATH = ROOT / "docs" / "community-growth-baseline.json"
 LIVE_SCORECARD_PATH = ROOT / "docs" / "live-project-scorecard.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
@@ -66,6 +67,7 @@ def verify_manifest() -> dict[str, int]:
     performance_baseline = load_payload(PERFORMANCE_BASELINE_PATH)
     demo_usage_baseline = load_payload(DEMO_USAGE_BASELINE_PATH)
     business_data_intake = load_payload(BUSINESS_DATA_INTAKE_BASELINE_PATH)
+    community_growth = load_payload(COMMUNITY_GROWTH_BASELINE_PATH)
     scorecard = load_payload(LIVE_SCORECARD_PATH)
     openapi = load_payload(OPENAPI_PATH)
     recruiter_pitch = load_payload(RECRUITER_PITCH_PATH)
@@ -262,8 +264,43 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("business data intake baseline must include a dedicated test")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("business_data_intake_baseline claim must use metric_value=1")
+            elif metric_name == "community_growth_baseline":
+                community_script = (ROOT / "scripts" / "build_community_growth_baseline.py").read_text()
+                community_tests = (ROOT / "tests" / "test_community_growth_baseline.py").read_text()
+                if community_growth.get("issue_template_count") != 4:
+                    raise AssertionError("community growth baseline must verify 4 issue templates")
+                if community_growth.get("label_count") != 5:
+                    raise AssertionError("community growth baseline must verify 5 labels")
+                if len(community_growth.get("public_growth_channels", [])) != 5:
+                    raise AssertionError("community growth baseline must verify 5 public growth channels")
+                if not all(community_growth.get("contribution_paths", {}).values()):
+                    raise AssertionError("community growth baseline must verify contribution paths")
+                counts = community_growth.get("current_public_counts", {})
+                expected_counts = {
+                    "stars": 0,
+                    "forks": 1,
+                    "issues_total": 10,
+                    "external_feedback_items": 0,
+                    "confirmed_external_users": 0,
+                    "reproducible_feedback_items": 0,
+                }
+                for key, expected in expected_counts.items():
+                    if counts.get(key) != expected:
+                        raise AssertionError(f"community growth baseline {key} expected {expected!r}")
+                for required in ("external contributors", "community adoption", "external users", "customer feedback"):
+                    if required not in community_growth.get("not_claimed", []):
+                        raise AssertionError(f"community growth baseline must not claim {required}")
+                if "verify_community_growth_baseline" not in community_script:
+                    raise AssertionError("community growth baseline must include a script verifier")
+                if (
+                    "test_community_growth_baseline_verifies_public_contribution_paths_without_adoption_claims"
+                    not in community_tests
+                ):
+                    raise AssertionError("community growth baseline must include a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("community_growth_baseline claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 82:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 83:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -541,7 +578,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 82:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 83:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -646,7 +683,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 82", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 83", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

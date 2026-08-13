@@ -18,6 +18,7 @@ API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
 BUSINESS_DATA_INTAKE_BASELINE_PATH = ROOT / "docs" / "business-data-intake-baseline.json"
+COMMUNITY_GROWTH_BASELINE_PATH = ROOT / "docs" / "community-growth-baseline.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
 APPLICATION_EVIDENCE_PACK_PATH = ROOT / "docs" / "application-evidence-pack.json"
@@ -46,6 +47,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     performance = load_json(PERFORMANCE_BASELINE_PATH)
     demo_usage = load_json(DEMO_USAGE_BASELINE_PATH)
     business_data_intake = load_json(BUSINESS_DATA_INTAKE_BASELINE_PATH)
+    community_growth = load_json(COMMUNITY_GROWTH_BASELINE_PATH)
     openapi = load_json(OPENAPI_PATH)
     recruiter_pitch = load_json(RECRUITER_PITCH_PATH)
     application_pack = load_json(APPLICATION_EVIDENCE_PACK_PATH)
@@ -106,6 +108,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "business_data_intake_tests": business_data_intake["test_count"],
             "business_data_intake_max_rows": business_data_intake["safety_limits"]["max_rows"],
             "business_data_intake_max_columns": business_data_intake["safety_limits"]["max_columns"],
+            "community_growth_baseline": 1,
+            "community_issue_templates": community_growth["issue_template_count"],
+            "community_labels": community_growth["label_count"],
+            "community_public_growth_channels": len(community_growth["public_growth_channels"]),
             "live_project_scorecard": 1,
             "scorecard_reviewer_paths": 6,
             "openapi_required_endpoints": 6,
@@ -165,6 +171,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{business_data_intake['test_count']} API tests, and bounded CSV uploads up to "
                 f"{business_data_intake['safety_limits']['max_rows']} rows / "
                 f"{business_data_intake['safety_limits']['max_columns']} columns"
+            ),
+            (
+                f"Community growth baseline with {community_growth['issue_template_count']} issue templates, "
+                f"{community_growth['label_count']} configured labels, and "
+                f"{len(community_growth['public_growth_channels'])} public contribution or feedback channels"
             ),
             "6 reviewer paths in a CI-verified live project scorecard",
             "CI-verified OpenAPI contract covering 6 integration endpoints",
@@ -247,6 +258,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business-data intake API tests | {outcomes["business_data_intake_tests"]} |
 | Business-data intake max rows | {outcomes["business_data_intake_max_rows"]} |
 | Business-data intake max columns | {outcomes["business_data_intake_max_columns"]} |
+| Community growth baseline | {outcomes["community_growth_baseline"]} |
+| Community issue templates | {outcomes["community_issue_templates"]} |
+| Community labels | {outcomes["community_labels"]} |
+| Community public growth channels | {outcomes["community_public_growth_channels"]} |
 | Live project scorecard | {outcomes["live_project_scorecard"]} |
 | Scorecard reviewer paths | {outcomes["scorecard_reviewer_paths"]} |
 | OpenAPI required integration endpoints | {outcomes["openapi_required_endpoints"]} |
@@ -283,7 +298,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 82,
+        "test_count": 83,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -324,6 +339,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "business_data_intake_tests": 6,
         "business_data_intake_max_rows": 10_000,
         "business_data_intake_max_columns": 80,
+        "community_growth_baseline": 1,
+        "community_issue_templates": 4,
+        "community_labels": 5,
+        "community_public_growth_channels": 5,
         "live_project_scorecard": 1,
         "scorecard_reviewer_paths": 6,
         "openapi_required_endpoints": 6,

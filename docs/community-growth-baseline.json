@@ -1,0 +1,77 @@
+{
+  "contribution_paths": {
+    "contributing_setup": true,
+    "feedback_guidance": true,
+    "good_first_issue_guidance": true,
+    "pull_request_template": true,
+    "readme_contributing_section": true
+  },
+  "current_public_counts": {
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "forks": 1,
+    "issues_total": 10,
+    "reproducible_feedback_items": 0,
+    "stars": 0
+  },
+  "generated_by": "scripts/build_community_growth_baseline.py",
+  "issue_template_count": 4,
+  "issue_templates": [
+    "bug_report.md",
+    "demo_feedback.md",
+    "feature_request.md",
+    "good_first_issue.md"
+  ],
+  "label_count": 5,
+  "not_claimed": [
+    "external contributors",
+    "community adoption",
+    "GitHub stars beyond the current public count",
+    "external users",
+    "customer feedback"
+  ],
+  "project": "Data Quality Agent",
+  "public_growth_channels": [
+    {
+      "name": "Good first issue label",
+      "purpose": "beginner-friendly contribution entrypoint",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/labels/good%20first%20issue"
+    },
+    {
+      "name": "Help wanted label",
+      "purpose": "broader contribution discovery",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/labels/help%20wanted"
+    },
+    {
+      "name": "Demo feedback issue",
+      "purpose": "external reproducibility and product feedback",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    },
+    {
+      "name": "Bug report issue",
+      "purpose": "public bug reports",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md"
+    },
+    {
+      "name": "Feature request issue",
+      "purpose": "public improvement requests",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md"
+    }
+  ],
+  "required_issue_templates": [
+    "bug_report.md",
+    "demo_feedback.md",
+    "feature_request.md",
+    "good_first_issue.md"
+  ],
+  "required_issue_templates_present": true,
+  "required_labels": [
+    "bug",
+    "confirmed-user",
+    "enhancement",
+    "feedback",
+    "reproducible"
+  ],
+  "required_labels_present": true,
+  "resume_safe_signal": "Published a CI-verified community growth baseline with 4 issue templates, 5 configured labels, 5 public growth channels, contribution guidance, and honest current public counts."
+}

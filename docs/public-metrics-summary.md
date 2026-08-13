@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 10 |
-| Passing CI tests | 82 |
+| Passing CI tests | 83 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -54,6 +54,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business-data intake API tests | 6 |
 | Business-data intake max rows | 10000 |
 | Business-data intake max columns | 80 |
+| Community growth baseline | 1 |
+| Community issue templates | 4 |
+| Community labels | 5 |
+| Community public growth channels | 5 |
 | Live project scorecard | 1 |
 | Scorecard reviewer paths | 6 |
 | OpenAPI required integration endpoints | 6 |
@@ -79,7 +83,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.2.0 release
-- 82 passing CI tests
+- 83 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -95,6 +99,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls
 - Public demo usage baseline with 5 tracked funnel steps and 4 verified entrypoints
 - Business-data intake baseline covering 4 integration endpoints, 6 API tests, and bounded CSV uploads up to 10000 rows / 80 columns
+- Community growth baseline with 4 issue templates, 5 configured labels, and 5 public contribution or feedback channels
 - 6 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
