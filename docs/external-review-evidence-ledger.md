@@ -14,6 +14,7 @@ Define the public evidence required before pilot reviews, feedback, confirmed ru
 | Linked planned reviews | 3 |
 | Evidence requirement types | 4 |
 | Resume status | `not_claimable_yet` |
+| Self-authored planning excluded | True |
 
 ## Public Counts
 
@@ -23,6 +24,19 @@ Define the public evidence required before pilot reviews, feedback, confirmed ru
 | Confirmed External Users | 0 |
 | Reproducible Feedback Items | 0 |
 | Business Case Feedback Items | 0 |
+
+## Counted Public Evidence
+
+| Metric | Counted entries |
+| --- | ---: |
+| External Feedback Items | 0 |
+| Confirmed External Users | 0 |
+| Reproducible Feedback Items | 0 |
+| Business Case Feedback Items | 0 |
+
+| Issue | Title | Author | Labels | Counts Toward | State |
+| --- | --- | --- | --- | --- | --- |
+| - | - | - | - | - | - |
 
 ## Pilot Review Status
 
@@ -43,7 +57,7 @@ Define the public evidence required before pilot reviews, feedback, confirmed ru
 
 ## Resume-Safe Summary
 
-Published a CI-verified external review evidence ledger defining 4 public evidence types, 3 linked pilot review slots, and zero current evidence entries before any feedback or adoption claims.
+Published a CI-verified external review evidence ledger defining 4 public evidence types, 3 linked pilot review slots, 0 counted public evidence entries, and explicit rules that exclude self-authored planning issues from external feedback claims.
 
 ## Not Claimed
 

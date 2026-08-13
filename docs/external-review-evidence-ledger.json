@@ -1,6 +1,12 @@
 {
   "entries": [],
   "entry_count": 0,
+  "evidence_counts": {
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
   "evidence_requirement_count": 4,
   "evidence_requirements": [
     {
@@ -42,6 +48,10 @@
     }
   ],
   "generated_by": "scripts/build_external_review_evidence_ledger.py",
+  "ignored_planning_labels": [
+    "pilot",
+    "roadmap"
+  ],
   "linked_planned_reviews": 3,
   "not_claimed": [
     "external users",
@@ -57,7 +67,7 @@
     "reproducible_feedback_items": 0
   },
   "purpose": "Define the public evidence required before pilot reviews, feedback, confirmed runs, or business-case reviews can be converted into resume outcome claims.",
-  "resume_safe_summary": "Published a CI-verified external review evidence ledger defining 4 public evidence types, 3 linked pilot review slots, and zero current evidence entries before any feedback or adoption claims.",
+  "resume_safe_summary": "Published a CI-verified external review evidence ledger defining 4 public evidence types, 3 linked pilot review slots, 0 counted public evidence entries, and explicit rules that exclude self-authored planning issues from external feedback claims.",
   "resume_status": "not_claimable_yet",
   "resume_upgrade_rules": [
     {
@@ -86,5 +96,6 @@
     "contacted": 0,
     "feedback_received": 0,
     "not_contacted": 3
-  }
+  },
+  "self_authored_planning_excluded": true
 }

@@ -34,6 +34,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "pilot-program-plan",
         "pilot-conversion-board",
         "resume-outcome-readiness",
+        "external-review-evidence-ledger",
         "feedback-metrics",
         "postgres-agent-route",
         "github-release",
@@ -52,6 +53,9 @@ def test_public_evidence_health_requires_core_public_signals():
         "reviewer-invitation-kit.md",
         "automated tests passing locally and in CI",
     } <= set(feedback_entrypoints["expected_texts"])
+    external_ledger = next(check for check in PUBLIC_CHECKS if check["id"] == "external-review-evidence-ledger")
+    assert external_ledger["expected_json"]["self_authored_planning_excluded"] is True
+    assert "evidence_counts" in external_ledger["expected_texts"]
 
 
 def test_public_evidence_health_verifier_rejects_failed_checks():

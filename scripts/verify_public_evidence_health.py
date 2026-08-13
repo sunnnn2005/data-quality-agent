@@ -49,7 +49,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 102},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 103},
         "evidence_type": "json",
     },
     {
@@ -280,7 +280,7 @@ PUBLIC_CHECKS = [
             "Submit Feedback",
             "issues/17",
             "External feedback starts at zero",
-            "102 tests",
+            "103 tests",
         ],
         "evidence_type": "html",
     },
@@ -327,9 +327,21 @@ PUBLIC_CHECKS = [
     {
         "id": "external-review-evidence-ledger",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-review-evidence-ledger.json",
-        "expected_json": {"project": "Data Quality Agent", "entry_count": 0, "evidence_requirement_count": 4},
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "entry_count": 0,
+            "evidence_requirement_count": 4,
+            "self_authored_planning_excluded": True,
+        },
         "expected_text": "not_claimable_yet",
-        "expected_texts": ["demo_feedback", "confirmed_run", "business_case_review", "reproducible_bug"],
+        "expected_texts": [
+            "demo_feedback",
+            "confirmed_run",
+            "business_case_review",
+            "reproducible_bug",
+            "evidence_counts",
+            "ignored_planning_labels",
+        ],
         "evidence_type": "json",
     },
     {

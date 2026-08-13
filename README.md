@@ -25,7 +25,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | 8-minute review page | [`docs/review.html`](docs/review.html) gives reviewers the shortest public path from demo inspection to GitHub feedback |
 | Public release | [`v0.3.0`](docs/releases/v0.3.0.md) release notes and GitHub Release |
 | Container image | `ghcr.io/sunnnn2005/data-quality-agent:latest` published from `main` |
-| Test suite | 102 automated tests passing locally and in GitHub Actions |
+| Test suite | 103 automated tests passing locally and in GitHub Actions |
 | Live project scorecard | [`docs/live-project-scorecard.md`](docs/live-project-scorecard.md) gives reviewers one page for the demo, release, container, CI, claims, agent capabilities, and honest adoption baselines |
 | Impact review packet | [`docs/impact-review-packet.md`](docs/impact-review-packet.md) maps the support-operations case study to 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs |
 | Business problem casebook | [`docs/business-problem-casebook.md`](docs/business-problem-casebook.md) explains the support-operations dashboard failure mode with 4 business risks, 5 findings, 3 root-cause hypotheses, and 4 owner handoffs |
@@ -43,7 +43,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Resume outcome readiness | [`docs/resume-outcome-readiness.md`](docs/resume-outcome-readiness.md) evaluates 6 outcome stages and shows exactly which public evidence is still missing before stronger resume claims are allowed |
 | Reviewer funnel board | [`docs/reviewer-funnel-board.md`](docs/reviewer-funnel-board.md) maps 4 public review paths to feedback, confirmed-user, reproducible-replay, and business-case evidence with 7 remaining evidence items |
 | Reviewer invitation kit | [`docs/reviewer-invitation-kit.md`](docs/reviewer-invitation-kit.md) provides 5 copy-ready reviewer invitations tied to 4 public evidence paths, success thresholds, and zero-feedback baselines |
-| External review evidence ledger | [`docs/external-review-evidence-ledger.md`](docs/external-review-evidence-ledger.md) defines 4 public evidence types and keeps current pilot feedback entries at zero until public proof exists |
+| External review evidence ledger | [`docs/external-review-evidence-ledger.md`](docs/external-review-evidence-ledger.md) collects public feedback/replay/business-case issue evidence, excludes self-authored planning issues, and keeps outcome counts at zero until external proof exists |
 | Outcome upgrade playbook | [`docs/outcome-upgrade-playbook.md`](docs/outcome-upgrade-playbook.md) defines 5 metric thresholds that block adoption, feedback, business-case, and repository-interest resume claims until public evidence exists |
 | Reviewer feedback packet | [`docs/reviewer-feedback-packet.md`](docs/reviewer-feedback-packet.md) gives external reviewers 3 task paths, 5 evidence questions, and 4 metric conversion paths for public feedback |
 | Recruiter pitch | [`docs/recruiter-pitch.md`](docs/recruiter-pitch.md) turns verified evidence into resume bullets, a LinkedIn project description, a 30-second pitch, interview talking points, and evidence links |
