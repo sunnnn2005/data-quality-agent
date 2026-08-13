@@ -18,7 +18,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Signal | Verified result |
 | --- | --- |
 | Public demo | [sunnnn2005.github.io/data-quality-agent](https://sunnnn2005.github.io/data-quality-agent/) |
-| Test suite | 37 automated tests passing locally and in GitHub Actions |
+| Test suite | 38 automated tests passing locally and in GitHub Actions |
 | CSV safety limit | 10,000 rows, 80 columns, 2 MB upload limit |
 | Report score | 24 / 100, status `FAIL` |
 | Evidence-backed findings | duplicate `ticket_id`, missing `team` / `priority`, negative `amount`, and an `amount` outlier |
@@ -104,6 +104,20 @@ The adapter reuses the same `DatasetSummary + DataFrame` contract as built-in da
 - statement timeout is set before the query
 - primary-key and expected-column configuration are required
 - tests use mocked connections, so CI does not need live database credentials
+
+For a reproducible local database demo, start the API and a seeded PostgreSQL container:
+
+```bash
+docker compose up --build
+```
+
+Then request a report from the seeded support-ticket table:
+
+```bash
+curl -X POST http://127.0.0.1:8000/postgres/support-tickets/quality-report
+```
+
+The compose demo creates a read-only `readonly_agent` database user and loads a support-ticket table with duplicate IDs, missing routing fields, a negative amount, and an outlier. The API endpoint reads that table through `PostgresDatasetAdapter` and returns the same structured `QualityReport` contract as CSV and built-in datasets.
 
 ## The Model
 
@@ -263,6 +277,7 @@ Docker:
 ```bash
 docker build -t data-quality-agent .
 docker run --rm -p 8000:8000 data-quality-agent
+docker compose up --build
 ```
 
 ## Contributing

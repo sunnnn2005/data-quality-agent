@@ -8,6 +8,7 @@ from app.business_data import BusinessDataRequest, load_business_csv
 from app.dashboard import render_dashboard
 from app.data import DATASETS, load_dataset
 from app.models import AgentRunReport, DatasetProfile, DatasetSummary, QualityReport
+from app.postgres_adapter import PostgresAdapterError, PostgresDatasetAdapter
 from app.profiler import DatasetProfiler
 from app.tool_agent import LLMDataQualityAgent
 from app.traces import RunTraceStore
@@ -17,6 +18,7 @@ agent = DataQualityAgent()
 llm_agent = LLMDataQualityAgent()
 profiler = DatasetProfiler()
 trace_store = RunTraceStore()
+postgres_adapter = PostgresDatasetAdapter()
 
 
 @app.get("/health")
@@ -71,6 +73,22 @@ async def create_business_quality_report(request: Annotated[BusinessDataRequest,
 async def create_business_agent_report(request: Annotated[BusinessDataRequest, Depends()]):
     dataset, frame = await load_business_csv(request)
     return trace_store.save_agent_report(llm_agent.run(dataset, frame))
+
+
+@app.post("/postgres/support-tickets/quality-report", response_model=QualityReport)
+def create_postgres_support_ticket_report():
+    try:
+        dataset, frame = postgres_adapter.load_table(
+            "support_tickets",
+            dataset_name="Support Tickets",
+            owner="support-ops",
+            primary_key="ticket_id",
+            expected_columns=["ticket_id", "team", "priority", "status", "amount", "created_at"],
+            description="Read-only PostgreSQL support-ticket table used by operations dashboards.",
+        )
+    except PostgresAdapterError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    return trace_store.save_quality_report(agent.analyze(dataset, frame))
 
 
 @app.get("/runs/{trace_id}")

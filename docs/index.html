@@ -303,7 +303,7 @@
       </div>
 
       <div class="metric-grid" aria-label="Verified project metrics">
-        <div class="metric"><strong>37</strong><span>automated tests passing locally and in CI</span></div>
+        <div class="metric"><strong>38</strong><span>automated tests passing locally and in CI</span></div>
         <div class="metric"><strong>10K × 80</strong><span>bounded CSV upload limit: rows × columns</span></div>
         <div class="metric"><strong>4</strong><span>reproducible support-ticket issue categories</span></div>
         <div class="metric"><strong>0 secrets</strong><span>default path runs without paid APIs or model keys</span></div>
@@ -422,6 +422,11 @@
           <h3>Mocked DB tests</h3>
           <p>CI validates adapter behavior without requiring live database credentials.</p>
         </article>
+        <article class="card">
+          <span class="severity high">Docker</span>
+          <h3>Seeded Postgres demo</h3>
+          <p><code>docker compose up --build</code> runs a database-backed support-ticket report locally.</p>
+        </article>
       </div>
     </section>
 
@@ -456,7 +461,10 @@ curl -X POST http://127.0.0.1:8000/business-data/quality-report \
   -F "dataset_name=Support Tickets" \
   -F "owner=support-ops" \
   -F "primary_key=ticket_id" \
-  -F "expected_columns=ticket_id,team,priority,status,amount,created_at"</div>
+  -F "expected_columns=ticket_id,team,priority,status,amount,created_at"
+
+docker compose up --build
+curl -X POST http://127.0.0.1:8000/postgres/support-tickets/quality-report</div>
     </section>
 
     <footer>

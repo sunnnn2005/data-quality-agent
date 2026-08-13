@@ -100,6 +100,13 @@ Docker:
 ```bash
 docker build -t data-quality-agent .
 docker run --rm -p 8000:8000 data-quality-agent
+docker compose up --build
+```
+
+PostgreSQL demo:
+
+```bash
+curl -X POST http://127.0.0.1:8000/postgres/support-tickets/quality-report
 ```
 
 ## Quality Bar
@@ -108,6 +115,7 @@ docker run --rm -p 8000:8000 data-quality-agent
 - New datasets should be deterministic.
 - New report fields should be represented as typed Pydantic models.
 - New integrations should not require secrets in the default path.
+- Database integrations should use read-only users and reproducible local fixtures when possible.
 - Documentation should describe behavior without overstating production readiness.
 - LLM features must preserve deterministic fallback behavior and avoid sending sensitive fields.
 - Tool-calling features must expose small explicit tools rather than unrestricted code execution.

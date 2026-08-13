@@ -1,7 +1,11 @@
 from fastapi.testclient import TestClient
 from pathlib import Path
 
+import pandas as pd
+
+from app.models import DatasetSummary
 from app.main import app
+import app.main as main_module
 
 
 client = TestClient(app)
@@ -99,6 +103,48 @@ def test_business_csv_agent_report_is_disabled_without_key_but_uses_real_dataset
     assert payload["trace_id"].startswith("run_")
     assert payload["dataset"]["name"] == "Customer Export"
     assert payload["error"] == "OPENAI_API_KEY is not configured"
+
+
+def test_postgres_support_ticket_report_uses_read_only_adapter(monkeypatch):
+    class FakePostgresAdapter:
+        def load_table(
+            self,
+            table,
+            *,
+            dataset_name,
+            owner,
+            primary_key,
+            expected_columns,
+            description,
+        ):
+            assert table == "support_tickets"
+            assert owner == "support-ops"
+            dataset = DatasetSummary(
+                id="support_tickets",
+                name=dataset_name,
+                owner=owner,
+                primary_key=primary_key,
+                expected_columns=expected_columns,
+                description=description,
+                last_loaded_at=main_module.DATASETS["orders_daily"].last_loaded_at,
+            )
+            csv = ROOT / "examples" / "support_tickets.csv"
+
+            return dataset, pd.read_csv(csv)
+
+    monkeypatch.setattr(main_module, "postgres_adapter", FakePostgresAdapter())
+
+    response = client.post("/postgres/support-tickets/quality-report")
+
+    assert response.status_code == 200
+    payload = response.json()
+    checks = {finding["check_name"] for finding in payload["findings"]}
+
+    assert payload["dataset"]["id"] == "support_tickets"
+    assert payload["row_count"] == 8
+    assert payload["status"] == "FAIL"
+    assert "duplicate_primary_key" in checks
+    assert "negative_amount" in checks
 
 
 def test_business_csv_rejects_missing_primary_key_column():

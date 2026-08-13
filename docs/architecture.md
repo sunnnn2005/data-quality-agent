@@ -68,6 +68,8 @@ These models are the public shape of the system.
 
 `app/postgres_adapter.py` provides an optional read-only PostgreSQL adapter for real business tables. It is disabled by default, requires explicit environment configuration, rejects write operations, requires bounded `SELECT` queries, caps row limits, sets a statement timeout, and reuses the same `DatasetSummary + DataFrame` contract used by built-in and CSV datasets.
 
+`docker-compose.yml` and `examples/postgres/init.sql` provide a reproducible local PostgreSQL demo. The compose stack creates a read-only database user, seeds a support-ticket table with realistic quality failures, and exposes `/postgres/support-tickets/quality-report` as an end-to-end database-backed report path.
+
 ### Profiling Layer
 
 `app/profiler.py` creates column-level profiles:
@@ -160,6 +162,7 @@ The tests verify both the agent loop and the API contract:
 - the optional LLM advisor can be skipped safely
 - business-rule retrieval returns source-cited constraints without raw row data
 - PostgreSQL adapter rejects write operations and unbounded queries
+- PostgreSQL support-ticket endpoint analyzes a read-only adapter-backed table
 - structured LLM assessments can be attached to reports
 - the tool-calling agent can be skipped safely without a key
 - the tool-calling agent can re-plan across multiple model calls after observing tool results
