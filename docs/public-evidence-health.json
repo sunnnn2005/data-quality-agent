@@ -1,5 +1,5 @@
 {
-  "check_count": 64,
+  "check_count": 65,
   "checks": [
     {
       "evidence_type": "html",
@@ -561,6 +561,19 @@
       ]
     },
     {
+      "evidence_type": "json",
+      "id": "reviewer-share-kit",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-share-kit.json",
+      "verified_fields": [
+        "linked_submission_paths",
+        "project",
+        "ready_message_count",
+        "share_channel_count"
+      ]
+    },
+    {
       "evidence_type": "html",
       "id": "public-reviewer-call-issue",
       "passed": true,
@@ -695,6 +708,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 64,
+  "passed_count": 65,
   "status": "PASS"
 }
