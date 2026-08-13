@@ -31,6 +31,7 @@ PILOT_PROGRAM_PLAN_PATH = ROOT / "docs" / "pilot-program-plan.json"
 PILOT_REVIEW_TRACKER_PATH = ROOT / "docs" / "pilot-review-tracker.json"
 EXTERNAL_REVIEW_EVIDENCE_LEDGER_PATH = ROOT / "docs" / "external-review-evidence-ledger.json"
 OUTCOME_UPGRADE_PLAYBOOK_PATH = ROOT / "docs" / "outcome-upgrade-playbook.json"
+REVIEWER_FEEDBACK_PACKET_PATH = ROOT / "docs" / "reviewer-feedback-packet.json"
 FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
@@ -70,6 +71,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     pilot_tracker = load_json(PILOT_REVIEW_TRACKER_PATH)
     external_ledger = load_json(EXTERNAL_REVIEW_EVIDENCE_LEDGER_PATH)
     outcome_upgrade = load_json(OUTCOME_UPGRADE_PLAYBOOK_PATH)
+    reviewer_packet = load_json(REVIEWER_FEEDBACK_PACKET_PATH)
     feedback_intake = load_json(FEEDBACK_INTAKE_QUALITY_PATH)
     star_growth = load_json(STAR_GROWTH_KIT_PATH)
     business_case_intake = load_json(BUSINESS_CASE_INTAKE_PATH)
@@ -171,6 +173,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "outcome_upgrade_rules": outcome_upgrade["upgrade_rule_count"],
             "outcome_upgrade_blocked_rules": outcome_upgrade["blocked_upgrade_rule_count"],
             "outcome_upgrade_claimable_now": len(outcome_upgrade["claimable_now"]),
+            "reviewer_feedback_packet": 1,
+            "reviewer_feedback_tasks": reviewer_packet["reviewer_task_count"],
+            "reviewer_feedback_questions": reviewer_packet["evidence_question_count"],
+            "reviewer_feedback_conversion_paths": reviewer_packet["conversion_path_count"],
             "feedback_intake_quality": 1,
             "feedback_intake_required_sections": feedback_intake["required_section_count"],
             "feedback_intake_try_paths": feedback_intake["required_try_path_count"],
@@ -220,6 +226,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"Outcome upgrade playbook with {outcome_upgrade['upgrade_rule_count']} metric thresholds, "
                 f"{outcome_upgrade['blocked_upgrade_rule_count']} blocked upgrade rules, and "
                 f"{len(outcome_upgrade['claimable_now'])} baseline signals claimable now"
+            ),
+            (
+                f"Reviewer feedback packet with {reviewer_packet['reviewer_task_count']} task paths, "
+                f"{reviewer_packet['evidence_question_count']} evidence questions, and "
+                f"{reviewer_packet['conversion_path_count']} metric conversion paths"
             ),
             f"{incident_memory['incident_pattern_count']} recurring incident patterns retrieved from sanitized traces",
             f"{observability['observed_trace_count']} observed run traces with fallback and verification status",
@@ -416,6 +427,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Outcome upgrade rules | {outcomes["outcome_upgrade_rules"]} |
 | Outcome upgrade blocked rules | {outcomes["outcome_upgrade_blocked_rules"]} |
 | Outcome upgrade claimable-now signals | {outcomes["outcome_upgrade_claimable_now"]} |
+| Reviewer feedback packet | {outcomes["reviewer_feedback_packet"]} |
+| Reviewer feedback tasks | {outcomes["reviewer_feedback_tasks"]} |
+| Reviewer feedback evidence questions | {outcomes["reviewer_feedback_questions"]} |
+| Reviewer feedback conversion paths | {outcomes["reviewer_feedback_conversion_paths"]} |
 | Feedback intake quality | {outcomes["feedback_intake_quality"]} |
 | Feedback intake required sections | {outcomes["feedback_intake_required_sections"]} |
 | Feedback intake demo paths | {outcomes["feedback_intake_try_paths"]} |
@@ -454,7 +469,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 93,
+        "test_count": 94,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -537,6 +552,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "outcome_upgrade_rules": 5,
         "outcome_upgrade_blocked_rules": 5,
         "outcome_upgrade_claimable_now": 6,
+        "reviewer_feedback_packet": 1,
+        "reviewer_feedback_tasks": 3,
+        "reviewer_feedback_questions": 5,
+        "reviewer_feedback_conversion_paths": 4,
         "feedback_intake_quality": 1,
         "feedback_intake_required_sections": 5,
         "feedback_intake_try_paths": 5,

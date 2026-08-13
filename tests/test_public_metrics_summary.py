@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 93
+    assert payload["public_metrics"]["test_count"] == 94
     assert payload["verified_project_outcomes"]["root_cause_hypotheses"] == 3
     assert payload["verified_project_outcomes"]["business_risk_areas"] == 4
     assert payload["verified_project_outcomes"]["high_priority_actions"] == 3
@@ -88,6 +88,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["outcome_upgrade_rules"] == 5
     assert payload["verified_project_outcomes"]["outcome_upgrade_blocked_rules"] == 5
     assert payload["verified_project_outcomes"]["outcome_upgrade_claimable_now"] == 6
+    assert payload["verified_project_outcomes"]["reviewer_feedback_packet"] == 1
+    assert payload["verified_project_outcomes"]["reviewer_feedback_tasks"] == 3
+    assert payload["verified_project_outcomes"]["reviewer_feedback_questions"] == 5
+    assert payload["verified_project_outcomes"]["reviewer_feedback_conversion_paths"] == 4
     assert payload["verified_project_outcomes"]["feedback_intake_quality"] == 1
     assert payload["verified_project_outcomes"]["feedback_intake_required_sections"] == 5
     assert payload["verified_project_outcomes"]["feedback_intake_try_paths"] == 5

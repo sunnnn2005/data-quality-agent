@@ -68,6 +68,8 @@ jobs:
         run: python scripts/build_external_review_evidence_ledger.py
       - name: Verify outcome upgrade playbook
         run: python scripts/build_outcome_upgrade_playbook.py
+      - name: Verify reviewer feedback packet
+        run: python scripts/build_reviewer_feedback_packet.py
       - name: Verify feedback intake quality
         run: python scripts/build_feedback_intake_quality.py
       - name: Verify business case intake
@@ -89,7 +91,7 @@ jobs:
           ADOPTION_FORKS: "1"
           ADOPTION_WATCHERS: "0"
           ADOPTION_ISSUES_TOTAL: "11"
-          ADOPTION_TEST_COUNT: "93"
+          ADOPTION_TEST_COUNT: "94"
         run: python scripts/update_adoption_metrics.py
       - name: Verify outcome evidence manifest
         run: python scripts/verify_outcome_evidence.py

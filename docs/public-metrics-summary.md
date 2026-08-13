@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 11 |
-| Passing CI tests | 93 |
+| Passing CI tests | 94 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -97,6 +97,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Outcome upgrade rules | 5 |
 | Outcome upgrade blocked rules | 5 |
 | Outcome upgrade claimable-now signals | 6 |
+| Reviewer feedback packet | 1 |
+| Reviewer feedback tasks | 3 |
+| Reviewer feedback evidence questions | 5 |
+| Reviewer feedback conversion paths | 4 |
 | Feedback intake quality | 1 |
 | Feedback intake required sections | 5 |
 | Feedback intake demo paths | 5 |
@@ -125,7 +129,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 93 passing CI tests
+- 94 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -135,6 +139,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Pilot review tracker with 3 planned reviewer segments, 3 not-contacted baseline entries, and 3 resume-upgrade rules
 - External review evidence ledger with 4 public evidence types, 3 linked planned reviews, and 0 current evidence entries
 - Outcome upgrade playbook with 5 metric thresholds, 5 blocked upgrade rules, and 6 baseline signals claimable now
+- Reviewer feedback packet with 3 task paths, 5 evidence questions, and 4 metric conversion paths
 - 3 recurring incident patterns retrieved from sanitized traces
 - 2 observed run traces with fallback and verification status
 - 2 mocked LLM calls with 360 tokens, prompt version, latency, retry budget, and estimated cost telemetry

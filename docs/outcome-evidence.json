@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 93,
-      "resume_signal": "93 passing CI tests",
+      "metric_value": 94,
+      "resume_signal": "94 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -357,6 +357,16 @@
       "resume_signal": "CI-verified outcome upgrade playbook",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-upgrade-playbook.json"
+    },
+    {
+      "claim": "Publishes 3 reviewer task paths, 5 evidence questions, and 4 metric conversion paths for collecting public feedback without upgrading resume outcome wording before evidence exists.",
+      "evidence_type": "generated_json",
+      "id": "reviewer-feedback-packet",
+      "metric_name": "reviewer_feedback_packet",
+      "metric_value": 1,
+      "resume_signal": "CI-verified reviewer feedback packet",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-feedback-packet.json"
     },
     {
       "claim": "The project publishes a generated feedback-intake artifact that verifies the public demo feedback template captures reviewer path, environment, reproducibility outcome, bug or feature signals, and usefulness while preserving honest adoption and feedback baselines.",
