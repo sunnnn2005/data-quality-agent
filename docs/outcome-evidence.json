@@ -25,12 +25,12 @@
       "url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent"
     },
     {
-      "claim": "Automated test suite passes locally and in GitHub Actions, including the business problem casebook, business replay demo, feedback intake quality, business case intake, star growth kit, pilot conversion board, resume outcome readiness evaluator, reviewer funnel board, and real-model runbook verifiers.",
+      "claim": "Automated test suite passes locally and in GitHub Actions, including the external-run evidence packet, runnable release packet, business problem casebook, business replay demo, feedback intake quality, business case intake, star growth kit, pilot conversion board, resume outcome readiness evaluator, reviewer funnel board, and real-model runbook verifiers.",
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 110,
-      "resume_signal": "110 passing CI tests",
+      "metric_value": 112,
+      "resume_signal": "112 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 19 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 20 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 19,
+      "metric_value": 20,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -571,6 +571,16 @@
       "resume_signal": "Public LLM agent readiness checklist",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-readiness.md"
+    },
+    {
+      "claim": "The project publishes an external-run evidence packet with 3 reviewer run paths, 8 required submission fields, 3 resume-upgrade rules, and privacy boundaries for converting future reviewer runs into public evidence while preserving the current zero-adoption baseline.",
+      "evidence_type": "json",
+      "id": "external-run-evidence-packet",
+      "metric_name": "external_run_evidence_packet",
+      "metric_value": 1,
+      "resume_signal": "CI-verified external run evidence packet",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-run-evidence-packet.json"
     }
   ],
   "not_claimed": [

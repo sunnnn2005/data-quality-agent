@@ -1,0 +1,132 @@
+{
+  "acceptance_check_count": 4,
+  "current_counts": {
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
+  "generated_by": "scripts/build_external_run_evidence_packet.py",
+  "input_artifacts": {
+    "feedback_metrics": "docs/feedback-metrics.json",
+    "runnable_release_packet": "docs/runnable-release-packet.json"
+  },
+  "not_claimed": [
+    "No external reviewer run is claimed yet.",
+    "No external users are claimed yet.",
+    "No customer feedback is claimed yet.",
+    "No enterprise deployment is claimed yet."
+  ],
+  "privacy_boundaries": [
+    "Do not ask reviewers to upload private business data.",
+    "Do not store raw reviewer datasets in this repository.",
+    "Ask for anonymized field names, command output summaries, and screenshots only when safe.",
+    "Count only public GitHub issues where the reviewer gave permission to count the run."
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Turn external reviewer runs into public, resume-safe evidence by requiring commands, environment, observed results, and permission before any user or feedback claim is counted.",
+  "resume_safe_summary": "Published an external-run evidence packet that defines 3 reviewer run paths, 8 required submission fields, 3 resume-upgrade rules, and privacy boundaries for converting future reviewer runs into public evidence.",
+  "review_path_count": 3,
+  "review_paths": [
+    {
+      "counts_toward_after_public_issue": "external_feedback_items",
+      "id": "public_demo_review",
+      "required_evidence": [
+        "public demo URL opened",
+        "support-ticket finding inspected",
+        "one useful or confusing point written by reviewer"
+      ],
+      "surface": "public_demo",
+      "time_box_minutes": 8
+    },
+    {
+      "command": "docker run --rm -p 8000:8000 ghcr.io/sunnnn2005/data-quality-agent:latest",
+      "counts_toward_after_public_issue": "confirmed_external_users",
+      "id": "container_smoke_run",
+      "required_evidence": [
+        "host OS and Docker version",
+        "health endpoint response",
+        "quality-report endpoint response status"
+      ],
+      "surface": "ghcr_container",
+      "time_box_minutes": 12
+    },
+    {
+      "command": "docker compose up --build",
+      "counts_toward_after_public_issue": "reproducible_feedback_items",
+      "id": "postgres_replay_run",
+      "required_evidence": [
+        "compose command completed",
+        "PostgreSQL support-ticket route called",
+        "agent-report fallback or model-backed status captured"
+      ],
+      "surface": "docker_compose_business_demo",
+      "time_box_minutes": 15
+    }
+  ],
+  "runnable_surface_count": 3,
+  "submission_field_count": 8,
+  "submission_fields": [
+    {
+      "example": "student developer, data analyst, recruiter, mentor",
+      "name": "reviewer_role",
+      "required": true
+    },
+    {
+      "example": "public_demo_review or container_smoke_run",
+      "name": "path_tried",
+      "required": true
+    },
+    {
+      "example": "macOS 15, Docker Desktop 4.x, Chrome",
+      "name": "environment",
+      "required": true
+    },
+    {
+      "example": "docker compose up --build",
+      "name": "commands_or_urls_used",
+      "required": true
+    },
+    {
+      "example": "health returned ok and support-ticket report loaded",
+      "name": "observed_result",
+      "required": true
+    },
+    {
+      "example": "4",
+      "name": "usefulness_score_1_to_5",
+      "required": true
+    },
+    {
+      "example": "setup was clear, but report explanation could be shorter",
+      "name": "main_feedback",
+      "required": true
+    },
+    {
+      "example": "yes",
+      "name": "permission_to_count_publicly",
+      "required": true
+    }
+  ],
+  "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+  "upgrade_rule_count": 3,
+  "upgrade_rules": [
+    {
+      "claim": "tried by an external reviewer",
+      "metric": "confirmed_external_users",
+      "minimum_public_count": 1,
+      "required_label": "confirmed-user"
+    },
+    {
+      "claim": "collected external feedback",
+      "metric": "external_feedback_items",
+      "minimum_public_count": 3,
+      "required_label": "feedback"
+    },
+    {
+      "claim": "validated through reproducible local replay",
+      "metric": "reproducible_feedback_items",
+      "minimum_public_count": 1,
+      "required_label": "reproducible"
+    }
+  ]
+}

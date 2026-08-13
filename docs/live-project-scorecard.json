@@ -28,10 +28,10 @@
     "agent_tools_allowed": 7,
     "implemented_agent_capabilities": 16,
     "openapi_required_endpoints": 6,
-    "passing_tests": 110,
+    "passing_tests": 112,
     "support_ticket_issue_categories": 4,
     "unsafe_postgres_queries_rejected": 3,
-    "verified_resume_claims": 59
+    "verified_resume_claims": 60
   },
   "live_footprint": {
     "confirmed_external_users": 0,
@@ -50,7 +50,7 @@
   "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
   "release": "v0.3.0",
   "repo": "https://github.com/sunnnn2005/data-quality-agent",
-  "resume_safe_summary": "Live project scorecard: public demo, v0.3.0 release, container image, 110 passing CI tests, 59 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
+  "resume_safe_summary": "Live project scorecard: public demo, v0.3.0 release, container image, 112 passing CI tests, 60 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
   "reviewer_paths": [
     {
       "label": "Try the public demo",
@@ -103,6 +103,10 @@
     {
       "label": "Run the local reviewer demo",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/local-reviewer-demo.md"
+    },
+    {
+      "label": "Use external run evidence packet",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-evidence-packet.md"
     },
     {
       "label": "Inspect public metrics",

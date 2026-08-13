@@ -11,8 +11,8 @@ def test_live_project_scorecard_summarizes_public_resume_evidence_without_inflat
     markdown = render_markdown(payload)
 
     assert verification["live_project_scorecard_verified"] is True
-    assert payload["headline_metrics"]["passing_tests"] == 110
-    assert payload["headline_metrics"]["verified_resume_claims"] == 59
+    assert payload["headline_metrics"]["passing_tests"] == 112
+    assert payload["headline_metrics"]["verified_resume_claims"] == 60
     assert payload["headline_metrics"]["implemented_agent_capabilities"] == 16
     assert payload["headline_metrics"]["agent_matrix_implemented_capabilities"] == 13
     assert payload["live_footprint"]["stars"] == 0
@@ -34,5 +34,6 @@ def test_live_project_scorecard_summarizes_public_resume_evidence_without_inflat
     assert any(path["label"] == "Inspect real-model runbook" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Inspect agent capability matrix" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Run the local reviewer demo" for path in payload["reviewer_paths"])
+    assert any(path["label"] == "Use external run evidence packet" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Use reviewer funnel board" for path in payload["reviewer_paths"])
     assert "Live Project Scorecard" in markdown

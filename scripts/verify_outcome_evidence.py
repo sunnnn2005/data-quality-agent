@@ -20,6 +20,7 @@ AGENT_OBSERVABILITY_PATH = ROOT / "docs" / "agent-observability.json"
 AGENT_SAFETY_PATH = ROOT / "docs" / "agent-safety-boundaries.json"
 AGENT_CAPABILITY_MATRIX_PATH = ROOT / "docs" / "agent-capability-matrix.json"
 LOCAL_REVIEWER_DEMO_PATH = ROOT / "docs" / "local-reviewer-demo.json"
+EXTERNAL_RUN_EVIDENCE_PACKET_PATH = ROOT / "docs" / "external-run-evidence-packet.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
@@ -81,6 +82,7 @@ def verify_manifest() -> dict[str, int]:
     safety = load_payload(AGENT_SAFETY_PATH)
     capability_matrix = load_payload(AGENT_CAPABILITY_MATRIX_PATH)
     local_reviewer_demo = load_payload(LOCAL_REVIEWER_DEMO_PATH)
+    external_run_evidence = load_payload(EXTERNAL_RUN_EVIDENCE_PACKET_PATH)
     api_smoke_report = load_payload(API_SMOKE_REPORT_PATH)
     performance_baseline = load_payload(PERFORMANCE_BASELINE_PATH)
     demo_usage_baseline = load_payload(DEMO_USAGE_BASELINE_PATH)
@@ -194,6 +196,31 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("local reviewer demo must include a dedicated test")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("local_reviewer_demo claim must use metric_value=1")
+            elif metric_name == "external_run_evidence_packet":
+                external_run_script = (ROOT / "scripts" / "build_external_run_evidence_packet.py").read_text()
+                external_run_tests = (ROOT / "tests" / "test_external_run_evidence_packet.py").read_text()
+                if external_run_evidence.get("review_path_count") != 3:
+                    raise AssertionError("external run evidence packet must define 3 reviewer run paths")
+                if external_run_evidence.get("submission_field_count") != 8:
+                    raise AssertionError("external run evidence packet must define 8 required submission fields")
+                if external_run_evidence.get("upgrade_rule_count") != 3:
+                    raise AssertionError("external run evidence packet must define 3 upgrade rules")
+                if external_run_evidence.get("current_counts", {}).get("confirmed_external_users") != 0:
+                    raise AssertionError("external run evidence packet must preserve zero confirmed-user baseline")
+                if "permission_to_count_publicly" not in json.dumps(external_run_evidence):
+                    raise AssertionError("external run evidence packet must require permission to count publicly")
+                if "Do not ask reviewers to upload private business data." not in external_run_evidence.get(
+                    "privacy_boundaries", []
+                ):
+                    raise AssertionError("external run evidence packet must include privacy boundaries")
+                if "No external users are claimed yet." not in external_run_evidence.get("not_claimed", []):
+                    raise AssertionError("external run evidence packet must not claim external users")
+                if "verify_external_run_evidence_packet" not in external_run_script:
+                    raise AssertionError("external run evidence packet must have a script verifier")
+                if "test_external_run_evidence_packet_defines_public_reviewer_run_proof" not in external_run_tests:
+                    raise AssertionError("external run evidence packet must have a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("external_run_evidence_packet claim must use metric_value=1")
             elif metric_name == "api_smoke_report":
                 smoke_script = (ROOT / "scripts" / "build_api_smoke_report.py").read_text()
                 smoke_tests = (ROOT / "tests" / "test_api_smoke_report.py").read_text()
@@ -467,7 +494,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 110:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 112:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -768,7 +795,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 110:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 112:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1333,7 +1360,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 110", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 112", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

@@ -16,6 +16,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "agent-capability-matrix",
         "local-reviewer-demo",
         "runnable-release-packet",
+        "external-run-evidence-packet",
         "api-smoke-report",
         "performance-baseline",
         "demo-usage-baseline",
@@ -67,6 +68,10 @@ def test_public_evidence_health_requires_core_public_signals():
     runnable = next(check for check in PUBLIC_CHECKS if check["id"] == "runnable-release-packet")
     assert "docker run" in runnable["expected_texts"]
     assert "No external installs are claimed." in runnable["expected_texts"]
+    external_run = next(check for check in PUBLIC_CHECKS if check["id"] == "external-run-evidence-packet")
+    assert external_run["expected_json"]["review_path_count"] == 3
+    assert "permission_to_count_publicly" == external_run["expected_text"]
+    assert "No external reviewer run is claimed yet." in external_run["expected_texts"]
 
 
 def test_public_evidence_health_verifier_rejects_failed_checks():

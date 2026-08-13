@@ -58,6 +58,7 @@ def build_live_project_scorecard_payload() -> dict[str, Any]:
             {"label": "Inspect safety boundaries", "url": f"{metrics['repo']}/blob/main/docs/agent-safety-boundaries.md"},
             {"label": "Inspect agent capability matrix", "url": f"{metrics['repo']}/blob/main/docs/agent-capability-matrix.md"},
             {"label": "Run the local reviewer demo", "url": f"{metrics['repo']}/blob/main/docs/local-reviewer-demo.md"},
+            {"label": "Use external run evidence packet", "url": f"{metrics['repo']}/blob/main/docs/external-run-evidence-packet.md"},
             {"label": "Inspect public metrics", "url": f"{metrics['repo']}/blob/main/docs/public-metrics-summary.md"},
             {"label": "Use reviewer funnel board", "url": f"{metrics['repo']}/blob/main/docs/reviewer-funnel-board.md"},
         ],
@@ -147,8 +148,8 @@ def verify_live_project_scorecard(payload: dict[str, Any]) -> dict[str, Any]:
     headline = payload["headline_metrics"]
     footprint = payload["live_footprint"]
     expected = {
-        "passing_tests": 110,
-        "verified_resume_claims": 59,
+        "passing_tests": 112,
+        "verified_resume_claims": 60,
         "implemented_agent_capabilities": 16,
         "agent_tools_allowed": 7,
         "agent_matrix_implemented_capabilities": 13,

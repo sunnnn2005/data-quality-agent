@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 110
+    assert payload["public_metrics"]["test_count"] == 112
     assert payload["public_metrics"]["github_view_count"] >= 0
     assert payload["public_metrics"]["github_unique_visitors"] <= payload["public_metrics"]["github_view_count"]
     assert payload["public_metrics"]["github_clone_count"] >= 0
@@ -49,6 +49,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["runnable_release_surfaces"] == 3
     assert payload["verified_project_outcomes"]["runnable_release_acceptance_checks"] == 4
     assert payload["verified_project_outcomes"]["runnable_release_required_api_paths"] == 6
+    assert payload["verified_project_outcomes"]["external_run_evidence_packet"] == 1
+    assert payload["verified_project_outcomes"]["external_run_review_paths"] == 3
+    assert payload["verified_project_outcomes"]["external_run_submission_fields"] == 8
+    assert payload["verified_project_outcomes"]["external_run_upgrade_rules"] == 3
     assert payload["verified_project_outcomes"]["api_smoke_report"] == 1
     assert payload["verified_project_outcomes"]["api_smoke_checks"] == 6
     assert payload["verified_project_outcomes"]["api_smoke_passed_checks"] == 6
@@ -82,12 +86,12 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["public_availability_snapshot"] == 1
     assert payload["verified_project_outcomes"]["public_availability_endpoint_count"] == 4
     assert payload["verified_project_outcomes"]["live_project_scorecard"] == 1
-    assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 15
+    assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 16
     assert payload["verified_project_outcomes"]["openapi_required_endpoints"] == 6
     assert payload["verified_project_outcomes"]["recruiter_pitch_resume_bullets"] == 3
     assert payload["verified_project_outcomes"]["recruiter_pitch_target_roles"] == 4
     assert payload["verified_project_outcomes"]["application_evidence_pack"] == 1
-    assert payload["verified_project_outcomes"]["application_evidence_links"] == 19
+    assert payload["verified_project_outcomes"]["application_evidence_links"] == 20
     assert payload["verified_project_outcomes"]["pilot_outreach_messages"] == 3
     assert payload["verified_project_outcomes"]["pilot_review_paths"] == 10
     assert payload["verified_project_outcomes"]["pilot_program_segments"] == 3
@@ -171,6 +175,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         "Runnable release packet with 3 runnable surfaces, 4 acceptance checks, and 6 required API paths"
         in payload["resume_safe_signals"]
     )
+    assert (
+        "External-run evidence packet with 3 reviewer run paths, 8 required submission fields, and 3 resume-upgrade rules"
+        in payload["resume_safe_signals"]
+    )
     assert "CI-verified API smoke report covering 6 passing FastAPI route checks" in payload["resume_safe_signals"]
     assert (
         "CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls"
@@ -202,10 +210,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     )
     assert any("GitHub traffic snapshot with" in signal for signal in payload["resume_safe_signals"])
     assert any("Public availability snapshot with" in signal for signal in payload["resume_safe_signals"])
-    assert "15 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
+    assert "16 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
     assert "CI-verified OpenAPI contract covering 6 integration endpoints" in payload["resume_safe_signals"]
     assert "3 recruiter-safe resume bullets for 4 target roles" in payload["resume_safe_signals"]
-    assert "19 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
+    assert "20 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
     assert "Reviewer funnel board with 4 public evidence paths and 7 remaining evidence items" in payload["resume_safe_signals"]
     assert "3 pilot outreach messages and 10 review paths for collecting real feedback" in payload["resume_safe_signals"]
     assert (

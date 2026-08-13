@@ -4,7 +4,7 @@ This generated pack gives recruiters and interviewers a compact review path for 
 
 ## One-Line Project Proof
 
-Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 110 tests, 59 verified resume claims, and honest adoption baselines.
+Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 112 tests, 60 verified resume claims, and honest adoption baselines.
 
 ## Application Links
 
@@ -27,13 +27,14 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 - Resume Outcome Readiness: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-outcome-readiness.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-outcome-readiness.md)
 - Reviewer Feedback Packet: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-feedback-packet.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-feedback-packet.md)
 - Reviewer Funnel Board: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-funnel-board.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-funnel-board.md)
+- External Run Evidence Packet: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-evidence-packet.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-evidence-packet.md)
 
 ## Verified Outcome Numbers
 
 | Metric | Value |
 | --- | ---: |
-| Passing Tests | 110 |
-| Verified Resume Claims | 59 |
+| Passing Tests | 112 |
+| Verified Resume Claims | 60 |
 | Implemented Agent Capabilities | 16 |
 | Agent Tools Allowed | 7 |
 | Openapi Required Endpoints | 6 |
@@ -65,7 +66,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 ## Resume Bullets
 
 - Built an LLM tool-calling data-quality agent for real business CSV and read-only PostgreSQL data, with 7 allowed tools, dynamic strategy selection, memory-informed planning, source-cited business-rule retrieval, 6 verified API integration endpoints, and safe model-key fallback.
-- Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 110 passing tests, 59 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
+- Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 112 passing tests, 60 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
 - Added enterprise-style guardrails for agent reliability, including read-only PostgreSQL query limits, 3 rejected unsafe SQL queries, sensitive-field redaction, trace observability, incident-pattern memory, evidence-backed root-cause hypotheses, and deterministic report verification.
 
 ## Email Attachment Note
