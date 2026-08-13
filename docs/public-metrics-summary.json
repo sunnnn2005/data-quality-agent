@@ -33,7 +33,7 @@
     "issues_total": 10,
     "reproducible_feedback_items": 0,
     "stars": 0,
-    "test_count": 54,
+    "test_count": 55,
     "watchers": 0
   },
   "release": "v0.2.0",
@@ -41,7 +41,7 @@
   "resume_policy": "Use public demo, release, CI, container, support-ticket outcomes, and readiness metrics now. Do not claim external users, customer feedback, or production adoption until corresponding public metrics are greater than zero.",
   "resume_safe_signals": [
     "Public demo and v0.2.0 release",
-    "54 passing CI tests",
+    "55 passing CI tests",
     "4 support-ticket issue categories",
     "5 evidence-backed remediation actions",
     "6 implemented LLM agent-readiness capabilities",
