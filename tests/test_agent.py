@@ -85,12 +85,28 @@ def test_toolbox_exposes_data_quality_tools():
     profile = toolbox.dispatch("profile_dataset", {})
     checks = toolbox.dispatch("run_quality_checks", {})
     report = toolbox.dispatch("build_quality_report", {})
+    strategy = toolbox.dispatch("select_quality_strategy", {})
 
     assert contract["primary_key"] == DATASETS["orders_daily"].primary_key
     assert profile["row_count"] > 0
     assert len(checks["findings"]) >= 1
     assert report["status"] == "FAIL"
     assert report["llm_assessment"]["enabled"] is False
+    assert strategy["recommended_next_tools"] == ["profile_dataset", "run_quality_checks", "build_quality_report"]
+
+
+def test_toolbox_selects_different_quality_strategies_by_dataset_shape():
+    payments_strategy = DataQualityToolbox(DATASETS["payments_events"], load_dataset("payments_events")).dispatch(
+        "select_quality_strategy", {}
+    )
+    customer_strategy = DataQualityToolbox(DATASETS["customer_profiles"], load_dataset("customer_profiles")).dispatch(
+        "select_quality_strategy", {}
+    )
+
+    assert "negative_amount" in payments_strategy["recommended_checks"]
+    assert "numeric_outliers" in payments_strategy["recommended_checks"]
+    assert "email_completeness" in customer_strategy["recommended_checks"]
+    assert payments_strategy["strategy"] != customer_strategy["strategy"]
 
 
 def test_llm_tool_calling_agent_default_disabled():
@@ -160,3 +176,106 @@ def test_llm_tool_calling_agent_runs_tool_loop():
     assert report.quality_report is not None
     assert [call.tool_name for call in report.tool_calls] == ["profile_dataset", "run_quality_checks", "build_quality_report"]
     assert report.evaluation["used_required_report_tool"] is True
+
+
+def test_llm_tool_calling_agent_replans_across_tool_feedback():
+    class FakeSettings:
+        api_key = "test-key"
+        base_url = "http://example.test/v1"
+        model = "fake-model"
+        timeout_seconds = 1
+        max_retries = 0
+
+    agent = LLMDataQualityAgent(settings=FakeSettings())
+    requested_tools = []
+    calls = [
+        {
+            "choices": [
+                {
+                    "message": {
+                        "role": "assistant",
+                        "tool_calls": [
+                            {
+                                "id": "call_strategy",
+                                "type": "function",
+                                "function": {"name": "select_quality_strategy", "arguments": "{}"},
+                            }
+                        ],
+                    }
+                }
+            ]
+        },
+        {
+            "choices": [
+                {
+                    "message": {
+                        "role": "assistant",
+                        "tool_calls": [
+                            {
+                                "id": "call_profile",
+                                "type": "function",
+                                "function": {"name": "profile_dataset", "arguments": "{}"},
+                            },
+                            {
+                                "id": "call_checks",
+                                "type": "function",
+                                "function": {"name": "run_quality_checks", "arguments": "{}"},
+                            },
+                        ],
+                    }
+                }
+            ]
+        },
+        {
+            "choices": [
+                {
+                    "message": {
+                        "role": "assistant",
+                        "tool_calls": [
+                            {
+                                "id": "call_report",
+                                "type": "function",
+                                "function": {"name": "build_quality_report", "arguments": "{}"},
+                            }
+                        ],
+                    }
+                }
+            ]
+        },
+        {
+            "choices": [
+                {
+                    "message": {
+                        "role": "assistant",
+                        "content": "The support-ticket dataset fails due to missing fields and duplicate identifiers.",
+                    }
+                }
+            ]
+        },
+    ]
+
+    def fake_post(body):
+        tool_results_seen = [message for message in body["messages"] if message.get("role") == "tool"]
+        if tool_results_seen:
+            assert any("recommended_checks" in message["content"] for message in tool_results_seen)
+        response = calls.pop(0)
+        requested_tools.extend(
+            call["function"]["name"]
+            for call in response["choices"][0]["message"].get("tool_calls", [])
+        )
+        return response, 1
+
+    agent.advisor._post_with_retries = fake_post
+
+    report = agent.run(DATASETS["payments_events"], load_dataset("payments_events"))
+
+    assert requested_tools == [
+        "select_quality_strategy",
+        "profile_dataset",
+        "run_quality_checks",
+        "build_quality_report",
+    ]
+    assert report.status == "FAIL"
+    assert report.evaluation["used_strategy_tool"] is True
+    assert report.evaluation["distinct_tool_count"] == 4
+    assert "negative_amount" in report.tool_calls[0].result_preview.get("recommended_checks", [])

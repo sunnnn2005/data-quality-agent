@@ -18,7 +18,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Signal | Verified result |
 | --- | --- |
 | Public demo | [sunnnn2005.github.io/data-quality-agent](https://sunnnn2005.github.io/data-quality-agent/) |
-| Test suite | 35 automated tests passing locally and in GitHub Actions |
+| Test suite | 37 automated tests passing locally and in GitHub Actions |
 | CSV safety limit | 10,000 rows, 80 columns, 2 MB upload limit |
 | Report score | 24 / 100, status `FAIL` |
 | Evidence-backed findings | duplicate `ticket_id`, missing `team` / `priority`, negative `amount`, and an `amount` outlier |
@@ -53,7 +53,7 @@ Current deterministic baseline on three built-in scenarios:
 | Evidence support rate | 1.0 |
 | Fallback success rate | 1.0 |
 
-The tool-calling agent eval also runs in CI without a model key and verifies safe disabled fallback behavior. Real model evals should be run separately with explicit provider credentials and cost tracking.
+The tool-calling agent eval also runs in CI without a model key and verifies safe disabled fallback behavior. Separate mocked LLM tests verify adaptive strategy-tool use, multi-step replanning, and deterministic report attachment. Real model evals should be run separately with explicit provider credentials and cost tracking.
 
 ## Business-Rule Retrieval
 
@@ -113,7 +113,7 @@ Data Quality Agent is built around six objects:
 - **DatasetProfile**: row count, column count, dtypes, missingness, uniqueness, and sample values.
 - **QualityFinding**: one failing check with severity, evidence, and remediation.
 - **LLMAssessment**: optional model-generated JSON summary, risk level, evidence references, suggested actions, cost estimate, and evaluation metadata.
-- **AgentRunReport**: optional tool-calling agent result with tool trace, final answer, attached deterministic report, and agent evaluation.
+- **AgentRunReport**: optional tool-calling agent result with tool trace, strategy preview, final answer, attached deterministic report, and agent evaluation.
 - **QualityReport**: score, status, findings, likely causes, next steps, and trace.
 - **CheckRunner**: the deterministic tool that applies quality checks.
 
@@ -127,8 +127,8 @@ The point is not to generate a vague "data looks bad" paragraph. The report is s
 4. Convert failed checks into typed findings.
 5. Apply severity-weighted scoring.
 6. Infer likely causes from the pattern of failures.
-7. Optionally run an LLM tool-calling loop that can call `profile_dataset`, `run_quality_checks`, and `build_quality_report`.
-8. Evaluate the agent run for tool usage, report attachment, latency, unsupported evidence claims, and estimated cost.
+7. Optionally run an LLM tool-calling loop that can call `select_quality_strategy`, `profile_dataset`, `run_quality_checks`, and `build_quality_report`.
+8. Evaluate the agent run for adaptive strategy use, distinct tool count, report attachment, latency, unsupported evidence claims, and estimated cost.
 9. Return a report with remediation steps, LLM assessment, tool-call trace, and deterministic fallback behavior.
 
 The sample datasets are intentionally small and deterministic. They are not mock data for its own sake; they make the agent behavior reproducible and testable.
@@ -178,11 +178,20 @@ export OPENAI_MODEL=gpt-4o-mini
 When enabled, `app/tool_agent.py` exposes data-quality tools to an OpenAI-compatible Chat Completions endpoint:
 
 - `get_dataset_contract`
+- `select_quality_strategy`
 - `profile_dataset`
 - `run_quality_checks`
 - `build_quality_report`
 
-The agent is instructed to inspect evidence with tools and call `build_quality_report` before finalizing. The deterministic report remains the source of truth.
+The agent is instructed to inspect evidence with tools, adapt its plan with `select_quality_strategy`, and call `build_quality_report` before finalizing. The deterministic report remains the source of truth.
+
+`select_quality_strategy` lets the execution path change by dataset shape:
+
+- payment or transaction tables trigger amount-domain, freshness, and outlier checks
+- customer/profile tables trigger identity, schema, and contact-field checks
+- generic datasets still run contract, missingness, and primary-key checks
+
+Mocked LLM tests verify that tool results are fed back into the next model call and can change the next tool choice, which keeps the implementation closer to an agent loop than a fixed one-shot workflow.
 
 For the lower-level LLM assessment, `app/llm.py` sends only redacted profile and finding evidence to the model. The prompt requires strict JSON with:
 

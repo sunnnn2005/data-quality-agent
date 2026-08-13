@@ -303,7 +303,7 @@
       </div>
 
       <div class="metric-grid" aria-label="Verified project metrics">
-        <div class="metric"><strong>35</strong><span>automated tests passing locally and in CI</span></div>
+        <div class="metric"><strong>37</strong><span>automated tests passing locally and in CI</span></div>
         <div class="metric"><strong>10K × 80</strong><span>bounded CSV upload limit: rows × columns</span></div>
         <div class="metric"><strong>4</strong><span>reproducible support-ticket issue categories</span></div>
         <div class="metric"><strong>0 secrets</strong><span>default path runs without paid APIs or model keys</span></div>
@@ -428,14 +428,15 @@
     <section>
       <h2>Agent Shape</h2>
       <p class="section-copy">
-        The default engine is deterministic. When an OpenAI-compatible key is configured, the LLM agent chooses tools,
-        reads structured results, and must attach the source-of-truth quality report before finalizing.
+        The default engine is deterministic. When an OpenAI-compatible key is configured, the LLM agent can choose a
+        dataset-specific strategy, read structured tool results, re-plan across model calls, and must attach the
+        source-of-truth quality report before finalizing.
       </p>
       <div class="flow">
         <div class="step"><span>01</span>Load dataset contract and bounded CSV data</div>
-        <div class="step"><span>02</span>Profile columns, missingness, uniqueness, and samples</div>
-        <div class="step"><span>03</span>Run schema, duplicate-key, freshness, domain, and outlier checks</div>
-        <div class="step"><span>04</span>Score severity and rank likely causes from evidence</div>
+        <div class="step"><span>02</span>Select a quality strategy based on payment, customer, or generic table shape</div>
+        <div class="step"><span>03</span>Profile columns, missingness, uniqueness, and samples</div>
+        <div class="step"><span>04</span>Run schema, duplicate-key, freshness, domain, and outlier checks</div>
         <div class="step"><span>05</span>Return structured report, trace id, fallback state, and next steps</div>
       </div>
     </section>

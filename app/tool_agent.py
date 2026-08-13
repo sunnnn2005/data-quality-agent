@@ -50,6 +50,17 @@ class DataQualityToolbox:
             {
                 "type": "function",
                 "function": {
+                    "name": "select_quality_strategy",
+                    "description": (
+                        "Inspect the dataset contract and columns, then recommend which checks and tools should run next. "
+                        "Use this before expensive investigation so the agent path can adapt to the business table."
+                    ),
+                    "parameters": {"type": "object", "properties": {}, "additionalProperties": False},
+                },
+            },
+            {
+                "type": "function",
+                "function": {
                     "name": "run_quality_checks",
                     "description": "Run schema, freshness, missingness, duplicate-key, volume, domain, and outlier checks.",
                     "parameters": {"type": "object", "properties": {}, "additionalProperties": False},
@@ -69,6 +80,7 @@ class DataQualityToolbox:
         tools: dict[str, ToolFn] = {
             "get_dataset_contract": self._get_dataset_contract,
             "profile_dataset": self._profile_dataset,
+            "select_quality_strategy": self._select_quality_strategy,
             "run_quality_checks": self._run_quality_checks,
             "build_quality_report": self._build_quality_report,
         }
@@ -90,6 +102,31 @@ class DataQualityToolbox:
     def _profile_dataset(self, _: dict[str, Any]) -> dict[str, Any]:
         profile = self.profiler.profile(self.dataset, self.frame)
         return profile.model_dump(mode="json")
+
+    def _select_quality_strategy(self, _: dict[str, Any]) -> dict[str, Any]:
+        columns = {column.lower() for column in self.frame.columns}
+        expected = {column.lower() for column in self.dataset.expected_columns}
+        checks = ["schema_required_columns", "missing_values"]
+        reason = "General dataset contract checks are required for every table."
+
+        if {"amount", "payment_id"} & columns or {"amount", "payment_id"} & expected:
+            checks.extend(["freshness_sla", "negative_amount", "numeric_outliers"])
+            reason = "Payment or transaction-like data needs freshness, amount-domain, and outlier checks."
+        elif {"ticket_id", "priority", "status"} <= (columns | expected):
+            checks.extend(["duplicate_primary_key", "status_priority_consistency", "sla_risk"])
+            reason = "Support-ticket data needs identity, workflow-state, priority, and SLA consistency checks."
+        elif {"email", "customer_id", "user_id"} & (columns | expected):
+            checks.extend(["duplicate_primary_key", "schema_drift", "email_completeness"])
+            reason = "Customer or user profile data needs identity, schema, and contact-field checks."
+        elif self.dataset.primary_key:
+            checks.append("duplicate_primary_key")
+
+        return {
+            "dataset_id": self.dataset.id,
+            "strategy": reason,
+            "recommended_checks": list(dict.fromkeys(checks)),
+            "recommended_next_tools": ["profile_dataset", "run_quality_checks", "build_quality_report"],
+        }
 
     def _run_quality_checks(self, _: dict[str, Any]) -> dict[str, Any]:
         findings = self.check_runner.run(self.dataset, self.frame)
@@ -129,6 +166,8 @@ class LLMDataQualityAgent:
                 "content": (
                     "You are a data quality LLM agent. Select tools to inspect the dataset before answering. "
                     "Use tool evidence only. Do not invent columns, owners, failures, or private data. "
+                    "Use select_quality_strategy to adapt the investigation plan to the dataset shape. "
+                    "After each tool result, decide whether evidence is sufficient or another tool is needed. "
                     "Before finalizing, call build_quality_report. Final answer must be concise."
                 ),
             },
@@ -209,6 +248,12 @@ class LLMDataQualityAgent:
     def _preview_result(self, result: dict[str, Any]) -> dict[str, Any]:
         if "findings" in result:
             return {"finding_count": len(result["findings"])}
+        if "recommended_checks" in result:
+            return {
+                "strategy": result.get("strategy"),
+                "recommended_checks": result.get("recommended_checks", []),
+                "recommended_next_tools": result.get("recommended_next_tools", []),
+            }
         if "columns" in result:
             return {"row_count": result.get("row_count"), "column_count": result.get("column_count")}
         if "quality_score" in result:
@@ -227,9 +272,13 @@ class LLMDataQualityAgent:
         started: float,
     ) -> dict[str, Any]:
         names = [call.tool_name for call in tool_calls]
+        duplicate_tools = sorted({name for name in names if names.count(name) > 1})
         return {
             "latency_ms": int((time.monotonic() - started) * 1000),
             "tool_call_count": len(tool_calls),
+            "distinct_tool_count": len(set(names)),
+            "duplicate_tools": duplicate_tools,
+            "used_strategy_tool": "select_quality_strategy" in names,
             "used_required_report_tool": "build_quality_report" in names,
             "used_profile_tool": "profile_dataset" in names,
             "used_check_tool": "run_quality_checks" in names,

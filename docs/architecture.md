@@ -20,8 +20,9 @@ Optional LLM tool loop:
 
 User request
   -> LLMDataQualityAgent
-  -> tool choice: get_dataset_contract | profile_dataset | run_quality_checks | build_quality_report
+  -> tool choice: get_dataset_contract | select_quality_strategy | profile_dataset | run_quality_checks | build_quality_report
   -> tool results
+  -> re-plan from observed results
   -> final answer + AgentRunReport
 ```
 
@@ -111,11 +112,12 @@ The model does not replace the rule engine. It can only summarize and prioritize
 `app/tool_agent.py` implements a true LLM agent loop. It exposes a small toolbox:
 
 - `get_dataset_contract`
+- `select_quality_strategy`
 - `profile_dataset`
 - `run_quality_checks`
 - `build_quality_report`
 
-The model decides which tools to call, receives JSON tool results, and must call `build_quality_report` before finalizing. The response includes an `AgentRunReport` with every tool call, result preview, final answer, attached deterministic report, and evaluation flags such as whether the required report tool was used.
+The model decides which tools to call, receives JSON tool results, and must call `build_quality_report` before finalizing. `select_quality_strategy` gives the model a compact planning tool so payment, customer/profile, and generic datasets can trigger different recommended checks. The response includes an `AgentRunReport` with every tool call, result preview, final answer, attached deterministic report, and evaluation flags such as whether the strategy and required report tools were used.
 
 ### Dashboard Layer
 
@@ -160,6 +162,8 @@ The tests verify both the agent loop and the API contract:
 - PostgreSQL adapter rejects write operations and unbounded queries
 - structured LLM assessments can be attached to reports
 - the tool-calling agent can be skipped safely without a key
+- the tool-calling agent can re-plan across multiple model calls after observing tool results
+- dataset shape changes the recommended quality strategy
 - mocked tool-call loops attach a deterministic report before final answer
 - uploaded CSV business data can be analyzed through deterministic and agent endpoints
 
