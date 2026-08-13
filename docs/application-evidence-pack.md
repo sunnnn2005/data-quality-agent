@@ -4,7 +4,7 @@ This generated pack gives recruiters and interviewers a compact review path for 
 
 ## One-Line Project Proof
 
-Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 120 tests, 64 verified resume claims, and honest adoption baselines.
+Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 122 tests, 65 verified resume claims, and honest adoption baselines.
 
 ## Application Links
 
@@ -31,13 +31,14 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 - External Run Quickstart: [https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html](https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html)
 - External Reviewer Outreach Tracker: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-reviewer-outreach-tracker.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-reviewer-outreach-tracker.md)
 - External Reviewer Evidence Gate: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-reviewer-evidence-gate.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-reviewer-evidence-gate.md)
+- Accepted Evidence Rollup: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/accepted-evidence-rollup.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/accepted-evidence-rollup.md)
 
 ## Verified Outcome Numbers
 
 | Metric | Value |
 | --- | ---: |
-| Passing Tests | 120 |
-| Verified Resume Claims | 64 |
+| Passing Tests | 122 |
+| Verified Resume Claims | 65 |
 | Implemented Agent Capabilities | 16 |
 | Agent Tools Allowed | 7 |
 | Openapi Required Endpoints | 6 |
@@ -61,6 +62,8 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Resume Outcome Missing Evidence Items | 4 |
 | Reviewer Funnel Stages | 4 |
 | Reviewer Funnel Remaining Evidence Items | 7 |
+| Accepted Evidence Rollup Claimable Metrics | 4 |
+| Accepted Evidence Rollup Blocked Claims | 4 |
 | Real Model Run Commands | 4 |
 | Real Model Evidence Fields | 15 |
 | Recruiter Safe Resume Bullets | 3 |
@@ -69,7 +72,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 ## Resume Bullets
 
 - Built an LLM tool-calling data-quality agent for real business CSV and read-only PostgreSQL data, with 7 allowed tools, dynamic strategy selection, memory-informed planning, source-cited business-rule retrieval, 6 verified API integration endpoints, and safe model-key fallback.
-- Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 120 passing tests, 64 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
+- Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 122 passing tests, 65 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
 - Added enterprise-style guardrails for agent reliability, including read-only PostgreSQL query limits, 3 rejected unsafe SQL queries, sensitive-field redaction, trace observability, incident-pattern memory, evidence-backed root-cause hypotheses, and deterministic report verification.
 
 ## Email Attachment Note

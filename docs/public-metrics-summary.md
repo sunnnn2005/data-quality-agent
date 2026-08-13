@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 12 |
-| Passing CI tests | 120 |
+| Passing CI tests | 122 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -73,6 +73,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | External reviewer evidence gate rules | 5 |
 | External reviewer evidence gate accepted issues | 0 |
 | External reviewer evidence gate linked queue entries | 3 |
+| Accepted evidence rollup | 1 |
+| Accepted evidence rollup claimable metrics | 4 |
+| Accepted evidence rollup accepted issues | 0 |
+| Accepted evidence rollup blocked claims | 4 |
 | API smoke report | 1 |
 | API smoke checks | 6 |
 | API smoke passed checks | 6 |
@@ -109,13 +113,13 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Public availability reachable endpoints | 4 |
 | Public availability successful workflows | 3 |
 | Live project scorecard | 1 |
-| Scorecard reviewer paths | 19 |
+| Scorecard reviewer paths | 20 |
 | OpenAPI required integration endpoints | 6 |
 | OpenAPI paths | 14 |
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 23 |
+| Application evidence links | 24 |
 | Pilot outreach messages | 3 |
 | Pilot review paths | 10 |
 | Pilot program segments | 3 |
@@ -189,7 +193,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 120 passing CI tests
+- 122 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -215,6 +219,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - External-run quickstart page with 3 reviewer run paths, 8 evidence fields, public issue #18, and privacy boundaries
 - External reviewer outreach tracker with 3 queued reviewer segments, 3 source messages, 3 not-contacted baseline entries, and public-evidence rules
 - External reviewer evidence gate with 5 validation rules, 3 linked outreach queue entries, 0 accepted public reviewer issues, and sensitive-data safeguards
+- Accepted evidence rollup with 4 tracked outcome metrics, 0 accepted reviewer issues, and 4 blocked claims until public evidence exists
 - CI-verified API smoke report covering 6 passing FastAPI route checks
 - CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls
 - Public demo usage baseline with 5 tracked funnel steps and 6 verified entrypoints
@@ -225,10 +230,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Public traction dashboard with 4 live project surfaces, 18 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
 - GitHub traffic snapshot with 9 views, 3 unique visitors, 79 clones, and 50 unique cloners in GitHub's rolling 14-day window
 - Public availability snapshot with 4/4 reachable public endpoints and 3/3 successful main-branch workflows
-- 19 reviewer paths in a CI-verified live project scorecard
+- 20 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
-- 23 application evidence links in a recruiter-ready evidence pack
+- 24 application evidence links in a recruiter-ready evidence pack
 - 3 pilot outreach messages and 10 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
 - Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups

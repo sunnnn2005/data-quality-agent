@@ -1,0 +1,87 @@
+{
+  "accepted_counts": {
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
+  "accepted_issue_count": 0,
+  "accepted_issue_urls": [],
+  "blocked_outcome_claim_count": 4,
+  "blocked_outcome_claims": [
+    {
+      "blocked_claim": "confirmed external users",
+      "metric": "confirmed_external_users",
+      "reason": "Cannot claim external users until at least one non-owner reviewer issue passes the evidence gate."
+    },
+    {
+      "blocked_claim": "external feedback items",
+      "metric": "external_feedback_items",
+      "reason": "Cannot claim user feedback until at least one accepted reviewer issue includes feedback permission and non-placeholder feedback."
+    },
+    {
+      "blocked_claim": "reproducible external runs",
+      "metric": "reproducible_feedback_items",
+      "reason": "Cannot claim reproducible external runs until a reviewer submits runnable command or URL evidence."
+    },
+    {
+      "blocked_claim": "business-case feedback items",
+      "metric": "business_case_feedback_items",
+      "reason": "Cannot claim real business-case feedback until an anonymized business-case issue passes the gate."
+    }
+  ],
+  "claimable_metric_count": 4,
+  "claimable_metrics": [
+    {
+      "claimable": false,
+      "current_count": 0,
+      "label": "confirmed external users",
+      "metric": "confirmed_external_users",
+      "missing_reason": "Cannot claim external users until at least one non-owner reviewer issue passes the evidence gate.",
+      "resume_wording": null
+    },
+    {
+      "claimable": false,
+      "current_count": 0,
+      "label": "external feedback items",
+      "metric": "external_feedback_items",
+      "missing_reason": "Cannot claim user feedback until at least one accepted reviewer issue includes feedback permission and non-placeholder feedback.",
+      "resume_wording": null
+    },
+    {
+      "claimable": false,
+      "current_count": 0,
+      "label": "reproducible external runs",
+      "metric": "reproducible_feedback_items",
+      "missing_reason": "Cannot claim reproducible external runs until a reviewer submits runnable command or URL evidence.",
+      "resume_wording": null
+    },
+    {
+      "claimable": false,
+      "current_count": 0,
+      "label": "business-case feedback items",
+      "metric": "business_case_feedback_items",
+      "missing_reason": "Cannot claim real business-case feedback until an anonymized business-case issue passes the gate.",
+      "resume_wording": null
+    }
+  ],
+  "current_public_counts": {
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
+  "evaluated_issue_count": 0,
+  "generated_by": "scripts/build_accepted_evidence_rollup.py",
+  "linked_outreach_queue_count": 3,
+  "not_claimed": [
+    "No accepted external reviewer issue exists yet.",
+    "No user, feedback, reproducible-run, or business-case outcome is claimable while its accepted count is zero.",
+    "No private business data is used as outcome evidence."
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Summarize accepted public reviewer evidence into resume-safe outcome metrics while preserving blocked claims until the external reviewer evidence gate accepts proof.",
+  "rejected_issue_count": 0,
+  "rejected_issue_summaries": [],
+  "resume_safe_summary": "Published a CI-verified accepted evidence rollup that summarizes 0 accepted reviewer issues, 0 confirmed users, 0 feedback items, 0 reproducible runs, and 0 business-case feedback items before stronger resume outcome claims are allowed."
+}

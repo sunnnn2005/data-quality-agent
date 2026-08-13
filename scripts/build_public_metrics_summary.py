@@ -21,6 +21,7 @@ EXTERNAL_REVIEWER_REQUEST_PACK_PATH = ROOT / "docs" / "external-reviewer-request
 EXTERNAL_RUN_QUICKSTART_PATH = ROOT / "docs" / "external-run-quickstart.json"
 EXTERNAL_REVIEWER_OUTREACH_TRACKER_PATH = ROOT / "docs" / "external-reviewer-outreach-tracker.json"
 EXTERNAL_REVIEWER_EVIDENCE_GATE_PATH = ROOT / "docs" / "external-reviewer-evidence-gate.json"
+ACCEPTED_EVIDENCE_ROLLUP_PATH = ROOT / "docs" / "accepted-evidence-rollup.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
@@ -52,8 +53,8 @@ BUSINESS_REPLAY_DEMO_PATH = ROOT / "docs" / "business-replay-demo.json"
 REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
-SCORECARD_REVIEWER_PATH_COUNT = 19
-APPLICATION_EVIDENCE_LINK_COUNT = 23
+SCORECARD_REVIEWER_PATH_COUNT = 20
+APPLICATION_EVIDENCE_LINK_COUNT = 24
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -78,6 +79,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     external_run_quickstart = load_json(EXTERNAL_RUN_QUICKSTART_PATH)
     external_reviewer_outreach = load_json(EXTERNAL_REVIEWER_OUTREACH_TRACKER_PATH)
     external_reviewer_gate = load_json(EXTERNAL_REVIEWER_EVIDENCE_GATE_PATH)
+    accepted_evidence_rollup = load_json(ACCEPTED_EVIDENCE_ROLLUP_PATH)
     api_smoke = load_json(API_SMOKE_REPORT_PATH)
     performance = load_json(PERFORMANCE_BASELINE_PATH)
     demo_usage = load_json(DEMO_USAGE_BASELINE_PATH)
@@ -185,6 +187,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "external_reviewer_gate_rules": len(external_reviewer_gate["gate_rules"]),
             "external_reviewer_gate_accepted_issues": external_reviewer_gate["accepted_issue_count"],
             "external_reviewer_gate_linked_queue": external_reviewer_gate["linked_outreach_queue_count"],
+            "accepted_evidence_rollup": 1,
+            "accepted_evidence_rollup_claimable_metrics": accepted_evidence_rollup["claimable_metric_count"],
+            "accepted_evidence_rollup_accepted_issues": accepted_evidence_rollup["accepted_issue_count"],
+            "accepted_evidence_rollup_blocked_claims": accepted_evidence_rollup["blocked_outcome_claim_count"],
             "api_smoke_report": 1,
             "api_smoke_checks": api_smoke["check_count"],
             "api_smoke_passed_checks": api_smoke["passed_count"],
@@ -395,6 +401,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{external_reviewer_gate['linked_outreach_queue_count']} linked outreach queue entries, "
                 f"{external_reviewer_gate['accepted_issue_count']} accepted public reviewer issues, and sensitive-data safeguards"
             ),
+            (
+                f"Accepted evidence rollup with {accepted_evidence_rollup['claimable_metric_count']} tracked outcome metrics, "
+                f"{accepted_evidence_rollup['accepted_issue_count']} accepted reviewer issues, and "
+                f"{accepted_evidence_rollup['blocked_outcome_claim_count']} blocked claims until public evidence exists"
+            ),
             f"CI-verified API smoke report covering {api_smoke['passed_count']} passing FastAPI route checks",
             (
                 f"CI-verified local performance baseline covering {performance['benchmark_count']} route benchmarks "
@@ -578,6 +589,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | External reviewer evidence gate rules | {outcomes["external_reviewer_gate_rules"]} |
 | External reviewer evidence gate accepted issues | {outcomes["external_reviewer_gate_accepted_issues"]} |
 | External reviewer evidence gate linked queue entries | {outcomes["external_reviewer_gate_linked_queue"]} |
+| Accepted evidence rollup | {outcomes["accepted_evidence_rollup"]} |
+| Accepted evidence rollup claimable metrics | {outcomes["accepted_evidence_rollup_claimable_metrics"]} |
+| Accepted evidence rollup accepted issues | {outcomes["accepted_evidence_rollup_accepted_issues"]} |
+| Accepted evidence rollup blocked claims | {outcomes["accepted_evidence_rollup_blocked_claims"]} |
 | API smoke report | {outcomes["api_smoke_report"]} |
 | API smoke checks | {outcomes["api_smoke_checks"]} |
 | API smoke passed checks | {outcomes["api_smoke_passed_checks"]} |
@@ -704,7 +719,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 120,
+        "test_count": 122,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -774,6 +789,14 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "external_reviewer_outreach_queue": 3,
         "external_reviewer_outreach_not_contacted": 3,
         "external_reviewer_outreach_source_messages": 3,
+        "external_reviewer_evidence_gate": 1,
+        "external_reviewer_gate_rules": 5,
+        "external_reviewer_gate_accepted_issues": 0,
+        "external_reviewer_gate_linked_queue": 3,
+        "accepted_evidence_rollup": 1,
+        "accepted_evidence_rollup_claimable_metrics": 4,
+        "accepted_evidence_rollup_accepted_issues": 0,
+        "accepted_evidence_rollup_blocked_claims": 4,
         "api_smoke_report": 1,
         "api_smoke_checks": 6,
         "api_smoke_passed_checks": 6,
@@ -807,12 +830,12 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "public_availability_snapshot": 1,
         "public_availability_endpoint_count": 4,
         "live_project_scorecard": 1,
-        "scorecard_reviewer_paths": 19,
+        "scorecard_reviewer_paths": 20,
         "openapi_required_endpoints": 6,
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 23,
+        "application_evidence_links": 24,
         "pilot_outreach_messages": 3,
         "pilot_review_paths": 10,
         "pilot_program_segments": 3,

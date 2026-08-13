@@ -25,12 +25,12 @@
       "url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent"
     },
     {
-      "claim": "Automated test suite passes locally and in GitHub Actions, including the external-run evidence packet, external-run quickstart page, external reviewer outreach tracker, runnable release packet, business problem casebook, business replay demo, feedback intake quality, business case intake, star growth kit, pilot conversion board, resume outcome readiness evaluator, reviewer funnel board, and real-model runbook verifiers.",
+      "claim": "Automated test suite passes locally and in GitHub Actions, including the accepted evidence rollup, external reviewer evidence gate, external-run evidence packet, external-run quickstart page, external reviewer outreach tracker, runnable release packet, business problem casebook, business replay demo, feedback intake quality, business case intake, star growth kit, pilot conversion board, resume outcome readiness evaluator, reviewer funnel board, and real-model runbook verifiers.",
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 120,
-      "resume_signal": "120 passing CI tests",
+      "metric_value": 122,
+      "resume_signal": "122 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 23 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 24 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 23,
+      "metric_value": 24,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -621,6 +621,16 @@
       "resume_signal": "CI-verified external reviewer evidence gate",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-reviewer-evidence-gate.json"
+    },
+    {
+      "claim": "The project publishes an accepted evidence rollup that converts gated public reviewer evidence into claimable and blocked resume outcome metrics, preserving zero confirmed external-user, feedback, reproducible-run, and business-case counts until accepted issue evidence exists.",
+      "evidence_type": "generated_artifact",
+      "id": "accepted-evidence-rollup",
+      "metric_name": "accepted_evidence_rollup",
+      "metric_value": 1,
+      "resume_signal": "CI-verified accepted evidence rollup",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/accepted-evidence-rollup.json"
     }
   ],
   "not_claimed": [

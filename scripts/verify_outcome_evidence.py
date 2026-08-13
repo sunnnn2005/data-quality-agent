@@ -25,6 +25,7 @@ EXTERNAL_REVIEWER_REQUEST_PACK_PATH = ROOT / "docs" / "external-reviewer-request
 EXTERNAL_RUN_QUICKSTART_PATH = ROOT / "docs" / "external-run-quickstart.json"
 EXTERNAL_REVIEWER_OUTREACH_TRACKER_PATH = ROOT / "docs" / "external-reviewer-outreach-tracker.json"
 EXTERNAL_REVIEWER_EVIDENCE_GATE_PATH = ROOT / "docs" / "external-reviewer-evidence-gate.json"
+ACCEPTED_EVIDENCE_ROLLUP_PATH = ROOT / "docs" / "accepted-evidence-rollup.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
@@ -91,6 +92,7 @@ def verify_manifest() -> dict[str, int]:
     external_run_quickstart = load_payload(EXTERNAL_RUN_QUICKSTART_PATH)
     external_reviewer_outreach = load_payload(EXTERNAL_REVIEWER_OUTREACH_TRACKER_PATH)
     external_reviewer_gate = load_payload(EXTERNAL_REVIEWER_EVIDENCE_GATE_PATH)
+    accepted_evidence_rollup = load_payload(ACCEPTED_EVIDENCE_ROLLUP_PATH)
     api_smoke_report = load_payload(API_SMOKE_REPORT_PATH)
     performance_baseline = load_payload(PERFORMANCE_BASELINE_PATH)
     demo_usage_baseline = load_payload(DEMO_USAGE_BASELINE_PATH)
@@ -549,7 +551,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 120:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 122:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -850,7 +852,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 120:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 122:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1465,6 +1467,42 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("external reviewer evidence gate must have a complete-run acceptance test")
                 if "test_external_reviewer_evidence_gate_rejects_self_authored_missing_permission_or_sensitive_issue" not in gate_tests:
                     raise AssertionError("external reviewer evidence gate must have rejection tests")
+            elif metric_name == "accepted_evidence_rollup":
+                rollup_script = (ROOT / "scripts" / "build_accepted_evidence_rollup.py").read_text()
+                rollup_tests = (ROOT / "tests" / "test_accepted_evidence_rollup.py").read_text()
+                rollup_page = (ROOT / "docs" / "accepted-evidence-rollup.md").read_text()
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("accepted_evidence_rollup claim must use metric_value=1")
+                if accepted_evidence_rollup.get("linked_outreach_queue_count") != 3:
+                    raise AssertionError("accepted evidence rollup must link 3 outreach queue entries")
+                if accepted_evidence_rollup.get("accepted_issue_count") != 0:
+                    raise AssertionError("accepted evidence rollup must preserve zero accepted issue baseline")
+                if accepted_evidence_rollup.get("claimable_metric_count") != 4:
+                    raise AssertionError("accepted evidence rollup must track four claimable metrics")
+                if accepted_evidence_rollup.get("blocked_outcome_claim_count") != 4:
+                    raise AssertionError("accepted evidence rollup must block four outcome claims at baseline")
+                for key in (
+                    "external_feedback_items",
+                    "confirmed_external_users",
+                    "reproducible_feedback_items",
+                    "business_case_feedback_items",
+                ):
+                    if accepted_evidence_rollup.get("accepted_counts", {}).get(key) != 0:
+                        raise AssertionError(f"accepted evidence rollup must preserve zero {key}")
+                for required in (
+                    "No accepted external reviewer issue exists yet.",
+                    "No private business data is used as outcome evidence.",
+                ):
+                    if required not in accepted_evidence_rollup.get("not_claimed", []):
+                        raise AssertionError(f"accepted evidence rollup missing not-claimed signal: {required}")
+                    if required not in rollup_page:
+                        raise AssertionError(f"accepted evidence rollup page missing {required!r}")
+                if "verify_accepted_evidence_rollup" not in rollup_script:
+                    raise AssertionError("accepted evidence rollup script must include a verifier")
+                if "test_accepted_evidence_rollup_preserves_zero_outcome_baseline" not in rollup_tests:
+                    raise AssertionError("accepted evidence rollup must have a baseline test")
+                if "test_accepted_evidence_rollup_turns_valid_gate_counts_into_claimable_metrics" not in rollup_tests:
+                    raise AssertionError("accepted evidence rollup must have a positive-count test")
             elif metrics.get(metric_name) != claim.get("metric_value"):
                 raise AssertionError(
                     f"claim {claim['id']} metric mismatch: {metric_name}={claim.get('metric_value')} "
@@ -1517,7 +1555,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 120", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 122", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 
