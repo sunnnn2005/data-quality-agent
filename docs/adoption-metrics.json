@@ -1,5 +1,5 @@
 {
-  "commit": "fb07ec2",
+  "commit": "7dab361",
   "confirmed_external_users": 0,
   "container_image": {
     "image": "ghcr.io/sunnnn2005/data-quality-agent:latest",
@@ -7,7 +7,7 @@
   },
   "external_feedback_items": 0,
   "forks": 1,
-  "generated_at": "2026-08-13T16:58:56.759778+00:00",
+  "generated_at": "2026-08-13T17:07:39.346300+00:00",
   "issues_total": 12,
   "open_feedback_loop": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
   "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
@@ -21,7 +21,7 @@
   "repo": "https://github.com/sunnnn2005/data-quality-agent",
   "reproducible_feedback_items": 0,
   "stars": 0,
-  "test_count": 103,
+  "test_count": 105,
   "verified_demo_artifact": "docs/verified-support-ticket-result.json",
   "watchers": 0
 }

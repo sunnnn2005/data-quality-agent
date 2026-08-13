@@ -74,6 +74,8 @@ jobs:
         run: python scripts/evaluate_resume_outcomes.py
       - name: Verify external review evidence ledger
         run: python scripts/build_external_review_evidence_ledger.py
+      - name: Verify GitHub traffic snapshot
+        run: python scripts/build_github_traffic_snapshot.py
       - name: Verify outcome upgrade playbook
         run: python scripts/build_outcome_upgrade_playbook.py
       - name: Verify reviewer feedback packet
@@ -105,7 +107,7 @@ jobs:
           ADOPTION_FORKS: "1"
           ADOPTION_WATCHERS: "0"
           ADOPTION_ISSUES_TOTAL: "12"
-          ADOPTION_TEST_COUNT: "103"
+          ADOPTION_TEST_COUNT: "105"
         run: python scripts/update_adoption_metrics.py
       - name: Verify outcome evidence manifest
         run: python scripts/verify_outcome_evidence.py

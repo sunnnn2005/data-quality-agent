@@ -10,10 +10,14 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 12 |
-| Passing CI tests | 103 |
+| Passing CI tests | 105 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
+| GitHub views | 9 |
+| GitHub unique visitors | 3 |
+| GitHub clones | 79 |
+| GitHub unique cloners | 50 |
 
 ## Verified Project Outcomes
 
@@ -73,6 +77,8 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Public traction surfaces | 4 |
 | Public traction growth channels | 17 |
 | Public traction resume upgrade rules | 3 |
+| GitHub traffic snapshot | 1 |
+| GitHub traffic available | 1 |
 | Live project scorecard | 1 |
 | Scorecard reviewer paths | 15 |
 | OpenAPI required integration endpoints | 6 |
@@ -154,7 +160,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 103 passing CI tests
+- 105 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -182,6 +188,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Impact review packet with 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs
 - Business problem casebook with 1 verified case, 4 detected business risks, and 4 owner handoffs
 - Public traction dashboard with 4 live project surfaces, 17 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
+- GitHub traffic snapshot with 9 views, 3 unique visitors, 79 clones, and 50 unique cloners in GitHub's rolling 14-day window
 - 15 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles

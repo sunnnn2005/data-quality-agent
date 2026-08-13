@@ -49,7 +49,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 103},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 105},
         "evidence_type": "json",
     },
     {
@@ -162,6 +162,19 @@ PUBLIC_CHECKS = [
         "expected_json": {"project": "Data Quality Agent", "traction_surface_count": 4, "growth_channel_count": 17},
         "expected_text": "not_claimable_yet",
         "expected_texts": ["public_demo", "feedback_issue_template", "GitHub star growth beyond the current public count"],
+        "evidence_type": "json",
+    },
+    {
+        "id": "github-traffic-snapshot",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/github-traffic-snapshot.json",
+        "expected_json": {"project": "Data Quality Agent"},
+        "expected_text": "GitHub traffic API rolling 14-day window",
+        "expected_texts": [
+            "traffic_available",
+            "unique_cloners",
+            "resume_policy",
+            "confirmed users from traffic alone",
+        ],
         "evidence_type": "json",
     },
     {
@@ -280,7 +293,7 @@ PUBLIC_CHECKS = [
             "Submit Feedback",
             "issues/17",
             "External feedback starts at zero",
-            "103 tests",
+            "105 tests",
         ],
         "evidence_type": "html",
     },

@@ -13,7 +13,11 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 103
+    assert payload["public_metrics"]["test_count"] == 105
+    assert payload["public_metrics"]["github_view_count"] >= 0
+    assert payload["public_metrics"]["github_unique_visitors"] <= payload["public_metrics"]["github_view_count"]
+    assert payload["public_metrics"]["github_clone_count"] >= 0
+    assert payload["public_metrics"]["github_unique_cloners"] <= payload["public_metrics"]["github_clone_count"]
     assert payload["verified_project_outcomes"]["root_cause_hypotheses"] == 3
     assert payload["verified_project_outcomes"]["business_risk_areas"] == 4
     assert payload["verified_project_outcomes"]["high_priority_actions"] == 3
@@ -65,6 +69,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["public_traction_surfaces"] == 4
     assert payload["verified_project_outcomes"]["public_traction_growth_channels"] == 17
     assert payload["verified_project_outcomes"]["public_traction_resume_upgrade_rules"] == 3
+    assert payload["verified_project_outcomes"]["github_traffic_snapshot"] == 1
     assert payload["verified_project_outcomes"]["live_project_scorecard"] == 1
     assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 15
     assert payload["verified_project_outcomes"]["openapi_required_endpoints"] == 6
@@ -180,6 +185,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
             "Public traction dashboard with 4 live project surfaces, 17 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules"
         in payload["resume_safe_signals"]
     )
+    assert any("GitHub traffic snapshot with" in signal for signal in payload["resume_safe_signals"])
     assert "15 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
     assert "CI-verified OpenAPI contract covering 6 integration endpoints" in payload["resume_safe_signals"]
     assert "3 recruiter-safe resume bullets for 4 target roles" in payload["resume_safe_signals"]

@@ -23,6 +23,7 @@ COMMUNITY_GROWTH_BASELINE_PATH = ROOT / "docs" / "community-growth-baseline.json
 IMPACT_REVIEW_PACKET_PATH = ROOT / "docs" / "impact-review-packet.json"
 BUSINESS_PROBLEM_CASEBOOK_PATH = ROOT / "docs" / "business-problem-casebook.json"
 PUBLIC_TRACTION_DASHBOARD_PATH = ROOT / "docs" / "public-traction-dashboard.json"
+GITHUB_TRAFFIC_SNAPSHOT_PATH = ROOT / "docs" / "github-traffic-snapshot.json"
 LIVE_PROJECT_SCORECARD_PATH = ROOT / "docs" / "live-project-scorecard.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
@@ -72,6 +73,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     impact_review = load_json(IMPACT_REVIEW_PACKET_PATH)
     business_casebook = load_json(BUSINESS_PROBLEM_CASEBOOK_PATH)
     traction = load_json(PUBLIC_TRACTION_DASHBOARD_PATH)
+    traffic = load_json(GITHUB_TRAFFIC_SNAPSHOT_PATH)
     scorecard = load_json(LIVE_PROJECT_SCORECARD_PATH)
     openapi = load_json(OPENAPI_PATH)
     recruiter_pitch = load_json(RECRUITER_PITCH_PATH)
@@ -108,6 +110,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "external_feedback_items": feedback["external_feedback_items"],
             "confirmed_external_users": feedback["confirmed_external_users"],
             "reproducible_feedback_items": feedback["reproducible_feedback_items"],
+            "github_view_count": traffic["views"]["count"],
+            "github_unique_visitors": traffic["views"]["uniques"],
+            "github_clone_count": traffic["clones"]["count"],
+            "github_unique_cloners": traffic["clones"]["uniques"],
         },
         "verified_project_outcomes": {
             "support_ticket_issue_categories": verified_outcomes["issue_category_count"],
@@ -165,6 +171,8 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "public_traction_surfaces": traction["traction_surface_count"],
             "public_traction_growth_channels": traction["growth_channel_count"],
             "public_traction_resume_upgrade_rules": len(traction["resume_upgrade_rules"]),
+            "github_traffic_snapshot": 1,
+            "github_traffic_available": 1 if traffic["traffic_available"] else 0,
             "live_project_scorecard": 1,
             "scorecard_reviewer_paths": SCORECARD_REVIEWER_PATH_COUNT,
             "openapi_required_endpoints": 6,
@@ -346,6 +354,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{traction['tracked_funnel_steps']} tracked funnel steps, and "
                 f"{len(traction['resume_upgrade_rules'])} resume upgrade rules"
             ),
+            (
+                f"GitHub traffic snapshot with {traffic['views']['count']} views, "
+                f"{traffic['views']['uniques']} unique visitors, {traffic['clones']['count']} clones, and "
+                f"{traffic['clones']['uniques']} unique cloners in GitHub's rolling 14-day window"
+            ),
             f"{SCORECARD_REVIEWER_PATH_COUNT} reviewer paths in a CI-verified live project scorecard",
             "CI-verified OpenAPI contract covering 6 integration endpoints",
             f"{len(recruiter_pitch['resume_bullets'])} recruiter-safe resume bullets for {len(recruiter_pitch['target_roles'])} target roles",
@@ -422,6 +435,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | External feedback items | {metrics["external_feedback_items"]} |
 | Confirmed external users | {metrics["confirmed_external_users"]} |
 | Reproducible feedback items | {metrics["reproducible_feedback_items"]} |
+| GitHub views | {metrics["github_view_count"]} |
+| GitHub unique visitors | {metrics["github_unique_visitors"]} |
+| GitHub clones | {metrics["github_clone_count"]} |
+| GitHub unique cloners | {metrics["github_unique_cloners"]} |
 
 ## Verified Project Outcomes
 
@@ -481,6 +498,8 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Public traction surfaces | {outcomes["public_traction_surfaces"]} |
 | Public traction growth channels | {outcomes["public_traction_growth_channels"]} |
 | Public traction resume upgrade rules | {outcomes["public_traction_resume_upgrade_rules"]} |
+| GitHub traffic snapshot | {outcomes["github_traffic_snapshot"]} |
+| GitHub traffic available | {outcomes["github_traffic_available"]} |
 | Live project scorecard | {outcomes["live_project_scorecard"]} |
 | Scorecard reviewer paths | {outcomes["scorecard_reviewer_paths"]} |
 | OpenAPI required integration endpoints | {outcomes["openapi_required_endpoints"]} |
@@ -572,13 +591,20 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 103,
+        "test_count": 105,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
     for key, expected in expected_metrics.items():
         if metrics.get(key) != expected:
             raise AssertionError(f"{key} expected {expected!r}, got {metrics.get(key)!r}")
+    for key in ("github_view_count", "github_unique_visitors", "github_clone_count", "github_unique_cloners"):
+        if metrics.get(key, -1) < 0:
+            raise AssertionError(f"{key} must be non-negative")
+    if metrics["github_unique_visitors"] > metrics["github_view_count"]:
+        raise AssertionError("unique GitHub visitors cannot exceed views")
+    if metrics["github_unique_cloners"] > metrics["github_clone_count"]:
+        raise AssertionError("unique GitHub cloners cannot exceed clones")
     expected_outcomes = {
         "support_ticket_issue_categories": 4,
         "root_cause_hypotheses": 3,
@@ -632,6 +658,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "public_traction_surfaces": 4,
         "public_traction_growth_channels": 17,
         "public_traction_resume_upgrade_rules": 3,
+        "github_traffic_snapshot": 1,
         "live_project_scorecard": 1,
         "scorecard_reviewer_paths": 15,
         "openapi_required_endpoints": 6,
