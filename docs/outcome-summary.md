@@ -20,6 +20,9 @@ Support operations dashboard data can silently mix duplicate ticket facts, missi
 | Recommended actions | 5 |
 | Ranked root-cause hypotheses | 3 |
 | Business-rule references | 4 |
+| Business risk areas | 4 |
+| High-priority actions | 3 |
+| Owner handoffs | 4 |
 
 ## Issue Categories
 
@@ -34,9 +37,29 @@ Support operations dashboard data can silently mix duplicate ticket facts, missi
 2. **The ingestion pipeline may be replaying events without idempotent merge logic.** (confidence: 0.65; checks: duplicate_primary_key)
 3. **Source API or transform logic is producing incomplete fields for required analytics columns.** (confidence: 0.63; checks: missing_values)
 
+## Remediation Scorecard
+
+The agent converts raw quality findings into a prioritized remediation handoff for support-operations analytics owners.
+
+| Business Risk Area | Priority | Owner | Evidence |
+| --- | --- | --- | --- |
+| Dashboard accuracy | HIGH | Data Engineering | 1 duplicate ticket_id case can double-count support volume. |
+| Support routing | HIGH | Support Operations | 2 required routing fields are missing across priority and team. |
+| Customer-impact reporting | HIGH | Analytics Engineering | 1 negative amount is mixed into positive customer-impact facts. |
+| Executive metric review | MEDIUM | Data Analytics | 1 amount outlier can skew aggregate customer-impact reporting. |
+
+## SLA-Style Checks
+
+- one ticket_id per support event
+- priority and team must be present for routing
+- customer-impact amount must be non-negative
+- extreme amounts require review before dashboard publication
+
 ## Resume-Safe Summary
 
 Quantified 4 support-ticket data quality issue categories across 8 rows, including duplicate ticket IDs, missing routing fields, negative amounts, and amount outliers.
+
+Produced a verified remediation scorecard mapping 5 data quality findings to 4 business risk areas, 3 high-priority actions, and 4 owner handoffs.
 
 ## Not Claimed
 

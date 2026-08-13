@@ -73,6 +73,16 @@
       "status": "verified"
     },
     {
+      "id": "business-remediation-scorecard",
+      "resume_signal": "CI-verified business remediation scorecard",
+      "claim": "The project maps support-ticket quality findings to 4 business risk areas, 3 high-priority actions, and 4 owner handoffs without claiming external adoption.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact.json",
+      "metric_name": "business_remediation_scorecard",
+      "metric_value": 1,
+      "status": "verified"
+    },
+    {
       "id": "report-guardrails",
       "resume_signal": "Deterministic report verification guardrails",
       "claim": "Reports include deterministic verification for evidence support, field references, sensitive values, unsupported LLM evidence, action coverage, and score bounds.",

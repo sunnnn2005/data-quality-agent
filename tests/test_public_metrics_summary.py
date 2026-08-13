@@ -15,6 +15,9 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["public_metrics"]["forks"] == 1
     assert payload["public_metrics"]["test_count"] == 77
     assert payload["verified_project_outcomes"]["root_cause_hypotheses"] == 3
+    assert payload["verified_project_outcomes"]["business_risk_areas"] == 4
+    assert payload["verified_project_outcomes"]["high_priority_actions"] == 3
+    assert payload["verified_project_outcomes"]["owner_handoffs"] == 4
     assert payload["verified_project_outcomes"]["eval_scenarios"] == 3
     assert payload["verified_project_outcomes"]["hypothesis_feedback_labels"] == 3
     assert payload["verified_project_outcomes"]["incident_pattern_count"] == 3
@@ -44,6 +47,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert "3 recurring incident patterns retrieved from sanitized traces" in payload["resume_safe_signals"]
     assert "2 observed run traces with fallback and verification status" in payload["resume_safe_signals"]
     assert "2 mocked LLM calls with 360 tokens, prompt version, latency, retry budget, and estimated cost telemetry" in payload["resume_safe_signals"]
+    assert (
+        "4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs"
+        in payload["resume_safe_signals"]
+    )
     assert "7 allowed agent tools and 3 rejected unsafe PostgreSQL queries" in payload["resume_safe_signals"]
     assert "5 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
     assert "CI-verified OpenAPI contract covering 6 integration endpoints" in payload["resume_safe_signals"]

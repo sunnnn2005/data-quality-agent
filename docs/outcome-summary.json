@@ -29,6 +29,46 @@
     "This artifact measures a reproducible business-data case study, not enterprise adoption."
   ],
   "project": "Data Quality Agent",
+  "remediation_scorecard": {
+    "business_risk_areas": [
+      {
+        "area": "Dashboard accuracy",
+        "evidence": "1 duplicate ticket_id case can double-count support volume.",
+        "owner": "Data Engineering",
+        "priority": "HIGH",
+        "recommended_handoff": "Deduplicate by the latest event timestamp, add idempotent merge logic, and enforce a uniqueness constraint in the pipeline."
+      },
+      {
+        "area": "Support routing",
+        "evidence": "2 required routing fields are missing across priority and team.",
+        "owner": "Support Operations",
+        "priority": "HIGH",
+        "recommended_handoff": "Trace null generation for priority and team before publishing dashboard data."
+      },
+      {
+        "area": "Customer-impact reporting",
+        "evidence": "1 negative amount is mixed into positive customer-impact facts.",
+        "owner": "Analytics Engineering",
+        "priority": "HIGH",
+        "recommended_handoff": "Validate refund handling and separate credit events from positive payment facts."
+      },
+      {
+        "area": "Executive metric review",
+        "evidence": "1 amount outlier can skew aggregate customer-impact reporting.",
+        "owner": "Data Analytics",
+        "priority": "MEDIUM",
+        "recommended_handoff": "Inspect source records for amount and decide whether to cap, filter, or correct them."
+      }
+    ],
+    "resume_safe_outcome": "Produced a verified remediation scorecard mapping 5 data quality findings to 4 business risk areas, 3 high-priority actions, and 4 owner handoffs.",
+    "sla_style_checks": [
+      "one ticket_id per support event",
+      "priority and team must be present for routing",
+      "customer-impact amount must be non-negative",
+      "extreme amounts require review before dashboard publication"
+    ],
+    "summary": "The agent converts raw quality findings into a prioritized remediation handoff for support-operations analytics owners."
+  },
   "resume_safe_summary": "Quantified 4 support-ticket data quality issue categories across 8 rows, including duplicate ticket IDs, missing routing fields, negative amounts, and amount outliers.",
   "source_artifact": "docs/business-impact.json",
   "top_root_cause_hypotheses": [
@@ -71,10 +111,13 @@
   ],
   "verified_outcomes": {
     "affected_column_count": 4,
+    "business_risk_area_count": 4,
     "business_rule_reference_count": 4,
     "dataset": "support_tickets",
     "finding_count": 5,
+    "high_priority_action_count": 3,
     "issue_category_count": 4,
+    "owner_handoff_count": 4,
     "quality_score": 24,
     "recommended_action_count": 5,
     "root_cause_hypothesis_count": 3,

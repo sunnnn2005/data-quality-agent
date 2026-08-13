@@ -66,6 +66,9 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "support_ticket_findings": verified_outcomes["finding_count"],
             "recommended_actions": verified_outcomes["recommended_action_count"],
             "root_cause_hypotheses": verified_outcomes["root_cause_hypothesis_count"],
+            "business_risk_areas": verified_outcomes["business_risk_area_count"],
+            "high_priority_actions": verified_outcomes["high_priority_action_count"],
+            "owner_handoffs": verified_outcomes["owner_handoff_count"],
             "eval_scenarios": eval_summary["scenario_count"],
             "hypothesis_feedback_labels": hypothesis_feedback["label_count"],
             "incident_pattern_count": incident_memory["incident_pattern_count"],
@@ -103,6 +106,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
             f"{adoption['test_count']} passing CI tests",
             f"{verified_outcomes['issue_category_count']} support-ticket issue categories",
             f"{verified_outcomes['root_cause_hypothesis_count']} evidence-ranked root-cause hypotheses",
+            (
+                f"{verified_outcomes['business_risk_area_count']} business risk areas mapped to "
+                f"{verified_outcomes['high_priority_action_count']} high-priority actions and "
+                f"{verified_outcomes['owner_handoff_count']} owner handoffs"
+            ),
             "Dataset-level memory retrieval over recent sanitized traces",
             f"{eval_summary['scenario_count']}-scenario agent evaluation harness",
             f"{hypothesis_feedback['label_count']} human-reviewed root-cause feedback labels",
@@ -163,6 +171,9 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Support-ticket issue categories | {outcomes["support_ticket_issue_categories"]} |
 | Support-ticket findings | {outcomes["support_ticket_findings"]} |
 | Evidence-ranked root-cause hypotheses | {outcomes["root_cause_hypotheses"]} |
+| Business risk areas | {outcomes["business_risk_areas"]} |
+| High-priority actions | {outcomes["high_priority_actions"]} |
+| Owner handoffs | {outcomes["owner_handoffs"]} |
 | Agent evaluation scenarios | {outcomes["eval_scenarios"]} |
 | Root-cause feedback labels | {outcomes["hypothesis_feedback_labels"]} |
 | Recurring incident patterns | {outcomes["incident_pattern_count"]} |
@@ -221,6 +232,9 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_outcomes = {
         "support_ticket_issue_categories": 4,
         "root_cause_hypotheses": 3,
+        "business_risk_areas": 4,
+        "high_priority_actions": 3,
+        "owner_handoffs": 4,
         "eval_scenarios": 3,
         "hypothesis_feedback_labels": 3,
         "incident_pattern_count": 3,

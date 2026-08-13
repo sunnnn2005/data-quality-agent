@@ -14,7 +14,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert len(payload["application_links"]) == 8
     assert len(payload["resume_bullets"]) == 3
     assert payload["verified_outcome_numbers"]["passing_tests"] == 77
-    assert payload["verified_outcome_numbers"]["verified_resume_claims"] == 35
+    assert payload["verified_outcome_numbers"]["verified_resume_claims"] == 36
     assert payload["honest_baseline"]["stars"] == 0
     assert payload["honest_baseline"]["confirmed_external_users"] == 0
     assert "Application Evidence Pack" in markdown

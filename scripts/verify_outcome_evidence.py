@@ -114,6 +114,21 @@ def verify_manifest() -> dict[str, int]:
                         f"claim {claim['id']} metric mismatch: recommended_action_count={claim.get('metric_value')} "
                         f"but outcome summary has {actions}"
                     )
+            elif metric_name == "business_remediation_scorecard":
+                remediation_scorecard = business_impact.get("remediation_scorecard", {})
+                outcomes = outcome_summary.get("verified_outcomes", {})
+                if business_impact.get("business_risk_area_count") != 4:
+                    raise AssertionError("business remediation scorecard must verify 4 business risk areas")
+                if business_impact.get("high_priority_action_count") != 3:
+                    raise AssertionError("business remediation scorecard must verify 3 high-priority actions")
+                if business_impact.get("owner_handoff_count") != 4:
+                    raise AssertionError("business remediation scorecard must verify 4 owner handoffs")
+                if outcomes.get("business_risk_area_count") != 4:
+                    raise AssertionError("outcome summary must include business risk area count")
+                if "owner handoffs" not in remediation_scorecard.get("resume_safe_outcome", ""):
+                    raise AssertionError("business remediation scorecard must include owner-handoff evidence")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("business_remediation_scorecard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
                 if public_metrics_summary.get("public_metrics", {}).get("test_count") != 77:
                     raise AssertionError("public metrics summary must include the current CI test count")
@@ -325,8 +340,12 @@ def verify_manifest() -> dict[str, int]:
                 scorecard_script = (ROOT / "scripts" / "build_live_project_scorecard.py").read_text()
                 if claim.get("metric_value") != 1:
                     raise AssertionError("live project scorecard claim must use metric_value=1")
-                if scorecard.get("headline_metrics", {}).get("verified_resume_claims") != len(claims):
-                    raise AssertionError("live project scorecard must summarize the current claim count")
+                scorecard_claim_count = scorecard.get("headline_metrics", {}).get("verified_resume_claims")
+                if scorecard_claim_count != len(claims):
+                    raise AssertionError(
+                        "live project scorecard must summarize the current claim count: "
+                        f"scorecard={scorecard_claim_count}, claims={len(claims)}"
+                    )
                 if scorecard.get("live_footprint", {}).get("stars") != 0:
                     raise AssertionError("live project scorecard must preserve the zero-star baseline")
                 if scorecard.get("live_footprint", {}).get("confirmed_external_users") != 0:

@@ -14,5 +14,10 @@ def test_business_impact_artifact_quantifies_support_ticket_case_study():
     assert payload["top_root_cause_hypotheses"][0]["confidence"] >= payload["top_root_cause_hypotheses"][-1]["confidence"]
     assert payload["affected_column_count"] == 4
     assert payload["business_rule_reference_count"] == 4
+    assert payload["business_risk_area_count"] == 4
+    assert payload["high_priority_action_count"] == 3
+    assert payload["owner_handoff_count"] == 4
+    assert payload["remediation_scorecard"]["business_risk_areas"][0]["owner"] == "Data Engineering"
+    assert "owner handoffs" in payload["remediation_scorecard"]["resume_safe_outcome"]
     assert "duplicate ticket IDs" in payload["resume_safe_summary"]
     assert "enterprise adoption" in " ".join(payload["not_claimed"]).lower()

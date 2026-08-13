@@ -14,6 +14,7 @@ This page maps resume-ready claims for Data Quality Agent to public evidence. It
 | `postgres-agent-route` | Read-only PostgreSQL agent route | [API source](https://github.com/sunnnn2005/data-quality-agent/blob/main/app/main.py) | The project exposes a PostgreSQL support-ticket agent endpoint that reuses the read-only database adapter and safely falls back when no model key is configured. |
 | `business-impact-artifact` | Quantified business-impact artifact | [Business impact JSON](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact.json) | The support-ticket case study quantifies 4 issue categories, 4 affected columns, and 5 recommended actions without claiming external adoption. |
 | `outcome-summary` | Resume-safe business outcome summary | [Outcome summary](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/outcome-summary.md) | The business-impact artifact is translated into a public business problem, issue category, risk, and remediation summary. |
+| `business-remediation-scorecard` | CI-verified business remediation scorecard | [Business impact JSON](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact.json) | The project maps support-ticket findings to 4 business risk areas, 3 high-priority actions, and 4 owner handoffs without claiming external adoption. |
 | `report-guardrails` | Report verification guardrails | [Verifier tests](https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_verifier.py) | Reports are checked for evidence support, valid field references, sensitive evidence values, unsupported LLM evidence, actions, and score bounds. |
 | `persistent-trace-audit` | Persistent SQLite trace audit trail | [Trace tests](https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_traces.py) | Sanitized run traces can be persisted with `TRACE_DB_PATH` and recovered by trace id after process restart. |
 | `dataset-memory-retrieval` | Dataset-level agent memory retrieval | [Trace tests](https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_traces.py) | The API retrieves recent sanitized traces, recurring checks, and recurring root-cause titles for a dataset. |
@@ -58,6 +59,9 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Affected support-ticket columns | 4 |
 | Recommended support-ticket actions | 5 |
 | Ranked support-ticket root-cause hypotheses | 3 |
+| Business risk areas | 4 |
+| High-priority remediation actions | 3 |
+| Owner handoffs | 4 |
 | Agent evaluation scenarios | 3 |
 | Agent strategy recommendation recall | 0.889 |
 | Root-cause feedback labels | 3 |
@@ -127,6 +131,7 @@ Use wording that is true today:
 - Added 3 human-reviewed root-cause feedback labels for accepted / needs-review hypotheses without claiming external product feedback.
 - Published a CI-verified OpenAPI contract covering 6 integration endpoints for business-data uploads, LLM agent reports, PostgreSQL reports, trace lookup, dataset memory, and incident export.
 - Quantified 4 support-ticket data quality issue categories across 8 rows, including duplicate ticket IDs, missing routing fields, negative amounts, and amount outliers.
+- Added a remediation scorecard mapping 5 support-ticket findings to 4 business risk areas, 3 high-priority actions, and 4 owner handoffs.
 - Added a scheduled public evidence health check for the live demo, release page, business-impact artifact, outcome evidence, and adoption metrics.
 - Added machine-readable feedback metrics that track public feedback and reproducible reports from an honest zero baseline.
 - Added deterministic report verification guardrails and 77 passing CI tests.

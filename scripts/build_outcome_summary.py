@@ -34,6 +34,9 @@ def build_outcome_summary_payload() -> dict[str, Any]:
             "recommended_action_count": impact["recommended_action_count"],
             "root_cause_hypothesis_count": impact["root_cause_hypothesis_count"],
             "business_rule_reference_count": impact["business_rule_reference_count"],
+            "business_risk_area_count": impact["business_risk_area_count"],
+            "high_priority_action_count": impact["high_priority_action_count"],
+            "owner_handoff_count": impact["owner_handoff_count"],
         },
         "issue_categories": [
             {
@@ -61,6 +64,7 @@ def build_outcome_summary_payload() -> dict[str, Any]:
             },
         ],
         "resume_safe_summary": impact["resume_safe_summary"],
+        "remediation_scorecard": impact["remediation_scorecard"],
         "top_root_cause_hypotheses": impact["top_root_cause_hypotheses"],
         "not_claimed": impact["not_claimed"],
     }
@@ -79,6 +83,14 @@ def render_markdown(payload: dict[str, Any]) -> str:
         )
         for index, item in enumerate(payload["top_root_cause_hypotheses"], start=1)
     )
+    remediation_rows = "\n".join(
+        (
+            f"| {item['area']} | {item['priority']} | {item['owner']} | "
+            f"{item['evidence']} |"
+        )
+        for item in payload["remediation_scorecard"]["business_risk_areas"]
+    )
+    sla_checks = "\n".join(f"- {item}" for item in payload["remediation_scorecard"]["sla_style_checks"])
     return f"""# Outcome Summary
 
 This page converts the machine-generated business-impact artifact into a resume-safe outcome summary. It is generated from `docs/business-impact.json`; do not edit the metrics by hand.
@@ -101,6 +113,9 @@ This page converts the machine-generated business-impact artifact into a resume-
 | Recommended actions | {outcomes["recommended_action_count"]} |
 | Ranked root-cause hypotheses | {outcomes["root_cause_hypothesis_count"]} |
 | Business-rule references | {outcomes["business_rule_reference_count"]} |
+| Business risk areas | {outcomes["business_risk_area_count"]} |
+| High-priority actions | {outcomes["high_priority_action_count"]} |
+| Owner handoffs | {outcomes["owner_handoff_count"]} |
 
 ## Issue Categories
 
@@ -110,9 +125,23 @@ This page converts the machine-generated business-impact artifact into a resume-
 
 {hypotheses}
 
+## Remediation Scorecard
+
+{payload["remediation_scorecard"]["summary"]}
+
+| Business Risk Area | Priority | Owner | Evidence |
+| --- | --- | --- | --- |
+{remediation_rows}
+
+## SLA-Style Checks
+
+{sla_checks}
+
 ## Resume-Safe Summary
 
 {payload["resume_safe_summary"]}
+
+{payload["remediation_scorecard"]["resume_safe_outcome"]}
 
 ## Not Claimed
 
@@ -132,12 +161,19 @@ def verify_outcome_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "recommended_action_count": 5,
         "root_cause_hypothesis_count": 3,
         "business_rule_reference_count": 4,
+        "business_risk_area_count": 4,
+        "high_priority_action_count": 3,
+        "owner_handoff_count": 4,
     }
     for key, value in expected.items():
         if outcomes.get(key) != value:
             raise AssertionError(f"{key} expected {value!r}, got {outcomes.get(key)!r}")
     if len(payload["issue_categories"]) != 4:
         raise AssertionError("outcome summary must include four issue categories")
+    if len(payload["remediation_scorecard"]["business_risk_areas"]) != 4:
+        raise AssertionError("outcome summary must include four remediation scorecard risk areas")
+    if "owner handoffs" not in payload["remediation_scorecard"]["resume_safe_outcome"]:
+        raise AssertionError("outcome summary must include owner-handoff evidence")
     if "external users" not in " ".join(payload["not_claimed"]).lower():
         raise AssertionError("outcome summary must avoid external-user claims")
     return {"outcome_summary_verified": True, **expected}

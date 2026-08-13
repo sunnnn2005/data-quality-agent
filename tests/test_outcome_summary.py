@@ -10,8 +10,14 @@ def test_outcome_summary_is_derived_from_business_impact_artifact():
     assert payload["verified_outcomes"]["issue_category_count"] == 4
     assert payload["verified_outcomes"]["recommended_action_count"] == 5
     assert payload["verified_outcomes"]["root_cause_hypothesis_count"] == 3
+    assert payload["verified_outcomes"]["business_risk_area_count"] == 4
+    assert payload["verified_outcomes"]["high_priority_action_count"] == 3
+    assert payload["verified_outcomes"]["owner_handoff_count"] == 4
     assert "Ranked Root-Cause Hypotheses" in markdown
+    assert "Remediation Scorecard" in markdown
+    assert "SLA-Style Checks" in markdown
     assert len(payload["issue_categories"]) == 4
+    assert len(payload["remediation_scorecard"]["business_risk_areas"]) == 4
     assert "Support operations dashboard data" in payload["business_problem"]
     assert "External users" not in markdown
     assert "No verified external users yet." in markdown

@@ -28,6 +28,9 @@ EXPECTED_BUSINESS_IMPACT = {
     "business_rule_reference_count": 4,
     "root_cause_hypothesis_count": 3,
     "recommended_action_count": 5,
+    "business_risk_area_count": 4,
+    "high_priority_action_count": 3,
+    "owner_handoff_count": 4,
 }
 
 
@@ -73,9 +76,59 @@ def _summarize_findings(report: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _build_remediation_scorecard(report: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "summary": (
+            "The agent converts raw quality findings into a prioritized remediation handoff for "
+            "support-operations analytics owners."
+        ),
+        "business_risk_areas": [
+            {
+                "area": "Dashboard accuracy",
+                "evidence": "1 duplicate ticket_id case can double-count support volume.",
+                "priority": "HIGH",
+                "owner": "Data Engineering",
+                "recommended_handoff": report["recommended_next_steps"][0],
+            },
+            {
+                "area": "Support routing",
+                "evidence": "2 required routing fields are missing across priority and team.",
+                "priority": "HIGH",
+                "owner": "Support Operations",
+                "recommended_handoff": "Trace null generation for priority and team before publishing dashboard data.",
+            },
+            {
+                "area": "Customer-impact reporting",
+                "evidence": "1 negative amount is mixed into positive customer-impact facts.",
+                "priority": "HIGH",
+                "owner": "Analytics Engineering",
+                "recommended_handoff": report["recommended_next_steps"][1],
+            },
+            {
+                "area": "Executive metric review",
+                "evidence": "1 amount outlier can skew aggregate customer-impact reporting.",
+                "priority": "MEDIUM",
+                "owner": "Data Analytics",
+                "recommended_handoff": report["recommended_next_steps"][4],
+            },
+        ],
+        "sla_style_checks": [
+            "one ticket_id per support event",
+            "priority and team must be present for routing",
+            "customer-impact amount must be non-negative",
+            "extreme amounts require review before dashboard publication",
+        ],
+        "resume_safe_outcome": (
+            "Produced a verified remediation scorecard mapping 5 data quality findings to 4 business "
+            "risk areas, 3 high-priority actions, and 4 owner handoffs."
+        ),
+    }
+
+
 def build_business_impact_payload() -> dict[str, Any]:
     report = _load_support_ticket_report()
     affected_columns = ["amount", "priority", "team", "ticket_id"]
+    remediation_scorecard = _build_remediation_scorecard(report)
     payload = {
         "dataset_id": report["dataset_id"],
         "generated_by": "scripts/verify_business_impact.py",
@@ -97,6 +150,12 @@ def build_business_impact_payload() -> dict[str, Any]:
         "recommended_action_count": len(report["recommended_next_steps"]),
         "top_root_cause_hypotheses": report["root_cause_hypotheses"][:3],
         "impact_summary": _summarize_findings(report),
+        "remediation_scorecard": remediation_scorecard,
+        "business_risk_area_count": len(remediation_scorecard["business_risk_areas"]),
+        "high_priority_action_count": sum(
+            1 for item in remediation_scorecard["business_risk_areas"] if item["priority"] == "HIGH"
+        ),
+        "owner_handoff_count": len({item["owner"] for item in remediation_scorecard["business_risk_areas"]}),
         "resume_safe_summary": (
             "Quantified 4 support-ticket data quality issue categories across 8 rows, "
             "including duplicate ticket IDs, missing routing fields, negative amounts, and amount outliers."
@@ -126,12 +185,18 @@ def verify_business_impact(payload: dict[str, Any]) -> dict[str, Any]:
     missing_sections = required_sections - set(payload["impact_summary"])
     if missing_sections:
         raise AssertionError(f"business impact missing sections: {sorted(missing_sections)}")
+    scorecard = payload["remediation_scorecard"]
+    if len(scorecard["business_risk_areas"]) != payload["business_risk_area_count"]:
+        raise AssertionError("business risk area count must match remediation scorecard")
+    if "owner handoffs" not in scorecard["resume_safe_outcome"]:
+        raise AssertionError("remediation scorecard must include owner-handoff wording")
     if "enterprise adoption" not in " ".join(payload["not_claimed"]).lower():
         raise AssertionError("business impact artifact must explicitly avoid enterprise-adoption claims")
     return {
         "business_impact_verified": True,
         "issue_category_count": payload["issue_category_count"],
         "affected_column_count": payload["affected_column_count"],
+        "business_risk_area_count": payload["business_risk_area_count"],
     }
 
 

@@ -22,6 +22,9 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Support-ticket issue categories | 4 |
 | Support-ticket findings | 5 |
 | Evidence-ranked root-cause hypotheses | 3 |
+| Business risk areas | 4 |
+| High-priority actions | 3 |
+| Owner handoffs | 4 |
 | Agent evaluation scenarios | 3 |
 | Root-cause feedback labels | 3 |
 | Recurring incident patterns | 3 |
@@ -62,6 +65,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 77 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
+- 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
 - Dataset-level memory retrieval over recent sanitized traces
 - 3-scenario agent evaluation harness
 - 3 human-reviewed root-cause feedback labels
