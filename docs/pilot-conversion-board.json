@@ -1,0 +1,96 @@
+{
+  "blocked_resume_claims": [
+    {
+      "current_value": 0,
+      "evidence_required": "Public GitHub issues labeled feedback with reproducible context",
+      "minimum_to_claim": 3,
+      "stage": "confirmed_external_feedback"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "Public issue or replay note labeled confirmed-user",
+      "minimum_to_claim": 1,
+      "stage": "confirmed_external_users"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "Public business-case review issue with anonymized workflow and permission boundary",
+      "minimum_to_claim": 1,
+      "stage": "business_case_validated"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "Public replay issues with commands, non-sensitive schema, status, and finding count",
+      "minimum_to_claim": 2,
+      "stage": "reproducible_replay_confirmed"
+    }
+  ],
+  "blocked_stage_count": 4,
+  "claimable_stage_count": 2,
+  "current_resume_safe_claims": [
+    "Published a public demo and evidence-backed documentation for a data-quality LLM agent.",
+    "Built a pilot feedback pipeline with three reviewer segments and public evidence rules."
+  ],
+  "generated_by": "scripts/build_pilot_conversion_board.py",
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "validated business impact",
+    "production adoption",
+    "GitHub stars beyond the current public count"
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Convert public pilot evidence into resume-safe outcome claims only after explicit, auditable thresholds are met. This board prevents private messages, planned outreach, or unverified compliments from being counted as users, feedback, or business impact.",
+  "resume_safe_summary": "Added a CI-verified pilot conversion board that separates two claimable readiness signals from four blocked outcome claims until public feedback, confirmed users, business-case reviews, or reproducible replay evidence exist.",
+  "stage_count": 6,
+  "stages": [
+    {
+      "current_value": 1,
+      "evidence_required": "GitHub Pages demo, README link, and public evidence health check",
+      "minimum_to_claim": 1,
+      "resume_claim_allowed": true,
+      "resume_safe_wording": "Published a public demo and evidence-backed documentation for a data-quality LLM agent.",
+      "stage": "public_demo_available"
+    },
+    {
+      "current_value": 3,
+      "evidence_required": "CI-verified planned reviewer segments and public feedback entrypoints",
+      "minimum_to_claim": 3,
+      "resume_claim_allowed": true,
+      "resume_safe_wording": "Built a pilot feedback pipeline with three reviewer segments and public evidence rules.",
+      "stage": "pilot_outreach_ready"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "Public GitHub issues labeled feedback with reproducible context",
+      "minimum_to_claim": 3,
+      "resume_claim_allowed": false,
+      "resume_safe_wording": null,
+      "stage": "confirmed_external_feedback"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "Public issue or replay note labeled confirmed-user",
+      "minimum_to_claim": 1,
+      "resume_claim_allowed": false,
+      "resume_safe_wording": null,
+      "stage": "confirmed_external_users"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "Public business-case review issue with anonymized workflow and permission boundary",
+      "minimum_to_claim": 1,
+      "resume_claim_allowed": false,
+      "resume_safe_wording": null,
+      "stage": "business_case_validated"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "Public replay issues with commands, non-sensitive schema, status, and finding count",
+      "minimum_to_claim": 2,
+      "resume_claim_allowed": false,
+      "resume_safe_wording": null,
+      "stage": "reproducible_replay_confirmed"
+    }
+  ]
+}

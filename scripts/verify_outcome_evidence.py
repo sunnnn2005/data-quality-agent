@@ -35,6 +35,7 @@ APPLICATION_EVIDENCE_PACK_PATH = ROOT / "docs" / "application-evidence-pack.json
 PILOT_OUTREACH_KIT_PATH = ROOT / "docs" / "pilot-outreach-kit.json"
 PILOT_PROGRAM_PLAN_PATH = ROOT / "docs" / "pilot-program-plan.json"
 PILOT_REVIEW_TRACKER_PATH = ROOT / "docs" / "pilot-review-tracker.json"
+PILOT_CONVERSION_BOARD_PATH = ROOT / "docs" / "pilot-conversion-board.json"
 EXTERNAL_REVIEW_EVIDENCE_LEDGER_PATH = ROOT / "docs" / "external-review-evidence-ledger.json"
 OUTCOME_UPGRADE_PLAYBOOK_PATH = ROOT / "docs" / "outcome-upgrade-playbook.json"
 REVIEWER_FEEDBACK_PACKET_PATH = ROOT / "docs" / "reviewer-feedback-packet.json"
@@ -93,6 +94,7 @@ def verify_manifest() -> dict[str, int]:
     pilot_outreach = load_payload(PILOT_OUTREACH_KIT_PATH)
     pilot_plan = load_payload(PILOT_PROGRAM_PLAN_PATH)
     pilot_tracker = load_payload(PILOT_REVIEW_TRACKER_PATH)
+    pilot_conversion = load_payload(PILOT_CONVERSION_BOARD_PATH)
     external_ledger = load_payload(EXTERNAL_REVIEW_EVIDENCE_LEDGER_PATH)
     outcome_upgrade = load_payload(OUTCOME_UPGRADE_PLAYBOOK_PATH)
     reviewer_packet = load_payload(REVIEWER_FEEDBACK_PACKET_PATH)
@@ -461,7 +463,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 97:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 98:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -762,7 +764,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 97:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 98:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -846,6 +848,37 @@ def verify_manifest() -> dict[str, int]:
                     not in tracker_tests
                 ):
                     raise AssertionError("pilot review tracker must have a dedicated test")
+            elif metric_name == "pilot_conversion_board":
+                conversion_tests = (ROOT / "tests" / "test_pilot_conversion_board.py").read_text()
+                conversion_script = (ROOT / "scripts" / "build_pilot_conversion_board.py").read_text()
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("pilot conversion board claim must use metric_value=1")
+                if pilot_conversion.get("stage_count") != 6:
+                    raise AssertionError("pilot conversion board must define six stages")
+                if pilot_conversion.get("claimable_stage_count") != 2:
+                    raise AssertionError("pilot conversion board must define two claimable readiness stages")
+                if pilot_conversion.get("blocked_stage_count") != 4:
+                    raise AssertionError("pilot conversion board must block four outcome claims")
+                blocked_claims = pilot_conversion.get("blocked_resume_claims", [])
+                if len(blocked_claims) != 4:
+                    raise AssertionError("pilot conversion board must list four blocked outcome claims")
+                blocked_stages = {item.get("stage") for item in blocked_claims}
+                for required in {
+                    "confirmed_external_feedback",
+                    "confirmed_external_users",
+                    "business_case_validated",
+                    "reproducible_replay_confirmed",
+                }:
+                    if required not in blocked_stages:
+                        raise AssertionError(f"pilot conversion board missing blocked stage {required}")
+                not_claimed = " ".join(pilot_conversion.get("not_claimed", [])).lower()
+                for required in ("external users", "customer feedback", "validated business impact", "production adoption"):
+                    if required not in not_claimed:
+                        raise AssertionError(f"pilot conversion board must not claim {required}")
+                if "verify_pilot_conversion_board" not in conversion_script:
+                    raise AssertionError("pilot conversion board script must verify generated board")
+                if "test_pilot_conversion_board_separates_readiness_from_outcome_claims" not in conversion_tests:
+                    raise AssertionError("pilot conversion board must have a dedicated test")
             elif metric_name == "external_review_evidence_ledger":
                 ledger_tests = (ROOT / "tests" / "test_external_review_evidence_ledger.py").read_text()
                 ledger_script = (ROOT / "scripts" / "build_external_review_evidence_ledger.py").read_text()
@@ -1224,7 +1257,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 97", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 98", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

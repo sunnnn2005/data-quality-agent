@@ -30,6 +30,7 @@ APPLICATION_EVIDENCE_PACK_PATH = ROOT / "docs" / "application-evidence-pack.json
 PILOT_OUTREACH_KIT_PATH = ROOT / "docs" / "pilot-outreach-kit.json"
 PILOT_PROGRAM_PLAN_PATH = ROOT / "docs" / "pilot-program-plan.json"
 PILOT_REVIEW_TRACKER_PATH = ROOT / "docs" / "pilot-review-tracker.json"
+PILOT_CONVERSION_BOARD_PATH = ROOT / "docs" / "pilot-conversion-board.json"
 EXTERNAL_REVIEW_EVIDENCE_LEDGER_PATH = ROOT / "docs" / "external-review-evidence-ledger.json"
 OUTCOME_UPGRADE_PLAYBOOK_PATH = ROOT / "docs" / "outcome-upgrade-playbook.json"
 REVIEWER_FEEDBACK_PACKET_PATH = ROOT / "docs" / "reviewer-feedback-packet.json"
@@ -74,6 +75,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     pilot_outreach = load_json(PILOT_OUTREACH_KIT_PATH)
     pilot_plan = load_json(PILOT_PROGRAM_PLAN_PATH)
     pilot_tracker = load_json(PILOT_REVIEW_TRACKER_PATH)
+    pilot_conversion = load_json(PILOT_CONVERSION_BOARD_PATH)
     external_ledger = load_json(EXTERNAL_REVIEW_EVIDENCE_LEDGER_PATH)
     outcome_upgrade = load_json(OUTCOME_UPGRADE_PLAYBOOK_PATH)
     reviewer_packet = load_json(REVIEWER_FEEDBACK_PACKET_PATH)
@@ -173,6 +175,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "pilot_review_tracker_planned_reviews": pilot_tracker["planned_review_count"],
             "pilot_review_tracker_not_contacted": pilot_tracker["status_counts"]["not_contacted"],
             "pilot_review_tracker_resume_rules": len(pilot_tracker["resume_upgrade_rules"]),
+            "pilot_conversion_board": 1,
+            "pilot_conversion_stages": pilot_conversion["stage_count"],
+            "pilot_conversion_claimable_stages": pilot_conversion["claimable_stage_count"],
+            "pilot_conversion_blocked_stages": pilot_conversion["blocked_stage_count"],
             "external_review_evidence_ledger": 1,
             "external_review_ledger_entries": external_ledger["entry_count"],
             "external_review_ledger_requirement_types": external_ledger["evidence_requirement_count"],
@@ -240,6 +246,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"Pilot review tracker with {pilot_tracker['planned_review_count']} planned reviewer segments, "
                 f"{pilot_tracker['status_counts']['not_contacted']} not-contacted baseline entries, and "
                 f"{len(pilot_tracker['resume_upgrade_rules'])} resume-upgrade rules"
+            ),
+            (
+                f"Pilot conversion board with {pilot_conversion['stage_count']} outcome stages, "
+                f"{pilot_conversion['claimable_stage_count']} resume-safe readiness claims, and "
+                f"{pilot_conversion['blocked_stage_count']} blocked outcome claims until public evidence exists"
             ),
             (
                 f"External review evidence ledger with {external_ledger['evidence_requirement_count']} public evidence types, "
@@ -461,6 +472,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Pilot review tracker planned reviews | {outcomes["pilot_review_tracker_planned_reviews"]} |
 | Pilot review tracker not-contacted entries | {outcomes["pilot_review_tracker_not_contacted"]} |
 | Pilot review tracker resume rules | {outcomes["pilot_review_tracker_resume_rules"]} |
+| Pilot conversion board | {outcomes["pilot_conversion_board"]} |
+| Pilot conversion stages | {outcomes["pilot_conversion_stages"]} |
+| Pilot conversion claimable stages | {outcomes["pilot_conversion_claimable_stages"]} |
+| Pilot conversion blocked stages | {outcomes["pilot_conversion_blocked_stages"]} |
 | External review evidence ledger | {outcomes["external_review_evidence_ledger"]} |
 | External review ledger entries | {outcomes["external_review_ledger_entries"]} |
 | External review ledger requirement types | {outcomes["external_review_ledger_requirement_types"]} |
@@ -527,7 +542,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 97,
+        "test_count": 98,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -602,6 +617,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "pilot_review_tracker_planned_reviews": 3,
         "pilot_review_tracker_not_contacted": 3,
         "pilot_review_tracker_resume_rules": 3,
+        "pilot_conversion_board": 1,
+        "pilot_conversion_stages": 6,
+        "pilot_conversion_claimable_stages": 2,
+        "pilot_conversion_blocked_stages": 4,
         "external_review_evidence_ledger": 1,
         "external_review_ledger_entries": 0,
         "external_review_ledger_requirement_types": 4,

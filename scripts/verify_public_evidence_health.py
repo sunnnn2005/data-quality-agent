@@ -272,6 +272,14 @@ PUBLIC_CHECKS = [
         "evidence_type": "json",
     },
     {
+        "id": "pilot-conversion-board",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-conversion-board.json",
+        "expected_json": {"project": "Data Quality Agent", "stage_count": 6, "claimable_stage_count": 2},
+        "expected_text": "confirmed_external_users",
+        "expected_texts": ["validated business impact", "production adoption", "resume_claim_allowed"],
+        "evidence_type": "json",
+    },
+    {
         "id": "external-review-evidence-ledger",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-review-evidence-ledger.json",
         "expected_json": {"project": "Data Quality Agent", "entry_count": 0, "evidence_requirement_count": 4},

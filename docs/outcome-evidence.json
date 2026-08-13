@@ -25,12 +25,12 @@
       "url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent"
     },
     {
-      "claim": "Automated test suite passes locally and in GitHub Actions, including the business problem casebook, business replay demo, feedback intake quality, business case intake, star growth kit, and real-model runbook verifiers.",
+      "claim": "Automated test suite passes locally and in GitHub Actions, including the business problem casebook, business replay demo, feedback intake quality, business case intake, star growth kit, pilot conversion board, and real-model runbook verifiers.",
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 97,
-      "resume_signal": "97 passing CI tests",
+      "metric_value": 98,
+      "resume_signal": "98 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -337,6 +337,16 @@
       "resume_signal": "CI-verified pilot review tracker",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-review-tracker.json"
+    },
+    {
+      "claim": "The project publishes a pilot conversion board that separates current resume-safe readiness claims from blocked outcome claims for public feedback, business-case validation, and reproducible replay until public evidence exists.",
+      "evidence_type": "artifact",
+      "id": "pilot-conversion-board",
+      "metric_name": "pilot_conversion_board",
+      "metric_value": 1,
+      "resume_signal": "CI-verified pilot conversion board",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-conversion-board.json"
     },
     {
       "claim": "The project publishes a generated external review evidence ledger that defines public proof requirements for demo feedback, confirmed runs, business-case reviews, and reproducible bugs before resume outcome upgrades.",
