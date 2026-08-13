@@ -1,0 +1,84 @@
+{
+  "feedback_evidence_rules": [
+    "Only count feedback that is linked from a public GitHub issue or reproducible external note.",
+    "Only count a user after they explicitly confirm they tried the demo or ran the project.",
+    "Do not count private compliments, application submissions, or self-testing as external users.",
+    "Keep stars, users, and feedback as zero until public metrics prove otherwise."
+  ],
+  "generated_by": "scripts/build_pilot_program_plan.py",
+  "issue_labels_to_count": {
+    "bug_feedback_items": "bug",
+    "confirmed_external_users": "confirmed-user",
+    "external_feedback_items": "feedback",
+    "feature_feedback_items": "enhancement",
+    "reproducible_feedback_items": "reproducible"
+  },
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "enterprise production usage",
+    "GitHub stars beyond the current public count"
+  ],
+  "objective": "Run a small public pilot to turn the current zero-feedback baseline into verified public feedback, while keeping resume claims tied to GitHub issues and metrics artifacts.",
+  "participant_segments": [
+    {
+      "requested_action": "Try the public demo and leave one feedback issue.",
+      "segment": "student_reviewers",
+      "source": "UC Davis classmates or data/AI club members",
+      "target_count": 5
+    },
+    {
+      "requested_action": "Run the repo locally or inspect the API contract and leave a bug or feature issue.",
+      "segment": "developer_reviewers",
+      "source": "student developers or open-source reviewers",
+      "target_count": 3
+    },
+    {
+      "requested_action": "Review the evidence pack and comment on project clarity for AI Engineer Intern roles.",
+      "segment": "career_reviewers",
+      "source": "recruiters, mentors, or hiring managers",
+      "target_count": 2
+    }
+  ],
+  "pilot_window": "3 weeks",
+  "project": "Data Quality Agent",
+  "resume_upgrade_rules": [
+    "If external_feedback_items reaches 3, resume may say the project collected public pilot feedback.",
+    "If confirmed_external_users reaches 1, resume may say it was tried by an external reviewer.",
+    "If reproducible_feedback_items reaches 1 and an improvement is merged, resume may say it used feedback to improve the product.",
+    "Do not claim production usage, customers, or traction unless public evidence exists."
+  ],
+  "review_paths": {
+    "application_evidence_pack": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/application-evidence-pack.md",
+    "bug_report": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md",
+    "feature_request": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md",
+    "feedback_issue": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+    "github_repo": "https://github.com/sunnnn2005/data-quality-agent",
+    "live_scorecard": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/live-project-scorecard.md",
+    "quick_demo": "https://sunnnn2005.github.io/data-quality-agent/"
+  },
+  "success_thresholds": {
+    "current_confirmed_external_users": 0,
+    "current_external_feedback_items": 0,
+    "minimum_confirmed_users_before_user_claim": 1,
+    "minimum_feedback_items_before_resume_claim": 3,
+    "minimum_reproducible_items_before_case_study_claim": 1
+  },
+  "weekly_plan": [
+    {
+      "deliverable": "At least one public feedback issue or a documented zero-response checkpoint.",
+      "focus": "Send outreach and collect first impressions.",
+      "week": 1
+    },
+    {
+      "deliverable": "Bug, feature, or reproducibility feedback labeled in GitHub issues.",
+      "focus": "Ask reviewers to reproduce one demo path or local run path.",
+      "week": 2
+    },
+    {
+      "deliverable": "A public changelog entry linking feedback to a resolved issue or documented decision.",
+      "focus": "Triage feedback, implement one small improvement, and update metrics.",
+      "week": 3
+    }
+  ]
+}

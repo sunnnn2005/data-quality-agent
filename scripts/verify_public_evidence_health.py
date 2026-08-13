@@ -40,7 +40,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 70},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 71},
         "evidence_type": "json",
     },
     {
@@ -113,6 +113,14 @@ PUBLIC_CHECKS = [
         "expected_json": {"project": "Data Quality Agent"},
         "expected_text": "outreach_messages",
         "expected_texts": ["success_metrics", "tracking_rules", "external users"],
+        "evidence_type": "json",
+    },
+    {
+        "id": "pilot-program-plan",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-program-plan.json",
+        "expected_json": {"project": "Data Quality Agent"},
+        "expected_text": "participant_segments",
+        "expected_texts": ["success_thresholds", "resume_upgrade_rules", "minimum_feedback_items_before_resume_claim"],
         "evidence_type": "json",
     },
     {

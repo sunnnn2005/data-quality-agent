@@ -17,6 +17,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "recruiter-pitch",
         "application-evidence-pack",
         "pilot-outreach-kit",
+        "pilot-program-plan",
         "feedback-metrics",
         "postgres-agent-route",
         "github-release",
