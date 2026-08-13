@@ -1,5 +1,5 @@
 {
-  "check_count": 57,
+  "check_count": 58,
   "checks": [
     {
       "evidence_type": "html",
@@ -241,6 +241,19 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact-ledger.json",
       "verified_fields": [
         "accepted_business_impact_signal_count",
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "resume-traction-proof",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-traction-proof.json",
+      "verified_fields": [
+        "blocked_claim_count",
+        "claimable_now_count",
+        "future_claim_count",
         "project"
       ]
     },
@@ -609,6 +622,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 57,
+  "passed_count": 58,
   "status": "PASS"
 }
