@@ -1,5 +1,6 @@
 import argparse
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -38,6 +39,7 @@ def build_resume_outcome_readiness_payload(
     blocked = [stage for stage in stages if not stage["resume_claim_allowed"]]
     return {
         "project": "Data Quality Agent",
+        "generated_at": datetime.now(timezone.utc).isoformat(),
         "generated_by": "scripts/evaluate_resume_outcomes.py",
         "purpose": (
             "Evaluate which public outcome signals are currently safe to use on a resume and exactly what evidence "
