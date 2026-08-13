@@ -11,11 +11,12 @@ def test_community_growth_baseline_verifies_public_contribution_paths_without_ad
     markdown = render_markdown(payload)
 
     assert verification["community_growth_baseline_verified"] is True
-    assert payload["issue_template_count"] == 7
+    assert payload["issue_template_count"] == 8
     assert payload["label_count"] == 7
-    assert len(payload["public_growth_channels"]) == 8
+    assert len(payload["public_growth_channels"]) == 9
     assert "business_data_replay.md" in payload["issue_templates"]
     assert "external_run_review.md" in payload["issue_templates"]
+    assert "ai_engineer_review.md" in payload["issue_templates"]
     assert "business-data-replay" in payload["required_labels"]
     assert payload["current_public_counts"]["stars"] == 0
     assert payload["current_public_counts"]["forks"] == 1

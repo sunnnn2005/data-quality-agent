@@ -15,8 +15,9 @@
     "stars": 0
   },
   "generated_by": "scripts/build_community_growth_baseline.py",
-  "issue_template_count": 7,
+  "issue_template_count": 8,
   "issue_templates": [
+    "ai_engineer_review.md",
     "bug_report.md",
     "business_case_review.md",
     "business_data_replay.md",
@@ -74,9 +75,15 @@
       "name": "External run review issue",
       "purpose": "structured public evidence when a reviewer runs the demo, container, or PostgreSQL replay",
       "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md"
+    },
+    {
+      "name": "AI Engineer review issue",
+      "purpose": "permissioned external review of LLM tool calling, guardrails, structured output, and interview readiness",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md"
     }
   ],
   "required_issue_templates": [
+    "ai_engineer_review.md",
     "bug_report.md",
     "business_case_review.md",
     "business_data_replay.md",
@@ -96,5 +103,5 @@
     "reproducible"
   ],
   "required_labels_present": true,
-  "resume_safe_signal": "Published a CI-verified community growth baseline with 7 issue templates, 7 configured labels, 8 public growth channels, contribution guidance, and honest current public counts."
+  "resume_safe_signal": "Published a CI-verified community growth baseline with 8 issue templates, 7 configured labels, 9 public growth channels, contribution guidance, and honest current public counts."
 }

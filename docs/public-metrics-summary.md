@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 13 |
-| Passing CI tests | 127 |
+| Passing CI tests | 128 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -92,9 +92,9 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business-data intake max rows | 10000 |
 | Business-data intake max columns | 80 |
 | Community growth baseline | 1 |
-| Community issue templates | 7 |
+| Community issue templates | 8 |
 | Community labels | 7 |
-| Community public growth channels | 8 |
+| Community public growth channels | 9 |
 | Impact review packet | 1 |
 | Impact review business metrics | 12 |
 | Impact review evidence links | 8 |
@@ -104,7 +104,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business problem owner handoffs | 4 |
 | Public traction dashboard | 1 |
 | Public traction surfaces | 4 |
-| Public traction growth channels | 18 |
+| Public traction growth channels | 19 |
 | Public traction resume upgrade rules | 3 |
 | GitHub traffic snapshot | 1 |
 | GitHub traffic available | 1 |
@@ -119,7 +119,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 26 |
+| Application evidence links | 27 |
+| AI Engineer review intake | 1 |
+| AI Engineer review paths | 6 |
+| AI Engineer review questions | 6 |
+| AI Engineer review countable conditions | 5 |
 | Pilot outreach messages | 3 |
 | Pilot review paths | 10 |
 | Pilot program segments | 3 |
@@ -197,7 +201,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 127 passing CI tests
+- 128 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -228,16 +232,17 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls
 - Public demo usage baseline with 5 tracked funnel steps and 6 verified entrypoints
 - Business-data intake baseline covering 4 integration endpoints, 6 API tests, and bounded CSV uploads up to 10000 rows / 80 columns
-- Community growth baseline with 7 issue templates, 7 configured labels, and 8 public contribution or feedback channels
+- Community growth baseline with 8 issue templates, 7 configured labels, and 9 public contribution or feedback channels
 - Impact review packet with 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs
 - Business problem casebook with 1 verified case, 4 detected business risks, and 4 owner handoffs
-- Public traction dashboard with 4 live project surfaces, 18 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
+- Public traction dashboard with 4 live project surfaces, 19 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
 - GitHub traffic snapshot with 9 views, 3 unique visitors, 79 clones, and 50 unique cloners in GitHub's rolling 14-day window
 - Public availability snapshot with 4/4 reachable public endpoints and 3/3 successful main-branch workflows
 - 21 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
-- 26 application evidence links in a recruiter-ready evidence pack
+- 27 application evidence links in a recruiter-ready evidence pack
+- AI Engineer review intake with 6 review paths, 6 reviewer questions, 5 countable-evidence conditions, and zero accepted reviews
 - 3 pilot outreach messages and 10 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
 - Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups

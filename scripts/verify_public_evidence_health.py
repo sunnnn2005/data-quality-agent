@@ -47,13 +47,13 @@ PUBLIC_CHECKS = [
         "id": "outcome-evidence-manifest",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-evidence.json",
         "expected_text": "business-impact-artifact",
-        "expected_texts": ["external-run-evidence-packet", "127 passing CI tests", "accepted-evidence-rollup", "real-model-evidence-capture"],
+        "expected_texts": ["external-run-evidence-packet", "128 passing CI tests", "accepted-evidence-rollup", "real-model-evidence-capture"],
         "evidence_type": "json",
     },
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 127},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 128},
         "evidence_type": "json",
     },
     {
@@ -278,7 +278,7 @@ PUBLIC_CHECKS = [
     {
         "id": "community-growth-baseline",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/community-growth-baseline.json",
-        "expected_json": {"project": "Data Quality Agent", "issue_template_count": 7, "label_count": 7},
+        "expected_json": {"project": "Data Quality Agent", "issue_template_count": 8, "label_count": 7},
         "expected_text": "external contributors",
         "expected_texts": ["public_growth_channels", "good%20first%20issue", "business_data_replay.md", "external_run_review.md"],
         "evidence_type": "json",
@@ -302,7 +302,7 @@ PUBLIC_CHECKS = [
     {
         "id": "public-traction-dashboard",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-traction-dashboard.json",
-        "expected_json": {"project": "Data Quality Agent", "traction_surface_count": 4, "growth_channel_count": 18},
+        "expected_json": {"project": "Data Quality Agent", "traction_surface_count": 4, "growth_channel_count": 19},
         "expected_text": "not_claimable_yet",
         "expected_texts": ["public_demo", "feedback_issue_template", "GitHub star growth beyond the current public count"],
         "evidence_type": "json",
@@ -449,7 +449,7 @@ PUBLIC_CHECKS = [
             "Submit Feedback",
             "issues/17",
             "External feedback starts at zero",
-            "127 tests",
+            "128 tests",
         ],
         "evidence_type": "html",
     },

@@ -36,6 +36,7 @@ LIVE_PROJECT_SCORECARD_PATH = ROOT / "docs" / "live-project-scorecard.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
 APPLICATION_EVIDENCE_PACK_PATH = ROOT / "docs" / "application-evidence-pack.json"
+AI_ENGINEER_REVIEW_INTAKE_PATH = ROOT / "docs" / "ai-engineer-review-intake.json"
 PILOT_OUTREACH_KIT_PATH = ROOT / "docs" / "pilot-outreach-kit.json"
 PILOT_PROGRAM_PLAN_PATH = ROOT / "docs" / "pilot-program-plan.json"
 PILOT_REVIEW_TRACKER_PATH = ROOT / "docs" / "pilot-review-tracker.json"
@@ -56,7 +57,7 @@ REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 SCORECARD_REVIEWER_PATH_COUNT = 21
-APPLICATION_EVIDENCE_LINK_COUNT = 26
+APPLICATION_EVIDENCE_LINK_COUNT = 27
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -96,6 +97,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     openapi = load_json(OPENAPI_PATH)
     recruiter_pitch = load_json(RECRUITER_PITCH_PATH)
     application_pack = load_json(APPLICATION_EVIDENCE_PACK_PATH)
+    ai_engineer_review_intake = load_json(AI_ENGINEER_REVIEW_INTAKE_PATH)
     pilot_outreach = load_json(PILOT_OUTREACH_KIT_PATH)
     pilot_plan = load_json(PILOT_PROGRAM_PLAN_PATH)
     pilot_tracker = load_json(PILOT_REVIEW_TRACKER_PATH)
@@ -238,6 +240,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "recruiter_pitch_target_roles": len(recruiter_pitch["target_roles"]),
             "application_evidence_pack": 1,
             "application_evidence_links": APPLICATION_EVIDENCE_LINK_COUNT,
+            "ai_engineer_review_intake": 1,
+            "ai_engineer_review_paths": ai_engineer_review_intake["review_path_count"],
+            "ai_engineer_review_questions": ai_engineer_review_intake["review_question_count"],
+            "ai_engineer_review_countable_conditions": ai_engineer_review_intake["countable_condition_count"],
             "pilot_outreach_messages": len(pilot_outreach["outreach_messages"]),
             "pilot_review_paths": len(pilot_outreach["review_paths"]),
             "pilot_program_segments": len(pilot_plan["participant_segments"]),
@@ -470,6 +476,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "CI-verified OpenAPI contract covering 6 integration endpoints",
             f"{len(recruiter_pitch['resume_bullets'])} recruiter-safe resume bullets for {len(recruiter_pitch['target_roles'])} target roles",
             f"{APPLICATION_EVIDENCE_LINK_COUNT} application evidence links in a recruiter-ready evidence pack",
+            (
+                f"AI Engineer review intake with {ai_engineer_review_intake['review_path_count']} review paths, "
+                f"{ai_engineer_review_intake['review_question_count']} reviewer questions, "
+                f"{ai_engineer_review_intake['countable_condition_count']} countable-evidence conditions, and zero accepted reviews"
+            ),
             f"{len(pilot_outreach['outreach_messages'])} pilot outreach messages and {len(pilot_outreach['review_paths'])} review paths for collecting real feedback",
             f"{len(pilot_plan['participant_segments'])} pilot participant segments across a {len(pilot_plan['weekly_plan'])}-week feedback plan",
             (
@@ -658,6 +669,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recruiter pitch target roles | {outcomes["recruiter_pitch_target_roles"]} |
 | Application evidence pack | {outcomes["application_evidence_pack"]} |
 | Application evidence links | {outcomes["application_evidence_links"]} |
+| AI Engineer review intake | {outcomes["ai_engineer_review_intake"]} |
+| AI Engineer review paths | {outcomes["ai_engineer_review_paths"]} |
+| AI Engineer review questions | {outcomes["ai_engineer_review_questions"]} |
+| AI Engineer review countable conditions | {outcomes["ai_engineer_review_countable_conditions"]} |
 | Pilot outreach messages | {outcomes["pilot_outreach_messages"]} |
 | Pilot review paths | {outcomes["pilot_review_paths"]} |
 | Pilot program segments | {outcomes["pilot_program_segments"]} |
@@ -745,7 +760,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 127,
+        "test_count": 128,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -838,9 +853,9 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "business_data_intake_max_rows": 10_000,
         "business_data_intake_max_columns": 80,
         "community_growth_baseline": 1,
-        "community_issue_templates": 7,
+        "community_issue_templates": 8,
         "community_labels": 7,
-        "community_public_growth_channels": 8,
+        "community_public_growth_channels": 9,
         "impact_review_packet": 1,
         "impact_review_business_metrics": 12,
         "impact_review_evidence_links": 8,
@@ -850,7 +865,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "business_problem_owner_handoffs": 4,
         "public_traction_dashboard": 1,
         "public_traction_surfaces": 4,
-        "public_traction_growth_channels": 18,
+        "public_traction_growth_channels": 19,
         "public_traction_resume_upgrade_rules": 3,
         "github_traffic_snapshot": 1,
         "public_availability_snapshot": 1,
@@ -861,7 +876,11 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 26,
+        "application_evidence_links": 27,
+        "ai_engineer_review_intake": 1,
+        "ai_engineer_review_paths": 6,
+        "ai_engineer_review_questions": 6,
+        "ai_engineer_review_countable_conditions": 5,
         "pilot_outreach_messages": 3,
         "pilot_review_paths": 10,
         "pilot_program_segments": 3,

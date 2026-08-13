@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 127,
-      "resume_signal": "127 passing CI tests",
+      "metric_value": 128,
+      "resume_signal": "128 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -131,7 +131,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-data-intake-baseline.json"
     },
     {
-      "claim": "The project publishes a generated community growth baseline covering 7 issue templates, 7 configured labels, 8 public growth channels, contribution guidance, public feedback entrypoints, and current public counts without claiming community adoption.",
+      "claim": "The project publishes a generated community growth baseline covering 8 issue templates, 7 configured labels, 9 public growth channels, contribution guidance, public feedback entrypoints, and current public counts without claiming community adoption.",
       "evidence_type": "artifact",
       "id": "community-growth-baseline",
       "metric_name": "community_growth_baseline",
@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 26 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 27 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 26,
+      "metric_value": 27,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"

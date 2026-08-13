@@ -385,14 +385,14 @@ def verify_manifest() -> dict[str, int]:
             elif metric_name == "community_growth_baseline":
                 community_script = (ROOT / "scripts" / "build_community_growth_baseline.py").read_text()
                 community_tests = (ROOT / "tests" / "test_community_growth_baseline.py").read_text()
-                if community_growth.get("issue_template_count") != 7:
-                    raise AssertionError("community growth baseline must verify 7 issue templates")
+                if community_growth.get("issue_template_count") != 8:
+                    raise AssertionError("community growth baseline must verify 8 issue templates")
                 if "external_run_review.md" not in community_growth.get("issue_templates", []):
                     raise AssertionError("community growth baseline must include the external run review template")
                 if community_growth.get("label_count") != 7:
                     raise AssertionError("community growth baseline must verify 7 labels")
-                if len(community_growth.get("public_growth_channels", [])) != 8:
-                    raise AssertionError("community growth baseline must verify 8 public growth channels")
+                if len(community_growth.get("public_growth_channels", [])) != 9:
+                    raise AssertionError("community growth baseline must verify 9 public growth channels")
                 if not all(community_growth.get("contribution_paths", {}).values()):
                     raise AssertionError("community growth baseline must verify contribution paths")
                 counts = community_growth.get("current_public_counts", {})
@@ -510,8 +510,8 @@ def verify_manifest() -> dict[str, int]:
                 traction_tests = (ROOT / "tests" / "test_public_traction_dashboard.py").read_text()
                 if traction.get("traction_surface_count") != 4:
                     raise AssertionError("public traction dashboard must verify 4 traction surfaces")
-                if traction.get("growth_channel_count") != 18:
-                    raise AssertionError("public traction dashboard must verify 18 growth or review channels")
+                if traction.get("growth_channel_count") != 19:
+                    raise AssertionError("public traction dashboard must verify 19 growth or review channels")
                 if traction.get("tracked_funnel_steps") != 5:
                     raise AssertionError("public traction dashboard must verify 5 tracked funnel steps")
                 if traction.get("demo_entrypoints_verified") != 6:
@@ -553,7 +553,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 127:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 128:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -854,7 +854,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 127:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 128:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1596,16 +1596,16 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 127", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 128", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 
     if "community-growth-baseline" in claim_ids:
-        if "7 issue templates" not in resume_page or "8 public contribution or feedback channels" not in resume_page:
+        if "8 issue templates" not in resume_page or "9 public contribution or feedback channels" not in resume_page:
             raise AssertionError("resume evidence page must reflect the current community growth counts")
 
     if "public-traction-dashboard" in claim_ids:
-        if "18 growth or review channels" not in resume_page:
+        if "19 growth or review channels" not in resume_page:
             raise AssertionError("resume evidence page must reflect the current public traction channel count")
 
     not_claimed = {item["metric"] for item in evidence.get("not_claimed", [])}
