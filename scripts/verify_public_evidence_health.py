@@ -59,7 +59,7 @@ PUBLIC_CHECKS = [
     {
         "id": "eval-summary",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json",
-        "expected_json": {"scenario_count": 3},
+        "expected_json": {"scenario_count": 14},
         "evidence_type": "json",
     },
     {

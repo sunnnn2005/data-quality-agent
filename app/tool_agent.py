@@ -163,18 +163,23 @@ class DataQualityToolbox:
     def _select_quality_strategy(self, _: dict[str, Any]) -> dict[str, Any]:
         columns = {column.lower() for column in self.frame.columns}
         expected = {column.lower() for column in self.dataset.expected_columns}
-        checks = ["schema_required_columns", "missing_values"]
+        checks = ["schema_required_columns", "missing_values", "volume_anomaly"]
         reason = "General dataset contract checks are required for every table."
 
-        if {"amount", "payment_id"} & columns or {"amount", "payment_id"} & expected:
-            checks.extend(["freshness_sla", "negative_amount", "numeric_outliers"])
-            reason = "Payment or transaction-like data needs freshness, amount-domain, and outlier checks."
+        if {"amount", "payment_id", "order_total", "order_id"} & columns or {
+            "amount",
+            "payment_id",
+            "order_total",
+            "order_id",
+        } & expected:
+            checks.extend(["duplicate_primary_key", "freshness_sla", "negative_amount", "numeric_outliers"])
+            reason = "Payment, order, or transaction-like data needs freshness, amount-domain, volume, and outlier checks."
         elif {"ticket_id", "priority", "status"} <= (columns | expected):
             checks.extend(["duplicate_primary_key", "status_priority_consistency", "sla_risk"])
             reason = "Support-ticket data needs identity, workflow-state, priority, and SLA consistency checks."
         elif {"email", "customer_id", "user_id"} & (columns | expected):
-            checks.extend(["duplicate_primary_key", "schema_drift", "email_completeness"])
-            reason = "Customer or user profile data needs identity, schema, and contact-field checks."
+            checks.extend(["duplicate_primary_key", "schema_drift", "email_completeness", "numeric_outliers"])
+            reason = "Customer or user profile data needs identity, schema, contact-field, volume, and numeric distribution checks."
         elif self.dataset.primary_key:
             checks.append("duplicate_primary_key")
 

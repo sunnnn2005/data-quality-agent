@@ -7,7 +7,7 @@ def test_eval_summary_publishes_resume_safe_agent_metrics():
     markdown = render_markdown(payload)
 
     assert verification["eval_summary_verified"] is True
-    assert payload["scenario_count"] == 3
+    assert payload["scenario_count"] == 14
     assert payload["deterministic_baseline"]["finding_recall"] == 1.0
     assert payload["deterministic_baseline"]["evidence_support_rate"] == 1.0
     assert payload["tool_agent_disabled_fallback"]["fallback_success_rate"] == 1.0
@@ -28,5 +28,5 @@ def test_eval_summary_verifies_tool_planning_coverage_for_agent_claims():
     assert "retrieve_dataset_memory" in tool_planning["tool_names"]
     assert "retrieve_business_rules" in tool_planning["tool_names"]
     assert "build_quality_report" in tool_planning["tool_names"]
-    assert len(tool_planning["scenario_strategy_rows"]) == 3
+    assert len(tool_planning["scenario_strategy_rows"]) == 14
     assert all(row["matched_expected_findings"] for row in tool_planning["scenario_strategy_rows"])

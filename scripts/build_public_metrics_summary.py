@@ -482,7 +482,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "business_risk_areas": 4,
         "high_priority_actions": 3,
         "owner_handoffs": 4,
-        "eval_scenarios": 3,
+        "eval_scenarios": 14,
         "hypothesis_feedback_labels": 3,
         "incident_pattern_count": 3,
         "observed_trace_count": 2,

@@ -6,7 +6,7 @@ This generated artifact summarizes the local agent evaluation harness. It is int
 
 | Metric | Value |
 | --- | ---: |
-| Eval scenarios | 3 |
+| Eval scenarios | 14 |
 | Deterministic status accuracy | 1.0 |
 | Deterministic finding recall | 1.0 |
 | Deterministic evidence support rate | 1.0 |
@@ -14,7 +14,7 @@ This generated artifact summarizes the local agent evaluation harness. It is int
 | Tool-agent required report-tool rate without model key | 0.0 |
 | Available agent tools | 7 |
 | Required tools present | True |
-| Strategy recommendation recall | 0.889 |
+| Strategy recommendation recall | 1.0 |
 
 ## Tool Planning Coverage
 
@@ -22,7 +22,7 @@ Allowed tools: `get_dataset_contract`, `profile_dataset`, `select_quality_strate
 
 ## Resume-Safe Summary
 
-Built a 3-scenario eval harness measuring status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, report attachment, latency, and 7-tool planning coverage.
+Built a 14-scenario eval harness measuring status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, report attachment, latency, and 7-tool planning coverage.
 
 ## Not Claimed
 

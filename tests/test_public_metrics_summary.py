@@ -18,7 +18,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["business_risk_areas"] == 4
     assert payload["verified_project_outcomes"]["high_priority_actions"] == 3
     assert payload["verified_project_outcomes"]["owner_handoffs"] == 4
-    assert payload["verified_project_outcomes"]["eval_scenarios"] == 3
+    assert payload["verified_project_outcomes"]["eval_scenarios"] == 14
     assert payload["verified_project_outcomes"]["hypothesis_feedback_labels"] == 3
     assert payload["verified_project_outcomes"]["incident_pattern_count"] == 3
     assert payload["verified_project_outcomes"]["observed_trace_count"] == 2
@@ -108,7 +108,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["business_case_intake_captured_fields"] == 6
     assert payload["verified_project_outcomes"]["recommended_actions"] == 5
     assert payload["verified_project_outcomes"]["implemented_agent_capabilities"] == 16
-    assert "3-scenario agent evaluation harness" in payload["resume_safe_signals"]
+    assert "14-scenario agent evaluation harness" in payload["resume_safe_signals"]
     assert "3 human-reviewed root-cause feedback labels" in payload["resume_safe_signals"]
     assert "3 recurring incident patterns retrieved from sanitized traces" in payload["resume_safe_signals"]
     assert "2 observed run traces with fallback and verification status" in payload["resume_safe_signals"]

@@ -25,7 +25,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business risk areas | 4 |
 | High-priority actions | 3 |
 | Owner handoffs | 4 |
-| Agent evaluation scenarios | 3 |
+| Agent evaluation scenarios | 14 |
 | Root-cause feedback labels | 3 |
 | Recurring incident patterns | 3 |
 | Observed run traces | 2 |
@@ -134,7 +134,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
 - Dataset-level memory retrieval over recent sanitized traces
-- 3-scenario agent evaluation harness
+- 14-scenario agent evaluation harness
 - 3 human-reviewed root-cause feedback labels
 - Pilot review tracker with 3 planned reviewer segments, 3 not-contacted baseline entries, and 3 resume-upgrade rules
 - External review evidence ledger with 4 public evidence types, 3 linked planned reviews, and 0 current evidence entries

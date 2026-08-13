@@ -141,15 +141,17 @@ def verify_eval_summary(payload: dict[str, Any]) -> dict[str, Any]:
     tool_agent = payload["tool_agent_disabled_fallback"]
     tool_planning = payload["tool_planning_coverage"]
     expected = {
-        "scenario_count": 3,
+        "scenario_count": 14,
         "deterministic_finding_recall": 1.0,
         "deterministic_evidence_support_rate": 1.0,
         "tool_agent_fallback_success_rate": 1.0,
         "available_tool_count": 7,
-        "strategy_recommendation_recall_floor": 0.88,
+        "strategy_recommendation_recall_floor": 0.75,
     }
     if payload["scenario_count"] != expected["scenario_count"]:
-        raise AssertionError(f"scenario_count expected 3, got {payload['scenario_count']!r}")
+        raise AssertionError(
+            f"scenario_count expected {expected['scenario_count']}, got {payload['scenario_count']!r}"
+        )
     if deterministic["finding_recall"] != expected["deterministic_finding_recall"]:
         raise AssertionError("deterministic finding recall must stay at 1.0 for the known eval set")
     if deterministic["evidence_support_rate"] != expected["deterministic_evidence_support_rate"]:

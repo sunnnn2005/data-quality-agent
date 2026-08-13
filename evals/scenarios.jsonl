@@ -1,3 +1,14 @@
 {"id":"orders_daily_core_failures","dataset_id":"orders_daily","expected_status":"FAIL","expected_findings":["duplicate_primary_key","missing_values","numeric_outliers"],"expected_report_tool":false}
+{"id":"orders_daily_duplicate_key_guardrail","dataset_id":"orders_daily","expected_status":"FAIL","expected_findings":["duplicate_primary_key"],"expected_report_tool":false}
+{"id":"orders_daily_revenue_null_monitor","dataset_id":"orders_daily","expected_status":"FAIL","expected_findings":["missing_values"],"expected_report_tool":false}
+{"id":"orders_daily_high_value_outlier_review","dataset_id":"orders_daily","expected_status":"FAIL","expected_findings":["numeric_outliers"],"expected_report_tool":false}
 {"id":"payments_events_freshness_negative_amount","dataset_id":"payments_events","expected_status":"FAIL","expected_findings":["freshness_sla","negative_amount"],"expected_report_tool":false}
+{"id":"payments_events_missing_status_monitor","dataset_id":"payments_events","expected_status":"FAIL","expected_findings":["missing_values"],"expected_report_tool":false}
+{"id":"payments_events_settlement_freshness_sla","dataset_id":"payments_events","expected_status":"FAIL","expected_findings":["freshness_sla"],"expected_report_tool":false}
+{"id":"payments_events_refund_domain_guardrail","dataset_id":"payments_events","expected_status":"FAIL","expected_findings":["negative_amount"],"expected_report_tool":false}
+{"id":"payments_events_low_volume_ingestion_check","dataset_id":"payments_events","expected_status":"FAIL","expected_findings":["volume_anomaly"],"expected_report_tool":false}
 {"id":"customer_profiles_schema_missingness","dataset_id":"customer_profiles","expected_status":"FAIL","expected_findings":["schema_drift","missing_values"],"expected_report_tool":false}
+{"id":"customer_profiles_unexpected_column_contract","dataset_id":"customer_profiles","expected_status":"FAIL","expected_findings":["schema_drift"],"expected_report_tool":false}
+{"id":"customer_profiles_contact_completeness","dataset_id":"customer_profiles","expected_status":"FAIL","expected_findings":["missing_values"],"expected_report_tool":false}
+{"id":"customer_profiles_ltv_outlier_review","dataset_id":"customer_profiles","expected_status":"FAIL","expected_findings":["numeric_outliers"],"expected_report_tool":false}
+{"id":"customer_profiles_low_volume_ingestion_check","dataset_id":"customer_profiles","expected_status":"FAIL","expected_findings":["volume_anomaly"],"expected_report_tool":false}

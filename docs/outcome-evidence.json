@@ -399,17 +399,17 @@
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_agent.py"
     },
     {
-      "claim": "The project publishes a generated evaluation summary covering status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, report attachment, and latency across 3 scenarios.",
+      "claim": "The project publishes a generated evaluation summary covering status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, report attachment, and latency across 14 scenarios.",
       "evidence_type": "artifact",
       "id": "eval-summary",
       "metric_name": "eval_scenario_count",
-      "metric_value": 3,
+      "metric_value": 14,
       "resume_signal": "CI-verified agent evaluation harness",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json"
     },
     {
-      "claim": "The project publishes an eval artifact that verifies the LLM agent exposes 7 allowed tools and recommends relevant quality checks across 3 dataset scenarios without claiming paid model benchmark results.",
+      "claim": "The project publishes an eval artifact that verifies the LLM agent exposes 7 allowed tools and recommends relevant quality checks across 14 dataset scenarios without claiming paid model benchmark results.",
       "evidence_type": "artifact",
       "id": "tool-planning-eval",
       "metric_name": "tool_planning_eval",

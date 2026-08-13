@@ -46,8 +46,8 @@ This page maps resume-ready claims for Data Quality Agent to public evidence. It
 | `outcome-upgrade-playbook` | CI-verified outcome upgrade playbook | [Outcome upgrade playbook](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-upgrade-playbook.json) | The project defines 5 metric thresholds for feedback, confirmed runs, reproducible reports, business-case reviews, and repository interest before resume wording can be upgraded. |
 | `reviewer-feedback-packet` | CI-verified reviewer feedback packet | [Reviewer feedback packet](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-feedback-packet.json) | The project gives reviewers 3 public task paths, 5 evidence questions, and 4 metric conversion paths for collecting public feedback without claiming results before evidence exists. |
 | `root-cause-ranking` | Evidence-ranked root-cause hypotheses | [Agent tests](https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_agent.py) | Reports rank likely causes by confidence and include supporting checks, evidence, and recommended actions. |
-| `eval-summary` | CI-verified agent evaluation harness | [Eval summary](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json) | The project publishes a 3-scenario evaluation summary for status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, report attachment, and latency. |
-| `tool-planning-eval` | CI-verified tool-planning evaluation | [Eval summary](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json) | The project verifies 7 allowed LLM agent tools and 0.889 strategy recommendation recall across 3 dataset scenarios without claiming paid model benchmark results. |
+| `eval-summary` | CI-verified agent evaluation harness | [Eval summary](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json) | The project publishes a 14-scenario evaluation summary for status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, report attachment, and latency. |
+| `tool-planning-eval` | CI-verified tool-planning evaluation | [Eval summary](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json) | The project verifies 7 allowed LLM agent tools and 1.0 strategy recommendation recall across 14 dataset scenarios without claiming paid model benchmark results. |
 | `hypothesis-feedback` | Human-reviewed root-cause feedback labels | [Hypothesis feedback](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/hypothesis-feedback.json) | The project publishes accepted / needs-review labels for 3 root-cause hypotheses without claiming external product feedback. |
 | `openapi-contract` | CI-verified OpenAPI contract | [OpenAPI JSON](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/openapi.json) | The FastAPI app publishes a generated API contract covering 6 core integration endpoints for business data, agent reports, trace lookup, dataset memory, and incident export. |
 | `adoption-baseline` | Public adoption baseline | [Adoption metrics](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json) | Stars, forks, watchers, issue count, release, container image, and test count are tracked without inflation. |
@@ -71,7 +71,7 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 11 |
-| Automated tests | 92 |
+| Automated tests | 94 |
 | Support-ticket issue categories | 4 |
 | Affected support-ticket columns | 4 |
 | Recommended support-ticket actions | 5 |
@@ -79,8 +79,8 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Business risk areas | 4 |
 | High-priority remediation actions | 3 |
 | Owner handoffs | 4 |
-| Agent evaluation scenarios | 3 |
-| Agent strategy recommendation recall | 0.889 |
+| Agent evaluation scenarios | 14 |
+| Agent strategy recommendation recall | 1.0 |
 | Root-cause feedback labels | 3 |
 | Recurring incident patterns | 3 |
 | Observed run traces | 2 |
@@ -217,8 +217,8 @@ Use wording that is true today:
 - Added a CI-verified feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups.
 - Added a CI-verified business-case intake path with 6 required sections, 5 tried paths, 5 outcome signals, and 6 captured evidence groups for future anonymized real-world data-quality problem feedback.
 - Added evidence-ranked root-cause hypotheses with confidence, supporting checks, and recommended actions.
-- Added a CI-verified 3-scenario agent evaluation summary measuring status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, report attachment, and latency.
-- Added CI-verified tool-planning evaluation covering 7 allowed LLM agent tools and 0.889 strategy recommendation recall across 3 dataset scenarios.
+- Added a CI-verified 14-scenario agent evaluation summary measuring status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, report attachment, and latency.
+- Added CI-verified tool-planning evaluation covering 7 allowed LLM agent tools and 1.0 strategy recommendation recall across 14 dataset scenarios.
 - Added 3 human-reviewed root-cause feedback labels for accepted / needs-review hypotheses without claiming external product feedback.
 - Published a CI-verified OpenAPI contract covering 6 integration endpoints for business-data uploads, LLM agent reports, PostgreSQL reports, trace lookup, dataset memory, and incident export.
 - Quantified 4 support-ticket data quality issue categories across 8 rows, including duplicate ticket IDs, missing routing fields, negative amounts, and amount outliers.
