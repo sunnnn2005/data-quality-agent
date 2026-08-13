@@ -43,11 +43,11 @@ The agent can analyze a real CSV export from a business workflow without adding 
 
 ```bash
 curl -X POST http://127.0.0.1:8000/business-data/agent-report \
-  -F "file=@support_tickets.csv" \
+  -F "file=@examples/support_tickets.csv" \
   -F "dataset_name=Support Tickets" \
   -F "owner=support-ops" \
   -F "primary_key=ticket_id" \
-  -F "expected_columns=ticket_id,team,priority,status,amount" \
+  -F "expected_columns=ticket_id,team,priority,status,amount,created_at" \
   -F "description=Support ticket export used by operations dashboards."
 ```
 
@@ -57,6 +57,8 @@ Endpoints:
 - `POST /business-data/agent-report`: LLM tool-calling agent over uploaded CSV data, disabled safely when no model key is configured.
 
 This keeps the project useful for realistic business tables while avoiding unrestricted database credentials, background writes, or hidden external data movement.
+
+See [docs/support-ticket-case-study.md](docs/support-ticket-case-study.md) for a reproducible business-data case study. The demo support-ticket export produces evidence-backed findings for duplicate ticket IDs, missing routing fields, a negative amount, and an extreme amount outlier.
 
 ## Why This Exists
 

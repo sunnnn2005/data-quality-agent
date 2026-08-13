@@ -1,9 +1,11 @@
 from fastapi.testclient import TestClient
+from pathlib import Path
 
 from app.main import app
 
 
 client = TestClient(app)
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_health_check():
@@ -110,3 +112,29 @@ def test_business_csv_rejects_missing_primary_key_column():
 
     assert response.status_code == 400
     assert response.json()["detail"] == "Primary key must match a CSV column"
+
+
+def test_support_ticket_case_study_produces_reproducible_business_findings():
+    csv = (ROOT / "examples" / "support_tickets.csv").read_text()
+    response = client.post(
+        "/business-data/quality-report",
+        data={
+            "dataset_name": "Support Tickets",
+            "owner": "support-ops",
+            "primary_key": "ticket_id",
+            "expected_columns": "ticket_id,team,priority,status,amount,created_at",
+            "description": "Support ticket export used by operations dashboards.",
+        },
+        files={"file": ("support_tickets.csv", csv, "text/csv")},
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    checks = {finding["check_name"] for finding in payload["findings"]}
+
+    assert payload["row_count"] == 8
+    assert payload["status"] == "FAIL"
+    assert "duplicate_primary_key" in checks
+    assert "missing_values" in checks
+    assert "negative_amount" in checks
+    assert "numeric_outliers" in checks
