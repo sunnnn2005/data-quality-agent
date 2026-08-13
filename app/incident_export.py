@@ -48,6 +48,17 @@ def render_incident_markdown(report: QualityReport) -> str:
     for cause in report.likely_causes:
         lines.append(f"- {cause}")
 
+    if report.root_cause_hypotheses:
+        lines.extend(["", "## Root Cause Hypotheses", ""])
+        for index, hypothesis in enumerate(report.root_cause_hypotheses, start=1):
+            checks = ", ".join(f"`{check}`" for check in hypothesis.supporting_checks)
+            lines.append(f"{index}. {hypothesis.title}")
+            lines.append(f"   - Confidence: `{hypothesis.confidence}`")
+            lines.append(f"   - Supporting checks: {checks}")
+            for evidence in hypothesis.evidence:
+                lines.append(f"   - Evidence: {evidence}")
+            lines.append(f"   - Recommended action: {hypothesis.recommended_action}")
+
     lines.extend(["", "## Recommended Actions", ""])
     for step in report.recommended_next_steps:
         lines.append(f"- {step}")

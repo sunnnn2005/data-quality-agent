@@ -10,6 +10,7 @@ FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
 HISTORY_PATH = ROOT / "docs" / "adoption-history.jsonl"
 BUSINESS_IMPACT_PATH = ROOT / "docs" / "business-impact.json"
 OUTCOME_SUMMARY_PATH = ROOT / "docs" / "outcome-summary.json"
+SUPPORT_TICKET_ARTIFACT_PATH = ROOT / "docs" / "verified-support-ticket-result.json"
 PUBLIC_METRICS_SUMMARY_PATH = ROOT / "docs" / "public-metrics-summary.json"
 AGENT_READINESS_PATH = ROOT / "docs" / "agent-readiness.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
@@ -36,6 +37,7 @@ def verify_manifest() -> dict[str, int]:
     feedback_metrics = load_payload(FEEDBACK_METRICS_PATH)
     business_impact = load_payload(BUSINESS_IMPACT_PATH)
     outcome_summary = load_payload(OUTCOME_SUMMARY_PATH)
+    support_ticket_artifact = load_payload(SUPPORT_TICKET_ARTIFACT_PATH)
     public_metrics_summary = load_payload(PUBLIC_METRICS_SUMMARY_PATH)
     agent_readiness = load_payload(AGENT_READINESS_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
@@ -91,7 +93,7 @@ def verify_manifest() -> dict[str, int]:
                         f"but outcome summary has {actions}"
                     )
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 56:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 57:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -106,6 +108,15 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("persistent trace audit must use the SQLite-backed TRACE_DB_PATH path")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("persistent_trace_audit claim must use metric_value=1")
+            elif metric_name == "root_cause_hypothesis_count":
+                hypotheses = support_ticket_artifact.get("root_cause_hypotheses", [])
+                if len(hypotheses) != claim.get("metric_value"):
+                    raise AssertionError(
+                        f"claim {claim['id']} metric mismatch: root_cause_hypothesis_count="
+                        f"{claim.get('metric_value')} but support-ticket artifact has {len(hypotheses)}"
+                    )
+                if not all(item.get("evidence") and item.get("supporting_checks") for item in hypotheses):
+                    raise AssertionError("root-cause hypotheses must include evidence and supporting checks")
             elif metrics.get(metric_name) != claim.get("metric_value"):
                 raise AssertionError(
                     f"claim {claim['id']} metric mismatch: {metric_name}={claim.get('metric_value')} "
@@ -132,8 +143,8 @@ def verify_manifest() -> dict[str, int]:
 
     if "agent-readiness" in claim_ids:
         readiness_page = (ROOT / "docs" / "agent-readiness.md").read_text().lower()
-        if len(agent_readiness.get("implemented", [])) < 7:
-            raise AssertionError("agent readiness must document at least seven implemented capabilities")
+        if len(agent_readiness.get("implemented", [])) < 8:
+            raise AssertionError("agent readiness must document at least eight implemented capabilities")
         if len(agent_readiness.get("partial", [])) < 4:
             raise AssertionError("agent readiness must document partial capabilities instead of overstating maturity")
         if len(agent_readiness.get("planned", [])) < 3:
@@ -158,7 +169,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 56", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 57", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

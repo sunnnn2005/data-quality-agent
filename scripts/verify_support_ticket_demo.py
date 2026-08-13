@@ -50,6 +50,9 @@ def build_report_payload() -> dict[str, Any]:
         "checks": sorted(checks),
         "business_rule_references": sorted(rules),
         "likely_causes": report.likely_causes,
+        "root_cause_hypotheses": [
+            hypothesis.model_dump(mode="json") for hypothesis in report.root_cause_hypotheses
+        ],
         "recommended_next_steps": report.recommended_next_steps,
     }
 

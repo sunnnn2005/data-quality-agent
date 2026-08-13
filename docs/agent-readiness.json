@@ -29,6 +29,11 @@
       "evidence": "TRACE_DB_PATH enables SQLite persistence for StoredRunTrace records, and tests verify recovery across RunTraceStore instances."
     },
     {
+      "id": "root-cause-ranking",
+      "capability": "Reports include evidence-ranked root-cause hypotheses",
+      "evidence": "QualityReport.root_cause_hypotheses ranks likely causes by confidence and attaches supporting checks, evidence, and recommended actions."
+    },
+    {
       "id": "safe-fallback",
       "capability": "Agent degrades safely when no model key is configured",
       "evidence": "LLMDataQualityAgent returns DISABLED with an explicit fallback error instead of failing the API."
@@ -72,14 +77,14 @@
       "resume_value": "Shows agent memory beyond single-run audit storage."
     },
     {
-      "id": "root-cause-ranking",
-      "deliverable": "Rank root-cause hypotheses with evidence references",
-      "resume_value": "Shows LLM reasoning over tool evidence rather than fixed rule summaries."
-    },
-    {
       "id": "approval-boundary",
       "deliverable": "Add human approval boundary for generated remediation SQL or ticket actions",
       "resume_value": "Shows AI safety and enterprise workflow judgment."
+    },
+    {
+      "id": "hypothesis-feedback",
+      "deliverable": "Collect accepted or rejected labels for root-cause hypotheses",
+      "resume_value": "Shows an evaluation loop for improving agent reasoning."
     }
   ],
   "not_claimed": [

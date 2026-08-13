@@ -15,9 +15,9 @@
   "finding_count": 5,
   "generated_by": "scripts/verify_support_ticket_demo.py",
   "likely_causes": [
+    "Business-rule validation is not separating exceptional transactions from standard facts.",
     "The ingestion pipeline may be replaying events without idempotent merge logic.",
-    "Source API or transform logic is producing incomplete fields for required analytics columns.",
-    "Business-rule validation is not separating exceptional transactions from standard facts."
+    "Source API or transform logic is producing incomplete fields for required analytics columns."
   ],
   "quality_score": 24,
   "recommended_next_steps": [
@@ -26,6 +26,44 @@
     "Trace null generation for team in the upstream transform or source API.",
     "Trace null generation for priority in the upstream transform or source API.",
     "Inspect source records for amount and decide whether to cap, filter, or correct them."
+  ],
+  "root_cause_hypotheses": [
+    {
+      "confidence": 0.71,
+      "evidence": [
+        "numeric_outliers on amount: {'outlier_count': 1, 'lower_bound': -60.18, 'upper_bound': 194.29}",
+        "negative_amount on amount: {'negative_count': 1}"
+      ],
+      "recommended_action": "Separate refunds, credits, and exceptional values from standard fact tables or annotate them explicitly.",
+      "supporting_checks": [
+        "negative_amount",
+        "numeric_outliers"
+      ],
+      "title": "Business-rule validation is not separating exceptional transactions from standard facts."
+    },
+    {
+      "confidence": 0.65,
+      "evidence": [
+        "duplicate_primary_key on ticket_id: {'duplicate_count': 1}"
+      ],
+      "recommended_action": "Add idempotent merge logic and enforce a uniqueness check on the primary key.",
+      "supporting_checks": [
+        "duplicate_primary_key"
+      ],
+      "title": "The ingestion pipeline may be replaying events without idempotent merge logic."
+    },
+    {
+      "confidence": 0.63,
+      "evidence": [
+        "missing_values on team: {'missing_rate': 0.125, 'missing_count': 1}",
+        "missing_values on priority: {'missing_rate': 0.125, 'missing_count': 1}"
+      ],
+      "recommended_action": "Trace null generation for affected fields through the source API and transform layer.",
+      "supporting_checks": [
+        "missing_values"
+      ],
+      "title": "Source API or transform logic is producing incomplete fields for required analytics columns."
+    }
   ],
   "row_count": 8,
   "status": "FAIL"

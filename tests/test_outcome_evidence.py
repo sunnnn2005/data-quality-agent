@@ -9,4 +9,4 @@ def test_outcome_evidence_manifest_is_resume_safe():
     assert result["resume_evidence_page"] == 1
     assert result["feedback_log"] == 1
     assert result["adoption_history_count"] >= 1
-    assert result["claim_count"] >= 18
+    assert result["claim_count"] >= 19

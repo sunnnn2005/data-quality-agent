@@ -63,7 +63,46 @@
   "quality_score": 24,
   "recommended_action_count": 5,
   "resume_safe_summary": "Quantified 4 support-ticket data quality issue categories across 8 rows, including duplicate ticket IDs, missing routing fields, negative amounts, and amount outliers.",
+  "root_cause_hypothesis_count": 3,
   "row_count": 8,
   "source_artifact": "docs/verified-support-ticket-result.json",
-  "status": "FAIL"
+  "status": "FAIL",
+  "top_root_cause_hypotheses": [
+    {
+      "confidence": 0.71,
+      "evidence": [
+        "numeric_outliers on amount: {'outlier_count': 1, 'lower_bound': -60.18, 'upper_bound': 194.29}",
+        "negative_amount on amount: {'negative_count': 1}"
+      ],
+      "recommended_action": "Separate refunds, credits, and exceptional values from standard fact tables or annotate them explicitly.",
+      "supporting_checks": [
+        "negative_amount",
+        "numeric_outliers"
+      ],
+      "title": "Business-rule validation is not separating exceptional transactions from standard facts."
+    },
+    {
+      "confidence": 0.65,
+      "evidence": [
+        "duplicate_primary_key on ticket_id: {'duplicate_count': 1}"
+      ],
+      "recommended_action": "Add idempotent merge logic and enforce a uniqueness check on the primary key.",
+      "supporting_checks": [
+        "duplicate_primary_key"
+      ],
+      "title": "The ingestion pipeline may be replaying events without idempotent merge logic."
+    },
+    {
+      "confidence": 0.63,
+      "evidence": [
+        "missing_values on team: {'missing_rate': 0.125, 'missing_count': 1}",
+        "missing_values on priority: {'missing_rate': 0.125, 'missing_count': 1}"
+      ],
+      "recommended_action": "Trace null generation for affected fields through the source API and transform layer.",
+      "supporting_checks": [
+        "missing_values"
+      ],
+      "title": "Source API or transform logic is producing incomplete fields for required analytics columns."
+    }
+  ]
 }

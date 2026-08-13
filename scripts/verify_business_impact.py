@@ -26,6 +26,7 @@ EXPECTED_BUSINESS_IMPACT = {
     "negative_amount_count": 1,
     "amount_outlier_count": 1,
     "business_rule_reference_count": 4,
+    "root_cause_hypothesis_count": 3,
     "recommended_action_count": 5,
 }
 
@@ -92,7 +93,9 @@ def build_business_impact_payload() -> dict[str, Any]:
         "negative_amount_count": EXPECTED_BUSINESS_IMPACT["negative_amount_count"],
         "amount_outlier_count": EXPECTED_BUSINESS_IMPACT["amount_outlier_count"],
         "business_rule_reference_count": len(report["business_rule_references"]),
+        "root_cause_hypothesis_count": len(report["root_cause_hypotheses"]),
         "recommended_action_count": len(report["recommended_next_steps"]),
+        "top_root_cause_hypotheses": report["root_cause_hypotheses"][:3],
         "impact_summary": _summarize_findings(report),
         "resume_safe_summary": (
             "Quantified 4 support-ticket data quality issue categories across 8 rows, "

@@ -43,6 +43,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "support_ticket_issue_categories": verified_outcomes["issue_category_count"],
             "support_ticket_findings": verified_outcomes["finding_count"],
             "recommended_actions": verified_outcomes["recommended_action_count"],
+            "root_cause_hypotheses": verified_outcomes["root_cause_hypothesis_count"],
             "implemented_agent_capabilities": len(readiness["implemented"]),
             "partial_agent_capabilities": len(readiness["partial"]),
         },
@@ -55,6 +56,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
             f"Public demo and {adoption['release']['tagName']} release",
             f"{adoption['test_count']} passing CI tests",
             f"{verified_outcomes['issue_category_count']} support-ticket issue categories",
+            f"{verified_outcomes['root_cause_hypothesis_count']} evidence-ranked root-cause hypotheses",
             f"{verified_outcomes['recommended_action_count']} evidence-backed remediation actions",
             f"{len(readiness['implemented'])} implemented LLM agent-readiness capabilities",
             f"{adoption['forks']} public fork and {adoption['stars']} public stars as current honest adoption baseline",
@@ -97,6 +99,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | --- | ---: |
 | Support-ticket issue categories | {outcomes["support_ticket_issue_categories"]} |
 | Support-ticket findings | {outcomes["support_ticket_findings"]} |
+| Evidence-ranked root-cause hypotheses | {outcomes["root_cause_hypotheses"]} |
 | Recommended remediation actions | {outcomes["recommended_actions"]} |
 | Implemented LLM agent-readiness capabilities | {outcomes["implemented_agent_capabilities"]} |
 | Partial agent-readiness capabilities documented | {outcomes["partial_agent_capabilities"]} |
@@ -121,7 +124,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 56,
+        "test_count": 57,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -130,8 +133,9 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
             raise AssertionError(f"{key} expected {expected!r}, got {metrics.get(key)!r}")
     expected_outcomes = {
         "support_ticket_issue_categories": 4,
+        "root_cause_hypotheses": 3,
         "recommended_actions": 5,
-        "implemented_agent_capabilities": 7,
+        "implemented_agent_capabilities": 8,
     }
     for key, expected in expected_outcomes.items():
         if outcomes.get(key) != expected:

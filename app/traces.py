@@ -40,6 +40,14 @@ class RunTraceStore:
                     "business_rule_count": len(report.business_rule_references),
                     "business_rule_ids": [rule.rule_id for rule in report.business_rule_references],
                     "likely_causes": report.likely_causes[:3],
+                    "root_cause_hypotheses": [
+                        {
+                            "title": hypothesis.title,
+                            "confidence": hypothesis.confidence,
+                            "supporting_checks": hypothesis.supporting_checks,
+                        }
+                        for hypothesis in report.root_cause_hypotheses[:3]
+                    ],
                     "recommended_next_steps": report.recommended_next_steps[:3],
                     "verification_passed": report.verification.passed if report.verification else None,
                     "verification_issue_count": report.verification.issue_count if report.verification else None,
@@ -74,6 +82,14 @@ class RunTraceStore:
                     "finding_checks": sorted({finding.check_name for finding in report.quality_report.findings}),
                     "business_rule_count": len(report.quality_report.business_rule_references),
                     "business_rule_ids": [rule.rule_id for rule in report.quality_report.business_rule_references],
+                    "root_cause_hypotheses": [
+                        {
+                            "title": hypothesis.title,
+                            "confidence": hypothesis.confidence,
+                            "supporting_checks": hypothesis.supporting_checks,
+                        }
+                        for hypothesis in report.quality_report.root_cause_hypotheses[:3]
+                    ],
                     "verification_passed": (
                         report.quality_report.verification.passed if report.quality_report.verification else None
                     ),

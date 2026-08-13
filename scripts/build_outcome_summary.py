@@ -32,6 +32,7 @@ def build_outcome_summary_payload() -> dict[str, Any]:
             "finding_count": impact["finding_count"],
             "affected_column_count": impact["affected_column_count"],
             "recommended_action_count": impact["recommended_action_count"],
+            "root_cause_hypothesis_count": impact["root_cause_hypothesis_count"],
             "business_rule_reference_count": impact["business_rule_reference_count"],
         },
         "issue_categories": [
@@ -60,6 +61,7 @@ def build_outcome_summary_payload() -> dict[str, Any]:
             },
         ],
         "resume_safe_summary": impact["resume_safe_summary"],
+        "top_root_cause_hypotheses": impact["top_root_cause_hypotheses"],
         "not_claimed": impact["not_claimed"],
     }
 
@@ -70,6 +72,13 @@ def render_markdown(payload: dict[str, Any]) -> str:
         f"- **{item['name']}**: {item['evidence']} {item['risk']}" for item in payload["issue_categories"]
     )
     not_claimed = "\n".join(f"- {item}" for item in payload["not_claimed"])
+    hypotheses = "\n".join(
+        (
+            f"{index}. **{item['title']}** "
+            f"(confidence: {item['confidence']}; checks: {', '.join(item['supporting_checks'])})"
+        )
+        for index, item in enumerate(payload["top_root_cause_hypotheses"], start=1)
+    )
     return f"""# Outcome Summary
 
 This page converts the machine-generated business-impact artifact into a resume-safe outcome summary. It is generated from `docs/business-impact.json`; do not edit the metrics by hand.
@@ -90,11 +99,16 @@ This page converts the machine-generated business-impact artifact into a resume-
 | Findings | {outcomes["finding_count"]} |
 | Affected columns | {outcomes["affected_column_count"]} |
 | Recommended actions | {outcomes["recommended_action_count"]} |
+| Ranked root-cause hypotheses | {outcomes["root_cause_hypothesis_count"]} |
 | Business-rule references | {outcomes["business_rule_reference_count"]} |
 
 ## Issue Categories
 
 {categories}
+
+## Ranked Root-Cause Hypotheses
+
+{hypotheses}
 
 ## Resume-Safe Summary
 
@@ -116,6 +130,7 @@ def verify_outcome_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "finding_count": 5,
         "affected_column_count": 4,
         "recommended_action_count": 5,
+        "root_cause_hypothesis_count": 3,
         "business_rule_reference_count": 4,
     }
     for key, value in expected.items():

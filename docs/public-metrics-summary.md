@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 10 |
-| Passing CI tests | 56 |
+| Passing CI tests | 57 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -21,8 +21,9 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | --- | ---: |
 | Support-ticket issue categories | 4 |
 | Support-ticket findings | 5 |
+| Evidence-ranked root-cause hypotheses | 3 |
 | Recommended remediation actions | 5 |
-| Implemented LLM agent-readiness capabilities | 7 |
+| Implemented LLM agent-readiness capabilities | 8 |
 | Partial agent-readiness capabilities documented | 4 |
 
 ## Feedback Channels
@@ -34,10 +35,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.2.0 release
-- 56 passing CI tests
+- 57 passing CI tests
 - 4 support-ticket issue categories
+- 3 evidence-ranked root-cause hypotheses
 - 5 evidence-backed remediation actions
-- 7 implemented LLM agent-readiness capabilities
+- 8 implemented LLM agent-readiness capabilities
 - 1 public fork and 0 public stars as current honest adoption baseline
 
 ## Not Claimed

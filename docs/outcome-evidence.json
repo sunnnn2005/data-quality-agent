@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "56 passing CI tests",
+      "resume_signal": "57 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 56,
+      "metric_value": 57,
       "status": "verified"
     },
     {
@@ -88,6 +88,16 @@
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_traces.py",
       "metric_name": "persistent_trace_audit",
       "metric_value": 1,
+      "status": "verified"
+    },
+    {
+      "id": "root-cause-ranking",
+      "resume_signal": "Evidence-ranked root-cause hypotheses",
+      "claim": "Reports rank root-cause hypotheses by confidence and attach supporting checks, tool evidence, and recommended actions.",
+      "evidence_type": "source_and_tests",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_agent.py",
+      "metric_name": "root_cause_hypothesis_count",
+      "metric_value": 3,
       "status": "verified"
     },
     {
@@ -161,7 +171,7 @@
       "evidence_type": "documentation",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-readiness.md",
       "metric_name": "implemented_agent_capabilities",
-      "metric_value": 7,
+      "metric_value": 8,
       "status": "verified"
     }
   ],

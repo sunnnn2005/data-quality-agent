@@ -18,6 +18,7 @@ Support operations dashboard data can silently mix duplicate ticket facts, missi
 | Findings | 5 |
 | Affected columns | 4 |
 | Recommended actions | 5 |
+| Ranked root-cause hypotheses | 3 |
 | Business-rule references | 4 |
 
 ## Issue Categories
@@ -26,6 +27,12 @@ Support operations dashboard data can silently mix duplicate ticket facts, missi
 - **Missing routing metadata**: 2 required routing fields missing across priority/team checks. Support operations cannot reliably route or prioritize every ticket.
 - **Negative customer-impact amount**: 1 negative amount found. Refund-like events are mixed into positive customer-impact facts.
 - **Extreme amount outlier**: 1 amount outlier found. Extreme values can skew reporting and need review before publication.
+
+## Ranked Root-Cause Hypotheses
+
+1. **Business-rule validation is not separating exceptional transactions from standard facts.** (confidence: 0.71; checks: negative_amount, numeric_outliers)
+2. **The ingestion pipeline may be replaying events without idempotent merge logic.** (confidence: 0.65; checks: duplicate_primary_key)
+3. **Source API or transform logic is producing incomplete fields for required analytics columns.** (confidence: 0.63; checks: missing_values)
 
 ## Resume-Safe Summary
 

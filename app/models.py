@@ -55,6 +55,14 @@ class BusinessRuleReference(BaseModel):
     matched_checks: list[str] = Field(default_factory=list)
 
 
+class RootCauseHypothesis(BaseModel):
+    title: str
+    confidence: float = Field(ge=0, le=1)
+    supporting_checks: list[str] = Field(default_factory=list)
+    evidence: list[str] = Field(default_factory=list)
+    recommended_action: str
+
+
 class LLMAssessment(BaseModel):
     enabled: bool = False
     provider: str = "disabled"
@@ -110,6 +118,7 @@ class QualityReport(BaseModel):
     findings: list[QualityFinding]
     business_rule_references: list[BusinessRuleReference] = Field(default_factory=list)
     likely_causes: list[str]
+    root_cause_hypotheses: list[RootCauseHypothesis] = Field(default_factory=list)
     recommended_next_steps: list[str]
     llm_assessment: LLMAssessment = Field(default_factory=LLMAssessment)
     verification: ReportVerification | None = None

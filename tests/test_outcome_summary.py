@@ -9,6 +9,8 @@ def test_outcome_summary_is_derived_from_business_impact_artifact():
     assert verification["outcome_summary_verified"] is True
     assert payload["verified_outcomes"]["issue_category_count"] == 4
     assert payload["verified_outcomes"]["recommended_action_count"] == 5
+    assert payload["verified_outcomes"]["root_cause_hypothesis_count"] == 3
+    assert "Ranked Root-Cause Hypotheses" in markdown
     assert len(payload["issue_categories"]) == 4
     assert "Support operations dashboard data" in payload["business_problem"]
     assert "External users" not in markdown

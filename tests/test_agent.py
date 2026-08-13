@@ -18,6 +18,10 @@ def test_orders_daily_detects_duplicates_missing_values_and_outliers():
     assert "numeric_outliers" in checks
     assert report.quality_score < 80
     assert any("idempotent" in step for step in report.recommended_next_steps)
+    assert report.root_cause_hypotheses
+    assert report.root_cause_hypotheses[0].confidence >= report.root_cause_hypotheses[-1].confidence
+    assert report.root_cause_hypotheses[0].supporting_checks
+    assert report.root_cause_hypotheses[0].evidence
 
 
 def test_payments_events_detects_freshness_and_negative_amount():
@@ -92,6 +96,7 @@ def test_toolbox_exposes_data_quality_tools():
     assert len(checks["findings"]) >= 1
     assert report["status"] == "FAIL"
     assert report["llm_assessment"]["enabled"] is False
+    assert report["root_cause_hypotheses"]
     assert strategy["recommended_next_tools"] == ["profile_dataset", "run_quality_checks", "build_quality_report"]
 
 
@@ -107,6 +112,21 @@ def test_toolbox_selects_different_quality_strategies_by_dataset_shape():
     assert "numeric_outliers" in payments_strategy["recommended_checks"]
     assert "email_completeness" in customer_strategy["recommended_checks"]
     assert payments_strategy["strategy"] != customer_strategy["strategy"]
+
+
+def test_agent_ranks_root_cause_hypotheses_with_evidence():
+    report = analyze("payments_events")
+    hypotheses = report.root_cause_hypotheses
+
+    assert hypotheses
+    assert [item.confidence for item in hypotheses] == sorted(
+        [item.confidence for item in hypotheses],
+        reverse=True,
+    )
+    assert any("freshness_sla" in item.supporting_checks for item in hypotheses)
+    assert any("negative_amount" in item.supporting_checks for item in hypotheses)
+    assert all(item.evidence for item in hypotheses)
+    assert all(item.recommended_action for item in hypotheses)
 
 
 def test_llm_tool_calling_agent_default_disabled():

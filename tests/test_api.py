@@ -252,6 +252,7 @@ def test_run_trace_endpoint_returns_sanitized_quality_report_trace():
     assert payload["trace_id"] == trace_id
     assert payload["report_type"] == "quality_report"
     assert payload["summary"]["finding_count"] >= 1
+    assert payload["summary"]["root_cause_hypotheses"]
     assert "business_rule_count" in payload["summary"]
     assert payload["summary"]["verification_passed"] is True
     assert payload["evaluation"]["final_report_attached"] is True
