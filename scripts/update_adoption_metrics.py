@@ -13,6 +13,7 @@ OUTPUT_PATH = ROOT / "docs" / "adoption-metrics.json"
 HISTORY_PATH = ROOT / "docs" / "adoption-history.jsonl"
 FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
 REPO = "sunnnn2005/data-quality-agent"
+CURRENT_RELEASE_TAG = "v0.2.0"
 
 
 def _run_gh(args: list[str]) -> dict[str, Any] | None:
@@ -44,7 +45,7 @@ def collect_metrics() -> dict[str, Any]:
         [
             "release",
             "view",
-            "v0.1.0",
+            CURRENT_RELEASE_TAG,
             "--repo",
             REPO,
             "--json",
@@ -66,8 +67,8 @@ def collect_metrics() -> dict[str, Any]:
         "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
         "release": release_payload
         or {
-            "tagName": "v0.1.0",
-            "url": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.1.0",
+            "tagName": CURRENT_RELEASE_TAG,
+            "url": f"https://github.com/sunnnn2005/data-quality-agent/releases/tag/{CURRENT_RELEASE_TAG}",
             "publishedAt": None,
             "isDraft": False,
             "isPrerelease": False,
@@ -125,7 +126,16 @@ def _collect_test_count() -> int:
     match = re.search(r"(\d+)\s+tests?\s+collected", completed.stdout)
     if match:
         return int(match.group(1))
+    existing = _load_existing_metrics()
+    if "test_count" in existing:
+        return int(existing["test_count"])
     return int(os.environ.get("ADOPTION_TEST_COUNT", "0"))
+
+
+def _load_existing_metrics() -> dict[str, Any]:
+    if OUTPUT_PATH.exists():
+        return json.loads(OUTPUT_PATH.read_text())
+    return {}
 
 
 def main() -> None:

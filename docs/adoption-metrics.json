@@ -1,5 +1,5 @@
 {
-  "commit": "e578055",
+  "commit": "07e0d5c",
   "confirmed_external_users": 0,
   "container_image": {
     "image": "ghcr.io/sunnnn2005/data-quality-agent:latest",
@@ -7,7 +7,7 @@
   },
   "external_feedback_items": 0,
   "forks": 1,
-  "generated_at": "2026-08-13T05:03:34.052928+00:00",
+  "generated_at": "2026-08-13T05:05:29.596596+00:00",
   "issues_total": 10,
   "open_feedback_loop": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
   "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
