@@ -27,6 +27,7 @@ RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
 APPLICATION_EVIDENCE_PACK_PATH = ROOT / "docs" / "application-evidence-pack.json"
 PILOT_OUTREACH_KIT_PATH = ROOT / "docs" / "pilot-outreach-kit.json"
 PILOT_PROGRAM_PLAN_PATH = ROOT / "docs" / "pilot-program-plan.json"
+FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 
@@ -58,6 +59,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     recruiter_pitch = load_json(RECRUITER_PITCH_PATH)
     pilot_outreach = load_json(PILOT_OUTREACH_KIT_PATH)
     pilot_plan = load_json(PILOT_PROGRAM_PLAN_PATH)
+    feedback_intake = load_json(FEEDBACK_INTAKE_QUALITY_PATH)
     verified_outcomes = outcome["verified_outcomes"]
     return {
         "project": "Data Quality Agent",
@@ -129,17 +131,22 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "public_traction_growth_channels": traction["growth_channel_count"],
             "public_traction_resume_upgrade_rules": len(traction["resume_upgrade_rules"]),
             "live_project_scorecard": 1,
-            "scorecard_reviewer_paths": 9,
+            "scorecard_reviewer_paths": 10,
             "openapi_required_endpoints": 6,
             "openapi_paths": len(openapi["paths"]),
             "recruiter_pitch_resume_bullets": len(recruiter_pitch["resume_bullets"]),
             "recruiter_pitch_target_roles": len(recruiter_pitch["target_roles"]),
             "application_evidence_pack": 1,
-            "application_evidence_links": 11,
+            "application_evidence_links": 12,
             "pilot_outreach_messages": len(pilot_outreach["outreach_messages"]),
             "pilot_review_paths": len(pilot_outreach["review_paths"]),
             "pilot_program_segments": len(pilot_plan["participant_segments"]),
             "pilot_program_weeks": len(pilot_plan["weekly_plan"]),
+            "feedback_intake_quality": 1,
+            "feedback_intake_required_sections": feedback_intake["required_section_count"],
+            "feedback_intake_try_paths": feedback_intake["required_try_path_count"],
+            "feedback_intake_outcomes": feedback_intake["required_outcome_count"],
+            "feedback_intake_captured_fields": feedback_intake["captured_field_count"],
             "implemented_agent_capabilities": len(readiness["implemented"]),
             "partial_agent_capabilities": len(readiness["partial"]),
         },
@@ -210,12 +217,18 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{traction['tracked_funnel_steps']} tracked funnel steps, and "
                 f"{len(traction['resume_upgrade_rules'])} resume upgrade rules"
             ),
-            "9 reviewer paths in a CI-verified live project scorecard",
+            "10 reviewer paths in a CI-verified live project scorecard",
             "CI-verified OpenAPI contract covering 6 integration endpoints",
             f"{len(recruiter_pitch['resume_bullets'])} recruiter-safe resume bullets for {len(recruiter_pitch['target_roles'])} target roles",
-            "11 application evidence links in a recruiter-ready evidence pack",
+            "12 application evidence links in a recruiter-ready evidence pack",
             f"{len(pilot_outreach['outreach_messages'])} pilot outreach messages and {len(pilot_outreach['review_paths'])} review paths for collecting real feedback",
             f"{len(pilot_plan['participant_segments'])} pilot participant segments across a {len(pilot_plan['weekly_plan'])}-week feedback plan",
+            (
+                f"Feedback intake system with {feedback_intake['required_section_count']} required sections, "
+                f"{feedback_intake['required_try_path_count']} demo paths, "
+                f"{feedback_intake['required_outcome_count']} outcome signals, and "
+                f"{feedback_intake['captured_field_count']} captured evidence groups"
+            ),
             f"{verified_outcomes['recommended_action_count']} evidence-backed remediation actions",
             f"{len(readiness['implemented'])} implemented LLM agent-readiness capabilities",
             f"{adoption['forks']} public fork and {adoption['stars']} public stars as current honest adoption baseline",
@@ -318,6 +331,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Pilot review paths | {outcomes["pilot_review_paths"]} |
 | Pilot program segments | {outcomes["pilot_program_segments"]} |
 | Pilot program weeks | {outcomes["pilot_program_weeks"]} |
+| Feedback intake quality | {outcomes["feedback_intake_quality"]} |
+| Feedback intake required sections | {outcomes["feedback_intake_required_sections"]} |
+| Feedback intake demo paths | {outcomes["feedback_intake_try_paths"]} |
+| Feedback intake outcome signals | {outcomes["feedback_intake_outcomes"]} |
+| Feedback intake captured evidence groups | {outcomes["feedback_intake_captured_fields"]} |
 | Recommended remediation actions | {outcomes["recommended_actions"]} |
 | Implemented LLM agent-readiness capabilities | {outcomes["implemented_agent_capabilities"]} |
 | Partial agent-readiness capabilities documented | {outcomes["partial_agent_capabilities"]} |
@@ -342,7 +360,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 86,
+        "test_count": 87,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -399,16 +417,21 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "public_traction_growth_channels": 12,
         "public_traction_resume_upgrade_rules": 3,
         "live_project_scorecard": 1,
-        "scorecard_reviewer_paths": 9,
+        "scorecard_reviewer_paths": 10,
         "openapi_required_endpoints": 6,
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 11,
+        "application_evidence_links": 12,
         "pilot_outreach_messages": 3,
         "pilot_review_paths": 7,
         "pilot_program_segments": 3,
         "pilot_program_weeks": 3,
+        "feedback_intake_quality": 1,
+        "feedback_intake_required_sections": 5,
+        "feedback_intake_try_paths": 5,
+        "feedback_intake_outcomes": 4,
+        "feedback_intake_captured_fields": 5,
         "recommended_actions": 5,
         "implemented_agent_capabilities": 16,
     }

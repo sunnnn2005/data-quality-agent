@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "86 passing CI tests",
-      "claim": "Automated test suite passes locally and in GitHub Actions, including the business problem casebook verifier.",
+      "resume_signal": "87 passing CI tests",
+      "claim": "Automated test suite passes locally and in GitHub Actions, including the business problem casebook and feedback intake quality verifiers.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 86,
+      "metric_value": 87,
       "status": "verified"
     },
     {
@@ -287,7 +287,7 @@
       "evidence_type": "artifact",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 11,
+      "metric_value": 12,
       "status": "verified"
     },
     {
@@ -308,6 +308,16 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-program-plan.json",
       "metric_name": "pilot_program_segment_count",
       "metric_value": 3,
+      "status": "verified"
+    },
+    {
+      "id": "feedback-intake-quality",
+      "resume_signal": "CI-verified feedback intake system",
+      "claim": "The project publishes a generated feedback-intake artifact that verifies the public demo feedback template captures reviewer path, environment, reproducibility outcome, bug or feature signals, and usefulness while preserving honest adoption and feedback baselines.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/feedback-intake-quality.json",
+      "metric_name": "feedback_intake_quality",
+      "metric_value": 1,
       "status": "verified"
     },
     {

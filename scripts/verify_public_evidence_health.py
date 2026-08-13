@@ -40,7 +40,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 86},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 87},
         "evidence_type": "json",
     },
     {
@@ -145,6 +145,14 @@ PUBLIC_CHECKS = [
         "expected_json": {"project": "Data Quality Agent", "traction_surface_count": 4, "growth_channel_count": 12},
         "expected_text": "not_claimable_yet",
         "expected_texts": ["public_demo", "feedback_issue_template", "GitHub star growth beyond the current public count"],
+        "evidence_type": "json",
+    },
+    {
+        "id": "feedback-intake-quality",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/feedback-intake-quality.json",
+        "expected_json": {"project": "Data Quality Agent", "required_section_count": 5, "captured_field_count": 5},
+        "expected_text": "CI-verified feedback intake system",
+        "expected_texts": ["external users", "survey responses"],
         "evidence_type": "json",
     },
     {

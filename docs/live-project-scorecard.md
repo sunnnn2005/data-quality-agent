@@ -6,8 +6,8 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 
 | Metric | Value |
 | --- | ---: |
-| Passing Tests | 86 |
-| Verified Resume Claims | 45 |
+| Passing Tests | 87 |
+| Verified Resume Claims | 46 |
 | Implemented Agent Capabilities | 16 |
 | Support Ticket Issue Categories | 4 |
 | Openapi Required Endpoints | 6 |
@@ -31,6 +31,7 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 - [Inspect impact review packet](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/impact-review-packet.md)
 - [Inspect business problem casebook](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md)
 - [Inspect public traction dashboard](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-traction-dashboard.md)
+- [Inspect feedback intake quality](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/feedback-intake-quality.md)
 - [Inspect OpenAPI contract](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/api-contract.md)
 - [Inspect safety boundaries](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-safety-boundaries.md)
 - [Run the local reviewer demo](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/local-reviewer-demo.md)
@@ -51,10 +52,11 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 | Has Impact Review Packet | True |
 | Has Business Problem Casebook | True |
 | Has Public Traction Dashboard | True |
+| Has Feedback Intake Quality | True |
 
 ## Resume-Safe Summary
 
-Live project scorecard: public demo, v0.2.0 release, container image, 86 passing CI tests, 45 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
+Live project scorecard: public demo, v0.2.0 release, container image, 87 passing CI tests, 46 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
 
 ## Not Claimed
 

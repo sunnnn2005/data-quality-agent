@@ -1,0 +1,38 @@
+{
+  "captured_field_count": 5,
+  "captured_fields": {
+    "confusion_or_gap": true,
+    "environment": true,
+    "outcome_labels": true,
+    "positive_signal": true,
+    "review_path": true
+  },
+  "current_public_counts": {
+    "bug_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "feature_feedback_items": 8,
+    "reproducible_feedback_items": 0
+  },
+  "feedback_issue_template": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+  "generated_by": "scripts/build_feedback_intake_quality.py",
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "production usage",
+    "survey responses"
+  ],
+  "project": "Data Quality Agent",
+  "required_outcome_count": 4,
+  "required_section_count": 5,
+  "required_try_path_count": 5,
+  "resume_safe_summary": "Added a CI-verified feedback intake system that collects reviewer path, environment, reproducibility outcome, bug/feature signals, and real-workflow usefulness without claiming external users or customer feedback.",
+  "template_path": ".github/ISSUE_TEMPLATE/demo_feedback.md",
+  "tracking_labels": {
+    "bug_feedback_items": "bug",
+    "confirmed_external_users": "confirmed-user",
+    "external_feedback_items": "feedback",
+    "feature_feedback_items": "enhancement",
+    "reproducible_feedback_items": "reproducible"
+  }
+}
