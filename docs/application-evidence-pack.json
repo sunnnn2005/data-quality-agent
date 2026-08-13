@@ -36,11 +36,11 @@
     "enterprise production usage",
     "GitHub stars beyond the current public count"
   ],
-  "one_line_project_proof": "Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 69 tests, 29 verified resume claims, and honest adoption baselines.",
+  "one_line_project_proof": "Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 70 tests, 30 verified resume claims, and honest adoption baselines.",
   "project": "Data Quality Agent",
   "resume_bullets": [
     "Built an LLM tool-calling data-quality agent for real business CSV and read-only PostgreSQL data, with 5 allowed tools, dynamic strategy selection, 6 verified API integration endpoints, and safe model-key fallback.",
-    "Published a public demo, v0.2.0 release, GHCR container image, and CI-verified live project scorecard with 69 passing tests, 29 verified resume claims, and 14 implemented LLM agent-readiness capabilities.",
+    "Published a public demo, v0.2.0 release, GHCR container image, and CI-verified live project scorecard with 70 passing tests, 30 verified resume claims, and 14 implemented LLM agent-readiness capabilities.",
     "Added enterprise-style guardrails for agent reliability, including read-only PostgreSQL query limits, 3 rejected unsafe SQL queries, sensitive-field redaction, trace observability, incident-pattern memory, evidence-backed root-cause hypotheses, and deterministic report verification."
   ],
   "target_roles": [
@@ -53,11 +53,11 @@
     "agent_tools_allowed": 5,
     "implemented_agent_capabilities": 14,
     "openapi_required_endpoints": 6,
-    "passing_tests": 69,
+    "passing_tests": 70,
     "recruiter_safe_resume_bullets": 3,
     "rejected_unsafe_postgres_queries": 3,
     "support_ticket_issue_categories": 4,
     "target_roles": 4,
-    "verified_resume_claims": 29
+    "verified_resume_claims": 30
   }
 }

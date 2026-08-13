@@ -17,6 +17,7 @@ LIVE_SCORECARD_PATH = ROOT / "docs" / "live-project-scorecard.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
 APPLICATION_EVIDENCE_PACK_PATH = ROOT / "docs" / "application-evidence-pack.json"
+PILOT_OUTREACH_KIT_PATH = ROOT / "docs" / "pilot-outreach-kit.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 
@@ -39,6 +40,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     openapi = load_json(OPENAPI_PATH)
     recruiter_pitch = load_json(RECRUITER_PITCH_PATH)
     application_pack = load_json(APPLICATION_EVIDENCE_PACK_PATH)
+    pilot_outreach = load_json(PILOT_OUTREACH_KIT_PATH)
     verified_outcomes = outcome["verified_outcomes"]
     return {
         "project": "Data Quality Agent",
@@ -78,6 +80,8 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "recruiter_pitch_target_roles": len(recruiter_pitch["target_roles"]),
             "application_evidence_pack": 1,
             "application_evidence_links": len(application_pack["application_links"]),
+            "pilot_outreach_messages": len(pilot_outreach["outreach_messages"]),
+            "pilot_review_paths": len(pilot_outreach["review_paths"]),
             "implemented_agent_capabilities": len(readiness["implemented"]),
             "partial_agent_capabilities": len(readiness["partial"]),
         },
@@ -101,6 +105,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "CI-verified OpenAPI contract covering 6 integration endpoints",
             f"{len(recruiter_pitch['resume_bullets'])} recruiter-safe resume bullets for {len(recruiter_pitch['target_roles'])} target roles",
             f"{len(application_pack['application_links'])} application evidence links in a recruiter-ready evidence pack",
+            f"{len(pilot_outreach['outreach_messages'])} pilot outreach messages and {len(pilot_outreach['review_paths'])} review paths for collecting real feedback",
             f"{verified_outcomes['recommended_action_count']} evidence-backed remediation actions",
             f"{len(readiness['implemented'])} implemented LLM agent-readiness capabilities",
             f"{adoption['forks']} public fork and {adoption['stars']} public stars as current honest adoption baseline",
@@ -160,6 +165,8 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recruiter pitch target roles | {outcomes["recruiter_pitch_target_roles"]} |
 | Application evidence pack | {outcomes["application_evidence_pack"]} |
 | Application evidence links | {outcomes["application_evidence_links"]} |
+| Pilot outreach messages | {outcomes["pilot_outreach_messages"]} |
+| Pilot review paths | {outcomes["pilot_review_paths"]} |
 | Recommended remediation actions | {outcomes["recommended_actions"]} |
 | Implemented LLM agent-readiness capabilities | {outcomes["implemented_agent_capabilities"]} |
 | Partial agent-readiness capabilities documented | {outcomes["partial_agent_capabilities"]} |
@@ -184,7 +191,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 69,
+        "test_count": 70,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -209,6 +216,8 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
         "application_evidence_links": 8,
+        "pilot_outreach_messages": 3,
+        "pilot_review_paths": 7,
         "recommended_actions": 5,
         "implemented_agent_capabilities": 14,
     }

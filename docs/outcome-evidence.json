@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "69 passing CI tests",
+      "resume_signal": "70 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 69,
+      "metric_value": 70,
       "status": "verified"
     },
     {
@@ -158,6 +158,16 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json",
       "metric_name": "application_evidence_link_count",
       "metric_value": 8,
+      "status": "verified"
+    },
+    {
+      "id": "pilot-outreach-kit",
+      "resume_signal": "CI-verified pilot outreach kit",
+      "claim": "The project publishes outreach messages, review paths, tracking rules, and target feedback metrics to collect real public feedback without inflating current adoption.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-outreach-kit.json",
+      "metric_name": "pilot_outreach_message_count",
+      "metric_value": 3,
       "status": "verified"
     },
     {

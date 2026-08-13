@@ -1,0 +1,56 @@
+{
+  "generated_by": "scripts/build_pilot_outreach_kit.py",
+  "goal": "Collect real public feedback from people who try the demo, read the scorecard, or run the project locally, without claiming adoption until feedback is linked to public evidence.",
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "enterprise production usage",
+    "GitHub stars beyond the current public count"
+  ],
+  "outreach_messages": [
+    {
+      "audience": "recruiter_or_hiring_manager",
+      "channel": "linkedin_or_email",
+      "message": "Hi, I built a public LLM data-quality agent project that analyzes CSV and read-only PostgreSQL business data. It includes a live demo, container image, OpenAPI contract, CI-verified scorecard, and an evidence pack that keeps user and feedback claims honest. If helpful, I would appreciate any feedback on whether this project demonstrates enough AI engineering depth for internship roles."
+    },
+    {
+      "audience": "student_developer",
+      "channel": "discord_slack_or_club",
+      "message": "I am testing a data-quality LLM agent project for internship applications. Could you try the public demo or skim the scorecard and leave one GitHub issue with anything confusing, useful, or broken? I am tracking feedback publicly instead of claiming users without evidence."
+    },
+    {
+      "audience": "open_source_reviewer",
+      "channel": "github_issue_or_readme",
+      "message": "Review request: does this repo make the LLM agent behavior, safety boundaries, evidence trail, and not-claimed adoption metrics clear enough? Please use the demo feedback, bug report, or feature request template so the feedback can be reproduced and counted honestly."
+    }
+  ],
+  "project": "Data Quality Agent",
+  "review_paths": {
+    "application_evidence_pack": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/application-evidence-pack.md",
+    "bug_report": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md",
+    "feature_request": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md",
+    "feedback_issue": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+    "github_repo": "https://github.com/sunnnn2005/data-quality-agent",
+    "live_scorecard": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/live-project-scorecard.md",
+    "quick_demo": "https://sunnnn2005.github.io/data-quality-agent/"
+  },
+  "success_metrics": {
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0,
+    "target_confirmed_external_users": 1,
+    "target_first_feedback_items": 3
+  },
+  "target_audiences": [
+    "UC Davis data science classmates",
+    "data science or AI club members",
+    "student developers interested in LLM agents",
+    "technical recruiters or hiring managers reviewing internship projects"
+  ],
+  "tracking_rules": [
+    "Only count feedback that is linked from a public GitHub issue or reproducible external note.",
+    "Only count a user after they explicitly confirm they tried the demo or ran the project.",
+    "Do not count private compliments, application submissions, or self-testing as external users.",
+    "Keep stars, users, and feedback as zero until public metrics prove otherwise."
+  ]
+}

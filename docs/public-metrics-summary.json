@@ -33,7 +33,7 @@
     "issues_total": 10,
     "reproducible_feedback_items": 0,
     "stars": 0,
-    "test_count": 69,
+    "test_count": 70,
     "watchers": 0
   },
   "release": "v0.2.0",
@@ -41,7 +41,7 @@
   "resume_policy": "Use public demo, release, CI, container, support-ticket outcomes, and readiness metrics now. Do not claim external users, customer feedback, or production adoption until corresponding public metrics are greater than zero.",
   "resume_safe_signals": [
     "Public demo and v0.2.0 release",
-    "69 passing CI tests",
+    "70 passing CI tests",
     "4 support-ticket issue categories",
     "3 evidence-ranked root-cause hypotheses",
     "Dataset-level memory retrieval over recent sanitized traces",
@@ -54,6 +54,7 @@
     "CI-verified OpenAPI contract covering 6 integration endpoints",
     "3 recruiter-safe resume bullets for 4 target roles",
     "8 application evidence links in a recruiter-ready evidence pack",
+    "3 pilot outreach messages and 7 review paths for collecting real feedback",
     "5 evidence-backed remediation actions",
     "14 implemented LLM agent-readiness capabilities",
     "1 public fork and 0 public stars as current honest adoption baseline"
@@ -71,6 +72,8 @@
     "openapi_paths": 14,
     "openapi_required_endpoints": 6,
     "partial_agent_capabilities": 4,
+    "pilot_outreach_messages": 3,
+    "pilot_review_paths": 7,
     "postgres_rejected_write_query_count": 3,
     "recommended_actions": 5,
     "recruiter_pitch_resume_bullets": 3,
