@@ -1,5 +1,5 @@
 {
-  "check_count": 61,
+  "check_count": 62,
   "checks": [
     {
       "evidence_type": "html",
@@ -535,6 +535,19 @@
       ]
     },
     {
+      "evidence_type": "json",
+      "id": "reviewer-submission-hub",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-submission-hub.json",
+      "verified_fields": [
+        "project",
+        "submission_path_count",
+        "target_metric_count",
+        "total_required_evidence_fields"
+      ]
+    },
+    {
       "evidence_type": "html",
       "id": "reviewer-landing-page",
       "passed": true,
@@ -662,6 +675,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 61,
+  "passed_count": 62,
   "status": "PASS"
 }
