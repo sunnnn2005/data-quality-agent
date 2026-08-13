@@ -18,7 +18,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Signal | Verified result |
 | --- | --- |
 | Public demo | [sunnnn2005.github.io/data-quality-agent](https://sunnnn2005.github.io/data-quality-agent/) |
-| Test suite | 22 automated tests passing locally and in GitHub Actions |
+| Test suite | 25 automated tests passing locally and in GitHub Actions |
 | CSV safety limit | 10,000 rows, 80 columns, 2 MB upload limit |
 | Report score | 24 / 100, status `FAIL` |
 | Evidence-backed findings | duplicate `ticket_id`, missing `team` / `priority`, negative `amount`, and an `amount` outlier |
@@ -53,6 +53,25 @@ Current deterministic baseline on three built-in scenarios:
 | Fallback success rate | 1.0 |
 
 The tool-calling agent eval also runs in CI without a model key and verifies safe disabled fallback behavior. Real model evals should be run separately with explicit provider credentials and cost tracking.
+
+## Run Trace Export
+
+Every report response includes a `trace_id`. The demo API keeps a bounded in-memory trace store so a run can be audited after execution:
+
+```bash
+curl -X POST http://127.0.0.1:8000/datasets/orders_daily/quality-report
+curl http://127.0.0.1:8000/runs/run_<trace_id>
+```
+
+Trace records include:
+
+- dataset id, owner, status, and report type
+- quality score, row count, finding count, and finding check names
+- tool-call names and result previews for agent reports
+- evaluation flags such as evidence support and report attachment
+- fallback status and error reason when the LLM agent is disabled
+
+The trace store is intentionally demo-scoped: it keeps at most 100 in-memory traces, does not persist uploaded CSV files, and stores sanitized summaries rather than raw row data.
 
 ## The Model
 
@@ -173,6 +192,7 @@ POST /datasets/{dataset_id}/quality-report
 POST /datasets/{dataset_id}/agent-report
 POST /business-data/quality-report
 POST /business-data/agent-report
+GET  /runs/{trace_id}
 GET  /dashboard
 ```
 
@@ -227,11 +247,13 @@ app/
   checks.py      Deterministic data-quality checks
   data.py        Local datasets and contracts
   dashboard.py   Demo UI
+  evals.py       Evaluation harness for known scenarios
   llm.py         OpenAI-compatible structured-output advisor
   main.py        FastAPI routes
   models.py      Typed report contracts
   profiler.py    Column-level profiling
   tool_agent.py  LLM tool-calling agent loop
+  traces.py      Bounded in-memory run trace store
 docs/
   architecture.md
   spec.md

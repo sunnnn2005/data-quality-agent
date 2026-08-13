@@ -303,7 +303,7 @@
       </div>
 
       <div class="metric-grid" aria-label="Verified project metrics">
-        <div class="metric"><strong>22</strong><span>automated tests passing locally and in CI</span></div>
+        <div class="metric"><strong>25</strong><span>automated tests passing locally and in CI</span></div>
         <div class="metric"><strong>10K × 80</strong><span>bounded CSV upload limit: rows × columns</span></div>
         <div class="metric"><strong>4</strong><span>reproducible support-ticket issue categories</span></div>
         <div class="metric"><strong>0 secrets</strong><span>default path runs without paid APIs or model keys</span></div>
@@ -346,6 +346,7 @@
         This is the verified output from running the deterministic engine on <code>examples/support_tickets.csv</code>.
         The agent separates facts, likely causes, and remediation steps instead of returning a vague summary.
         A lightweight eval harness also verifies status accuracy, finding recall, evidence support, and fallback behavior.
+        Each API report now returns a trace id for sanitized run review through <code>/runs/{trace_id}</code>.
       </p>
       <div class="report">
         <div class="score">
@@ -375,7 +376,7 @@
         <div class="step"><span>02</span>Profile columns, missingness, uniqueness, and samples</div>
         <div class="step"><span>03</span>Run schema, duplicate-key, freshness, domain, and outlier checks</div>
         <div class="step"><span>04</span>Score severity and rank likely causes from evidence</div>
-        <div class="step"><span>05</span>Return structured report, tool trace, fallback state, and next steps</div>
+        <div class="step"><span>05</span>Return structured report, trace id, fallback state, and next steps</div>
       </div>
     </section>
 

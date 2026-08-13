@@ -67,6 +67,7 @@ class AgentToolCall(BaseModel):
 
 
 class AgentRunReport(BaseModel):
+    trace_id: str | None = None
     dataset: DatasetSummary
     generated_at: datetime
     status: Literal["PASS", "WARN", "FAIL", "DISABLED", "ERROR"]
@@ -78,6 +79,7 @@ class AgentRunReport(BaseModel):
 
 
 class QualityReport(BaseModel):
+    trace_id: str | None = None
     dataset: DatasetSummary
     generated_at: datetime
     quality_score: int = Field(ge=0, le=100)
@@ -88,3 +90,18 @@ class QualityReport(BaseModel):
     recommended_next_steps: list[str]
     llm_assessment: LLMAssessment = Field(default_factory=LLMAssessment)
     agent_trace: list[str]
+
+
+class StoredRunTrace(BaseModel):
+    trace_id: str
+    dataset_id: str
+    dataset_name: str
+    owner: str
+    generated_at: datetime
+    status: str
+    report_type: Literal["quality_report", "agent_report"]
+    summary: dict[str, Any] = Field(default_factory=dict)
+    tool_calls: list[AgentToolCall] = Field(default_factory=list)
+    evaluation: dict[str, Any] = Field(default_factory=dict)
+    fallback_status: str | None = None
+    error: str | None = None

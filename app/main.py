@@ -10,11 +10,13 @@ from app.data import DATASETS, load_dataset
 from app.models import AgentRunReport, DatasetProfile, DatasetSummary, QualityReport
 from app.profiler import DatasetProfiler
 from app.tool_agent import LLMDataQualityAgent
+from app.traces import RunTraceStore
 
 app = FastAPI(title="Data Quality Agent", version="1.0.0")
 agent = DataQualityAgent()
 llm_agent = LLMDataQualityAgent()
 profiler = DatasetProfiler()
+trace_store = RunTraceStore()
 
 
 @app.get("/health")
@@ -48,7 +50,7 @@ def create_quality_report(dataset_id: str):
     dataset = DATASETS.get(dataset_id)
     if dataset is None:
         raise HTTPException(status_code=404, detail="Dataset not found")
-    return agent.analyze(dataset, load_dataset(dataset_id))
+    return trace_store.save_quality_report(agent.analyze(dataset, load_dataset(dataset_id)))
 
 
 @app.post("/datasets/{dataset_id}/agent-report", response_model=AgentRunReport)
@@ -56,19 +58,27 @@ def create_agent_report(dataset_id: str):
     dataset = DATASETS.get(dataset_id)
     if dataset is None:
         raise HTTPException(status_code=404, detail="Dataset not found")
-    return llm_agent.run(dataset, load_dataset(dataset_id))
+    return trace_store.save_agent_report(llm_agent.run(dataset, load_dataset(dataset_id)))
 
 
 @app.post("/business-data/quality-report", response_model=QualityReport)
 async def create_business_quality_report(request: Annotated[BusinessDataRequest, Depends()]):
     dataset, frame = await load_business_csv(request)
-    return agent.analyze(dataset, frame)
+    return trace_store.save_quality_report(agent.analyze(dataset, frame))
 
 
 @app.post("/business-data/agent-report", response_model=AgentRunReport)
 async def create_business_agent_report(request: Annotated[BusinessDataRequest, Depends()]):
     dataset, frame = await load_business_csv(request)
-    return llm_agent.run(dataset, frame)
+    return trace_store.save_agent_report(llm_agent.run(dataset, frame))
+
+
+@app.get("/runs/{trace_id}")
+def get_run_trace(trace_id: str):
+    trace = trace_store.get(trace_id)
+    if trace is None:
+        raise HTTPException(status_code=404, detail="Run trace not found")
+    return trace
 
 
 @app.get("/dashboard", response_class=HTMLResponse)

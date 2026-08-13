@@ -39,6 +39,7 @@ def test_quality_report_endpoint_returns_findings():
     assert response.status_code == 200
     payload = response.json()
     assert payload["status"] == "FAIL"
+    assert payload["trace_id"].startswith("run_")
     assert payload["findings"]
     assert payload["agent_trace"]
 
@@ -95,6 +96,7 @@ def test_business_csv_agent_report_is_disabled_without_key_but_uses_real_dataset
     assert response.status_code == 200
     payload = response.json()
     assert payload["status"] == "DISABLED"
+    assert payload["trace_id"].startswith("run_")
     assert payload["dataset"]["name"] == "Customer Export"
     assert payload["error"] == "OPENAI_API_KEY is not configured"
 
@@ -138,3 +140,49 @@ def test_support_ticket_case_study_produces_reproducible_business_findings():
     assert "missing_values" in checks
     assert "negative_amount" in checks
     assert "numeric_outliers" in checks
+
+
+def test_run_trace_endpoint_returns_sanitized_quality_report_trace():
+    response = client.post("/datasets/orders_daily/quality-report")
+    trace_id = response.json()["trace_id"]
+
+    trace_response = client.get(f"/runs/{trace_id}")
+
+    assert trace_response.status_code == 200
+    payload = trace_response.json()
+    assert payload["trace_id"] == trace_id
+    assert payload["report_type"] == "quality_report"
+    assert payload["summary"]["finding_count"] >= 1
+    assert payload["evaluation"]["final_report_attached"] is True
+    assert "agent_trace" not in payload
+
+
+def test_run_trace_endpoint_records_disabled_agent_fallback_without_raw_rows():
+    csv = "customer_id,email,lifetime_value\n1,a@example.com,10\n2,,20\n"
+    response = client.post(
+        "/business-data/agent-report",
+        data={
+            "dataset_name": "Customer Export",
+            "owner": "growth",
+            "primary_key": "customer_id",
+            "expected_columns": "customer_id,email,lifetime_value",
+        },
+        files={"file": ("customers.csv", csv, "text/csv")},
+    )
+    trace_id = response.json()["trace_id"]
+
+    trace_response = client.get(f"/runs/{trace_id}")
+
+    assert trace_response.status_code == 200
+    payload = trace_response.json()
+    assert payload["report_type"] == "agent_report"
+    assert payload["fallback_status"] == "agent_disabled"
+    assert payload["error"] == "OPENAI_API_KEY is not configured"
+    assert "a@example.com" not in trace_response.text
+
+
+def test_run_trace_endpoint_returns_404_for_unknown_trace():
+    response = client.get("/runs/run_missing")
+
+    assert response.status_code == 404
+    assert response.json()["detail"] == "Run trace not found"
