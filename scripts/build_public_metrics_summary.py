@@ -16,6 +16,7 @@ AGENT_SAFETY_PATH = ROOT / "docs" / "agent-safety-boundaries.json"
 LOCAL_REVIEWER_DEMO_PATH = ROOT / "docs" / "local-reviewer-demo.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
+DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
 APPLICATION_EVIDENCE_PACK_PATH = ROOT / "docs" / "application-evidence-pack.json"
@@ -42,6 +43,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     local_demo = load_json(LOCAL_REVIEWER_DEMO_PATH)
     api_smoke = load_json(API_SMOKE_REPORT_PATH)
     performance = load_json(PERFORMANCE_BASELINE_PATH)
+    demo_usage = load_json(DEMO_USAGE_BASELINE_PATH)
     openapi = load_json(OPENAPI_PATH)
     recruiter_pitch = load_json(RECRUITER_PITCH_PATH)
     application_pack = load_json(APPLICATION_EVIDENCE_PACK_PATH)
@@ -94,6 +96,9 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "performance_baseline": 1,
             "performance_benchmark_count": performance["benchmark_count"],
             "performance_measured_endpoint_calls": sum(check["iterations"] for check in performance["checks"]),
+            "demo_usage_baseline": 1,
+            "demo_usage_tracked_funnel_steps": len(demo_usage["tracked_usage_funnel"]),
+            "demo_usage_entrypoints_verified": sum(1 for value in demo_usage["demo_entrypoints_verified"].values() if value),
             "live_project_scorecard": 1,
             "scorecard_reviewer_paths": 6,
             "openapi_required_endpoints": 6,
@@ -143,6 +148,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             (
                 f"CI-verified local performance baseline covering {performance['benchmark_count']} route benchmarks "
                 f"and {sum(check['iterations'] for check in performance['checks'])} measured endpoint calls"
+            ),
+            (
+                f"Public demo usage baseline with {len(demo_usage['tracked_usage_funnel'])} tracked funnel steps and "
+                f"{sum(1 for value in demo_usage['demo_entrypoints_verified'].values() if value)} verified entrypoints"
             ),
             "6 reviewer paths in a CI-verified live project scorecard",
             "CI-verified OpenAPI contract covering 6 integration endpoints",
@@ -217,6 +226,9 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Performance baseline | {outcomes["performance_baseline"]} |
 | Performance route benchmarks | {outcomes["performance_benchmark_count"]} |
 | Performance measured endpoint calls | {outcomes["performance_measured_endpoint_calls"]} |
+| Demo usage baseline | {outcomes["demo_usage_baseline"]} |
+| Demo usage tracked funnel steps | {outcomes["demo_usage_tracked_funnel_steps"]} |
+| Demo usage entrypoints verified | {outcomes["demo_usage_entrypoints_verified"]} |
 | Live project scorecard | {outcomes["live_project_scorecard"]} |
 | Scorecard reviewer paths | {outcomes["scorecard_reviewer_paths"]} |
 | OpenAPI required integration endpoints | {outcomes["openapi_required_endpoints"]} |
@@ -253,7 +265,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 80,
+        "test_count": 81,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -286,6 +298,9 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "performance_baseline": 1,
         "performance_benchmark_count": 2,
         "performance_measured_endpoint_calls": 24,
+        "demo_usage_baseline": 1,
+        "demo_usage_tracked_funnel_steps": 5,
+        "demo_usage_entrypoints_verified": 4,
         "live_project_scorecard": 1,
         "scorecard_reviewer_paths": 6,
         "openapi_required_endpoints": 6,

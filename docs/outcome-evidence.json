@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "80 passing CI tests",
+      "resume_signal": "81 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 80,
+      "metric_value": 81,
       "status": "verified"
     },
     {
@@ -109,6 +109,16 @@
       "evidence_type": "artifact",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/performance-baseline.json",
       "metric_name": "performance_baseline",
+      "metric_value": 1,
+      "status": "verified"
+    },
+    {
+      "id": "demo-usage-baseline",
+      "resume_signal": "Public demo usage baseline",
+      "claim": "The project publishes a generated demo usage baseline that verifies public demo entrypoints and tracks feedback issues, GitHub stars, and forks without claiming visitor analytics or product adoption.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/demo-usage-baseline.json",
+      "metric_name": "demo_usage_baseline",
       "metric_value": 1,
       "status": "verified"
     },

@@ -39,6 +39,9 @@ jobs:
 
       - name: Verify performance baseline artifact
         run: python scripts/build_performance_baseline.py
+
+      - name: Verify demo usage baseline artifact
+        run: python scripts/build_demo_usage_baseline.py
       - name: Verify live project scorecard
         run: python scripts/build_live_project_scorecard.py
       - name: Verify recruiter pitch artifact
@@ -65,7 +68,7 @@ jobs:
           ADOPTION_FORKS: "1"
           ADOPTION_WATCHERS: "0"
           ADOPTION_ISSUES_TOTAL: "10"
-          ADOPTION_TEST_COUNT: "80"
+          ADOPTION_TEST_COUNT: "81"
         run: python scripts/update_adoption_metrics.py
       - name: Verify outcome evidence manifest
         run: python scripts/verify_outcome_evidence.py

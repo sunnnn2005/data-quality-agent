@@ -1,0 +1,66 @@
+{
+  "demo_entrypoints_verified": {
+    "adoption_metrics_link": true,
+    "feedback_metrics_link": true,
+    "resume_evidence_link": true,
+    "try_feedback_button": true
+  },
+  "demo_links": {
+    "adoption_metrics": "https://sunnnn2005.github.io/data-quality-agent/adoption-metrics.json",
+    "feedback_issue": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+    "feedback_metrics": "https://sunnnn2005.github.io/data-quality-agent/feedback-metrics.json",
+    "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
+    "resume_evidence": "https://sunnnn2005.github.io/data-quality-agent/resume-evidence.md"
+  },
+  "generated_by": "scripts/build_demo_usage_baseline.py",
+  "not_claimed": [
+    "No visitor analytics are claimed because GitHub Pages traffic logs are not available in this project.",
+    "No external users are claimed.",
+    "No customer feedback is claimed.",
+    "No production adoption is claimed."
+  ],
+  "project": "Data Quality Agent",
+  "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
+  "release": "v0.2.0",
+  "repo": "https://github.com/sunnnn2005/data-quality-agent",
+  "resume_safe_summary": "Published a public demo usage baseline that verifies demo entrypoints and tracks stars, forks, feedback issues, and reproducible feedback from an honest zero-adoption baseline.",
+  "tracked_counts": {
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "forks": 1,
+    "reproducible_feedback_items": 0,
+    "stars": 0
+  },
+  "tracked_usage_funnel": [
+    {
+      "current_count": null,
+      "status": "not_measured",
+      "step": "view_public_demo",
+      "tracking_source": "GitHub Pages public URL"
+    },
+    {
+      "current_count": 0,
+      "status": "tracked",
+      "step": "submit_feedback_issue",
+      "tracking_source": "GitHub issues with feedback label"
+    },
+    {
+      "current_count": 0,
+      "status": "tracked",
+      "step": "confirmed_external_user",
+      "tracking_source": "GitHub issues with confirmed-user label"
+    },
+    {
+      "current_count": 0,
+      "status": "tracked",
+      "step": "star_repository",
+      "tracking_source": "GitHub repository stars"
+    },
+    {
+      "current_count": 1,
+      "status": "tracked",
+      "step": "fork_repository",
+      "tracking_source": "GitHub repository forks"
+    }
+  ]
+}

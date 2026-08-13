@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 80
+    assert payload["public_metrics"]["test_count"] == 81
     assert payload["verified_project_outcomes"]["root_cause_hypotheses"] == 3
     assert payload["verified_project_outcomes"]["business_risk_areas"] == 4
     assert payload["verified_project_outcomes"]["high_priority_actions"] == 3
@@ -38,6 +38,9 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["performance_baseline"] == 1
     assert payload["verified_project_outcomes"]["performance_benchmark_count"] == 2
     assert payload["verified_project_outcomes"]["performance_measured_endpoint_calls"] == 24
+    assert payload["verified_project_outcomes"]["demo_usage_baseline"] == 1
+    assert payload["verified_project_outcomes"]["demo_usage_tracked_funnel_steps"] == 5
+    assert payload["verified_project_outcomes"]["demo_usage_entrypoints_verified"] == 4
     assert payload["verified_project_outcomes"]["live_project_scorecard"] == 1
     assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 6
     assert payload["verified_project_outcomes"]["openapi_required_endpoints"] == 6
@@ -68,6 +71,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert "CI-verified API smoke report covering 6 passing FastAPI route checks" in payload["resume_safe_signals"]
     assert (
         "CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls"
+        in payload["resume_safe_signals"]
+    )
+    assert (
+        "Public demo usage baseline with 5 tracked funnel steps and 4 verified entrypoints"
         in payload["resume_safe_signals"]
     )
     assert "6 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
