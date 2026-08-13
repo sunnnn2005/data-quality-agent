@@ -1,4 +1,4 @@
-from scripts.verify_public_evidence_health import PUBLIC_CHECKS, verify_public_evidence_health
+from scripts.verify_public_evidence_health import PUBLIC_CHECKS, _cache_busted_url, verify_public_evidence_health
 
 
 def test_public_evidence_health_requires_core_public_signals():
@@ -80,3 +80,11 @@ def test_public_evidence_health_verifier_rejects_failed_checks():
         assert "public evidence health failed" in str(exc)
     else:
         raise AssertionError("expected failed public evidence health payload to raise")
+
+
+def test_public_evidence_health_cache_busts_raw_github_urls_only():
+    raw_url = "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json"
+    page_url = "https://sunnnn2005.github.io/data-quality-agent/review.html"
+
+    assert _cache_busted_url(raw_url, "abc123").endswith("?cache_bust=abc123")
+    assert _cache_busted_url(page_url, "abc123") == page_url

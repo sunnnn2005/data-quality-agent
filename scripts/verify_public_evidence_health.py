@@ -1,4 +1,5 @@
 import json
+import subprocess
 import sys
 import urllib.error
 import urllib.request
@@ -9,6 +10,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_PATH = ROOT / "docs" / "public-evidence-health.json"
 TIMEOUT_SECONDS = 15
+RAW_GITHUB_HOST = "https://raw.githubusercontent.com/"
 
 
 PUBLIC_CHECKS = [
@@ -49,7 +51,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 107},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 108},
         "evidence_type": "json",
     },
     {
@@ -306,7 +308,7 @@ PUBLIC_CHECKS = [
             "Submit Feedback",
             "issues/17",
             "External feedback starts at zero",
-            "107 tests",
+            "108 tests",
         ],
         "evidence_type": "html",
     },
@@ -407,8 +409,30 @@ PUBLIC_CHECKS = [
 ]
 
 
-def _fetch(url: str) -> tuple[int, str]:
-    request = urllib.request.Request(url, headers={"User-Agent": "data-quality-agent-public-health/1.0"})
+def _current_commit() -> str:
+    try:
+        completed = subprocess.run(
+            ["git", "rev-parse", "--short", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+            cwd=ROOT,
+        )
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        return "unknown"
+    return completed.stdout.strip() or "unknown"
+
+
+def _cache_busted_url(url: str, commit: str) -> str:
+    if not url.startswith(RAW_GITHUB_HOST):
+        return url
+    separator = "&" if "?" in url else "?"
+    return f"{url}{separator}cache_bust={commit}"
+
+
+def _fetch(url: str, commit: str | None = None) -> tuple[int, str]:
+    request_url = _cache_busted_url(url, commit or _current_commit())
+    request = urllib.request.Request(request_url, headers={"User-Agent": "data-quality-agent-public-health/1.0"})
     try:
         with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:
             body = response.read().decode("utf-8", errors="replace")

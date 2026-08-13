@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 12 |
-| Passing CI tests | 107 |
+| Passing CI tests | 108 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -19,7 +19,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | GitHub clones | 79 |
 | GitHub unique cloners | 50 |
 | Available public endpoints | 4 / 4 |
-| Successful main-branch workflows | 3 / 3 |
+| Successful main-branch workflows | 2 / 3 |
 
 ## Verified Project Outcomes
 
@@ -84,7 +84,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Public availability snapshot | 1 |
 | Public availability endpoints | 4 |
 | Public availability reachable endpoints | 4 |
-| Public availability successful workflows | 3 |
+| Public availability successful workflows | 2 |
 | Live project scorecard | 1 |
 | Scorecard reviewer paths | 15 |
 | OpenAPI required integration endpoints | 6 |
@@ -166,7 +166,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 107 passing CI tests
+- 108 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -195,7 +195,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Business problem casebook with 1 verified case, 4 detected business risks, and 4 owner handoffs
 - Public traction dashboard with 4 live project surfaces, 17 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
 - GitHub traffic snapshot with 9 views, 3 unique visitors, 79 clones, and 50 unique cloners in GitHub's rolling 14-day window
-- Public availability snapshot with 4/4 reachable public endpoints and 3/3 successful main-branch workflows
+- Public availability snapshot with 4/4 reachable public endpoints and 2/3 successful main-branch workflows
 - 15 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles

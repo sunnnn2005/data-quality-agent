@@ -7,7 +7,7 @@
       "error": null,
       "expected_text": "Data Quality Agent",
       "id": "public_demo",
-      "latency_ms": 229,
+      "latency_ms": 202,
       "status_code": 200,
       "surface": "GitHub Pages",
       "url": "https://sunnnn2005.github.io/data-quality-agent/"
@@ -17,7 +17,7 @@
       "error": null,
       "expected_text": "8-minute public review",
       "id": "reviewer_landing_page",
-      "latency_ms": 85,
+      "latency_ms": 215,
       "status_code": 200,
       "surface": "GitHub Pages",
       "url": "https://sunnnn2005.github.io/data-quality-agent/review.html"
@@ -27,7 +27,7 @@
       "error": null,
       "expected_text": "/business-data/agent-report",
       "id": "openapi_contract",
-      "latency_ms": 210,
+      "latency_ms": 218,
       "status_code": 200,
       "surface": "GitHub raw artifact",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/openapi.json"
@@ -37,15 +37,15 @@
       "error": null,
       "expected_text": "resume_safe_signals",
       "id": "public_metrics",
-      "latency_ms": 214,
+      "latency_ms": 222,
       "status_code": 200,
       "surface": "GitHub raw artifact",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-metrics-summary.json"
     }
   ],
-  "generated_at": "2026-08-13T17:22:31.361795+00:00",
+  "generated_at": "2026-08-13T17:27:34.570370+00:00",
   "generated_by": "scripts/build_public_availability_snapshot.py",
-  "max_latency_ms": 229,
+  "max_latency_ms": 222,
   "not_claimed": [
     "production uptime SLA",
     "active users",
@@ -55,38 +55,38 @@
   "project": "Data Quality Agent",
   "repo": "https://github.com/sunnnn2005/data-quality-agent",
   "resume_policy": "This snapshot proves public entrypoint reachability and recent workflow health only. Do not claim production uptime SLA, active users, customer adoption, or paid availability monitoring from this artifact.",
-  "resume_safe_summary": "Captured 4/4 reachable public project surfaces and 3/3 successful main-branch workflows in a generated availability snapshot.",
+  "resume_safe_summary": "Captured 4/4 reachable public project surfaces and 2/3 successful main-branch workflows in a generated availability snapshot.",
   "snapshot_type": "public demo availability and workflow health snapshot",
-  "successful_workflow_count": 3,
+  "successful_workflow_count": 2,
   "workflow_count": 3,
   "workflows": [
     {
       "conclusion": "success",
-      "created_at": "2026-08-13T17:13:08Z",
+      "created_at": "2026-08-13T17:23:09Z",
       "error": null,
       "id": "ci",
       "status": "completed",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/actions/runs/31724592606",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/actions/runs/31725433959",
       "verified": true,
       "workflow": "test.yml"
     },
     {
-      "conclusion": "success",
-      "created_at": "2026-08-13T17:13:08Z",
+      "conclusion": "failure",
+      "created_at": "2026-08-13T17:23:09Z",
       "error": null,
       "id": "public_evidence_health",
       "status": "completed",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/actions/runs/31724592521",
-      "verified": true,
+      "url": "https://github.com/sunnnn2005/data-quality-agent/actions/runs/31725433532",
+      "verified": false,
       "workflow": "public-evidence-health.yml"
     },
     {
       "conclusion": "success",
-      "created_at": "2026-08-13T17:13:08Z",
+      "created_at": "2026-08-13T17:23:09Z",
       "error": null,
       "id": "container_publish",
       "status": "completed",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/actions/runs/31724592453",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/actions/runs/31725433536",
       "verified": true,
       "workflow": "publish-image.yml"
     }

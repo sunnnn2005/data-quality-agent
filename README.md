@@ -25,7 +25,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | 8-minute review page | [`docs/review.html`](docs/review.html) gives reviewers the shortest public path from demo inspection to GitHub feedback |
 | Public release | [`v0.3.0`](docs/releases/v0.3.0.md) release notes and GitHub Release |
 | Container image | `ghcr.io/sunnnn2005/data-quality-agent:latest` published from `main` |
-| Test suite | 107 automated tests passing locally and in GitHub Actions |
+| Test suite | 108 automated tests passing locally and in GitHub Actions |
 | Live project scorecard | [`docs/live-project-scorecard.md`](docs/live-project-scorecard.md) gives reviewers one page for the demo, release, container, CI, claims, agent capabilities, and honest adoption baselines |
 | Impact review packet | [`docs/impact-review-packet.md`](docs/impact-review-packet.md) maps the support-operations case study to 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs |
 | Business problem casebook | [`docs/business-problem-casebook.md`](docs/business-problem-casebook.md) explains the support-operations dashboard failure mode with 4 business risks, 5 findings, 3 root-cause hypotheses, and 4 owner handoffs |
