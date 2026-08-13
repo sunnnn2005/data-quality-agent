@@ -1,0 +1,278 @@
+import json
+import re
+from pathlib import Path
+from typing import Any
+
+
+ROOT = Path(__file__).resolve().parents[1]
+FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
+OUTREACH_TRACKER_PATH = ROOT / "docs" / "external-reviewer-outreach-tracker.json"
+OUTPUT_JSON_PATH = ROOT / "docs" / "external-reviewer-evidence-gate.json"
+OUTPUT_MD_PATH = ROOT / "docs" / "external-reviewer-evidence-gate.md"
+OWNER_LOGINS = {"sunnnn2005"}
+SENSITIVE_TERMS = ("ssn", "api_key", "secret", "token", "password", "customer email", "raw production rows")
+EXTERNAL_RUN_LABELS = {"feedback", "pilot", "reproducible"}
+BUSINESS_CASE_LABELS = {"business-case"}
+
+
+def load_json(path: Path) -> dict[str, Any]:
+    return json.loads(path.read_text())
+
+
+def _labels(issue: dict[str, Any]) -> set[str]:
+    return {label["name"] for label in issue.get("labels", [])}
+
+
+def _checked(body: str, label: str) -> bool:
+    escaped = re.escape(label)
+    return bool(re.search(rf"- \[[xX]\]\s+{escaped}", body))
+
+
+def _section_text(body: str, heading: str) -> str:
+    match = re.search(rf"##\s+{re.escape(heading)}\s*(.*?)(?=\n##\s+|\Z)", body, flags=re.DOTALL | re.IGNORECASE)
+    return match.group(1).strip() if match else ""
+
+
+def _non_placeholder(section: str) -> bool:
+    normalized = section.strip()
+    if not normalized:
+        return False
+    placeholders = {
+        "what worked, what was confusing, what failed, or what would make this more useful?",
+        "paste only safe summaries, such as status, quality score, check names, endpoint names, or screenshots with private data removed.",
+    }
+    return normalized.lower() not in placeholders
+
+
+def evaluate_issue(issue: dict[str, Any]) -> dict[str, Any]:
+    body = issue.get("body") or ""
+    labels = _labels(issue)
+    author = issue.get("author", {}).get("login", "")
+    failure_reasons: list[str] = []
+    evidence_type = "unknown"
+    counts_toward: list[str] = []
+
+    if author in OWNER_LOGINS:
+        failure_reasons.append("self-authored issue")
+
+    scan_body = "\n".join(
+        line
+        for line in body.splitlines()
+        if "This issue contains no private business data, secrets, customer names, emails, addresses, or raw production rows."
+        not in line
+    )
+    lower_body = scan_body.lower()
+    sensitive_hits = sorted(term for term in SENSITIVE_TERMS if term in lower_body)
+    if sensitive_hits:
+        failure_reasons.append("contains sensitive-data risk terms")
+
+    if labels & EXTERNAL_RUN_LABELS:
+        evidence_type = "external_run_review"
+        if not _checked(body, "This issue contains no private business data, secrets, customer names, emails, addresses, or raw production rows."):
+            failure_reasons.append("missing no-private-data checkbox")
+        if not _checked(body, "This can be counted as public external run evidence."):
+            failure_reasons.append("missing public external run permission")
+        if not (_checked(body, "Public demo review") or _checked(body, "GHCR container smoke run") or _checked(body, "Docker Compose PostgreSQL replay")):
+            failure_reasons.append("missing runnable path tried")
+        if _checked(body, "I reviewed the docs but did not run it"):
+            failure_reasons.append("docs-only review is not a confirmed run")
+        if not _non_placeholder(_section_text(body, "Commands or URLs used")):
+            failure_reasons.append("missing command or URL evidence")
+        if not _non_placeholder(_section_text(body, "Observed result")):
+            failure_reasons.append("missing observed result evidence")
+        if not _non_placeholder(_section_text(body, "Main feedback")):
+            failure_reasons.append("missing main feedback")
+        if "feedback" in labels or _checked(body, "This can be counted as external feedback."):
+            counts_toward.append("external_feedback_items")
+        if _checked(body, "This can be counted as public external run evidence."):
+            counts_toward.append("confirmed_external_users")
+        if "reproducible" in labels or _checked(body, "This can be counted as a reproducible local replay, if I ran the container or Docker Compose path."):
+            counts_toward.append("reproducible_feedback_items")
+    elif labels & BUSINESS_CASE_LABELS:
+        evidence_type = "business_case_review"
+        if not _checked(body, "This can be counted as anonymized public business-case feedback."):
+            failure_reasons.append("missing business-case counting permission")
+        for heading in ("Business context", "Data-quality problem", "Fields involved"):
+            if not _non_placeholder(_section_text(body, heading)):
+                failure_reasons.append(f"missing {heading.lower()} evidence")
+        counts_toward.append("business_case_feedback_items")
+    else:
+        failure_reasons.append("missing tracked evidence labels")
+
+    counts_toward = sorted(set(counts_toward))
+    accepted = not failure_reasons and bool(counts_toward)
+    return {
+        "issue_number": issue.get("number"),
+        "title": issue.get("title"),
+        "url": issue.get("url"),
+        "author": author,
+        "labels": sorted(labels),
+        "evidence_type": evidence_type,
+        "accepted": accepted,
+        "counts_toward": counts_toward if accepted else [],
+        "rejected_counts_toward": counts_toward if not accepted else [],
+        "failure_reasons": failure_reasons,
+        "sensitive_hits": sensitive_hits,
+    }
+
+
+def evaluate_issues(issues: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return sorted((evaluate_issue(issue) for issue in issues), key=lambda item: item["issue_number"] or 0)
+
+
+def count_accepted(evaluations: list[dict[str, Any]]) -> dict[str, int]:
+    counts = {
+        "external_feedback_items": 0,
+        "confirmed_external_users": 0,
+        "reproducible_feedback_items": 0,
+        "business_case_feedback_items": 0,
+    }
+    for item in evaluations:
+        if not item["accepted"]:
+            continue
+        for metric in item["counts_toward"]:
+            counts[metric] += 1
+    return counts
+
+
+def build_external_reviewer_evidence_gate(issues: list[dict[str, Any]] | None = None) -> dict[str, Any]:
+    feedback = load_json(FEEDBACK_METRICS_PATH)
+    outreach = load_json(OUTREACH_TRACKER_PATH)
+    evaluations = evaluate_issues([] if issues is None else issues)
+    accepted_counts = count_accepted(evaluations)
+    return {
+        "project": "Data Quality Agent",
+        "generated_by": "scripts/build_external_reviewer_evidence_gate.py",
+        "purpose": (
+            "Validate public reviewer issues before they can increase resume-safe user, feedback, reproducible-run, "
+            "or business-case metrics."
+        ),
+        "evaluated_issue_count": len(evaluations),
+        "accepted_issue_count": sum(1 for item in evaluations if item["accepted"]),
+        "rejected_issue_count": sum(1 for item in evaluations if not item["accepted"]),
+        "evaluations": evaluations,
+        "accepted_counts": accepted_counts,
+        "current_public_counts": {
+            "external_feedback_items": feedback["external_feedback_items"],
+            "confirmed_external_users": feedback["confirmed_external_users"],
+            "reproducible_feedback_items": feedback["reproducible_feedback_items"],
+            "business_case_feedback_items": feedback["business_case_feedback_items"],
+        },
+        "linked_outreach_queue_count": outreach["queue_count"],
+        "gate_rules": [
+            "Self-authored issues do not count as external evidence.",
+            "Reviewer must grant explicit permission before a run or feedback is counted.",
+            "A docs-only review does not count as a confirmed run.",
+            "Commands or URLs used, observed result, and main feedback must be non-placeholder text.",
+            "Issues containing sensitive-data risk terms are rejected until redacted.",
+        ],
+        "resume_safe_summary": (
+            "Published a CI-verified external reviewer evidence gate that validates issue body fields, explicit "
+            "permission, non-owner authorship, runnable-path evidence, and sensitive-data guardrails before any "
+            "reviewer issue can increase resume-safe usage or feedback metrics."
+        ),
+        "not_claimed": [
+            "No accepted external reviewer issue exists yet.",
+            "No user, feedback, reproducible-run, or business-case count is increased by planning issues.",
+            "No private business data is accepted as evidence.",
+        ],
+    }
+
+
+def render_markdown(payload: dict[str, Any]) -> str:
+    counts = "\n".join(f"| {key.replace('_', ' ').title()} | {value} |" for key, value in payload["accepted_counts"].items())
+    rules = "\n".join(f"- {item}" for item in payload["gate_rules"])
+    not_claimed = "\n".join(f"- {item}" for item in payload["not_claimed"])
+    rows = "\n".join(
+        "| #{issue_number} | [{title}]({url}) | {author} | {evidence_type} | {accepted} | {metrics} | {reasons} |".format(
+            issue_number=item["issue_number"],
+            title=item["title"],
+            url=item["url"],
+            author=item["author"],
+            evidence_type=item["evidence_type"],
+            accepted=item["accepted"],
+            metrics=", ".join(item["counts_toward"]),
+            reasons=", ".join(item["failure_reasons"]),
+        )
+        for item in payload["evaluations"]
+    )
+    if not rows:
+        rows = "| - | - | - | - | - | - | - |"
+    return f"""# External Reviewer Evidence Gate
+
+This generated gate validates public reviewer issues before they can become resume-safe outcome metrics.
+
+## Summary
+
+| Metric | Value |
+| --- | ---: |
+| Evaluated issues | {payload["evaluated_issue_count"]} |
+| Accepted issues | {payload["accepted_issue_count"]} |
+| Rejected issues | {payload["rejected_issue_count"]} |
+| Linked outreach queue | {payload["linked_outreach_queue_count"]} |
+
+## Accepted Counts
+
+| Metric | Accepted count |
+| --- | ---: |
+{counts}
+
+## Evaluations
+
+| Issue | Title | Author | Evidence Type | Accepted | Counts Toward | Failure Reasons |
+| --- | --- | --- | --- | --- | --- | --- |
+{rows}
+
+## Gate Rules
+
+{rules}
+
+## Resume-Safe Summary
+
+{payload["resume_safe_summary"]}
+
+## Not Claimed
+
+{not_claimed}
+"""
+
+
+def verify_external_reviewer_evidence_gate(payload: dict[str, Any]) -> dict[str, Any]:
+    expected_zero = {
+        "external_feedback_items": 0,
+        "confirmed_external_users": 0,
+        "reproducible_feedback_items": 0,
+        "business_case_feedback_items": 0,
+    }
+    if payload["linked_outreach_queue_count"] != 3:
+        raise AssertionError("external reviewer evidence gate must link the 3 queued reviewer segments")
+    if payload["accepted_counts"] != expected_zero:
+        raise AssertionError("external reviewer evidence gate must not count evidence before accepted public issues")
+    if len(payload["gate_rules"]) != 5:
+        raise AssertionError("external reviewer evidence gate must document five counting rules")
+    for required in (
+        "Self-authored issues do not count as external evidence.",
+        "Reviewer must grant explicit permission before a run or feedback is counted.",
+        "Issues containing sensitive-data risk terms are rejected until redacted.",
+    ):
+        if required not in payload["gate_rules"]:
+            raise AssertionError(f"external reviewer evidence gate missing rule: {required}")
+    for required in (
+        "No accepted external reviewer issue exists yet.",
+        "No private business data is accepted as evidence.",
+    ):
+        if required not in payload["not_claimed"]:
+            raise AssertionError(f"external reviewer evidence gate must preserve not-claimed signal: {required}")
+    return {"external_reviewer_evidence_gate_verified": True}
+
+
+def main() -> None:
+    payload = build_external_reviewer_evidence_gate()
+    verify_external_reviewer_evidence_gate(payload)
+    OUTPUT_JSON_PATH.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+    OUTPUT_MD_PATH.write_text(render_markdown(payload))
+    print(json.dumps(payload, indent=2, sort_keys=True))
+
+
+if __name__ == "__main__":
+    main()

@@ -22,6 +22,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "external-run-review-template",
         "external-run-quickstart-page",
         "external-reviewer-outreach-tracker",
+        "external-reviewer-evidence-gate",
         "api-smoke-report",
         "performance-baseline",
         "demo-usage-baseline",
@@ -99,6 +100,10 @@ def test_public_evidence_health_requires_core_public_signals():
     assert outreach["expected_json"]["queue_count"] == 3
     assert "No outreach message has been sent yet." in outreach["expected_texts"]
     assert "counts_toward_resume" in outreach["expected_texts"]
+    gate = next(check for check in PUBLIC_CHECKS if check["id"] == "external-reviewer-evidence-gate")
+    assert gate["url"].endswith("/external-reviewer-evidence-gate.json")
+    assert gate["expected_json"]["accepted_issue_count"] == 0
+    assert "Reviewer must grant explicit permission before a run or feedback is counted." in gate["expected_texts"]
 
 
 def test_public_evidence_health_verifier_rejects_failed_checks():

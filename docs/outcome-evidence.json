@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 117,
-      "resume_signal": "117 passing CI tests",
+      "metric_value": 120,
+      "resume_signal": "120 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 22 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 23 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 22,
+      "metric_value": 23,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -611,6 +611,16 @@
       "resume_signal": "CI-verified external reviewer outreach tracker",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-reviewer-outreach-tracker.json"
+    },
+    {
+      "claim": "validates public reviewer issue fields, explicit counting permission, non-owner authorship, runnable-path evidence, and sensitive-data guardrails before any user, feedback, reproducible-run, or business-case metric can increase",
+      "evidence_type": "generated_artifact",
+      "id": "external-reviewer-evidence-gate",
+      "metric_name": "external_reviewer_evidence_gate",
+      "metric_value": 1,
+      "resume_signal": "CI-verified external reviewer evidence gate",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-reviewer-evidence-gate.json"
     }
   ],
   "not_claimed": [

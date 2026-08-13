@@ -1,0 +1,35 @@
+{
+  "accepted_counts": {
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
+  "accepted_issue_count": 0,
+  "current_public_counts": {
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
+  "evaluated_issue_count": 0,
+  "evaluations": [],
+  "gate_rules": [
+    "Self-authored issues do not count as external evidence.",
+    "Reviewer must grant explicit permission before a run or feedback is counted.",
+    "A docs-only review does not count as a confirmed run.",
+    "Commands or URLs used, observed result, and main feedback must be non-placeholder text.",
+    "Issues containing sensitive-data risk terms are rejected until redacted."
+  ],
+  "generated_by": "scripts/build_external_reviewer_evidence_gate.py",
+  "linked_outreach_queue_count": 3,
+  "not_claimed": [
+    "No accepted external reviewer issue exists yet.",
+    "No user, feedback, reproducible-run, or business-case count is increased by planning issues.",
+    "No private business data is accepted as evidence."
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Validate public reviewer issues before they can increase resume-safe user, feedback, reproducible-run, or business-case metrics.",
+  "rejected_issue_count": 0,
+  "resume_safe_summary": "Published a CI-verified external reviewer evidence gate that validates issue body fields, explicit permission, non-owner authorship, runnable-path evidence, and sensitive-data guardrails before any reviewer issue can increase resume-safe usage or feedback metrics."
+}
