@@ -55,6 +55,7 @@ REAL_MODEL_RUNBOOK_PATH = ROOT / "docs" / "real-model-runbook.json"
 REAL_MODEL_EVIDENCE_CAPTURE_PATH = ROOT / "docs" / "real-model-evidence-capture.json"
 BUSINESS_REPLAY_DEMO_PATH = ROOT / "docs" / "business-replay-demo.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
+PUBLIC_METRICS_REFRESH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "refresh-public-metrics.yml"
 PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
 RESUME_EVIDENCE_PATH = ROOT / "docs" / "resume-evidence.md"
 FEEDBACK_LOG_PATH = ROOT / "docs" / "feedback-log.md"
@@ -553,7 +554,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 130:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 131:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -854,7 +855,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 130:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 131:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1573,6 +1574,24 @@ def verify_manifest() -> dict[str, int]:
             if required not in script_text:
                 raise AssertionError(f"public evidence health script must check {required}")
 
+    if "public-metrics-refresh" in claim_ids:
+        workflow_text = PUBLIC_METRICS_REFRESH_WORKFLOW_PATH.read_text()
+        for required in (
+            "schedule:",
+            "workflow_dispatch:",
+            "contents: write",
+            "issues: read",
+            "scripts/update_feedback_metrics.py",
+            "scripts/update_adoption_metrics.py",
+            "scripts/build_github_traffic_snapshot.py",
+            "scripts/build_star_growth_kit.py",
+            "scripts/build_public_metrics_summary.py",
+            "scripts/verify_outcome_evidence.py",
+            "git-auto-commit-action",
+        ):
+            if required not in workflow_text:
+                raise AssertionError(f"public metrics refresh workflow missing {required}")
+
     if "postgres-agent-route" in claim_ids:
         script_text = PUBLIC_HEALTH_SCRIPT_PATH.read_text()
         if "postgres-agent-route" not in script_text:
@@ -1608,7 +1627,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 130", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 131", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

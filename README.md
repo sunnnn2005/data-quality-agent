@@ -25,7 +25,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | 8-minute review page | [`docs/review.html`](docs/review.html) gives reviewers the shortest public path from demo inspection to GitHub feedback |
 | Public release | [`v0.3.0`](docs/releases/v0.3.0.md) release notes and GitHub Release |
 | Container image | `ghcr.io/sunnnn2005/data-quality-agent:latest` published from `main` |
-| Test suite | 130 automated tests passing locally and in GitHub Actions |
+| Test suite | 131 automated tests passing locally and in GitHub Actions |
 | Live project scorecard | [`docs/live-project-scorecard.md`](docs/live-project-scorecard.md) gives reviewers one page for the demo, release, container, CI, claims, agent capabilities, and honest adoption baselines |
 | AI Engineer readiness | [`docs/ai-engineer-readiness.md`](docs/ai-engineer-readiness.md) maps the project to 8 implemented AI skill signals, 1 partial signal, and 1 not-claimed signal for AI Engineer Intern applications |
 | AI Engineer review intake | [`docs/ai-engineer-review-intake.md`](docs/ai-engineer-review-intake.md) gives external reviewers 6 review paths, 6 questions, and 5 countable-evidence conditions for permissioned AI Engineer feedback |
@@ -77,6 +77,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Community growth baseline | [`docs/community-growth-baseline.md`](docs/community-growth-baseline.md) verifies 8 issue templates, 7 labels, 9 public contribution or feedback channels, and honest current public counts |
 | Hypothesis feedback | [`docs/hypothesis-feedback.md`](docs/hypothesis-feedback.md) records accepted / needs-review labels for generated root-cause hypotheses |
 | Public evidence health | [`Public Evidence Health`](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/public-evidence-health.yml) checks the demo, release, business-impact artifact, outcome evidence, and adoption metrics on a schedule |
+| Public metrics refresh | [`Refresh Public Metrics`](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/refresh-public-metrics.yml) refreshes feedback, adoption, GitHub traffic, star-growth, scorecard, and application evidence artifacts on a schedule |
 | Adoption baseline | [`docs/adoption-metrics.json`](docs/adoption-metrics.json) tracks stars, forks, issues, release, and container image |
 | Adoption history | [`docs/adoption-history.jsonl`](docs/adoption-history.jsonl) keeps an append-only history of public metrics by date and commit |
 | Public metrics summary | [`docs/public-metrics-summary.md`](docs/public-metrics-summary.md) combines adoption, feedback, CI, release, outcome, and agent-readiness metrics into one resume-safe artifact |

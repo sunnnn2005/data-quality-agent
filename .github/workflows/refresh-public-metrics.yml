@@ -1,0 +1,55 @@
+name: Refresh Public Metrics
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 16 * * *"
+
+permissions:
+  contents: write
+  issues: read
+  actions: read
+
+jobs:
+  refresh-public-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt -r requirements-dev.txt
+      - name: Refresh feedback metrics
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/update_feedback_metrics.py
+      - name: Refresh adoption metrics
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/update_adoption_metrics.py
+      - name: Refresh GitHub traffic snapshot
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/build_github_traffic_snapshot.py
+      - name: Rebuild traction artifacts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/build_star_growth_kit.py
+          python scripts/build_public_metrics_summary.py
+          python scripts/build_live_project_scorecard.py
+          python scripts/build_application_evidence_pack.py
+      - name: Verify resume evidence
+        run: |
+          python scripts/verify_outcome_evidence.py
+          python -m pytest tests/test_star_growth_kit.py tests/test_public_metrics_summary.py
+      - name: Commit refreshed metrics
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Refresh public metrics"
+          file_pattern: docs/*.json docs/*.jsonl docs/*.md

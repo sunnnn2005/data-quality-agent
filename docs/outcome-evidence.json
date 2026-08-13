@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 130,
-      "resume_signal": "130 passing CI tests",
+      "metric_value": 131,
+      "resume_signal": "131 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -551,6 +551,14 @@
       "resume_signal": "Scheduled public evidence health check",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/public-evidence-health.yml"
+    },
+    {
+      "claim": "A scheduled GitHub Actions workflow refreshes public feedback, adoption, GitHub traffic, star-growth, scorecard, and application evidence artifacts, then commits changed metrics back to the repository.",
+      "evidence_type": "scheduled_ci",
+      "id": "public-metrics-refresh",
+      "resume_signal": "Scheduled public metrics refresh",
+      "status": "verified",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/refresh-public-metrics.yml"
     },
     {
       "claim": "The project publishes a generated real-model runbook with 5 run commands, 15 evidence fields, 8 acceptance criteria, 5 safety gates, and zero current real model run claims.",

@@ -25,8 +25,8 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert "external_reviewer_evidence_gate" in payload["application_links"]
     assert "accepted_evidence_rollup" in payload["application_links"]
     assert len(payload["resume_bullets"]) == 3
-    assert payload["verified_outcome_numbers"]["passing_tests"] == 130
-    assert payload["verified_outcome_numbers"]["verified_resume_claims"] == 66
+    assert payload["verified_outcome_numbers"]["passing_tests"] == 131
+    assert payload["verified_outcome_numbers"]["verified_resume_claims"] == 67
     assert payload["verified_outcome_numbers"]["business_data_replay_paths"] == 3
     assert payload["verified_outcome_numbers"]["business_data_replay_evidence_fields"] == 8
     assert payload["verified_outcome_numbers"]["business_replay_demo_rows"] == 8
