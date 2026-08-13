@@ -51,6 +51,15 @@ def build_reviewer_feedback_packet() -> dict[str, Any]:
             "counts_toward": "business_case_feedback_items",
             "submission_url": feedback_channels["Business case review"],
         },
+        {
+            "id": "ai_engineer_review",
+            "audience": "ai_engineer_or_ml_platform_reviewer",
+            "time_box_minutes": 12,
+            "path": links["ai_engineer_review_intake"],
+            "ask": "Inspect the tool-calling agent evidence, identify the strongest and weakest AI Engineer signals, and grant permission only if the review can be counted publicly.",
+            "counts_toward": "ai_engineer_review_items",
+            "submission_url": feedback_channels["AI Engineer review"],
+        },
     ]
     evidence_questions = [
         "Which path did you try: public demo, local repo, API docs, or business-case review?",
@@ -58,18 +67,21 @@ def build_reviewer_feedback_packet() -> dict[str, Any]:
         "What is the strongest AI-agent signal in the project?",
         "What was confusing, missing, or not credible enough for an internship reviewer?",
         "Would you classify your note as feedback, confirmed run, reproducible issue, feature request, or business-case review?",
+        "Would you count this as AI Engineer project feedback after inspecting implementation paths?",
     ]
     conversion_paths = [
         {"metric": "external_feedback_items", "label": "feedback", "threshold": 3},
         {"metric": "confirmed_external_users", "label": "confirmed-user", "threshold": 1},
         {"metric": "reproducible_feedback_items", "label": "reproducible", "threshold": 1},
         {"metric": "business_case_feedback_items", "label": "business-case", "threshold": 1},
+        {"metric": "ai_engineer_review_items", "label": "ai-engineer-review", "threshold": 1},
     ]
     current_counts = {
         "external_feedback_items": feedback["external_feedback_items"],
         "confirmed_external_users": feedback["confirmed_external_users"],
         "reproducible_feedback_items": feedback["reproducible_feedback_items"],
         "business_case_feedback_items": feedback["business_case_feedback_items"],
+        "ai_engineer_review_items": feedback["ai_engineer_review_items"],
     }
     return {
         "project": "Data Quality Agent",
@@ -90,8 +102,8 @@ def build_reviewer_feedback_packet() -> dict[str, Any]:
         "resume_status": "collection_ready_not_claimable",
         "not_claimed": upgrade["forbidden_until_proven"],
         "resume_safe_summary": (
-            "Published a CI-verified reviewer feedback packet with 3 task paths, 5 evidence questions, "
-            "4 metric conversion paths, and zero current feedback/adoption counts."
+            "Published a CI-verified reviewer feedback packet with 4 task paths, 6 evidence questions, "
+            "5 metric conversion paths, and zero current feedback/adoption counts."
         ),
     }
 
@@ -162,13 +174,14 @@ def verify_reviewer_feedback_packet(payload: dict[str, Any]) -> dict[str, Any]:
         "confirmed_external_users": 0,
         "reproducible_feedback_items": 0,
         "business_case_feedback_items": 0,
+        "ai_engineer_review_items": 0,
     }
-    if payload["reviewer_task_count"] != 3:
-        raise AssertionError("reviewer feedback packet must define three reviewer tasks")
-    if payload["evidence_question_count"] != 5:
-        raise AssertionError("reviewer feedback packet must define five evidence questions")
-    if payload["conversion_path_count"] != 4:
-        raise AssertionError("reviewer feedback packet must define four metric conversion paths")
+    if payload["reviewer_task_count"] != 4:
+        raise AssertionError("reviewer feedback packet must define four reviewer tasks")
+    if payload["evidence_question_count"] != 6:
+        raise AssertionError("reviewer feedback packet must define six evidence questions")
+    if payload["conversion_path_count"] != 5:
+        raise AssertionError("reviewer feedback packet must define five metric conversion paths")
     if payload["current_public_counts"] != expected_counts:
         raise AssertionError("reviewer feedback packet must preserve zero public feedback baseline")
     if payload["planned_review_slots"] != 3:

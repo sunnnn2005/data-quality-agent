@@ -29,7 +29,7 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 128,
+      "metric_value": 130,
       "resume_signal": "128 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
@@ -379,7 +379,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-upgrade-playbook.json"
     },
     {
-      "claim": "Publishes 3 reviewer task paths, 5 evidence questions, and 4 metric conversion paths for collecting public feedback without upgrading resume outcome wording before evidence exists.",
+      "claim": "Publishes 4 reviewer task paths, 6 evidence questions, and 5 metric conversion paths for collecting public feedback and AI Engineer review evidence without upgrading resume outcome wording before evidence exists.",
       "evidence_type": "generated_json",
       "id": "reviewer-feedback-packet",
       "metric_name": "reviewer_feedback_packet",

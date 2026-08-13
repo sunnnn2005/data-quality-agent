@@ -1,5 +1,5 @@
 {
-  "conversion_path_count": 4,
+  "conversion_path_count": 5,
   "conversion_paths": [
     {
       "label": "feedback",
@@ -20,21 +20,28 @@
       "label": "business-case",
       "metric": "business_case_feedback_items",
       "threshold": 1
+    },
+    {
+      "label": "ai-engineer-review",
+      "metric": "ai_engineer_review_items",
+      "threshold": 1
     }
   ],
   "current_public_counts": {
+    "ai_engineer_review_items": 0,
     "business_case_feedback_items": 0,
     "confirmed_external_users": 0,
     "external_feedback_items": 0,
     "reproducible_feedback_items": 0
   },
-  "evidence_question_count": 5,
+  "evidence_question_count": 6,
   "evidence_questions": [
     "Which path did you try: public demo, local repo, API docs, or business-case review?",
     "Could you reproduce or understand the support-ticket data-quality failure?",
     "What is the strongest AI-agent signal in the project?",
     "What was confusing, missing, or not credible enough for an internship reviewer?",
-    "Would you classify your note as feedback, confirmed run, reproducible issue, feature request, or business-case review?"
+    "Would you classify your note as feedback, confirmed run, reproducible issue, feature request, or business-case review?",
+    "Would you count this as AI Engineer project feedback after inspecting implementation paths?"
   ],
   "generated_by": "scripts/build_reviewer_feedback_packet.py",
   "linked_upgrade_rules": [
@@ -55,9 +62,9 @@
   "planned_review_slots": 3,
   "project": "Data Quality Agent",
   "purpose": "Give reviewers a short, public, metric-aware path for trying the project and submitting evidence that can later upgrade resume outcomes without inflating the current baseline.",
-  "resume_safe_summary": "Published a CI-verified reviewer feedback packet with 3 task paths, 5 evidence questions, 4 metric conversion paths, and zero current feedback/adoption counts.",
+  "resume_safe_summary": "Published a CI-verified reviewer feedback packet with 4 task paths, 6 evidence questions, 5 metric conversion paths, and zero current feedback/adoption counts.",
   "resume_status": "collection_ready_not_claimable",
-  "reviewer_task_count": 3,
+  "reviewer_task_count": 4,
   "reviewer_tasks": [
     {
       "ask": "Open the public demo, read the support-ticket result, and report what is unclear or convincing.",
@@ -84,6 +91,15 @@
       "id": "business_case_review",
       "path": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-case-intake.md",
       "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "time_box_minutes": 12
+    },
+    {
+      "ask": "Inspect the tool-calling agent evidence, identify the strongest and weakest AI Engineer signals, and grant permission only if the review can be counted publicly.",
+      "audience": "ai_engineer_or_ml_platform_reviewer",
+      "counts_toward": "ai_engineer_review_items",
+      "id": "ai_engineer_review",
+      "path": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
       "time_box_minutes": 12
     }
   ]

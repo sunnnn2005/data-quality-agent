@@ -449,7 +449,7 @@ PUBLIC_CHECKS = [
             "Submit Feedback",
             "issues/17",
             "External feedback starts at zero",
-            "128 tests",
+            "130 tests",
         ],
         "evidence_type": "html",
     },
@@ -524,7 +524,7 @@ PUBLIC_CHECKS = [
     {
         "id": "reviewer-feedback-packet",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-feedback-packet.json",
-        "expected_json": {"project": "Data Quality Agent", "reviewer_task_count": 3, "conversion_path_count": 4},
+        "expected_json": {"project": "Data Quality Agent", "reviewer_task_count": 4, "conversion_path_count": 5},
         "expected_text": "collection_ready_not_claimable",
         "expected_texts": ["quick_demo_review", "business_case_review", "confirmed_external_users"],
         "evidence_type": "json",

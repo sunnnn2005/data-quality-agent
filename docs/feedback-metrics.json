@@ -1,9 +1,10 @@
 {
+  "ai_engineer_review_items": 0,
   "bug_feedback_items": 0,
   "business_case_feedback_items": 0,
   "confirmed_external_users": 0,
   "external_feedback_items": 0,
-  "feature_feedback_items": 0,
+  "feature_feedback_items": 8,
   "feedback_channels": [
     {
       "counts_toward": "external_feedback_items",
@@ -24,15 +25,22 @@
       "counts_toward": "business_case_feedback_items",
       "name": "Business case review",
       "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md"
+    },
+    {
+      "counts_toward": "ai_engineer_review_items",
+      "name": "AI Engineer review",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md"
     }
   ],
   "feedback_issue_template": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
-  "generated_at": "2026-08-13T17:07:38.458407+00:00",
+  "generated_at": "2026-08-13T20:50:45.504054+00:00",
   "repo": "https://github.com/sunnnn2005/data-quality-agent",
   "reproducible_feedback_items": 0,
   "resume_policy": "Do not claim users, customer feedback, or production adoption until these metrics are greater than zero and backed by public issues.",
+  "self_authored_planning_excluded": true,
   "status": "TRACKING",
   "tracking_labels": {
+    "ai_engineer_review_items": "ai-engineer-review",
     "bug_feedback_items": "bug",
     "business_case_feedback_items": "business-case",
     "confirmed_external_users": "confirmed-user",

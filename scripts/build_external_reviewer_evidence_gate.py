@@ -13,6 +13,7 @@ OWNER_LOGINS = {"sunnnn2005"}
 SENSITIVE_TERMS = ("ssn", "api_key", "secret", "token", "password", "customer email", "raw production rows")
 EXTERNAL_RUN_LABELS = {"feedback", "pilot", "reproducible"}
 BUSINESS_CASE_LABELS = {"business-case"}
+AI_ENGINEER_REVIEW_LABELS = {"ai-engineer-review"}
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -96,6 +97,21 @@ def evaluate_issue(issue: dict[str, Any]) -> dict[str, Any]:
             if not _non_placeholder(_section_text(body, heading)):
                 failure_reasons.append(f"missing {heading.lower()} evidence")
         counts_toward.append("business_case_feedback_items")
+    elif labels & AI_ENGINEER_REVIEW_LABELS:
+        evidence_type = "ai_engineer_review"
+        if not _checked(body, "You may count this public issue as external AI Engineer project feedback."):
+            failure_reasons.append("missing AI Engineer review counting permission")
+        if _checked(body, "Do not count this issue publicly."):
+            failure_reasons.append("reviewer opted out of public counting")
+        inspected = _section_text(body, "What did you inspect?")
+        if not _non_placeholder(inspected):
+            inspected = _section_text(body, "Path or command used")
+        if not _non_placeholder(inspected):
+            failure_reasons.append("missing inspected path or command evidence")
+        for heading in ("Strongest AI Engineer signals", "Missing or weak AI Engineer signals"):
+            if not _non_placeholder(_section_text(body, heading)):
+                failure_reasons.append(f"missing {heading.lower()} evidence")
+        counts_toward.append("ai_engineer_review_items")
     else:
         failure_reasons.append("missing tracked evidence labels")
 
@@ -126,6 +142,7 @@ def count_accepted(evaluations: list[dict[str, Any]]) -> dict[str, int]:
         "confirmed_external_users": 0,
         "reproducible_feedback_items": 0,
         "business_case_feedback_items": 0,
+        "ai_engineer_review_items": 0,
     }
     for item in evaluations:
         if not item["accepted"]:
@@ -145,7 +162,7 @@ def build_external_reviewer_evidence_gate(issues: list[dict[str, Any]] | None = 
         "generated_by": "scripts/build_external_reviewer_evidence_gate.py",
         "purpose": (
             "Validate public reviewer issues before they can increase resume-safe user, feedback, reproducible-run, "
-            "or business-case metrics."
+            "business-case, or AI Engineer review metrics."
         ),
         "evaluated_issue_count": len(evaluations),
         "accepted_issue_count": sum(1 for item in evaluations if item["accepted"]),
@@ -157,6 +174,7 @@ def build_external_reviewer_evidence_gate(issues: list[dict[str, Any]] | None = 
             "confirmed_external_users": feedback["confirmed_external_users"],
             "reproducible_feedback_items": feedback["reproducible_feedback_items"],
             "business_case_feedback_items": feedback["business_case_feedback_items"],
+            "ai_engineer_review_items": feedback.get("ai_engineer_review_items", 0),
         },
         "linked_outreach_queue_count": outreach["queue_count"],
         "gate_rules": [
@@ -164,16 +182,17 @@ def build_external_reviewer_evidence_gate(issues: list[dict[str, Any]] | None = 
             "Reviewer must grant explicit permission before a run or feedback is counted.",
             "A docs-only review does not count as a confirmed run.",
             "Commands or URLs used, observed result, and main feedback must be non-placeholder text.",
+            "AI Engineer review issues require explicit permission plus inspected paths and concrete signal feedback.",
             "Issues containing sensitive-data risk terms are rejected until redacted.",
         ],
         "resume_safe_summary": (
             "Published a CI-verified external reviewer evidence gate that validates issue body fields, explicit "
             "permission, non-owner authorship, runnable-path evidence, and sensitive-data guardrails before any "
-            "reviewer issue can increase resume-safe usage or feedback metrics."
+            "reviewer issue can increase resume-safe usage, feedback, or AI Engineer review metrics."
         ),
         "not_claimed": [
             "No accepted external reviewer issue exists yet.",
-            "No user, feedback, reproducible-run, or business-case count is increased by planning issues.",
+            "No user, feedback, reproducible-run, business-case, or AI Engineer review count is increased by planning issues.",
             "No private business data is accepted as evidence.",
         ],
     }
@@ -243,16 +262,18 @@ def verify_external_reviewer_evidence_gate(payload: dict[str, Any]) -> dict[str,
         "confirmed_external_users": 0,
         "reproducible_feedback_items": 0,
         "business_case_feedback_items": 0,
+        "ai_engineer_review_items": 0,
     }
     if payload["linked_outreach_queue_count"] != 3:
         raise AssertionError("external reviewer evidence gate must link the 3 queued reviewer segments")
     if payload["accepted_counts"] != expected_zero:
         raise AssertionError("external reviewer evidence gate must not count evidence before accepted public issues")
-    if len(payload["gate_rules"]) != 5:
-        raise AssertionError("external reviewer evidence gate must document five counting rules")
+    if len(payload["gate_rules"]) != 6:
+        raise AssertionError("external reviewer evidence gate must document six counting rules")
     for required in (
         "Self-authored issues do not count as external evidence.",
         "Reviewer must grant explicit permission before a run or feedback is counted.",
+        "AI Engineer review issues require explicit permission plus inspected paths and concrete signal feedback.",
         "Issues containing sensitive-data risk terms are rejected until redacted.",
     ):
         if required not in payload["gate_rules"]:

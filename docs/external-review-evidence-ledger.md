@@ -12,7 +12,7 @@ Define the public evidence required before pilot reviews, feedback, confirmed ru
 | --- | ---: |
 | Evidence entries | 0 |
 | Linked planned reviews | 3 |
-| Evidence requirement types | 4 |
+| Evidence requirement types | 5 |
 | Resume status | `not_claimable_yet` |
 | Self-authored planning excluded | True |
 
@@ -24,6 +24,7 @@ Define the public evidence required before pilot reviews, feedback, confirmed ru
 | Confirmed External Users | 0 |
 | Reproducible Feedback Items | 0 |
 | Business Case Feedback Items | 0 |
+| Ai Engineer Review Items | 0 |
 
 ## Counted Public Evidence
 
@@ -33,6 +34,7 @@ Define the public evidence required before pilot reviews, feedback, confirmed ru
 | Confirmed External Users | 0 |
 | Reproducible Feedback Items | 0 |
 | Business Case Feedback Items | 0 |
+| Ai Engineer Review Items | 0 |
 
 | Issue | Title | Author | Labels | Counts Toward | State |
 | --- | --- | --- | --- | --- | --- |
@@ -54,10 +56,11 @@ Define the public evidence required before pilot reviews, feedback, confirmed ru
 | confirmed_run | GitHub issue or reproducible note confirming the reviewer tried the demo or ran the repo | confirmed-user | `confirmed_external_users` | 1 |
 | business_case_review | GitHub issue created from business_case_review.md | business-case | `business_case_feedback_items` | 1 |
 | reproducible_bug | GitHub issue with steps, environment, expected result, and actual result | bug, reproducible | `reproducible_feedback_items` | 1 |
+| ai_engineer_review | GitHub issue created from ai_engineer_review.md with explicit permission to count | ai-engineer-review | `ai_engineer_review_items` | 1 |
 
 ## Resume-Safe Summary
 
-Published a CI-verified external review evidence ledger defining 4 public evidence types, 3 linked pilot review slots, 0 counted public evidence entries, and explicit rules that exclude self-authored planning issues from external feedback claims.
+Published a CI-verified external review evidence ledger defining 5 public evidence types, 3 linked pilot review slots, 0 counted public evidence entries, and explicit rules that exclude self-authored planning issues from external feedback claims.
 
 ## Not Claimed
 

@@ -19,6 +19,7 @@ This generated gate validates public reviewer issues before they can become resu
 | Confirmed External Users | 0 |
 | Reproducible Feedback Items | 0 |
 | Business Case Feedback Items | 0 |
+| Ai Engineer Review Items | 0 |
 
 ## Evaluations
 
@@ -32,14 +33,15 @@ This generated gate validates public reviewer issues before they can become resu
 - Reviewer must grant explicit permission before a run or feedback is counted.
 - A docs-only review does not count as a confirmed run.
 - Commands or URLs used, observed result, and main feedback must be non-placeholder text.
+- AI Engineer review issues require explicit permission plus inspected paths and concrete signal feedback.
 - Issues containing sensitive-data risk terms are rejected until redacted.
 
 ## Resume-Safe Summary
 
-Published a CI-verified external reviewer evidence gate that validates issue body fields, explicit permission, non-owner authorship, runnable-path evidence, and sensitive-data guardrails before any reviewer issue can increase resume-safe usage or feedback metrics.
+Published a CI-verified external reviewer evidence gate that validates issue body fields, explicit permission, non-owner authorship, runnable-path evidence, and sensitive-data guardrails before any reviewer issue can increase resume-safe usage, feedback, or AI Engineer review metrics.
 
 ## Not Claimed
 
 - No accepted external reviewer issue exists yet.
-- No user, feedback, reproducible-run, or business-case count is increased by planning issues.
+- No user, feedback, reproducible-run, business-case, or AI Engineer review count is increased by planning issues.
 - No private business data is accepted as evidence.

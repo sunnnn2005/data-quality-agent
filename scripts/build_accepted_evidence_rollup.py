@@ -13,6 +13,7 @@ METRIC_LABELS = {
     "external_feedback_items": "external feedback items",
     "reproducible_feedback_items": "reproducible external runs",
     "business_case_feedback_items": "business-case feedback items",
+    "ai_engineer_review_items": "AI Engineer review items",
 }
 
 BLOCKED_CLAIMS = {
@@ -20,6 +21,7 @@ BLOCKED_CLAIMS = {
     "external_feedback_items": "Cannot claim user feedback until at least one accepted reviewer issue includes feedback permission and non-placeholder feedback.",
     "reproducible_feedback_items": "Cannot claim reproducible external runs until a reviewer submits runnable command or URL evidence.",
     "business_case_feedback_items": "Cannot claim real business-case feedback until an anonymized business-case issue passes the gate.",
+    "ai_engineer_review_items": "Cannot claim external AI Engineer review feedback until a non-owner reviewer submits inspected-path evidence and permission to count.",
 }
 
 
@@ -80,6 +82,8 @@ def _blocked_outcome_claims(claimable_metrics: list[dict[str, Any]]) -> list[dic
 
 def build_accepted_evidence_rollup(gate_payload: dict[str, Any] | None = None) -> dict[str, Any]:
     gate = load_json(EVIDENCE_GATE_PATH) if gate_payload is None else gate_payload
+    gate["accepted_counts"] = {metric: gate["accepted_counts"].get(metric, 0) for metric in METRIC_LABELS}
+    gate["current_public_counts"] = {metric: gate["current_public_counts"].get(metric, 0) for metric in METRIC_LABELS}
     claimable_metrics = _claimable_metrics(gate["accepted_counts"])
     blocked_claims = _blocked_outcome_claims(claimable_metrics)
     accepted_issue_count = gate["accepted_issue_count"]
@@ -109,14 +113,15 @@ def build_accepted_evidence_rollup(gate_payload: dict[str, Any] | None = None) -
             f"{accepted_counts['confirmed_external_users']} confirmed users, "
             f"{accepted_counts['external_feedback_items']} feedback items, "
             f"{accepted_counts['reproducible_feedback_items']} reproducible runs, and "
-            f"{accepted_counts['business_case_feedback_items']} business-case feedback items before stronger "
+            f"{accepted_counts['business_case_feedback_items']} business-case feedback items, and "
+            f"{accepted_counts['ai_engineer_review_items']} AI Engineer review items before stronger "
             "resume outcome claims are allowed."
         ),
         "not_claimed": [
             "No accepted external reviewer issue exists yet."
             if accepted_issue_count == 0
             else "Only accepted external reviewer issues are counted.",
-            "No user, feedback, reproducible-run, or business-case outcome is claimable while its accepted count is zero.",
+            "No user, feedback, reproducible-run, business-case, or AI Engineer review outcome is claimable while its accepted count is zero.",
             "No private business data is used as outcome evidence.",
         ],
     }
@@ -205,6 +210,7 @@ def verify_accepted_evidence_rollup(payload: dict[str, Any]) -> dict[str, Any]:
         "confirmed_external_users": 0,
         "external_feedback_items": 0,
         "reproducible_feedback_items": 0,
+        "ai_engineer_review_items": 0,
     }
     if payload["linked_outreach_queue_count"] != 3:
         raise AssertionError("accepted evidence rollup must link the 3 queued reviewer segments")
@@ -212,10 +218,10 @@ def verify_accepted_evidence_rollup(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("accepted evidence rollup must preserve zero accepted-count baseline")
     if payload["accepted_issue_count"] != 0:
         raise AssertionError("accepted evidence rollup must not count accepted issues before public proof exists")
-    if payload["claimable_metric_count"] != 4:
-        raise AssertionError("accepted evidence rollup must track four claimable outcome metrics")
-    if payload["blocked_outcome_claim_count"] != 4:
-        raise AssertionError("accepted evidence rollup must block all four outcome claims at zero baseline")
+    if payload["claimable_metric_count"] != 5:
+        raise AssertionError("accepted evidence rollup must track five claimable outcome metrics")
+    if payload["blocked_outcome_claim_count"] != 5:
+        raise AssertionError("accepted evidence rollup must block all five outcome claims at zero baseline")
     if any(item["claimable"] for item in payload["claimable_metrics"]):
         raise AssertionError("accepted evidence rollup must not mark zero-count metrics as claimable")
     for required in (

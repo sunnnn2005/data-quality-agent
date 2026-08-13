@@ -25,7 +25,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert "external_reviewer_evidence_gate" in payload["application_links"]
     assert "accepted_evidence_rollup" in payload["application_links"]
     assert len(payload["resume_bullets"]) == 3
-    assert payload["verified_outcome_numbers"]["passing_tests"] == 128
+    assert payload["verified_outcome_numbers"]["passing_tests"] == 130
     assert payload["verified_outcome_numbers"]["verified_resume_claims"] == 66
     assert payload["verified_outcome_numbers"]["business_data_replay_paths"] == 3
     assert payload["verified_outcome_numbers"]["business_data_replay_evidence_fields"] == 8
@@ -47,8 +47,8 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert payload["verified_outcome_numbers"]["feedback_intake_captured_fields"] == 5
     assert payload["verified_outcome_numbers"]["reviewer_funnel_stages"] == 4
     assert payload["verified_outcome_numbers"]["reviewer_funnel_remaining_evidence_items"] == 7
-    assert payload["verified_outcome_numbers"]["accepted_evidence_rollup_claimable_metrics"] == 4
-    assert payload["verified_outcome_numbers"]["accepted_evidence_rollup_blocked_claims"] == 4
+    assert payload["verified_outcome_numbers"]["accepted_evidence_rollup_claimable_metrics"] == 5
+    assert payload["verified_outcome_numbers"]["accepted_evidence_rollup_blocked_claims"] == 5
     assert payload["honest_baseline"]["stars"] == 0
     assert payload["honest_baseline"]["confirmed_external_users"] == 0
     assert "Application Evidence Pack" in markdown

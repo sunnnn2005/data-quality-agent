@@ -67,6 +67,31 @@ def issue(body: str, author: str = "external-reviewer", labels: list[str] | None
     }
 
 
+VALID_AI_ENGINEER_REVIEW_BODY = """## Reviewer context
+
+AI engineer with data tooling experience.
+
+## What did you inspect?
+
+- [x] README and AI Engineer readiness docs
+- [x] app/tool_agent.py
+- [x] app/postgres_adapter.py
+
+## Strongest AI Engineer signals
+
+The project shows tool calling, evidence-backed reports, read-only data access, and telemetry.
+
+## Missing or weak AI Engineer signals
+
+It still needs one captured real-model run and a larger labeled eval set.
+
+## Permission to count publicly
+
+- [x] You may count this public issue as external AI Engineer project feedback.
+- [ ] Do not count this issue publicly.
+"""
+
+
 def test_external_reviewer_evidence_gate_starts_from_zero_without_fake_claims():
     payload = build_external_reviewer_evidence_gate()
     verification = verify_external_reviewer_evidence_gate(payload)
@@ -77,6 +102,7 @@ def test_external_reviewer_evidence_gate_starts_from_zero_without_fake_claims():
     assert payload["accepted_issue_count"] == 0
     assert payload["accepted_counts"]["external_feedback_items"] == 0
     assert payload["accepted_counts"]["confirmed_external_users"] == 0
+    assert payload["accepted_counts"]["ai_engineer_review_items"] == 0
     assert payload["linked_outreach_queue_count"] == 3
     assert "No accepted external reviewer issue exists yet." in payload["not_claimed"]
     assert "External Reviewer Evidence Gate" in markdown
@@ -99,6 +125,18 @@ def test_external_reviewer_evidence_gate_accepts_complete_public_run_issue():
     assert payload["accepted_counts"]["reproducible_feedback_items"] == 1
 
 
+def test_external_reviewer_evidence_gate_accepts_ai_engineer_review_issue():
+    payload = build_external_reviewer_evidence_gate(
+        issues=[issue(VALID_AI_ENGINEER_REVIEW_BODY, labels=["ai-engineer-review"])]
+    )
+    evaluation = payload["evaluations"][0]
+
+    assert evaluation["accepted"] is True
+    assert evaluation["evidence_type"] == "ai_engineer_review"
+    assert evaluation["counts_toward"] == ["ai_engineer_review_items"]
+    assert payload["accepted_counts"]["ai_engineer_review_items"] == 1
+
+
 def test_external_reviewer_evidence_gate_rejects_self_authored_missing_permission_or_sensitive_issue():
     missing_permission_body = VALID_EXTERNAL_RUN_BODY.replace(
         "- [x] This can be counted as public external run evidence.",
@@ -107,6 +145,12 @@ def test_external_reviewer_evidence_gate_rejects_self_authored_missing_permissio
     self_authored = evaluate_issue(issue(VALID_EXTERNAL_RUN_BODY, author="sunnnn2005"))
     missing_permission = evaluate_issue(issue(missing_permission_body))
     sensitive = evaluate_issue(issue(VALID_EXTERNAL_RUN_BODY + "\npassword: example"))
+    opted_out = evaluate_issue(
+        issue(
+            VALID_AI_ENGINEER_REVIEW_BODY.replace("- [ ] Do not count this issue publicly.", "- [x] Do not count this issue publicly."),
+            labels=["ai-engineer-review"],
+        )
+    )
 
     assert self_authored["accepted"] is False
     assert "self-authored issue" in self_authored["failure_reasons"]
@@ -114,3 +158,5 @@ def test_external_reviewer_evidence_gate_rejects_self_authored_missing_permissio
     assert "missing public external run permission" in missing_permission["failure_reasons"]
     assert sensitive["accepted"] is False
     assert "contains sensitive-data risk terms" in sensitive["failure_reasons"]
+    assert opted_out["accepted"] is False
+    assert "reviewer opted out of public counting" in opted_out["failure_reasons"]

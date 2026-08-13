@@ -2,12 +2,13 @@
   "entries": [],
   "entry_count": 0,
   "evidence_counts": {
+    "ai_engineer_review_items": 0,
     "business_case_feedback_items": 0,
     "confirmed_external_users": 0,
     "external_feedback_items": 0,
     "reproducible_feedback_items": 0
   },
-  "evidence_requirement_count": 4,
+  "evidence_requirement_count": 5,
   "evidence_requirements": [
     {
       "counts_toward": "external_feedback_items",
@@ -45,6 +46,15 @@
       ],
       "required_public_source": "GitHub issue with steps, environment, expected result, and actual result",
       "resume_upgrade_after": 1
+    },
+    {
+      "counts_toward": "ai_engineer_review_items",
+      "evidence_type": "ai_engineer_review",
+      "required_labels": [
+        "ai-engineer-review"
+      ],
+      "required_public_source": "GitHub issue created from ai_engineer_review.md with explicit permission to count",
+      "resume_upgrade_after": 1
     }
   ],
   "generated_by": "scripts/build_external_review_evidence_ledger.py",
@@ -61,13 +71,14 @@
   ],
   "project": "Data Quality Agent",
   "public_counts": {
+    "ai_engineer_review_items": 0,
     "business_case_feedback_items": 0,
     "confirmed_external_users": 0,
     "external_feedback_items": 0,
     "reproducible_feedback_items": 0
   },
   "purpose": "Define the public evidence required before pilot reviews, feedback, confirmed runs, or business-case reviews can be converted into resume outcome claims.",
-  "resume_safe_summary": "Published a CI-verified external review evidence ledger defining 4 public evidence types, 3 linked pilot review slots, 0 counted public evidence entries, and explicit rules that exclude self-authored planning issues from external feedback claims.",
+  "resume_safe_summary": "Published a CI-verified external review evidence ledger defining 5 public evidence types, 3 linked pilot review slots, 0 counted public evidence entries, and explicit rules that exclude self-authored planning issues from external feedback claims.",
   "resume_status": "not_claimable_yet",
   "resume_upgrade_rules": [
     {

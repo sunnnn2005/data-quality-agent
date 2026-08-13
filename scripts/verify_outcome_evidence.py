@@ -553,7 +553,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 128:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 130:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -854,7 +854,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 128:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 130:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1015,14 +1015,14 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("external review evidence ledger claim must use metric_value=1")
                 if external_ledger.get("entry_count") != 0:
                     raise AssertionError("external review evidence ledger must start with zero entries")
-                if external_ledger.get("evidence_requirement_count") != 4:
-                    raise AssertionError("external review evidence ledger must define four evidence types")
+                if external_ledger.get("evidence_requirement_count") != 5:
+                    raise AssertionError("external review evidence ledger must define five evidence types")
                 if external_ledger.get("linked_planned_reviews") != 3:
                     raise AssertionError("external review evidence ledger must link three planned reviews")
                 if external_ledger.get("resume_status") != "not_claimable_yet":
                     raise AssertionError("external review evidence ledger must not be claimable before proof")
                 evidence_types = {item.get("evidence_type") for item in external_ledger.get("evidence_requirements", [])}
-                for required in {"demo_feedback", "confirmed_run", "business_case_review", "reproducible_bug"}:
+                for required in {"demo_feedback", "confirmed_run", "business_case_review", "reproducible_bug", "ai_engineer_review"}:
                     if required not in evidence_types:
                         raise AssertionError(f"external review evidence ledger missing {required}")
                 public_counts = external_ledger.get("public_counts", {})
@@ -1031,6 +1031,7 @@ def verify_manifest() -> dict[str, int]:
                     "confirmed_external_users": 0,
                     "reproducible_feedback_items": 0,
                     "business_case_feedback_items": 0,
+                    "ai_engineer_review_items": 0,
                 }
                 for key, expected in expected_counts.items():
                     if public_counts.get(key) != expected:
@@ -1082,9 +1083,9 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("reviewer feedback packet claim must use metric_value=1")
                 expected = {
-                    "reviewer_task_count": 3,
-                    "evidence_question_count": 5,
-                    "conversion_path_count": 4,
+                    "reviewer_task_count": 4,
+                    "evidence_question_count": 6,
+                    "conversion_path_count": 5,
                     "planned_review_slots": 3,
                 }
                 for key, value in expected.items():
@@ -1096,6 +1097,7 @@ def verify_manifest() -> dict[str, int]:
                     "confirmed_external_users",
                     "reproducible_feedback_items",
                     "business_case_feedback_items",
+                    "ai_engineer_review_items",
                 ):
                     if counts.get(key) != 0:
                         raise AssertionError(f"reviewer feedback packet must preserve zero {key}")
@@ -1483,13 +1485,14 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("external reviewer evidence gate must link 3 outreach queue entries")
                 if external_reviewer_gate.get("accepted_issue_count") != 0:
                     raise AssertionError("external reviewer evidence gate must preserve zero accepted issue baseline")
-                if len(external_reviewer_gate.get("gate_rules", [])) != 5:
-                    raise AssertionError("external reviewer evidence gate must document 5 validation rules")
+                if len(external_reviewer_gate.get("gate_rules", [])) != 6:
+                    raise AssertionError("external reviewer evidence gate must document 6 validation rules")
                 for key in (
                     "external_feedback_items",
                     "confirmed_external_users",
                     "reproducible_feedback_items",
                     "business_case_feedback_items",
+                    "ai_engineer_review_items",
                 ):
                     if external_reviewer_gate.get("accepted_counts", {}).get(key) != 0:
                         raise AssertionError(f"external reviewer evidence gate must preserve zero {key}")
@@ -1518,10 +1521,10 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("accepted evidence rollup must link 3 outreach queue entries")
                 if accepted_evidence_rollup.get("accepted_issue_count") != 0:
                     raise AssertionError("accepted evidence rollup must preserve zero accepted issue baseline")
-                if accepted_evidence_rollup.get("claimable_metric_count") != 4:
-                    raise AssertionError("accepted evidence rollup must track four claimable metrics")
-                if accepted_evidence_rollup.get("blocked_outcome_claim_count") != 4:
-                    raise AssertionError("accepted evidence rollup must block four outcome claims at baseline")
+                if accepted_evidence_rollup.get("claimable_metric_count") != 5:
+                    raise AssertionError("accepted evidence rollup must track five claimable metrics")
+                if accepted_evidence_rollup.get("blocked_outcome_claim_count") != 5:
+                    raise AssertionError("accepted evidence rollup must block five outcome claims at baseline")
                 for key in (
                     "external_feedback_items",
                     "confirmed_external_users",
@@ -1596,7 +1599,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 128", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 130", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

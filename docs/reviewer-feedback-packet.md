@@ -13,6 +13,7 @@ Give reviewers a short, public, metric-aware path for trying the project and sub
 | quick_demo_review | classmate_or_student_developer | 8 | [https://sunnnn2005.github.io/data-quality-agent/](https://sunnnn2005.github.io/data-quality-agent/) | `external_feedback_items` | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md) |
 | local_repo_review | student_developer_or_open_source_reviewer | 15 | [https://github.com/sunnnn2005/data-quality-agent](https://github.com/sunnnn2005/data-quality-agent) | `confirmed_external_users` | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md) |
 | business_case_review | mentor_recruiter_or_data_practitioner | 12 | [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-case-intake.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-case-intake.md) | `business_case_feedback_items` | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md) |
+| ai_engineer_review | ai_engineer_or_ml_platform_reviewer | 12 | [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md) | `ai_engineer_review_items` | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md) |
 
 ## Evidence Questions
 
@@ -21,6 +22,7 @@ Give reviewers a short, public, metric-aware path for trying the project and sub
 3. What is the strongest AI-agent signal in the project?
 4. What was confusing, missing, or not credible enough for an internship reviewer?
 5. Would you classify your note as feedback, confirmed run, reproducible issue, feature request, or business-case review?
+6. Would you count this as AI Engineer project feedback after inspecting implementation paths?
 
 ## Metric Conversion Paths
 
@@ -30,6 +32,7 @@ Give reviewers a short, public, metric-aware path for trying the project and sub
 | confirmed_external_users | `confirmed-user` | 1 |
 | reproducible_feedback_items | `reproducible` | 1 |
 | business_case_feedback_items | `business-case` | 1 |
+| ai_engineer_review_items | `ai-engineer-review` | 1 |
 
 ## Current Public Counts
 
@@ -39,6 +42,7 @@ Give reviewers a short, public, metric-aware path for trying the project and sub
 | Confirmed External Users | 0 |
 | Reproducible Feedback Items | 0 |
 | Business Case Feedback Items | 0 |
+| Ai Engineer Review Items | 0 |
 
 ## Linked Upgrade Rules
 
@@ -50,7 +54,7 @@ Give reviewers a short, public, metric-aware path for trying the project and sub
 
 ## Resume-Safe Summary
 
-Published a CI-verified reviewer feedback packet with 3 task paths, 5 evidence questions, 4 metric conversion paths, and zero current feedback/adoption counts.
+Published a CI-verified reviewer feedback packet with 4 task paths, 6 evidence questions, 5 metric conversion paths, and zero current feedback/adoption counts.
 
 ## Not Claimed
 

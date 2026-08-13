@@ -17,6 +17,7 @@ TRACKED_LABELS = {
     "business-case": "business_case_feedback_items",
     "business-data-replay": "reproducible_feedback_items",
     "reproducible": "reproducible_feedback_items",
+    "ai-engineer-review": "ai_engineer_review_items",
 }
 PLANNING_LABELS = {"pilot", "roadmap"}
 
@@ -58,12 +59,20 @@ def build_external_review_evidence_ledger(issues: list[dict[str, Any]] | None = 
             "counts_toward": "reproducible_feedback_items",
             "resume_upgrade_after": 1,
         },
+        {
+            "evidence_type": "ai_engineer_review",
+            "required_public_source": "GitHub issue created from ai_engineer_review.md with explicit permission to count",
+            "required_labels": ["ai-engineer-review"],
+            "counts_toward": "ai_engineer_review_items",
+            "resume_upgrade_after": 1,
+        },
     ]
     public_counts = {
         "external_feedback_items": feedback["external_feedback_items"],
         "confirmed_external_users": feedback["confirmed_external_users"],
         "reproducible_feedback_items": feedback["reproducible_feedback_items"],
         "business_case_feedback_items": feedback["business_case_feedback_items"],
+        "ai_engineer_review_items": feedback.get("ai_engineer_review_items", 0),
     }
     evidence_counts = count_evidence_entries(evidence_entries)
     return {
@@ -87,7 +96,7 @@ def build_external_review_evidence_ledger(issues: list[dict[str, Any]] | None = 
         "resume_status": "claimable_feedback_exists" if evidence_entries else "not_claimable_yet",
         "not_claimed": tracker["not_claimed"],
         "resume_safe_summary": (
-            f"Published a CI-verified external review evidence ledger defining 4 public evidence types, "
+            f"Published a CI-verified external review evidence ledger defining 5 public evidence types, "
             f"3 linked pilot review slots, {len(evidence_entries)} counted public evidence entries, and "
             "explicit rules that exclude self-authored planning issues from external feedback claims."
         ),
@@ -152,6 +161,7 @@ def count_evidence_entries(entries: list[dict[str, Any]]) -> dict[str, int]:
         "confirmed_external_users": 0,
         "reproducible_feedback_items": 0,
         "business_case_feedback_items": 0,
+        "ai_engineer_review_items": 0,
     }
     for entry in entries:
         for metric in entry["counts_toward"]:
@@ -247,15 +257,16 @@ This generated ledger defines what public proof is required before any external 
 
 def verify_external_review_evidence_ledger(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
-        "evidence_requirement_count": 4,
+        "evidence_requirement_count": 5,
         "linked_planned_reviews": 3,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
         "reproducible_feedback_items": 0,
         "business_case_feedback_items": 0,
+        "ai_engineer_review_items": 0,
     }
     if payload["evidence_requirement_count"] != expected["evidence_requirement_count"]:
-        raise AssertionError("external review ledger must define four evidence requirement types")
+        raise AssertionError("external review ledger must define five evidence requirement types")
     if payload["linked_planned_reviews"] != expected["linked_planned_reviews"]:
         raise AssertionError("external review ledger must link to three planned pilot reviews")
     if payload["resume_status"] not in {"not_claimable_yet", "claimable_feedback_exists"}:
@@ -263,7 +274,7 @@ def verify_external_review_evidence_ledger(payload: dict[str, Any]) -> dict[str,
     if not payload["self_authored_planning_excluded"]:
         raise AssertionError("external review ledger must exclude self-authored planning issues")
     required_types = {item["evidence_type"] for item in payload["evidence_requirements"]}
-    for required in {"demo_feedback", "confirmed_run", "business_case_review", "reproducible_bug"}:
+    for required in {"demo_feedback", "confirmed_run", "business_case_review", "reproducible_bug", "ai_engineer_review"}:
         if required not in required_types:
             raise AssertionError(f"external review ledger missing evidence type {required}")
     counts = payload["public_counts"]
@@ -272,6 +283,7 @@ def verify_external_review_evidence_ledger(payload: dict[str, Any]) -> dict[str,
         "confirmed_external_users",
         "reproducible_feedback_items",
         "business_case_feedback_items",
+        "ai_engineer_review_items",
     ):
         if counts[key] != expected[key]:
             raise AssertionError(f"external review ledger must preserve zero {key}")
@@ -281,6 +293,7 @@ def verify_external_review_evidence_ledger(payload: dict[str, Any]) -> dict[str,
         "confirmed_external_users",
         "reproducible_feedback_items",
         "business_case_feedback_items",
+        "ai_engineer_review_items",
     ):
         if evidence_counts[key] > counts[key]:
             raise AssertionError(f"evidence ledger cannot count more {key} entries than feedback metrics")
