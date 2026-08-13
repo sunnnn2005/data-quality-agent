@@ -27,6 +27,7 @@ EXTERNAL_REVIEWER_OUTREACH_TRACKER_PATH = ROOT / "docs" / "external-reviewer-out
 EXTERNAL_REVIEWER_EVIDENCE_GATE_PATH = ROOT / "docs" / "external-reviewer-evidence-gate.json"
 ACCEPTED_EVIDENCE_ROLLUP_PATH = ROOT / "docs" / "accepted-evidence-rollup.json"
 BUSINESS_IMPACT_LEDGER_PATH = ROOT / "docs" / "business-impact-ledger.json"
+REVIEWER_EVIDENCE_KIT_PATH = ROOT / "docs" / "reviewer-evidence-kit.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
@@ -97,6 +98,7 @@ def verify_manifest() -> dict[str, int]:
     external_reviewer_gate = load_payload(EXTERNAL_REVIEWER_EVIDENCE_GATE_PATH)
     accepted_evidence_rollup = load_payload(ACCEPTED_EVIDENCE_ROLLUP_PATH)
     business_impact_ledger = load_payload(BUSINESS_IMPACT_LEDGER_PATH)
+    reviewer_evidence_kit = load_payload(REVIEWER_EVIDENCE_KIT_PATH)
     api_smoke_report = load_payload(API_SMOKE_REPORT_PATH)
     performance_baseline = load_payload(PERFORMANCE_BASELINE_PATH)
     demo_usage_baseline = load_payload(DEMO_USAGE_BASELINE_PATH)
@@ -556,7 +558,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 134:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 135:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -857,7 +859,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 134:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 135:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1596,6 +1598,36 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("business impact ledger must have a zero-baseline test")
                 if "test_business_impact_ledger_extracts_claimable_accepted_business_case" not in ledger_tests:
                     raise AssertionError("business impact ledger must have a positive accepted-case test")
+            elif metric_name == "reviewer_evidence_kit":
+                kit_script = (ROOT / "scripts" / "build_reviewer_evidence_kit.py").read_text()
+                kit_tests = (ROOT / "tests" / "test_reviewer_evidence_kit.py").read_text()
+                kit_page = (ROOT / "docs" / "reviewer-evidence-kit.md").read_text()
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("reviewer evidence kit claim must use metric_value=1")
+                if reviewer_evidence_kit.get("evidence_form_count") != 5:
+                    raise AssertionError("reviewer evidence kit must verify five evidence forms")
+                if reviewer_evidence_kit.get("reviewer_script_step_count") != 5:
+                    raise AssertionError("reviewer evidence kit must verify five script steps")
+                if reviewer_evidence_kit.get("resume_status") != "collection_ready_not_claimable":
+                    raise AssertionError("reviewer evidence kit must not claim external outcomes yet")
+                for key in (
+                    "confirmed_external_users",
+                    "external_feedback_items",
+                    "business_case_feedback_items",
+                    "ai_engineer_review_items",
+                    "reproducible_feedback_items",
+                    "accepted_business_impact_signals",
+                ):
+                    if reviewer_evidence_kit.get("current_counts", {}).get(key) != 0:
+                        raise AssertionError(f"reviewer evidence kit must preserve zero {key}")
+                for required in ("Reviewer Evidence Kit", "Public Evidence Forms", "Current Counts"):
+                    if required not in kit_page:
+                        raise AssertionError(f"reviewer evidence kit page missing {required!r}")
+                for required in ("verify_reviewer_evidence_kit", "permission", "private data", "evidence gate"):
+                    if required not in kit_script:
+                        raise AssertionError(f"reviewer evidence kit script missing {required!r}")
+                if "test_reviewer_evidence_kit_gives_countable_public_submission_paths" not in kit_tests:
+                    raise AssertionError("reviewer evidence kit must have a dedicated test")
             elif metrics.get(metric_name) != claim.get("metric_value"):
                 raise AssertionError(
                     f"claim {claim['id']} metric mismatch: {metric_name}={claim.get('metric_value')} "
@@ -1666,7 +1698,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 134", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 135", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

@@ -47,13 +47,13 @@ PUBLIC_CHECKS = [
         "id": "outcome-evidence-manifest",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-evidence.json",
         "expected_text": "business-impact-artifact",
-        "expected_texts": ["external-run-evidence-packet", "134 passing CI tests", "accepted-evidence-rollup", "real-model-evidence-capture"],
+        "expected_texts": ["external-run-evidence-packet", "135 passing CI tests", "accepted-evidence-rollup", "real-model-evidence-capture"],
         "evidence_type": "json",
     },
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 134},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 135},
         "evidence_type": "json",
     },
     {

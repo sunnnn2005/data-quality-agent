@@ -61,6 +61,7 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "external_reviewer_evidence_gate": f"{scorecard['repo']}/blob/main/docs/external-reviewer-evidence-gate.md",
             "accepted_evidence_rollup": f"{scorecard['repo']}/blob/main/docs/accepted-evidence-rollup.md",
             "business_impact_ledger": f"{scorecard['repo']}/blob/main/docs/business-impact-ledger.md",
+            "reviewer_evidence_kit": f"{scorecard['repo']}/blob/main/docs/reviewer-evidence-kit.md",
         },
         "verified_outcome_numbers": {
             "passing_tests": headline["passing_tests"],
@@ -91,6 +92,8 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "accepted_evidence_rollup_claimable_metrics": outcomes["accepted_evidence_rollup_claimable_metrics"],
             "accepted_evidence_rollup_blocked_claims": outcomes["accepted_evidence_rollup_blocked_claims"],
             "business_impact_ledger_accepted_signals": outcomes["business_impact_ledger_accepted_signals"],
+            "reviewer_evidence_forms": outcomes["reviewer_evidence_forms"],
+            "reviewer_evidence_script_steps": outcomes["reviewer_evidence_script_steps"],
             "real_model_run_commands": outcomes["real_model_run_commands"],
             "real_model_evidence_fields": outcomes["real_model_evidence_fields"],
             "real_model_capture_required_fields": outcomes["real_model_capture_required_fields"],
@@ -109,7 +112,7 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "Open the public demo to see the product-style result.",
             "Open the live scorecard for the current tests, claims, release, container, and adoption baseline.",
             "Open the recruiter pitch for resume bullets and interview framing.",
-        "Open the AI Engineer readiness page, OpenAPI contract, and safety boundaries for implementation depth.",
+            "Open the AI Engineer readiness page, OpenAPI contract, and safety boundaries for implementation depth.",
             "Open public metrics to verify stars, forks, feedback, and not-claimed signals.",
         ],
         "honest_baseline": {
@@ -176,14 +179,14 @@ This generated pack gives recruiters and interviewers a compact review path for 
 
 def verify_application_evidence_pack(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
-        "application_link_count": 28,
+        "application_link_count": 29,
         "resume_bullet_count": 3,
         "target_role_count": 4,
-        "passing_tests": 134,
-        "verified_resume_claims": 68,
+        "passing_tests": 135,
+        "verified_resume_claims": 69,
     }
     if len(payload["application_links"]) != expected["application_link_count"]:
-            raise AssertionError("application evidence pack must include 28 application links")
+            raise AssertionError("application evidence pack must include 29 application links")
     if len(payload["resume_bullets"]) != expected["resume_bullet_count"]:
         raise AssertionError("application evidence pack must include 3 resume bullets")
     if len(payload["target_roles"]) != expected["target_role_count"]:

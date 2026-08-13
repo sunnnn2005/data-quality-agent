@@ -25,6 +25,7 @@
     "has_real_model_runbook": true,
     "has_release": true,
     "has_resume_outcome_readiness": true,
+    "has_reviewer_evidence_kit": true,
     "has_reviewer_funnel_board": true
   },
   "container_image": "ghcr.io/sunnnn2005/data-quality-agent:latest",
@@ -34,10 +35,10 @@
     "agent_tools_allowed": 7,
     "implemented_agent_capabilities": 16,
     "openapi_required_endpoints": 6,
-    "passing_tests": 134,
+    "passing_tests": 135,
     "support_ticket_issue_categories": 4,
     "unsafe_postgres_queries_rejected": 3,
-    "verified_resume_claims": 68
+    "verified_resume_claims": 69
   },
   "live_footprint": {
     "confirmed_external_users": 0,
@@ -56,7 +57,7 @@
   "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
   "release": "v0.3.0",
   "repo": "https://github.com/sunnnn2005/data-quality-agent",
-  "resume_safe_summary": "Live project scorecard: public demo, v0.3.0 release, container image, 134 passing CI tests, 68 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
+  "resume_safe_summary": "Live project scorecard: public demo, v0.3.0 release, container image, 135 passing CI tests, 69 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
   "reviewer_paths": [
     {
       "label": "Try the public demo",
@@ -133,6 +134,10 @@
     {
       "label": "Inspect business impact ledger",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-impact-ledger.md"
+    },
+    {
+      "label": "Use reviewer evidence kit",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-evidence-kit.md"
     },
     {
       "label": "Use external run evidence packet",

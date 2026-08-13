@@ -1,0 +1,104 @@
+{
+  "business_impact_resume_status": "not_claimable_yet",
+  "current_counts": {
+    "accepted_business_impact_signals": 0,
+    "ai_engineer_review_items": 0,
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
+  "evidence_form_count": 5,
+  "evidence_forms": [
+    {
+      "copy_prompt": "I ran the public demo/container/PostgreSQL replay, used this command or URL, observed this result, and I grant permission to count this as public external run evidence.",
+      "id": "external_run",
+      "metric": "confirmed_external_users",
+      "minimum_required": 1,
+      "template": "external_run_review.md",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md"
+    },
+    {
+      "copy_prompt": "I tried the demo or docs, this part was useful, this part was confusing, and this feedback can be counted publicly without private data.",
+      "id": "demo_feedback",
+      "metric": "external_feedback_items",
+      "minimum_required": 3,
+      "template": "demo_feedback.md",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    },
+    {
+      "copy_prompt": "Here is an anonymized workflow, data-quality problem, business impact, fields involved, and evidence mapping. I grant permission to count it as anonymized public business-case feedback.",
+      "id": "business_case",
+      "metric": "business_case_feedback_items",
+      "minimum_required": 1,
+      "template": "business_case_review.md",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md"
+    },
+    {
+      "copy_prompt": "I inspected the tool-calling, structured output, guardrails, trace, evaluation, and data connector evidence, and I grant permission to count this as AI Engineer project feedback.",
+      "id": "ai_engineer_review",
+      "metric": "ai_engineer_review_items",
+      "minimum_required": 1,
+      "template": "ai_engineer_review.md",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md"
+    },
+    {
+      "copy_prompt": "I found a reproducible issue, included expected result, actual result, environment, and reproduction steps, without private business data.",
+      "id": "reproducible_bug",
+      "metric": "reproducible_feedback_items",
+      "minimum_required": 1,
+      "template": "bug_report.md",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md"
+    }
+  ],
+  "generated_by": "scripts/build_reviewer_evidence_kit.py",
+  "missing_evidence": [
+    {
+      "current_value": 0,
+      "evidence_required": "Public GitHub issues labeled feedback with reproducible context",
+      "minimum_to_claim": 3,
+      "remaining_needed": 3,
+      "stage": "confirmed_external_feedback"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "Public issue or replay note labeled confirmed-user",
+      "minimum_to_claim": 1,
+      "remaining_needed": 1,
+      "stage": "confirmed_external_users"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "Public business-case review issue with anonymized workflow and permission boundary",
+      "minimum_to_claim": 1,
+      "remaining_needed": 1,
+      "stage": "business_case_validated"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "Public replay issues with commands, non-sensitive schema, status, and finding count",
+      "minimum_to_claim": 2,
+      "remaining_needed": 2,
+      "stage": "reproducible_replay_confirmed"
+    }
+  ],
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "validated business impact",
+    "production adoption",
+    "GitHub stars beyond the current public count"
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Give real reviewers a copy-ready, privacy-safe path for submitting public evidence that can upgrade resume outcome claims only after the evidence gate accepts it.",
+  "resume_safe_summary": "Published a CI-verified reviewer evidence kit with 5 public issue templates, 5 copy-ready reviewer prompts, 5 privacy/permission steps, and zero current external outcome counts.",
+  "resume_status": "collection_ready_not_claimable",
+  "reviewer_script": [
+    "Open the public demo or run the container/PostgreSQL replay.",
+    "Copy the matching prompt into the linked GitHub issue template.",
+    "Include only redacted schema, aggregate stats, command output, or screenshots with private data removed.",
+    "Check the explicit permission box only if the issue can be counted publicly.",
+    "Wait for the evidence gate to accept or reject the issue before any resume wording is upgraded."
+  ],
+  "reviewer_script_step_count": 5
+}

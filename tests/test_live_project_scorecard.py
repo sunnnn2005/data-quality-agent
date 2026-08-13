@@ -11,9 +11,9 @@ def test_live_project_scorecard_summarizes_public_resume_evidence_without_inflat
     markdown = render_markdown(payload)
 
     assert verification["live_project_scorecard_verified"] is True
-    assert payload["headline_metrics"]["passing_tests"] == 134
-    assert payload["headline_metrics"]["verified_resume_claims"] == 68
-    assert len(payload["reviewer_paths"]) == 22
+    assert payload["headline_metrics"]["passing_tests"] == 135
+    assert payload["headline_metrics"]["verified_resume_claims"] == 69
+    assert len(payload["reviewer_paths"]) == 23
     assert any(path["label"] == "Inspect accepted evidence rollup" for path in payload["reviewer_paths"])
     assert payload["headline_metrics"]["implemented_agent_capabilities"] == 16
     assert payload["headline_metrics"]["agent_matrix_implemented_capabilities"] == 13
@@ -32,6 +32,7 @@ def test_live_project_scorecard_summarizes_public_resume_evidence_without_inflat
     assert payload["claim_coverage"]["has_external_reviewer_outreach_tracker"] is True
     assert payload["claim_coverage"]["has_external_reviewer_evidence_gate"] is True
     assert payload["claim_coverage"]["has_business_impact_ledger"] is True
+    assert payload["claim_coverage"]["has_reviewer_evidence_kit"] is True
     assert any(path["label"] == "Inspect impact review packet" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Inspect business problem casebook" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Inspect public traction dashboard" for path in payload["reviewer_paths"])
@@ -46,6 +47,7 @@ def test_live_project_scorecard_summarizes_public_resume_evidence_without_inflat
     assert any(path["label"] == "Use external reviewer outreach tracker" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Inspect external reviewer evidence gate" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Inspect business impact ledger" for path in payload["reviewer_paths"])
+    assert any(path["label"] == "Use reviewer evidence kit" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Use external run evidence packet" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Use reviewer funnel board" for path in payload["reviewer_paths"])
     assert "Live Project Scorecard" in markdown

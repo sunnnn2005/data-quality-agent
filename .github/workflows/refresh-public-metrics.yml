@@ -44,11 +44,12 @@ jobs:
           python scripts/build_public_metrics_summary.py
           python scripts/build_live_project_scorecard.py
           python scripts/build_business_impact_ledger.py
+          python scripts/build_reviewer_evidence_kit.py
           python scripts/build_application_evidence_pack.py
       - name: Verify resume evidence
         run: |
           python scripts/verify_outcome_evidence.py
-          python -m pytest tests/test_star_growth_kit.py tests/test_public_metrics_summary.py tests/test_business_impact_ledger.py
+          python -m pytest tests/test_star_growth_kit.py tests/test_public_metrics_summary.py tests/test_business_impact_ledger.py tests/test_reviewer_evidence_kit.py
       - name: Commit refreshed metrics
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
