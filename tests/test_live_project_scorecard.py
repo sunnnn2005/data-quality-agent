@@ -11,7 +11,7 @@ def test_live_project_scorecard_summarizes_public_resume_evidence_without_inflat
     markdown = render_markdown(payload)
 
     assert verification["live_project_scorecard_verified"] is True
-    assert payload["headline_metrics"]["passing_tests"] == 94
+    assert payload["headline_metrics"]["passing_tests"] == 95
     assert payload["headline_metrics"]["verified_resume_claims"] == 54
     assert payload["headline_metrics"]["implemented_agent_capabilities"] == 16
     assert payload["headline_metrics"]["agent_matrix_implemented_capabilities"] == 13

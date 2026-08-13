@@ -32,7 +32,7 @@ Define exactly when public adoption, feedback, business-case review, and reposit
 - Public GitHub Pages demo
 - v0.3.0 release
 - GHCR container image
-- 94 passing CI tests
+- 95 passing CI tests
 - 16 implemented LLM agent-readiness capabilities
 - Read-only PostgreSQL and bounded CSV business-data intake
 
