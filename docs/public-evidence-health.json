@@ -1,5 +1,5 @@
 {
-  "check_count": 55,
+  "check_count": 56,
   "checks": [
     {
       "evidence_type": "html",
@@ -327,6 +327,13 @@
       ]
     },
     {
+      "evidence_type": "workflow",
+      "id": "public-metrics-refresh-workflow",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/.github/workflows/refresh-public-metrics.yml"
+    },
+    {
       "evidence_type": "json",
       "id": "public-availability-snapshot",
       "passed": true,
@@ -370,6 +377,7 @@
       "verified_fields": [
         "captured_field_count",
         "project",
+        "required_outcome_count",
         "required_section_count"
       ]
     },
@@ -456,7 +464,10 @@
       "status_code": 200,
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-invitation-kit.json",
       "verified_fields": [
-        "project"
+        "distinct_funnel_stage_count",
+        "invitation_count",
+        "project",
+        "public_evidence_path_count"
       ]
     },
     {
@@ -587,6 +598,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 55,
+  "passed_count": 56,
   "status": "PASS"
 }
