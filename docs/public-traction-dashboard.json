@@ -1,7 +1,7 @@
 {
   "demo_entrypoints_verified": 4,
   "generated_by": "scripts/build_public_traction_dashboard.py",
-  "growth_channel_count": 12,
+  "growth_channel_count": 13,
   "growth_channels": [
     {
       "name": "Good first issue label",
@@ -59,6 +59,11 @@
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/live-project-scorecard.md"
     },
     {
+      "name": "pilot_feedback_tracker",
+      "purpose": "pilot review path",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/16"
+    },
+    {
       "name": "quick_demo",
       "purpose": "pilot review path",
       "url": "https://sunnnn2005.github.io/data-quality-agent/"
@@ -75,12 +80,12 @@
     "confirmed_external_users": 0,
     "external_feedback_items": 0,
     "forks": 1,
-    "issues_total": 10,
+    "issues_total": 11,
     "reproducible_feedback_items": 0,
     "stars": 0,
     "watchers": 0
   },
-  "resume_safe_summary": "Published a public traction dashboard covering 4 live project surfaces, 12 growth or review channels, 5 tracked demo funnel steps, and explicit resume-upgrade rules for users, feedback, and stars.",
+  "resume_safe_summary": "Published a public traction dashboard covering 4 live project surfaces, 13 growth or review channels, 5 tracked demo funnel steps, and explicit resume-upgrade rules for users, feedback, and stars.",
   "resume_upgrade_rules": [
     {
       "current_value": 0,

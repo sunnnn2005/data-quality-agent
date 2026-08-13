@@ -289,7 +289,7 @@ def verify_manifest() -> dict[str, int]:
                 expected_counts = {
                     "stars": 0,
                     "forks": 1,
-                    "issues_total": 10,
+                    "issues_total": 11,
                     "external_feedback_items": 0,
                     "confirmed_external_users": 0,
                     "reproducible_feedback_items": 0,
@@ -400,8 +400,8 @@ def verify_manifest() -> dict[str, int]:
                 traction_tests = (ROOT / "tests" / "test_public_traction_dashboard.py").read_text()
                 if traction.get("traction_surface_count") != 4:
                     raise AssertionError("public traction dashboard must verify 4 traction surfaces")
-                if traction.get("growth_channel_count") != 12:
-                    raise AssertionError("public traction dashboard must verify 12 growth or review channels")
+                if traction.get("growth_channel_count") != 13:
+                    raise AssertionError("public traction dashboard must verify 13 growth or review channels")
                 if traction.get("tracked_funnel_steps") != 5:
                     raise AssertionError("public traction dashboard must verify 5 tracked funnel steps")
                 if traction.get("demo_entrypoints_verified") != 4:
@@ -417,7 +417,7 @@ def verify_manifest() -> dict[str, int]:
                 expected_counts = {
                     "stars": 0,
                     "forks": 1,
-                    "issues_total": 10,
+                        "issues_total": 11,
                     "external_feedback_items": 0,
                     "confirmed_external_users": 0,
                     "reproducible_feedback_items": 0,
@@ -765,8 +765,8 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but pilot outreach kit has "
                         f"{len(pilot_outreach.get('outreach_messages', []))}"
                     )
-                if len(pilot_outreach.get("review_paths", {})) != 7:
-                    raise AssertionError("pilot outreach kit must include seven review paths")
+                if len(pilot_outreach.get("review_paths", {})) != 8:
+                    raise AssertionError("pilot outreach kit must include eight review paths")
                 if pilot_outreach.get("success_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("pilot outreach kit must preserve current feedback baseline")
                 if pilot_outreach.get("success_metrics", {}).get("confirmed_external_users") != 0:

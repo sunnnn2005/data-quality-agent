@@ -8,7 +8,7 @@ def test_adoption_metrics_uses_safe_fallback_values(monkeypatch):
     monkeypatch.setenv("ADOPTION_STARS", "0")
     monkeypatch.setenv("ADOPTION_FORKS", "1")
     monkeypatch.setenv("ADOPTION_WATCHERS", "0")
-    monkeypatch.setenv("ADOPTION_ISSUES_TOTAL", "10")
+    monkeypatch.setenv("ADOPTION_ISSUES_TOTAL", "11")
     monkeypatch.setenv("ADOPTION_TEST_COUNT", "88")
     monkeypatch.setattr(update_adoption_metrics, "_load_existing_metrics", lambda: {})
 
@@ -17,7 +17,7 @@ def test_adoption_metrics_uses_safe_fallback_values(monkeypatch):
     assert metrics["stars"] == 0
     assert metrics["forks"] == 1
     assert metrics["watchers"] == 0
-    assert metrics["issues_total"] == 10
+    assert metrics["issues_total"] == 11
     assert metrics["external_feedback_items"] == 0
     assert metrics["confirmed_external_users"] == 0
     assert metrics["test_count"] == 88

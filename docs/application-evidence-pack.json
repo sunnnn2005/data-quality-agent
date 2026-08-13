@@ -65,7 +65,7 @@
     "implemented_agent_capabilities": 16,
     "openapi_required_endpoints": 6,
     "passing_tests": 88,
-    "public_traction_growth_channels": 12,
+    "public_traction_growth_channels": 13,
     "public_traction_surfaces": 4,
     "recruiter_safe_resume_bullets": 3,
     "rejected_unsafe_postgres_queries": 3,

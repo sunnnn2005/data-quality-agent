@@ -174,7 +174,7 @@ def verify_impact_review_packet(payload: dict[str, Any]) -> dict[str, Any]:
     expected_counts = {
         "stars": 0,
         "forks": 1,
-        "issues_total": 10,
+        "issues_total": 11,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
         "reproducible_feedback_items": 0,

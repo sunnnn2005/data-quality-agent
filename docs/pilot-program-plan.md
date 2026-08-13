@@ -61,6 +61,7 @@ Run a small public pilot to turn the current zero-feedback baseline into verifie
 - Feedback Issue: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md)
 - Github Repo: [https://github.com/sunnnn2005/data-quality-agent](https://github.com/sunnnn2005/data-quality-agent)
 - Live Scorecard: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/live-project-scorecard.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/live-project-scorecard.md)
+- Pilot Feedback Tracker: [https://github.com/sunnnn2005/data-quality-agent/issues/16](https://github.com/sunnnn2005/data-quality-agent/issues/16)
 - Quick Demo: [https://sunnnn2005.github.io/data-quality-agent/](https://sunnnn2005.github.io/data-quality-agent/)
 
 ## Resume Upgrade Rules

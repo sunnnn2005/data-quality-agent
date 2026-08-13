@@ -38,7 +38,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Business Problem Cases | 1 |
 | Business Problem Detected Risks | 4 |
 | Public Traction Surfaces | 4 |
-| Public Traction Growth Channels | 12 |
+| Public Traction Growth Channels | 13 |
 | Feedback Intake Required Sections | 5 |
 | Feedback Intake Captured Fields | 5 |
 | Recruiter Safe Resume Bullets | 3 |

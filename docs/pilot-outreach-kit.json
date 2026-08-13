@@ -32,6 +32,7 @@
     "feedback_issue": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
     "github_repo": "https://github.com/sunnnn2005/data-quality-agent",
     "live_scorecard": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/live-project-scorecard.md",
+    "pilot_feedback_tracker": "https://github.com/sunnnn2005/data-quality-agent/issues/16",
     "quick_demo": "https://sunnnn2005.github.io/data-quality-agent/"
   },
   "success_metrics": {

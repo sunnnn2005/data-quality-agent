@@ -41,7 +41,7 @@ This generated artifact verifies the public contribution and feedback paths that
 | --- | ---: |
 | Stars | 0 |
 | Forks | 1 |
-| Issues Total | 10 |
+| Issues Total | 11 |
 | External Feedback Items | 0 |
 | Confirmed External Users | 0 |
 | Reproducible Feedback Items | 0 |

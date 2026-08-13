@@ -9,7 +9,7 @@ This generated dashboard separates what is live and trackable from what is not y
 | Stars | 0 |
 | Forks | 1 |
 | Watchers | 0 |
-| Issues Total | 10 |
+| Issues Total | 11 |
 | External Feedback Items | 0 |
 | Confirmed External Users | 0 |
 | Reproducible Feedback Items | 0 |
@@ -36,6 +36,7 @@ This generated dashboard separates what is live and trackable from what is not y
 - [feedback_issue](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md) -> pilot review path
 - [github_repo](https://github.com/sunnnn2005/data-quality-agent) -> pilot review path
 - [live_scorecard](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/live-project-scorecard.md) -> pilot review path
+- [pilot_feedback_tracker](https://github.com/sunnnn2005/data-quality-agent/issues/16) -> pilot review path
 - [quick_demo](https://sunnnn2005.github.io/data-quality-agent/) -> pilot review path
 
 ## Resume Upgrade Rules
@@ -48,7 +49,7 @@ This generated dashboard separates what is live and trackable from what is not y
 
 ## Resume-Safe Summary
 
-Published a public traction dashboard covering 4 live project surfaces, 12 growth or review channels, 5 tracked demo funnel steps, and explicit resume-upgrade rules for users, feedback, and stars.
+Published a public traction dashboard covering 4 live project surfaces, 13 growth or review channels, 5 tracked demo funnel steps, and explicit resume-upgrade rules for users, feedback, and stars.
 
 ## Not Claimed
 
