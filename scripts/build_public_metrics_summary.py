@@ -14,6 +14,7 @@ INCIDENT_PATTERN_MEMORY_PATH = ROOT / "docs" / "incident-pattern-memory.json"
 AGENT_OBSERVABILITY_PATH = ROOT / "docs" / "agent-observability.json"
 AGENT_SAFETY_PATH = ROOT / "docs" / "agent-safety-boundaries.json"
 LOCAL_REVIEWER_DEMO_PATH = ROOT / "docs" / "local-reviewer-demo.json"
+API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
 APPLICATION_EVIDENCE_PACK_PATH = ROOT / "docs" / "application-evidence-pack.json"
@@ -38,6 +39,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     observability = load_json(AGENT_OBSERVABILITY_PATH)
     safety = load_json(AGENT_SAFETY_PATH)
     local_demo = load_json(LOCAL_REVIEWER_DEMO_PATH)
+    api_smoke = load_json(API_SMOKE_REPORT_PATH)
     openapi = load_json(OPENAPI_PATH)
     recruiter_pitch = load_json(RECRUITER_PITCH_PATH)
     application_pack = load_json(APPLICATION_EVIDENCE_PACK_PATH)
@@ -84,6 +86,9 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "local_reviewer_demo": 1,
             "local_reviewer_seeded_rows": local_demo["seeded_business_table"]["row_count"],
             "local_reviewer_routes": len(local_demo["reviewer_routes"]),
+            "api_smoke_report": 1,
+            "api_smoke_checks": api_smoke["check_count"],
+            "api_smoke_passed_checks": api_smoke["passed_count"],
             "live_project_scorecard": 1,
             "scorecard_reviewer_paths": 6,
             "openapi_required_endpoints": 6,
@@ -129,6 +134,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"Local Docker Compose reviewer demo with {local_demo['seeded_business_table']['row_count']} seeded "
                 f"PostgreSQL rows and {len(local_demo['reviewer_routes'])} review paths"
             ),
+            f"CI-verified API smoke report covering {api_smoke['passed_count']} passing FastAPI route checks",
             "6 reviewer paths in a CI-verified live project scorecard",
             "CI-verified OpenAPI contract covering 6 integration endpoints",
             f"{len(recruiter_pitch['resume_bullets'])} recruiter-safe resume bullets for {len(recruiter_pitch['target_roles'])} target roles",
@@ -196,6 +202,9 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Local reviewer demo | {outcomes["local_reviewer_demo"]} |
 | Local reviewer seeded rows | {outcomes["local_reviewer_seeded_rows"]} |
 | Local reviewer routes | {outcomes["local_reviewer_routes"]} |
+| API smoke report | {outcomes["api_smoke_report"]} |
+| API smoke checks | {outcomes["api_smoke_checks"]} |
+| API smoke passed checks | {outcomes["api_smoke_passed_checks"]} |
 | Live project scorecard | {outcomes["live_project_scorecard"]} |
 | Scorecard reviewer paths | {outcomes["scorecard_reviewer_paths"]} |
 | OpenAPI required integration endpoints | {outcomes["openapi_required_endpoints"]} |
@@ -232,7 +241,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 78,
+        "test_count": 79,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -259,6 +268,9 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "local_reviewer_demo": 1,
         "local_reviewer_seeded_rows": 8,
         "local_reviewer_routes": 3,
+        "api_smoke_report": 1,
+        "api_smoke_checks": 6,
+        "api_smoke_passed_checks": 6,
         "live_project_scorecard": 1,
         "scorecard_reviewer_paths": 6,
         "openapi_required_endpoints": 6,

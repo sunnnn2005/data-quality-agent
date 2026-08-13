@@ -14,6 +14,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "agent-observability",
         "agent-safety-boundaries",
         "local-reviewer-demo",
+        "api-smoke-report",
         "live-project-scorecard",
         "recruiter-pitch",
         "application-evidence-pack",

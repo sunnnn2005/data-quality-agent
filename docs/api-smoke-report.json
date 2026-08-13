@@ -1,0 +1,102 @@
+{
+  "check_count": 6,
+  "checks": [
+    {
+      "failure_reasons": [],
+      "id": "health",
+      "method": "GET",
+      "passed": true,
+      "path": "/health",
+      "payload_preview": {
+        "error": null,
+        "row_count": null,
+        "service": "data-quality-agent",
+        "status": "ok",
+        "trace_id": null
+      },
+      "status_code": 200
+    },
+    {
+      "failure_reasons": [],
+      "id": "dataset_catalog",
+      "method": "GET",
+      "passed": true,
+      "path": "/datasets",
+      "payload_preview": {
+        "list_length": 3
+      },
+      "status_code": 200
+    },
+    {
+      "failure_reasons": [],
+      "id": "profile",
+      "method": "GET",
+      "passed": true,
+      "path": "/datasets/orders_daily/profile",
+      "payload_preview": {
+        "error": null,
+        "row_count": 7,
+        "service": null,
+        "status": null,
+        "trace_id": null
+      },
+      "status_code": 200
+    },
+    {
+      "failure_reasons": [],
+      "id": "quality_report",
+      "method": "POST",
+      "passed": true,
+      "path": "/datasets/orders_daily/quality-report",
+      "payload_preview": {
+        "error": null,
+        "row_count": 7,
+        "service": null,
+        "status": "FAIL",
+        "trace_id": "run_549aeddcea054067"
+      },
+      "status_code": 200
+    },
+    {
+      "failure_reasons": [],
+      "id": "agent_report_disabled_fallback",
+      "method": "POST",
+      "passed": true,
+      "path": "/datasets/orders_daily/agent-report",
+      "payload_preview": {
+        "error": "OPENAI_API_KEY is not configured",
+        "row_count": null,
+        "service": null,
+        "status": "DISABLED",
+        "trace_id": "run_98e36b9f68b343f5"
+      },
+      "status_code": 200
+    },
+    {
+      "failure_reasons": [],
+      "id": "incident_markdown",
+      "method": "POST",
+      "passed": true,
+      "path": "/datasets/orders_daily/incident-report.md",
+      "payload_preview": {
+        "text_length": 3054
+      },
+      "status_code": 200
+    }
+  ],
+  "deterministic_mode": {
+    "llm_agent_forced_disabled": true,
+    "reason": "API smoke report must not require model credentials."
+  },
+  "failed_count": 0,
+  "generated_by": "scripts/build_api_smoke_report.py",
+  "not_claimed": [
+    "No production uptime SLA is claimed.",
+    "No external traffic volume is claimed.",
+    "No hosted API usage is claimed."
+  ],
+  "passed_count": 6,
+  "project": "Data Quality Agent",
+  "resume_safe_summary": "Published a CI-verified API smoke report covering 6 FastAPI routes for health, catalog, profiling, deterministic report, disabled agent fallback, and incident Markdown export.",
+  "status": "PASS"
+}

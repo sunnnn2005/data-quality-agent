@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "78 passing CI tests",
+      "resume_signal": "79 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 78,
+      "metric_value": 79,
       "status": "verified"
     },
     {
@@ -89,6 +89,16 @@
       "evidence_type": "artifact",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/local-reviewer-demo.json",
       "metric_name": "local_reviewer_demo",
+      "metric_value": 1,
+      "status": "verified"
+    },
+    {
+      "id": "api-smoke-report",
+      "resume_signal": "CI-verified API smoke report",
+      "claim": "The project publishes a generated API smoke report that verifies 6 FastAPI routes for health, catalog, profiling, deterministic reports, disabled agent fallback, and incident Markdown export without claiming production uptime.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/api-smoke-report.json",
+      "metric_name": "api_smoke_report",
       "metric_value": 1,
       "status": "verified"
     },

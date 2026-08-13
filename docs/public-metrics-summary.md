@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 10 |
-| Passing CI tests | 78 |
+| Passing CI tests | 79 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -40,6 +40,9 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Local reviewer demo | 1 |
 | Local reviewer seeded rows | 8 |
 | Local reviewer routes | 3 |
+| API smoke report | 1 |
+| API smoke checks | 6 |
+| API smoke passed checks | 6 |
 | Live project scorecard | 1 |
 | Scorecard reviewer paths | 6 |
 | OpenAPI required integration endpoints | 6 |
@@ -65,7 +68,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.2.0 release
-- 78 passing CI tests
+- 79 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -77,6 +80,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 2 mocked LLM calls with 360 tokens, prompt version, latency, retry budget, and estimated cost telemetry
 - 7 allowed agent tools and 3 rejected unsafe PostgreSQL queries
 - Local Docker Compose reviewer demo with 8 seeded PostgreSQL rows and 3 review paths
+- CI-verified API smoke report covering 6 passing FastAPI route checks
 - 6 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles

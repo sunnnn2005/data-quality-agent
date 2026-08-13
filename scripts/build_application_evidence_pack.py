@@ -133,8 +133,8 @@ def verify_application_evidence_pack(payload: dict[str, Any]) -> dict[str, Any]:
         "application_link_count": 8,
         "resume_bullet_count": 3,
         "target_role_count": 4,
-        "passing_tests": 78,
-        "verified_resume_claims": 37,
+        "passing_tests": 79,
+        "verified_resume_claims": 38,
     }
     if len(payload["application_links"]) != expected["application_link_count"]:
         raise AssertionError("application evidence pack must include 8 application links")
