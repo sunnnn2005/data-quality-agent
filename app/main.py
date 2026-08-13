@@ -9,7 +9,7 @@ from app.business_data import BusinessDataRequest, load_business_csv
 from app.dashboard import render_dashboard
 from app.data import DATASETS, load_dataset
 from app.incident_export import render_incident_markdown
-from app.models import AgentRunReport, DatasetProfile, DatasetSummary, QualityReport
+from app.models import AgentRunReport, DatasetMemorySummary, DatasetProfile, DatasetSummary, QualityReport
 from app.postgres_adapter import PostgresAdapterError, PostgresDatasetAdapter
 from app.profiler import DatasetProfiler
 from app.tool_agent import LLMDataQualityAgent
@@ -118,6 +118,14 @@ def get_run_trace(trace_id: str):
     if trace is None:
         raise HTTPException(status_code=404, detail="Run trace not found")
     return trace
+
+
+@app.get("/datasets/{dataset_id}/memory", response_model=DatasetMemorySummary)
+def get_dataset_memory(dataset_id: str, limit: int = 5):
+    dataset_exists = dataset_id in DATASETS
+    if not dataset_exists:
+        raise HTTPException(status_code=404, detail="Dataset not found")
+    return trace_store.list_by_dataset(dataset_id, limit=limit)
 
 
 @app.get("/dashboard", response_class=HTMLResponse)

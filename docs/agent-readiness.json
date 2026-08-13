@@ -1,6 +1,6 @@
 {
   "project": "Data Quality Agent",
-  "updated_at": "2026-08-13T05:20:00Z",
+  "updated_at": "2026-08-13T06:30:00Z",
   "summary": "Current readiness assessment against a practical LLM agent checklist. This file separates implemented capabilities from partial and planned work so resume claims stay evidence-backed.",
   "implemented": [
     {
@@ -29,6 +29,11 @@
       "evidence": "TRACE_DB_PATH enables SQLite persistence for StoredRunTrace records, and tests verify recovery across RunTraceStore instances."
     },
     {
+      "id": "dataset-memory-retrieval",
+      "capability": "Dataset-level memory retrieves recent historical trace summaries",
+      "evidence": "RunTraceStore.list_by_dataset and /datasets/{dataset_id}/memory return recent sanitized traces, recurring checks, and recurring root-cause titles."
+    },
+    {
       "id": "root-cause-ranking",
       "capability": "Reports include evidence-ranked root-cause hypotheses",
       "evidence": "QualityReport.root_cause_hypotheses ranks likely causes by confidence and attaches supporting checks, evidence, and recommended actions."
@@ -47,9 +52,9 @@
   "partial": [
     {
       "id": "memory",
-      "capability": "Run trace persistence exists, but retrieval memory is still basic",
-      "current_state": "Sanitized run traces can be stored in SQLite and recovered by trace_id after process restart.",
-      "next_step": "Add dataset-level and incident-level retrieval over previous runs."
+      "capability": "Dataset-level retrieval exists, but incident-pattern memory is still basic",
+      "current_state": "Sanitized trace summaries can be retrieved by dataset with recurring checks and recurring root-cause titles.",
+      "next_step": "Add incident-pattern retrieval and feed retrieved memory into the LLM tool loop."
     },
     {
       "id": "rag",
@@ -72,9 +77,9 @@
   ],
   "planned": [
     {
-      "id": "dataset-memory-retrieval",
-      "deliverable": "Retrieve previous trace summaries by dataset and incident pattern",
-      "resume_value": "Shows agent memory beyond single-run audit storage."
+      "id": "incident-pattern-memory",
+      "deliverable": "Retrieve previous trace summaries by issue pattern and root-cause title",
+      "resume_value": "Shows deeper agent memory beyond dataset-level audit lookup."
     },
     {
       "id": "approval-boundary",

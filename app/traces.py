@@ -6,7 +6,7 @@ from pathlib import Path
 import sqlite3
 from uuid import uuid4
 
-from app.models import AgentRunReport, QualityReport, StoredRunTrace
+from app.models import AgentRunReport, DatasetMemorySummary, QualityReport, StoredRunTrace
 
 
 MAX_TRACES = 100
@@ -124,6 +124,20 @@ class RunTraceStore:
             return None
         return self._get_persisted(trace_id)
 
+    def list_by_dataset(self, dataset_id: str, limit: int = 5) -> DatasetMemorySummary:
+        bounded_limit = max(1, min(limit, 20))
+        traces = [
+            trace
+            for trace in sorted(self._traces.values(), key=lambda item: item.generated_at, reverse=True)
+            if trace.dataset_id == dataset_id
+        ][:bounded_limit]
+        if self.db_path:
+            persisted = self._list_persisted_by_dataset(dataset_id, bounded_limit)
+            seen = {trace.trace_id for trace in traces}
+            traces.extend(trace for trace in persisted if trace.trace_id not in seen)
+            traces = sorted(traces, key=lambda item: item.generated_at, reverse=True)[:bounded_limit]
+        return self._build_memory_summary(dataset_id, traces)
+
     def _save(self, trace: StoredRunTrace) -> None:
         self._traces[trace.trace_id] = trace
         self._traces.move_to_end(trace.trace_id)
@@ -218,3 +232,43 @@ class RunTraceStore:
         if row is None:
             return None
         return StoredRunTrace.model_validate(json.loads(row[0]))
+
+    def _list_persisted_by_dataset(self, dataset_id: str, limit: int) -> list[StoredRunTrace]:
+        with self._connect() as connection:
+            rows = connection.execute(
+                """
+                SELECT payload_json
+                FROM run_traces
+                WHERE dataset_id = ?
+                ORDER BY generated_at DESC
+                LIMIT ?
+                """,
+                (dataset_id, limit),
+            ).fetchall()
+        return [StoredRunTrace.model_validate(json.loads(row[0])) for row in rows]
+
+    def _build_memory_summary(self, dataset_id: str, traces: list[StoredRunTrace]) -> DatasetMemorySummary:
+        check_counts: dict[str, int] = {}
+        cause_counts: dict[str, int] = {}
+        for trace in traces:
+            for check in trace.summary.get("finding_checks", []):
+                check_counts[str(check)] = check_counts.get(str(check), 0) + 1
+            for hypothesis in trace.summary.get("root_cause_hypotheses", []):
+                title = str(hypothesis.get("title", "")).strip()
+                if title:
+                    cause_counts[title] = cause_counts.get(title, 0) + 1
+        return DatasetMemorySummary(
+            dataset_id=dataset_id,
+            trace_count=len(traces),
+            latest_generated_at=traces[0].generated_at if traces else None,
+            recurring_checks=self._rank_repeated_items(check_counts),
+            recurring_root_causes=self._rank_repeated_items(cause_counts),
+            recent_traces=traces,
+        )
+
+    def _rank_repeated_items(self, counts: dict[str, int]) -> list[str]:
+        return [
+            item
+            for item, count in sorted(counts.items(), key=lambda pair: (-pair[1], pair[0]))
+            if count > 1
+        ][:5]

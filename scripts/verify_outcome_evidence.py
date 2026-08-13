@@ -93,7 +93,7 @@ def verify_manifest() -> dict[str, int]:
                         f"but outcome summary has {actions}"
                     )
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 57:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 60:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -108,6 +108,21 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("persistent trace audit must use the SQLite-backed TRACE_DB_PATH path")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("persistent_trace_audit claim must use metric_value=1")
+            elif metric_name == "dataset_memory_retrieval":
+                trace_tests = (ROOT / "tests" / "test_traces.py").read_text()
+                api_tests = (ROOT / "tests" / "test_api.py").read_text()
+                trace_source = (ROOT / "app" / "traces.py").read_text()
+                api_source = (ROOT / "app" / "main.py").read_text()
+                if "test_run_trace_store_retrieves_dataset_memory_from_persisted_traces" not in trace_tests:
+                    raise AssertionError("dataset memory must have a dedicated persisted trace retrieval test")
+                if "test_dataset_memory_endpoint_returns_recent_trace_summary_without_raw_rows" not in api_tests:
+                    raise AssertionError("dataset memory must have an API test that checks sanitized retrieval")
+                if "list_by_dataset" not in trace_source or "DatasetMemorySummary" not in trace_source:
+                    raise AssertionError("dataset memory must be backed by RunTraceStore.list_by_dataset")
+                if "/datasets/{dataset_id}/memory" not in api_source:
+                    raise AssertionError("dataset memory must expose the /datasets/{dataset_id}/memory route")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("dataset_memory_retrieval claim must use metric_value=1")
             elif metric_name == "root_cause_hypothesis_count":
                 hypotheses = support_ticket_artifact.get("root_cause_hypotheses", [])
                 if len(hypotheses) != claim.get("metric_value"):
@@ -143,8 +158,8 @@ def verify_manifest() -> dict[str, int]:
 
     if "agent-readiness" in claim_ids:
         readiness_page = (ROOT / "docs" / "agent-readiness.md").read_text().lower()
-        if len(agent_readiness.get("implemented", [])) < 8:
-            raise AssertionError("agent readiness must document at least eight implemented capabilities")
+        if len(agent_readiness.get("implemented", [])) < 9:
+            raise AssertionError("agent readiness must document at least nine implemented capabilities")
         if len(agent_readiness.get("partial", [])) < 4:
             raise AssertionError("agent readiness must document partial capabilities instead of overstating maturity")
         if len(agent_readiness.get("planned", [])) < 3:
@@ -169,7 +184,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 57", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 60", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

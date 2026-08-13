@@ -57,6 +57,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
             f"{adoption['test_count']} passing CI tests",
             f"{verified_outcomes['issue_category_count']} support-ticket issue categories",
             f"{verified_outcomes['root_cause_hypothesis_count']} evidence-ranked root-cause hypotheses",
+            "Dataset-level memory retrieval over recent sanitized traces",
             f"{verified_outcomes['recommended_action_count']} evidence-backed remediation actions",
             f"{len(readiness['implemented'])} implemented LLM agent-readiness capabilities",
             f"{adoption['forks']} public fork and {adoption['stars']} public stars as current honest adoption baseline",
@@ -124,7 +125,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 57,
+        "test_count": 60,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -135,7 +136,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "support_ticket_issue_categories": 4,
         "root_cause_hypotheses": 3,
         "recommended_actions": 5,
-        "implemented_agent_capabilities": 8,
+        "implemented_agent_capabilities": 9,
     }
     for key, expected in expected_outcomes.items():
         if outcomes.get(key) != expected:

@@ -138,3 +138,12 @@ class StoredRunTrace(BaseModel):
     evaluation: dict[str, Any] = Field(default_factory=dict)
     fallback_status: str | None = None
     error: str | None = None
+
+
+class DatasetMemorySummary(BaseModel):
+    dataset_id: str
+    trace_count: int
+    latest_generated_at: datetime | None = None
+    recurring_checks: list[str] = Field(default_factory=list)
+    recurring_root_causes: list[str] = Field(default_factory=list)
+    recent_traces: list[StoredRunTrace] = Field(default_factory=list)

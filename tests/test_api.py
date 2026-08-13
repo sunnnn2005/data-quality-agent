@@ -289,3 +289,27 @@ def test_run_trace_endpoint_returns_404_for_unknown_trace():
 
     assert response.status_code == 404
     assert response.json()["detail"] == "Run trace not found"
+
+
+def test_dataset_memory_endpoint_returns_recent_trace_summary_without_raw_rows():
+    client.post("/datasets/orders_daily/quality-report")
+    client.post("/datasets/orders_daily/quality-report")
+
+    response = client.get("/datasets/orders_daily/memory?limit=5")
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["dataset_id"] == "orders_daily"
+    assert payload["trace_count"] >= 2
+    assert payload["latest_generated_at"]
+    assert "duplicate_primary_key" in payload["recurring_checks"]
+    assert payload["recurring_root_causes"]
+    assert len(payload["recent_traces"]) <= 5
+    assert "agent_trace" not in response.text
+
+
+def test_dataset_memory_endpoint_returns_404_for_unknown_dataset():
+    response = client.get("/datasets/missing/memory")
+
+    assert response.status_code == 404
+    assert response.json()["detail"] == "Dataset not found"

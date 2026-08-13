@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "57 passing CI tests",
+      "resume_signal": "60 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 57,
+      "metric_value": 60,
       "status": "verified"
     },
     {
@@ -87,6 +87,16 @@
       "evidence_type": "source_and_tests",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_traces.py",
       "metric_name": "persistent_trace_audit",
+      "metric_value": 1,
+      "status": "verified"
+    },
+    {
+      "id": "dataset-memory-retrieval",
+      "resume_signal": "Dataset-level agent memory retrieval",
+      "claim": "The API can retrieve recent sanitized traces, recurring checks, and recurring root-cause titles for a dataset.",
+      "evidence_type": "source_and_tests",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_traces.py",
+      "metric_name": "dataset_memory_retrieval",
       "metric_value": 1,
       "status": "verified"
     },
@@ -167,11 +177,11 @@
     {
       "id": "agent-readiness",
       "resume_signal": "Public LLM agent readiness checklist",
-      "claim": "The project documents implemented LLM agent capabilities separately from partial memory, RAG, observability, and evaluation work.",
+      "claim": "The project documents implemented LLM agent capabilities separately from partial RAG, observability, evaluation, and deeper incident-memory work.",
       "evidence_type": "documentation",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-readiness.md",
       "metric_name": "implemented_agent_capabilities",
-      "metric_value": 8,
+      "metric_value": 9,
       "status": "verified"
     }
   ],
