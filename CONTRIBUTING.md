@@ -43,6 +43,16 @@ Beginner-friendly tasks are labeled `good first issue`. A good first PR should u
 - `README.md` or `docs/` for documentation
 - `app/dashboard.py` for a small UI improvement
 
+## Demo Feedback
+
+If you are not ready to contribute code, try the public demo or local API and open a `Demo feedback` issue. Useful feedback includes:
+
+- whether the verified support-ticket result reproduced on your machine
+- which part of the report was confusing
+- what data-quality check would make the demo more realistic
+- whether the Docker Compose PostgreSQL path worked
+- screenshots, commands, or trace ids when something fails
+
 ## Design Constraints
 
 - Keep default behavior local-only and deterministic.
