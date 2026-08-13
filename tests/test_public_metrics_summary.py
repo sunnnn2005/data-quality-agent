@@ -63,7 +63,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["business_problem_owner_handoffs"] == 4
     assert payload["verified_project_outcomes"]["public_traction_dashboard"] == 1
     assert payload["verified_project_outcomes"]["public_traction_surfaces"] == 4
-    assert payload["verified_project_outcomes"]["public_traction_growth_channels"] == 16
+    assert payload["verified_project_outcomes"]["public_traction_growth_channels"] == 17
     assert payload["verified_project_outcomes"]["public_traction_resume_upgrade_rules"] == 3
     assert payload["verified_project_outcomes"]["live_project_scorecard"] == 1
     assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 15
@@ -73,7 +73,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["application_evidence_pack"] == 1
     assert payload["verified_project_outcomes"]["application_evidence_links"] == 19
     assert payload["verified_project_outcomes"]["pilot_outreach_messages"] == 3
-    assert payload["verified_project_outcomes"]["pilot_review_paths"] == 9
+    assert payload["verified_project_outcomes"]["pilot_review_paths"] == 10
     assert payload["verified_project_outcomes"]["pilot_program_segments"] == 3
     assert payload["verified_project_outcomes"]["pilot_program_weeks"] == 3
     assert payload["verified_project_outcomes"]["pilot_review_tracker"] == 1
@@ -177,7 +177,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-            "Public traction dashboard with 4 live project surfaces, 16 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules"
+            "Public traction dashboard with 4 live project surfaces, 17 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules"
         in payload["resume_safe_signals"]
     )
     assert "15 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
@@ -185,7 +185,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert "3 recruiter-safe resume bullets for 4 target roles" in payload["resume_safe_signals"]
     assert "19 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
     assert "Reviewer funnel board with 4 public evidence paths and 7 remaining evidence items" in payload["resume_safe_signals"]
-    assert "3 pilot outreach messages and 9 review paths for collecting real feedback" in payload["resume_safe_signals"]
+    assert "3 pilot outreach messages and 10 review paths for collecting real feedback" in payload["resume_safe_signals"]
     assert (
         "Pilot review tracker with 3 planned reviewer segments, 3 not-contacted baseline entries, and 3 resume-upgrade rules"
         in payload["resume_safe_signals"]

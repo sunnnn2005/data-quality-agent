@@ -1,11 +1,11 @@
 {
-  "community_growth_channels": 5,
-  "current_growth_channels": 13,
+  "community_growth_channels": 7,
+  "current_growth_channels": 17,
   "current_public_counts": {
     "confirmed_external_users": 0,
     "external_feedback_items": 0,
     "forks": 1,
-    "issues_total": 11,
+    "issues_total": 12,
     "stars": 0,
     "watchers": 0
   },

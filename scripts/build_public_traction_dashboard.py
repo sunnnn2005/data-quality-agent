@@ -173,7 +173,7 @@ def verify_public_traction_dashboard(payload: dict[str, Any]) -> dict[str, Any]:
         "stars": 0,
         "forks": 1,
         "watchers": 0,
-        "issues_total": 11,
+        "issues_total": 12,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
         "reproducible_feedback_items": 0,
@@ -183,8 +183,8 @@ def verify_public_traction_dashboard(payload: dict[str, Any]) -> dict[str, Any]:
             raise AssertionError(f"public traction {key} expected {expected!r}")
     if payload["traction_surface_count"] != 4:
         raise AssertionError("public traction dashboard must include 4 traction surfaces")
-    if payload["growth_channel_count"] != 16:
-        raise AssertionError("public traction dashboard must include 16 growth or review channels")
+    if payload["growth_channel_count"] != 17:
+        raise AssertionError("public traction dashboard must include 17 growth or review channels")
     if payload["tracked_funnel_steps"] != 5:
         raise AssertionError("public traction dashboard must include 5 tracked funnel steps")
     if payload["demo_entrypoints_verified"] != 6:

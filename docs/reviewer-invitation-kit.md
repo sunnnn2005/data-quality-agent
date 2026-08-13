@@ -15,6 +15,12 @@ Provide copy-ready invitations that route real reviewers into public GitHub evid
 | Reproducible Feedback Items | 0 |
 | Business Case Feedback Items | 0 |
 
+## Public Review Request
+
+Issue #17: [https://github.com/sunnnn2005/data-quality-agent/issues/17](https://github.com/sunnnn2005/data-quality-agent/issues/17)
+
+Single public issue for sharing review paths and collecting the first external feedback item.
+
 ## Invitations
 
 ### classmate_quick_demo -> UC Davis classmate or student developer

@@ -76,7 +76,7 @@
     "implemented_agent_capabilities": 16,
     "openapi_required_endpoints": 6,
     "passing_tests": 101,
-    "public_traction_growth_channels": 16,
+    "public_traction_growth_channels": 17,
     "public_traction_surfaces": 4,
     "real_model_evidence_fields": 15,
     "real_model_run_commands": 4,

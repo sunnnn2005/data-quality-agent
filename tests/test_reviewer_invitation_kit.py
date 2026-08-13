@@ -20,6 +20,8 @@ def test_reviewer_invitation_kit_routes_copy_ready_messages_to_public_evidence()
     }
     assert payload["current_baseline"]["external_feedback_items"] == 0
     assert payload["current_baseline"]["confirmed_external_users"] == 0
+    assert payload["public_review_request"]["issue_number"] == 17
+    assert payload["public_review_request"]["url"].endswith("/issues/17")
     assert payload["success_thresholds"]["resume_feedback_signal"] == 3
     assert payload["success_thresholds"]["confirmed_external_user_signal"] == 1
     assert all("issues/new" in item["submission_url"] for item in payload["invitation_targets"])

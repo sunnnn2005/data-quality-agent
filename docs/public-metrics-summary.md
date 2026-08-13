@@ -9,7 +9,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Stars | 0 |
 | Forks | 1 |
 | Watchers | 0 |
-| GitHub issues | 11 |
+| GitHub issues | 12 |
 | Passing CI tests | 101 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
@@ -71,7 +71,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business problem owner handoffs | 4 |
 | Public traction dashboard | 1 |
 | Public traction surfaces | 4 |
-| Public traction growth channels | 16 |
+| Public traction growth channels | 17 |
 | Public traction resume upgrade rules | 3 |
 | Live project scorecard | 1 |
 | Scorecard reviewer paths | 15 |
@@ -82,7 +82,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Application evidence pack | 1 |
 | Application evidence links | 19 |
 | Pilot outreach messages | 3 |
-| Pilot review paths | 9 |
+| Pilot review paths | 10 |
 | Pilot program segments | 3 |
 | Pilot program weeks | 3 |
 | Pilot review tracker | 1 |
@@ -181,12 +181,12 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Community growth baseline with 6 issue templates, 7 configured labels, and 7 public contribution or feedback channels
 - Impact review packet with 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs
 - Business problem casebook with 1 verified case, 4 detected business risks, and 4 owner handoffs
-- Public traction dashboard with 4 live project surfaces, 16 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
+- Public traction dashboard with 4 live project surfaces, 17 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
 - 15 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
 - 19 application evidence links in a recruiter-ready evidence pack
-- 3 pilot outreach messages and 9 review paths for collecting real feedback
+- 3 pilot outreach messages and 10 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
 - Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups
 - Star growth kit with 6 verified repo topics, 4 ethical growth actions, and 3 resume upgrade rules without inflating current stars

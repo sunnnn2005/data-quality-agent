@@ -36,13 +36,13 @@ This page maps resume-ready claims for Data Quality Agent to public evidence. It
 | `community-growth-baseline` | CI-verified community growth baseline | [Community growth baseline](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/community-growth-baseline.json) | The project verifies 6 issue templates, 7 configured labels, contribution guidance, public feedback entrypoints, and current public counts without claiming community adoption. |
 | `impact-review-packet` | CI-verified impact review packet | [Impact review packet](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/impact-review-packet.json) | The project maps a support-operations data-quality case study to 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs without claiming external adoption. |
 | `business-problem-casebook` | CI-verified business problem casebook | [Business problem casebook](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-problem-casebook.json) | The project explains a support-operations dashboard failure mode with 4 detected business risks, 5 findings, 3 root-cause hypotheses, and 4 remediation owner handoffs without claiming real customer data. |
-| `public-traction-dashboard` | CI-verified public traction dashboard | [Public traction dashboard](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-traction-dashboard.json) | The project tracks 4 live project surfaces, 16 growth or review channels, 5 demo funnel steps, and 3 resume-upgrade rules without inflating current traction. |
+| `public-traction-dashboard` | CI-verified public traction dashboard | [Public traction dashboard](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-traction-dashboard.json) | The project tracks 4 live project surfaces, 17 growth or review channels, 5 demo funnel steps, and 3 resume-upgrade rules without inflating current traction. |
 | `star-growth-kit` | CI-verified star growth kit | [Star growth kit](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/star-growth-kit.json) | The project verifies 6 repo topics, 4 ethical growth actions, 3 resume-upgrade rules, and the current 0-star baseline without inflating traction. |
 | `business-case-intake` | CI-verified business-case intake path | [Business case intake](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-case-intake.json) | The project publishes a GitHub issue template and generated artifact for collecting anonymized real-world data-quality problems, business context, tried route, outcome signal, and permission boundaries without claiming submitted external cases yet. |
 | `live-project-scorecard` | CI-verified live project scorecard | [Live project scorecard](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/live-project-scorecard.json) | The project gives reviewers one generated artifact for the demo, release, container image, CI tests, verified resume claims, agent capabilities, 15 reviewer paths, and honest zero-adoption baselines. |
 | `recruiter-pitch` | CI-verified recruiter pitch artifact | [Recruiter pitch](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json) | The project turns verified evidence into 3 resume bullets, a LinkedIn project description, a 30-second pitch, interview talking points, and evidence links without claiming unverified users or production usage. |
 | `application-evidence-pack` | CI-verified application evidence pack | [Application evidence pack](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json) | The project gives recruiters 19 application evidence links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines. |
-| `pilot-outreach-kit` | CI-verified pilot outreach kit | [Pilot outreach kit](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-outreach-kit.json) | The project publishes 3 outreach messages, 9 review paths, tracking rules, and target feedback metrics to collect real public feedback without inflating current adoption. |
+| `pilot-outreach-kit` | CI-verified pilot outreach kit | [Pilot outreach kit](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-outreach-kit.json) | The project publishes 3 outreach messages, 10 review paths, tracking rules, and target feedback metrics to collect real public feedback without inflating current adoption. |
 | `pilot-program-plan` | CI-verified pilot program plan | [Pilot program plan](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-program-plan.json) | The project publishes 3 participant segments, a 3-week feedback plan, feedback evidence rules, success thresholds, issue labels, and resume upgrade rules before adoption claims are allowed. |
 | `pilot-review-tracker` | CI-verified pilot review tracker | [Pilot review tracker](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-review-tracker.json) | The project tracks 3 planned reviewer segments, public evidence links, status counts, and resume-upgrade rules without counting unverified outreach as users or feedback. |
 | `pilot-conversion-board` | CI-verified pilot conversion board | [Pilot conversion board](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-conversion-board.json) | The project separates 2 current readiness claims from 4 blocked outcome claims for public feedback, business-case validation, and reproducible replay until public evidence exists. |
@@ -76,7 +76,7 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | GitHub stars | 0 |
 | Forks | 1 |
 | Watchers | 0 |
-| GitHub issues | 11 |
+| GitHub issues | 12 |
 | Automated tests | 100 |
 | Support-ticket issue categories | 4 |
 | Affected support-ticket columns | 4 |
@@ -158,7 +158,7 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Application evidence pack | 1 |
 | Application evidence links | 19 |
 | Pilot outreach messages | 3 |
-| Pilot review paths | 9 |
+| Pilot review paths | 10 |
 | Pilot review tracker | 1 |
 | Pilot review tracker planned reviews | 3 |
 | Pilot review tracker not-contacted entries | 3 |
@@ -232,13 +232,13 @@ Use wording that is true today:
 - Added a CI-verified business-data intake baseline covering bounded CSV uploads, read-only PostgreSQL context, 4 integration endpoints, 3 upload limits, and 6 API tests without claiming production datasets.
 - Added a CI-verified community growth baseline with 6 issue templates, 7 configured labels, 7 public contribution or feedback channels, contribution guidance, and honest current public counts.
 - Added a CI-verified impact review packet with 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs for a support-operations data-quality case study.
-- Added a CI-verified public traction dashboard with 4 live project surfaces, 16 growth or review channels, 5 tracked demo funnel steps, and 3 resume-upgrade rules.
+- Added a CI-verified public traction dashboard with 4 live project surfaces, 17 growth or review channels, 5 tracked demo funnel steps, and 3 resume-upgrade rules.
 - Added a CI-verified business problem casebook with 1 support-operations dashboard case, 4 detected business risks, 5 evidence-backed findings, 3 root-cause hypotheses, and 4 owner handoffs.
 - Added a CI-verified live project scorecard with 15 reviewer paths for the demo, resume evidence, impact packet, business problem casebook, traction dashboard, feedback intake quality, business-data replay packet, OpenAPI contract, safety boundaries, agent capability matrix, local reviewer demo, public metrics, and reviewer funnel board.
 - Added a CI-verified agent capability matrix with 13 implemented LLM-agent checklist items, 4 partial maturity areas, 7 allowed tools, and explicit not-claimed production adoption.
 - Added a CI-verified recruiter pitch artifact with 3 resume bullets, LinkedIn project description, 30-second pitch, interview talking points, and 15 evidence links.
 - Added a CI-verified application evidence pack with 19 recruiter review links, verified outcome numbers, resume bullets, an email note, and an interview opening.
-- Added a CI-verified pilot outreach kit with 3 outreach messages, 9 review paths, feedback tracking rules, and target feedback metrics.
+- Added a CI-verified pilot outreach kit with 3 outreach messages, 10 review paths, feedback tracking rules, and target feedback metrics.
 - Added a CI-verified pilot program plan with 3 participant segments, a 3-week feedback plan, success thresholds, issue labels, and resume upgrade rules.
 - Added a CI-verified pilot review tracker with 3 planned reviewer segments, public evidence links, status counts, and resume-upgrade rules without counting unverified outreach.
 - Added a CI-verified pilot conversion board with 6 outcome stages, 2 resume-safe readiness claims, and 4 blocked outcome claims until public evidence exists.

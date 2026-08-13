@@ -102,7 +102,7 @@ jobs:
           ADOPTION_STARS: "0"
           ADOPTION_FORKS: "1"
           ADOPTION_WATCHERS: "0"
-          ADOPTION_ISSUES_TOTAL: "11"
+          ADOPTION_ISSUES_TOTAL: "12"
           ADOPTION_TEST_COUNT: "101"
         run: python scripts/update_adoption_metrics.py
       - name: Verify outcome evidence manifest

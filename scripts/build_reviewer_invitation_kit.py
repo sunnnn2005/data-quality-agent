@@ -8,6 +8,7 @@ FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
 REVIEWER_FUNNEL_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "reviewer-invitation-kit.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "reviewer-invitation-kit.md"
+PUBLIC_REVIEW_REQUEST_URL = "https://github.com/sunnnn2005/data-quality-agent/issues/17"
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -30,6 +31,12 @@ def build_reviewer_invitation_kit_payload() -> dict[str, Any]:
             "confirmed_external_users": feedback["confirmed_external_users"],
             "reproducible_feedback_items": feedback["reproducible_feedback_items"],
             "business_case_feedback_items": feedback["business_case_feedback_items"],
+        },
+        "public_review_request": {
+            "issue_number": 17,
+            "url": PUBLIC_REVIEW_REQUEST_URL,
+            "purpose": "Single public issue for sharing review paths and collecting the first external feedback item.",
+            "status": "open_for_reviewers",
         },
         "invitation_targets": [
             {
@@ -119,6 +126,7 @@ def build_reviewer_invitation_kit_payload() -> dict[str, Any]:
 
 def render_markdown(payload: dict[str, Any]) -> str:
     baseline = "\n".join(f"| {key.replace('_', ' ').title()} | {value} |" for key, value in payload["current_baseline"].items())
+    review_request = payload["public_review_request"]
     invitations = "\n\n".join(
         "\n".join(
             [
@@ -154,6 +162,12 @@ This generated kit gives copy-ready messages for collecting public review eviden
 | --- | ---: |
 {baseline}
 
+## Public Review Request
+
+Issue #{review_request["issue_number"]}: [{review_request["url"]}]({review_request["url"]})
+
+{review_request["purpose"]}
+
 ## Invitations
 
 {invitations}
@@ -186,6 +200,10 @@ def verify_reviewer_invitation_kit(payload: dict[str, Any]) -> dict[str, Any]:
         "current_external_feedback_items": 0,
         "current_confirmed_external_users": 0,
     }
+    if payload["public_review_request"]["issue_number"] != 17:
+        raise AssertionError("reviewer invitation kit must link the public review request issue")
+    if not payload["public_review_request"]["url"].endswith("/issues/17"):
+        raise AssertionError("reviewer invitation kit must link issue 17")
     if len(payload["invitation_targets"]) != expected["invitation_count"]:
         raise AssertionError("reviewer invitation kit must include five copy-ready invitations")
     stages = {item["funnel_stage"] for item in payload["invitation_targets"]}

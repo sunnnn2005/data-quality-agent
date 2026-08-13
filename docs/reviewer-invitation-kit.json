@@ -72,6 +72,12 @@
     "GitHub stars beyond the current public count"
   ],
   "project": "Data Quality Agent",
+  "public_review_request": {
+    "issue_number": 17,
+    "purpose": "Single public issue for sharing review paths and collecting the first external feedback item.",
+    "status": "open_for_reviewers",
+    "url": "https://github.com/sunnnn2005/data-quality-agent/issues/17"
+  },
   "purpose": "Provide copy-ready invitations that route real reviewers into public GitHub evidence, so feedback and usage claims can be upgraded only after public proof exists.",
   "resume_safe_summary": "Published 5 copy-ready reviewer invitations tied to 4 public evidence paths and explicit zero-feedback baselines.",
   "success_thresholds": {
