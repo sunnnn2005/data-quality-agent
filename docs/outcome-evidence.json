@@ -1,498 +1,506 @@
 {
-  "project": "Data Quality Agent",
-  "updated_at": "2026-08-13T04:58:00Z",
   "claims": [
     {
-      "id": "public-demo",
-      "resume_signal": "Launched public demo",
       "claim": "Public GitHub Pages demo for a reproducible business data-quality case study.",
       "evidence_type": "public_url",
-      "url": "https://sunnnn2005.github.io/data-quality-agent/",
-      "status": "verified"
+      "id": "public-demo",
+      "resume_signal": "Launched public demo",
+      "status": "verified",
+      "url": "https://sunnnn2005.github.io/data-quality-agent/"
     },
     {
-      "id": "public-release",
-      "resume_signal": "Published v0.3.0 release",
       "claim": "Public v0.3.0 release is available on GitHub.",
       "evidence_type": "release",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.3.0",
-      "status": "verified"
+      "id": "public-release",
+      "resume_signal": "Published v0.3.0 release",
+      "status": "verified",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.3.0"
     },
     {
-      "id": "container-image",
-      "resume_signal": "Published runnable container image",
       "claim": "GHCR container image is published from main and can run the FastAPI service.",
       "evidence_type": "package",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent",
-      "status": "verified"
+      "id": "container-image",
+      "resume_signal": "Published runnable container image",
+      "status": "verified",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent"
     },
     {
-      "id": "ci-tests",
-      "resume_signal": "92 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions, including the business problem casebook, feedback intake quality, business case intake, and star growth kit verifiers.",
       "evidence_type": "ci",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
+      "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 92,
-      "status": "verified"
+      "metric_value": 93,
+      "resume_signal": "93 passing CI tests",
+      "status": "verified",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
     {
-      "id": "support-ticket-artifact",
-      "resume_signal": "CI-verified support-ticket artifact",
       "claim": "Support-ticket case study detects duplicate IDs, missing routing fields, negative amounts, and outliers.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/verified-support-ticket-result.json",
-      "status": "verified"
+      "id": "support-ticket-artifact",
+      "resume_signal": "CI-verified support-ticket artifact",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/verified-support-ticket-result.json"
     },
     {
-      "id": "postgres-agent-route",
-      "resume_signal": "Read-only PostgreSQL agent route",
       "claim": "The API exposes a PostgreSQL support-ticket agent endpoint that reuses the read-only adapter and returns a safe disabled fallback when no model key is configured.",
       "evidence_type": "source_and_tests",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_api.py",
-      "status": "verified"
+      "id": "postgres-agent-route",
+      "resume_signal": "Read-only PostgreSQL agent route",
+      "status": "verified",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_api.py"
     },
     {
-      "id": "business-impact-artifact",
-      "resume_signal": "Quantified business-impact artifact",
       "claim": "Support-ticket case study quantifies 4 issue categories across duplicate ticket IDs, missing routing fields, negative amounts, and amount outliers.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact.json",
+      "id": "business-impact-artifact",
       "metric_name": "support_ticket_issue_categories",
       "metric_value": 4,
-      "status": "verified"
+      "resume_signal": "Quantified business-impact artifact",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact.json"
     },
     {
-      "id": "outcome-summary",
-      "resume_signal": "Resume-safe business outcome summary",
       "claim": "The project publishes a generated outcome summary that maps the support-ticket quality failures to business risk and remediation actions.",
       "evidence_type": "documentation",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/outcome-summary.md",
+      "id": "outcome-summary",
       "metric_name": "recommended_action_count",
       "metric_value": 5,
-      "status": "verified"
+      "resume_signal": "Resume-safe business outcome summary",
+      "status": "verified",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/outcome-summary.md"
     },
     {
-      "id": "business-remediation-scorecard",
-      "resume_signal": "CI-verified business remediation scorecard",
       "claim": "The project maps support-ticket quality findings to 4 business risk areas, 3 high-priority actions, and 4 owner handoffs without claiming external adoption.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact.json",
+      "id": "business-remediation-scorecard",
       "metric_name": "business_remediation_scorecard",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "CI-verified business remediation scorecard",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact.json"
     },
     {
-      "id": "local-reviewer-demo",
-      "resume_signal": "CI-verified local reviewer demo",
       "claim": "The project publishes a Docker Compose reviewer path with a seeded PostgreSQL support-ticket table, read-only database user, and 3 local review routes without claiming external reviewer completion.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/local-reviewer-demo.json",
+      "id": "local-reviewer-demo",
       "metric_name": "local_reviewer_demo",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "CI-verified local reviewer demo",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/local-reviewer-demo.json"
     },
     {
-      "id": "api-smoke-report",
-      "resume_signal": "CI-verified API smoke report",
       "claim": "The project publishes a generated API smoke report that verifies 6 FastAPI routes for health, catalog, profiling, deterministic reports, disabled agent fallback, and incident Markdown export without claiming production uptime.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/api-smoke-report.json",
+      "id": "api-smoke-report",
       "metric_name": "api_smoke_report",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "CI-verified API smoke report",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/api-smoke-report.json"
     },
     {
-      "id": "performance-baseline",
-      "resume_signal": "CI-verified local performance baseline",
       "claim": "The project publishes a generated local performance baseline for 2 FastAPI routes and 24 measured endpoint calls without claiming production latency or hosted traffic.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/performance-baseline.json",
+      "id": "performance-baseline",
       "metric_name": "performance_baseline",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "CI-verified local performance baseline",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/performance-baseline.json"
     },
     {
-      "id": "demo-usage-baseline",
-      "resume_signal": "Public demo usage baseline",
       "claim": "The project publishes a generated demo usage baseline that verifies public demo entrypoints and tracks feedback issues, GitHub stars, and forks without claiming visitor analytics or product adoption.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/demo-usage-baseline.json",
+      "id": "demo-usage-baseline",
       "metric_name": "demo_usage_baseline",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "Public demo usage baseline",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/demo-usage-baseline.json"
     },
     {
-      "id": "business-data-intake-baseline",
-      "resume_signal": "CI-verified business-data intake baseline",
       "claim": "The project publishes a generated business-data intake baseline covering bounded CSV uploads, read-only PostgreSQL context, 4 integration endpoints, 3 upload limits, and 6 API tests without claiming production datasets.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-data-intake-baseline.json",
+      "id": "business-data-intake-baseline",
       "metric_name": "business_data_intake_baseline",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "CI-verified business-data intake baseline",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-data-intake-baseline.json"
     },
     {
-      "id": "community-growth-baseline",
-      "resume_signal": "CI-verified community growth baseline",
       "claim": "The project publishes a generated community growth baseline covering 5 issue templates, 6 configured labels, contribution guidance, public feedback entrypoints, and current public counts without claiming community adoption.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/community-growth-baseline.json",
+      "id": "community-growth-baseline",
       "metric_name": "community_growth_baseline",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "CI-verified community growth baseline",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/community-growth-baseline.json"
     },
     {
-      "id": "impact-review-packet",
-      "resume_signal": "CI-verified impact review packet",
       "claim": "The project publishes a generated impact review packet that maps a support-operations data-quality case study to verified business-risk metrics, evidence links, and not-claimed adoption limits.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/impact-review-packet.json",
+      "id": "impact-review-packet",
       "metric_name": "impact_review_packet",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "CI-verified impact review packet",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/impact-review-packet.json"
     },
     {
-      "id": "business-problem-casebook",
-      "resume_signal": "CI-verified business problem casebook",
       "claim": "The project publishes a generated casebook that explains a support-operations dashboard quality failure mode, detected risks, evidence-backed findings, root-cause hypotheses, and remediation owner handoffs.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-problem-casebook.json",
+      "id": "business-problem-casebook",
       "metric_name": "business_problem_casebook",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "CI-verified business problem casebook",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-problem-casebook.json"
     },
     {
-      "id": "public-traction-dashboard",
-      "resume_signal": "CI-verified public traction dashboard",
       "claim": "The project publishes a generated traction dashboard that maps live project surfaces, review channels, tracked funnel steps, and resume-upgrade thresholds to public evidence.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-traction-dashboard.json",
+      "id": "public-traction-dashboard",
       "metric_name": "public_traction_dashboard",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "CI-verified public traction dashboard",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-traction-dashboard.json"
     },
     {
-      "id": "star-growth-kit",
-      "resume_signal": "CI-verified star growth kit",
       "claim": "The project publishes a generated star growth kit with repository topic readiness, ethical growth actions, growth assets, and resume-upgrade rules without inflating current stars.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/star-growth-kit.json",
+      "id": "star-growth-kit",
       "metric_name": "star_growth_kit",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "CI-verified star growth kit",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/star-growth-kit.json"
     },
     {
-      "id": "report-guardrails",
-      "resume_signal": "Deterministic report verification guardrails",
       "claim": "Reports include deterministic verification for evidence support, field references, sensitive values, unsupported LLM evidence, action coverage, and score bounds.",
       "evidence_type": "source_and_tests",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_verifier.py",
-      "status": "verified"
+      "id": "report-guardrails",
+      "resume_signal": "Deterministic report verification guardrails",
+      "status": "verified",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_verifier.py"
     },
     {
-      "id": "persistent-trace-audit",
-      "resume_signal": "Persistent SQLite trace audit trail",
       "claim": "Sanitized run traces can be persisted with TRACE_DB_PATH and recovered by trace id after process restart.",
       "evidence_type": "source_and_tests",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_traces.py",
+      "id": "persistent-trace-audit",
       "metric_name": "persistent_trace_audit",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "Persistent SQLite trace audit trail",
+      "status": "verified",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_traces.py"
     },
     {
-      "id": "dataset-memory-retrieval",
-      "resume_signal": "Dataset-level agent memory retrieval",
       "claim": "The API can retrieve recent sanitized traces, recurring checks, and recurring root-cause titles for a dataset.",
       "evidence_type": "source_and_tests",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_traces.py",
+      "id": "dataset-memory-retrieval",
       "metric_name": "dataset_memory_retrieval",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "Dataset-level agent memory retrieval",
+      "status": "verified",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_traces.py"
     },
     {
-      "id": "incident-pattern-memory",
-      "resume_signal": "CI-verified incident-pattern memory",
       "claim": "The project publishes a generated artifact that retrieves 3 recurring incident patterns from sanitized support-ticket traces without claiming external production incidents.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/incident-pattern-memory.json",
+      "id": "incident-pattern-memory",
       "metric_name": "incident_pattern_count",
       "metric_value": 3,
-      "status": "verified"
+      "resume_signal": "CI-verified incident-pattern memory",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/incident-pattern-memory.json"
     },
     {
-      "id": "memory-informed-planning",
-      "resume_signal": "Memory-informed LLM agent planning",
       "claim": "The LLM tool-calling agent can retrieve sanitized dataset memory inside the agent loop so recurring checks and incident patterns from prior runs can inform follow-up planning.",
       "evidence_type": "source_and_tests",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_agent.py",
+      "id": "memory-informed-planning",
       "metric_name": "memory_informed_planning",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "Memory-informed LLM agent planning",
+      "status": "verified",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_agent.py"
     },
     {
-      "id": "source-cited-business-rule-tool",
-      "resume_signal": "Source-cited business-rule retrieval tool",
       "claim": "The LLM tool-calling agent can retrieve source-cited business rules after quality checks so remediation guidance can reference business constraints instead of only generic data statistics.",
       "evidence_type": "source_and_tests",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_agent.py",
+      "id": "source-cited-business-rule-tool",
       "metric_name": "source_cited_business_rule_tool",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "Source-cited business-rule retrieval tool",
+      "status": "verified",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_agent.py"
     },
     {
-      "id": "agent-observability",
-      "resume_signal": "CI-verified agent observability artifact",
       "claim": "The project publishes a generated observability artifact covering trace ids, report types, fallback status, verification status, dataset memory, and tool-call previews without claiming production monitoring.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-observability.json",
+      "id": "agent-observability",
       "metric_name": "observed_trace_count",
       "metric_value": 2,
-      "status": "verified"
+      "resume_signal": "CI-verified agent observability artifact",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-observability.json"
     },
     {
-      "id": "model-telemetry-artifact",
-      "resume_signal": "CI-verified model telemetry artifact",
       "claim": "The project publishes deterministic model telemetry for a mocked LLM agent run, including model name, prompt version, model call count, token count, estimated cost, latency, timeout, retry budget, and raw-prompt logging status without claiming paid model benchmark results.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-observability.json",
+      "id": "model-telemetry-artifact",
       "metric_name": "model_telemetry_artifact",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "CI-verified model telemetry artifact",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-observability.json"
     },
     {
-      "id": "agent-safety-boundaries",
-      "resume_signal": "CI-verified agent safety boundaries",
       "claim": "The project verifies 7 allowed agent tools, 3 rejected unsafe PostgreSQL queries, sensitive-field redaction, disabled fallback, and 6 report verifier rules without claiming a formal security audit.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-safety-boundaries.json",
+      "id": "agent-safety-boundaries",
       "metric_name": "tool_allowlist_count",
       "metric_value": 7,
-      "status": "verified"
+      "resume_signal": "CI-verified agent safety boundaries",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-safety-boundaries.json"
     },
     {
-      "id": "agent-capability-matrix",
-      "resume_signal": "CI-verified LLM agent capability matrix",
       "claim": "The project publishes a generated capability matrix mapping the agent against a practical LLM-agent checklist, with 13 implemented capabilities, 4 partial maturity areas, 7 allowed tools, and explicit not-claimed production adoption.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-capability-matrix.json",
+      "id": "agent-capability-matrix",
       "metric_name": "agent_capability_matrix",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "CI-verified LLM agent capability matrix",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-capability-matrix.json"
     },
     {
-      "id": "live-project-scorecard",
-      "resume_signal": "CI-verified live project scorecard",
       "claim": "The project publishes a generated scorecard summarizing the public demo, release, container image, CI tests, verified resume claims, agent capabilities, reviewer paths, and honest zero-adoption baselines.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/live-project-scorecard.json",
+      "id": "live-project-scorecard",
       "metric_name": "live_project_scorecard",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "CI-verified live project scorecard",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/live-project-scorecard.json"
     },
     {
-      "id": "recruiter-pitch",
-      "resume_signal": "CI-verified recruiter pitch artifact",
       "claim": "The project publishes generated recruiter-facing resume bullets, a LinkedIn project description, a 30-second pitch, interview talking points, evidence links, and honest adoption baselines without claiming unverified adoption or production usage.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json",
+      "id": "recruiter-pitch",
       "metric_name": "recruiter_pitch_resume_bullets",
       "metric_value": 3,
-      "status": "verified"
+      "resume_signal": "CI-verified recruiter pitch artifact",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "id": "application-evidence-pack",
-      "resume_signal": "CI-verified application evidence pack",
       "claim": "The project publishes a recruiter-ready evidence pack with application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json",
+      "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
       "metric_value": 13,
-      "status": "verified"
+      "resume_signal": "CI-verified application evidence pack",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
     },
     {
-      "id": "pilot-outreach-kit",
-      "resume_signal": "CI-verified pilot outreach kit",
       "claim": "The project publishes outreach messages, review paths, tracking rules, and target feedback metrics to collect real public feedback without inflating current adoption.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-outreach-kit.json",
+      "id": "pilot-outreach-kit",
       "metric_name": "pilot_outreach_message_count",
       "metric_value": 3,
-      "status": "verified"
+      "resume_signal": "CI-verified pilot outreach kit",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-outreach-kit.json"
     },
     {
-      "id": "pilot-program-plan",
-      "resume_signal": "CI-verified pilot program plan",
       "claim": "The project publishes a three-week pilot plan with participant segments, feedback evidence rules, success thresholds, issue labels, and resume upgrade rules before adoption claims are allowed.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-program-plan.json",
+      "id": "pilot-program-plan",
       "metric_name": "pilot_program_segment_count",
       "metric_value": 3,
-      "status": "verified"
+      "resume_signal": "CI-verified pilot program plan",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-program-plan.json"
     },
     {
-      "id": "pilot-review-tracker",
-      "resume_signal": "CI-verified pilot review tracker",
       "claim": "The project publishes a generated pilot review tracker with planned reviewer segments, status counts, public evidence links, and resume-upgrade rules without counting unverified outreach as adoption or feedback.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-review-tracker.json",
+      "id": "pilot-review-tracker",
       "metric_name": "pilot_review_tracker",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "CI-verified pilot review tracker",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-review-tracker.json"
     },
     {
-      "id": "external-review-evidence-ledger",
-      "resume_signal": "CI-verified external review evidence ledger",
       "claim": "The project publishes a generated external review evidence ledger that defines public proof requirements for demo feedback, confirmed runs, business-case reviews, and reproducible bugs before resume outcome upgrades.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-review-evidence-ledger.json",
+      "id": "external-review-evidence-ledger",
       "metric_name": "external_review_evidence_ledger",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "CI-verified external review evidence ledger",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-review-evidence-ledger.json"
     },
     {
-      "id": "feedback-intake-quality",
-      "resume_signal": "CI-verified feedback intake system",
+      "claim": "Defines 5 public metric thresholds for feedback, confirmed runs, reproducible reports, business-case reviews, and repository interest before resume wording can be upgraded.",
+      "evidence_type": "generated_json",
+      "id": "outcome-upgrade-playbook",
+      "metric_name": "outcome_upgrade_playbook",
+      "metric_value": 1,
+      "resume_signal": "CI-verified outcome upgrade playbook",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-upgrade-playbook.json"
+    },
+    {
       "claim": "The project publishes a generated feedback-intake artifact that verifies the public demo feedback template captures reviewer path, environment, reproducibility outcome, bug or feature signals, and usefulness while preserving honest adoption and feedback baselines.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/feedback-intake-quality.json",
+      "id": "feedback-intake-quality",
       "metric_name": "feedback_intake_quality",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "CI-verified feedback intake system",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/feedback-intake-quality.json"
     },
     {
-      "id": "business-case-intake",
-      "resume_signal": "CI-verified business-case intake path",
       "claim": "The project publishes a generated intake artifact and GitHub issue template for collecting anonymized real-world data-quality problems, business context, tried route, outcome signal, and permission boundaries without claiming submitted external cases yet.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-case-intake.json",
+      "id": "business-case-intake",
       "metric_name": "business_case_intake",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "CI-verified business-case intake path",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-case-intake.json"
     },
     {
-      "id": "root-cause-ranking",
-      "resume_signal": "Evidence-ranked root-cause hypotheses",
       "claim": "Reports rank root-cause hypotheses by confidence and attach supporting checks, tool evidence, and recommended actions.",
       "evidence_type": "source_and_tests",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_agent.py",
+      "id": "root-cause-ranking",
       "metric_name": "root_cause_hypothesis_count",
       "metric_value": 3,
-      "status": "verified"
+      "resume_signal": "Evidence-ranked root-cause hypotheses",
+      "status": "verified",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_agent.py"
     },
     {
-      "id": "eval-summary",
-      "resume_signal": "CI-verified agent evaluation harness",
       "claim": "The project publishes a generated evaluation summary covering status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, report attachment, and latency across 3 scenarios.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json",
+      "id": "eval-summary",
       "metric_name": "eval_scenario_count",
       "metric_value": 3,
-      "status": "verified"
+      "resume_signal": "CI-verified agent evaluation harness",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json"
     },
     {
-      "id": "tool-planning-eval",
-      "resume_signal": "CI-verified tool-planning evaluation",
       "claim": "The project publishes an eval artifact that verifies the LLM agent exposes 7 allowed tools and recommends relevant quality checks across 3 dataset scenarios without claiming paid model benchmark results.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json",
+      "id": "tool-planning-eval",
       "metric_name": "tool_planning_eval",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "CI-verified tool-planning evaluation",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json"
     },
     {
-      "id": "hypothesis-feedback",
-      "resume_signal": "Human-reviewed root-cause feedback labels",
       "claim": "The project publishes a generated feedback artifact with accepted/needs-review labels for 3 root-cause hypotheses without claiming external product feedback.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/hypothesis-feedback.json",
+      "id": "hypothesis-feedback",
       "metric_name": "hypothesis_feedback_label_count",
       "metric_value": 3,
-      "status": "verified"
+      "resume_signal": "Human-reviewed root-cause feedback labels",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/hypothesis-feedback.json"
     },
     {
-      "id": "openapi-contract",
-      "resume_signal": "CI-verified OpenAPI contract",
       "claim": "The project publishes a generated OpenAPI contract covering 6 core integration endpoints for business data, agent reports, trace lookup, dataset memory, and incident export.",
       "evidence_type": "artifact",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/openapi.json",
+      "id": "openapi-contract",
       "metric_name": "openapi_required_endpoint_count",
       "metric_value": 6,
-      "status": "verified"
+      "resume_signal": "CI-verified OpenAPI contract",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/openapi.json"
     },
     {
-      "id": "adoption-baseline",
-      "resume_signal": "Public adoption baseline",
       "claim": "Public metrics are tracked without inflating stars, forks, watchers, issues, release, container, or test count.",
       "evidence_type": "metrics",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
+      "id": "adoption-baseline",
       "metric_name": "stars",
       "metric_value": 0,
-      "status": "verified"
+      "resume_signal": "Public adoption baseline",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json"
     },
     {
-      "id": "resume-evidence-page",
-      "resume_signal": "Human-readable resume evidence page",
       "claim": "Resume-ready claims are summarized in a public Markdown page with current metrics and not-claimed signals.",
       "evidence_type": "documentation",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-evidence.md",
-      "status": "verified"
+      "id": "resume-evidence-page",
+      "resume_signal": "Human-readable resume evidence page",
+      "status": "verified",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-evidence.md"
     },
     {
-      "id": "feedback-log",
-      "resume_signal": "Public feedback tracking loop",
       "claim": "The project has a public feedback issue template and a feedback log that starts from an honest zero-feedback baseline.",
       "evidence_type": "documentation",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/feedback-log.md",
+      "id": "feedback-log",
       "metric_name": "external_feedback_items",
       "metric_value": 0,
-      "status": "verified"
+      "resume_signal": "Public feedback tracking loop",
+      "status": "verified",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/feedback-log.md"
     },
     {
-      "id": "feedback-metrics",
-      "resume_signal": "Machine-readable feedback metrics",
       "claim": "Feedback and reproducible reports are tracked through a public metrics artifact generated from issue labels.",
       "evidence_type": "metrics",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/feedback-metrics.json",
+      "id": "feedback-metrics",
       "metric_name": "external_feedback_items",
       "metric_value": 0,
-      "status": "verified"
+      "resume_signal": "Machine-readable feedback metrics",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/feedback-metrics.json"
     },
     {
-      "id": "adoption-history",
-      "resume_signal": "Public adoption history timeline",
       "claim": "Stars, forks, watchers, issues, release, commit, and test count are tracked as an append-only JSONL history.",
       "evidence_type": "metrics_history",
-      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-history.jsonl",
-      "status": "verified"
+      "id": "adoption-history",
+      "resume_signal": "Public adoption history timeline",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-history.jsonl"
     },
     {
-      "id": "public-metrics-summary",
-      "resume_signal": "Unified public metrics summary",
       "claim": "The project publishes a resume-safe public metrics summary that combines adoption, feedback, CI, release, outcome, and agent-readiness signals while preserving zero-user and zero-feedback baselines.",
       "evidence_type": "documentation",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-metrics-summary.md",
+      "id": "public-metrics-summary",
       "metric_name": "public_metrics_summary",
       "metric_value": 1,
-      "status": "verified"
+      "resume_signal": "Unified public metrics summary",
+      "status": "verified",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-metrics-summary.md"
     },
     {
-      "id": "public-evidence-health",
-      "resume_signal": "Scheduled public evidence health check",
       "claim": "A scheduled GitHub Actions workflow verifies the public demo, release page, business-impact artifact, outcome evidence manifest, and adoption metrics remain reachable.",
       "evidence_type": "scheduled_ci",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/public-evidence-health.yml",
-      "status": "verified"
+      "id": "public-evidence-health",
+      "resume_signal": "Scheduled public evidence health check",
+      "status": "verified",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/public-evidence-health.yml"
     },
     {
-      "id": "agent-readiness",
-      "resume_signal": "Public LLM agent readiness checklist",
       "claim": "The project documents implemented LLM agent capabilities separately from partial embedding-backed RAG, observability, evaluation, and feedback-informed memory work.",
       "evidence_type": "documentation",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-readiness.md",
+      "id": "agent-readiness",
       "metric_name": "implemented_agent_capabilities",
       "metric_value": 16,
-      "status": "verified"
+      "resume_signal": "Public LLM agent readiness checklist",
+      "status": "verified",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-readiness.md"
     }
   ],
   "not_claimed": [
@@ -508,5 +516,7 @@
       "metric": "production_company_usage",
       "reason": "The project demonstrates a realistic business workflow, not verified enterprise production adoption."
     }
-  ]
+  ],
+  "project": "Data Quality Agent",
+  "updated_at": "2026-08-13T04:58:00Z"
 }

@@ -30,6 +30,7 @@ PILOT_OUTREACH_KIT_PATH = ROOT / "docs" / "pilot-outreach-kit.json"
 PILOT_PROGRAM_PLAN_PATH = ROOT / "docs" / "pilot-program-plan.json"
 PILOT_REVIEW_TRACKER_PATH = ROOT / "docs" / "pilot-review-tracker.json"
 EXTERNAL_REVIEW_EVIDENCE_LEDGER_PATH = ROOT / "docs" / "external-review-evidence-ledger.json"
+OUTCOME_UPGRADE_PLAYBOOK_PATH = ROOT / "docs" / "outcome-upgrade-playbook.json"
 FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
@@ -68,6 +69,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     pilot_plan = load_json(PILOT_PROGRAM_PLAN_PATH)
     pilot_tracker = load_json(PILOT_REVIEW_TRACKER_PATH)
     external_ledger = load_json(EXTERNAL_REVIEW_EVIDENCE_LEDGER_PATH)
+    outcome_upgrade = load_json(OUTCOME_UPGRADE_PLAYBOOK_PATH)
     feedback_intake = load_json(FEEDBACK_INTAKE_QUALITY_PATH)
     star_growth = load_json(STAR_GROWTH_KIT_PATH)
     business_case_intake = load_json(BUSINESS_CASE_INTAKE_PATH)
@@ -165,6 +167,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "external_review_ledger_entries": external_ledger["entry_count"],
             "external_review_ledger_requirement_types": external_ledger["evidence_requirement_count"],
             "external_review_ledger_linked_reviews": external_ledger["linked_planned_reviews"],
+            "outcome_upgrade_playbook": 1,
+            "outcome_upgrade_rules": outcome_upgrade["upgrade_rule_count"],
+            "outcome_upgrade_blocked_rules": outcome_upgrade["blocked_upgrade_rule_count"],
+            "outcome_upgrade_claimable_now": len(outcome_upgrade["claimable_now"]),
             "feedback_intake_quality": 1,
             "feedback_intake_required_sections": feedback_intake["required_section_count"],
             "feedback_intake_try_paths": feedback_intake["required_try_path_count"],
@@ -209,6 +215,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"External review evidence ledger with {external_ledger['evidence_requirement_count']} public evidence types, "
                 f"{external_ledger['linked_planned_reviews']} linked planned reviews, and "
                 f"{external_ledger['entry_count']} current evidence entries"
+            ),
+            (
+                f"Outcome upgrade playbook with {outcome_upgrade['upgrade_rule_count']} metric thresholds, "
+                f"{outcome_upgrade['blocked_upgrade_rule_count']} blocked upgrade rules, and "
+                f"{len(outcome_upgrade['claimable_now'])} baseline signals claimable now"
             ),
             f"{incident_memory['incident_pattern_count']} recurring incident patterns retrieved from sanitized traces",
             f"{observability['observed_trace_count']} observed run traces with fallback and verification status",
@@ -401,6 +412,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | External review ledger entries | {outcomes["external_review_ledger_entries"]} |
 | External review ledger requirement types | {outcomes["external_review_ledger_requirement_types"]} |
 | External review ledger linked reviews | {outcomes["external_review_ledger_linked_reviews"]} |
+| Outcome upgrade playbook | {outcomes["outcome_upgrade_playbook"]} |
+| Outcome upgrade rules | {outcomes["outcome_upgrade_rules"]} |
+| Outcome upgrade blocked rules | {outcomes["outcome_upgrade_blocked_rules"]} |
+| Outcome upgrade claimable-now signals | {outcomes["outcome_upgrade_claimable_now"]} |
 | Feedback intake quality | {outcomes["feedback_intake_quality"]} |
 | Feedback intake required sections | {outcomes["feedback_intake_required_sections"]} |
 | Feedback intake demo paths | {outcomes["feedback_intake_try_paths"]} |
@@ -439,7 +454,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 92,
+        "test_count": 93,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -518,6 +533,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "external_review_ledger_entries": 0,
         "external_review_ledger_requirement_types": 4,
         "external_review_ledger_linked_reviews": 3,
+        "outcome_upgrade_playbook": 1,
+        "outcome_upgrade_rules": 5,
+        "outcome_upgrade_blocked_rules": 5,
+        "outcome_upgrade_claimable_now": 6,
         "feedback_intake_quality": 1,
         "feedback_intake_required_sections": 5,
         "feedback_intake_try_paths": 5,

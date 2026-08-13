@@ -1,0 +1,109 @@
+{
+  "blocked_upgrade_rule_count": 5,
+  "claimable_now": [
+    "Public GitHub Pages demo",
+    "v0.3.0 release",
+    "GHCR container image",
+    "93 passing CI tests",
+    "16 implemented LLM agent-readiness capabilities",
+    "Read-only PostgreSQL and bounded CSV business-data intake"
+  ],
+  "current_public_counts": {
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "forks": 1,
+    "reproducible_feedback_items": 0,
+    "stars": 0
+  },
+  "evidence_sources": {
+    "adoption_metrics": "docs/adoption-metrics.json",
+    "external_review_evidence_ledger": "docs/external-review-evidence-ledger.json",
+    "feedback_metrics": "docs/feedback-metrics.json",
+    "pilot_review_tracker": "docs/pilot-review-tracker.json"
+  },
+  "external_review_evidence_entries": 0,
+  "forbidden_until_proven": [
+    "external users",
+    "customer feedback",
+    "enterprise production usage",
+    "business impact avoided",
+    "revenue saved",
+    "GitHub stars beyond the current public count"
+  ],
+  "generated_by": "scripts/build_outcome_upgrade_playbook.py",
+  "linked_planned_reviews": 3,
+  "project": "Data Quality Agent",
+  "purpose": "Define exactly when public adoption, feedback, business-case review, and repository-interest metrics can upgrade resume wording from baseline engineering evidence to real outcome claims.",
+  "resume_baseline_wording": "Built a public, containerized LLM data-quality agent with tool-calling, memory-informed planning, read-only PostgreSQL analysis, structured report guardrails, and CI-verified outcome evidence.",
+  "resume_safe_summary": "Published a CI-verified outcome upgrade playbook with 5 threshold-based rules that keep adoption, feedback, business-case, and repository-interest claims blocked until public evidence exists.",
+  "resume_status": "baseline_only",
+  "upgrade_rule_count": 5,
+  "upgrade_rules": [
+    {
+      "allowed_resume_claim_after_threshold": "1 external reviewer confirmed running the demo or local repo.",
+      "current_value": 0,
+      "id": "first_confirmed_external_run",
+      "metric": "confirmed_external_users",
+      "remaining_to_threshold": 1,
+      "required_public_evidence": [
+        "GitHub issue or review note labeled confirmed-user",
+        "A reviewer states they ran the demo or local Docker path"
+      ],
+      "status": "not_claimable_yet",
+      "threshold": 1
+    },
+    {
+      "allowed_resume_claim_after_threshold": "Collected 3 public pilot feedback items and converted them into prioritized fixes.",
+      "current_value": 0,
+      "id": "pilot_feedback_signal",
+      "metric": "external_feedback_items",
+      "remaining_to_threshold": 3,
+      "required_public_evidence": [
+        "Three GitHub issues created from docs/feedback-log.md or demo feedback prompts",
+        "Each issue includes role, path tried, outcome, and improvement request"
+      ],
+      "status": "not_claimable_yet",
+      "threshold": 3
+    },
+    {
+      "allowed_resume_claim_after_threshold": "Converted 1 reproducible reviewer report into an evidence-backed fix backlog.",
+      "current_value": 0,
+      "id": "reproducible_bug_signal",
+      "metric": "reproducible_feedback_items",
+      "remaining_to_threshold": 1,
+      "required_public_evidence": [
+        "GitHub issue labeled bug and reproducible",
+        "Issue includes expected result, actual result, environment, and reproduction steps"
+      ],
+      "status": "not_claimable_yet",
+      "threshold": 1
+    },
+    {
+      "allowed_resume_claim_after_threshold": "Reviewed the agent against 1 anonymized real-world data-quality scenario.",
+      "current_value": 0,
+      "id": "business_case_signal",
+      "metric": "business_case_feedback_items",
+      "remaining_to_threshold": 1,
+      "required_public_evidence": [
+        "GitHub issue created from docs/business-case-intake.md",
+        "Anonymized schema, quality failure, expected business impact, and reviewer role are provided"
+      ],
+      "status": "not_claimable_yet",
+      "threshold": 1
+    },
+    {
+      "allowed_resume_claim_after_threshold": "Reached 5 organic GitHub stars after publishing a reproducible demo.",
+      "current_value": 0,
+      "id": "github_interest_signal",
+      "metric": "stars",
+      "remaining_to_threshold": 5,
+      "required_public_evidence": [
+        "GitHub repository public star count reaches at least 5",
+        "docs/adoption-metrics.json and public evidence health both show the same count"
+      ],
+      "status": "not_claimable_yet",
+      "threshold": 5
+    }
+  ]
+}

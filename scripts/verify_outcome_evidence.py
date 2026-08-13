@@ -36,6 +36,7 @@ PILOT_OUTREACH_KIT_PATH = ROOT / "docs" / "pilot-outreach-kit.json"
 PILOT_PROGRAM_PLAN_PATH = ROOT / "docs" / "pilot-program-plan.json"
 PILOT_REVIEW_TRACKER_PATH = ROOT / "docs" / "pilot-review-tracker.json"
 EXTERNAL_REVIEW_EVIDENCE_LEDGER_PATH = ROOT / "docs" / "external-review-evidence-ledger.json"
+OUTCOME_UPGRADE_PLAYBOOK_PATH = ROOT / "docs" / "outcome-upgrade-playbook.json"
 FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
@@ -89,6 +90,7 @@ def verify_manifest() -> dict[str, int]:
     pilot_plan = load_payload(PILOT_PROGRAM_PLAN_PATH)
     pilot_tracker = load_payload(PILOT_REVIEW_TRACKER_PATH)
     external_ledger = load_payload(EXTERNAL_REVIEW_EVIDENCE_LEDGER_PATH)
+    outcome_upgrade = load_payload(OUTCOME_UPGRADE_PLAYBOOK_PATH)
     feedback_intake = load_payload(FEEDBACK_INTAKE_QUALITY_PATH)
     star_growth = load_payload(STAR_GROWTH_KIT_PATH)
     business_case_intake = load_payload(BUSINESS_CASE_INTAKE_PATH)
@@ -451,7 +453,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 92:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 93:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -752,7 +754,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 92:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 93:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -870,6 +872,40 @@ def verify_manifest() -> dict[str, int]:
                     not in ledger_tests
                 ):
                     raise AssertionError("external review evidence ledger must have a dedicated test")
+            elif metric_name == "outcome_upgrade_playbook":
+                upgrade_tests = (ROOT / "tests" / "test_outcome_upgrade_playbook.py").read_text()
+                upgrade_script = (ROOT / "scripts" / "build_outcome_upgrade_playbook.py").read_text()
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("outcome upgrade playbook claim must use metric_value=1")
+                if outcome_upgrade.get("upgrade_rule_count") != 5:
+                    raise AssertionError("outcome upgrade playbook must define five upgrade rules")
+                if outcome_upgrade.get("blocked_upgrade_rule_count") != 5:
+                    raise AssertionError("outcome upgrade playbook must keep all outcome upgrades blocked")
+                if outcome_upgrade.get("resume_status") != "baseline_only":
+                    raise AssertionError("outcome upgrade playbook must preserve baseline-only resume wording")
+                current_counts = outcome_upgrade.get("current_public_counts", {})
+                expected_counts = {
+                    "stars": 0,
+                    "forks": 1,
+                    "external_feedback_items": 0,
+                    "confirmed_external_users": 0,
+                    "reproducible_feedback_items": 0,
+                    "business_case_feedback_items": 0,
+                }
+                for key, expected in expected_counts.items():
+                    if current_counts.get(key) != expected:
+                        raise AssertionError(f"outcome upgrade playbook {key} expected {expected!r}")
+                if any(rule.get("status") != "not_claimable_yet" for rule in outcome_upgrade.get("upgrade_rules", [])):
+                    raise AssertionError("outcome upgrade playbook must not mark any upgrade rule as claimable")
+                if len(outcome_upgrade.get("claimable_now", [])) != 6:
+                    raise AssertionError("outcome upgrade playbook must keep six baseline signals claimable now")
+                if "verify_outcome_upgrade_playbook" not in upgrade_script:
+                    raise AssertionError("outcome upgrade playbook script must verify generated playbook")
+                if (
+                    "test_outcome_upgrade_playbook_blocks_resume_outcome_claims_until_public_evidence_exists"
+                    not in upgrade_tests
+                ):
+                    raise AssertionError("outcome upgrade playbook must have a dedicated test")
             elif metric_name == "feedback_intake_quality":
                 intake_tests = (ROOT / "tests" / "test_feedback_intake_quality.py").read_text()
                 intake_script = (ROOT / "scripts" / "build_feedback_intake_quality.py").read_text()
@@ -1024,7 +1060,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 92", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 93", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 
