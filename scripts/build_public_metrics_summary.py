@@ -291,6 +291,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "business_case_intake_try_paths": business_case_intake["required_try_path_count"],
             "business_case_intake_outcomes": business_case_intake["required_outcome_count"],
             "business_case_intake_captured_fields": business_case_intake["captured_field_count"],
+            "business_case_intake_outcome_fields": len(business_case_intake["resume_outcome_fields"]),
             "business_data_replay_packet": 1,
             "business_data_replay_paths": replay_packet["replay_path_count"],
             "business_data_replay_evidence_fields": replay_packet["evidence_field_count"],
@@ -498,7 +499,8 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"Business-case intake path with {business_case_intake['required_section_count']} required sections, "
                 f"{business_case_intake['required_try_path_count']} tried paths, "
                 f"{business_case_intake['required_outcome_count']} outcome signals, and "
-                f"{business_case_intake['captured_field_count']} captured evidence groups"
+                f"{business_case_intake['captured_field_count']} captured evidence groups including "
+                f"{len(business_case_intake['resume_outcome_fields'])} resume outcome fields"
             ),
             (
                 f"Business-data replay packet with {replay_packet['replay_path_count']} safe replay paths, "
@@ -716,6 +718,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business-case intake tried paths | {outcomes["business_case_intake_try_paths"]} |
 | Business-case intake outcome signals | {outcomes["business_case_intake_outcomes"]} |
 | Business-case intake captured evidence groups | {outcomes["business_case_intake_captured_fields"]} |
+| Business-case intake resume outcome fields | {outcomes["business_case_intake_outcome_fields"]} |
 | Business-data replay packet | {outcomes["business_data_replay_packet"]} |
 | Business-data replay paths | {outcomes["business_data_replay_paths"]} |
 | Business-data replay evidence fields | {outcomes["business_data_replay_evidence_fields"]} |
@@ -924,10 +927,11 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "star_growth_ethical_actions": 4,
         "star_growth_resume_upgrade_rules": 4,
         "business_case_intake": 1,
-        "business_case_intake_required_sections": 6,
+        "business_case_intake_required_sections": 8,
         "business_case_intake_try_paths": 5,
-        "business_case_intake_outcomes": 5,
-        "business_case_intake_captured_fields": 6,
+        "business_case_intake_outcomes": 8,
+        "business_case_intake_captured_fields": 8,
+        "business_case_intake_outcome_fields": 9,
         "business_data_replay_packet": 1,
         "business_data_replay_paths": 3,
         "business_data_replay_evidence_fields": 8,

@@ -163,10 +163,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Star growth ethical actions | 4 |
 | Star growth resume upgrade rules | 4 |
 | Business-case intake | 1 |
-| Business-case intake required sections | 6 |
+| Business-case intake required sections | 8 |
 | Business-case intake tried paths | 5 |
-| Business-case intake outcome signals | 5 |
-| Business-case intake captured evidence groups | 6 |
+| Business-case intake outcome signals | 8 |
+| Business-case intake captured evidence groups | 8 |
+| Business-case intake resume outcome fields | 9 |
 | Business-data replay packet | 1 |
 | Business-data replay paths | 3 |
 | Business-data replay evidence fields | 8 |
@@ -248,7 +249,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 3 pilot participant segments across a 3-week feedback plan
 - Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups
 - Star growth kit with 6 verified repo topics, 4 ethical growth actions, and 4 resume upgrade rules with traffic context without inflating current stars
-- Business-case intake path with 6 required sections, 5 tried paths, 5 outcome signals, and 6 captured evidence groups
+- Business-case intake path with 8 required sections, 5 tried paths, 8 outcome signals, and 8 captured evidence groups including 9 resume outcome fields
 - Business-data replay packet with 3 safe replay paths, 8 evidence fields, 5 safety requirements, and zero current external replay claims
 - Business replay demo with 8 anonymized rows, 5 findings, 4 failed check types, 4 business-rule references, and deterministic verification
 - Real-model runbook with 5 run commands, 15 evidence fields, 8 acceptance criteria, 5 safety gates, and zero current real model run claims

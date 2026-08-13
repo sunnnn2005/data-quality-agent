@@ -1179,11 +1179,13 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("business case intake claim must use metric_value=1")
                 expected = {
-                    "required_section_count": 6,
+                    "required_section_count": 8,
                     "required_context_field_count": 3,
+                    "required_impact_field_count": 4,
+                    "required_project_evidence_field_count": 4,
                     "required_try_path_count": 5,
-                    "required_outcome_count": 5,
-                    "captured_field_count": 6,
+                    "required_outcome_count": 8,
+                    "captured_field_count": 8,
                 }
                 for key, value in expected.items():
                     if business_case_intake.get(key) != value:
@@ -1200,10 +1202,18 @@ def verify_manifest() -> dict[str, int]:
                     "Industry or team:",
                     "Workflow affected:",
                     "Data source type:",
+                    "Approximate time spent investigating manually:",
+                    "Which finding matched the real problem?",
+                    "This can be counted as an anonymized business-impact signal.",
                     "Do not quote my organization, name, or raw data.",
                 ):
                     if required not in template_text:
                         raise AssertionError(f"business case template missing required prompt: {required}")
+                outcome_fields = business_case_intake.get("resume_outcome_fields", [])
+                if len(outcome_fields) != 9:
+                    raise AssertionError("business case intake must expose 9 resume outcome fields")
+                if "manual investigation time" not in outcome_fields:
+                    raise AssertionError("business case intake must collect manual investigation time")
                 if "verify_business_case_intake" not in case_script:
                     raise AssertionError("business case intake script must verify generated artifact")
                 if (

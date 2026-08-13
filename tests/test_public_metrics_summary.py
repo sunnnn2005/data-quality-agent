@@ -158,10 +158,11 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["star_growth_ethical_actions"] == 4
     assert payload["verified_project_outcomes"]["star_growth_resume_upgrade_rules"] == 4
     assert payload["verified_project_outcomes"]["business_case_intake"] == 1
-    assert payload["verified_project_outcomes"]["business_case_intake_required_sections"] == 6
+    assert payload["verified_project_outcomes"]["business_case_intake_required_sections"] == 8
     assert payload["verified_project_outcomes"]["business_case_intake_try_paths"] == 5
-    assert payload["verified_project_outcomes"]["business_case_intake_outcomes"] == 5
-    assert payload["verified_project_outcomes"]["business_case_intake_captured_fields"] == 6
+    assert payload["verified_project_outcomes"]["business_case_intake_outcomes"] == 8
+    assert payload["verified_project_outcomes"]["business_case_intake_captured_fields"] == 8
+    assert payload["verified_project_outcomes"]["business_case_intake_outcome_fields"] == 9
     assert payload["verified_project_outcomes"]["business_data_replay_packet"] == 1
     assert payload["verified_project_outcomes"]["business_data_replay_paths"] == 3
     assert payload["verified_project_outcomes"]["business_data_replay_evidence_fields"] == 8
@@ -280,7 +281,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-        "Business-case intake path with 6 required sections, 5 tried paths, 5 outcome signals, and 6 captured evidence groups"
+        "Business-case intake path with 8 required sections, 5 tried paths, 8 outcome signals, and 8 captured evidence groups including 9 resume outcome fields"
         in payload["resume_safe_signals"]
     )
     assert (

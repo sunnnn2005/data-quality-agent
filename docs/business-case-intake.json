@@ -1,12 +1,14 @@
 {
   "business_case_issue_template": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
-  "captured_field_count": 6,
+  "captured_field_count": 8,
   "captured_fields": {
     "business_context": true,
+    "business_impact": true,
     "data_quality_problem": true,
     "field_scope": true,
     "outcome_signals": true,
     "permission_boundary": true,
+    "project_evidence_mapping": true,
     "try_path": true
   },
   "current_public_counts": {
@@ -23,16 +25,29 @@
   ],
   "project": "Data Quality Agent",
   "required_context_field_count": 3,
-  "required_outcome_count": 5,
-  "required_section_count": 6,
+  "required_impact_field_count": 4,
+  "required_outcome_count": 8,
+  "required_project_evidence_field_count": 4,
+  "required_section_count": 8,
   "required_try_path_count": 5,
-  "resume_safe_summary": "Published a CI-verified business-case intake path for collecting anonymized real-world data-quality problems, business context, tried route, outcome signal, and permission boundaries without claiming any submitted external business cases yet.",
+  "resume_outcome_fields": [
+    "affected stakeholder or workflow",
+    "decision, dashboard, SLA, customer workflow, or revenue process affected",
+    "manual investigation time",
+    "affected row, record, or entity count",
+    "matched finding",
+    "plausible root-cause hypothesis",
+    "useful recommendation or owner handoff",
+    "missing or incorrect evidence",
+    "pilot readiness with anonymized data"
+  ],
+  "resume_safe_summary": "Published a CI-verified business-case intake path for collecting anonymized real-world data-quality problems, affected workflow, estimated manual investigation cost, project evidence mapping, pilot-readiness signals, and permission boundaries without claiming any submitted external business cases yet.",
   "resume_upgrade_rule": {
     "current_value": 0,
-    "evidence_required": "public GitHub issue using the business-case template and business-case label",
+    "evidence_required": "public GitHub issue using the business-case template and business-case label, with impact fields and permission to count anonymized business-impact signal",
     "minimum_before_claim": 1,
     "resume_status": "not_claimable_yet",
-    "signal": "anonymized public business-case feedback"
+    "signal": "anonymized business-impact feedback"
   },
   "template_path": ".github/ISSUE_TEMPLATE/business_case_review.md",
   "tracking_label": "business-case"
