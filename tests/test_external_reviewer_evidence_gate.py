@@ -92,6 +92,61 @@ It still needs one captured real-model run and a larger labeled eval set.
 """
 
 
+VALID_BUSINESS_CASE_BODY = """## Business context
+
+- Industry or team: support operations
+- Workflow affected: weekly SLA dashboard
+- Data source type: support ticket export
+
+## Data-quality problem
+
+Duplicate ticket IDs and missing routing fields made the dashboard undercount escalations.
+
+## Business impact
+
+- Who would be affected if this issue reached production? support managers and customer success leads
+- What decision, dashboard, SLA, customer workflow, or revenue process could be affected? SLA escalation dashboard
+- Approximate time spent investigating manually: 2 hours
+- Approximate rows, records, or entities affected, if known: 1,200 tickets
+
+## Fields involved
+
+ticket_id, routing_team, amount
+
+## Evidence from this project
+
+- Which finding matched the real problem? duplicate ticket IDs
+- Which root-cause hypothesis looked plausible? upstream export merge introduced duplicate keys
+- Which recommendation or owner handoff was useful? assign data engineering owner to dedupe key logic
+- What evidence was missing or wrong? none for this sample
+
+## Tried path
+
+- [x] Public demo page
+- [ ] CSV upload endpoint
+- [ ] PostgreSQL Docker Compose demo
+- [ ] LLM tool-calling route
+- [ ] I only reviewed the repository/docs
+
+## Outcome
+
+- [x] The agent found a relevant issue.
+- [x] The deterministic checks found a relevant issue.
+- [ ] The report missed an important business rule.
+- [x] The suggested owner handoff/action was useful.
+- [ ] I would need another integration before using this pattern.
+- [x] This could reduce manual investigation time.
+- [x] This could prevent a bad dashboard, report, or operational decision.
+- [x] This is close enough for a small pilot with anonymized data.
+
+## Permission
+
+- [x] This can be counted as anonymized public business-case feedback.
+- [x] This can be counted as an anonymized business-impact signal.
+- [x] Do not quote my organization, name, or raw data.
+"""
+
+
 def test_external_reviewer_evidence_gate_starts_from_zero_without_fake_claims():
     payload = build_external_reviewer_evidence_gate()
     verification = verify_external_reviewer_evidence_gate(payload)
@@ -137,6 +192,21 @@ def test_external_reviewer_evidence_gate_accepts_ai_engineer_review_issue():
     assert payload["accepted_counts"]["ai_engineer_review_items"] == 1
 
 
+def test_external_reviewer_evidence_gate_accepts_business_case_with_impact_summary():
+    payload = build_external_reviewer_evidence_gate(
+        issues=[issue(VALID_BUSINESS_CASE_BODY, labels=["business-case"])]
+    )
+    evaluation = payload["evaluations"][0]
+
+    assert evaluation["accepted"] is True
+    assert evaluation["evidence_type"] == "business_case_review"
+    assert evaluation["counts_toward"] == ["business_case_feedback_items"]
+    assert payload["accepted_counts"]["business_case_feedback_items"] == 1
+    assert "weekly SLA dashboard" in evaluation["extracted_business_impact"]["business_context"]
+    assert "2 hours" in evaluation["extracted_business_impact"]["business_impact"]
+    assert "duplicate ticket IDs" in evaluation["extracted_business_impact"]["project_evidence_mapping"]
+
+
 def test_external_reviewer_evidence_gate_rejects_self_authored_missing_permission_or_sensitive_issue():
     missing_permission_body = VALID_EXTERNAL_RUN_BODY.replace(
         "- [x] This can be counted as public external run evidence.",
@@ -151,6 +221,15 @@ def test_external_reviewer_evidence_gate_rejects_self_authored_missing_permissio
             labels=["ai-engineer-review"],
         )
     )
+    business_case_missing_impact_permission = evaluate_issue(
+        issue(
+            VALID_BUSINESS_CASE_BODY.replace(
+                "- [x] This can be counted as an anonymized business-impact signal.",
+                "- [ ] This can be counted as an anonymized business-impact signal.",
+            ),
+            labels=["business-case"],
+        )
+    )
 
     assert self_authored["accepted"] is False
     assert "self-authored issue" in self_authored["failure_reasons"]
@@ -160,3 +239,5 @@ def test_external_reviewer_evidence_gate_rejects_self_authored_missing_permissio
     assert "contains sensitive-data risk terms" in sensitive["failure_reasons"]
     assert opted_out["accepted"] is False
     assert "reviewer opted out of public counting" in opted_out["failure_reasons"]
+    assert business_case_missing_impact_permission["accepted"] is False
+    assert "missing business-impact counting permission" in business_case_missing_impact_permission["failure_reasons"]

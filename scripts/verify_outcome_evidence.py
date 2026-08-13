@@ -26,6 +26,7 @@ EXTERNAL_RUN_QUICKSTART_PATH = ROOT / "docs" / "external-run-quickstart.json"
 EXTERNAL_REVIEWER_OUTREACH_TRACKER_PATH = ROOT / "docs" / "external-reviewer-outreach-tracker.json"
 EXTERNAL_REVIEWER_EVIDENCE_GATE_PATH = ROOT / "docs" / "external-reviewer-evidence-gate.json"
 ACCEPTED_EVIDENCE_ROLLUP_PATH = ROOT / "docs" / "accepted-evidence-rollup.json"
+BUSINESS_IMPACT_LEDGER_PATH = ROOT / "docs" / "business-impact-ledger.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
@@ -95,6 +96,7 @@ def verify_manifest() -> dict[str, int]:
     external_reviewer_outreach = load_payload(EXTERNAL_REVIEWER_OUTREACH_TRACKER_PATH)
     external_reviewer_gate = load_payload(EXTERNAL_REVIEWER_EVIDENCE_GATE_PATH)
     accepted_evidence_rollup = load_payload(ACCEPTED_EVIDENCE_ROLLUP_PATH)
+    business_impact_ledger = load_payload(BUSINESS_IMPACT_LEDGER_PATH)
     api_smoke_report = load_payload(API_SMOKE_REPORT_PATH)
     performance_baseline = load_payload(PERFORMANCE_BASELINE_PATH)
     demo_usage_baseline = load_payload(DEMO_USAGE_BASELINE_PATH)
@@ -554,7 +556,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 131:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 134:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -855,7 +857,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 131:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 134:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1567,6 +1569,33 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("accepted evidence rollup must have a baseline test")
                 if "test_accepted_evidence_rollup_turns_valid_gate_counts_into_claimable_metrics" not in rollup_tests:
                     raise AssertionError("accepted evidence rollup must have a positive-count test")
+            elif metric_name == "business_impact_ledger":
+                ledger_script = (ROOT / "scripts" / "build_business_impact_ledger.py").read_text()
+                ledger_tests = (ROOT / "tests" / "test_business_impact_ledger.py").read_text()
+                ledger_page = (ROOT / "docs" / "business-impact-ledger.md").read_text()
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("business impact ledger claim must use metric_value=1")
+                if business_impact_ledger.get("accepted_business_impact_signal_count") != 0:
+                    raise AssertionError("business impact ledger must preserve zero accepted business-impact baseline")
+                if business_impact_ledger.get("resume_upgrade_rule", {}).get("resume_status") != "not_claimable_yet":
+                    raise AssertionError("business impact ledger must not be claimable before accepted evidence")
+                for required in (
+                    "validated business impact",
+                    "raw production data",
+                    "revenue saved",
+                    "production adoption",
+                ):
+                    if required not in business_impact_ledger.get("not_claimed", []):
+                        raise AssertionError(f"business impact ledger missing not-claimed signal: {required}")
+                for required in ("Business Impact Ledger", "Accepted business-impact signals | 0"):
+                    if required not in ledger_page:
+                        raise AssertionError(f"business impact ledger page missing {required!r}")
+                if "verify_business_impact_ledger" not in ledger_script:
+                    raise AssertionError("business impact ledger script must include a verifier")
+                if "test_business_impact_ledger_preserves_zero_baseline_without_fake_business_claims" not in ledger_tests:
+                    raise AssertionError("business impact ledger must have a zero-baseline test")
+                if "test_business_impact_ledger_extracts_claimable_accepted_business_case" not in ledger_tests:
+                    raise AssertionError("business impact ledger must have a positive accepted-case test")
             elif metrics.get(metric_name) != claim.get("metric_value"):
                 raise AssertionError(
                     f"claim {claim['id']} metric mismatch: {metric_name}={claim.get('metric_value')} "
@@ -1637,7 +1666,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 131", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 134", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

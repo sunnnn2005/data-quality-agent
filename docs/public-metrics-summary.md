@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 13 |
-| Passing CI tests | 131 |
+| Passing CI tests | 134 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -77,6 +77,8 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Accepted evidence rollup claimable metrics | 5 |
 | Accepted evidence rollup accepted issues | 0 |
 | Accepted evidence rollup blocked claims | 5 |
+| Business impact ledger | 1 |
+| Business impact ledger accepted signals | 0 |
 | API smoke report | 1 |
 | API smoke checks | 6 |
 | API smoke passed checks | 6 |
@@ -113,13 +115,13 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Public availability reachable endpoints | 4 |
 | Public availability successful workflows | 3 |
 | Live project scorecard | 1 |
-| Scorecard reviewer paths | 21 |
+| Scorecard reviewer paths | 22 |
 | OpenAPI required integration endpoints | 6 |
 | OpenAPI paths | 14 |
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 27 |
+| Application evidence links | 28 |
 | AI Engineer review intake | 1 |
 | AI Engineer review paths | 6 |
 | AI Engineer review questions | 6 |
@@ -203,7 +205,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 131 passing CI tests
+- 134 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -230,6 +232,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - External reviewer outreach tracker with 3 queued reviewer segments, 3 source messages, 3 not-contacted baseline entries, and public-evidence rules
 - External reviewer evidence gate with 6 validation rules, 3 linked outreach queue entries, 0 accepted public reviewer issues, and sensitive-data safeguards
 - Accepted evidence rollup with 5 tracked outcome metrics, 0 accepted reviewer issues, and 5 blocked claims until public evidence exists
+- Business impact ledger with 0 accepted business-impact signals, anonymized workflow fields, and blocked resume claims until public evidence exists
 - CI-verified API smoke report covering 6 passing FastAPI route checks
 - CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls
 - Public demo usage baseline with 5 tracked funnel steps and 6 verified entrypoints
@@ -240,10 +243,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Public traction dashboard with 4 live project surfaces, 19 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
 - GitHub traffic snapshot with 9 views, 3 unique visitors, 79 clones, and 50 unique cloners in GitHub's rolling 14-day window
 - Public availability snapshot with 4/4 reachable public endpoints and 3/3 successful main-branch workflows
-- 21 reviewer paths in a CI-verified live project scorecard
+- 22 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
-- 27 application evidence links in a recruiter-ready evidence pack
+- 28 application evidence links in a recruiter-ready evidence pack
 - AI Engineer review intake with 6 review paths, 6 reviewer questions, 5 countable-evidence conditions, and zero accepted reviews
 - 3 pilot outreach messages and 10 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan

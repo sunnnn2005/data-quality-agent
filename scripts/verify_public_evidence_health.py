@@ -47,13 +47,13 @@ PUBLIC_CHECKS = [
         "id": "outcome-evidence-manifest",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-evidence.json",
         "expected_text": "business-impact-artifact",
-        "expected_texts": ["external-run-evidence-packet", "131 passing CI tests", "accepted-evidence-rollup", "real-model-evidence-capture"],
+        "expected_texts": ["external-run-evidence-packet", "134 passing CI tests", "accepted-evidence-rollup", "real-model-evidence-capture"],
         "evidence_type": "json",
     },
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 131},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 134},
         "evidence_type": "json",
     },
     {
@@ -248,6 +248,21 @@ PUBLIC_CHECKS = [
             "confirmed_external_users",
             "external_feedback_items",
             "No private business data is used as outcome evidence.",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "business-impact-ledger",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact-ledger.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "accepted_business_impact_signal_count": 0,
+        },
+        "expected_text": "business-impact ledger",
+        "expected_texts": [
+            "validated business impact",
+            "raw production data",
+            "not_claimable_yet",
         ],
         "evidence_type": "json",
     },

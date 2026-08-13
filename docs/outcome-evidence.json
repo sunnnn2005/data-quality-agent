@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 131,
-      "resume_signal": "131 passing CI tests",
+      "metric_value": 134,
+      "resume_signal": "134 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 27 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 28 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 27,
+      "metric_value": 28,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -649,6 +649,16 @@
       "resume_signal": "CI-verified accepted evidence rollup",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/accepted-evidence-rollup.json"
+    },
+    {
+      "claim": "The project publishes a business-impact ledger that converts accepted anonymized business-case issues into resume-safe workflow, impact, and evidence-mapping fields while preserving the zero accepted business-impact baseline.",
+      "evidence_type": "generated_artifact",
+      "id": "business-impact-ledger",
+      "metric_name": "business_impact_ledger",
+      "metric_value": 1,
+      "resume_signal": "CI-verified business-impact ledger",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact-ledger.json"
     }
   ],
   "not_claimed": [

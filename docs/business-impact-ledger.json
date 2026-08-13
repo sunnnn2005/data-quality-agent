@@ -1,0 +1,24 @@
+{
+  "accepted_business_cases": [],
+  "accepted_business_impact_signal_count": 0,
+  "generated_by": "scripts/build_business_impact_ledger.py",
+  "not_claimed": [
+    "validated business impact",
+    "customer names",
+    "raw production data",
+    "revenue saved",
+    "production adoption"
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Convert accepted anonymized business-case review issues into resume-safe business-impact evidence while keeping the zero-case baseline honest until public reviewer proof exists.",
+  "resume_safe_summary": "Published a CI-verified business-impact ledger that can turn accepted public business-case issues into resume-safe workflow, impact, and evidence-mapping claims; current accepted business-impact signals: 0.",
+  "resume_upgrade_rule": {
+    "current_value": 0,
+    "evidence_required": "accepted public business-case issue with non-owner author, impact permission, anonymized context, business-impact field, and project evidence mapping",
+    "minimum_before_claim": 1,
+    "resume_status": "not_claimable_yet",
+    "signal": "validated anonymized business-impact scenario"
+  },
+  "source_gate": "docs/external-reviewer-evidence-gate.json",
+  "source_gate_accepted_issue_count": 0
+}

@@ -22,6 +22,7 @@ EXTERNAL_RUN_QUICKSTART_PATH = ROOT / "docs" / "external-run-quickstart.json"
 EXTERNAL_REVIEWER_OUTREACH_TRACKER_PATH = ROOT / "docs" / "external-reviewer-outreach-tracker.json"
 EXTERNAL_REVIEWER_EVIDENCE_GATE_PATH = ROOT / "docs" / "external-reviewer-evidence-gate.json"
 ACCEPTED_EVIDENCE_ROLLUP_PATH = ROOT / "docs" / "accepted-evidence-rollup.json"
+BUSINESS_IMPACT_LEDGER_PATH = ROOT / "docs" / "business-impact-ledger.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
@@ -56,8 +57,8 @@ BUSINESS_REPLAY_DEMO_PATH = ROOT / "docs" / "business-replay-demo.json"
 REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
-SCORECARD_REVIEWER_PATH_COUNT = 21
-APPLICATION_EVIDENCE_LINK_COUNT = 27
+SCORECARD_REVIEWER_PATH_COUNT = 22
+APPLICATION_EVIDENCE_LINK_COUNT = 28
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -83,6 +84,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     external_reviewer_outreach = load_json(EXTERNAL_REVIEWER_OUTREACH_TRACKER_PATH)
     external_reviewer_gate = load_json(EXTERNAL_REVIEWER_EVIDENCE_GATE_PATH)
     accepted_evidence_rollup = load_json(ACCEPTED_EVIDENCE_ROLLUP_PATH)
+    business_impact_ledger = load_json(BUSINESS_IMPACT_LEDGER_PATH)
     api_smoke = load_json(API_SMOKE_REPORT_PATH)
     performance = load_json(PERFORMANCE_BASELINE_PATH)
     demo_usage = load_json(DEMO_USAGE_BASELINE_PATH)
@@ -197,6 +199,8 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "accepted_evidence_rollup_claimable_metrics": accepted_evidence_rollup["claimable_metric_count"],
             "accepted_evidence_rollup_accepted_issues": accepted_evidence_rollup["accepted_issue_count"],
             "accepted_evidence_rollup_blocked_claims": accepted_evidence_rollup["blocked_outcome_claim_count"],
+            "business_impact_ledger": 1,
+            "business_impact_ledger_accepted_signals": business_impact_ledger["accepted_business_impact_signal_count"],
             "api_smoke_report": 1,
             "api_smoke_checks": api_smoke["check_count"],
             "api_smoke_passed_checks": api_smoke["passed_count"],
@@ -425,6 +429,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{accepted_evidence_rollup['accepted_issue_count']} accepted reviewer issues, and "
                 f"{accepted_evidence_rollup['blocked_outcome_claim_count']} blocked claims until public evidence exists"
             ),
+            (
+                f"Business impact ledger with {business_impact_ledger['accepted_business_impact_signal_count']} accepted "
+                "business-impact signals, anonymized workflow fields, and blocked resume claims until public evidence exists"
+            ),
             f"CI-verified API smoke report covering {api_smoke['passed_count']} passing FastAPI route checks",
             (
                 f"CI-verified local performance baseline covering {performance['benchmark_count']} route benchmarks "
@@ -628,6 +636,8 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Accepted evidence rollup claimable metrics | {outcomes["accepted_evidence_rollup_claimable_metrics"]} |
 | Accepted evidence rollup accepted issues | {outcomes["accepted_evidence_rollup_accepted_issues"]} |
 | Accepted evidence rollup blocked claims | {outcomes["accepted_evidence_rollup_blocked_claims"]} |
+| Business impact ledger | {outcomes["business_impact_ledger"]} |
+| Business impact ledger accepted signals | {outcomes["business_impact_ledger_accepted_signals"]} |
 | API smoke report | {outcomes["api_smoke_report"]} |
 | API smoke checks | {outcomes["api_smoke_checks"]} |
 | API smoke passed checks | {outcomes["api_smoke_passed_checks"]} |
@@ -763,7 +773,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 131,
+        "test_count": 134,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -841,6 +851,8 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "accepted_evidence_rollup_claimable_metrics": 5,
         "accepted_evidence_rollup_accepted_issues": 0,
         "accepted_evidence_rollup_blocked_claims": 5,
+        "business_impact_ledger": 1,
+        "business_impact_ledger_accepted_signals": 0,
         "api_smoke_report": 1,
         "api_smoke_checks": 6,
         "api_smoke_passed_checks": 6,
@@ -874,12 +886,12 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "public_availability_snapshot": 1,
         "public_availability_endpoint_count": 4,
         "live_project_scorecard": 1,
-        "scorecard_reviewer_paths": 21,
+        "scorecard_reviewer_paths": 22,
         "openapi_required_endpoints": 6,
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 27,
+        "application_evidence_links": 28,
         "ai_engineer_review_intake": 1,
         "ai_engineer_review_paths": 6,
         "ai_engineer_review_questions": 6,

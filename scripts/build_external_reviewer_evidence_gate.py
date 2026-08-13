@@ -34,6 +34,11 @@ def _section_text(body: str, heading: str) -> str:
     return match.group(1).strip() if match else ""
 
 
+def _compact_section(body: str, heading: str, *, max_chars: int = 500) -> str:
+    text = " ".join(_section_text(body, heading).split())
+    return text[:max_chars].strip()
+
+
 def _non_placeholder(section: str) -> bool:
     normalized = section.strip()
     if not normalized:
@@ -52,6 +57,7 @@ def evaluate_issue(issue: dict[str, Any]) -> dict[str, Any]:
     failure_reasons: list[str] = []
     evidence_type = "unknown"
     counts_toward: list[str] = []
+    extracted_business_impact: dict[str, str] = {}
 
     if author in OWNER_LOGINS:
         failure_reasons.append("self-authored issue")
@@ -93,9 +99,24 @@ def evaluate_issue(issue: dict[str, Any]) -> dict[str, Any]:
         evidence_type = "business_case_review"
         if not _checked(body, "This can be counted as anonymized public business-case feedback."):
             failure_reasons.append("missing business-case counting permission")
-        for heading in ("Business context", "Data-quality problem", "Fields involved"):
+        if not _checked(body, "This can be counted as an anonymized business-impact signal."):
+            failure_reasons.append("missing business-impact counting permission")
+        for heading in (
+            "Business context",
+            "Data-quality problem",
+            "Business impact",
+            "Fields involved",
+            "Evidence from this project",
+        ):
             if not _non_placeholder(_section_text(body, heading)):
                 failure_reasons.append(f"missing {heading.lower()} evidence")
+        extracted_business_impact = {
+            "business_context": _compact_section(body, "Business context"),
+            "data_quality_problem": _compact_section(body, "Data-quality problem"),
+            "business_impact": _compact_section(body, "Business impact"),
+            "fields_involved": _compact_section(body, "Fields involved"),
+            "project_evidence_mapping": _compact_section(body, "Evidence from this project"),
+        }
         counts_toward.append("business_case_feedback_items")
     elif labels & AI_ENGINEER_REVIEW_LABELS:
         evidence_type = "ai_engineer_review"
@@ -129,6 +150,7 @@ def evaluate_issue(issue: dict[str, Any]) -> dict[str, Any]:
         "rejected_counts_toward": counts_toward if not accepted else [],
         "failure_reasons": failure_reasons,
         "sensitive_hits": sensitive_hits,
+        "extracted_business_impact": extracted_business_impact if evidence_type == "business_case_review" else {},
     }
 
 
