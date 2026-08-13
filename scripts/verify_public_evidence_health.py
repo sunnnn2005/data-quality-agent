@@ -50,8 +50,8 @@ PUBLIC_CHECKS = [
     },
     {
         "id": "github-release",
-        "url": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.1.0",
-        "expected_text": "v0.1.0",
+        "url": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.2.0",
+        "expected_text": "v0.2.0",
         "evidence_type": "release_page",
     },
 ]

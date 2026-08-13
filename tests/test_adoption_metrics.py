@@ -21,7 +21,7 @@ def test_adoption_metrics_uses_safe_fallback_values(monkeypatch):
     assert metrics["test_count"] == 52
     assert metrics["commit"] is not None
     assert metrics["container_image"]["image"] == "ghcr.io/sunnnn2005/data-quality-agent:latest"
-    assert metrics["release"]["tagName"] == "v0.1.0"
+    assert metrics["release"]["tagName"] == "v0.2.0"
 
 
 def test_adoption_history_dedupes_same_date_and_commit(tmp_path, monkeypatch):
@@ -37,7 +37,7 @@ def test_adoption_history_dedupes_same_date_and_commit(tmp_path, monkeypatch):
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
         "test_count": 47,
-        "release": {"tagName": "v0.1.0"},
+        "release": {"tagName": "v0.2.0"},
     }
 
     append_history(metrics)

@@ -12,10 +12,10 @@
     },
     {
       "id": "public-release",
-      "resume_signal": "Published v0.1.0 release",
-      "claim": "Public v0.1.0 release is available on GitHub.",
+      "resume_signal": "Published v0.2.0 release",
+      "claim": "Public v0.2.0 release is available on GitHub.",
       "evidence_type": "release",
-      "url": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.1.0",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.2.0",
       "status": "verified"
     },
     {
