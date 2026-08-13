@@ -9,7 +9,7 @@ This page maps resume-ready claims for Data Quality Agent to public evidence. It
 | `public-demo` | Launched public demo | [GitHub Pages demo](https://sunnnn2005.github.io/data-quality-agent/) | The project is publicly viewable and has a product-style demo page. |
 | `public-release` | Published release | [v0.1.0 release](https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.1.0) | The project has a tagged public release. |
 | `container-image` | Published runnable container | [GHCR package](https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent) | The FastAPI service is packaged as a container image. |
-| `ci-tests` | 51 passing CI tests | [GitHub Actions CI](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml) | Tests, support-ticket demo verification, business-impact verification, feedback metrics verification, adoption metrics verification, and outcome evidence verification run in CI. |
+| `ci-tests` | 52 passing CI tests | [GitHub Actions CI](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml) | Tests, support-ticket demo verification, business-impact verification, feedback metrics verification, adoption metrics verification, and outcome evidence verification run in CI. |
 | `support-ticket-artifact` | CI-verified support-ticket artifact | [Verified JSON artifact](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/verified-support-ticket-result.json) | The business-data case study result is machine-generated and checked for expected findings. |
 | `postgres-agent-route` | Read-only PostgreSQL agent route | [API source](https://github.com/sunnnn2005/data-quality-agent/blob/main/app/main.py) | The project exposes a PostgreSQL support-ticket agent endpoint that reuses the read-only database adapter and safely falls back when no model key is configured. |
 | `business-impact-artifact` | Quantified business-impact artifact | [Business impact JSON](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact.json) | The support-ticket case study quantifies 4 issue categories, 4 affected columns, and 5 recommended actions without claiming external adoption. |
@@ -32,7 +32,7 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 10 |
-| Automated tests | 51 |
+| Automated tests | 52 |
 | Support-ticket issue categories | 4 |
 | Affected support-ticket columns | 4 |
 | Recommended support-ticket actions | 5 |
@@ -63,7 +63,7 @@ Use wording that is true today:
 - Quantified 4 support-ticket data quality issue categories across 8 rows, including duplicate ticket IDs, missing routing fields, negative amounts, and amount outliers.
 - Added a scheduled public evidence health check for the live demo, release page, business-impact artifact, outcome evidence, and adoption metrics.
 - Added machine-readable feedback metrics that track public feedback and reproducible reports from an honest zero baseline.
-- Added deterministic report verification guardrails and 51 passing CI tests.
+- Added deterministic report verification guardrails and 52 passing CI tests.
 
 Avoid wording that is not true yet:
 

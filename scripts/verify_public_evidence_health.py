@@ -33,7 +33,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 51},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 52},
         "evidence_type": "json",
     },
     {
