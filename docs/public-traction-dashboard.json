@@ -1,7 +1,7 @@
 {
   "demo_entrypoints_verified": 5,
   "generated_by": "scripts/build_public_traction_dashboard.py",
-  "growth_channel_count": 15,
+  "growth_channel_count": 16,
   "growth_channels": [
     {
       "name": "Good first issue label",
@@ -32,6 +32,11 @@
       "name": "Business case review issue",
       "purpose": "anonymized real-world business workflow feedback",
       "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md"
+    },
+    {
+      "name": "Business data replay issue",
+      "purpose": "confirmed anonymized replay evidence for CSV or read-only data runs",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md"
     },
     {
       "name": "application_evidence_pack",
@@ -95,7 +100,7 @@
     "stars": 0,
     "watchers": 0
   },
-  "resume_safe_summary": "Published a public traction dashboard covering 4 live project surfaces, 15 growth or review channels, 5 tracked demo funnel steps, and explicit resume-upgrade rules for users, feedback, and stars.",
+  "resume_safe_summary": "Published a public traction dashboard covering 4 live project surfaces, 16 growth or review channels, 5 tracked demo funnel steps, and explicit resume-upgrade rules for users, feedback, and stars.",
   "resume_upgrade_rules": [
     {
       "current_value": 0,

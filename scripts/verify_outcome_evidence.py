@@ -291,12 +291,12 @@ def verify_manifest() -> dict[str, int]:
             elif metric_name == "community_growth_baseline":
                 community_script = (ROOT / "scripts" / "build_community_growth_baseline.py").read_text()
                 community_tests = (ROOT / "tests" / "test_community_growth_baseline.py").read_text()
-                if community_growth.get("issue_template_count") != 5:
-                    raise AssertionError("community growth baseline must verify 5 issue templates")
-                if community_growth.get("label_count") != 6:
-                    raise AssertionError("community growth baseline must verify 6 labels")
-                if len(community_growth.get("public_growth_channels", [])) != 6:
-                    raise AssertionError("community growth baseline must verify 6 public growth channels")
+                if community_growth.get("issue_template_count") != 6:
+                    raise AssertionError("community growth baseline must verify 6 issue templates")
+                if community_growth.get("label_count") != 7:
+                    raise AssertionError("community growth baseline must verify 7 labels")
+                if len(community_growth.get("public_growth_channels", [])) != 7:
+                    raise AssertionError("community growth baseline must verify 7 public growth channels")
                 if not all(community_growth.get("contribution_paths", {}).values()):
                     raise AssertionError("community growth baseline must verify contribution paths")
                 counts = community_growth.get("current_public_counts", {})
@@ -414,8 +414,8 @@ def verify_manifest() -> dict[str, int]:
                 traction_tests = (ROOT / "tests" / "test_public_traction_dashboard.py").read_text()
                 if traction.get("traction_surface_count") != 4:
                     raise AssertionError("public traction dashboard must verify 4 traction surfaces")
-                if traction.get("growth_channel_count") != 15:
-                    raise AssertionError("public traction dashboard must verify 15 growth or review channels")
+                if traction.get("growth_channel_count") != 16:
+                    raise AssertionError("public traction dashboard must verify 16 growth or review channels")
                 if traction.get("tracked_funnel_steps") != 5:
                     raise AssertionError("public traction dashboard must verify 5 tracked funnel steps")
                 if traction.get("demo_entrypoints_verified") != 5:

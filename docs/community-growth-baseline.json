@@ -15,15 +15,16 @@
     "stars": 0
   },
   "generated_by": "scripts/build_community_growth_baseline.py",
-  "issue_template_count": 5,
+  "issue_template_count": 6,
   "issue_templates": [
     "bug_report.md",
     "business_case_review.md",
+    "business_data_replay.md",
     "demo_feedback.md",
     "feature_request.md",
     "good_first_issue.md"
   ],
-  "label_count": 6,
+  "label_count": 7,
   "not_claimed": [
     "external contributors",
     "community adoption",
@@ -62,11 +63,17 @@
       "name": "Business case review issue",
       "purpose": "anonymized real-world business workflow feedback",
       "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md"
+    },
+    {
+      "name": "Business data replay issue",
+      "purpose": "confirmed anonymized replay evidence for CSV or read-only data runs",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md"
     }
   ],
   "required_issue_templates": [
     "bug_report.md",
     "business_case_review.md",
+    "business_data_replay.md",
     "demo_feedback.md",
     "feature_request.md",
     "good_first_issue.md"
@@ -75,11 +82,12 @@
   "required_labels": [
     "bug",
     "business-case",
+    "business-data-replay",
     "confirmed-user",
     "enhancement",
     "feedback",
     "reproducible"
   ],
   "required_labels_present": true,
-  "resume_safe_signal": "Published a CI-verified community growth baseline with 5 issue templates, 6 configured labels, 6 public growth channels, contribution guidance, and honest current public counts."
+  "resume_safe_signal": "Published a CI-verified community growth baseline with 6 issue templates, 7 configured labels, 7 public growth channels, contribution guidance, and honest current public counts."
 }

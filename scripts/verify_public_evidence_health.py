@@ -132,9 +132,9 @@ PUBLIC_CHECKS = [
     {
         "id": "community-growth-baseline",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/community-growth-baseline.json",
-        "expected_json": {"project": "Data Quality Agent", "issue_template_count": 5, "label_count": 6},
+        "expected_json": {"project": "Data Quality Agent", "issue_template_count": 6, "label_count": 7},
         "expected_text": "external contributors",
-        "expected_texts": ["public_growth_channels", "good%20first%20issue", "demo_feedback.md"],
+        "expected_texts": ["public_growth_channels", "good%20first%20issue", "business_data_replay.md"],
         "evidence_type": "json",
     },
     {
@@ -156,7 +156,7 @@ PUBLIC_CHECKS = [
     {
         "id": "public-traction-dashboard",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-traction-dashboard.json",
-        "expected_json": {"project": "Data Quality Agent", "traction_surface_count": 4, "growth_channel_count": 15},
+        "expected_json": {"project": "Data Quality Agent", "traction_surface_count": 4, "growth_channel_count": 16},
         "expected_text": "not_claimable_yet",
         "expected_texts": ["public_demo", "feedback_issue_template", "GitHub star growth beyond the current public count"],
         "evidence_type": "json",
@@ -190,7 +190,12 @@ PUBLIC_CHECKS = [
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-data-replay-packet.json",
         "expected_json": {"project": "Data Quality Agent", "replay_path_count": 3, "evidence_field_count": 8},
         "expected_text": "replay_ready_not_claimable",
-        "expected_texts": ["sanitized_csv_upload", "readonly_postgres_table", "real company data analyzed"],
+        "expected_texts": [
+            "sanitized_csv_upload",
+            "readonly_postgres_table",
+            "business_data_replay.md",
+            "real company data analyzed",
+        ],
         "evidence_type": "json",
     },
     {

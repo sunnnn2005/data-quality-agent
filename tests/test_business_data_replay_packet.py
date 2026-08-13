@@ -25,6 +25,15 @@ def test_business_data_replay_packet_turns_realistic_data_runs_into_public_evide
         "reproducible_feedback_items": 0,
     }
     assert payload["resume_status"] == "replay_ready_not_claimable"
+    assert payload["replay_issue_template"]["path"] == ".github/ISSUE_TEMPLATE/business_data_replay.md"
+    assert payload["replay_issue_template"]["label_verified"] is True
+    assert payload["replay_issue_template"]["required_section_count"] >= 8
+    assert payload["replay_issue_template"]["required_labels"] == [
+        "feedback",
+        "confirmed-user",
+        "business-data-replay",
+    ]
+    assert payload["submission_urls"]["business_data_replay"].endswith("template=business_data_replay.md")
     assert {path["id"] for path in payload["replay_paths"]} == {
         "sanitized_csv_upload",
         "readonly_postgres_table",

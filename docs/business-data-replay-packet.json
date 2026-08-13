@@ -26,6 +26,17 @@
   ],
   "project": "Data Quality Agent",
   "purpose": "Give reviewers a safe, repeatable way to replay the agent against their own anonymized business-shaped CSV or read-only database data, then submit public evidence that can later upgrade resume outcomes.",
+  "replay_issue_template": {
+    "label_verified": true,
+    "path": ".github/ISSUE_TEMPLATE/business_data_replay.md",
+    "required_labels": [
+      "feedback",
+      "confirmed-user",
+      "business-data-replay"
+    ],
+    "required_section_count": 8,
+    "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md"
+  },
   "replay_path_count": 3,
   "replay_paths": [
     {
@@ -88,6 +99,7 @@
   ],
   "submission_urls": {
     "business_case_feedback_items": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+    "business_data_replay": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md",
     "confirmed_external_users": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
     "external_feedback_items": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
   },

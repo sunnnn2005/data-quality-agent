@@ -7,8 +7,13 @@ ROOT = Path(__file__).resolve().parents[1]
 FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
 BUSINESS_DATA_INTAKE_PATH = ROOT / "docs" / "business-data-intake-baseline.json"
 REVIEWER_PACKET_PATH = ROOT / "docs" / "reviewer-feedback-packet.json"
+REPLAY_TEMPLATE_PATH = ROOT / ".github" / "ISSUE_TEMPLATE" / "business_data_replay.md"
+LABELS_PATH = ROOT / ".github" / "labels.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "business-data-replay-packet.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "business-data-replay-packet.md"
+REPLAY_SUBMISSION_URL = (
+    "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md"
+)
 
 
 REPLAY_PATHS = [
@@ -73,6 +78,8 @@ def build_business_data_replay_packet() -> dict[str, Any]:
     feedback = load_json(FEEDBACK_METRICS_PATH)
     intake = load_json(BUSINESS_DATA_INTAKE_PATH)
     reviewer = load_json(REVIEWER_PACKET_PATH)
+    labels = load_json(LABELS_PATH)
+    replay_template = REPLAY_TEMPLATE_PATH.read_text()
     current_counts = {
         "external_feedback_items": feedback["external_feedback_items"],
         "confirmed_external_users": feedback["confirmed_external_users"],
@@ -103,7 +110,15 @@ def build_business_data_replay_packet() -> dict[str, Any]:
         },
         "current_public_counts": current_counts,
         "submission_urls": {
-            task["counts_toward"]: task["submission_url"] for task in reviewer["reviewer_tasks"]
+            **{task["counts_toward"]: task["submission_url"] for task in reviewer["reviewer_tasks"]},
+            "business_data_replay": REPLAY_SUBMISSION_URL,
+        },
+        "replay_issue_template": {
+            "path": ".github/ISSUE_TEMPLATE/business_data_replay.md",
+            "url": REPLAY_SUBMISSION_URL,
+            "required_section_count": replay_template.count("## "),
+            "required_labels": ["feedback", "confirmed-user", "business-data-replay"],
+            "label_verified": any(label["name"] == "business-data-replay" for label in labels),
         },
         "resume_upgrade_rules": [
             {
@@ -153,6 +168,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
     counts = "\n".join(
         f"| {key.replace('_', ' ').title()} | {value} |" for key, value in payload["current_public_counts"].items()
     )
+    template = payload["replay_issue_template"]
     rules = "\n".join(
         "| {metric} | {current_value} | {minimum_before_claim} | {claim_when_met} |".format(**rule)
         for rule in payload["resume_upgrade_rules"]
@@ -189,6 +205,12 @@ This generated packet gives reviewers a safe way to replay the agent on business
 | Metric | Current value |
 | --- | ---: |
 {counts}
+
+## Replay Evidence Submission
+
+- Template: [`{template["path"]}`]({template["url"]})
+- Required sections: `{template["required_section_count"]}`
+- Required labels: `{", ".join(template["required_labels"])}`
 
 ## Resume Upgrade Rules
 
@@ -233,6 +255,15 @@ def verify_business_data_replay_packet(payload: dict[str, Any]) -> dict[str, Any
         raise AssertionError("business-data replay packet must preserve current zero external replay counts")
     if payload["resume_status"] != "replay_ready_not_claimable":
         raise AssertionError("business-data replay packet must not claim external replay before evidence")
+    template = payload["replay_issue_template"]
+    if template["url"] != REPLAY_SUBMISSION_URL:
+        raise AssertionError("business-data replay packet must link the dedicated replay issue template")
+    if template["required_section_count"] < 8:
+        raise AssertionError("business-data replay issue template must collect the full evidence packet")
+    if template["label_verified"] is not True:
+        raise AssertionError("business-data replay label must be configured")
+    if set(template["required_labels"]) != {"feedback", "confirmed-user", "business-data-replay"}:
+        raise AssertionError("business-data replay template must use feedback, confirmed-user, and replay labels")
     required_counts = {"confirmed_external_users", "business_case_feedback_items"}
     if not required_counts <= set(payload["submission_urls"]):
         raise AssertionError("business-data replay packet must link submission URLs for replay and business-case evidence")

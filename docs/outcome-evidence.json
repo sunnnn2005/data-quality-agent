@@ -131,7 +131,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-data-intake-baseline.json"
     },
     {
-      "claim": "The project publishes a generated community growth baseline covering 5 issue templates, 6 configured labels, contribution guidance, public feedback entrypoints, and current public counts without claiming community adoption.",
+      "claim": "The project publishes a generated community growth baseline covering 6 issue templates, 7 configured labels, contribution guidance, public feedback entrypoints, and current public counts without claiming community adoption.",
       "evidence_type": "artifact",
       "id": "community-growth-baseline",
       "metric_name": "community_growth_baseline",

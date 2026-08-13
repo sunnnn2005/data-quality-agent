@@ -31,6 +31,8 @@ def test_public_evidence_health_requires_core_public_signals():
         "postgres-agent-route",
         "github-release",
     } <= check_ids
+    replay_packet = next(check for check in PUBLIC_CHECKS if check["id"] == "business-data-replay-packet")
+    assert "business_data_replay.md" in replay_packet["expected_texts"]
     feedback_entrypoints = next(check for check in PUBLIC_CHECKS if check["id"] == "demo-feedback-entrypoints")
     assert feedback_entrypoints["expected_text"] == "Try It & Leave Feedback"
     assert {

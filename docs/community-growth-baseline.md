@@ -6,6 +6,7 @@ This generated artifact verifies the public contribution and feedback paths that
 
 - `bug_report.md`
 - `business_case_review.md`
+- `business_data_replay.md`
 - `demo_feedback.md`
 - `feature_request.md`
 - `good_first_issue.md`
@@ -14,6 +15,7 @@ This generated artifact verifies the public contribution and feedback paths that
 
 - `bug`
 - `business-case`
+- `business-data-replay`
 - `confirmed-user`
 - `enhancement`
 - `feedback`
@@ -37,6 +39,7 @@ This generated artifact verifies the public contribution and feedback paths that
 - [Bug report issue](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md) -> public bug reports
 - [Feature request issue](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md) -> public improvement requests
 - [Business case review issue](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md) -> anonymized real-world business workflow feedback
+- [Business data replay issue](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md) -> confirmed anonymized replay evidence for CSV or read-only data runs
 
 ## Current Public Counts
 
@@ -51,7 +54,7 @@ This generated artifact verifies the public contribution and feedback paths that
 
 ## Resume-Safe Signal
 
-Published a CI-verified community growth baseline with 5 issue templates, 6 configured labels, 6 public growth channels, contribution guidance, and honest current public counts.
+Published a CI-verified community growth baseline with 6 issue templates, 7 configured labels, 7 public growth channels, contribution guidance, and honest current public counts.
 
 ## Not Claimed
 

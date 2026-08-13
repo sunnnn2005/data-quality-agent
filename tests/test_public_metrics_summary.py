@@ -51,9 +51,9 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["business_data_intake_max_rows"] == 10_000
     assert payload["verified_project_outcomes"]["business_data_intake_max_columns"] == 80
     assert payload["verified_project_outcomes"]["community_growth_baseline"] == 1
-    assert payload["verified_project_outcomes"]["community_issue_templates"] == 5
-    assert payload["verified_project_outcomes"]["community_labels"] == 6
-    assert payload["verified_project_outcomes"]["community_public_growth_channels"] == 6
+    assert payload["verified_project_outcomes"]["community_issue_templates"] == 6
+    assert payload["verified_project_outcomes"]["community_labels"] == 7
+    assert payload["verified_project_outcomes"]["community_public_growth_channels"] == 7
     assert payload["verified_project_outcomes"]["impact_review_packet"] == 1
     assert payload["verified_project_outcomes"]["impact_review_business_metrics"] == 12
     assert payload["verified_project_outcomes"]["impact_review_evidence_links"] == 8
@@ -63,7 +63,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["business_problem_owner_handoffs"] == 4
     assert payload["verified_project_outcomes"]["public_traction_dashboard"] == 1
     assert payload["verified_project_outcomes"]["public_traction_surfaces"] == 4
-    assert payload["verified_project_outcomes"]["public_traction_growth_channels"] == 15
+    assert payload["verified_project_outcomes"]["public_traction_growth_channels"] == 16
     assert payload["verified_project_outcomes"]["public_traction_resume_upgrade_rules"] == 3
     assert payload["verified_project_outcomes"]["live_project_scorecard"] == 1
     assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 12
@@ -140,7 +140,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-        "Community growth baseline with 5 issue templates, 6 configured labels, and 6 public contribution or feedback channels"
+        "Community growth baseline with 6 issue templates, 7 configured labels, and 7 public contribution or feedback channels"
         in payload["resume_safe_signals"]
     )
     assert (
@@ -152,7 +152,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-            "Public traction dashboard with 4 live project surfaces, 15 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules"
+            "Public traction dashboard with 4 live project surfaces, 16 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules"
         in payload["resume_safe_signals"]
     )
     assert "12 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]

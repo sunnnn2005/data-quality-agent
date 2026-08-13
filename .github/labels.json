@@ -28,5 +28,10 @@
     "name": "business-case",
     "color": "fbca04",
     "description": "Anonymized real-world business workflow or data-quality problem feedback"
+  },
+  {
+    "name": "business-data-replay",
+    "color": "0052cc",
+    "description": "Confirmed anonymized replay on CSV, PostgreSQL, or business-shaped data"
   }
 ]

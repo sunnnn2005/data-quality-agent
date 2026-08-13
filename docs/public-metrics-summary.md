@@ -59,9 +59,9 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business-data intake max rows | 10000 |
 | Business-data intake max columns | 80 |
 | Community growth baseline | 1 |
-| Community issue templates | 5 |
-| Community labels | 6 |
-| Community public growth channels | 6 |
+| Community issue templates | 6 |
+| Community labels | 7 |
+| Community public growth channels | 7 |
 | Impact review packet | 1 |
 | Impact review business metrics | 12 |
 | Impact review evidence links | 8 |
@@ -71,7 +71,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business problem owner handoffs | 4 |
 | Public traction dashboard | 1 |
 | Public traction surfaces | 4 |
-| Public traction growth channels | 15 |
+| Public traction growth channels | 16 |
 | Public traction resume upgrade rules | 3 |
 | Live project scorecard | 1 |
 | Scorecard reviewer paths | 12 |
@@ -154,10 +154,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls
 - Public demo usage baseline with 5 tracked funnel steps and 5 verified entrypoints
 - Business-data intake baseline covering 4 integration endpoints, 6 API tests, and bounded CSV uploads up to 10000 rows / 80 columns
-- Community growth baseline with 5 issue templates, 6 configured labels, and 6 public contribution or feedback channels
+- Community growth baseline with 6 issue templates, 7 configured labels, and 7 public contribution or feedback channels
 - Impact review packet with 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs
 - Business problem casebook with 1 verified case, 4 detected business risks, and 4 owner handoffs
-- Public traction dashboard with 4 live project surfaces, 15 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
+- Public traction dashboard with 4 live project surfaces, 16 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
 - 12 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles

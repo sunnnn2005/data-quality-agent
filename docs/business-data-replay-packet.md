@@ -62,6 +62,12 @@ Open the business-case issue template and submit only anonymized context, tried 
 | Business Case Feedback Items | 0 |
 | Reproducible Feedback Items | 0 |
 
+## Replay Evidence Submission
+
+- Template: [`.github/ISSUE_TEMPLATE/business_data_replay.md`](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md)
+- Required sections: `8`
+- Required labels: `feedback, confirmed-user, business-data-replay`
+
 ## Resume Upgrade Rules
 
 | Metric | Current value | Minimum before claim | Claim when met |
