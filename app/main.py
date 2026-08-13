@@ -88,8 +88,19 @@ async def create_business_agent_report(request: Annotated[BusinessDataRequest, D
 
 @app.post("/postgres/support-tickets/quality-report", response_model=QualityReport)
 def create_postgres_support_ticket_report():
+    dataset, frame = _load_postgres_support_tickets()
+    return trace_store.save_quality_report(agent.analyze(dataset, frame))
+
+
+@app.post("/postgres/support-tickets/agent-report", response_model=AgentRunReport)
+def create_postgres_support_ticket_agent_report():
+    dataset, frame = _load_postgres_support_tickets()
+    return trace_store.save_agent_report(llm_agent.run(dataset, frame))
+
+
+def _load_postgres_support_tickets():
     try:
-        dataset, frame = postgres_adapter.load_table(
+        return postgres_adapter.load_table(
             "support_tickets",
             dataset_name="Support Tickets",
             owner="support-ops",
@@ -99,7 +110,6 @@ def create_postgres_support_ticket_report():
         )
     except PostgresAdapterError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
-    return trace_store.save_quality_report(agent.analyze(dataset, frame))
 
 
 @app.get("/runs/{trace_id}")

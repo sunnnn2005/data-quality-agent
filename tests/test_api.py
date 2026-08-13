@@ -159,6 +159,45 @@ def test_postgres_support_ticket_report_uses_read_only_adapter(monkeypatch):
     assert "negative_amount" in checks
 
 
+def test_postgres_support_ticket_agent_report_uses_database_context_with_disabled_fallback(monkeypatch):
+    class FakePostgresAdapter:
+        def load_table(
+            self,
+            table,
+            *,
+            dataset_name,
+            owner,
+            primary_key,
+            expected_columns,
+            description,
+        ):
+            assert table == "support_tickets"
+            dataset = DatasetSummary(
+                id="support_tickets",
+                name=dataset_name,
+                owner=owner,
+                primary_key=primary_key,
+                expected_columns=expected_columns,
+                description=description,
+                last_loaded_at=main_module.DATASETS["orders_daily"].last_loaded_at,
+            )
+            csv = ROOT / "examples" / "support_tickets.csv"
+
+            return dataset, pd.read_csv(csv)
+
+    monkeypatch.setattr(main_module, "postgres_adapter", FakePostgresAdapter())
+
+    response = client.post("/postgres/support-tickets/agent-report")
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["status"] == "DISABLED"
+    assert payload["trace_id"].startswith("run_")
+    assert payload["dataset"]["id"] == "support_tickets"
+    assert payload["dataset"]["owner"] == "support-ops"
+    assert payload["error"] == "OPENAI_API_KEY is not configured"
+
+
 def test_business_csv_rejects_missing_primary_key_column():
     response = client.post(
         "/business-data/quality-report",

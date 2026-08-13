@@ -24,6 +24,7 @@ The system turns dataset records and metadata into a structured quality report. 
 - Include an `llm_assessment` object that is disabled by default and populated when an OpenAI-compatible provider is configured.
 - Generate an optional `agent-report` where the LLM chooses data-quality tools and attaches the deterministic source-of-truth report.
 - Accept bounded CSV exports from business workflows with provided owner, primary key, expected columns, and description.
+- Support a seeded read-only PostgreSQL support-ticket report and agent-report route for local business-table demos.
 - Return a clear 404 for unknown datasets.
 - Render a browser dashboard with the same backend data.
 
@@ -107,6 +108,7 @@ PostgreSQL demo:
 
 ```bash
 curl -X POST http://127.0.0.1:8000/postgres/support-tickets/quality-report
+curl -X POST http://127.0.0.1:8000/postgres/support-tickets/agent-report
 curl -X POST http://127.0.0.1:8000/datasets/orders_daily/incident-report.md
 ```
 

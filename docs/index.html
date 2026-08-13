@@ -444,7 +444,7 @@
         <article class="card">
           <span class="severity high">Docker</span>
           <h3>Seeded Postgres demo</h3>
-          <p><code>docker compose up --build</code> runs a database-backed support-ticket report locally.</p>
+          <p><code>docker compose up --build</code> runs database-backed support-ticket report and agent routes locally.</p>
         </article>
       </div>
     </section>
@@ -457,7 +457,7 @@
         source-of-truth quality report before finalizing.
       </p>
       <div class="flow">
-        <div class="step"><span>01</span>Load dataset contract and bounded CSV data</div>
+        <div class="step"><span>01</span>Load dataset contract from bounded CSV or read-only PostgreSQL data</div>
         <div class="step"><span>02</span>Select a quality strategy based on payment, customer, or generic table shape</div>
         <div class="step"><span>03</span>Profile columns, missingness, uniqueness, and samples</div>
         <div class="step"><span>04</span>Run schema, duplicate-key, freshness, domain, and outlier checks</div>

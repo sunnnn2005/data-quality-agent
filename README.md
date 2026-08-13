@@ -133,7 +133,14 @@ Then request a report from the seeded support-ticket table:
 curl -X POST http://127.0.0.1:8000/postgres/support-tickets/quality-report
 ```
 
+Or run the same table through the LLM tool-calling agent route:
+
+```bash
+curl -X POST http://127.0.0.1:8000/postgres/support-tickets/agent-report
+```
+
 The compose demo creates a read-only `readonly_agent` database user and loads a support-ticket table with duplicate IDs, missing routing fields, a negative amount, and an outlier. The API endpoint reads that table through `PostgresDatasetAdapter` and returns the same structured `QualityReport` contract as CSV and built-in datasets.
+The agent-report endpoint uses the same read-only database context and safely returns a disabled fallback when no model key is configured.
 
 ## The Model
 
