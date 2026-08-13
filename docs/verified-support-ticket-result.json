@@ -1,0 +1,32 @@
+{
+  "business_rule_references": [
+    "support_tickets:R1",
+    "support_tickets:R2",
+    "support_tickets:R3",
+    "support_tickets:R4"
+  ],
+  "checks": [
+    "duplicate_primary_key",
+    "missing_values",
+    "negative_amount",
+    "numeric_outliers"
+  ],
+  "dataset_id": "support_tickets",
+  "finding_count": 5,
+  "generated_by": "scripts/verify_support_ticket_demo.py",
+  "likely_causes": [
+    "The ingestion pipeline may be replaying events without idempotent merge logic.",
+    "Source API or transform logic is producing incomplete fields for required analytics columns.",
+    "Business-rule validation is not separating exceptional transactions from standard facts."
+  ],
+  "quality_score": 24,
+  "recommended_next_steps": [
+    "Deduplicate by the latest event timestamp, add idempotent merge logic, and enforce a uniqueness constraint in the pipeline.",
+    "Validate refund handling and separate credit events from positive payment facts.",
+    "Trace null generation for team in the upstream transform or source API.",
+    "Trace null generation for priority in the upstream transform or source API.",
+    "Inspect source records for amount and decide whether to cap, filter, or correct them."
+  ],
+  "row_count": 8,
+  "status": "FAIL"
+}

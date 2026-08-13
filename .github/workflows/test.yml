@@ -18,3 +18,5 @@ jobs:
           pip install -r requirements.txt -r requirements-dev.txt
       - name: Run deterministic test suite
         run: python -m pytest
+      - name: Verify support-ticket demo result
+        run: python scripts/verify_support_ticket_demo.py
