@@ -1,0 +1,60 @@
+from app.models import QualityReport
+
+
+def render_incident_markdown(report: QualityReport) -> str:
+    lines = [
+        f"# Data Quality Incident: {report.dataset.name}",
+        "",
+        "## Summary",
+        "",
+        f"- Status: `{report.status}`",
+        f"- Quality score: `{report.quality_score}`",
+        f"- Dataset owner: `{report.dataset.owner}`",
+        f"- Row count: `{report.row_count}`",
+        f"- Trace ID: `{report.trace_id or 'not recorded'}`",
+        "",
+        "## Facts",
+        "",
+    ]
+
+    if report.findings:
+        for finding in report.findings:
+            location = f" on `{finding.column}`" if finding.column else ""
+            lines.append(f"- `{finding.severity.value}` `{finding.check_name}`{location}: {finding.message}")
+    else:
+        lines.append("- No failing quality checks were detected.")
+
+    lines.extend(["", "## Evidence", ""])
+    for finding in report.findings:
+        if finding.evidence:
+            evidence = ", ".join(f"{key}={value}" for key, value in finding.evidence.items())
+            lines.append(f"- `{finding.check_name}`: {evidence}")
+
+    if not report.findings:
+        lines.append("- No evidence required.")
+
+    lines.extend(["", "## Likely Causes", ""])
+    for cause in report.likely_causes:
+        lines.append(f"- {cause}")
+
+    lines.extend(["", "## Recommended Actions", ""])
+    for step in report.recommended_next_steps:
+        lines.append(f"- {step}")
+
+    if report.business_rule_references:
+        lines.extend(["", "## Business Rule References", ""])
+        for reference in report.business_rule_references:
+            lines.append(f"- `{reference.rule_id}`: {reference.title} ({reference.source})")
+
+    lines.extend(
+        [
+            "",
+            "## Limitations",
+            "",
+            "- This report is generated from the provided dataset sample and deterministic checks.",
+            "- The agent does not write to production systems or modify source data.",
+            "- Model-generated assessment is optional; deterministic findings remain the source of truth.",
+            "",
+        ]
+    )
+    return "\n".join(lines)

@@ -304,7 +304,7 @@
       </div>
 
       <div class="metric-grid" aria-label="Verified project metrics">
-        <div class="metric"><strong>39</strong><span>automated tests passing locally and in CI</span></div>
+        <div class="metric"><strong>41</strong><span>automated tests passing locally and in CI</span></div>
         <div class="metric"><strong>10K × 80</strong><span>bounded CSV upload limit: rows × columns</span></div>
         <div class="metric"><strong>4</strong><span>reproducible support-ticket issue categories</span></div>
         <div class="metric"><strong>Feedback</strong><span>public issue template for demo users and contributors</span></div>
@@ -465,6 +465,8 @@ curl -X POST http://127.0.0.1:8000/business-data/quality-report \
   -F "owner=support-ops" \
   -F "primary_key=ticket_id" \
   -F "expected_columns=ticket_id,team,priority,status,amount,created_at"
+
+curl -X POST http://127.0.0.1:8000/datasets/orders_daily/incident-report.md
 
 docker compose up --build
 curl -X POST http://127.0.0.1:8000/postgres/support-tickets/quality-report</div>

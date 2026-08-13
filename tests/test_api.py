@@ -48,6 +48,17 @@ def test_quality_report_endpoint_returns_findings():
     assert payload["agent_trace"]
 
 
+def test_incident_report_endpoint_returns_ticket_ready_markdown():
+    response = client.post("/datasets/orders_daily/incident-report.md")
+
+    assert response.status_code == 200
+    assert response.headers["content-type"].startswith("text/plain")
+    assert "# Data Quality Incident: Daily Orders" in response.text
+    assert "## Recommended Actions" in response.text
+    assert "`duplicate_primary_key`" in response.text
+    assert "Trace ID: `run_" in response.text
+
+
 def test_missing_dataset_returns_404():
     response = client.post("/datasets/missing/quality-report")
 

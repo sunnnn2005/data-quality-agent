@@ -125,6 +125,10 @@ The model decides which tools to call, receives JSON tool results, and must call
 
 `app/dashboard.py` provides a zero-build demo UI. It is intentionally simple so the backend remains the source of truth.
 
+### Incident Export Layer
+
+`app/incident_export.py` converts structured `QualityReport` objects into ticket-ready Markdown. It separates facts, tool evidence, likely causes, recommended actions, business-rule references, and limitations so reports can move into incident-management workflows without losing the deterministic evidence trail.
+
 ## Extension Points
 
 Good extension points:
@@ -163,6 +167,7 @@ The tests verify both the agent loop and the API contract:
 - business-rule retrieval returns source-cited constraints without raw row data
 - PostgreSQL adapter rejects write operations and unbounded queries
 - PostgreSQL support-ticket endpoint analyzes a read-only adapter-backed table
+- incident Markdown export separates facts, evidence, actions, and limitations
 - structured LLM assessments can be attached to reports
 - the tool-calling agent can be skipped safely without a key
 - the tool-calling agent can re-plan across multiple model calls after observing tool results

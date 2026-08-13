@@ -2,11 +2,13 @@ from typing import Annotated
 
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
+from fastapi.responses import PlainTextResponse
 
 from app.agent import DataQualityAgent
 from app.business_data import BusinessDataRequest, load_business_csv
 from app.dashboard import render_dashboard
 from app.data import DATASETS, load_dataset
+from app.incident_export import render_incident_markdown
 from app.models import AgentRunReport, DatasetProfile, DatasetSummary, QualityReport
 from app.postgres_adapter import PostgresAdapterError, PostgresDatasetAdapter
 from app.profiler import DatasetProfiler
@@ -53,6 +55,15 @@ def create_quality_report(dataset_id: str):
     if dataset is None:
         raise HTTPException(status_code=404, detail="Dataset not found")
     return trace_store.save_quality_report(agent.analyze(dataset, load_dataset(dataset_id)))
+
+
+@app.post("/datasets/{dataset_id}/incident-report.md", response_class=PlainTextResponse)
+def create_incident_report_markdown(dataset_id: str):
+    dataset = DATASETS.get(dataset_id)
+    if dataset is None:
+        raise HTTPException(status_code=404, detail="Dataset not found")
+    report = trace_store.save_quality_report(agent.analyze(dataset, load_dataset(dataset_id)))
+    return render_incident_markdown(report)
 
 
 @app.post("/datasets/{dataset_id}/agent-report", response_model=AgentRunReport)

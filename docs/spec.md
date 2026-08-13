@@ -107,6 +107,7 @@ PostgreSQL demo:
 
 ```bash
 curl -X POST http://127.0.0.1:8000/postgres/support-tickets/quality-report
+curl -X POST http://127.0.0.1:8000/datasets/orders_daily/incident-report.md
 ```
 
 ## Quality Bar
@@ -114,6 +115,7 @@ curl -X POST http://127.0.0.1:8000/postgres/support-tickets/quality-report
 - Tests must pass locally and in CI.
 - New datasets should be deterministic.
 - New report fields should be represented as typed Pydantic models.
+- Incident exports should preserve the evidence trail and avoid raw sensitive data.
 - New integrations should not require secrets in the default path.
 - Database integrations should use read-only users and reproducible local fixtures when possible.
 - Documentation should describe behavior without overstating production readiness.

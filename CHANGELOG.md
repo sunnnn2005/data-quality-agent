@@ -14,11 +14,12 @@ Initial public release of Data Quality Agent.
 - Bounded CSV upload path with row, column, and file-size limits.
 - Optional read-only PostgreSQL adapter with write-operation rejection, row-limit enforcement, statement timeout, and mocked CI tests.
 - Docker Compose demo that seeds a PostgreSQL support-ticket table and exposes the database-backed quality report endpoint.
+- Ticket-ready Markdown incident report export for data incident workflows.
 - Evaluation harness for three deterministic data-quality scenarios.
 - Public feedback issue template for demo users and contributors.
 
 ### Verified
 
-- `39` automated tests passing locally and in GitHub Actions.
+- `41` automated tests passing locally and in GitHub Actions.
 - Support-ticket demo verifies `FAIL` status, quality score `24`, row count `8`, four expected check categories, and four source-cited business-rule references.
 - Default path runs without paid APIs, secrets, or external model calls.
