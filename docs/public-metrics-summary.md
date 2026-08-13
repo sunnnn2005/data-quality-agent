@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 10 |
-| Passing CI tests | 77 |
+| Passing CI tests | 78 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -37,8 +37,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Allowed agent tools | 7 |
 | Rejected unsafe PostgreSQL queries | 3 |
 | Report verifier rules | 6 |
+| Local reviewer demo | 1 |
+| Local reviewer seeded rows | 8 |
+| Local reviewer routes | 3 |
 | Live project scorecard | 1 |
-| Scorecard reviewer paths | 5 |
+| Scorecard reviewer paths | 6 |
 | OpenAPI required integration endpoints | 6 |
 | OpenAPI paths | 14 |
 | Recruiter-safe resume bullets | 3 |
@@ -62,7 +65,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.2.0 release
-- 77 passing CI tests
+- 78 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -73,7 +76,8 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 2 observed run traces with fallback and verification status
 - 2 mocked LLM calls with 360 tokens, prompt version, latency, retry budget, and estimated cost telemetry
 - 7 allowed agent tools and 3 rejected unsafe PostgreSQL queries
-- 5 reviewer paths in a CI-verified live project scorecard
+- Local Docker Compose reviewer demo with 8 seeded PostgreSQL rows and 3 review paths
+- 6 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
 - 8 application evidence links in a recruiter-ready evidence pack

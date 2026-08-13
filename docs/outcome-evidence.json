@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "77 passing CI tests",
+      "resume_signal": "78 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 77,
+      "metric_value": 78,
       "status": "verified"
     },
     {
@@ -79,6 +79,16 @@
       "evidence_type": "artifact",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact.json",
       "metric_name": "business_remediation_scorecard",
+      "metric_value": 1,
+      "status": "verified"
+    },
+    {
+      "id": "local-reviewer-demo",
+      "resume_signal": "CI-verified local reviewer demo",
+      "claim": "The project publishes a Docker Compose reviewer path with a seeded PostgreSQL support-ticket table, read-only database user, and 3 local review routes without claiming external reviewer completion.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/local-reviewer-demo.json",
+      "metric_name": "local_reviewer_demo",
       "metric_value": 1,
       "status": "verified"
     },

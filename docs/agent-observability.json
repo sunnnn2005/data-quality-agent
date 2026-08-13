@@ -48,8 +48,8 @@
   "resume_safe_summary": "Generated an observability artifact covering trace ids, report types, fallback status, verification status, dataset memory, incident-pattern memory, tool-call previews, and mocked model token/cost telemetry.",
   "tool_call_preview_count": 0,
   "trace_ids": [
-    "run_ea7b6119df934292",
-    "run_a653b1f6d99243aa"
+    "run_ccc1544b9c024ce5",
+    "run_115a4ac31e514996"
   ],
   "verification_passed_trace_count": 1
 }

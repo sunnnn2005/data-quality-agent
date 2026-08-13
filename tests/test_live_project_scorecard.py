@@ -11,10 +11,11 @@ def test_live_project_scorecard_summarizes_public_resume_evidence_without_inflat
     markdown = render_markdown(payload)
 
     assert verification["live_project_scorecard_verified"] is True
-    assert payload["headline_metrics"]["passing_tests"] == 77
-    assert payload["headline_metrics"]["verified_resume_claims"] == 36
+    assert payload["headline_metrics"]["passing_tests"] == 78
+    assert payload["headline_metrics"]["verified_resume_claims"] == 37
     assert payload["headline_metrics"]["implemented_agent_capabilities"] == 16
     assert payload["live_footprint"]["stars"] == 0
     assert payload["live_footprint"]["confirmed_external_users"] == 0
     assert all(payload["claim_coverage"].values())
+    assert any(path["label"] == "Run the local reviewer demo" for path in payload["reviewer_paths"])
     assert "Live Project Scorecard" in markdown

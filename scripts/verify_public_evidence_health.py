@@ -40,7 +40,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 77},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 78},
         "evidence_type": "json",
     },
     {
@@ -81,6 +81,14 @@ PUBLIC_CHECKS = [
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-safety-boundaries.json",
         "expected_json": {"tool_allowlist_count": 7, "postgres_rejected_write_query_count": 3},
         "expected_text": "formal security audit",
+        "evidence_type": "json",
+    },
+    {
+        "id": "local-reviewer-demo",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/local-reviewer-demo.json",
+        "expected_json": {"project": "Data Quality Agent", "reviewer_command": "docker compose up --build"},
+        "expected_text": "readonly_agent",
+        "expected_texts": ["support_tickets", "external reviewer completion"],
         "evidence_type": "json",
     },
     {

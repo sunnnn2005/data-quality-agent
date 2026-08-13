@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 77
+    assert payload["public_metrics"]["test_count"] == 78
     assert payload["verified_project_outcomes"]["root_cause_hypotheses"] == 3
     assert payload["verified_project_outcomes"]["business_risk_areas"] == 4
     assert payload["verified_project_outcomes"]["high_priority_actions"] == 3
@@ -29,8 +29,11 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["tool_allowlist_count"] == 7
     assert payload["verified_project_outcomes"]["postgres_rejected_write_query_count"] == 3
     assert payload["verified_project_outcomes"]["verifier_rule_count"] == 6
+    assert payload["verified_project_outcomes"]["local_reviewer_demo"] == 1
+    assert payload["verified_project_outcomes"]["local_reviewer_seeded_rows"] == 8
+    assert payload["verified_project_outcomes"]["local_reviewer_routes"] == 3
     assert payload["verified_project_outcomes"]["live_project_scorecard"] == 1
-    assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 5
+    assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 6
     assert payload["verified_project_outcomes"]["openapi_required_endpoints"] == 6
     assert payload["verified_project_outcomes"]["recruiter_pitch_resume_bullets"] == 3
     assert payload["verified_project_outcomes"]["recruiter_pitch_target_roles"] == 4
@@ -52,7 +55,11 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert "7 allowed agent tools and 3 rejected unsafe PostgreSQL queries" in payload["resume_safe_signals"]
-    assert "5 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
+    assert (
+        "Local Docker Compose reviewer demo with 8 seeded PostgreSQL rows and 3 review paths"
+        in payload["resume_safe_signals"]
+    )
+    assert "6 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
     assert "CI-verified OpenAPI contract covering 6 integration endpoints" in payload["resume_safe_signals"]
     assert "3 recruiter-safe resume bullets for 4 target roles" in payload["resume_safe_signals"]
     assert "8 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]

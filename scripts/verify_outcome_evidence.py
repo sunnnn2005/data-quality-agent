@@ -18,6 +18,7 @@ HYPOTHESIS_FEEDBACK_PATH = ROOT / "docs" / "hypothesis-feedback.json"
 INCIDENT_PATTERN_MEMORY_PATH = ROOT / "docs" / "incident-pattern-memory.json"
 AGENT_OBSERVABILITY_PATH = ROOT / "docs" / "agent-observability.json"
 AGENT_SAFETY_PATH = ROOT / "docs" / "agent-safety-boundaries.json"
+LOCAL_REVIEWER_DEMO_PATH = ROOT / "docs" / "local-reviewer-demo.json"
 LIVE_SCORECARD_PATH = ROOT / "docs" / "live-project-scorecard.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
@@ -56,6 +57,7 @@ def verify_manifest() -> dict[str, int]:
     incident_memory = load_payload(INCIDENT_PATTERN_MEMORY_PATH)
     observability = load_payload(AGENT_OBSERVABILITY_PATH)
     safety = load_payload(AGENT_SAFETY_PATH)
+    local_reviewer_demo = load_payload(LOCAL_REVIEWER_DEMO_PATH)
     scorecard = load_payload(LIVE_SCORECARD_PATH)
     openapi = load_payload(OPENAPI_PATH)
     recruiter_pitch = load_payload(RECRUITER_PITCH_PATH)
@@ -129,8 +131,27 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("business remediation scorecard must include owner-handoff evidence")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("business_remediation_scorecard claim must use metric_value=1")
+            elif metric_name == "local_reviewer_demo":
+                local_demo_script = (ROOT / "scripts" / "build_local_reviewer_demo.py").read_text()
+                local_demo_tests = (ROOT / "tests" / "test_local_reviewer_demo.py").read_text()
+                if local_reviewer_demo.get("seeded_business_table", {}).get("row_count") != 8:
+                    raise AssertionError("local reviewer demo must verify 8 seeded rows")
+                if len(local_reviewer_demo.get("reviewer_routes", [])) != 3:
+                    raise AssertionError("local reviewer demo must verify 3 review routes")
+                if local_reviewer_demo.get("read_only_database", {}).get("readonly_user") != "readonly_agent":
+                    raise AssertionError("local reviewer demo must verify read-only database user")
+                if local_reviewer_demo.get("reviewer_command") != "docker compose up --build":
+                    raise AssertionError("local reviewer demo must document the compose command")
+                if "external reviewer completion" not in " ".join(local_reviewer_demo.get("not_claimed", [])).lower():
+                    raise AssertionError("local reviewer demo must not claim external reviewer completion")
+                if "verify_local_reviewer_demo" not in local_demo_script:
+                    raise AssertionError("local reviewer demo must include a script verifier")
+                if "test_local_reviewer_demo_documents_seeded_compose_path_without_usage_claims" not in local_demo_tests:
+                    raise AssertionError("local reviewer demo must include a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("local_reviewer_demo claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 77:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 78:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -408,7 +429,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 77:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 78:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -513,7 +534,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 77", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 78", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

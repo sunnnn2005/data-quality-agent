@@ -1,0 +1,65 @@
+{
+  "api_base_url": "http://127.0.0.1:8000",
+  "compose_file": "docker-compose.yml",
+  "generated_by": "scripts/build_local_reviewer_demo.py",
+  "not_claimed": [
+    "No hosted production database is claimed.",
+    "No external reviewer completion is claimed.",
+    "No customer deployment is claimed."
+  ],
+  "project": "Data Quality Agent",
+  "read_only_database": {
+    "database": "quality_demo",
+    "owner_user": "quality_owner",
+    "readonly_grants": [
+      "CONNECT ON DATABASE quality_demo",
+      "USAGE ON SCHEMA public",
+      "SELECT ON support_tickets"
+    ],
+    "readonly_user": "readonly_agent"
+  },
+  "resume_safe_summary": "Published a Docker Compose reviewer demo with a seeded PostgreSQL table, read-only database user, and 3 local review paths for reproducing quality and agent reports.",
+  "reviewer_command": "docker compose up --build",
+  "reviewer_routes": [
+    {
+      "curl": "curl -X POST http://127.0.0.1:8000/postgres/support-tickets/quality-report",
+      "label": "Deterministic PostgreSQL quality report",
+      "method": "POST",
+      "path": "/postgres/support-tickets/quality-report"
+    },
+    {
+      "curl": "curl -X POST http://127.0.0.1:8000/postgres/support-tickets/agent-report",
+      "label": "LLM agent route with safe disabled fallback",
+      "method": "POST",
+      "path": "/postgres/support-tickets/agent-report"
+    },
+    {
+      "curl": "open http://127.0.0.1:8000/docs",
+      "label": "Interactive FastAPI docs",
+      "method": "GET",
+      "path": "/docs"
+    }
+  ],
+  "seed_sql": "examples/postgres/init.sql",
+  "seeded_business_table": {
+    "known_quality_cases": [
+      "duplicate ticket_id",
+      "missing team",
+      "missing priority",
+      "negative amount",
+      "amount outlier"
+    ],
+    "row_count": 8,
+    "table": "support_tickets"
+  },
+  "services": {
+    "api_build_context": ".",
+    "api_host_port": "8000",
+    "postgres_healthcheck": [
+      "CMD-SHELL",
+      "pg_isready -U quality_owner -d quality_demo"
+    ],
+    "postgres_host_port": "5433",
+    "postgres_image": "postgres:16-alpine"
+  }
+}

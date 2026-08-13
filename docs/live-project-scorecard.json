@@ -3,6 +3,7 @@
     "has_agent_safety": true,
     "has_container": true,
     "has_feedback_baseline": true,
+    "has_local_reviewer_demo": true,
     "has_observability": true,
     "has_openapi_contract": true,
     "has_public_demo": true,
@@ -14,10 +15,10 @@
     "agent_tools_allowed": 7,
     "implemented_agent_capabilities": 16,
     "openapi_required_endpoints": 6,
-    "passing_tests": 77,
+    "passing_tests": 78,
     "support_ticket_issue_categories": 4,
     "unsafe_postgres_queries_rejected": 3,
-    "verified_resume_claims": 36
+    "verified_resume_claims": 37
   },
   "live_footprint": {
     "confirmed_external_users": 0,
@@ -36,7 +37,7 @@
   "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
   "release": "v0.2.0",
   "repo": "https://github.com/sunnnn2005/data-quality-agent",
-  "resume_safe_summary": "Live project scorecard: public demo, v0.2.0 release, container image, 77 passing CI tests, 36 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
+  "resume_safe_summary": "Live project scorecard: public demo, v0.2.0 release, container image, 78 passing CI tests, 37 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
   "reviewer_paths": [
     {
       "label": "Try the public demo",
@@ -53,6 +54,10 @@
     {
       "label": "Inspect safety boundaries",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-safety-boundaries.md"
+    },
+    {
+      "label": "Run the local reviewer demo",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/local-reviewer-demo.md"
     },
     {
       "label": "Inspect public metrics",

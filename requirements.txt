@@ -5,3 +5,4 @@ pandas==2.2.2
 numpy==2.1.1
 python-multipart==0.0.9
 psycopg[binary]==3.2.1
+PyYAML==6.0.2

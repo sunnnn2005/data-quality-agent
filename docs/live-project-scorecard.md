@@ -6,8 +6,8 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 
 | Metric | Value |
 | --- | ---: |
-| Passing Tests | 77 |
-| Verified Resume Claims | 36 |
+| Passing Tests | 78 |
+| Verified Resume Claims | 37 |
 | Implemented Agent Capabilities | 16 |
 | Support Ticket Issue Categories | 4 |
 | Openapi Required Endpoints | 6 |
@@ -30,6 +30,7 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 - [Inspect resume evidence](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-evidence.md)
 - [Inspect OpenAPI contract](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/api-contract.md)
 - [Inspect safety boundaries](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-safety-boundaries.md)
+- [Run the local reviewer demo](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/local-reviewer-demo.md)
 - [Inspect public metrics](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-metrics-summary.md)
 
 ## Claim Coverage
@@ -41,12 +42,13 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 | Has Container | True |
 | Has Openapi Contract | True |
 | Has Agent Safety | True |
+| Has Local Reviewer Demo | True |
 | Has Observability | True |
 | Has Feedback Baseline | True |
 
 ## Resume-Safe Summary
 
-Live project scorecard: public demo, v0.2.0 release, container image, 77 passing CI tests, 36 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
+Live project scorecard: public demo, v0.2.0 release, container image, 78 passing CI tests, 37 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
 
 ## Not Claimed
 
