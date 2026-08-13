@@ -46,7 +46,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 96},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 97},
         "evidence_type": "json",
     },
     {
@@ -195,6 +195,19 @@ PUBLIC_CHECKS = [
             "readonly_postgres_table",
             "business_data_replay.md",
             "real company data analyzed",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "business-replay-demo",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-replay-demo.json",
+        "expected_json": {"project": "Data Quality Agent"},
+        "expected_text": "Support Tickets Replay",
+        "expected_texts": [
+            "examples/support_tickets.csv",
+            "\"finding_count\": 5",
+            "real company data",
+            "external user replay",
         ],
         "evidence_type": "json",
     },

@@ -44,6 +44,7 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "public_traction_dashboard": f"{scorecard['repo']}/blob/main/docs/public-traction-dashboard.md",
             "feedback_intake_quality": f"{scorecard['repo']}/blob/main/docs/feedback-intake-quality.md",
             "business_data_replay_packet": f"{scorecard['repo']}/blob/main/docs/business-data-replay-packet.md",
+            "business_replay_demo": f"{scorecard['repo']}/blob/main/docs/business-replay-demo.md",
             "real_model_runbook": f"{scorecard['repo']}/blob/main/docs/real-model-runbook.md",
             "agent_capability_matrix": f"{scorecard['repo']}/blob/main/docs/agent-capability-matrix.md",
             "api_contract": f"{scorecard['repo']}/blob/main/docs/api-contract.md",
@@ -67,6 +68,9 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "feedback_intake_captured_fields": outcomes["feedback_intake_captured_fields"],
             "business_data_replay_paths": outcomes["business_data_replay_paths"],
             "business_data_replay_evidence_fields": outcomes["business_data_replay_evidence_fields"],
+            "business_replay_demo_rows": outcomes["business_replay_demo_rows"],
+            "business_replay_demo_findings": outcomes["business_replay_demo_findings"],
+            "business_replay_demo_check_types": outcomes["business_replay_demo_check_types"],
             "real_model_run_commands": outcomes["real_model_run_commands"],
             "real_model_evidence_fields": outcomes["real_model_evidence_fields"],
             "recruiter_safe_resume_bullets": outcomes["recruiter_pitch_resume_bullets"],
@@ -149,14 +153,14 @@ This generated pack gives recruiters and interviewers a compact review path for 
 
 def verify_application_evidence_pack(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
-        "application_link_count": 15,
+        "application_link_count": 16,
         "resume_bullet_count": 3,
         "target_role_count": 4,
-        "passing_tests": 96,
-        "verified_resume_claims": 55,
+        "passing_tests": 97,
+        "verified_resume_claims": 56,
     }
     if len(payload["application_links"]) != expected["application_link_count"]:
-        raise AssertionError("application evidence pack must include 15 application links")
+        raise AssertionError("application evidence pack must include 16 application links")
     if len(payload["resume_bullets"]) != expected["resume_bullet_count"]:
         raise AssertionError("application evidence pack must include 3 resume bullets")
     if len(payload["target_roles"]) != expected["target_role_count"]:

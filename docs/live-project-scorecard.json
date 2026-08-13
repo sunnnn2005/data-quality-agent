@@ -5,6 +5,7 @@
     "has_business_case_intake": true,
     "has_business_data_replay_packet": true,
     "has_business_problem_casebook": true,
+    "has_business_replay_demo": true,
     "has_container": true,
     "has_feedback_baseline": true,
     "has_feedback_intake_quality": true,
@@ -24,10 +25,10 @@
     "agent_tools_allowed": 7,
     "implemented_agent_capabilities": 16,
     "openapi_required_endpoints": 6,
-    "passing_tests": 96,
+    "passing_tests": 97,
     "support_ticket_issue_categories": 4,
     "unsafe_postgres_queries_rejected": 3,
-    "verified_resume_claims": 55
+    "verified_resume_claims": 56
   },
   "live_footprint": {
     "confirmed_external_users": 0,
@@ -46,7 +47,7 @@
   "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
   "release": "v0.3.0",
   "repo": "https://github.com/sunnnn2005/data-quality-agent",
-  "resume_safe_summary": "Live project scorecard: public demo, v0.3.0 release, container image, 96 passing CI tests, 55 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
+  "resume_safe_summary": "Live project scorecard: public demo, v0.3.0 release, container image, 97 passing CI tests, 56 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
   "reviewer_paths": [
     {
       "label": "Try the public demo",
@@ -75,6 +76,10 @@
     {
       "label": "Inspect business-data replay packet",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-data-replay-packet.md"
+    },
+    {
+      "label": "Inspect business replay demo",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-replay-demo.md"
     },
     {
       "label": "Inspect real-model runbook",

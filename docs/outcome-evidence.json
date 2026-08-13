@@ -25,12 +25,12 @@
       "url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent"
     },
     {
-      "claim": "Automated test suite passes locally and in GitHub Actions, including the business problem casebook, feedback intake quality, business case intake, star growth kit, and real-model runbook verifiers.",
+      "claim": "Automated test suite passes locally and in GitHub Actions, including the business problem casebook, business replay demo, feedback intake quality, business case intake, star growth kit, and real-model runbook verifiers.",
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 96,
-      "resume_signal": "96 passing CI tests",
+      "metric_value": 97,
+      "resume_signal": "97 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 15 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 16 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 15,
+      "metric_value": 16,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -397,6 +397,16 @@
       "resume_signal": "CI-verified business-data replay packet",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-data-replay-packet.json"
+    },
+    {
+      "claim": "The project publishes a reproducible anonymized business replay demo that verifies 8 support-ticket rows, 5 findings, 4 failed check types, 4 business-rule references, 3 root-cause hypotheses, and deterministic report verification without claiming real company data.",
+      "evidence_type": "artifact",
+      "id": "business-replay-demo",
+      "metric_name": "business_replay_demo",
+      "metric_value": 1,
+      "resume_signal": "CI-verified business replay demo",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-replay-demo.json"
     },
     {
       "claim": "Reports rank root-cause hypotheses by confidence and attach supporting checks, tool evidence, and recommended actions.",

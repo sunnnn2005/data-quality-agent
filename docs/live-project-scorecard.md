@@ -6,8 +6,8 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 
 | Metric | Value |
 | --- | ---: |
-| Passing Tests | 96 |
-| Verified Resume Claims | 55 |
+| Passing Tests | 97 |
+| Verified Resume Claims | 56 |
 | Implemented Agent Capabilities | 16 |
 | Support Ticket Issue Categories | 4 |
 | Openapi Required Endpoints | 6 |
@@ -34,6 +34,7 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 - [Inspect public traction dashboard](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-traction-dashboard.md)
 - [Inspect feedback intake quality](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/feedback-intake-quality.md)
 - [Inspect business-data replay packet](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-data-replay-packet.md)
+- [Inspect business replay demo](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-replay-demo.md)
 - [Inspect real-model runbook](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-runbook.md)
 - [Inspect OpenAPI contract](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/api-contract.md)
 - [Inspect safety boundaries](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-safety-boundaries.md)
@@ -60,11 +61,12 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 | Has Feedback Intake Quality | True |
 | Has Business Case Intake | True |
 | Has Business Data Replay Packet | True |
+| Has Business Replay Demo | True |
 | Has Real Model Runbook | True |
 
 ## Resume-Safe Summary
 
-Live project scorecard: public demo, v0.3.0 release, container image, 96 passing CI tests, 55 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
+Live project scorecard: public demo, v0.3.0 release, container image, 97 passing CI tests, 56 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
 
 ## Not Claimed
 

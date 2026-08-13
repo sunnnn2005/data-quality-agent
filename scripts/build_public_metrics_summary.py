@@ -38,6 +38,7 @@ STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
 BUSINESS_DATA_REPLAY_PACKET_PATH = ROOT / "docs" / "business-data-replay-packet.json"
 REAL_MODEL_RUNBOOK_PATH = ROOT / "docs" / "real-model-runbook.json"
+BUSINESS_REPLAY_DEMO_PATH = ROOT / "docs" / "business-replay-demo.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 
@@ -81,6 +82,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     business_case_intake = load_json(BUSINESS_CASE_INTAKE_PATH)
     replay_packet = load_json(BUSINESS_DATA_REPLAY_PACKET_PATH)
     real_model_runbook = load_json(REAL_MODEL_RUNBOOK_PATH)
+    replay_demo = load_json(BUSINESS_REPLAY_DEMO_PATH)
     verified_outcomes = outcome["verified_outcomes"]
     return {
         "project": "Data Quality Agent",
@@ -201,6 +203,12 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "business_data_replay_paths": replay_packet["replay_path_count"],
             "business_data_replay_evidence_fields": replay_packet["evidence_field_count"],
             "business_data_replay_safety_requirements": replay_packet["safety_requirement_count"],
+            "business_replay_demo": 1,
+            "business_replay_demo_rows": replay_demo["dataset"]["row_count"],
+            "business_replay_demo_findings": replay_demo["quality_report_summary"]["finding_count"],
+            "business_replay_demo_check_types": replay_demo["quality_report_summary"]["check_count"],
+            "business_replay_demo_rule_references": replay_demo["quality_report_summary"]["business_rule_reference_count"],
+            "business_replay_demo_root_causes": replay_demo["quality_report_summary"]["root_cause_hypothesis_count"],
             "real_model_runbook": 1,
             "real_model_current_runs": real_model_runbook["current_real_model_runs"],
             "real_model_run_commands": real_model_runbook["run_command_count"],
@@ -329,6 +337,13 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"Business-data replay packet with {replay_packet['replay_path_count']} safe replay paths, "
                 f"{replay_packet['evidence_field_count']} evidence fields, "
                 f"{replay_packet['safety_requirement_count']} safety requirements, and zero current external replay claims"
+            ),
+            (
+                f"Business replay demo with {replay_demo['dataset']['row_count']} anonymized rows, "
+                f"{replay_demo['quality_report_summary']['finding_count']} findings, "
+                f"{replay_demo['quality_report_summary']['check_count']} failed check types, "
+                f"{replay_demo['quality_report_summary']['business_rule_reference_count']} business-rule references, "
+                f"and deterministic verification"
             ),
             (
                 f"Real-model runbook with {real_model_runbook['run_command_count']} run commands, "
@@ -476,6 +491,12 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business-data replay paths | {outcomes["business_data_replay_paths"]} |
 | Business-data replay evidence fields | {outcomes["business_data_replay_evidence_fields"]} |
 | Business-data replay safety requirements | {outcomes["business_data_replay_safety_requirements"]} |
+| Business replay demo | {outcomes["business_replay_demo"]} |
+| Business replay demo rows | {outcomes["business_replay_demo_rows"]} |
+| Business replay demo findings | {outcomes["business_replay_demo_findings"]} |
+| Business replay demo failed check types | {outcomes["business_replay_demo_check_types"]} |
+| Business replay demo rule references | {outcomes["business_replay_demo_rule_references"]} |
+| Business replay demo root causes | {outcomes["business_replay_demo_root_causes"]} |
 | Real-model runbook | {outcomes["real_model_runbook"]} |
 | Current real model runs | {outcomes["real_model_current_runs"]} |
 | Real-model run commands | {outcomes["real_model_run_commands"]} |
@@ -506,7 +527,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 96,
+        "test_count": 97,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -567,12 +588,12 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "public_traction_growth_channels": 16,
         "public_traction_resume_upgrade_rules": 3,
         "live_project_scorecard": 1,
-        "scorecard_reviewer_paths": 13,
+        "scorecard_reviewer_paths": 14,
         "openapi_required_endpoints": 6,
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 15,
+        "application_evidence_links": 16,
         "pilot_outreach_messages": 3,
         "pilot_review_paths": 9,
         "pilot_program_segments": 3,
@@ -611,6 +632,12 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "business_data_replay_paths": 3,
         "business_data_replay_evidence_fields": 8,
         "business_data_replay_safety_requirements": 5,
+        "business_replay_demo": 1,
+        "business_replay_demo_rows": 8,
+        "business_replay_demo_findings": 5,
+        "business_replay_demo_check_types": 4,
+        "business_replay_demo_rule_references": 4,
+        "business_replay_demo_root_causes": 3,
         "real_model_runbook": 1,
         "real_model_current_runs": 0,
         "real_model_run_commands": 4,

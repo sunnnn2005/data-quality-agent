@@ -46,6 +46,8 @@ jobs:
         run: python scripts/build_demo_usage_baseline.py
       - name: Verify business data intake baseline artifact
         run: python scripts/build_business_data_intake_baseline.py
+      - name: Verify business replay demo artifact
+        run: python scripts/build_business_replay_demo.py
       - name: Verify community growth baseline artifact
         run: python scripts/build_community_growth_baseline.py
       - name: Verify impact review packet artifact
@@ -93,7 +95,7 @@ jobs:
           ADOPTION_FORKS: "1"
           ADOPTION_WATCHERS: "0"
           ADOPTION_ISSUES_TOTAL: "11"
-          ADOPTION_TEST_COUNT: "96"
+          ADOPTION_TEST_COUNT: "97"
         run: python scripts/update_adoption_metrics.py
       - name: Verify outcome evidence manifest
         run: python scripts/verify_outcome_evidence.py

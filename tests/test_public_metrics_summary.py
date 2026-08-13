@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 96
+    assert payload["public_metrics"]["test_count"] == 97
     assert payload["verified_project_outcomes"]["root_cause_hypotheses"] == 3
     assert payload["verified_project_outcomes"]["business_risk_areas"] == 4
     assert payload["verified_project_outcomes"]["high_priority_actions"] == 3
@@ -66,12 +66,12 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["public_traction_growth_channels"] == 16
     assert payload["verified_project_outcomes"]["public_traction_resume_upgrade_rules"] == 3
     assert payload["verified_project_outcomes"]["live_project_scorecard"] == 1
-    assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 13
+    assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 14
     assert payload["verified_project_outcomes"]["openapi_required_endpoints"] == 6
     assert payload["verified_project_outcomes"]["recruiter_pitch_resume_bullets"] == 3
     assert payload["verified_project_outcomes"]["recruiter_pitch_target_roles"] == 4
     assert payload["verified_project_outcomes"]["application_evidence_pack"] == 1
-    assert payload["verified_project_outcomes"]["application_evidence_links"] == 15
+    assert payload["verified_project_outcomes"]["application_evidence_links"] == 16
     assert payload["verified_project_outcomes"]["pilot_outreach_messages"] == 3
     assert payload["verified_project_outcomes"]["pilot_review_paths"] == 9
     assert payload["verified_project_outcomes"]["pilot_program_segments"] == 3
@@ -110,6 +110,12 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["business_data_replay_paths"] == 3
     assert payload["verified_project_outcomes"]["business_data_replay_evidence_fields"] == 8
     assert payload["verified_project_outcomes"]["business_data_replay_safety_requirements"] == 5
+    assert payload["verified_project_outcomes"]["business_replay_demo"] == 1
+    assert payload["verified_project_outcomes"]["business_replay_demo_rows"] == 8
+    assert payload["verified_project_outcomes"]["business_replay_demo_findings"] == 5
+    assert payload["verified_project_outcomes"]["business_replay_demo_check_types"] == 4
+    assert payload["verified_project_outcomes"]["business_replay_demo_rule_references"] == 4
+    assert payload["verified_project_outcomes"]["business_replay_demo_root_causes"] == 3
     assert payload["verified_project_outcomes"]["real_model_runbook"] == 1
     assert payload["verified_project_outcomes"]["real_model_current_runs"] == 0
     assert payload["verified_project_outcomes"]["real_model_run_commands"] == 4
@@ -161,10 +167,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
             "Public traction dashboard with 4 live project surfaces, 16 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules"
         in payload["resume_safe_signals"]
     )
-    assert "13 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
+    assert "14 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
     assert "CI-verified OpenAPI contract covering 6 integration endpoints" in payload["resume_safe_signals"]
     assert "3 recruiter-safe resume bullets for 4 target roles" in payload["resume_safe_signals"]
-    assert "15 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
+    assert "16 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
     assert "3 pilot outreach messages and 9 review paths for collecting real feedback" in payload["resume_safe_signals"]
     assert (
         "Pilot review tracker with 3 planned reviewer segments, 3 not-contacted baseline entries, and 3 resume-upgrade rules"
@@ -189,6 +195,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     )
     assert (
         "Business-data replay packet with 3 safe replay paths, 8 evidence fields, 5 safety requirements, and zero current external replay claims"
+        in payload["resume_safe_signals"]
+    )
+    assert (
+        "Business replay demo with 8 anonymized rows, 5 findings, 4 failed check types, 4 business-rule references, and deterministic verification"
         in payload["resume_safe_signals"]
     )
     assert (

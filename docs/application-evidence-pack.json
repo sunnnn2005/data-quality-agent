@@ -4,6 +4,7 @@
     "api_contract": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/api-contract.md",
     "business_data_replay_packet": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-data-replay-packet.md",
     "business_problem_casebook": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md",
+    "business_replay_demo": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-replay-demo.md",
     "container_image": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent",
     "demo": "https://sunnnn2005.github.io/data-quality-agent/",
     "feedback_intake_quality": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/feedback-intake-quality.md",
@@ -43,11 +44,11 @@
     "enterprise production usage",
     "GitHub stars beyond the current public count"
   ],
-  "one_line_project_proof": "Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 96 tests, 55 verified resume claims, and honest adoption baselines.",
+  "one_line_project_proof": "Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 97 tests, 56 verified resume claims, and honest adoption baselines.",
   "project": "Data Quality Agent",
   "resume_bullets": [
     "Built an LLM tool-calling data-quality agent for real business CSV and read-only PostgreSQL data, with 7 allowed tools, dynamic strategy selection, memory-informed planning, source-cited business-rule retrieval, 6 verified API integration endpoints, and safe model-key fallback.",
-    "Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 96 passing tests, 55 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
+    "Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 97 passing tests, 56 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
     "Added enterprise-style guardrails for agent reliability, including read-only PostgreSQL query limits, 3 rejected unsafe SQL queries, sensitive-field redaction, trace observability, incident-pattern memory, evidence-backed root-cause hypotheses, and deterministic report verification."
   ],
   "target_roles": [
@@ -62,13 +63,16 @@
     "business_data_replay_paths": 3,
     "business_problem_cases": 1,
     "business_problem_detected_risks": 4,
+    "business_replay_demo_check_types": 4,
+    "business_replay_demo_findings": 5,
+    "business_replay_demo_rows": 8,
     "feedback_intake_captured_fields": 5,
     "feedback_intake_required_sections": 5,
     "impact_review_business_metrics": 12,
     "impact_review_evidence_links": 8,
     "implemented_agent_capabilities": 16,
     "openapi_required_endpoints": 6,
-    "passing_tests": 96,
+    "passing_tests": 97,
     "public_traction_growth_channels": 16,
     "public_traction_surfaces": 4,
     "real_model_evidence_fields": 15,
@@ -77,6 +81,6 @@
     "rejected_unsafe_postgres_queries": 3,
     "support_ticket_issue_categories": 4,
     "target_roles": 4,
-    "verified_resume_claims": 55
+    "verified_resume_claims": 56
   }
 }

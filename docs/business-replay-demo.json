@@ -1,0 +1,74 @@
+{
+  "dataset": {
+    "column_count": 6,
+    "contains_pii": false,
+    "contains_real_company_data": false,
+    "expected_columns": [
+      "ticket_id",
+      "team",
+      "priority",
+      "status",
+      "amount",
+      "created_at"
+    ],
+    "path": "examples/support_tickets.csv",
+    "primary_key": "ticket_id",
+    "row_count": 8
+  },
+  "generated_by": "scripts/build_business_replay_demo.py",
+  "not_claimed": [
+    "real company data",
+    "external user replay",
+    "customer feedback",
+    "production incident resolved"
+  ],
+  "project": "Data Quality Agent",
+  "quality_report_summary": {
+    "business_rule_reference_count": 4,
+    "check_count": 4,
+    "checks": [
+      "duplicate_primary_key",
+      "missing_values",
+      "negative_amount",
+      "numeric_outliers"
+    ],
+    "finding_count": 5,
+    "quality_score": 24,
+    "recommended_action_count": 5,
+    "root_cause_hypothesis_count": 3,
+    "severities": [
+      "CRITICAL",
+      "HIGH",
+      "MEDIUM"
+    ],
+    "status": "FAIL",
+    "verification_issue_count": 0,
+    "verification_passed": true
+  },
+  "replay_command": "curl -X POST http://127.0.0.1:8000/business-data/quality-report -F file=@examples/support_tickets.csv -F dataset_name='Support Tickets Replay' -F owner='support-ops' -F primary_key='ticket_id' -F expected_columns='ticket_id,team,priority,status,amount,created_at'",
+  "resume_safe_summary": "Published a reproducible business-shaped CSV replay demo that verifies 8 rows, 5 findings, 4 failed check types, 4 business-rule references, 3 root-cause hypotheses, and deterministic report verification.",
+  "root_cause_hypotheses": [
+    {
+      "confidence": 0.71,
+      "supporting_checks": [
+        "negative_amount",
+        "numeric_outliers"
+      ],
+      "title": "Business-rule validation is not separating exceptional transactions from standard facts."
+    },
+    {
+      "confidence": 0.65,
+      "supporting_checks": [
+        "duplicate_primary_key"
+      ],
+      "title": "The ingestion pipeline may be replaying events without idempotent merge logic."
+    },
+    {
+      "confidence": 0.63,
+      "supporting_checks": [
+        "missing_values"
+      ],
+      "title": "Source API or transform logic is producing incomplete fields for required analytics columns."
+    }
+  ]
+}
