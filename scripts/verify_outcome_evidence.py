@@ -9,6 +9,7 @@ METRICS_PATH = ROOT / "docs" / "adoption-metrics.json"
 FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
 HISTORY_PATH = ROOT / "docs" / "adoption-history.jsonl"
 BUSINESS_IMPACT_PATH = ROOT / "docs" / "business-impact.json"
+OUTCOME_SUMMARY_PATH = ROOT / "docs" / "outcome-summary.json"
 AGENT_READINESS_PATH = ROOT / "docs" / "agent-readiness.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
 PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
@@ -33,6 +34,7 @@ def verify_manifest() -> dict[str, int]:
     metrics = load_payload(METRICS_PATH)
     feedback_metrics = load_payload(FEEDBACK_METRICS_PATH)
     business_impact = load_payload(BUSINESS_IMPACT_PATH)
+    outcome_summary = load_payload(OUTCOME_SUMMARY_PATH)
     agent_readiness = load_payload(AGENT_READINESS_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
@@ -79,6 +81,13 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but agent readiness has "
                         f"{len(agent_readiness.get('implemented', []))}"
                     )
+            elif metric_name == "recommended_action_count":
+                actions = outcome_summary.get("verified_outcomes", {}).get("recommended_action_count")
+                if actions != claim.get("metric_value"):
+                    raise AssertionError(
+                        f"claim {claim['id']} metric mismatch: recommended_action_count={claim.get('metric_value')} "
+                        f"but outcome summary has {actions}"
+                    )
             elif metrics.get(metric_name) != claim.get("metric_value"):
                 raise AssertionError(
                     f"claim {claim['id']} metric mismatch: {metric_name}={claim.get('metric_value')} "
@@ -116,6 +125,18 @@ def verify_manifest() -> dict[str, int]:
                 raise AssertionError(f"agent readiness must not claim {required}")
             if required not in readiness_page:
                 raise AssertionError(f"agent readiness page must mention not-claimed signal: {required}")
+
+    if "outcome-summary" in claim_ids:
+        summary_page = (ROOT / "docs" / "outcome-summary.md").read_text().lower()
+        required_phrases = [
+            "support operations dashboard data",
+            "issue categories | 4",
+            "recommended actions | 5",
+            "no verified external users yet",
+        ]
+        for phrase in required_phrases:
+            if phrase not in summary_page:
+                raise AssertionError(f"outcome summary page missing phrase: {phrase}")
 
     not_claimed = {item["metric"] for item in evidence.get("not_claimed", [])}
     for required in {"users", "customer_feedback", "production_company_usage"}:

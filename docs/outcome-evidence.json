@@ -63,6 +63,16 @@
       "status": "verified"
     },
     {
+      "id": "outcome-summary",
+      "resume_signal": "Resume-safe business outcome summary",
+      "claim": "The project publishes a generated outcome summary that maps the support-ticket quality failures to business risk and remediation actions.",
+      "evidence_type": "documentation",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/outcome-summary.md",
+      "metric_name": "recommended_action_count",
+      "metric_value": 5,
+      "status": "verified"
+    },
+    {
       "id": "report-guardrails",
       "resume_signal": "Deterministic report verification guardrails",
       "claim": "Reports include deterministic verification for evidence support, field references, sensitive values, unsupported LLM evidence, action coverage, and score bounds.",

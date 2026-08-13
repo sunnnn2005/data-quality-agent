@@ -1,0 +1,45 @@
+{
+  "business_problem": "Support operations dashboard data can silently mix duplicate ticket facts, missing routing metadata, refund-like negative amounts, and extreme outliers before publication.",
+  "generated_by": "scripts/build_outcome_summary.py",
+  "issue_categories": [
+    {
+      "evidence": "1 duplicate primary-key case found.",
+      "name": "Duplicate ticket identity",
+      "risk": "Dashboards can double-count a support case or attach remediation to the wrong row."
+    },
+    {
+      "evidence": "2 required routing fields missing across priority/team checks.",
+      "name": "Missing routing metadata",
+      "risk": "Support operations cannot reliably route or prioritize every ticket."
+    },
+    {
+      "evidence": "1 negative amount found.",
+      "name": "Negative customer-impact amount",
+      "risk": "Refund-like events are mixed into positive customer-impact facts."
+    },
+    {
+      "evidence": "1 amount outlier found.",
+      "name": "Extreme amount outlier",
+      "risk": "Extreme values can skew reporting and need review before publication."
+    }
+  ],
+  "not_claimed": [
+    "No verified external users yet.",
+    "No customer production deployment is claimed.",
+    "This artifact measures a reproducible business-data case study, not enterprise adoption."
+  ],
+  "project": "Data Quality Agent",
+  "resume_safe_summary": "Quantified 4 support-ticket data quality issue categories across 8 rows, including duplicate ticket IDs, missing routing fields, negative amounts, and amount outliers.",
+  "source_artifact": "docs/business-impact.json",
+  "verified_outcomes": {
+    "affected_column_count": 4,
+    "business_rule_reference_count": 4,
+    "dataset": "support_tickets",
+    "finding_count": 5,
+    "issue_category_count": 4,
+    "quality_score": 24,
+    "recommended_action_count": 5,
+    "row_count": 8,
+    "status": "FAIL"
+  }
+}
