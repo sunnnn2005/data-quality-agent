@@ -9,6 +9,7 @@ This generated artifact documents what the public demo can honestly prove today.
 - Feedback Metrics: [https://sunnnn2005.github.io/data-quality-agent/feedback-metrics.json](https://sunnnn2005.github.io/data-quality-agent/feedback-metrics.json)
 - Adoption Metrics: [https://sunnnn2005.github.io/data-quality-agent/adoption-metrics.json](https://sunnnn2005.github.io/data-quality-agent/adoption-metrics.json)
 - Resume Evidence: [https://sunnnn2005.github.io/data-quality-agent/resume-evidence.md](https://sunnnn2005.github.io/data-quality-agent/resume-evidence.md)
+- Reviewer Feedback Packet: [https://sunnnn2005.github.io/data-quality-agent/reviewer-feedback-packet.md](https://sunnnn2005.github.io/data-quality-agent/reviewer-feedback-packet.md)
 
 ## Demo Entrypoints Verified
 
@@ -18,6 +19,7 @@ This generated artifact documents what the public demo can honestly prove today.
 | Feedback Metrics Link | True |
 | Adoption Metrics Link | True |
 | Resume Evidence Link | True |
+| Reviewer Feedback Packet Link | True |
 
 ## Tracked Counts
 

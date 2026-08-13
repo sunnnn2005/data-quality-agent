@@ -52,7 +52,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Performance measured endpoint calls | 24 |
 | Demo usage baseline | 1 |
 | Demo usage tracked funnel steps | 5 |
-| Demo usage entrypoints verified | 4 |
+| Demo usage entrypoints verified | 5 |
 | Business-data intake baseline | 1 |
 | Business-data intake endpoints | 4 |
 | Business-data intake API tests | 6 |
@@ -148,7 +148,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Local Docker Compose reviewer demo with 8 seeded PostgreSQL rows and 3 review paths
 - CI-verified API smoke report covering 6 passing FastAPI route checks
 - CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls
-- Public demo usage baseline with 5 tracked funnel steps and 4 verified entrypoints
+- Public demo usage baseline with 5 tracked funnel steps and 5 verified entrypoints
 - Business-data intake baseline covering 4 integration endpoints, 6 API tests, and bounded CSV uploads up to 10000 rows / 80 columns
 - Community growth baseline with 5 issue templates, 6 configured labels, and 6 public contribution or feedback channels
 - Impact review packet with 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs

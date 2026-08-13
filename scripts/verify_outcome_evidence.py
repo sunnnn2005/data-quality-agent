@@ -416,8 +416,8 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("public traction dashboard must verify 15 growth or review channels")
                 if traction.get("tracked_funnel_steps") != 5:
                     raise AssertionError("public traction dashboard must verify 5 tracked funnel steps")
-                if traction.get("demo_entrypoints_verified") != 4:
-                    raise AssertionError("public traction dashboard must verify 4 demo entrypoints")
+                if traction.get("demo_entrypoints_verified") != 5:
+                    raise AssertionError("public traction dashboard must verify 5 demo entrypoints")
                 if len(traction.get("resume_upgrade_rules", [])) != 3:
                     raise AssertionError("public traction dashboard must verify 3 resume upgrade rules")
                 if not all(

@@ -22,7 +22,13 @@ PUBLIC_CHECKS = [
         "id": "demo-feedback-entrypoints",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/index.html",
         "expected_text": "Try It & Leave Feedback",
-        "expected_texts": ["feedback-metrics.json", "bug_report.md", "feature_request.md"],
+        "expected_texts": [
+            "feedback-metrics.json",
+            "bug_report.md",
+            "feature_request.md",
+            "reviewer-feedback-packet.md",
+            "automated tests passing locally and in CI",
+        ],
         "evidence_type": "source",
     },
     {

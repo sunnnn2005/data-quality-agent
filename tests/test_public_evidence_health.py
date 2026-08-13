@@ -32,9 +32,13 @@ def test_public_evidence_health_requires_core_public_signals():
     } <= check_ids
     feedback_entrypoints = next(check for check in PUBLIC_CHECKS if check["id"] == "demo-feedback-entrypoints")
     assert feedback_entrypoints["expected_text"] == "Try It & Leave Feedback"
-    assert {"feedback-metrics.json", "bug_report.md", "feature_request.md"} <= set(
-        feedback_entrypoints["expected_texts"]
-    )
+    assert {
+        "feedback-metrics.json",
+        "bug_report.md",
+        "feature_request.md",
+        "reviewer-feedback-packet.md",
+        "automated tests passing locally and in CI",
+    } <= set(feedback_entrypoints["expected_texts"])
 
 
 def test_public_evidence_health_verifier_rejects_failed_checks():

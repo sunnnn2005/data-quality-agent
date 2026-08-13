@@ -102,7 +102,7 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Performance route benchmarks | 2 |
 | Performance measured endpoint calls | 24 |
 | Demo usage tracked funnel steps | 5 |
-| Demo usage entrypoints verified | 4 |
+| Demo usage entrypoints verified | 5 |
 | Business-data intake endpoints | 4 |
 | Business-data intake API tests | 6 |
 | Business-data intake max rows | 10,000 |
@@ -200,7 +200,7 @@ Use wording that is true today:
 - Added a CI-verified local reviewer demo with 8 seeded PostgreSQL rows, a read-only database user, and 3 local review routes.
 - Added a CI-verified API smoke report covering 6 FastAPI route checks for health, catalog, profiling, deterministic reports, disabled agent fallback, and incident Markdown export.
 - Added a CI-verified local performance baseline covering 2 FastAPI route benchmarks and 24 measured endpoint calls without claiming production latency.
-- Added a public demo usage baseline with 5 tracked funnel steps and 4 verified demo entrypoints, while preserving zero external-user and zero-feedback claims.
+- Added a public demo usage baseline with 5 tracked funnel steps and 5 verified demo entrypoints, while preserving zero external-user and zero-feedback claims.
 - Added a CI-verified business-data intake baseline covering bounded CSV uploads, read-only PostgreSQL context, 4 integration endpoints, 3 upload limits, and 6 API tests without claiming production datasets.
 - Added a CI-verified community growth baseline with 5 issue templates, 6 configured labels, 6 public contribution or feedback channels, contribution guidance, and honest current public counts.
 - Added a CI-verified impact review packet with 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs for a support-operations data-quality case study.

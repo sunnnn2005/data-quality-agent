@@ -508,7 +508,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "performance_measured_endpoint_calls": 24,
         "demo_usage_baseline": 1,
         "demo_usage_tracked_funnel_steps": 5,
-        "demo_usage_entrypoints_verified": 4,
+        "demo_usage_entrypoints_verified": 5,
         "business_data_intake_baseline": 1,
         "business_data_intake_endpoints": 4,
         "business_data_intake_tests": 6,

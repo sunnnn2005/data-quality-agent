@@ -44,7 +44,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["performance_measured_endpoint_calls"] == 24
     assert payload["verified_project_outcomes"]["demo_usage_baseline"] == 1
     assert payload["verified_project_outcomes"]["demo_usage_tracked_funnel_steps"] == 5
-    assert payload["verified_project_outcomes"]["demo_usage_entrypoints_verified"] == 4
+    assert payload["verified_project_outcomes"]["demo_usage_entrypoints_verified"] == 5
     assert payload["verified_project_outcomes"]["business_data_intake_baseline"] == 1
     assert payload["verified_project_outcomes"]["business_data_intake_endpoints"] == 4
     assert payload["verified_project_outcomes"]["business_data_intake_tests"] == 6
@@ -128,7 +128,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-        "Public demo usage baseline with 5 tracked funnel steps and 4 verified entrypoints"
+        "Public demo usage baseline with 5 tracked funnel steps and 5 verified entrypoints"
         in payload["resume_safe_signals"]
     )
     assert (
