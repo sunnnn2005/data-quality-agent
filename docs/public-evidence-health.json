@@ -1,5 +1,5 @@
 {
-  "check_count": 60,
+  "check_count": 61,
   "checks": [
     {
       "evidence_type": "html",
@@ -522,6 +522,19 @@
       ]
     },
     {
+      "evidence_type": "json",
+      "id": "resume-outcome-metrics",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-metrics.json",
+      "verified_fields": [
+        "blocked_outcome_count",
+        "claimable_outcome_count",
+        "project",
+        "tracked_outcome_count"
+      ]
+    },
+    {
       "evidence_type": "html",
       "id": "reviewer-landing-page",
       "passed": true,
@@ -649,6 +662,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 60,
+  "passed_count": 61,
   "status": "PASS"
 }
