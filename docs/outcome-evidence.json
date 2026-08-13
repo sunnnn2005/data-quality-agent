@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "84 passing CI tests",
+      "resume_signal": "85 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 84,
+      "metric_value": 85,
       "status": "verified"
     },
     {
@@ -153,6 +153,16 @@
       "status": "verified"
     },
     {
+      "id": "public-traction-dashboard",
+      "resume_signal": "CI-verified public traction dashboard",
+      "claim": "The project publishes a generated traction dashboard that maps live project surfaces, review channels, tracked funnel steps, and resume-upgrade thresholds to public evidence.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-traction-dashboard.json",
+      "metric_name": "public_traction_dashboard",
+      "metric_value": 1,
+      "status": "verified"
+    },
+    {
       "id": "report-guardrails",
       "resume_signal": "Deterministic report verification guardrails",
       "claim": "Reports include deterministic verification for evidence support, field references, sensitive values, unsupported LLM evidence, action coverage, and score bounds.",
@@ -267,7 +277,7 @@
       "evidence_type": "artifact",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 9,
+      "metric_value": 10,
       "status": "verified"
     },
     {

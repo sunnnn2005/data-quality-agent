@@ -40,7 +40,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 84},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 85},
         "evidence_type": "json",
     },
     {
@@ -129,6 +129,14 @@ PUBLIC_CHECKS = [
         "expected_json": {"project": "Data Quality Agent", "business_metric_count": 12, "evidence_link_count": 8},
         "expected_text": "support-operations data-quality case study",
         "expected_texts": ["production financial impact avoided", "company adoption"],
+        "evidence_type": "json",
+    },
+    {
+        "id": "public-traction-dashboard",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-traction-dashboard.json",
+        "expected_json": {"project": "Data Quality Agent", "traction_surface_count": 4, "growth_channel_count": 12},
+        "expected_text": "not_claimable_yet",
+        "expected_texts": ["public_demo", "feedback_issue_template", "GitHub star growth beyond the current public count"],
         "evidence_type": "json",
     },
     {

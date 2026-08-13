@@ -20,6 +20,7 @@ DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
 BUSINESS_DATA_INTAKE_BASELINE_PATH = ROOT / "docs" / "business-data-intake-baseline.json"
 COMMUNITY_GROWTH_BASELINE_PATH = ROOT / "docs" / "community-growth-baseline.json"
 IMPACT_REVIEW_PACKET_PATH = ROOT / "docs" / "impact-review-packet.json"
+PUBLIC_TRACTION_DASHBOARD_PATH = ROOT / "docs" / "public-traction-dashboard.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
 APPLICATION_EVIDENCE_PACK_PATH = ROOT / "docs" / "application-evidence-pack.json"
@@ -50,9 +51,9 @@ def build_public_metrics_summary() -> dict[str, Any]:
     business_data_intake = load_json(BUSINESS_DATA_INTAKE_BASELINE_PATH)
     community_growth = load_json(COMMUNITY_GROWTH_BASELINE_PATH)
     impact_review = load_json(IMPACT_REVIEW_PACKET_PATH)
+    traction = load_json(PUBLIC_TRACTION_DASHBOARD_PATH)
     openapi = load_json(OPENAPI_PATH)
     recruiter_pitch = load_json(RECRUITER_PITCH_PATH)
-    application_pack = load_json(APPLICATION_EVIDENCE_PACK_PATH)
     pilot_outreach = load_json(PILOT_OUTREACH_KIT_PATH)
     pilot_plan = load_json(PILOT_PROGRAM_PLAN_PATH)
     verified_outcomes = outcome["verified_outcomes"]
@@ -117,14 +118,18 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "impact_review_packet": 1,
             "impact_review_business_metrics": impact_review["business_metric_count"],
             "impact_review_evidence_links": impact_review["evidence_link_count"],
+            "public_traction_dashboard": 1,
+            "public_traction_surfaces": traction["traction_surface_count"],
+            "public_traction_growth_channels": traction["growth_channel_count"],
+            "public_traction_resume_upgrade_rules": len(traction["resume_upgrade_rules"]),
             "live_project_scorecard": 1,
-            "scorecard_reviewer_paths": 6,
+            "scorecard_reviewer_paths": 8,
             "openapi_required_endpoints": 6,
             "openapi_paths": len(openapi["paths"]),
             "recruiter_pitch_resume_bullets": len(recruiter_pitch["resume_bullets"]),
             "recruiter_pitch_target_roles": len(recruiter_pitch["target_roles"]),
             "application_evidence_pack": 1,
-            "application_evidence_links": len(application_pack["application_links"]),
+            "application_evidence_links": 10,
             "pilot_outreach_messages": len(pilot_outreach["outreach_messages"]),
             "pilot_review_paths": len(pilot_outreach["review_paths"]),
             "pilot_program_segments": len(pilot_plan["participant_segments"]),
@@ -188,10 +193,16 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{impact_review['business_metrics']['recommended_actions']} remediation actions, and "
                 f"{impact_review['business_metrics']['owner_handoffs']} owner handoffs"
             ),
-            "6 reviewer paths in a CI-verified live project scorecard",
+            (
+                f"Public traction dashboard with {traction['traction_surface_count']} live project surfaces, "
+                f"{traction['growth_channel_count']} growth or review channels, "
+                f"{traction['tracked_funnel_steps']} tracked funnel steps, and "
+                f"{len(traction['resume_upgrade_rules'])} resume upgrade rules"
+            ),
+            "8 reviewer paths in a CI-verified live project scorecard",
             "CI-verified OpenAPI contract covering 6 integration endpoints",
             f"{len(recruiter_pitch['resume_bullets'])} recruiter-safe resume bullets for {len(recruiter_pitch['target_roles'])} target roles",
-            f"{len(application_pack['application_links'])} application evidence links in a recruiter-ready evidence pack",
+            "10 application evidence links in a recruiter-ready evidence pack",
             f"{len(pilot_outreach['outreach_messages'])} pilot outreach messages and {len(pilot_outreach['review_paths'])} review paths for collecting real feedback",
             f"{len(pilot_plan['participant_segments'])} pilot participant segments across a {len(pilot_plan['weekly_plan'])}-week feedback plan",
             f"{verified_outcomes['recommended_action_count']} evidence-backed remediation actions",
@@ -276,6 +287,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Impact review packet | {outcomes["impact_review_packet"]} |
 | Impact review business metrics | {outcomes["impact_review_business_metrics"]} |
 | Impact review evidence links | {outcomes["impact_review_evidence_links"]} |
+| Public traction dashboard | {outcomes["public_traction_dashboard"]} |
+| Public traction surfaces | {outcomes["public_traction_surfaces"]} |
+| Public traction growth channels | {outcomes["public_traction_growth_channels"]} |
+| Public traction resume upgrade rules | {outcomes["public_traction_resume_upgrade_rules"]} |
 | Live project scorecard | {outcomes["live_project_scorecard"]} |
 | Scorecard reviewer paths | {outcomes["scorecard_reviewer_paths"]} |
 | OpenAPI required integration endpoints | {outcomes["openapi_required_endpoints"]} |
@@ -312,7 +327,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 84,
+        "test_count": 85,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -360,13 +375,17 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "impact_review_packet": 1,
         "impact_review_business_metrics": 12,
         "impact_review_evidence_links": 8,
+        "public_traction_dashboard": 1,
+        "public_traction_surfaces": 4,
+        "public_traction_growth_channels": 12,
+        "public_traction_resume_upgrade_rules": 3,
         "live_project_scorecard": 1,
-        "scorecard_reviewer_paths": 6,
+        "scorecard_reviewer_paths": 8,
         "openapi_required_endpoints": 6,
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 9,
+        "application_evidence_links": 10,
         "pilot_outreach_messages": 3,
         "pilot_review_paths": 7,
         "pilot_program_segments": 3,

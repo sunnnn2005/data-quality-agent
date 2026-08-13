@@ -1,0 +1,135 @@
+{
+  "demo_entrypoints_verified": 4,
+  "generated_by": "scripts/build_public_traction_dashboard.py",
+  "growth_channel_count": 12,
+  "growth_channels": [
+    {
+      "name": "Good first issue label",
+      "purpose": "beginner-friendly contribution entrypoint",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/labels/good%20first%20issue"
+    },
+    {
+      "name": "Help wanted label",
+      "purpose": "broader contribution discovery",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/labels/help%20wanted"
+    },
+    {
+      "name": "Demo feedback issue",
+      "purpose": "external reproducibility and product feedback",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    },
+    {
+      "name": "Bug report issue",
+      "purpose": "public bug reports",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md"
+    },
+    {
+      "name": "Feature request issue",
+      "purpose": "public improvement requests",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md"
+    },
+    {
+      "name": "application_evidence_pack",
+      "purpose": "pilot review path",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/application-evidence-pack.md"
+    },
+    {
+      "name": "bug_report",
+      "purpose": "pilot review path",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md"
+    },
+    {
+      "name": "feature_request",
+      "purpose": "pilot review path",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md"
+    },
+    {
+      "name": "feedback_issue",
+      "purpose": "pilot review path",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    },
+    {
+      "name": "github_repo",
+      "purpose": "pilot review path",
+      "url": "https://github.com/sunnnn2005/data-quality-agent"
+    },
+    {
+      "name": "live_scorecard",
+      "purpose": "pilot review path",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/live-project-scorecard.md"
+    },
+    {
+      "name": "quick_demo",
+      "purpose": "pilot review path",
+      "url": "https://sunnnn2005.github.io/data-quality-agent/"
+    }
+  ],
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "production adoption",
+    "GitHub star growth beyond the current public count"
+  ],
+  "project": "Data Quality Agent",
+  "public_counts": {
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "forks": 1,
+    "issues_total": 10,
+    "reproducible_feedback_items": 0,
+    "stars": 0,
+    "watchers": 0
+  },
+  "resume_safe_summary": "Published a public traction dashboard covering 4 live project surfaces, 12 growth or review channels, 5 tracked demo funnel steps, and explicit resume-upgrade rules for users, feedback, and stars.",
+  "resume_upgrade_rules": [
+    {
+      "current_value": 0,
+      "evidence_required": "public issue or testimonial with confirmed-user label",
+      "minimum_before_claim": 3,
+      "resume_status": "not_claimable_yet",
+      "signal": "external users"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "public feedback issues with feedback/reproducible labels",
+      "minimum_before_claim": 3,
+      "resume_status": "not_claimable_yet",
+      "signal": "customer feedback"
+    },
+    {
+      "current_value": 0,
+      "evidence_required": "GitHub repository stargazer count",
+      "minimum_before_claim": 5,
+      "resume_status": "not_claimable_yet",
+      "signal": "github stars"
+    }
+  ],
+  "tracked_funnel_steps": 5,
+  "traction_surface_count": 4,
+  "traction_surfaces": [
+    {
+      "name": "public_demo",
+      "resume_signal": "publicly launched demo",
+      "status": "live",
+      "url": "https://sunnnn2005.github.io/data-quality-agent/"
+    },
+    {
+      "name": "github_release",
+      "resume_signal": "public release",
+      "status": "v0.2.0",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.2.0"
+    },
+    {
+      "name": "container_image",
+      "resume_signal": "runnable deployment artifact",
+      "status": "published",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent"
+    },
+    {
+      "name": "feedback_issue_template",
+      "resume_signal": "public feedback channel",
+      "status": "tracking",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    }
+  ]
+}

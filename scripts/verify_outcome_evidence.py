@@ -25,6 +25,7 @@ DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
 BUSINESS_DATA_INTAKE_BASELINE_PATH = ROOT / "docs" / "business-data-intake-baseline.json"
 COMMUNITY_GROWTH_BASELINE_PATH = ROOT / "docs" / "community-growth-baseline.json"
 IMPACT_REVIEW_PACKET_PATH = ROOT / "docs" / "impact-review-packet.json"
+PUBLIC_TRACTION_DASHBOARD_PATH = ROOT / "docs" / "public-traction-dashboard.json"
 LIVE_SCORECARD_PATH = ROOT / "docs" / "live-project-scorecard.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
@@ -70,6 +71,7 @@ def verify_manifest() -> dict[str, int]:
     business_data_intake = load_payload(BUSINESS_DATA_INTAKE_BASELINE_PATH)
     community_growth = load_payload(COMMUNITY_GROWTH_BASELINE_PATH)
     impact_review = load_payload(IMPACT_REVIEW_PACKET_PATH)
+    traction = load_payload(PUBLIC_TRACTION_DASHBOARD_PATH)
     scorecard = load_payload(LIVE_SCORECARD_PATH)
     openapi = load_payload(OPENAPI_PATH)
     recruiter_pitch = load_payload(RECRUITER_PITCH_PATH)
@@ -344,8 +346,55 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("impact review packet must include a dedicated test")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("impact_review_packet claim must use metric_value=1")
+            elif metric_name == "public_traction_dashboard":
+                traction_script = (ROOT / "scripts" / "build_public_traction_dashboard.py").read_text()
+                traction_tests = (ROOT / "tests" / "test_public_traction_dashboard.py").read_text()
+                if traction.get("traction_surface_count") != 4:
+                    raise AssertionError("public traction dashboard must verify 4 traction surfaces")
+                if traction.get("growth_channel_count") != 12:
+                    raise AssertionError("public traction dashboard must verify 12 growth or review channels")
+                if traction.get("tracked_funnel_steps") != 5:
+                    raise AssertionError("public traction dashboard must verify 5 tracked funnel steps")
+                if traction.get("demo_entrypoints_verified") != 4:
+                    raise AssertionError("public traction dashboard must verify 4 demo entrypoints")
+                if len(traction.get("resume_upgrade_rules", [])) != 3:
+                    raise AssertionError("public traction dashboard must verify 3 resume upgrade rules")
+                if not all(
+                    rule.get("resume_status") == "not_claimable_yet"
+                    for rule in traction.get("resume_upgrade_rules", [])
+                ):
+                    raise AssertionError("public traction dashboard must keep zero-traction rules not claimable")
+                counts = traction.get("public_counts", {})
+                expected_counts = {
+                    "stars": 0,
+                    "forks": 1,
+                    "issues_total": 10,
+                    "external_feedback_items": 0,
+                    "confirmed_external_users": 0,
+                    "reproducible_feedback_items": 0,
+                }
+                for key, expected in expected_counts.items():
+                    if counts.get(key) != expected:
+                        raise AssertionError(f"public traction dashboard {key} expected {expected!r}")
+                for required in (
+                    "external users",
+                    "customer feedback",
+                    "production adoption",
+                    "GitHub star growth beyond the current public count",
+                ):
+                    if required not in traction.get("not_claimed", []):
+                        raise AssertionError(f"public traction dashboard must not claim {required}")
+                if "verify_public_traction_dashboard" not in traction_script:
+                    raise AssertionError("public traction dashboard must include a script verifier")
+                if (
+                    "test_public_traction_dashboard_tracks_growth_surfaces_without_inflating_traction"
+                    not in traction_tests
+                ):
+                    raise AssertionError("public traction dashboard must include a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 84:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 85:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -623,7 +672,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 84:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 85:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -728,7 +777,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 84", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 85", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 
