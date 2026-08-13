@@ -21,6 +21,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "impact-review-packet",
         "business-problem-casebook",
         "github-traffic-snapshot",
+        "public-availability-snapshot",
         "feedback-intake-quality",
         "business-data-replay-packet",
         "business-replay-demo",
@@ -59,6 +60,9 @@ def test_public_evidence_health_requires_core_public_signals():
     assert "evidence_counts" in external_ledger["expected_texts"]
     traffic = next(check for check in PUBLIC_CHECKS if check["id"] == "github-traffic-snapshot")
     assert "confirmed users from traffic alone" in traffic["expected_texts"]
+    availability = next(check for check in PUBLIC_CHECKS if check["id"] == "public-availability-snapshot")
+    assert availability["expected_json"]["endpoint_count"] == 4
+    assert "production uptime SLA" in availability["expected_texts"]
 
 
 def test_public_evidence_health_verifier_rejects_failed_checks():

@@ -24,6 +24,7 @@ IMPACT_REVIEW_PACKET_PATH = ROOT / "docs" / "impact-review-packet.json"
 BUSINESS_PROBLEM_CASEBOOK_PATH = ROOT / "docs" / "business-problem-casebook.json"
 PUBLIC_TRACTION_DASHBOARD_PATH = ROOT / "docs" / "public-traction-dashboard.json"
 GITHUB_TRAFFIC_SNAPSHOT_PATH = ROOT / "docs" / "github-traffic-snapshot.json"
+PUBLIC_AVAILABILITY_SNAPSHOT_PATH = ROOT / "docs" / "public-availability-snapshot.json"
 LIVE_PROJECT_SCORECARD_PATH = ROOT / "docs" / "live-project-scorecard.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
@@ -74,6 +75,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     business_casebook = load_json(BUSINESS_PROBLEM_CASEBOOK_PATH)
     traction = load_json(PUBLIC_TRACTION_DASHBOARD_PATH)
     traffic = load_json(GITHUB_TRAFFIC_SNAPSHOT_PATH)
+    availability = load_json(PUBLIC_AVAILABILITY_SNAPSHOT_PATH)
     scorecard = load_json(LIVE_PROJECT_SCORECARD_PATH)
     openapi = load_json(OPENAPI_PATH)
     recruiter_pitch = load_json(RECRUITER_PITCH_PATH)
@@ -114,6 +116,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "github_unique_visitors": traffic["views"]["uniques"],
             "github_clone_count": traffic["clones"]["count"],
             "github_unique_cloners": traffic["clones"]["uniques"],
+            "available_public_endpoints": availability["available_endpoint_count"],
+            "public_endpoint_count": availability["endpoint_count"],
+            "successful_main_branch_workflows": availability["successful_workflow_count"],
+            "main_branch_workflow_count": availability["workflow_count"],
         },
         "verified_project_outcomes": {
             "support_ticket_issue_categories": verified_outcomes["issue_category_count"],
@@ -173,6 +179,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "public_traction_resume_upgrade_rules": len(traction["resume_upgrade_rules"]),
             "github_traffic_snapshot": 1,
             "github_traffic_available": 1 if traffic["traffic_available"] else 0,
+            "public_availability_snapshot": 1,
+            "public_availability_endpoint_count": availability["endpoint_count"],
+            "public_availability_available_endpoints": availability["available_endpoint_count"],
+            "public_availability_successful_workflows": availability["successful_workflow_count"],
             "live_project_scorecard": 1,
             "scorecard_reviewer_paths": SCORECARD_REVIEWER_PATH_COUNT,
             "openapi_required_endpoints": 6,
@@ -359,6 +369,12 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{traffic['views']['uniques']} unique visitors, {traffic['clones']['count']} clones, and "
                 f"{traffic['clones']['uniques']} unique cloners in GitHub's rolling 14-day window"
             ),
+            (
+                f"Public availability snapshot with {availability['available_endpoint_count']}/"
+                f"{availability['endpoint_count']} reachable public endpoints and "
+                f"{availability['successful_workflow_count']}/{availability['workflow_count']} "
+                "successful main-branch workflows"
+            ),
             f"{SCORECARD_REVIEWER_PATH_COUNT} reviewer paths in a CI-verified live project scorecard",
             "CI-verified OpenAPI contract covering 6 integration endpoints",
             f"{len(recruiter_pitch['resume_bullets'])} recruiter-safe resume bullets for {len(recruiter_pitch['target_roles'])} target roles",
@@ -439,6 +455,8 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | GitHub unique visitors | {metrics["github_unique_visitors"]} |
 | GitHub clones | {metrics["github_clone_count"]} |
 | GitHub unique cloners | {metrics["github_unique_cloners"]} |
+| Available public endpoints | {metrics["available_public_endpoints"]} / {metrics["public_endpoint_count"]} |
+| Successful main-branch workflows | {metrics["successful_main_branch_workflows"]} / {metrics["main_branch_workflow_count"]} |
 
 ## Verified Project Outcomes
 
@@ -500,6 +518,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Public traction resume upgrade rules | {outcomes["public_traction_resume_upgrade_rules"]} |
 | GitHub traffic snapshot | {outcomes["github_traffic_snapshot"]} |
 | GitHub traffic available | {outcomes["github_traffic_available"]} |
+| Public availability snapshot | {outcomes["public_availability_snapshot"]} |
+| Public availability endpoints | {outcomes["public_availability_endpoint_count"]} |
+| Public availability reachable endpoints | {outcomes["public_availability_available_endpoints"]} |
+| Public availability successful workflows | {outcomes["public_availability_successful_workflows"]} |
 | Live project scorecard | {outcomes["live_project_scorecard"]} |
 | Scorecard reviewer paths | {outcomes["scorecard_reviewer_paths"]} |
 | OpenAPI required integration endpoints | {outcomes["openapi_required_endpoints"]} |
@@ -591,20 +613,33 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 105,
+        "test_count": 107,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
     for key, expected in expected_metrics.items():
         if metrics.get(key) != expected:
             raise AssertionError(f"{key} expected {expected!r}, got {metrics.get(key)!r}")
-    for key in ("github_view_count", "github_unique_visitors", "github_clone_count", "github_unique_cloners"):
+    for key in (
+        "github_view_count",
+        "github_unique_visitors",
+        "github_clone_count",
+        "github_unique_cloners",
+        "available_public_endpoints",
+        "public_endpoint_count",
+        "successful_main_branch_workflows",
+        "main_branch_workflow_count",
+    ):
         if metrics.get(key, -1) < 0:
             raise AssertionError(f"{key} must be non-negative")
     if metrics["github_unique_visitors"] > metrics["github_view_count"]:
         raise AssertionError("unique GitHub visitors cannot exceed views")
     if metrics["github_unique_cloners"] > metrics["github_clone_count"]:
         raise AssertionError("unique GitHub cloners cannot exceed clones")
+    if metrics["available_public_endpoints"] > metrics["public_endpoint_count"]:
+        raise AssertionError("available public endpoints cannot exceed total endpoints")
+    if metrics["successful_main_branch_workflows"] > metrics["main_branch_workflow_count"]:
+        raise AssertionError("successful main-branch workflows cannot exceed total workflows")
     expected_outcomes = {
         "support_ticket_issue_categories": 4,
         "root_cause_hypotheses": 3,
@@ -659,6 +694,8 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "public_traction_growth_channels": 17,
         "public_traction_resume_upgrade_rules": 3,
         "github_traffic_snapshot": 1,
+        "public_availability_snapshot": 1,
+        "public_availability_endpoint_count": 4,
         "live_project_scorecard": 1,
         "scorecard_reviewer_paths": 15,
         "openapi_required_endpoints": 6,

@@ -49,7 +49,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 105},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 107},
         "evidence_type": "json",
     },
     {
@@ -178,6 +178,19 @@ PUBLIC_CHECKS = [
         "evidence_type": "json",
     },
     {
+        "id": "public-availability-snapshot",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-availability-snapshot.json",
+        "expected_json": {"project": "Data Quality Agent", "endpoint_count": 4, "workflow_count": 3},
+        "expected_text": "public demo availability and workflow health snapshot",
+        "expected_texts": [
+            "available_endpoint_count",
+            "successful_workflow_count",
+            "production uptime SLA",
+            "active users",
+        ],
+        "evidence_type": "json",
+    },
+    {
         "id": "star-growth-kit",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/star-growth-kit.json",
         "expected_json": {"project": "Data Quality Agent", "generated_by": "scripts/build_star_growth_kit.py"},
@@ -293,7 +306,7 @@ PUBLIC_CHECKS = [
             "Submit Feedback",
             "issues/17",
             "External feedback starts at zero",
-            "105 tests",
+            "107 tests",
         ],
         "evidence_type": "html",
     },
