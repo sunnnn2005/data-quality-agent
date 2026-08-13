@@ -17,6 +17,7 @@ AGENT_CAPABILITY_MATRIX_PATH = ROOT / "docs" / "agent-capability-matrix.json"
 LOCAL_REVIEWER_DEMO_PATH = ROOT / "docs" / "local-reviewer-demo.json"
 RUNNABLE_RELEASE_PACKET_PATH = ROOT / "docs" / "runnable-release-packet.json"
 EXTERNAL_RUN_EVIDENCE_PACKET_PATH = ROOT / "docs" / "external-run-evidence-packet.json"
+EXTERNAL_REVIEWER_REQUEST_PACK_PATH = ROOT / "docs" / "external-reviewer-request-pack.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
@@ -70,6 +71,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     local_demo = load_json(LOCAL_REVIEWER_DEMO_PATH)
     runnable_release = load_json(RUNNABLE_RELEASE_PACKET_PATH)
     external_run_evidence = load_json(EXTERNAL_RUN_EVIDENCE_PACKET_PATH)
+    external_reviewer_request = load_json(EXTERNAL_REVIEWER_REQUEST_PACK_PATH)
     api_smoke = load_json(API_SMOKE_REPORT_PATH)
     performance = load_json(PERFORMANCE_BASELINE_PATH)
     demo_usage = load_json(DEMO_USAGE_BASELINE_PATH)
@@ -160,6 +162,12 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "external_run_review_paths": external_run_evidence["review_path_count"],
             "external_run_submission_fields": external_run_evidence["submission_field_count"],
             "external_run_upgrade_rules": external_run_evidence["upgrade_rule_count"],
+            "external_reviewer_request_pack": 1,
+            "external_reviewer_request_messages": len(external_reviewer_request["outreach_messages"]),
+            "external_reviewer_request_run_paths": len(
+                {item["run_path"] for item in external_reviewer_request["outreach_messages"]}
+            ),
+            "external_reviewer_request_fields": len(external_reviewer_request["required_comment_fields"]),
             "api_smoke_report": 1,
             "api_smoke_checks": api_smoke["check_count"],
             "api_smoke_passed_checks": api_smoke["passed_count"],
@@ -350,6 +358,12 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{external_run_evidence['submission_field_count']} required submission fields, and "
                 f"{external_run_evidence['upgrade_rule_count']} resume-upgrade rules"
             ),
+            (
+                f"External reviewer request pack linked to issue #{external_reviewer_request['public_collection_issue']['number']} "
+                f"with {len(external_reviewer_request['outreach_messages'])} copy-ready messages, "
+                f"{len({item['run_path'] for item in external_reviewer_request['outreach_messages']})} run paths, "
+                f"{len(external_reviewer_request['required_comment_fields'])} evidence fields, and zero-count baseline"
+            ),
             f"CI-verified API smoke report covering {api_smoke['passed_count']} passing FastAPI route checks",
             (
                 f"CI-verified local performance baseline covering {performance['benchmark_count']} route benchmarks "
@@ -518,6 +532,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | External run review paths | {outcomes["external_run_review_paths"]} |
 | External run submission fields | {outcomes["external_run_submission_fields"]} |
 | External run upgrade rules | {outcomes["external_run_upgrade_rules"]} |
+| External reviewer request pack | {outcomes["external_reviewer_request_pack"]} |
+| External reviewer request messages | {outcomes["external_reviewer_request_messages"]} |
+| External reviewer request run paths | {outcomes["external_reviewer_request_run_paths"]} |
+| External reviewer request evidence fields | {outcomes["external_reviewer_request_fields"]} |
 | API smoke report | {outcomes["api_smoke_report"]} |
 | API smoke checks | {outcomes["api_smoke_checks"]} |
 | API smoke passed checks | {outcomes["api_smoke_passed_checks"]} |
@@ -644,7 +662,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 112,
+        "test_count": 114,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -703,6 +721,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "external_run_review_paths": 3,
         "external_run_submission_fields": 8,
         "external_run_upgrade_rules": 3,
+        "external_reviewer_request_pack": 1,
+        "external_reviewer_request_messages": 3,
+        "external_reviewer_request_run_paths": 3,
+        "external_reviewer_request_fields": 8,
         "api_smoke_report": 1,
         "api_smoke_checks": 6,
         "api_smoke_passed_checks": 6,

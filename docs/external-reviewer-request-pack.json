@@ -1,0 +1,100 @@
+{
+  "project": "Data Quality Agent",
+  "generated_by": "scripts/build_external_reviewer_request_pack.py",
+  "purpose": "Provide copy-ready outreach messages that ask real reviewers to run one public path, then comment on issue #18 with enough evidence and permission to count the run later.",
+  "status": "outreach_ready_not_counted",
+  "public_collection_issue": {
+    "number": 18,
+    "url": "https://github.com/sunnnn2005/data-quality-agent/issues/18",
+    "purpose": "Public collection point for external reviewer run evidence."
+  },
+  "current_counts": {
+    "external_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "reproducible_feedback_items": 0
+  },
+  "outreach_messages": [
+    {
+      "id": "classmate_public_demo",
+      "audience": "UC Davis classmate or student developer",
+      "minutes": 8,
+      "run_path": "public_demo_review",
+      "entry_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "collection_url": "https://github.com/sunnnn2005/data-quality-agent/issues/18",
+      "message": "Could you spend 8 minutes trying my Data Quality Agent public demo, then leave a short comment on issue #18 with what worked, what was confusing, and whether I may count your review publicly? No private data needed."
+    },
+    {
+      "id": "developer_container_smoke_run",
+      "audience": "student developer comfortable with Docker",
+      "minutes": 12,
+      "run_path": "container_smoke_run",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent",
+      "collection_url": "https://github.com/sunnnn2005/data-quality-agent/issues/18",
+      "message": "Could you run the GHCR container smoke test for my Data Quality Agent and comment on issue #18 with your OS, commands, observed result, and permission to count it publicly? The command is: docker run --rm -p 8000:8000 ghcr.io/sunnnn2005/data-quality-agent:latest"
+    },
+    {
+      "id": "mentor_postgres_replay",
+      "audience": "mentor, data practitioner, or AI engineer",
+      "minutes": 15,
+      "run_path": "postgres_replay_run",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docker-compose.yml",
+      "collection_url": "https://github.com/sunnnn2005/data-quality-agent/issues/18",
+      "message": "Could you try the Docker Compose PostgreSQL replay for my read-only Data Quality Agent and comment on issue #18 with whether the seeded business-data run is reproducible and credible? Please do not upload private data; a redacted run summary is enough."
+    }
+  ],
+  "required_comment_fields": [
+    {
+      "example": "student developer, data analyst, recruiter, mentor",
+      "name": "reviewer_role",
+      "required": true
+    },
+    {
+      "example": "public_demo_review or container_smoke_run",
+      "name": "path_tried",
+      "required": true
+    },
+    {
+      "example": "macOS 15, Docker Desktop 4.x, Chrome",
+      "name": "environment",
+      "required": true
+    },
+    {
+      "example": "docker compose up --build",
+      "name": "commands_or_urls_used",
+      "required": true
+    },
+    {
+      "example": "health returned ok and support-ticket report loaded",
+      "name": "observed_result",
+      "required": true
+    },
+    {
+      "example": "4",
+      "name": "usefulness_score_1_to_5",
+      "required": true
+    },
+    {
+      "example": "setup was clear, but report explanation could be shorter",
+      "name": "main_feedback",
+      "required": true
+    },
+    {
+      "example": "yes",
+      "name": "permission_to_count_publicly",
+      "required": true
+    }
+  ],
+  "counting_policy": [
+    "Only public comments on issue #18 or linked public issues can be counted.",
+    "The reviewer must state which path they tried and whether permission to count publicly is yes.",
+    "Self-authored local tests and planning notes remain excluded from external evidence counts.",
+    "Counts stay at zero until a qualifying reviewer comment exists."
+  ],
+  "not_claimed": [
+    "No outreach recipient has completed a run yet.",
+    "No external reviewer run is claimed yet.",
+    "No customer feedback is claimed yet.",
+    "No enterprise deployment is claimed yet."
+  ],
+  "resume_safe_summary": "Published a copy-ready external reviewer request pack linked to issue #18 with 3 outreach messages, 3 run paths, 8 required evidence fields, permission-based counting rules, and a zero-count baseline."
+}

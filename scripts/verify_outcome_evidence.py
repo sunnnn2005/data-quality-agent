@@ -21,6 +21,7 @@ AGENT_SAFETY_PATH = ROOT / "docs" / "agent-safety-boundaries.json"
 AGENT_CAPABILITY_MATRIX_PATH = ROOT / "docs" / "agent-capability-matrix.json"
 LOCAL_REVIEWER_DEMO_PATH = ROOT / "docs" / "local-reviewer-demo.json"
 EXTERNAL_RUN_EVIDENCE_PACKET_PATH = ROOT / "docs" / "external-run-evidence-packet.json"
+EXTERNAL_REVIEWER_REQUEST_PACK_PATH = ROOT / "docs" / "external-reviewer-request-pack.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
@@ -83,6 +84,7 @@ def verify_manifest() -> dict[str, int]:
     capability_matrix = load_payload(AGENT_CAPABILITY_MATRIX_PATH)
     local_reviewer_demo = load_payload(LOCAL_REVIEWER_DEMO_PATH)
     external_run_evidence = load_payload(EXTERNAL_RUN_EVIDENCE_PACKET_PATH)
+    external_reviewer_request = load_payload(EXTERNAL_REVIEWER_REQUEST_PACK_PATH)
     api_smoke_report = load_payload(API_SMOKE_REPORT_PATH)
     performance_baseline = load_payload(PERFORMANCE_BASELINE_PATH)
     demo_usage_baseline = load_payload(DEMO_USAGE_BASELINE_PATH)
@@ -228,6 +230,34 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("external run evidence packet must have a dedicated test")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("external_run_evidence_packet claim must use metric_value=1")
+            elif metric_name == "external_reviewer_request_pack":
+                request_script = (ROOT / "scripts" / "build_external_reviewer_request_pack.py").read_text()
+                request_tests = (ROOT / "tests" / "test_external_reviewer_request_pack.py").read_text()
+                if external_reviewer_request.get("status") != "outreach_ready_not_counted":
+                    raise AssertionError("external reviewer request pack must keep outreach uncounted")
+                if external_reviewer_request.get("public_collection_issue", {}).get("number") != 18:
+                    raise AssertionError("external reviewer request pack must link issue #18")
+                if len(external_reviewer_request.get("outreach_messages", [])) != 3:
+                    raise AssertionError("external reviewer request pack must include three outreach messages")
+                run_paths = {item.get("run_path") for item in external_reviewer_request.get("outreach_messages", [])}
+                if run_paths != {"public_demo_review", "container_smoke_run", "postgres_replay_run"}:
+                    raise AssertionError("external reviewer request pack must cover all three run paths")
+                if len(external_reviewer_request.get("required_comment_fields", [])) != 8:
+                    raise AssertionError("external reviewer request pack must preserve eight evidence fields")
+                if external_reviewer_request.get("current_counts", {}).get("confirmed_external_users") != 0:
+                    raise AssertionError("external reviewer request pack must preserve zero confirmed-user baseline")
+                if "No outreach recipient has completed a run yet." not in external_reviewer_request.get(
+                    "not_claimed", []
+                ):
+                    raise AssertionError("external reviewer request pack must not claim completed runs")
+                if "permission_to_count_publicly" not in json.dumps(external_reviewer_request):
+                    raise AssertionError("external reviewer request pack must require permission to count publicly")
+                if "verify_external_reviewer_request_pack" not in request_script:
+                    raise AssertionError("external reviewer request pack must have a script verifier")
+                if "test_external_reviewer_request_pack_routes_real_runs_to_issue_18" not in request_tests:
+                    raise AssertionError("external reviewer request pack must have a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("external_reviewer_request_pack claim must use metric_value=1")
             elif metric_name == "api_smoke_report":
                 smoke_script = (ROOT / "scripts" / "build_api_smoke_report.py").read_text()
                 smoke_tests = (ROOT / "tests" / "test_api_smoke_report.py").read_text()
@@ -501,7 +531,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 112:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 114:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -802,7 +832,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 112:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 114:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1367,7 +1397,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 112", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 114", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

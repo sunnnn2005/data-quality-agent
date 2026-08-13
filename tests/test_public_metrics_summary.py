@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 112
+    assert payload["public_metrics"]["test_count"] == 114
     assert payload["public_metrics"]["github_view_count"] >= 0
     assert payload["public_metrics"]["github_unique_visitors"] <= payload["public_metrics"]["github_view_count"]
     assert payload["public_metrics"]["github_clone_count"] >= 0
@@ -53,6 +53,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["external_run_review_paths"] == 3
     assert payload["verified_project_outcomes"]["external_run_submission_fields"] == 8
     assert payload["verified_project_outcomes"]["external_run_upgrade_rules"] == 3
+    assert payload["verified_project_outcomes"]["external_reviewer_request_pack"] == 1
+    assert payload["verified_project_outcomes"]["external_reviewer_request_messages"] == 3
+    assert payload["verified_project_outcomes"]["external_reviewer_request_run_paths"] == 3
+    assert payload["verified_project_outcomes"]["external_reviewer_request_fields"] == 8
     assert payload["verified_project_outcomes"]["api_smoke_report"] == 1
     assert payload["verified_project_outcomes"]["api_smoke_checks"] == 6
     assert payload["verified_project_outcomes"]["api_smoke_passed_checks"] == 6
@@ -177,6 +181,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     )
     assert (
         "External-run evidence packet with public issue #18, 3 reviewer run paths, 8 required submission fields, and 3 resume-upgrade rules"
+        in payload["resume_safe_signals"]
+    )
+    assert (
+        "External reviewer request pack linked to issue #18 with 3 copy-ready messages, 3 run paths, 8 evidence fields, and zero-count baseline"
         in payload["resume_safe_signals"]
     )
     assert "CI-verified API smoke report covering 6 passing FastAPI route checks" in payload["resume_safe_signals"]

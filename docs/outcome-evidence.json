@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 112,
-      "resume_signal": "112 passing CI tests",
+      "metric_value": 114,
+      "resume_signal": "114 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -581,6 +581,16 @@
       "resume_signal": "CI-verified external run evidence packet",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-run-evidence-packet.json"
+    },
+    {
+      "claim": "The project publishes a copy-ready external reviewer request pack linked to issue #18 with 3 outreach messages, 3 run paths, 8 evidence fields, permission-based counting rules, and a zero-count baseline.",
+      "evidence_type": "json",
+      "id": "external-reviewer-request-pack",
+      "metric_name": "external_reviewer_request_pack",
+      "metric_value": 1,
+      "resume_signal": "CI-verified external reviewer request pack",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-reviewer-request-pack.json"
     }
   ],
   "not_claimed": [
