@@ -3,11 +3,27 @@
 [![test](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml/badge.svg)](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+[Public demo](https://sunnnn2005.github.io/data-quality-agent/) · [Support-ticket case study](docs/support-ticket-case-study.md) · [API docs after local start](http://127.0.0.1:8000/docs)
+
 Data Quality Agent is a local-first data reliability agent. It profiles a dataset, runs contract and quality checks, assigns severity, and returns a structured report with likely causes and recommended next steps.
 
 The project is designed to keep the data-quality loop visible. The default path is deterministic and runs without secrets, while an optional OpenAI-compatible LLM agent can choose tools, inspect evidence, build a source-of-truth report, and return a structured assessment when `OPENAI_API_KEY` is configured. In addition to built-in demo datasets, the API accepts CSV exports from real business workflows with explicit dataset context.
 
 ![Data Quality Agent dashboard](docs/assets/data-quality-dashboard.png)
+
+## Verified Demo Result
+
+The public demo includes a reproducible support-ticket export that returns a failing quality report:
+
+| Signal | Verified result |
+| --- | --- |
+| Public demo | [sunnnn2005.github.io/data-quality-agent](https://sunnnn2005.github.io/data-quality-agent/) |
+| Test suite | 19 automated tests passing locally and in GitHub Actions |
+| CSV safety limit | 10,000 rows, 80 columns, 2 MB upload limit |
+| Report score | 24 / 100, status `FAIL` |
+| Evidence-backed findings | duplicate `ticket_id`, missing `team` / `priority`, negative `amount`, and an `amount` outlier |
+
+This makes the project reviewable without private data or paid model access: open the demo for the output snapshot, or run the same CSV locally through the FastAPI upload route.
 
 ## The Model
 
