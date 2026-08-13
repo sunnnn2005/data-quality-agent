@@ -6,6 +6,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE_PATH = ROOT / "docs" / "outcome-evidence.json"
 METRICS_PATH = ROOT / "docs" / "adoption-metrics.json"
+RESUME_EVIDENCE_PATH = ROOT / "docs" / "resume-evidence.md"
 REQUIRED_CLAIM_FIELDS = {"id", "resume_signal", "claim", "evidence_type", "url", "status"}
 FORBIDDEN_UNVERIFIED_TERMS = {"users", "customers", "enterprise production", "github stars gained"}
 
@@ -23,6 +24,7 @@ def validate_url(value: str) -> None:
 def verify_manifest() -> dict[str, int]:
     evidence = load_payload(EVIDENCE_PATH)
     metrics = load_payload(METRICS_PATH)
+    resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
     claims = evidence.get("claims", [])
     if len(claims) < 6:
         raise AssertionError("outcome evidence manifest must include at least six public claims")
@@ -51,13 +53,21 @@ def verify_manifest() -> dict[str, int]:
                     f"claim {claim['id']} metric mismatch: {metric_name}={claim.get('metric_value')} "
                     f"but adoption metrics has {metrics.get(metric_name)}"
                 )
+        if claim["id"] not in resume_page:
+            raise AssertionError(f"resume evidence page must mention claim id or anchor text: {claim['id']}")
 
     not_claimed = {item["metric"] for item in evidence.get("not_claimed", [])}
     for required in {"users", "customer_feedback", "production_company_usage"}:
         if required not in not_claimed:
             raise AssertionError(f"missing explicit not_claimed entry for {required}")
+        if required.replace("_", " ") not in resume_page and required not in resume_page:
+            raise AssertionError(f"resume evidence page must mention not-claimed signal: {required}")
 
-    return {"claim_count": len(claims), "not_claimed_count": len(not_claimed)}
+    return {
+        "claim_count": len(claims),
+        "not_claimed_count": len(not_claimed),
+        "resume_evidence_page": 1,
+    }
 
 
 def main() -> None:

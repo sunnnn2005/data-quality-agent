@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added a human-readable resume evidence page for verified signals, current public metrics, resume-safe wording, and explicitly not-claimed outcomes.
 - Added a public outcome evidence manifest that maps resume claims to URLs for the demo, release, container image, CI tests, verified artifact, report guardrails, and adoption baseline.
 - Added CI verification for the outcome evidence manifest so resume claims cannot quietly drift into unsupported user, feedback, or enterprise adoption claims.
 - Added deterministic report verification guardrails for evidence support, known column references, sensitive evidence values, unsupported LLM evidence, recommended actions, and score bounds.

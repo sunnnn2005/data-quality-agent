@@ -61,6 +61,14 @@
       "metric_name": "stars",
       "metric_value": 0,
       "status": "verified"
+    },
+    {
+      "id": "resume-evidence-page",
+      "resume_signal": "Human-readable resume evidence page",
+      "claim": "Resume-ready claims are summarized in a public Markdown page with current metrics and not-claimed signals.",
+      "evidence_type": "documentation",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-evidence.md",
+      "status": "verified"
     }
   ],
   "not_claimed": [
