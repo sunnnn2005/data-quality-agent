@@ -1,0 +1,57 @@
+{
+  "container_image": "ghcr.io/sunnnn2005/data-quality-agent:latest",
+  "feedback_channels": [
+    {
+      "counts_toward": "external_feedback_items",
+      "name": "Demo feedback",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    },
+    {
+      "counts_toward": "bug_feedback_items",
+      "name": "Bug report",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md"
+    },
+    {
+      "counts_toward": "feature_feedback_items",
+      "name": "Feature request",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md"
+    }
+  ],
+  "generated_by": "scripts/build_public_metrics_summary.py",
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "enterprise production usage",
+    "GitHub stars beyond the current public count"
+  ],
+  "project": "Data Quality Agent",
+  "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
+  "public_metrics": {
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "forks": 1,
+    "issues_total": 10,
+    "reproducible_feedback_items": 0,
+    "stars": 0,
+    "test_count": 54,
+    "watchers": 0
+  },
+  "release": "v0.2.0",
+  "repo": "https://github.com/sunnnn2005/data-quality-agent",
+  "resume_policy": "Use public demo, release, CI, container, support-ticket outcomes, and readiness metrics now. Do not claim external users, customer feedback, or production adoption until corresponding public metrics are greater than zero.",
+  "resume_safe_signals": [
+    "Public demo and v0.2.0 release",
+    "54 passing CI tests",
+    "4 support-ticket issue categories",
+    "5 evidence-backed remediation actions",
+    "6 implemented LLM agent-readiness capabilities",
+    "1 public fork and 0 public stars as current honest adoption baseline"
+  ],
+  "verified_project_outcomes": {
+    "implemented_agent_capabilities": 6,
+    "partial_agent_capabilities": 4,
+    "recommended_actions": 5,
+    "support_ticket_findings": 5,
+    "support_ticket_issue_categories": 4
+  }
+}

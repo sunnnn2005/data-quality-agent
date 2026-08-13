@@ -17,6 +17,7 @@ This page maps resume-ready claims for Data Quality Agent to public evidence. It
 | `report-guardrails` | Report verification guardrails | [Verifier tests](https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_verifier.py) | Reports are checked for evidence support, valid field references, sensitive evidence values, unsupported LLM evidence, actions, and score bounds. |
 | `adoption-baseline` | Public adoption baseline | [Adoption metrics](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json) | Stars, forks, watchers, issue count, release, container image, and test count are tracked without inflation. |
 | `adoption-history` | Public adoption history timeline | [Adoption history JSONL](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-history.jsonl) | Stars, forks, watchers, issues, release, commit, and test count can be audited over time. |
+| `public-metrics-summary` | Unified public metrics summary | [Public metrics summary](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-metrics-summary.md) | Adoption, feedback, CI, release, outcome, and agent-readiness metrics are combined into one resume-safe public artifact. |
 | `outcome-evidence` | Machine-readable evidence manifest | [Outcome evidence JSON](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-evidence.json) | Resume claims are listed with public URLs and CI-verified by `scripts/verify_outcome_evidence.py`. |
 | `resume-evidence-page` | Human-readable resume evidence page | [Resume evidence Markdown](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-evidence.md) | Resume-safe claims, current metrics, and not-claimed outcomes are summarized for human review. |
 | `feedback-log` | Public feedback tracking loop | [Feedback log](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/feedback-log.md) | Feedback collection exists, but starts from an honest zero-feedback baseline. |
@@ -40,6 +41,7 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Recommended support-ticket actions | 5 |
 | Public evidence health checks | 8 |
 | Public release | v0.2.0 |
+| Public metrics summary | 1 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |

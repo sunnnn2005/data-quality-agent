@@ -127,6 +127,16 @@
       "status": "verified"
     },
     {
+      "id": "public-metrics-summary",
+      "resume_signal": "Unified public metrics summary",
+      "claim": "The project publishes a resume-safe public metrics summary that combines adoption, feedback, CI, release, outcome, and agent-readiness signals while preserving zero-user and zero-feedback baselines.",
+      "evidence_type": "documentation",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-metrics-summary.md",
+      "metric_name": "public_metrics_summary",
+      "metric_value": 1,
+      "status": "verified"
+    },
+    {
       "id": "public-evidence-health",
       "resume_signal": "Scheduled public evidence health check",
       "claim": "A scheduled GitHub Actions workflow verifies the public demo, release page, business-impact artifact, outcome evidence manifest, and adoption metrics remain reachable.",

@@ -10,6 +10,7 @@ FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
 HISTORY_PATH = ROOT / "docs" / "adoption-history.jsonl"
 BUSINESS_IMPACT_PATH = ROOT / "docs" / "business-impact.json"
 OUTCOME_SUMMARY_PATH = ROOT / "docs" / "outcome-summary.json"
+PUBLIC_METRICS_SUMMARY_PATH = ROOT / "docs" / "public-metrics-summary.json"
 AGENT_READINESS_PATH = ROOT / "docs" / "agent-readiness.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
 PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
@@ -35,6 +36,7 @@ def verify_manifest() -> dict[str, int]:
     feedback_metrics = load_payload(FEEDBACK_METRICS_PATH)
     business_impact = load_payload(BUSINESS_IMPACT_PATH)
     outcome_summary = load_payload(OUTCOME_SUMMARY_PATH)
+    public_metrics_summary = load_payload(PUBLIC_METRICS_SUMMARY_PATH)
     agent_readiness = load_payload(AGENT_READINESS_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
@@ -88,6 +90,13 @@ def verify_manifest() -> dict[str, int]:
                         f"claim {claim['id']} metric mismatch: recommended_action_count={claim.get('metric_value')} "
                         f"but outcome summary has {actions}"
                     )
+            elif metric_name == "public_metrics_summary":
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 54:
+                    raise AssertionError("public metrics summary must include the current CI test count")
+                if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
+                    raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("public_metrics_summary claim must use metric_value=1")
             elif metrics.get(metric_name) != claim.get("metric_value"):
                 raise AssertionError(
                     f"claim {claim['id']} metric mismatch: {metric_name}={claim.get('metric_value')} "
@@ -137,6 +146,12 @@ def verify_manifest() -> dict[str, int]:
         for phrase in required_phrases:
             if phrase not in summary_page:
                 raise AssertionError(f"outcome summary page missing phrase: {phrase}")
+
+    if "public-metrics-summary" in claim_ids:
+        metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
+        for phrase in ("passing ci tests | 54", "confirmed external users | 0", "forks | 1"):
+            if phrase not in metrics_page:
+                raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 
     not_claimed = {item["metric"] for item in evidence.get("not_claimed", [])}
     for required in {"users", "customer_feedback", "production_company_usage"}:
