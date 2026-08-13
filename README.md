@@ -18,7 +18,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Signal | Verified result |
 | --- | --- |
 | Public demo | [sunnnn2005.github.io/data-quality-agent](https://sunnnn2005.github.io/data-quality-agent/) |
-| Test suite | 27 automated tests passing locally and in GitHub Actions |
+| Test suite | 35 automated tests passing locally and in GitHub Actions |
 | CSV safety limit | 10,000 rows, 80 columns, 2 MB upload limit |
 | Report score | 24 / 100, status `FAIL` |
 | Evidence-backed findings | duplicate `ticket_id`, missing `team` / `priority`, negative `amount`, and an `amount` outlier |
@@ -85,6 +85,25 @@ Trace records include:
 - fallback status and error reason when the LLM agent is disabled
 
 The trace store is intentionally demo-scoped: it keeps at most 100 in-memory traces, does not persist uploaded CSV files, and stores sanitized summaries rather than raw row data.
+
+## Read-Only PostgreSQL Adapter
+
+The project includes an optional PostgreSQL adapter for real business tables. It is disabled unless explicitly enabled:
+
+```bash
+export ENABLE_POSTGRES_ADAPTER=true
+export POSTGRES_DSN=postgresql://readonly_user:password@localhost:5432/warehouse
+```
+
+The adapter reuses the same `DatasetSummary + DataFrame` contract as built-in datasets and CSV uploads, while enforcing safety boundaries:
+
+- only bounded `SELECT` queries are allowed
+- write operations such as `INSERT`, `UPDATE`, `DELETE`, `DROP`, `ALTER`, and `TRUNCATE` are rejected
+- every query includes a row limit
+- row limits are capped at 10,000
+- statement timeout is set before the query
+- primary-key and expected-column configuration are required
+- tests use mocked connections, so CI does not need live database credentials
 
 ## The Model
 
@@ -266,6 +285,7 @@ app/
   main.py        FastAPI routes
   models.py      Typed report contracts
   profiler.py    Column-level profiling
+  postgres_adapter.py Optional read-only PostgreSQL adapter
   tool_agent.py  LLM tool-calling agent loop
   traces.py      Bounded in-memory run trace store
 docs/

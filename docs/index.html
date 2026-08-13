@@ -303,7 +303,7 @@
       </div>
 
       <div class="metric-grid" aria-label="Verified project metrics">
-        <div class="metric"><strong>27</strong><span>automated tests passing locally and in CI</span></div>
+        <div class="metric"><strong>35</strong><span>automated tests passing locally and in CI</span></div>
         <div class="metric"><strong>10K × 80</strong><span>bounded CSV upload limit: rows × columns</span></div>
         <div class="metric"><strong>4</strong><span>reproducible support-ticket issue categories</span></div>
         <div class="metric"><strong>0 secrets</strong><span>default path runs without paid APIs or model keys</span></div>
@@ -391,6 +391,36 @@
           <span class="severity medium">R4</span>
           <h3>Review extreme amounts</h3>
           <p>Extreme <code>amount</code> values require review before publication.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Data Source Safety</h2>
+      <p class="section-copy">
+        Beyond CSV upload, the backend includes an optional read-only PostgreSQL adapter for real business tables.
+        It is disabled by default and requires explicit environment configuration before use.
+      </p>
+      <div class="cards">
+        <article class="card">
+          <span class="severity critical">Read-only</span>
+          <h3>Write operations rejected</h3>
+          <p><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>, <code>DROP</code>, and related statements are blocked.</p>
+        </article>
+        <article class="card">
+          <span class="severity high">Bounded</span>
+          <h3>Row limits enforced</h3>
+          <p>Queries must include <code>LIMIT</code>, with adapter row limits capped at 10,000.</p>
+        </article>
+        <article class="card">
+          <span class="severity medium">Timed</span>
+          <h3>Statement timeout</h3>
+          <p>The adapter sets a local statement timeout before running table reads.</p>
+        </article>
+        <article class="card">
+          <span class="severity medium">Tested</span>
+          <h3>Mocked DB tests</h3>
+          <p>CI validates adapter behavior without requiring live database credentials.</p>
         </article>
       </div>
     </section>

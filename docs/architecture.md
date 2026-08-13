@@ -65,6 +65,8 @@ These models are the public shape of the system.
 
 `app/business_rules.py` retrieves source-cited business rules from `docs/business-rules/`. The default implementation uses deterministic keyword and check-name matching so CI can run without paid embedding APIs. Future vector search can replace the retrieval implementation while keeping the `BusinessRuleReference` report contract stable.
 
+`app/postgres_adapter.py` provides an optional read-only PostgreSQL adapter for real business tables. It is disabled by default, requires explicit environment configuration, rejects write operations, requires bounded `SELECT` queries, caps row limits, sets a statement timeout, and reuses the same `DatasetSummary + DataFrame` contract used by built-in and CSV datasets.
+
 ### Profiling Layer
 
 `app/profiler.py` creates column-level profiles:
@@ -155,6 +157,7 @@ The tests verify both the agent loop and the API contract:
 - the API returns typed reports
 - the optional LLM advisor can be skipped safely
 - business-rule retrieval returns source-cited constraints without raw row data
+- PostgreSQL adapter rejects write operations and unbounded queries
 - structured LLM assessments can be attached to reports
 - the tool-calling agent can be skipped safely without a key
 - mocked tool-call loops attach a deterministic report before final answer
