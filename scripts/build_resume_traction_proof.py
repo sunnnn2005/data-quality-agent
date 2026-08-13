@@ -181,7 +181,7 @@ def verify_resume_traction_proof(payload: dict[str, Any]) -> dict[str, Any]:
     expected_counts = {
         "stars": 0,
         "forks": 1,
-        "issues_total": 13,
+        "issues_total": 14,
         "confirmed_external_users": 0,
         "external_feedback_items": 0,
         "reproducible_feedback_items": 0,

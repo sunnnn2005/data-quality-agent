@@ -232,7 +232,7 @@ def verify_star_growth_kit(payload: dict[str, Any]) -> dict[str, Any]:
         "stars": 0,
         "forks": 1,
         "watchers": 0,
-        "issues_total": 13,
+        "issues_total": 14,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }

@@ -189,7 +189,7 @@ def verify_ai_engineer_readiness(payload: dict[str, Any]) -> dict[str, Any]:
         "business_replay_rows": 8,
         "business_replay_findings": 5,
         "real_model_capture_accepted_runs": 0,
-        "application_evidence_links": 35,
+        "application_evidence_links": 36,
     }
     for key, expected in expected_counts.items():
         if counts.get(key) != expected:

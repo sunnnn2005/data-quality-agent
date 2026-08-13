@@ -49,7 +49,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "141 passing CI tests",
+            "142 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -61,7 +61,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 141},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 142},
         "evidence_type": "json",
     },
     {
@@ -378,6 +378,7 @@ PUBLIC_CHECKS = [
             "scripts/build_resume_outcome_metrics.py",
             "scripts/build_reviewer_submission_hub.py",
             "scripts/build_public_reviewer_call.py",
+            "scripts/build_reviewer_share_kit.py",
             "scripts/build_public_metrics_summary.py",
             "git-auto-commit-action",
         ],
@@ -618,6 +619,25 @@ PUBLIC_CHECKS = [
             "business_data_reviewer",
             "quick_demo_reviewer",
             "fake GitHub engagement",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "reviewer-share-kit",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-share-kit.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "share_channel_count": 5,
+            "ready_message_count": 5,
+            "linked_submission_paths": 6,
+        },
+        "expected_text": "share_ready_not_claimable",
+        "expected_texts": [
+            "issues/19",
+            "linkedin_dm",
+            "permission",
+            "fake GitHub engagement",
+            "not_sent",
         ],
         "evidence_type": "json",
     },

@@ -30,6 +30,7 @@ REVIEWER_OUTREACH_EXECUTION_PACK_PATH = ROOT / "docs" / "reviewer-outreach-execu
 RESUME_OUTCOME_METRICS_PATH = ROOT / "docs" / "resume-outcome-metrics.json"
 REVIEWER_SUBMISSION_HUB_PATH = ROOT / "docs" / "reviewer-submission-hub.json"
 PUBLIC_REVIEWER_CALL_PATH = ROOT / "docs" / "public-reviewer-call.json"
+REVIEWER_SHARE_KIT_PATH = ROOT / "docs" / "reviewer-share-kit.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
@@ -65,7 +66,7 @@ REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 SCORECARD_REVIEWER_PATH_COUNT = 23
-APPLICATION_EVIDENCE_LINK_COUNT = 35
+APPLICATION_EVIDENCE_LINK_COUNT = 36
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -99,6 +100,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     resume_outcome_metrics = load_json(RESUME_OUTCOME_METRICS_PATH)
     reviewer_submission_hub = load_json(REVIEWER_SUBMISSION_HUB_PATH)
     public_reviewer_call = load_json(PUBLIC_REVIEWER_CALL_PATH)
+    reviewer_share_kit = load_json(REVIEWER_SHARE_KIT_PATH)
     api_smoke = load_json(API_SMOKE_REPORT_PATH)
     performance = load_json(PERFORMANCE_BASELINE_PATH)
     demo_usage = load_json(DEMO_USAGE_BASELINE_PATH)
@@ -244,6 +246,12 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "public_reviewer_call_submission_paths": public_reviewer_call["linked_submission_paths"],
             "public_reviewer_call_outreach_tasks": public_reviewer_call["linked_outreach_tasks"],
             "public_reviewer_call_evidence_fields": public_reviewer_call["required_public_evidence_fields"],
+            "reviewer_share_kit": 1,
+            "reviewer_share_channels": reviewer_share_kit["share_channel_count"],
+            "reviewer_share_ready_messages": reviewer_share_kit["ready_message_count"],
+            "reviewer_share_linked_submission_paths": reviewer_share_kit["linked_submission_paths"],
+            "reviewer_share_required_fields": reviewer_share_kit["required_evidence_fields"],
+            "reviewer_share_not_sent": reviewer_share_kit["send_status_counts"]["not_sent"],
             "api_smoke_report": 1,
             "api_smoke_checks": api_smoke["check_count"],
             "api_smoke_passed_checks": api_smoke["passed_count"],
@@ -512,6 +520,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{public_reviewer_call['linked_outreach_tasks']} outreach tasks, and "
                 f"{public_reviewer_call['required_public_evidence_fields']} evidence fields without claiming outcomes"
             ),
+            (
+                f"Reviewer share kit with {reviewer_share_kit['ready_message_count']} copy-ready messages, "
+                f"{reviewer_share_kit['share_channel_count']} share channels, issue #19, "
+                f"{reviewer_share_kit['linked_submission_paths']} submission paths, and zero sent or completed outreach claimed"
+            ),
             f"CI-verified API smoke report covering {api_smoke['passed_count']} passing FastAPI route checks",
             (
                 f"CI-verified local performance baseline covering {performance['benchmark_count']} route benchmarks "
@@ -746,6 +759,12 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Public reviewer call submission paths | {outcomes["public_reviewer_call_submission_paths"]} |
 | Public reviewer call outreach tasks | {outcomes["public_reviewer_call_outreach_tasks"]} |
 | Public reviewer call evidence fields | {outcomes["public_reviewer_call_evidence_fields"]} |
+| Reviewer share kit | {outcomes["reviewer_share_kit"]} |
+| Reviewer share channels | {outcomes["reviewer_share_channels"]} |
+| Reviewer share ready messages | {outcomes["reviewer_share_ready_messages"]} |
+| Reviewer share linked submission paths | {outcomes["reviewer_share_linked_submission_paths"]} |
+| Reviewer share required fields | {outcomes["reviewer_share_required_fields"]} |
+| Reviewer share not sent | {outcomes["reviewer_share_not_sent"]} |
 | API smoke report | {outcomes["api_smoke_report"]} |
 | API smoke checks | {outcomes["api_smoke_checks"]} |
 | API smoke passed checks | {outcomes["api_smoke_passed_checks"]} |
@@ -881,7 +900,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 141,
+        "test_count": 142,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -990,6 +1009,12 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "public_reviewer_call_submission_paths": 6,
         "public_reviewer_call_outreach_tasks": 8,
         "public_reviewer_call_evidence_fields": 23,
+        "reviewer_share_kit": 1,
+        "reviewer_share_channels": 5,
+        "reviewer_share_ready_messages": 5,
+        "reviewer_share_linked_submission_paths": 6,
+        "reviewer_share_required_fields": 23,
+        "reviewer_share_not_sent": 5,
         "api_smoke_report": 1,
         "api_smoke_checks": 6,
         "api_smoke_passed_checks": 6,
@@ -1028,7 +1053,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 35,
+        "application_evidence_links": 36,
         "ai_engineer_review_intake": 1,
         "ai_engineer_review_paths": 6,
         "ai_engineer_review_questions": 6,

@@ -68,6 +68,7 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "resume_outcome_metrics": f"{scorecard['repo']}/blob/main/docs/resume-outcome-metrics.md",
             "reviewer_submission_hub": f"{scorecard['repo']}/blob/main/docs/reviewer-submission-hub.md",
             "public_reviewer_call": f"{scorecard['repo']}/blob/main/docs/public-reviewer-call.md",
+            "reviewer_share_kit": f"{scorecard['repo']}/blob/main/docs/reviewer-share-kit.md",
         },
         "verified_outcome_numbers": {
             "passing_tests": headline["passing_tests"],
@@ -117,6 +118,11 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "public_reviewer_call_segments": outcomes["public_reviewer_call_segments"],
             "public_reviewer_call_outreach_tasks": outcomes["public_reviewer_call_outreach_tasks"],
             "public_reviewer_call_evidence_fields": outcomes["public_reviewer_call_evidence_fields"],
+            "reviewer_share_channels": outcomes["reviewer_share_channels"],
+            "reviewer_share_ready_messages": outcomes["reviewer_share_ready_messages"],
+            "reviewer_share_linked_submission_paths": outcomes["reviewer_share_linked_submission_paths"],
+            "reviewer_share_required_fields": outcomes["reviewer_share_required_fields"],
+            "reviewer_share_not_sent": outcomes["reviewer_share_not_sent"],
             "real_model_run_commands": outcomes["real_model_run_commands"],
             "real_model_evidence_fields": outcomes["real_model_evidence_fields"],
             "real_model_capture_required_fields": outcomes["real_model_capture_required_fields"],
@@ -202,14 +208,14 @@ This generated pack gives recruiters and interviewers a compact review path for 
 
 def verify_application_evidence_pack(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
-        "application_link_count": 35,
+        "application_link_count": 36,
         "resume_bullet_count": 3,
         "target_role_count": 4,
-        "passing_tests": 141,
-        "verified_resume_claims": 75,
+        "passing_tests": 142,
+        "verified_resume_claims": 76,
     }
     if len(payload["application_links"]) != expected["application_link_count"]:
-            raise AssertionError("application evidence pack must include 35 application links")
+            raise AssertionError("application evidence pack must include 36 application links")
     if len(payload["resume_bullets"]) != expected["resume_bullet_count"]:
         raise AssertionError("application evidence pack must include 3 resume bullets")
     if len(payload["target_roles"]) != expected["target_role_count"]:
