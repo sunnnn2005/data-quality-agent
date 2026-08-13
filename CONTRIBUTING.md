@@ -53,6 +53,8 @@ If you are not ready to contribute code, try the public demo or local API and op
 - whether the Docker Compose PostgreSQL path worked
 - screenshots, commands, or trace ids when something fails
 
+The public adoption baseline lives in `docs/adoption-metrics.json`. Do not edit stars, forks, or feedback counts manually unless you are updating the file from a verified source such as the GitHub API.
+
 ## Design Constraints
 
 - Keep default behavior local-only and deterministic.

@@ -17,9 +17,10 @@ Initial public release of Data Quality Agent.
 - Ticket-ready Markdown incident report export for data incident workflows.
 - Evaluation harness for three deterministic data-quality scenarios.
 - Public feedback issue template for demo users and contributors.
+- Public adoption metrics baseline for stars, forks, issues, release, and container evidence.
 
 ### Verified
 
-- `41` automated tests passing locally and in GitHub Actions.
+- `42` automated tests passing locally and in GitHub Actions.
 - Support-ticket demo verifies `FAIL` status, quality score `24`, row count `8`, four expected check categories, and four source-cited business-rule references.
 - Default path runs without paid APIs, secrets, or external model calls.

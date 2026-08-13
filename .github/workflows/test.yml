@@ -20,3 +20,10 @@ jobs:
         run: python -m pytest
       - name: Verify support-ticket demo result
         run: python scripts/verify_support_ticket_demo.py
+      - name: Verify adoption metrics artifact
+        env:
+          ADOPTION_STARS: "0"
+          ADOPTION_FORKS: "1"
+          ADOPTION_WATCHERS: "0"
+          ADOPTION_ISSUES_TOTAL: "10"
+        run: python scripts/update_adoption_metrics.py
