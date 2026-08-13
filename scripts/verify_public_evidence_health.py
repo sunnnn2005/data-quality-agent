@@ -40,13 +40,19 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 61},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 62},
         "evidence_type": "json",
     },
     {
         "id": "eval-summary",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json",
         "expected_json": {"scenario_count": 3},
+        "evidence_type": "json",
+    },
+    {
+        "id": "hypothesis-feedback",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/hypothesis-feedback.json",
+        "expected_json": {"label_count": 3, "accepted_count": 2, "needs_review_count": 1},
         "evidence_type": "json",
     },
     {

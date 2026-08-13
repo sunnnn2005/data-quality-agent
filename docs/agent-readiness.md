@@ -13,6 +13,7 @@ This page tracks how close Data Quality Agent is to a mature LLM agent. It is in
 | Persistent trace audit trail | `TRACE_DB_PATH` enables SQLite persistence for sanitized run traces, allowing `/runs/{trace_id}` records to be recovered after process restart. |
 | Dataset memory retrieval | `/datasets/{dataset_id}/memory` retrieves recent sanitized traces, recurring checks, and recurring root-cause titles for a dataset. |
 | Evidence-ranked root-cause hypotheses | `QualityReport.root_cause_hypotheses` ranks likely causes by confidence and attaches supporting checks, evidence, and recommended actions. |
+| Hypothesis feedback labels | `docs/hypothesis-feedback.json` records accepted and needs-review labels for generated root-cause hypotheses. |
 | Safe fallback | When `OPENAI_API_KEY` is not configured, the agent returns a structured `DISABLED` state instead of failing the API. |
 | Public evidence | `docs/outcome-evidence.json`, `docs/resume-evidence.md`, and Public Evidence Health verify resume-safe claims. |
 
@@ -29,7 +30,7 @@ This page tracks how close Data Quality Agent is to a mature LLM agent. It is in
 
 - Add incident-pattern memory retrieval over previous trace summaries.
 - Add a human approval boundary before exporting remediation SQL or ticket actions.
-- Add human feedback labels for accepted or rejected root-cause hypotheses.
+- Add issue-pattern memory retrieval that reuses accepted or needs-review root-cause labels.
 
 ## Not Claimed
 
@@ -40,5 +41,5 @@ This page tracks how close Data Quality Agent is to a mature LLM agent. It is in
 
 ## Resume-Safe Wording
 
-- Built an LLM tool-calling data-quality agent with dynamic tool selection, read-only PostgreSQL analysis, dataset memory retrieval, persistent SQLite trace audit logging, evidence-ranked root-cause hypotheses, structured report guardrails, and safe model-key fallback.
+- Built an LLM tool-calling data-quality agent with dynamic tool selection, read-only PostgreSQL analysis, dataset memory retrieval, persistent SQLite trace audit logging, evidence-ranked root-cause hypotheses, human-reviewed hypothesis feedback labels, structured report guardrails, and safe model-key fallback.
 - Published an agent-readiness checklist that separates implemented LLM agent capabilities from partial RAG, observability, evaluation, and deeper incident-memory work.

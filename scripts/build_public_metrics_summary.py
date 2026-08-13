@@ -9,6 +9,7 @@ FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
 OUTCOME_SUMMARY_PATH = ROOT / "docs" / "outcome-summary.json"
 AGENT_READINESS_PATH = ROOT / "docs" / "agent-readiness.json"
 EVAL_SUMMARY_PATH = ROOT / "docs" / "eval-summary.json"
+HYPOTHESIS_FEEDBACK_PATH = ROOT / "docs" / "hypothesis-feedback.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 
@@ -23,6 +24,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     outcome = load_json(OUTCOME_SUMMARY_PATH)
     readiness = load_json(AGENT_READINESS_PATH)
     eval_summary = load_json(EVAL_SUMMARY_PATH)
+    hypothesis_feedback = load_json(HYPOTHESIS_FEEDBACK_PATH)
     verified_outcomes = outcome["verified_outcomes"]
     return {
         "project": "Data Quality Agent",
@@ -47,6 +49,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "recommended_actions": verified_outcomes["recommended_action_count"],
             "root_cause_hypotheses": verified_outcomes["root_cause_hypothesis_count"],
             "eval_scenarios": eval_summary["scenario_count"],
+            "hypothesis_feedback_labels": hypothesis_feedback["label_count"],
             "implemented_agent_capabilities": len(readiness["implemented"]),
             "partial_agent_capabilities": len(readiness["partial"]),
         },
@@ -62,6 +65,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
             f"{verified_outcomes['root_cause_hypothesis_count']} evidence-ranked root-cause hypotheses",
             "Dataset-level memory retrieval over recent sanitized traces",
             f"{eval_summary['scenario_count']}-scenario agent evaluation harness",
+            f"{hypothesis_feedback['label_count']} human-reviewed root-cause feedback labels",
             f"{verified_outcomes['recommended_action_count']} evidence-backed remediation actions",
             f"{len(readiness['implemented'])} implemented LLM agent-readiness capabilities",
             f"{adoption['forks']} public fork and {adoption['stars']} public stars as current honest adoption baseline",
@@ -106,6 +110,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Support-ticket findings | {outcomes["support_ticket_findings"]} |
 | Evidence-ranked root-cause hypotheses | {outcomes["root_cause_hypotheses"]} |
 | Agent evaluation scenarios | {outcomes["eval_scenarios"]} |
+| Root-cause feedback labels | {outcomes["hypothesis_feedback_labels"]} |
 | Recommended remediation actions | {outcomes["recommended_actions"]} |
 | Implemented LLM agent-readiness capabilities | {outcomes["implemented_agent_capabilities"]} |
 | Partial agent-readiness capabilities documented | {outcomes["partial_agent_capabilities"]} |
@@ -130,7 +135,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 61,
+        "test_count": 62,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -141,8 +146,9 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "support_ticket_issue_categories": 4,
         "root_cause_hypotheses": 3,
         "eval_scenarios": 3,
+        "hypothesis_feedback_labels": 3,
         "recommended_actions": 5,
-        "implemented_agent_capabilities": 9,
+        "implemented_agent_capabilities": 10,
     }
     for key, expected in expected_outcomes.items():
         if outcomes.get(key) != expected:

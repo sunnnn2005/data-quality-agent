@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "61 passing CI tests",
+      "resume_signal": "62 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 61,
+      "metric_value": 62,
       "status": "verified"
     },
     {
@@ -121,6 +121,16 @@
       "status": "verified"
     },
     {
+      "id": "hypothesis-feedback",
+      "resume_signal": "Human-reviewed root-cause feedback labels",
+      "claim": "The project publishes a generated feedback artifact with accepted/needs-review labels for 3 root-cause hypotheses without claiming external product feedback.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/hypothesis-feedback.json",
+      "metric_name": "hypothesis_feedback_label_count",
+      "metric_value": 3,
+      "status": "verified"
+    },
+    {
       "id": "adoption-baseline",
       "resume_signal": "Public adoption baseline",
       "claim": "Public metrics are tracked without inflating stars, forks, watchers, issues, release, container, or test count.",
@@ -191,7 +201,7 @@
       "evidence_type": "documentation",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-readiness.md",
       "metric_name": "implemented_agent_capabilities",
-      "metric_value": 9,
+      "metric_value": 10,
       "status": "verified"
     }
   ],

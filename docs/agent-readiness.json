@@ -1,6 +1,6 @@
 {
   "project": "Data Quality Agent",
-  "updated_at": "2026-08-13T06:30:00Z",
+  "updated_at": "2026-08-13T07:10:00Z",
   "summary": "Current readiness assessment against a practical LLM agent checklist. This file separates implemented capabilities from partial and planned work so resume claims stay evidence-backed.",
   "implemented": [
     {
@@ -39,6 +39,11 @@
       "evidence": "QualityReport.root_cause_hypotheses ranks likely causes by confidence and attaches supporting checks, evidence, and recommended actions."
     },
     {
+      "id": "hypothesis-feedback",
+      "capability": "Root-cause hypotheses can be labeled by a human reviewer",
+      "evidence": "docs/hypothesis-feedback.json records accepted and needs-review labels for generated support-ticket root-cause hypotheses."
+    },
+    {
       "id": "safe-fallback",
       "capability": "Agent degrades safely when no model key is configured",
       "evidence": "LLMDataQualityAgent returns DISABLED with an explicit fallback error instead of failing the API."
@@ -70,8 +75,8 @@
     },
     {
       "id": "evaluation",
-      "capability": "Evaluation metadata exists, but the eval set is still small",
-      "current_state": "Tests check fallback behavior, tool use, evidence support, and public artifacts.",
+      "capability": "Evaluation artifacts exist, but the eval set is still small",
+      "current_state": "Tests check fallback behavior, tool use, evidence support, public artifacts, and root-cause hypothesis labels.",
       "next_step": "Add a larger labeled eval set for tool-choice accuracy, finding recall, false positives, and cost."
     }
   ],
@@ -87,9 +92,9 @@
       "resume_value": "Shows AI safety and enterprise workflow judgment."
     },
     {
-      "id": "hypothesis-feedback",
-      "deliverable": "Collect accepted or rejected labels for root-cause hypotheses",
-      "resume_value": "Shows an evaluation loop for improving agent reasoning."
+      "id": "hypothesis-label-memory",
+      "deliverable": "Use accepted or needs-review hypothesis labels in future ranking and memory retrieval",
+      "resume_value": "Shows a closed-loop agent evaluation workflow."
     }
   ],
   "not_claimed": [

@@ -1,0 +1,44 @@
+{
+  "accepted_count": 2,
+  "generated_by": "scripts/build_hypothesis_feedback.py",
+  "label_count": 3,
+  "labels": [
+    {
+      "confidence": 0.71,
+      "hypothesis_title": "Business-rule validation is not separating exceptional transactions from standard facts.",
+      "label": "accepted",
+      "reason": "Accepted because the hypothesis is backed by high-severity checks: negative_amount, numeric_outliers.",
+      "supporting_checks": [
+        "negative_amount",
+        "numeric_outliers"
+      ]
+    },
+    {
+      "confidence": 0.65,
+      "hypothesis_title": "The ingestion pipeline may be replaying events without idempotent merge logic.",
+      "label": "accepted",
+      "reason": "Accepted because the hypothesis is backed by high-severity checks: duplicate_primary_key.",
+      "supporting_checks": [
+        "duplicate_primary_key"
+      ]
+    },
+    {
+      "confidence": 0.63,
+      "hypothesis_title": "Source API or transform logic is producing incomplete fields for required analytics columns.",
+      "label": "needs_review",
+      "reason": "Needs review because the evidence is useful but lower priority than the top hypotheses: missing_values.",
+      "supporting_checks": [
+        "missing_values"
+      ]
+    }
+  ],
+  "needs_review_count": 1,
+  "not_claimed": [
+    "external product feedback",
+    "production incident confirmation",
+    "paid human-labeling dataset"
+  ],
+  "project": "Data Quality Agent",
+  "resume_safe_summary": "Added a human-review feedback artifact that labels 3 root-cause hypotheses with 2 accepted and 1 needing review.",
+  "source_artifact": "docs/verified-support-ticket-result.json"
+}
