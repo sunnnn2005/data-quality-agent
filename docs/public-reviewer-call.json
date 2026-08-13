@@ -1,0 +1,50 @@
+{
+  "counting_rules": [
+    "Counts only public, non-owner GitHub issues that pass the external evidence gate.",
+    "Does not count private DMs, self-authored planning issues, or vague reactions.",
+    "Does not ask for raw customer data, secrets, production rows, or fake GitHub engagement.",
+    "Keeps all user, feedback, business-impact, AI-review, and star claims blocked while counts are zero."
+  ],
+  "current_counts": {
+    "ai_engineer_review_items": 0,
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "github_stars": 0
+  },
+  "generated_by": "scripts/build_public_reviewer_call.py",
+  "linked_outreach_tasks": 8,
+  "linked_submission_paths": 6,
+  "max_review_minutes": 12,
+  "minimum_review_minutes": 1,
+  "project": "Data Quality Agent",
+  "public_call_issue": "https://github.com/sunnnn2005/data-quality-agent/issues/19",
+  "purpose": "Publish one public call for external reviewers and pilot users so future resume outcome claims can be backed by non-owner GitHub evidence instead of private messages or self-authored notes.",
+  "required_public_evidence_fields": 23,
+  "resume_safe_summary": "Published a public reviewer call linked to 3 reviewer segments, 6 submission paths, 8 outreach tasks, and 23 evidence fields while keeping current outcome counts at zero.",
+  "resume_status": "public_call_open_not_claimable",
+  "reviewer_segment_count": 3,
+  "reviewer_segments": [
+    {
+      "ask": "Run or inspect one technical path and leave implementation feedback.",
+      "counts_toward": "ai_engineer_review_items",
+      "id": "technical_reviewer",
+      "submit_to": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+      "who": "AI Engineer, SWE, or data engineer reviewer"
+    },
+    {
+      "ask": "Submit an anonymized data-quality problem and whether this agent would help triage it.",
+      "counts_toward": "business_case_feedback_items",
+      "id": "business_data_reviewer",
+      "submit_to": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "who": "Data analyst, operations teammate, or student with a messy CSV workflow"
+    },
+    {
+      "ask": "Open the public demo or quickstart and leave one concrete useful/confusing/broken observation.",
+      "counts_toward": "external_feedback_items",
+      "id": "quick_demo_reviewer",
+      "submit_to": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "who": "Student, recruiter, or open-source reviewer with 5 minutes"
+    }
+  ]
+}

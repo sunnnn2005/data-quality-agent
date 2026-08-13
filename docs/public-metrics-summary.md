@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 13 |
-| Passing CI tests | 140 |
+| Passing CI tests | 141 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -103,6 +103,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Reviewer submission paths | 6 |
 | Reviewer submission target metrics | 6 |
 | Reviewer submission required fields | 23 |
+| Public reviewer call | 1 |
+| Public reviewer call segments | 3 |
+| Public reviewer call submission paths | 6 |
+| Public reviewer call outreach tasks | 8 |
+| Public reviewer call evidence fields | 23 |
 | API smoke report | 1 |
 | API smoke checks | 6 |
 | API smoke passed checks | 6 |
@@ -145,7 +150,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 34 |
+| Application evidence links | 35 |
 | AI Engineer review intake | 1 |
 | AI Engineer review paths | 6 |
 | AI Engineer review questions | 6 |
@@ -229,7 +234,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 140 passing CI tests
+- 141 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -263,6 +268,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Reviewer outreach execution pack with 8 ready-to-send messages, 8 follow-up rules, 8 not-sent baseline entries, and zero sent outreach claimed
 - Resume outcome metrics board tracking 6 outcome metrics, 0 claimable outcome lines, 6 blocked outcome lines, and honest user/feedback/star baselines
 - Reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, 23 required evidence fields, and zero current outcome claims upgraded
+- Public reviewer call linked to 3 reviewer segments, 6 submission paths, 8 outreach tasks, and 23 evidence fields without claiming outcomes
 - CI-verified API smoke report covering 6 passing FastAPI route checks
 - CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls
 - Public demo usage baseline with 5 tracked funnel steps and 6 verified entrypoints
@@ -276,7 +282,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 23 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
-- 34 application evidence links in a recruiter-ready evidence pack
+- 35 application evidence links in a recruiter-ready evidence pack
 - AI Engineer review intake with 6 review paths, 6 reviewer questions, 5 countable-evidence conditions, and zero accepted reviews
 - 3 pilot outreach messages and 10 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan

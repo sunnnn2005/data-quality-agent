@@ -49,7 +49,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "140 passing CI tests",
+            "141 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -61,7 +61,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 140},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 141},
         "evidence_type": "json",
     },
     {
@@ -377,6 +377,7 @@ PUBLIC_CHECKS = [
             "scripts/build_reviewer_outreach_execution_pack.py",
             "scripts/build_resume_outcome_metrics.py",
             "scripts/build_reviewer_submission_hub.py",
+            "scripts/build_public_reviewer_call.py",
             "scripts/build_public_metrics_summary.py",
             "git-auto-commit-action",
         ],
@@ -600,6 +601,37 @@ PUBLIC_CHECKS = [
             "never asks for fake engagement",
         ],
         "evidence_type": "json",
+    },
+    {
+        "id": "public-reviewer-call",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-reviewer-call.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "reviewer_segment_count": 3,
+            "linked_submission_paths": 6,
+            "required_public_evidence_fields": 23,
+        },
+        "expected_text": "public_call_open_not_claimable",
+        "expected_texts": [
+            "issues/19",
+            "technical_reviewer",
+            "business_data_reviewer",
+            "quick_demo_reviewer",
+            "fake GitHub engagement",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "public-reviewer-call-issue",
+        "url": "https://github.com/sunnnn2005/data-quality-agent/issues/19",
+        "expected_text": "Public reviewer call",
+        "expected_texts": [
+            "collecting real external review and pilot evidence",
+            "confirmed external users: 0",
+            "Counting rules",
+            "does not contain private business data",
+        ],
+        "evidence_type": "html",
     },
     {
         "id": "reviewer-landing-page",

@@ -33,6 +33,7 @@ REVIEWER_ACTION_QUEUE_PATH = ROOT / "docs" / "reviewer-action-queue.json"
 REVIEWER_OUTREACH_EXECUTION_PACK_PATH = ROOT / "docs" / "reviewer-outreach-execution-pack.json"
 RESUME_OUTCOME_METRICS_PATH = ROOT / "docs" / "resume-outcome-metrics.json"
 REVIEWER_SUBMISSION_HUB_PATH = ROOT / "docs" / "reviewer-submission-hub.json"
+PUBLIC_REVIEWER_CALL_PATH = ROOT / "docs" / "public-reviewer-call.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
@@ -109,6 +110,7 @@ def verify_manifest() -> dict[str, int]:
     reviewer_outreach_execution = load_payload(REVIEWER_OUTREACH_EXECUTION_PACK_PATH)
     resume_outcome_metrics = load_payload(RESUME_OUTCOME_METRICS_PATH)
     reviewer_submission_hub = load_payload(REVIEWER_SUBMISSION_HUB_PATH)
+    public_reviewer_call = load_payload(PUBLIC_REVIEWER_CALL_PATH)
     api_smoke_report = load_payload(API_SMOKE_REPORT_PATH)
     performance_baseline = load_payload(PERFORMANCE_BASELINE_PATH)
     demo_usage_baseline = load_payload(DEMO_USAGE_BASELINE_PATH)
@@ -568,7 +570,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 140:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 141:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -806,6 +808,44 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("reviewer submission hub must include a dedicated test")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("reviewer_submission_hub claim must use metric_value=1")
+            elif metric_name == "public_reviewer_call":
+                call_script = (ROOT / "scripts" / "build_public_reviewer_call.py").read_text()
+                call_tests = (ROOT / "tests" / "test_public_reviewer_call.py").read_text()
+                expected = {
+                    "reviewer_segment_count": 3,
+                    "linked_submission_paths": 6,
+                    "linked_outreach_tasks": 8,
+                    "required_public_evidence_fields": 23,
+                }
+                for key, value in expected.items():
+                    if public_reviewer_call.get(key) != value:
+                        raise AssertionError(f"public reviewer call {key} expected {value!r}")
+                if public_reviewer_call.get("resume_status") != "public_call_open_not_claimable":
+                    raise AssertionError("public reviewer call must not be claimable by itself")
+                if public_reviewer_call.get("public_call_issue") != "https://github.com/sunnnn2005/data-quality-agent/issues/19":
+                    raise AssertionError("public reviewer call must link issue #19")
+                expected_segments = {"technical_reviewer", "business_data_reviewer", "quick_demo_reviewer"}
+                actual_segments = {segment.get("id") for segment in public_reviewer_call.get("reviewer_segments", [])}
+                if actual_segments != expected_segments:
+                    raise AssertionError("public reviewer call must define the expected reviewer segments")
+                for value in public_reviewer_call.get("current_counts", {}).values():
+                    if value != 0:
+                        raise AssertionError("public reviewer call must preserve zero current outcome counts")
+                joined = json.dumps(public_reviewer_call, sort_keys=True).lower()
+                for required in (
+                    "non-owner github evidence",
+                    "does not count private dms",
+                    "fake github engagement",
+                    "blocked while counts are zero",
+                ):
+                    if required not in joined:
+                        raise AssertionError(f"public reviewer call missing boundary: {required}")
+                if "verify_public_reviewer_call" not in call_script:
+                    raise AssertionError("public reviewer call must include a script verifier")
+                if "test_public_reviewer_call_opens_real_evidence_collection_without_claiming_outcomes" not in call_tests:
+                    raise AssertionError("public reviewer call must include a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("public_reviewer_call claim must use metric_value=1")
             elif metric_name == "persistent_trace_audit":
                 trace_tests = (ROOT / "tests" / "test_traces.py").read_text()
                 trace_source = (ROOT / "app" / "traces.py").read_text()
@@ -1101,7 +1141,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 140:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 141:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1902,6 +1942,7 @@ def verify_manifest() -> dict[str, int]:
             "scripts/build_reviewer_outreach_execution_pack.py",
             "scripts/build_resume_outcome_metrics.py",
             "scripts/build_reviewer_submission_hub.py",
+            "scripts/build_public_reviewer_call.py",
             "scripts/verify_outcome_evidence.py",
             "git-auto-commit-action",
         ):
@@ -1943,7 +1984,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 140", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 141", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

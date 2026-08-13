@@ -25,12 +25,12 @@
       "url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent"
     },
     {
-      "claim": "Automated test suite passes locally and in GitHub Actions, including the real-model evidence capture gate, accepted evidence rollup, external reviewer evidence gate, external-run evidence packet, external-run quickstart page, external reviewer outreach tracker, runnable release packet, business problem casebook, business replay demo, feedback intake quality, business case intake, star growth kit, pilot conversion board, resume outcome readiness evaluator, reviewer funnel board, and real-model runbook verifiers.",
+      "claim": "Automated test suite passes locally and in GitHub Actions, including the real-model evidence capture gate, accepted evidence rollup, external reviewer evidence gate, external-run evidence packet, external-run quickstart page, external reviewer outreach tracker, runnable release packet, business problem casebook, business replay demo, feedback intake quality, business case intake, star growth kit, pilot conversion board, resume outcome readiness evaluator, reviewer funnel board, and real-model runbook verifiers, and public reviewer call verification.",
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 140,
-      "resume_signal": "140 passing CI tests",
+      "metric_value": 141,
+      "resume_signal": "141 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 34 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 35 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 34,
+      "metric_value": 35,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -719,6 +719,16 @@
       "resume_signal": "CI-verified reviewer submission hub",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-submission-hub.json"
+    },
+    {
+      "claim": "The project publishes a public reviewer call for 3 reviewer segments, 6 submission paths, 8 outreach tasks, 23 required evidence fields, conservative counting rules, and zero current outcome counts upgraded.",
+      "evidence_type": "generated_artifact",
+      "id": "public-reviewer-call",
+      "metric_name": "public_reviewer_call",
+      "metric_value": 1,
+      "resume_signal": "CI-verified public reviewer call",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-reviewer-call.json"
     }
   ],
   "not_claimed": [
