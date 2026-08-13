@@ -1,0 +1,86 @@
+{
+  "project": "Data Quality Agent",
+  "updated_at": "2026-08-13T05:20:00Z",
+  "summary": "Current readiness assessment against a practical LLM agent checklist. This file separates implemented capabilities from partial and planned work so resume claims stay evidence-backed.",
+  "implemented": [
+    {
+      "id": "llm-tool-decision",
+      "capability": "LLM chooses among data-quality tools",
+      "evidence": "app/tool_agent.py exposes get_dataset_contract, profile_dataset, select_quality_strategy, run_quality_checks, and build_quality_report as tool-calling functions."
+    },
+    {
+      "id": "multi-step-loop",
+      "capability": "Tool results feed back into a multi-step agent loop",
+      "evidence": "LLMDataQualityAgent.run appends tool results back into messages and continues for up to six tool-call rounds."
+    },
+    {
+      "id": "real-business-data",
+      "capability": "Agent can analyze real business CSV exports and read-only PostgreSQL tables",
+      "evidence": "FastAPI exposes /business-data/agent-report and /postgres/support-tickets/agent-report."
+    },
+    {
+      "id": "deterministic-guardrails",
+      "capability": "Final reports are checked by deterministic guardrails",
+      "evidence": "ReportVerifier validates finding evidence, known field references, sensitive evidence, unsupported LLM evidence, action coverage, and score bounds."
+    },
+    {
+      "id": "safe-fallback",
+      "capability": "Agent degrades safely when no model key is configured",
+      "evidence": "LLMDataQualityAgent returns DISABLED with an explicit fallback error instead of failing the API."
+    },
+    {
+      "id": "public-evidence",
+      "capability": "Public evidence artifacts and scheduled health checks verify resume-safe claims",
+      "evidence": "docs/outcome-evidence.json, docs/resume-evidence.md, and Public Evidence Health workflow track verifiable signals."
+    }
+  ],
+  "partial": [
+    {
+      "id": "memory",
+      "capability": "Short-term run state exists, but long-term memory is not persistent",
+      "current_state": "Run traces are stored in a bounded in-memory store and disappear after process restart.",
+      "next_step": "Persist run traces, findings, and tool-call summaries in SQLite or PostgreSQL."
+    },
+    {
+      "id": "rag",
+      "capability": "Business-rule retrieval exists, but there is no embedding/vector-search RAG layer",
+      "current_state": "Support-ticket rules are source-cited from local Markdown rules.",
+      "next_step": "Add optional embedding-backed retrieval with source citations and permission filtering."
+    },
+    {
+      "id": "observability",
+      "capability": "Trace summaries exist, but production-grade observability is incomplete",
+      "current_state": "The API exposes sanitized run summaries and tool-call previews.",
+      "next_step": "Track model version, prompt version, token usage, latency breakdown, retries, and estimated cost."
+    },
+    {
+      "id": "evaluation",
+      "capability": "Evaluation metadata exists, but the eval set is still small",
+      "current_state": "Tests check fallback behavior, tool use, evidence support, and public artifacts.",
+      "next_step": "Add a larger labeled eval set for tool-choice accuracy, finding recall, false positives, and cost."
+    }
+  ],
+  "planned": [
+    {
+      "id": "persistent-agent-runs",
+      "deliverable": "Persist agent runs and tool-call traces",
+      "resume_value": "Shows production-oriented state management and auditability."
+    },
+    {
+      "id": "root-cause-ranking",
+      "deliverable": "Rank root-cause hypotheses with evidence references",
+      "resume_value": "Shows LLM reasoning over tool evidence rather than fixed rule summaries."
+    },
+    {
+      "id": "approval-boundary",
+      "deliverable": "Add human approval boundary for generated remediation SQL or ticket actions",
+      "resume_value": "Shows AI safety and enterprise workflow judgment."
+    }
+  ],
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "enterprise production deployment",
+    "paid model benchmark results"
+  ]
+}

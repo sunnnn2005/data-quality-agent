@@ -123,6 +123,16 @@
       "evidence_type": "scheduled_ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/public-evidence-health.yml",
       "status": "verified"
+    },
+    {
+      "id": "agent-readiness",
+      "resume_signal": "Public LLM agent readiness checklist",
+      "claim": "The project documents implemented LLM agent capabilities separately from partial memory, RAG, observability, and evaluation work.",
+      "evidence_type": "documentation",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-readiness.md",
+      "metric_name": "implemented_agent_capabilities",
+      "metric_value": 6,
+      "status": "verified"
     }
   ],
   "not_claimed": [

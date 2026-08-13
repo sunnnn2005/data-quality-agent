@@ -9,6 +9,8 @@ def test_adoption_metrics_uses_safe_fallback_values(monkeypatch):
     monkeypatch.setenv("ADOPTION_FORKS", "1")
     monkeypatch.setenv("ADOPTION_WATCHERS", "0")
     monkeypatch.setenv("ADOPTION_ISSUES_TOTAL", "10")
+    monkeypatch.setenv("ADOPTION_TEST_COUNT", "53")
+    monkeypatch.setattr(update_adoption_metrics, "_load_existing_metrics", lambda: {})
 
     metrics = collect_metrics()
 

@@ -21,6 +21,7 @@ This page maps resume-ready claims for Data Quality Agent to public evidence. It
 | `feedback-log` | Public feedback tracking loop | [Feedback log](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/feedback-log.md) | Feedback collection exists, but starts from an honest zero-feedback baseline. |
 | `feedback-metrics` | Machine-readable feedback metrics | [Feedback metrics JSON](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/feedback-metrics.json) | Feedback and reproducible reports are tracked from public issue labels without inflating usage claims. |
 | `public-evidence-health` | Scheduled public evidence health check | [Public Evidence Health workflow](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/public-evidence-health.yml) | A scheduled workflow verifies the public demo, release page, business-impact artifact, outcome evidence, and adoption metrics remain reachable. |
+| `agent-readiness` | Public LLM agent readiness checklist | [Agent readiness](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-readiness.md) | Implemented LLM agent capabilities are separated from partial and planned work, including memory, RAG, observability, and evaluation gaps. |
 
 ## Current Public Metrics
 
@@ -42,6 +43,7 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
 | Adoption history entries | 3 |
+| Implemented agent-readiness capabilities | 6 |
 
 ## Not Claimed Yet
 
@@ -64,6 +66,7 @@ Use wording that is true today:
 - Added a scheduled public evidence health check for the live demo, release page, business-impact artifact, outcome evidence, and adoption metrics.
 - Added machine-readable feedback metrics that track public feedback and reproducible reports from an honest zero baseline.
 - Added deterministic report verification guardrails and 53 passing CI tests.
+- Published an agent-readiness checklist that separates implemented tool-calling, business-data, guardrail, and fallback capabilities from planned memory, RAG, observability, and evaluation work.
 
 Avoid wording that is not true yet:
 
