@@ -1,6 +1,6 @@
 {
   "project": "Data Quality Agent",
-  "updated_at": "2026-08-13T03:55:00Z",
+  "updated_at": "2026-08-13T04:58:00Z",
   "claims": [
     {
       "id": "public-demo",
@@ -42,6 +42,14 @@
       "claim": "Support-ticket case study detects duplicate IDs, missing routing fields, negative amounts, and outliers.",
       "evidence_type": "artifact",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/verified-support-ticket-result.json",
+      "status": "verified"
+    },
+    {
+      "id": "postgres-agent-route",
+      "resume_signal": "Read-only PostgreSQL agent route",
+      "claim": "The API exposes a PostgreSQL support-ticket agent endpoint that reuses the read-only adapter and returns a safe disabled fallback when no model key is configured.",
+      "evidence_type": "source_and_tests",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_api.py",
       "status": "verified"
     },
     {

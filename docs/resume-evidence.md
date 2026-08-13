@@ -36,7 +36,7 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Support-ticket issue categories | 4 |
 | Affected support-ticket columns | 4 |
 | Recommended support-ticket actions | 5 |
-| Public evidence health checks | 6 |
+| Public evidence health checks | 7 |
 | Public release | v0.1.0 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |

@@ -1,5 +1,5 @@
 {
-  "check_count": 5,
+  "check_count": 7,
   "checks": [
     {
       "evidence_type": "html",
@@ -40,6 +40,25 @@
       ]
     },
     {
+      "evidence_type": "json",
+      "id": "feedback-metrics",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/feedback-metrics.json",
+      "verified_fields": [
+        "confirmed_external_users",
+        "external_feedback_items",
+        "reproducible_feedback_items"
+      ]
+    },
+    {
+      "evidence_type": "source",
+      "id": "postgres-agent-route",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/app/main.py"
+    },
+    {
       "evidence_type": "release_page",
       "id": "github-release",
       "passed": true,
@@ -49,6 +68,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 5,
+  "passed_count": 7,
   "status": "PASS"
 }

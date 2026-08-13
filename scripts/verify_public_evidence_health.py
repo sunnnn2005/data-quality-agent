@@ -43,6 +43,12 @@ PUBLIC_CHECKS = [
         "evidence_type": "json",
     },
     {
+        "id": "postgres-agent-route",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/app/main.py",
+        "expected_text": "/postgres/support-tickets/agent-report",
+        "evidence_type": "source",
+    },
+    {
         "id": "github-release",
         "url": "https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.1.0",
         "expected_text": "v0.1.0",

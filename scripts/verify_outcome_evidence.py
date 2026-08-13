@@ -87,6 +87,13 @@ def verify_manifest() -> dict[str, int]:
             if required not in script_text:
                 raise AssertionError(f"public evidence health script must check {required}")
 
+    if "postgres-agent-route" in claim_ids:
+        script_text = PUBLIC_HEALTH_SCRIPT_PATH.read_text()
+        if "postgres-agent-route" not in script_text:
+            raise AssertionError("public evidence health script must check postgres-agent-route")
+        if "/postgres/support-tickets/agent-report" not in script_text:
+            raise AssertionError("public evidence health script must verify the PostgreSQL agent route path")
+
     not_claimed = {item["metric"] for item in evidence.get("not_claimed", [])}
     for required in {"users", "customer_feedback", "production_company_usage"}:
         if required not in not_claimed:
