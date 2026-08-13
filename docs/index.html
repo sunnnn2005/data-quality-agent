@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Quality Agent Demo</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0f14;
+      --panel: #121821;
+      --panel-2: #182131;
+      --text: #f5f7fb;
+      --muted: #a8b3c7;
+      --line: #293244;
+      --accent: #5eead4;
+      --accent-2: #8ab4ff;
+      --danger: #ff7a90;
+      --warn: #ffd166;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(94, 234, 212, 0.16), transparent 30rem),
+        radial-gradient(circle at 80% 10%, rgba(138, 180, 255, 0.18), transparent 28rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 48px 0;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+      gap: 32px;
+      align-items: center;
+      min-height: 72vh;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(44px, 7vw, 88px);
+      letter-spacing: 0;
+      line-height: .95;
+      margin: 14px 0 18px;
+    }
+
+    .lede {
+      color: var(--muted);
+      font-size: clamp(18px, 2.4vw, 24px);
+      max-width: 760px;
+      margin: 0 0 26px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      align-items: center;
+      background: var(--text);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 8px;
+      color: #071016;
+      display: inline-flex;
+      font-weight: 800;
+      min-height: 44px;
+      padding: 0 16px;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, .06);
+      color: var(--text);
+    }
+
+    .metric-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .metric {
+      background: rgba(18, 24, 33, .84);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 30px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    section {
+      border-top: 1px solid var(--line);
+      padding: 44px 0;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: 0;
+      line-height: 1;
+      margin: 0 0 18px;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      max-width: 820px;
+      margin: 0 0 24px;
+      font-size: 17px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .card h3 {
+      font-size: 17px;
+      margin: 0 0 8px;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .severity {
+      display: inline-flex;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 14px;
+      padding: 4px 9px;
+      text-transform: uppercase;
+    }
+
+    .critical { background: rgba(255, 122, 144, .16); color: var(--danger); }
+    .high { background: rgba(255, 209, 102, .14); color: var(--warn); }
+    .medium { background: rgba(138, 180, 255, .14); color: var(--accent-2); }
+
+    .code-block {
+      background: #071016;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: #dbeafe;
+      overflow-x: auto;
+      padding: 18px;
+      white-space: pre;
+      font: 14px/1.6 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .step {
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      min-height: 108px;
+    }
+
+    .step span {
+      color: var(--accent);
+      display: block;
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    footer {
+      color: var(--muted);
+      padding: 28px 0 8px;
+    }
+
+    @media (max-width: 860px) {
+      header, .cards, .flow {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div>
+        <div class="eyebrow">Public Demo · Business Data Quality</div>
+        <h1>Data Quality Agent</h1>
+        <p class="lede">
+          An LLM-ready data reliability agent that profiles business CSV exports, runs deterministic quality checks,
+          and returns evidence-backed findings that can be attached to a data incident ticket.
+        </p>
+        <div class="actions">
+          <a class="button" href="https://github.com/sunnnn2005/data-quality-agent">Open GitHub Repo</a>
+          <a class="button secondary" href="support-ticket-case-study.md">Read Case Study</a>
+        </div>
+      </div>
+
+      <div class="metric-grid" aria-label="Verified project metrics">
+        <div class="metric"><strong>19</strong><span>automated tests passing locally and in CI</span></div>
+        <div class="metric"><strong>10K × 80</strong><span>bounded CSV upload limit: rows × columns</span></div>
+        <div class="metric"><strong>4</strong><span>reproducible support-ticket findings</span></div>
+        <div class="metric"><strong>0 secrets</strong><span>default path runs without paid APIs or model keys</span></div>
+      </div>
+    </header>
+
+    <section>
+      <h2>Reproducible Business Case</h2>
+      <p class="section-copy">
+        The demo uses a support-ticket export with realistic data-quality failures. The deterministic report detects
+        operational issues before they reach dashboards or downstream analytics.
+      </p>
+      <div class="cards">
+        <article class="card">
+          <span class="severity critical">Critical</span>
+          <h3>Duplicate ticket ID</h3>
+          <p><code>ticket_id</code> contains one duplicate record, which can double-count support volume.</p>
+        </article>
+        <article class="card">
+          <span class="severity medium">Medium</span>
+          <h3>Missing routing fields</h3>
+          <p><code>priority</code> and <code>team</code> each have a 12.5% missing rate.</p>
+        </article>
+        <article class="card">
+          <span class="severity high">High</span>
+          <h3>Negative amount</h3>
+          <p><code>amount</code> contains one negative value that should be separated from positive facts.</p>
+        </article>
+        <article class="card">
+          <span class="severity medium">Medium</span>
+          <h3>Extreme outlier</h3>
+          <p><code>amount</code> contains one value outside the expected IQR band.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Agent Shape</h2>
+      <p class="section-copy">
+        The default engine is deterministic. When an OpenAI-compatible key is configured, the LLM agent chooses tools,
+        reads structured results, and must attach the source-of-truth quality report before finalizing.
+      </p>
+      <div class="flow">
+        <div class="step"><span>01</span>Load dataset contract and bounded CSV data</div>
+        <div class="step"><span>02</span>Profile columns, missingness, uniqueness, and samples</div>
+        <div class="step"><span>03</span>Run schema, duplicate-key, freshness, domain, and outlier checks</div>
+        <div class="step"><span>04</span>Score severity and rank likely causes from evidence</div>
+        <div class="step"><span>05</span>Return structured report, tool trace, fallback state, and next steps</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Run The Demo</h2>
+      <p class="section-copy">Clone the repo, start FastAPI, and post the sample support-ticket CSV.</p>
+      <div class="code-block">git clone https://github.com/sunnnn2005/data-quality-agent.git
+cd data-quality-agent
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt -r requirements-dev.txt
+uvicorn app.main:app --reload
+
+curl -X POST http://127.0.0.1:8000/business-data/quality-report \
+  -F "file=@examples/support_tickets.csv" \
+  -F "dataset_name=Support Tickets" \
+  -F "owner=support-ops" \
+  -F "primary_key=ticket_id" \
+  -F "expected_columns=ticket_id,team,priority,status,amount,created_at"</div>
+    </section>
+
+    <footer>
+      Built by Shun Lu · UC Davis Data Science · AI Engineer Intern / SWE Intern candidate
+    </footer>
+  </main>
+</body>
+</html>
