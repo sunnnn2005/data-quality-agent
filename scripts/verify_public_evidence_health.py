@@ -47,13 +47,13 @@ PUBLIC_CHECKS = [
         "id": "outcome-evidence-manifest",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-evidence.json",
         "expected_text": "business-impact-artifact",
-        "expected_texts": ["external-run-evidence-packet", "128 passing CI tests", "accepted-evidence-rollup", "real-model-evidence-capture"],
+        "expected_texts": ["external-run-evidence-packet", "130 passing CI tests", "accepted-evidence-rollup", "real-model-evidence-capture"],
         "evidence_type": "json",
     },
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 128},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 130},
         "evidence_type": "json",
     },
     {
@@ -239,8 +239,8 @@ PUBLIC_CHECKS = [
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/accepted-evidence-rollup.json",
         "expected_json": {
             "accepted_issue_count": 0,
-            "claimable_metric_count": 4,
-            "blocked_outcome_claim_count": 4,
+            "claimable_metric_count": 5,
+            "blocked_outcome_claim_count": 5,
         },
         "expected_text": "accepted evidence rollup",
         "expected_texts": [
@@ -499,7 +499,7 @@ PUBLIC_CHECKS = [
         "expected_json": {
             "project": "Data Quality Agent",
             "entry_count": 0,
-            "evidence_requirement_count": 4,
+            "evidence_requirement_count": 5,
             "self_authored_planning_excluded": True,
         },
         "expected_text": "not_claimable_yet",

@@ -30,7 +30,7 @@
       "id": "ci-tests",
       "metric_name": "test_count",
       "metric_value": 130,
-      "resume_signal": "128 passing CI tests",
+      "resume_signal": "130 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
