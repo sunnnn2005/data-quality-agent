@@ -28,6 +28,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "recruiter-pitch",
         "application-evidence-pack",
         "reviewer-funnel-board",
+        "reviewer-invitation-kit",
         "pilot-outreach-kit",
         "pilot-program-plan",
         "pilot-conversion-board",
@@ -46,6 +47,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "feature_request.md",
         "reviewer-feedback-packet.md",
         "reviewer-funnel-board.md",
+        "reviewer-invitation-kit.md",
         "automated tests passing locally and in CI",
     } <= set(feedback_entrypoints["expected_texts"])
 

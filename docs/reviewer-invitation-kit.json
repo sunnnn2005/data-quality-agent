@@ -1,0 +1,83 @@
+{
+  "counting_rules": [
+    "Count only public GitHub issues or reproducible public notes.",
+    "Count confirmed users only when the reviewer states they tried the demo or ran the repo.",
+    "Do not count private messages, self-tests, application submissions, or unverifiable compliments.",
+    "Do not collect raw customer data, secrets, addresses, emails, or production rows."
+  ],
+  "current_baseline": {
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
+  "generated_by": "scripts/build_reviewer_invitation_kit.py",
+  "invitation_targets": [
+    {
+      "audience": "UC Davis classmate or student developer",
+      "counts_toward": "external_feedback_items",
+      "entry_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "funnel_stage": "visit_public_demo",
+      "message": "Could you spend 8 minutes trying my public Data Quality Agent demo and leave one GitHub issue with anything confusing, useful, or broken? I am tracking feedback publicly instead of claiming users without proof.",
+      "minutes": 8,
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target": "classmate_quick_demo"
+    },
+    {
+      "audience": "student developer comfortable with local setup",
+      "counts_toward": "reproducible_feedback_items",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent",
+      "funnel_stage": "run_local_replay",
+      "message": "Could you clone my Data Quality Agent repo, run the local replay path, and submit whether the result was reproducible? Please avoid raw private data; a short redacted run summary is enough.",
+      "minutes": 15,
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md",
+      "target": "technical_friend_local_replay"
+    },
+    {
+      "audience": "mentor, engineer, or AI/data practitioner",
+      "counts_toward": "confirmed_external_users",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-feedback-packet.md",
+      "funnel_stage": "confirm_external_use",
+      "message": "I am improving this project for AI Engineer internship applications. Could you review whether the tool-calling agent, safety boundaries, and evidence trail look credible, then leave a public note if you tried the demo or repo?",
+      "minutes": 12,
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target": "mentor_ai_engineer_review"
+    },
+    {
+      "audience": "data analyst, operations teammate, or small-business operator",
+      "counts_toward": "business_case_feedback_items",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md",
+      "funnel_stage": "submit_business_case",
+      "message": "Do you have an anonymized data-quality problem this project should handle, such as duplicate IDs, stale exports, missing routing fields, or suspicious numeric values? A public business-case issue with no raw data would help me test real usefulness.",
+      "minutes": 12,
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "target": "data_practitioner_business_case"
+    },
+    {
+      "audience": "data science club, Discord, or Slack group",
+      "counts_toward": "external_feedback_items",
+      "entry_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "funnel_stage": "visit_public_demo",
+      "message": "I am collecting public review evidence for a data-quality LLM agent project. If anyone can try the demo, please leave one GitHub issue with what worked, what broke, or what would make it more useful for real data workflows.",
+      "minutes": 10,
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target": "club_or_discord_batch"
+    }
+  ],
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "validated business impact",
+    "production adoption",
+    "GitHub stars beyond the current public count"
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Provide copy-ready invitations that route real reviewers into public GitHub evidence, so feedback and usage claims can be upgraded only after public proof exists.",
+  "resume_safe_summary": "Published 5 copy-ready reviewer invitations tied to 4 public evidence paths and explicit zero-feedback baselines.",
+  "success_thresholds": {
+    "business_case_signal": 1,
+    "confirmed_external_user_signal": 1,
+    "first_feedback": 1,
+    "resume_feedback_signal": 3
+  }
+}
