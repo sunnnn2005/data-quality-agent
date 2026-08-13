@@ -13,5 +13,12 @@ def test_feedback_metrics_uses_honest_zero_fallback(monkeypatch):
     assert metrics["external_feedback_items"] == 0
     assert metrics["confirmed_external_users"] == 0
     assert metrics["reproducible_feedback_items"] == 0
+    assert metrics["tracking_labels"]["external_feedback_items"] == "feedback"
+    assert metrics["tracking_labels"]["confirmed_external_users"] == "confirmed-user"
+    assert {channel["counts_toward"] for channel in metrics["feedback_channels"]} >= {
+        "external_feedback_items",
+        "bug_feedback_items",
+        "feature_feedback_items",
+    }
     assert metrics["status"] == "TRACKING"
     assert "Do not claim users" in metrics["resume_policy"]

@@ -3,10 +3,34 @@
   "confirmed_external_users": 0,
   "external_feedback_items": 0,
   "feature_feedback_items": 0,
+  "feedback_channels": [
+    {
+      "counts_toward": "external_feedback_items",
+      "name": "Demo feedback",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    },
+    {
+      "counts_toward": "bug_feedback_items",
+      "name": "Bug report",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md"
+    },
+    {
+      "counts_toward": "feature_feedback_items",
+      "name": "Feature request",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md"
+    }
+  ],
   "feedback_issue_template": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
-  "generated_at": "2026-08-13T04:36:53.862428+00:00",
+  "generated_at": "2026-08-13T05:10:10.360367+00:00",
   "repo": "https://github.com/sunnnn2005/data-quality-agent",
   "reproducible_feedback_items": 0,
   "resume_policy": "Do not claim users, customer feedback, or production adoption until these metrics are greater than zero and backed by public issues.",
-  "status": "TRACKING"
+  "status": "TRACKING",
+  "tracking_labels": {
+    "bug_feedback_items": "bug",
+    "confirmed_external_users": "confirmed-user",
+    "external_feedback_items": "feedback",
+    "feature_feedback_items": "enhancement",
+    "reproducible_feedback_items": "reproducible"
+  }
 }

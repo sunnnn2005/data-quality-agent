@@ -10,6 +10,13 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_PATH = ROOT / "docs" / "feedback-metrics.json"
 REPO = "sunnnn2005/data-quality-agent"
 FEEDBACK_ISSUE_URL = "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+TRACKING_LABELS = {
+    "external_feedback_items": "feedback",
+    "confirmed_external_users": "confirmed-user",
+    "reproducible_feedback_items": "reproducible",
+    "bug_feedback_items": "bug",
+    "feature_feedback_items": "enhancement",
+}
 
 
 def collect_feedback_metrics() -> dict[str, Any]:
@@ -17,11 +24,31 @@ def collect_feedback_metrics() -> dict[str, Any]:
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "repo": f"https://github.com/{REPO}",
         "feedback_issue_template": FEEDBACK_ISSUE_URL,
-        "external_feedback_items": _read_count("FEEDBACK_ITEMS", "feedback"),
-        "confirmed_external_users": _read_count("CONFIRMED_EXTERNAL_USERS", "confirmed-user"),
-        "reproducible_feedback_items": _read_count("REPRODUCIBLE_FEEDBACK_ITEMS", "reproducible"),
-        "bug_feedback_items": _read_count("BUG_FEEDBACK_ITEMS", "bug"),
-        "feature_feedback_items": _read_count("FEATURE_FEEDBACK_ITEMS", "enhancement"),
+        "external_feedback_items": _read_count("FEEDBACK_ITEMS", TRACKING_LABELS["external_feedback_items"]),
+        "confirmed_external_users": _read_count("CONFIRMED_EXTERNAL_USERS", TRACKING_LABELS["confirmed_external_users"]),
+        "reproducible_feedback_items": _read_count(
+            "REPRODUCIBLE_FEEDBACK_ITEMS", TRACKING_LABELS["reproducible_feedback_items"]
+        ),
+        "bug_feedback_items": _read_count("BUG_FEEDBACK_ITEMS", TRACKING_LABELS["bug_feedback_items"]),
+        "feature_feedback_items": _read_count("FEATURE_FEEDBACK_ITEMS", TRACKING_LABELS["feature_feedback_items"]),
+        "tracking_labels": TRACKING_LABELS,
+        "feedback_channels": [
+            {
+                "name": "Demo feedback",
+                "url": FEEDBACK_ISSUE_URL,
+                "counts_toward": "external_feedback_items",
+            },
+            {
+                "name": "Bug report",
+                "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md",
+                "counts_toward": "bug_feedback_items",
+            },
+            {
+                "name": "Feature request",
+                "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md",
+                "counts_toward": "feature_feedback_items",
+            },
+        ],
         "status": "TRACKING",
         "resume_policy": "Do not claim users, customer feedback, or production adoption until these metrics are greater than zero and backed by public issues.",
     }

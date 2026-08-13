@@ -12,6 +12,8 @@ This page tracks external feedback for Data Quality Agent. It starts with an hon
 | Bug feedback items | 0 |
 | Feature feedback items | 0 |
 | Public feedback issue template | Available |
+| Bug report template | Available |
+| Feature request template | Available |
 | Machine-readable metrics | [feedback-metrics.json](feedback-metrics.json) |
 
 ## How To Submit Feedback
@@ -23,6 +25,18 @@ Use the [demo feedback issue template](https://github.com/sunnnn2005/data-qualit
 - CSV upload endpoint
 - PostgreSQL Docker Compose demo
 - LLM tool-calling route
+
+Use the [bug report template](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md) for broken behavior and the [feature request template](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=feature_request.md) for product suggestions.
+
+## What Counts Toward Metrics
+
+| Metric | GitHub label |
+| --- | --- |
+| External feedback items | `feedback` |
+| Confirmed external users | `confirmed-user` |
+| Reproducible feedback items | `reproducible` |
+| Bug feedback items | `bug` |
+| Feature feedback items | `enhancement` |
 
 ## Feedback Items
 
