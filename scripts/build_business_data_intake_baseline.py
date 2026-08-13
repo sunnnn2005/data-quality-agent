@@ -1,11 +1,14 @@
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
-from app.business_data import MAX_COLUMNS, MAX_ROWS, MAX_UPLOAD_BYTES
-
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from app.business_data import MAX_COLUMNS, MAX_ROWS, MAX_UPLOAD_BYTES
+
 OUTPUT_JSON_PATH = ROOT / "docs" / "business-data-intake-baseline.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "business-data-intake-baseline.md"
 
