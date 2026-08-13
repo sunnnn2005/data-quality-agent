@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 11 |
-| Passing CI tests | 99 |
+| Passing CI tests | 100 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -52,7 +52,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Performance measured endpoint calls | 24 |
 | Demo usage baseline | 1 |
 | Demo usage tracked funnel steps | 5 |
-| Demo usage entrypoints verified | 5 |
+| Demo usage entrypoints verified | 6 |
 | Business-data intake baseline | 1 |
 | Business-data intake endpoints | 4 |
 | Business-data intake API tests | 6 |
@@ -74,13 +74,13 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Public traction growth channels | 16 |
 | Public traction resume upgrade rules | 3 |
 | Live project scorecard | 1 |
-| Scorecard reviewer paths | 14 |
+| Scorecard reviewer paths | 15 |
 | OpenAPI required integration endpoints | 6 |
 | OpenAPI paths | 14 |
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 17 |
+| Application evidence links | 19 |
 | Pilot outreach messages | 3 |
 | Pilot review paths | 9 |
 | Pilot program segments | 3 |
@@ -154,7 +154,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 99 passing CI tests
+- 100 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -167,6 +167,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - External review evidence ledger with 4 public evidence types, 3 linked planned reviews, and 0 current evidence entries
 - Outcome upgrade playbook with 5 metric thresholds, 5 blocked upgrade rules, and 6 baseline signals claimable now
 - Reviewer feedback packet with 3 task paths, 5 evidence questions, and 4 metric conversion paths
+- Reviewer funnel board with 4 public evidence paths and 7 remaining evidence items
 - 3 recurring incident patterns retrieved from sanitized traces
 - 2 observed run traces with fallback and verification status
 - 2 mocked LLM calls with 360 tokens, prompt version, latency, retry budget, and estimated cost telemetry
@@ -175,16 +176,16 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Local Docker Compose reviewer demo with 8 seeded PostgreSQL rows and 3 review paths
 - CI-verified API smoke report covering 6 passing FastAPI route checks
 - CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls
-- Public demo usage baseline with 5 tracked funnel steps and 5 verified entrypoints
+- Public demo usage baseline with 5 tracked funnel steps and 6 verified entrypoints
 - Business-data intake baseline covering 4 integration endpoints, 6 API tests, and bounded CSV uploads up to 10000 rows / 80 columns
 - Community growth baseline with 6 issue templates, 7 configured labels, and 7 public contribution or feedback channels
 - Impact review packet with 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs
 - Business problem casebook with 1 verified case, 4 detected business risks, and 4 owner handoffs
 - Public traction dashboard with 4 live project surfaces, 16 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
-- 14 reviewer paths in a CI-verified live project scorecard
+- 15 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
-- 17 application evidence links in a recruiter-ready evidence pack
+- 19 application evidence links in a recruiter-ready evidence pack
 - 3 pilot outreach messages and 9 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
 - Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups

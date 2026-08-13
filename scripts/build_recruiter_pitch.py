@@ -117,14 +117,14 @@ def verify_recruiter_pitch(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
         "resume_bullet_count": 3,
         "target_role_count": 4,
-        "evidence_link_count": 14,
+        "evidence_link_count": 15,
     }
     if len(payload["resume_bullets"]) != expected["resume_bullet_count"]:
         raise AssertionError("recruiter pitch must include exactly 3 resume bullets")
     if len(payload["target_roles"]) != expected["target_role_count"]:
         raise AssertionError("recruiter pitch must include 4 target roles")
     if len(payload["evidence_links"]) != expected["evidence_link_count"]:
-        raise AssertionError("recruiter pitch must include 14 evidence links")
+        raise AssertionError("recruiter pitch must include 15 evidence links")
     joined = json.dumps(payload, sort_keys=True).lower()
     for forbidden in ("used by customers", "production users", "gained github stars"):
         if forbidden in joined:

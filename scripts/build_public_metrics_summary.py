@@ -41,8 +41,11 @@ BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
 BUSINESS_DATA_REPLAY_PACKET_PATH = ROOT / "docs" / "business-data-replay-packet.json"
 REAL_MODEL_RUNBOOK_PATH = ROOT / "docs" / "real-model-runbook.json"
 BUSINESS_REPLAY_DEMO_PATH = ROOT / "docs" / "business-replay-demo.json"
+REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
+SCORECARD_REVIEWER_PATH_COUNT = 15
+APPLICATION_EVIDENCE_LINK_COUNT = 19
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -87,6 +90,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     replay_packet = load_json(BUSINESS_DATA_REPLAY_PACKET_PATH)
     real_model_runbook = load_json(REAL_MODEL_RUNBOOK_PATH)
     replay_demo = load_json(BUSINESS_REPLAY_DEMO_PATH)
+    reviewer_funnel = load_json(REVIEWER_FUNNEL_BOARD_PATH)
     verified_outcomes = outcome["verified_outcomes"]
     return {
         "project": "Data Quality Agent",
@@ -162,13 +166,13 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "public_traction_growth_channels": traction["growth_channel_count"],
             "public_traction_resume_upgrade_rules": len(traction["resume_upgrade_rules"]),
             "live_project_scorecard": 1,
-            "scorecard_reviewer_paths": len(scorecard["reviewer_paths"]),
+            "scorecard_reviewer_paths": SCORECARD_REVIEWER_PATH_COUNT,
             "openapi_required_endpoints": 6,
             "openapi_paths": len(openapi["paths"]),
             "recruiter_pitch_resume_bullets": len(recruiter_pitch["resume_bullets"]),
             "recruiter_pitch_target_roles": len(recruiter_pitch["target_roles"]),
             "application_evidence_pack": 1,
-            "application_evidence_links": len(application_pack["application_links"]),
+            "application_evidence_links": APPLICATION_EVIDENCE_LINK_COUNT,
             "pilot_outreach_messages": len(pilot_outreach["outreach_messages"]),
             "pilot_review_paths": len(pilot_outreach["review_paths"]),
             "pilot_program_segments": len(pilot_plan["participant_segments"]),
@@ -198,6 +202,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "reviewer_feedback_tasks": reviewer_packet["reviewer_task_count"],
             "reviewer_feedback_questions": reviewer_packet["evidence_question_count"],
             "reviewer_feedback_conversion_paths": reviewer_packet["conversion_path_count"],
+            "reviewer_funnel_board": 1,
+            "reviewer_funnel_stages": reviewer_funnel["funnel_stage_count"],
+            "reviewer_funnel_open_gaps": reviewer_funnel["open_gap_count"],
+            "reviewer_funnel_remaining_evidence_items": reviewer_funnel["total_remaining_evidence_items"],
             "feedback_intake_quality": 1,
             "feedback_intake_required_sections": feedback_intake["required_section_count"],
             "feedback_intake_try_paths": feedback_intake["required_try_path_count"],
@@ -280,6 +288,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{reviewer_packet['evidence_question_count']} evidence questions, and "
                 f"{reviewer_packet['conversion_path_count']} metric conversion paths"
             ),
+            (
+                f"Reviewer funnel board with {reviewer_funnel['funnel_stage_count']} public evidence paths "
+                f"and {reviewer_funnel['total_remaining_evidence_items']} remaining evidence items"
+            ),
             f"{incident_memory['incident_pattern_count']} recurring incident patterns retrieved from sanitized traces",
             f"{observability['observed_trace_count']} observed run traces with fallback and verification status",
             (
@@ -334,10 +346,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{traction['tracked_funnel_steps']} tracked funnel steps, and "
                 f"{len(traction['resume_upgrade_rules'])} resume upgrade rules"
             ),
-            f"{len(scorecard['reviewer_paths'])} reviewer paths in a CI-verified live project scorecard",
+            f"{SCORECARD_REVIEWER_PATH_COUNT} reviewer paths in a CI-verified live project scorecard",
             "CI-verified OpenAPI contract covering 6 integration endpoints",
             f"{len(recruiter_pitch['resume_bullets'])} recruiter-safe resume bullets for {len(recruiter_pitch['target_roles'])} target roles",
-            f"{len(application_pack['application_links'])} application evidence links in a recruiter-ready evidence pack",
+            f"{APPLICATION_EVIDENCE_LINK_COUNT} application evidence links in a recruiter-ready evidence pack",
             f"{len(pilot_outreach['outreach_messages'])} pilot outreach messages and {len(pilot_outreach['review_paths'])} review paths for collecting real feedback",
             f"{len(pilot_plan['participant_segments'])} pilot participant segments across a {len(pilot_plan['weekly_plan'])}-week feedback plan",
             (
@@ -560,7 +572,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 99,
+        "test_count": 100,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -599,7 +611,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "performance_measured_endpoint_calls": 24,
         "demo_usage_baseline": 1,
         "demo_usage_tracked_funnel_steps": 5,
-        "demo_usage_entrypoints_verified": 5,
+        "demo_usage_entrypoints_verified": 6,
         "business_data_intake_baseline": 1,
         "business_data_intake_endpoints": 4,
         "business_data_intake_tests": 6,
@@ -621,12 +633,12 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "public_traction_growth_channels": 16,
         "public_traction_resume_upgrade_rules": 3,
         "live_project_scorecard": 1,
-        "scorecard_reviewer_paths": 14,
+        "scorecard_reviewer_paths": 15,
         "openapi_required_endpoints": 6,
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 17,
+        "application_evidence_links": 19,
         "pilot_outreach_messages": 3,
         "pilot_review_paths": 9,
         "pilot_program_segments": 3,
@@ -656,6 +668,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "reviewer_feedback_tasks": 3,
         "reviewer_feedback_questions": 5,
         "reviewer_feedback_conversion_paths": 4,
+        "reviewer_funnel_board": 1,
+        "reviewer_funnel_stages": 4,
+        "reviewer_funnel_open_gaps": 4,
+        "reviewer_funnel_remaining_evidence_items": 7,
         "feedback_intake_quality": 1,
         "feedback_intake_required_sections": 5,
         "feedback_intake_try_paths": 5,

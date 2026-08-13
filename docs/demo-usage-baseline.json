@@ -4,6 +4,7 @@
     "feedback_metrics_link": true,
     "resume_evidence_link": true,
     "reviewer_feedback_packet_link": true,
+    "reviewer_funnel_board_link": true,
     "try_feedback_button": true
   },
   "demo_links": {
@@ -12,7 +13,8 @@
     "feedback_metrics": "https://sunnnn2005.github.io/data-quality-agent/feedback-metrics.json",
     "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
     "resume_evidence": "https://sunnnn2005.github.io/data-quality-agent/resume-evidence.md",
-    "reviewer_feedback_packet": "https://sunnnn2005.github.io/data-quality-agent/reviewer-feedback-packet.md"
+    "reviewer_feedback_packet": "https://sunnnn2005.github.io/data-quality-agent/reviewer-feedback-packet.md",
+    "reviewer_funnel_board": "https://sunnnn2005.github.io/data-quality-agent/reviewer-funnel-board.md"
   },
   "generated_by": "scripts/build_demo_usage_baseline.py",
   "not_claimed": [

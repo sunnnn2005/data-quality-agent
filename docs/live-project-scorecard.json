@@ -18,7 +18,8 @@
     "has_public_traction_dashboard": true,
     "has_real_model_runbook": true,
     "has_release": true,
-    "has_resume_outcome_readiness": true
+    "has_resume_outcome_readiness": true,
+    "has_reviewer_funnel_board": true
   },
   "container_image": "ghcr.io/sunnnn2005/data-quality-agent:latest",
   "generated_by": "scripts/build_live_project_scorecard.py",
@@ -27,10 +28,10 @@
     "agent_tools_allowed": 7,
     "implemented_agent_capabilities": 16,
     "openapi_required_endpoints": 6,
-    "passing_tests": 99,
+    "passing_tests": 100,
     "support_ticket_issue_categories": 4,
     "unsafe_postgres_queries_rejected": 3,
-    "verified_resume_claims": 58
+    "verified_resume_claims": 59
   },
   "live_footprint": {
     "confirmed_external_users": 0,
@@ -49,7 +50,7 @@
   "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
   "release": "v0.3.0",
   "repo": "https://github.com/sunnnn2005/data-quality-agent",
-  "resume_safe_summary": "Live project scorecard: public demo, v0.3.0 release, container image, 99 passing CI tests, 58 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
+  "resume_safe_summary": "Live project scorecard: public demo, v0.3.0 release, container image, 100 passing CI tests, 59 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
   "reviewer_paths": [
     {
       "label": "Try the public demo",
@@ -106,6 +107,10 @@
     {
       "label": "Inspect public metrics",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-metrics-summary.md"
+    },
+    {
+      "label": "Use reviewer funnel board",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-funnel-board.md"
     }
   ]
 }

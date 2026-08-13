@@ -1,0 +1,73 @@
+{
+  "current_public_counts": {
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "forks": 1,
+    "reproducible_feedback_items": 0,
+    "stars": 0
+  },
+  "funnel_stage_count": 4,
+  "funnel_stages": [
+    {
+      "action": "Open the public demo and inspect the support-ticket report.",
+      "counts_toward": "external_feedback_items",
+      "current_value": 0,
+      "entry_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "id": "visit_public_demo",
+      "remaining_needed": 3,
+      "status": "needs_public_evidence",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_value": 3
+    },
+    {
+      "action": "Run the local CSV or PostgreSQL replay and submit the result.",
+      "counts_toward": "reproducible_feedback_items",
+      "current_value": 0,
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent",
+      "id": "run_local_replay",
+      "remaining_needed": 2,
+      "status": "needs_public_evidence",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md",
+      "target_value": 2
+    },
+    {
+      "action": "Submit a confirmed-user note after trying the demo or local repo.",
+      "counts_toward": "confirmed_external_users",
+      "current_value": 0,
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-feedback-packet.md",
+      "id": "confirm_external_use",
+      "remaining_needed": 1,
+      "status": "needs_public_evidence",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_value": 1
+    },
+    {
+      "action": "Share an anonymized real-world data-quality case for review.",
+      "counts_toward": "business_case_feedback_items",
+      "current_value": 0,
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md",
+      "id": "submit_business_case",
+      "remaining_needed": 1,
+      "status": "needs_public_evidence",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "target_value": 1
+    }
+  ],
+  "generated_by": "scripts/build_reviewer_funnel_board.py",
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "validated business impact",
+    "production adoption",
+    "GitHub stars beyond the current public count"
+  ],
+  "open_gap_count": 4,
+  "project": "Data Quality Agent",
+  "purpose": "Turn public demo visits, local replays, confirmed-user notes, and business-case reviews into label-based evidence that can later upgrade resume outcomes without inflating the current baseline.",
+  "resume_outcome_blocked_stages": 4,
+  "resume_outcome_claimable_stages": 2,
+  "resume_safe_summary": "Published a reviewer funnel board with 4 public evidence paths, 7 remaining evidence items, and explicit zero-user/zero-feedback baselines before stronger outcome claims are allowed.",
+  "resume_status": "evidence_collection_ready",
+  "total_remaining_evidence_items": 7
+}

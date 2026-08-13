@@ -25,12 +25,12 @@
       "url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent"
     },
     {
-      "claim": "Automated test suite passes locally and in GitHub Actions, including the business problem casebook, business replay demo, feedback intake quality, business case intake, star growth kit, pilot conversion board, resume outcome readiness evaluator, and real-model runbook verifiers.",
+      "claim": "Automated test suite passes locally and in GitHub Actions, including the business problem casebook, business replay demo, feedback intake quality, business case intake, star growth kit, pilot conversion board, resume outcome readiness evaluator, reviewer funnel board, and real-model runbook verifiers.",
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 99,
-      "resume_signal": "99 passing CI tests",
+      "metric_value": 100,
+      "resume_signal": "100 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 17 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 19 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 17,
+      "metric_value": 19,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -387,6 +387,16 @@
       "resume_signal": "CI-verified reviewer feedback packet",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-feedback-packet.json"
+    },
+    {
+      "claim": "Publishes 4 public evidence paths that route demo visits, local replays, confirmed-user notes, and business-case reviews into label-based metrics with 7 remaining evidence items before stronger resume outcome claims are allowed.",
+      "evidence_type": "generated_json",
+      "id": "reviewer-funnel-board",
+      "metric_name": "reviewer_funnel_board",
+      "metric_value": 1,
+      "resume_signal": "CI-verified reviewer funnel board",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-funnel-board.json"
     },
     {
       "claim": "The project publishes a generated feedback-intake artifact that verifies the public demo feedback template captures reviewer path, environment, reproducibility outcome, bug or feature signals, and usefulness while preserving honest adoption and feedback baselines.",

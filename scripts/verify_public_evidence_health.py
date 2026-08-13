@@ -27,6 +27,7 @@ PUBLIC_CHECKS = [
             "bug_report.md",
             "feature_request.md",
             "reviewer-feedback-packet.md",
+            "reviewer-funnel-board.md",
             "automated tests passing locally and in CI",
         ],
         "evidence_type": "source",
@@ -46,7 +47,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 99},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 100},
         "evidence_type": "json",
     },
     {
@@ -245,6 +246,14 @@ PUBLIC_CHECKS = [
         "expected_json": {"project": "Data Quality Agent"},
         "expected_text": "one_line_project_proof",
         "expected_texts": ["application_links", "honest_baseline", "external users"],
+        "evidence_type": "json",
+    },
+    {
+        "id": "reviewer-funnel-board",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-funnel-board.json",
+        "expected_json": {"project": "Data Quality Agent", "funnel_stage_count": 4, "total_remaining_evidence_items": 7},
+        "expected_text": "evidence_collection_ready",
+        "expected_texts": ["confirmed_external_users", "business_case_feedback_items", "needs_public_evidence"],
         "evidence_type": "json",
     },
     {

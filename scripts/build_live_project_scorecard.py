@@ -59,6 +59,7 @@ def build_live_project_scorecard_payload() -> dict[str, Any]:
             {"label": "Inspect agent capability matrix", "url": f"{metrics['repo']}/blob/main/docs/agent-capability-matrix.md"},
             {"label": "Run the local reviewer demo", "url": f"{metrics['repo']}/blob/main/docs/local-reviewer-demo.md"},
             {"label": "Inspect public metrics", "url": f"{metrics['repo']}/blob/main/docs/public-metrics-summary.md"},
+            {"label": "Use reviewer funnel board", "url": f"{metrics['repo']}/blob/main/docs/reviewer-funnel-board.md"},
         ],
         "claim_coverage": {
             "has_public_demo": "public-demo" in claim_ids,
@@ -80,6 +81,7 @@ def build_live_project_scorecard_payload() -> dict[str, Any]:
             "has_real_model_runbook": "real-model-runbook" in claim_ids,
             "has_pilot_conversion_board": "pilot-conversion-board" in claim_ids,
             "has_resume_outcome_readiness": "resume-outcome-readiness" in claim_ids,
+            "has_reviewer_funnel_board": "reviewer-funnel-board" in claim_ids,
         },
         "resume_safe_summary": (
             f"Live project scorecard: public demo, {metrics['release']} release, container image, "
@@ -145,8 +147,8 @@ def verify_live_project_scorecard(payload: dict[str, Any]) -> dict[str, Any]:
     headline = payload["headline_metrics"]
     footprint = payload["live_footprint"]
     expected = {
-        "passing_tests": 99,
-        "verified_resume_claims": 58,
+        "passing_tests": 100,
+        "verified_resume_claims": 59,
         "implemented_agent_capabilities": 16,
         "agent_tools_allowed": 7,
         "agent_matrix_implemented_capabilities": 13,

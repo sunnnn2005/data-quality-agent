@@ -40,6 +40,7 @@ RESUME_OUTCOME_READINESS_PATH = ROOT / "docs" / "resume-outcome-readiness.json"
 EXTERNAL_REVIEW_EVIDENCE_LEDGER_PATH = ROOT / "docs" / "external-review-evidence-ledger.json"
 OUTCOME_UPGRADE_PLAYBOOK_PATH = ROOT / "docs" / "outcome-upgrade-playbook.json"
 REVIEWER_FEEDBACK_PACKET_PATH = ROOT / "docs" / "reviewer-feedback-packet.json"
+REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
@@ -100,6 +101,7 @@ def verify_manifest() -> dict[str, int]:
     external_ledger = load_payload(EXTERNAL_REVIEW_EVIDENCE_LEDGER_PATH)
     outcome_upgrade = load_payload(OUTCOME_UPGRADE_PLAYBOOK_PATH)
     reviewer_packet = load_payload(REVIEWER_FEEDBACK_PACKET_PATH)
+    reviewer_funnel = load_payload(REVIEWER_FUNNEL_BOARD_PATH)
     feedback_intake = load_payload(FEEDBACK_INTAKE_QUALITY_PATH)
     star_growth = load_payload(STAR_GROWTH_KIT_PATH)
     business_case_intake = load_payload(BUSINESS_CASE_INTAKE_PATH)
@@ -426,8 +428,8 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("public traction dashboard must verify 16 growth or review channels")
                 if traction.get("tracked_funnel_steps") != 5:
                     raise AssertionError("public traction dashboard must verify 5 tracked funnel steps")
-                if traction.get("demo_entrypoints_verified") != 5:
-                    raise AssertionError("public traction dashboard must verify 5 demo entrypoints")
+                if traction.get("demo_entrypoints_verified") != 6:
+                    raise AssertionError("public traction dashboard must verify 6 demo entrypoints")
                 if len(traction.get("resume_upgrade_rules", [])) != 3:
                     raise AssertionError("public traction dashboard must verify 3 resume upgrade rules")
                 if not all(
@@ -465,7 +467,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 99:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 100:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -766,7 +768,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 99:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 100:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1018,6 +1020,39 @@ def verify_manifest() -> dict[str, int]:
                     not in packet_tests
                 ):
                     raise AssertionError("reviewer feedback packet must have a dedicated test")
+            elif metric_name == "reviewer_funnel_board":
+                funnel_tests = (ROOT / "tests" / "test_reviewer_funnel_board.py").read_text()
+                funnel_script = (ROOT / "scripts" / "build_reviewer_funnel_board.py").read_text()
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("reviewer funnel board claim must use metric_value=1")
+                expected = {
+                    "funnel_stage_count": 4,
+                    "open_gap_count": 4,
+                    "total_remaining_evidence_items": 7,
+                    "resume_outcome_blocked_stages": 4,
+                    "resume_outcome_claimable_stages": 2,
+                }
+                for key, value in expected.items():
+                    if reviewer_funnel.get(key) != value:
+                        raise AssertionError(f"reviewer funnel board {key} expected {value!r}")
+                required_metrics = {
+                    "external_feedback_items",
+                    "reproducible_feedback_items",
+                    "confirmed_external_users",
+                    "business_case_feedback_items",
+                }
+                actual_metrics = {stage.get("counts_toward") for stage in reviewer_funnel.get("funnel_stages", [])}
+                if actual_metrics != required_metrics:
+                    raise AssertionError("reviewer funnel board must cover every public evidence metric")
+                if reviewer_funnel.get("resume_status") != "evidence_collection_ready":
+                    raise AssertionError("reviewer funnel board must stay in evidence collection status")
+                if "verify_reviewer_funnel_board" not in funnel_script:
+                    raise AssertionError("reviewer funnel board script must verify generated board")
+                if (
+                    "test_reviewer_funnel_board_maps_review_activity_to_resume_evidence_gaps"
+                    not in funnel_tests
+                ):
+                    raise AssertionError("reviewer funnel board must have a dedicated test")
             elif metric_name == "feedback_intake_quality":
                 intake_tests = (ROOT / "tests" / "test_feedback_intake_quality.py").read_text()
                 intake_script = (ROOT / "scripts" / "build_feedback_intake_quality.py").read_text()
@@ -1296,7 +1331,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 99", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 100", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

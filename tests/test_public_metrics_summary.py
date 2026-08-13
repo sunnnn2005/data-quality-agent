@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 99
+    assert payload["public_metrics"]["test_count"] == 100
     assert payload["verified_project_outcomes"]["root_cause_hypotheses"] == 3
     assert payload["verified_project_outcomes"]["business_risk_areas"] == 4
     assert payload["verified_project_outcomes"]["high_priority_actions"] == 3
@@ -44,7 +44,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["performance_measured_endpoint_calls"] == 24
     assert payload["verified_project_outcomes"]["demo_usage_baseline"] == 1
     assert payload["verified_project_outcomes"]["demo_usage_tracked_funnel_steps"] == 5
-    assert payload["verified_project_outcomes"]["demo_usage_entrypoints_verified"] == 5
+    assert payload["verified_project_outcomes"]["demo_usage_entrypoints_verified"] == 6
     assert payload["verified_project_outcomes"]["business_data_intake_baseline"] == 1
     assert payload["verified_project_outcomes"]["business_data_intake_endpoints"] == 4
     assert payload["verified_project_outcomes"]["business_data_intake_tests"] == 6
@@ -66,12 +66,12 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["public_traction_growth_channels"] == 16
     assert payload["verified_project_outcomes"]["public_traction_resume_upgrade_rules"] == 3
     assert payload["verified_project_outcomes"]["live_project_scorecard"] == 1
-    assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 14
+    assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 15
     assert payload["verified_project_outcomes"]["openapi_required_endpoints"] == 6
     assert payload["verified_project_outcomes"]["recruiter_pitch_resume_bullets"] == 3
     assert payload["verified_project_outcomes"]["recruiter_pitch_target_roles"] == 4
     assert payload["verified_project_outcomes"]["application_evidence_pack"] == 1
-    assert payload["verified_project_outcomes"]["application_evidence_links"] == 17
+    assert payload["verified_project_outcomes"]["application_evidence_links"] == 19
     assert payload["verified_project_outcomes"]["pilot_outreach_messages"] == 3
     assert payload["verified_project_outcomes"]["pilot_review_paths"] == 9
     assert payload["verified_project_outcomes"]["pilot_program_segments"] == 3
@@ -101,6 +101,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["reviewer_feedback_tasks"] == 3
     assert payload["verified_project_outcomes"]["reviewer_feedback_questions"] == 5
     assert payload["verified_project_outcomes"]["reviewer_feedback_conversion_paths"] == 4
+    assert payload["verified_project_outcomes"]["reviewer_funnel_board"] == 1
+    assert payload["verified_project_outcomes"]["reviewer_funnel_stages"] == 4
+    assert payload["verified_project_outcomes"]["reviewer_funnel_open_gaps"] == 4
+    assert payload["verified_project_outcomes"]["reviewer_funnel_remaining_evidence_items"] == 7
     assert payload["verified_project_outcomes"]["feedback_intake_quality"] == 1
     assert payload["verified_project_outcomes"]["feedback_intake_required_sections"] == 5
     assert payload["verified_project_outcomes"]["feedback_intake_try_paths"] == 5
@@ -153,7 +157,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-        "Public demo usage baseline with 5 tracked funnel steps and 5 verified entrypoints"
+        "Public demo usage baseline with 5 tracked funnel steps and 6 verified entrypoints"
         in payload["resume_safe_signals"]
     )
     assert (
@@ -176,10 +180,11 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
             "Public traction dashboard with 4 live project surfaces, 16 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules"
         in payload["resume_safe_signals"]
     )
-    assert "14 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
+    assert "15 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
     assert "CI-verified OpenAPI contract covering 6 integration endpoints" in payload["resume_safe_signals"]
     assert "3 recruiter-safe resume bullets for 4 target roles" in payload["resume_safe_signals"]
-    assert "17 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
+    assert "19 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
+    assert "Reviewer funnel board with 4 public evidence paths and 7 remaining evidence items" in payload["resume_safe_signals"]
     assert "3 pilot outreach messages and 9 review paths for collecting real feedback" in payload["resume_safe_signals"]
     assert (
         "Pilot review tracker with 3 planned reviewer segments, 3 not-contacted baseline entries, and 3 resume-upgrade rules"
