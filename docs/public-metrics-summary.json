@@ -75,7 +75,7 @@
     "CI-verified agent capability matrix with 13 implemented LLM-agent checklist items, 4 partial maturity areas, and 1 explicit not-claimed area",
     "Local Docker Compose reviewer demo with 8 seeded PostgreSQL rows and 3 review paths",
     "Runnable release packet with 3 runnable surfaces, 4 acceptance checks, and 6 required API paths",
-    "External-run evidence packet with 3 reviewer run paths, 8 required submission fields, and 3 resume-upgrade rules",
+    "External-run evidence packet with public issue #18, 3 reviewer run paths, 8 required submission fields, and 3 resume-upgrade rules",
     "CI-verified API smoke report covering 6 passing FastAPI route checks",
     "CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls",
     "Public demo usage baseline with 5 tracked funnel steps and 6 verified entrypoints",

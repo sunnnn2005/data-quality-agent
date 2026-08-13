@@ -132,10 +132,23 @@ PUBLIC_CHECKS = [
         "expected_texts": [
             "docker run",
             "docker compose up --build",
+            "issues/18",
             "No external reviewer run is claimed yet.",
             "Do not ask reviewers to upload private business data.",
         ],
         "evidence_type": "json",
+    },
+    {
+        "id": "external-run-collection-issue",
+        "url": "https://github.com/sunnnn2005/data-quality-agent/issues/18",
+        "expected_text": "External run evidence",
+        "expected_texts": [
+            "Path A: Public demo review",
+            "Path B: Container smoke run",
+            "Path C: Docker Compose PostgreSQL replay",
+            "Permission to count this publicly",
+        ],
+        "evidence_type": "html",
     },
     {
         "id": "api-smoke-report",

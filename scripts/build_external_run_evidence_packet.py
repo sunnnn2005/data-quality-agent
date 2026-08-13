@@ -8,6 +8,7 @@ RUNNABLE_RELEASE_PATH = ROOT / "docs" / "runnable-release-packet.json"
 FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "external-run-evidence-packet.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "external-run-evidence-packet.md"
+PUBLIC_COLLECTION_ISSUE_URL = "https://github.com/sunnnn2005/data-quality-agent/issues/18"
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -99,6 +100,12 @@ def build_external_run_evidence_packet() -> dict[str, Any]:
         "review_path_count": len(review_paths),
         "review_paths": review_paths,
         "submission_url": feedback_url,
+        "public_collection_issue": {
+            "number": 18,
+            "url": PUBLIC_COLLECTION_ISSUE_URL,
+            "purpose": "Public issue where external reviewers can comment with run evidence using the packet template.",
+            "counting_status": "collection_open_not_counted_yet",
+        },
         "submission_field_count": len(submission_fields),
         "submission_fields": submission_fields,
         "upgrade_rule_count": len(upgrade_rules),
@@ -123,9 +130,9 @@ def build_external_run_evidence_packet() -> dict[str, Any]:
             "No enterprise deployment is claimed yet.",
         ],
         "resume_safe_summary": (
-            "Published an external-run evidence packet that defines 3 reviewer run paths, 8 required submission "
-            "fields, 3 resume-upgrade rules, and privacy boundaries for converting future reviewer runs into "
-            "public evidence."
+            "Published an external-run evidence packet and public collection issue defining 3 reviewer run paths, "
+            "8 required submission fields, 3 resume-upgrade rules, and privacy boundaries for converting future "
+            "reviewer runs into public evidence."
         ),
     }
 
@@ -165,6 +172,10 @@ This generated packet defines how an outside reviewer can run the project and su
 {paths}
 
 Submission URL: [{payload["submission_url"]}]({payload["submission_url"]})
+
+Public collection issue: [#{payload["public_collection_issue"]["number"]}]({payload["public_collection_issue"]["url"]})
+
+Counting status: `{payload["public_collection_issue"]["counting_status"]}`
 
 ## Required Submission Fields
 
@@ -209,6 +220,10 @@ def verify_external_run_evidence_packet(payload: dict[str, Any]) -> dict[str, An
         raise AssertionError("external run evidence packet must link 3 runnable surfaces")
     if payload["acceptance_check_count"] != 4:
         raise AssertionError("external run evidence packet must link 4 acceptance checks")
+    if payload["public_collection_issue"]["url"] != PUBLIC_COLLECTION_ISSUE_URL:
+        raise AssertionError("external run evidence packet must link the public collection issue")
+    if payload["public_collection_issue"]["counting_status"] != "collection_open_not_counted_yet":
+        raise AssertionError("external run evidence packet must keep collection open but uncounted")
     commands = " ".join(path.get("command", "") for path in payload["review_paths"])
     if "docker run" not in commands or "docker compose up --build" not in commands:
         raise AssertionError("external run evidence packet must include container and compose commands")

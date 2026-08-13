@@ -16,6 +16,10 @@ Turn external reviewer runs into public, resume-safe evidence by requiring comma
 
 Submission URL: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md)
 
+Public collection issue: [#18](https://github.com/sunnnn2005/data-quality-agent/issues/18)
+
+Counting status: `collection_open_not_counted_yet`
+
 ## Required Submission Fields
 
 | Field | Required | Example |
@@ -54,7 +58,7 @@ Submission URL: [https://github.com/sunnnn2005/data-quality-agent/issues/new?tem
 
 ## Resume-Safe Summary
 
-Published an external-run evidence packet that defines 3 reviewer run paths, 8 required submission fields, 3 resume-upgrade rules, and privacy boundaries for converting future reviewer runs into public evidence.
+Published an external-run evidence packet and public collection issue defining 3 reviewer run paths, 8 required submission fields, 3 resume-upgrade rules, and privacy boundaries for converting future reviewer runs into public evidence.
 
 ## Not Claimed
 

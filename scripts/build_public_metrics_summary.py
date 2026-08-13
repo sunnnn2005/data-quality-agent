@@ -345,7 +345,8 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{len(runnable_release['openapi_coverage']['required_paths'])} required API paths"
             ),
             (
-                f"External-run evidence packet with {external_run_evidence['review_path_count']} reviewer run paths, "
+                f"External-run evidence packet with public issue #{external_run_evidence['public_collection_issue']['number']}, "
+                f"{external_run_evidence['review_path_count']} reviewer run paths, "
                 f"{external_run_evidence['submission_field_count']} required submission fields, and "
                 f"{external_run_evidence['upgrade_rule_count']} resume-upgrade rules"
             ),

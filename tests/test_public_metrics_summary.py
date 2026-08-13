@@ -176,7 +176,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-        "External-run evidence packet with 3 reviewer run paths, 8 required submission fields, and 3 resume-upgrade rules"
+        "External-run evidence packet with public issue #18, 3 reviewer run paths, 8 required submission fields, and 3 resume-upgrade rules"
         in payload["resume_safe_signals"]
     )
     assert "CI-verified API smoke report covering 6 passing FastAPI route checks" in payload["resume_safe_signals"]

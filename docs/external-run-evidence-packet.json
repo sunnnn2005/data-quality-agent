@@ -23,8 +23,14 @@
     "Count only public GitHub issues where the reviewer gave permission to count the run."
   ],
   "project": "Data Quality Agent",
+  "public_collection_issue": {
+    "counting_status": "collection_open_not_counted_yet",
+    "number": 18,
+    "purpose": "Public issue where external reviewers can comment with run evidence using the packet template.",
+    "url": "https://github.com/sunnnn2005/data-quality-agent/issues/18"
+  },
   "purpose": "Turn external reviewer runs into public, resume-safe evidence by requiring commands, environment, observed results, and permission before any user or feedback claim is counted.",
-  "resume_safe_summary": "Published an external-run evidence packet that defines 3 reviewer run paths, 8 required submission fields, 3 resume-upgrade rules, and privacy boundaries for converting future reviewer runs into public evidence.",
+  "resume_safe_summary": "Published an external-run evidence packet and public collection issue defining 3 reviewer run paths, 8 required submission fields, 3 resume-upgrade rules, and privacy boundaries for converting future reviewer runs into public evidence.",
   "review_path_count": 3,
   "review_paths": [
     {

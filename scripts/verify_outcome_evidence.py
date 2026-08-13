@@ -207,6 +207,13 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("external run evidence packet must define 3 upgrade rules")
                 if external_run_evidence.get("current_counts", {}).get("confirmed_external_users") != 0:
                     raise AssertionError("external run evidence packet must preserve zero confirmed-user baseline")
+                if external_run_evidence.get("public_collection_issue", {}).get("url", "").endswith("/issues/18") is False:
+                    raise AssertionError("external run evidence packet must link public collection issue #18")
+                if (
+                    external_run_evidence.get("public_collection_issue", {}).get("counting_status")
+                    != "collection_open_not_counted_yet"
+                ):
+                    raise AssertionError("external run evidence packet must keep the public collection issue uncounted")
                 if "permission_to_count_publicly" not in json.dumps(external_run_evidence):
                     raise AssertionError("external run evidence packet must require permission to count publicly")
                 if "Do not ask reviewers to upload private business data." not in external_run_evidence.get(
