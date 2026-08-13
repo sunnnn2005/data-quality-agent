@@ -33,7 +33,7 @@
     "issues_total": 10,
     "reproducible_feedback_items": 0,
     "stars": 0,
-    "test_count": 60,
+    "test_count": 61,
     "watchers": 0
   },
   "release": "v0.2.0",
@@ -41,15 +41,17 @@
   "resume_policy": "Use public demo, release, CI, container, support-ticket outcomes, and readiness metrics now. Do not claim external users, customer feedback, or production adoption until corresponding public metrics are greater than zero.",
   "resume_safe_signals": [
     "Public demo and v0.2.0 release",
-    "60 passing CI tests",
+    "61 passing CI tests",
     "4 support-ticket issue categories",
     "3 evidence-ranked root-cause hypotheses",
     "Dataset-level memory retrieval over recent sanitized traces",
+    "3-scenario agent evaluation harness",
     "5 evidence-backed remediation actions",
     "9 implemented LLM agent-readiness capabilities",
     "1 public fork and 0 public stars as current honest adoption baseline"
   ],
   "verified_project_outcomes": {
+    "eval_scenarios": 3,
     "implemented_agent_capabilities": 9,
     "partial_agent_capabilities": 4,
     "recommended_actions": 5,

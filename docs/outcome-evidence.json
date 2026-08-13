@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "60 passing CI tests",
+      "resume_signal": "61 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 60,
+      "metric_value": 61,
       "status": "verified"
     },
     {
@@ -107,6 +107,16 @@
       "evidence_type": "source_and_tests",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_agent.py",
       "metric_name": "root_cause_hypothesis_count",
+      "metric_value": 3,
+      "status": "verified"
+    },
+    {
+      "id": "eval-summary",
+      "resume_signal": "CI-verified agent evaluation harness",
+      "claim": "The project publishes a generated evaluation summary covering status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, report attachment, and latency across 3 scenarios.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json",
+      "metric_name": "eval_scenario_count",
       "metric_value": 3,
       "status": "verified"
     },

@@ -22,6 +22,8 @@ jobs:
         run: python scripts/verify_support_ticket_demo.py
       - name: Verify business impact artifact
         run: python scripts/verify_business_impact.py
+      - name: Verify evaluation summary artifact
+        run: python scripts/build_eval_summary.py
       - name: Verify feedback metrics artifact
         env:
           FEEDBACK_ITEMS: "0"

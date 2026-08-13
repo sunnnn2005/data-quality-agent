@@ -1,0 +1,24 @@
+{
+  "deterministic_baseline": {
+    "average_latency_ms": 1.33,
+    "evidence_support_rate": 1.0,
+    "finding_recall": 1.0,
+    "status_accuracy": 1.0
+  },
+  "generated_by": "scripts/build_eval_summary.py",
+  "not_claimed": [
+    "paid model benchmark results",
+    "production traffic evaluation",
+    "external human-labeled evaluation set"
+  ],
+  "project": "Data Quality Agent",
+  "resume_safe_summary": "Built a 3-scenario eval harness measuring status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, report attachment, and latency.",
+  "scenario_count": 3,
+  "tool_agent_disabled_fallback": {
+    "average_latency_ms": 0,
+    "fallback_success_rate": 1.0,
+    "final_report_attachment_rate": 0.0,
+    "required_report_tool_rate": 0.0,
+    "status_accuracy": 1.0
+  }
+}

@@ -13,6 +13,7 @@ OUTCOME_SUMMARY_PATH = ROOT / "docs" / "outcome-summary.json"
 SUPPORT_TICKET_ARTIFACT_PATH = ROOT / "docs" / "verified-support-ticket-result.json"
 PUBLIC_METRICS_SUMMARY_PATH = ROOT / "docs" / "public-metrics-summary.json"
 AGENT_READINESS_PATH = ROOT / "docs" / "agent-readiness.json"
+EVAL_SUMMARY_PATH = ROOT / "docs" / "eval-summary.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
 PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
 RESUME_EVIDENCE_PATH = ROOT / "docs" / "resume-evidence.md"
@@ -40,6 +41,7 @@ def verify_manifest() -> dict[str, int]:
     support_ticket_artifact = load_payload(SUPPORT_TICKET_ARTIFACT_PATH)
     public_metrics_summary = load_payload(PUBLIC_METRICS_SUMMARY_PATH)
     agent_readiness = load_payload(AGENT_READINESS_PATH)
+    eval_summary = load_payload(EVAL_SUMMARY_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
     feedback_log = FEEDBACK_LOG_PATH.read_text().lower()
@@ -93,7 +95,7 @@ def verify_manifest() -> dict[str, int]:
                         f"but outcome summary has {actions}"
                     )
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 60:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 61:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -132,6 +134,20 @@ def verify_manifest() -> dict[str, int]:
                     )
                 if not all(item.get("evidence") and item.get("supporting_checks") for item in hypotheses):
                     raise AssertionError("root-cause hypotheses must include evidence and supporting checks")
+            elif metric_name == "eval_scenario_count":
+                eval_tests = (ROOT / "tests" / "test_eval_summary.py").read_text()
+                eval_script = (ROOT / "scripts" / "build_eval_summary.py").read_text()
+                if eval_summary.get("scenario_count") != claim.get("metric_value"):
+                    raise AssertionError(
+                        f"claim {claim['id']} metric mismatch: eval_scenario_count="
+                        f"{claim.get('metric_value')} but eval summary has {eval_summary.get('scenario_count')}"
+                    )
+                if eval_summary.get("deterministic_baseline", {}).get("finding_recall") != 1.0:
+                    raise AssertionError("eval summary must include deterministic finding recall")
+                if "verify_eval_summary" not in eval_script:
+                    raise AssertionError("eval summary script must verify generated metrics")
+                if "test_eval_summary_publishes_resume_safe_agent_metrics" not in eval_tests:
+                    raise AssertionError("eval summary must have a dedicated test")
             elif metrics.get(metric_name) != claim.get("metric_value"):
                 raise AssertionError(
                     f"claim {claim['id']} metric mismatch: {metric_name}={claim.get('metric_value')} "
@@ -184,7 +200,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 60", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 61", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 
