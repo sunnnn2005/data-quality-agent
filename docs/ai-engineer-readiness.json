@@ -2,7 +2,7 @@
   "evidence_counts": {
     "agent_readiness_implemented": 16,
     "allowed_tools": 7,
-    "application_evidence_links": 31,
+    "application_evidence_links": 32,
     "business_replay_findings": 5,
     "business_replay_rows": 8,
     "capability_matrix_implemented": 13,

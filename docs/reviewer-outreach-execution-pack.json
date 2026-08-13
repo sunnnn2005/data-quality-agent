@@ -1,0 +1,286 @@
+{
+  "evidence_goal_count": 5,
+  "evidence_goals": [
+    "ai_engineer_review_items",
+    "business_case_feedback_items",
+    "confirmed_external_users",
+    "external_feedback_items",
+    "reproducible_feedback_items"
+  ],
+  "follow_up_rule_count": 8,
+  "generated_by": "scripts/build_reviewer_outreach_execution_pack.py",
+  "manual_execution_rules": [
+    "Do not mark a message as sent until it is actually sent to a real reviewer.",
+    "Do not count private replies as public evidence.",
+    "Do not count self-authored planning issues as external evidence.",
+    "Do not ask reviewers to upload raw private business data.",
+    "Do not write users, feedback, or business impact on a resume until a public issue passes the evidence gate."
+  ],
+  "outreach_item_count": 8,
+  "outreach_items": [
+    {
+      "channel": "LinkedIn, class Discord, club Slack, or direct message",
+      "counts_toward": "external_feedback_items",
+      "entry_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "evidence_acceptance_checklist": [
+        "Public GitHub issue with demo path tried",
+        "One concrete confusing, useful, or broken behavior",
+        "Permission to count the issue as external feedback"
+      ],
+      "follow_up": {
+        "after_days": 4,
+        "message": "Quick follow-up on my Data Quality Agent review request. No pressure, but if you have 8-15 minutes, the entry point is https://sunnnn2005.github.io/data-quality-agent/ and the public evidence form is https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md. A short redacted comment is enough.",
+        "status_before_follow_up": "sent_no_response"
+      },
+      "id": "outreach_01_review_uc_davis_ds_peer_demo",
+      "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
+      "personalization_checklist": [
+        "Name the reviewer segment: UC Davis data science peer.",
+        "Mention that the project is public and starts from a zero-feedback baseline.",
+        "Ask them to use this entry path: https://sunnnn2005.github.io/data-quality-agent/.",
+        "Ask them not to share private data and to submit only public, redacted evidence."
+      ],
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "ready_to_send_message": "Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. Could you spend 8 minutes trying my public Data Quality Agent demo and leave one GitHub issue with anything confusing, useful, or broken? I am tracking feedback publicly instead of claiming users without proof. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.",
+      "reviewer_segment": "UC Davis data science peer",
+      "send_status": "not_sent",
+      "source_task_id": "review_uc_davis_ds_peer_demo",
+      "status_update_rule": "Move from not_sent to sent only after the message is actually sent. Move to completed only after a public GitHub issue passes the evidence gate.",
+      "subject": "Could you review my Data Quality Agent project? (UC Davis data science peer)",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    },
+    {
+      "channel": "LinkedIn, class Discord, club Slack, or direct message",
+      "counts_toward": "external_feedback_items",
+      "entry_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "evidence_acceptance_checklist": [
+        "Public GitHub issue with reviewed URL",
+        "Specific product or engineering feedback",
+        "Permission to count the issue as external feedback"
+      ],
+      "follow_up": {
+        "after_days": 4,
+        "message": "Quick follow-up on my Data Quality Agent review request. No pressure, but if you have 8-15 minutes, the entry point is https://sunnnn2005.github.io/data-quality-agent/ and the public evidence form is https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md. A short redacted comment is enough.",
+        "status_before_follow_up": "sent_no_response"
+      },
+      "id": "outreach_02_review_student_swe_peer_demo",
+      "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
+      "personalization_checklist": [
+        "Name the reviewer segment: student software engineer peer.",
+        "Mention that the project is public and starts from a zero-feedback baseline.",
+        "Ask them to use this entry path: https://sunnnn2005.github.io/data-quality-agent/.",
+        "Ask them not to share private data and to submit only public, redacted evidence."
+      ],
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "ready_to_send_message": "Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. I am collecting public review evidence for a data-quality LLM agent project. If anyone can try the demo, please leave one GitHub issue with what worked, what broke, or what would make it more useful for real data workflows. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.",
+      "reviewer_segment": "student software engineer peer",
+      "send_status": "not_sent",
+      "source_task_id": "review_student_swe_peer_demo",
+      "status_update_rule": "Move from not_sent to sent only after the message is actually sent. Move to completed only after a public GitHub issue passes the evidence gate.",
+      "subject": "Could you review my Data Quality Agent project? (student software engineer peer)",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    },
+    {
+      "channel": "LinkedIn, email, or mentor message",
+      "counts_toward": "reproducible_feedback_items",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent",
+      "evidence_acceptance_checklist": [
+        "Command or run path used",
+        "Redacted result summary",
+        "Whether the run was reproducible"
+      ],
+      "follow_up": {
+        "after_days": 4,
+        "message": "Quick follow-up on my Data Quality Agent review request. No pressure, but if you have 8-15 minutes, the entry point is https://github.com/sunnnn2005/data-quality-agent and the public evidence form is https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md. A short redacted comment is enough.",
+        "status_before_follow_up": "sent_no_response"
+      },
+      "id": "outreach_03_review_local_replay_engineer",
+      "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
+      "personalization_checklist": [
+        "Name the reviewer segment: engineer comfortable with Docker or local setup.",
+        "Mention that the project is public and starts from a zero-feedback baseline.",
+        "Ask them to use this entry path: https://github.com/sunnnn2005/data-quality-agent.",
+        "Ask them not to share private data and to submit only public, redacted evidence."
+      ],
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "ready_to_send_message": "Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. Could you clone my Data Quality Agent repo, run the local replay path, and submit whether the result was reproducible? Please avoid raw private data; a short redacted run summary is enough. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.",
+      "reviewer_segment": "engineer comfortable with Docker or local setup",
+      "send_status": "not_sent",
+      "source_task_id": "review_local_replay_engineer",
+      "status_update_rule": "Move from not_sent to sent only after the message is actually sent. Move to completed only after a public GitHub issue passes the evidence gate.",
+      "subject": "Could you review my Data Quality Agent project? (engineer comfortable with Docker or local setup)",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md"
+    },
+    {
+      "channel": "LinkedIn, email, or mentor message",
+      "counts_toward": "confirmed_external_users",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-feedback-packet.md",
+      "evidence_acceptance_checklist": [
+        "Public confirmation of demo or repo usage",
+        "Path used",
+        "Permission to count as confirmed external use"
+      ],
+      "follow_up": {
+        "after_days": 4,
+        "message": "Quick follow-up on my Data Quality Agent review request. No pressure, but if you have 8-15 minutes, the entry point is https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-feedback-packet.md and the public evidence form is https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md. A short redacted comment is enough.",
+        "status_before_follow_up": "sent_no_response"
+      },
+      "id": "outreach_04_review_confirmed_external_use",
+      "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
+      "personalization_checklist": [
+        "Name the reviewer segment: reviewer who tried demo or local repo.",
+        "Mention that the project is public and starts from a zero-feedback baseline.",
+        "Ask them to use this entry path: https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-feedback-packet.md.",
+        "Ask them not to share private data and to submit only public, redacted evidence."
+      ],
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "ready_to_send_message": "Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. If you already tried the Data Quality Agent demo or ran the repo locally, could you leave a short public note saying what path you used and whether the result was understandable? I only count confirmed external use when it is public and specific. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.",
+      "reviewer_segment": "reviewer who tried demo or local repo",
+      "send_status": "not_sent",
+      "source_task_id": "review_confirmed_external_use",
+      "status_update_rule": "Move from not_sent to sent only after the message is actually sent. Move to completed only after a public GitHub issue passes the evidence gate.",
+      "subject": "Could you review my Data Quality Agent project? (reviewer who tried demo or local repo)",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    },
+    {
+      "channel": "LinkedIn, class Discord, club Slack, or direct message",
+      "counts_toward": "business_case_feedback_items",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md",
+      "evidence_acceptance_checklist": [
+        "Anonymized business-data quality problem",
+        "Expected business impact",
+        "No private rows or sensitive fields"
+      ],
+      "follow_up": {
+        "after_days": 4,
+        "message": "Quick follow-up on my Data Quality Agent review request. No pressure, but if you have 8-15 minutes, the entry point is https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md and the public evidence form is https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md. A short redacted comment is enough.",
+        "status_before_follow_up": "sent_no_response"
+      },
+      "id": "outreach_05_review_data_analyst_business_case",
+      "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
+      "personalization_checklist": [
+        "Name the reviewer segment: data analyst or analytics student.",
+        "Mention that the project is public and starts from a zero-feedback baseline.",
+        "Ask them to use this entry path: https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md.",
+        "Ask them not to share private data and to submit only public, redacted evidence."
+      ],
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "ready_to_send_message": "Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. Do you have an anonymized data-quality problem this project should handle, such as duplicate IDs, stale exports, missing routing fields, or suspicious numeric values? A public business-case issue with no raw data would help me test real usefulness. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.",
+      "reviewer_segment": "data analyst or analytics student",
+      "send_status": "not_sent",
+      "source_task_id": "review_data_analyst_business_case",
+      "status_update_rule": "Move from not_sent to sent only after the message is actually sent. Move to completed only after a public GitHub issue passes the evidence gate.",
+      "subject": "Could you review my Data Quality Agent project? (data analyst or analytics student)",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md"
+    },
+    {
+      "channel": "LinkedIn or email to someone who has seen messy CSV, support, sales, or operations data",
+      "counts_toward": "business_case_feedback_items",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md",
+      "evidence_acceptance_checklist": [
+        "Workflow affected by data-quality failure",
+        "What decision would be wrong if the data is bad",
+        "Permission to count the anonymized case as business feedback"
+      ],
+      "follow_up": {
+        "after_days": 4,
+        "message": "Quick follow-up on my Data Quality Agent review request. No pressure, but if you have 8-15 minutes, the entry point is https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md and the public evidence form is https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md. A short redacted comment is enough.",
+        "status_before_follow_up": "sent_no_response"
+      },
+      "id": "outreach_06_review_operator_business_case",
+      "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
+      "personalization_checklist": [
+        "Name the reviewer segment: small-business operator or operations teammate.",
+        "Mention that the project is public and starts from a zero-feedback baseline.",
+        "Ask them to use this entry path: https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md.",
+        "Ask them not to share private data and to submit only public, redacted evidence."
+      ],
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "ready_to_send_message": "Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. Do you have an anonymized data-quality problem this project should handle, such as duplicate IDs, stale exports, missing routing fields, or suspicious numeric values? A public business-case issue with no raw data would help me test real usefulness. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.",
+      "reviewer_segment": "small-business operator or operations teammate",
+      "send_status": "not_sent",
+      "source_task_id": "review_operator_business_case",
+      "status_update_rule": "Move from not_sent to sent only after the message is actually sent. Move to completed only after a public GitHub issue passes the evidence gate.",
+      "subject": "Could you review my Data Quality Agent project? (small-business operator or operations teammate)",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md"
+    },
+    {
+      "channel": "LinkedIn, email, or mentor message",
+      "counts_toward": "ai_engineer_review_items",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md",
+      "evidence_acceptance_checklist": [
+        "Inspected LLM tool-calling or agent-readiness path",
+        "Concrete AI Engineer credibility feedback",
+        "Permission to count as AI Engineer review evidence"
+      ],
+      "follow_up": {
+        "after_days": 4,
+        "message": "Quick follow-up on my Data Quality Agent review request. No pressure, but if you have 8-15 minutes, the entry point is https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md and the public evidence form is https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md. A short redacted comment is enough.",
+        "status_before_follow_up": "sent_no_response"
+      },
+      "id": "outreach_07_review_ai_engineer_agent_readiness",
+      "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
+      "personalization_checklist": [
+        "Name the reviewer segment: AI engineer, mentor, or ML systems reviewer.",
+        "Mention that the project is public and starts from a zero-feedback baseline.",
+        "Ask them to use this entry path: https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md.",
+        "Ask them not to share private data and to submit only public, redacted evidence."
+      ],
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "ready_to_send_message": "Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. I am improving this project for AI Engineer internship applications. Could you review whether the LLM tool-calling loop, business-data connector, structured output, guardrails, and evidence trail look credible enough for an intern interview? If yes, please leave a public AI Engineer review issue with the path you inspected. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.",
+      "reviewer_segment": "AI engineer, mentor, or ML systems reviewer",
+      "send_status": "not_sent",
+      "source_task_id": "review_ai_engineer_agent_readiness",
+      "status_update_rule": "Move from not_sent to sent only after the message is actually sent. Move to completed only after a public GitHub issue passes the evidence gate.",
+      "subject": "Could you review my Data Quality Agent project? (AI engineer, mentor, or ML systems reviewer)",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md"
+    },
+    {
+      "channel": "GitHub discussion, maintainer DM, or project community channel",
+      "counts_toward": "external_feedback_items",
+      "entry_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "evidence_acceptance_checklist": [
+        "Public issue with contributor-readiness feedback",
+        "One suggested improvement for README, setup, tests, or issue templates",
+        "Permission to count the issue as external feedback"
+      ],
+      "follow_up": {
+        "after_days": 4,
+        "message": "Quick follow-up on my Data Quality Agent review request. No pressure, but if you have 8-15 minutes, the entry point is https://sunnnn2005.github.io/data-quality-agent/ and the public evidence form is https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md. A short redacted comment is enough.",
+        "status_before_follow_up": "sent_no_response"
+      },
+      "id": "outreach_08_review_open_source_maintainer",
+      "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
+      "personalization_checklist": [
+        "Name the reviewer segment: open-source maintainer or GitHub contributor.",
+        "Mention that the project is public and starts from a zero-feedback baseline.",
+        "Ask them to use this entry path: https://sunnnn2005.github.io/data-quality-agent/.",
+        "Ask them not to share private data and to submit only public, redacted evidence."
+      ],
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "ready_to_send_message": "Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. Could you review whether this repo is understandable for an outside contributor? I am especially looking for feedback on README clarity, issue templates, evidence artifacts, and whether a first-time contributor could run the project. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.",
+      "reviewer_segment": "open-source maintainer or GitHub contributor",
+      "send_status": "not_sent",
+      "source_task_id": "review_open_source_maintainer",
+      "status_update_rule": "Move from not_sent to sent only after the message is actually sent. Move to completed only after a public GitHub issue passes the evidence gate.",
+      "subject": "Could you review my Data Quality Agent project? (open-source maintainer or GitHub contributor)",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    }
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Convert the reviewer action queue into ready-to-send outreach messages, follow-up rules, and evidence checklists while preserving the zero-sent and zero-completed baseline.",
+  "ready_message_count": 8,
+  "resume_safe_summary": "Published a CI-verified outreach execution pack with 8 ready-to-send reviewer messages, 8 follow-up rules, 5 evidence goals, and zero sent or completed outreach claimed.",
+  "resume_status": "ready_to_send_not_claimable",
+  "send_status_counts": {
+    "completed": 0,
+    "not_sent": 8,
+    "sent": 0
+  },
+  "source_queue": {
+    "evidence_goal_count": 5,
+    "not_contacted_count": 8,
+    "queue_count": 8,
+    "resume_status": "outreach_queue_ready_not_claimable"
+  }
+}
