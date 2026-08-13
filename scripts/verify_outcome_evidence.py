@@ -6,6 +6,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE_PATH = ROOT / "docs" / "outcome-evidence.json"
 METRICS_PATH = ROOT / "docs" / "adoption-metrics.json"
+FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
 HISTORY_PATH = ROOT / "docs" / "adoption-history.jsonl"
 BUSINESS_IMPACT_PATH = ROOT / "docs" / "business-impact.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
@@ -29,6 +30,7 @@ def validate_url(value: str) -> None:
 def verify_manifest() -> dict[str, int]:
     evidence = load_payload(EVIDENCE_PATH)
     metrics = load_payload(METRICS_PATH)
+    feedback_metrics = load_payload(FEEDBACK_METRICS_PATH)
     business_impact = load_payload(BUSINESS_IMPACT_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
@@ -57,8 +59,11 @@ def verify_manifest() -> dict[str, int]:
         metric_name = claim.get("metric_name")
         if metric_name:
             if metric_name == "external_feedback_items":
-                if claim.get("metric_value") != 0:
-                    raise AssertionError("external feedback must stay at 0 until public feedback evidence exists")
+                if feedback_metrics.get("external_feedback_items") != claim.get("metric_value"):
+                    raise AssertionError(
+                        f"claim {claim['id']} metric mismatch: external_feedback_items={claim.get('metric_value')} "
+                        f"but feedback metrics has {feedback_metrics.get('external_feedback_items')}"
+                    )
             elif metric_name == "support_ticket_issue_categories":
                 if business_impact.get("issue_category_count") != claim.get("metric_value"):
                     raise AssertionError(
@@ -93,6 +98,9 @@ def verify_manifest() -> dict[str, int]:
         raise AssertionError("feedback log must keep an explicit zero external feedback baseline")
     if "confirmed external users | 0" not in feedback_log:
         raise AssertionError("feedback log must keep an explicit zero external user baseline")
+    for key in ("external_feedback_items", "confirmed_external_users", "reproducible_feedback_items"):
+        if metrics.get(key) != feedback_metrics.get(key):
+            raise AssertionError(f"adoption metrics {key} must match feedback metrics")
     if not history:
         raise AssertionError("adoption history must include at least one point")
     latest = history[-1]

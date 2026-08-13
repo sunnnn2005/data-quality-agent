@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "50 passing CI tests",
+      "resume_signal": "51 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 50,
+      "metric_value": 51,
       "status": "verified"
     },
     {
@@ -86,6 +86,16 @@
       "claim": "The project has a public feedback issue template and a feedback log that starts from an honest zero-feedback baseline.",
       "evidence_type": "documentation",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/feedback-log.md",
+      "metric_name": "external_feedback_items",
+      "metric_value": 0,
+      "status": "verified"
+    },
+    {
+      "id": "feedback-metrics",
+      "resume_signal": "Machine-readable feedback metrics",
+      "claim": "Feedback and reproducible reports are tracked through a public metrics artifact generated from issue labels.",
+      "evidence_type": "metrics",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/feedback-metrics.json",
       "metric_name": "external_feedback_items",
       "metric_value": 0,
       "status": "verified"

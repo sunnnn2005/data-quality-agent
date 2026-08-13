@@ -9,6 +9,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "business-impact-artifact",
         "outcome-evidence-manifest",
         "adoption-metrics",
+        "feedback-metrics",
         "github-release",
     } <= check_ids
 
@@ -16,8 +17,8 @@ def test_public_evidence_health_requires_core_public_signals():
 def test_public_evidence_health_verifier_rejects_failed_checks():
     payload = {
         "status": "FAIL",
-        "check_count": 5,
-        "passed_count": 4,
+        "check_count": 6,
+        "passed_count": 5,
         "failed_count": 1,
         "checks": [{"id": "public-demo", "url": "https://example.test", "passed": False}],
     }

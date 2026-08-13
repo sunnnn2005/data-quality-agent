@@ -33,7 +33,13 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 50},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 51},
+        "evidence_type": "json",
+    },
+    {
+        "id": "feedback-metrics",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/feedback-metrics.json",
+        "expected_json": {"external_feedback_items": 0, "confirmed_external_users": 0, "reproducible_feedback_items": 0},
         "evidence_type": "json",
     },
     {
@@ -112,7 +118,7 @@ def verify_public_evidence_health(payload: dict[str, Any]) -> None:
     if payload["status"] != "PASS":
         failures = [check for check in payload["checks"] if not check["passed"]]
         raise AssertionError(f"public evidence health failed: {failures}")
-    if payload["check_count"] < 5:
+    if payload["check_count"] < 6:
         raise AssertionError("public evidence health should check demo, artifacts, metrics, and release")
 
 

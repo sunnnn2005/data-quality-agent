@@ -11,6 +11,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_PATH = ROOT / "docs" / "adoption-metrics.json"
 HISTORY_PATH = ROOT / "docs" / "adoption-history.jsonl"
+FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
 REPO = "sunnnn2005/data-quality-agent"
 
 
@@ -29,6 +30,7 @@ def _run_gh(args: list[str]) -> dict[str, Any] | None:
 
 
 def collect_metrics() -> dict[str, Any]:
+    feedback_metrics = _load_feedback_metrics()
     repo_payload = _run_gh(
         [
             "repo",
@@ -57,6 +59,9 @@ def collect_metrics() -> dict[str, Any]:
         "forks": _read_int_env("ADOPTION_FORKS", repo_payload, "forkCount"),
         "watchers": _read_nested_int(repo_payload, ["watchers", "totalCount"], "ADOPTION_WATCHERS"),
         "open_feedback_loop": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+        "external_feedback_items": feedback_metrics.get("external_feedback_items", 0),
+        "confirmed_external_users": feedback_metrics.get("confirmed_external_users", 0),
+        "reproducible_feedback_items": feedback_metrics.get("reproducible_feedback_items", 0),
         "issues_total": _read_nested_int(repo_payload, ["issues", "totalCount"], "ADOPTION_ISSUES_TOTAL"),
         "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
         "release": release_payload
@@ -95,6 +100,16 @@ def _read_nested_int(payload: dict[str, Any] | None, keys: list[str], env_name: 
     return int(value or 0)
 
 
+def _load_feedback_metrics() -> dict[str, Any]:
+    if FEEDBACK_METRICS_PATH.exists():
+        return json.loads(FEEDBACK_METRICS_PATH.read_text())
+    return {
+        "external_feedback_items": int(os.environ.get("FEEDBACK_ITEMS", "0")),
+        "confirmed_external_users": int(os.environ.get("CONFIRMED_EXTERNAL_USERS", "0")),
+        "reproducible_feedback_items": int(os.environ.get("REPRODUCIBLE_FEEDBACK_ITEMS", "0")),
+    }
+
+
 def _collect_test_count() -> int:
     try:
         completed = subprocess.run(
@@ -128,6 +143,8 @@ def append_history(metrics: dict[str, Any]) -> None:
         "forks": metrics["forks"],
         "watchers": metrics["watchers"],
         "issues_total": metrics["issues_total"],
+        "external_feedback_items": metrics["external_feedback_items"],
+        "confirmed_external_users": metrics["confirmed_external_users"],
         "test_count": metrics["test_count"],
         "release": metrics["release"]["tagName"],
     }
