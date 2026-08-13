@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 12 |
-| Passing CI tests | 122 |
+| Passing CI tests | 124 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -113,13 +113,13 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Public availability reachable endpoints | 4 |
 | Public availability successful workflows | 3 |
 | Live project scorecard | 1 |
-| Scorecard reviewer paths | 20 |
+| Scorecard reviewer paths | 21 |
 | OpenAPI required integration endpoints | 6 |
 | OpenAPI paths | 14 |
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 24 |
+| Application evidence links | 25 |
 | Pilot outreach messages | 3 |
 | Pilot review paths | 10 |
 | Pilot program segments | 3 |
@@ -193,7 +193,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 122 passing CI tests
+- 124 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -230,10 +230,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Public traction dashboard with 4 live project surfaces, 18 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
 - GitHub traffic snapshot with 9 views, 3 unique visitors, 79 clones, and 50 unique cloners in GitHub's rolling 14-day window
 - Public availability snapshot with 4/4 reachable public endpoints and 3/3 successful main-branch workflows
-- 20 reviewer paths in a CI-verified live project scorecard
+- 21 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
-- 24 application evidence links in a recruiter-ready evidence pack
+- 25 application evidence links in a recruiter-ready evidence pack
 - 3 pilot outreach messages and 10 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
 - Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups
@@ -242,6 +242,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Business-data replay packet with 3 safe replay paths, 8 evidence fields, 5 safety requirements, and zero current external replay claims
 - Business replay demo with 8 anonymized rows, 5 findings, 4 failed check types, 4 business-rule references, and deterministic verification
 - Real-model runbook with 4 run commands, 15 evidence fields, 8 acceptance criteria, 5 safety gates, and zero current real model run claims
+- Real-model evidence capture gate with 17 required fields, 0 accepted real-model runs, and 4 blocked outcome claims until redacted telemetry passes
 - 5 evidence-backed remediation actions
 - 16 implemented LLM agent-readiness capabilities
 - 1 public fork and 0 public stars as current honest adoption baseline

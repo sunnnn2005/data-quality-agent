@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 122
+    assert payload["public_metrics"]["test_count"] == 124
     assert payload["public_metrics"]["github_view_count"] >= 0
     assert payload["public_metrics"]["github_unique_visitors"] <= payload["public_metrics"]["github_view_count"]
     assert payload["public_metrics"]["github_clone_count"] >= 0
@@ -105,12 +105,12 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["public_availability_snapshot"] == 1
     assert payload["verified_project_outcomes"]["public_availability_endpoint_count"] == 4
     assert payload["verified_project_outcomes"]["live_project_scorecard"] == 1
-    assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 20
+    assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 21
     assert payload["verified_project_outcomes"]["openapi_required_endpoints"] == 6
     assert payload["verified_project_outcomes"]["recruiter_pitch_resume_bullets"] == 3
     assert payload["verified_project_outcomes"]["recruiter_pitch_target_roles"] == 4
     assert payload["verified_project_outcomes"]["application_evidence_pack"] == 1
-    assert payload["verified_project_outcomes"]["application_evidence_links"] == 24
+    assert payload["verified_project_outcomes"]["application_evidence_links"] == 25
     assert payload["verified_project_outcomes"]["pilot_outreach_messages"] == 3
     assert payload["verified_project_outcomes"]["pilot_review_paths"] == 10
     assert payload["verified_project_outcomes"]["pilot_program_segments"] == 3
@@ -174,6 +174,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["real_model_evidence_fields"] == 15
     assert payload["verified_project_outcomes"]["real_model_acceptance_criteria"] == 8
     assert payload["verified_project_outcomes"]["real_model_safety_gates"] == 5
+    assert payload["verified_project_outcomes"]["real_model_evidence_capture"] == 1
+    assert payload["verified_project_outcomes"]["real_model_capture_required_fields"] == 17
+    assert payload["verified_project_outcomes"]["real_model_capture_accepted_runs"] == 0
+    assert payload["verified_project_outcomes"]["real_model_capture_blocked_claims"] == 4
     assert payload["verified_project_outcomes"]["recommended_actions"] == 5
     assert payload["verified_project_outcomes"]["implemented_agent_capabilities"] == 16
     assert "14-scenario agent evaluation harness" in payload["resume_safe_signals"]
@@ -233,10 +237,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     )
     assert any("GitHub traffic snapshot with" in signal for signal in payload["resume_safe_signals"])
     assert any("Public availability snapshot with" in signal for signal in payload["resume_safe_signals"])
-    assert "20 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
+    assert "21 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]
     assert "CI-verified OpenAPI contract covering 6 integration endpoints" in payload["resume_safe_signals"]
     assert "3 recruiter-safe resume bullets for 4 target roles" in payload["resume_safe_signals"]
-    assert "24 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
+    assert "25 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
     assert any("External reviewer outreach tracker with 3 queued reviewer segments" in signal for signal in payload["resume_safe_signals"])
     assert any("External reviewer evidence gate with 5 validation rules" in signal for signal in payload["resume_safe_signals"])
     assert any("Accepted evidence rollup with 4 tracked outcome metrics" in signal for signal in payload["resume_safe_signals"])

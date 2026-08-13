@@ -6,8 +6,8 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 
 | Metric | Value |
 | --- | ---: |
-| Passing Tests | 122 |
-| Verified Resume Claims | 65 |
+| Passing Tests | 124 |
+| Verified Resume Claims | 66 |
 | Implemented Agent Capabilities | 16 |
 | Support Ticket Issue Categories | 4 |
 | Openapi Required Endpoints | 6 |
@@ -36,6 +36,7 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 - [Inspect business-data replay packet](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-data-replay-packet.md)
 - [Inspect business replay demo](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-replay-demo.md)
 - [Inspect real-model runbook](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-runbook.md)
+- [Inspect real-model evidence capture](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-evidence-capture.md)
 - [Inspect OpenAPI contract](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/api-contract.md)
 - [Inspect safety boundaries](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-safety-boundaries.md)
 - [Inspect agent capability matrix](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-capability-matrix.md)
@@ -69,6 +70,7 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 | Has Business Data Replay Packet | True |
 | Has Business Replay Demo | True |
 | Has Real Model Runbook | True |
+| Has Real Model Evidence Capture | True |
 | Has Pilot Conversion Board | True |
 | Has Resume Outcome Readiness | True |
 | Has Reviewer Funnel Board | True |
@@ -79,7 +81,7 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 
 ## Resume-Safe Summary
 
-Live project scorecard: public demo, v0.3.0 release, container image, 122 passing CI tests, 65 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
+Live project scorecard: public demo, v0.3.0 release, container image, 124 passing CI tests, 66 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
 
 ## Not Claimed
 

@@ -1,0 +1,76 @@
+{
+  "accepted_real_model_run_count": 0,
+  "accepted_runs": [],
+  "blocked_outcome_claim_count": 4,
+  "blocked_outcome_claims": [
+    "real_model_runs",
+    "real_model_tool_calling_runs",
+    "real_model_verified_reports",
+    "real_model_cost_tracked_runs"
+  ],
+  "capture_required_field_count": 17,
+  "capture_required_fields": [
+    "trace_id",
+    "provider",
+    "model",
+    "prompt_version",
+    "dataset_id",
+    "model_call_count",
+    "tool_call_count",
+    "distinct_tool_count",
+    "used_strategy_tool",
+    "used_required_report_tool",
+    "final_report_attached",
+    "total_tokens",
+    "estimated_cost_usd",
+    "latency_ms",
+    "verification_passed",
+    "redaction_status",
+    "raw_prompt_logged"
+  ],
+  "claimable_metric_count": 4,
+  "claimable_metrics": {
+    "real_model_cost_tracked_runs": {
+      "claimable": false,
+      "current_value": 0,
+      "evidence": "The accepted real model run recorded token, cost, and latency telemetry.",
+      "minimum_before_claim": 1
+    },
+    "real_model_runs": {
+      "claimable": false,
+      "current_value": 0,
+      "evidence": "At least one accepted real OpenAI-compatible model run is captured.",
+      "minimum_before_claim": 1
+    },
+    "real_model_tool_calling_runs": {
+      "claimable": false,
+      "current_value": 0,
+      "evidence": "The accepted real model run used multiple whitelisted tools.",
+      "minimum_before_claim": 1
+    },
+    "real_model_verified_reports": {
+      "claimable": false,
+      "current_value": 0,
+      "evidence": "The accepted real model run produced a verified report with attached evidence.",
+      "minimum_before_claim": 1
+    }
+  },
+  "current_real_model_runs": 0,
+  "evaluated_run_count": 0,
+  "generated_by": "scripts/build_real_model_evidence_capture.py",
+  "mock_model_calls_available": 2,
+  "not_claimed": [
+    "real OpenAI model run completed",
+    "paid model benchmark results",
+    "real model accuracy improvement",
+    "production model traffic",
+    "raw prompts published"
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Capture public-safe evidence from real OpenAI-compatible Data Quality Agent runs before any resume claim is upgraded from ready to completed.",
+  "rejected_real_model_run_count": 0,
+  "rejected_runs": [],
+  "resume_safe_summary": "Published a CI-verified real-model evidence capture gate requiring redacted trace, provider, model, prompt version, tool calls, token usage, estimated cost, latency, and report verification before claiming a real LLM agent run.",
+  "resume_status": "real_model_evidence_gate_ready",
+  "runbook_evidence_field_count": 15
+}

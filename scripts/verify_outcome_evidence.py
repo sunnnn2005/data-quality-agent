@@ -52,6 +52,7 @@ STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
 BUSINESS_DATA_REPLAY_PACKET_PATH = ROOT / "docs" / "business-data-replay-packet.json"
 REAL_MODEL_RUNBOOK_PATH = ROOT / "docs" / "real-model-runbook.json"
+REAL_MODEL_EVIDENCE_CAPTURE_PATH = ROOT / "docs" / "real-model-evidence-capture.json"
 BUSINESS_REPLAY_DEMO_PATH = ROOT / "docs" / "business-replay-demo.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
 PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
@@ -119,6 +120,7 @@ def verify_manifest() -> dict[str, int]:
     business_case_intake = load_payload(BUSINESS_CASE_INTAKE_PATH)
     replay_packet = load_payload(BUSINESS_DATA_REPLAY_PACKET_PATH)
     real_model_runbook = load_payload(REAL_MODEL_RUNBOOK_PATH)
+    real_model_evidence_capture = load_payload(REAL_MODEL_EVIDENCE_CAPTURE_PATH)
     replay_demo = load_payload(BUSINESS_REPLAY_DEMO_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
@@ -551,7 +553,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 122:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 124:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -852,7 +854,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 122:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 124:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1330,6 +1332,37 @@ def verify_manifest() -> dict[str, int]:
                     not in runbook_tests
                 ):
                     raise AssertionError("real model runbook must have a dedicated test")
+            elif metric_name == "real_model_evidence_capture":
+                capture_tests = (ROOT / "tests" / "test_real_model_evidence_capture.py").read_text()
+                capture_script = (ROOT / "scripts" / "build_real_model_evidence_capture.py").read_text()
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("real model evidence capture claim must use metric_value=1")
+                expected = {
+                    "current_real_model_runs": 0,
+                    "runbook_evidence_field_count": 15,
+                    "capture_required_field_count": 17,
+                    "accepted_real_model_run_count": 0,
+                    "blocked_outcome_claim_count": 4,
+                }
+                for key, value in expected.items():
+                    if real_model_evidence_capture.get(key) != value:
+                        raise AssertionError(f"real model evidence capture {key} expected {value}")
+                for required in ("trace_id", "provider", "model", "tool_call_count", "total_tokens", "raw_prompt_logged"):
+                    if required not in real_model_evidence_capture.get("capture_required_fields", []):
+                        raise AssertionError(f"real model evidence capture missing {required}")
+                for required in (
+                    "real OpenAI model run completed",
+                    "paid model benchmark results",
+                    "production model traffic",
+                ):
+                    if required not in real_model_evidence_capture.get("not_claimed", []):
+                        raise AssertionError(f"real model evidence capture must not claim {required}")
+                if "verify_real_model_evidence_capture" not in capture_script:
+                    raise AssertionError("real model evidence capture script must verify generated artifact")
+                if "test_real_model_evidence_capture_preserves_zero_run_baseline" not in capture_tests:
+                    raise AssertionError("real model evidence capture must have a zero-run test")
+                if "test_real_model_evidence_capture_accepts_redacted_tool_calling_run" not in capture_tests:
+                    raise AssertionError("real model evidence capture must have an accepted-run test")
             elif metric_name == "star_growth_kit":
                 star_script = (ROOT / "scripts" / "build_star_growth_kit.py").read_text()
                 star_tests = (ROOT / "tests" / "test_star_growth_kit.py").read_text()
@@ -1555,7 +1588,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 122", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 124", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

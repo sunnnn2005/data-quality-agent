@@ -25,12 +25,12 @@
       "url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent"
     },
     {
-      "claim": "Automated test suite passes locally and in GitHub Actions, including the accepted evidence rollup, external reviewer evidence gate, external-run evidence packet, external-run quickstart page, external reviewer outreach tracker, runnable release packet, business problem casebook, business replay demo, feedback intake quality, business case intake, star growth kit, pilot conversion board, resume outcome readiness evaluator, reviewer funnel board, and real-model runbook verifiers.",
+      "claim": "Automated test suite passes locally and in GitHub Actions, including the real-model evidence capture gate, accepted evidence rollup, external reviewer evidence gate, external-run evidence packet, external-run quickstart page, external reviewer outreach tracker, runnable release packet, business problem casebook, business replay demo, feedback intake quality, business case intake, star growth kit, pilot conversion board, resume outcome readiness evaluator, reviewer funnel board, and real-model runbook verifiers.",
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 122,
-      "resume_signal": "122 passing CI tests",
+      "metric_value": 124,
+      "resume_signal": "124 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 24 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 25 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 24,
+      "metric_value": 25,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -561,6 +561,16 @@
       "resume_signal": "CI-verified real-model runbook",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/real-model-runbook.json"
+    },
+    {
+      "claim": "The project publishes a generated real-model evidence capture gate requiring 17 redacted telemetry fields before any real LLM agent run can be upgraded from ready to completed.",
+      "evidence_type": "artifact",
+      "id": "real-model-evidence-capture",
+      "metric_name": "real_model_evidence_capture",
+      "metric_value": 1,
+      "resume_signal": "CI-verified real-model evidence capture gate",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/real-model-evidence-capture.json"
     },
     {
       "claim": "The project documents implemented LLM agent capabilities separately from partial embedding-backed RAG, observability, evaluation, and feedback-informed memory work.",

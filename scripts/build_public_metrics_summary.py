@@ -49,12 +49,13 @@ STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
 BUSINESS_DATA_REPLAY_PACKET_PATH = ROOT / "docs" / "business-data-replay-packet.json"
 REAL_MODEL_RUNBOOK_PATH = ROOT / "docs" / "real-model-runbook.json"
+REAL_MODEL_EVIDENCE_CAPTURE_PATH = ROOT / "docs" / "real-model-evidence-capture.json"
 BUSINESS_REPLAY_DEMO_PATH = ROOT / "docs" / "business-replay-demo.json"
 REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
-SCORECARD_REVIEWER_PATH_COUNT = 20
-APPLICATION_EVIDENCE_LINK_COUNT = 24
+SCORECARD_REVIEWER_PATH_COUNT = 21
+APPLICATION_EVIDENCE_LINK_COUNT = 25
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -107,6 +108,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     business_case_intake = load_json(BUSINESS_CASE_INTAKE_PATH)
     replay_packet = load_json(BUSINESS_DATA_REPLAY_PACKET_PATH)
     real_model_runbook = load_json(REAL_MODEL_RUNBOOK_PATH)
+    real_model_evidence_capture = load_json(REAL_MODEL_EVIDENCE_CAPTURE_PATH)
     replay_demo = load_json(BUSINESS_REPLAY_DEMO_PATH)
     reviewer_funnel = load_json(REVIEWER_FUNNEL_BOARD_PATH)
     verified_outcomes = outcome["verified_outcomes"]
@@ -297,6 +299,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "real_model_evidence_fields": real_model_runbook["evidence_field_count"],
             "real_model_acceptance_criteria": real_model_runbook["acceptance_criteria_count"],
             "real_model_safety_gates": real_model_runbook["safety_gate_count"],
+            "real_model_evidence_capture": 1,
+            "real_model_capture_required_fields": real_model_evidence_capture["capture_required_field_count"],
+            "real_model_capture_accepted_runs": real_model_evidence_capture["accepted_real_model_run_count"],
+            "real_model_capture_blocked_claims": real_model_evidence_capture["blocked_outcome_claim_count"],
             "implemented_agent_capabilities": len(readiness["implemented"]),
             "partial_agent_capabilities": len(readiness["partial"]),
         },
@@ -494,6 +500,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{real_model_runbook['evidence_field_count']} evidence fields, "
                 f"{real_model_runbook['acceptance_criteria_count']} acceptance criteria, "
                 f"{real_model_runbook['safety_gate_count']} safety gates, and zero current real model run claims"
+            ),
+            (
+                f"Real-model evidence capture gate with {real_model_evidence_capture['capture_required_field_count']} "
+                f"required fields, {real_model_evidence_capture['accepted_real_model_run_count']} accepted real-model runs, "
+                f"and {real_model_evidence_capture['blocked_outcome_claim_count']} blocked outcome claims until redacted telemetry passes"
             ),
             f"{verified_outcomes['recommended_action_count']} evidence-backed remediation actions",
             f"{len(readiness['implemented'])} implemented LLM agent-readiness capabilities",
@@ -719,7 +730,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 122,
+        "test_count": 124,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -830,12 +841,12 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "public_availability_snapshot": 1,
         "public_availability_endpoint_count": 4,
         "live_project_scorecard": 1,
-        "scorecard_reviewer_paths": 20,
+        "scorecard_reviewer_paths": 21,
         "openapi_required_endpoints": 6,
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 24,
+        "application_evidence_links": 25,
         "pilot_outreach_messages": 3,
         "pilot_review_paths": 10,
         "pilot_program_segments": 3,
@@ -899,6 +910,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "real_model_evidence_fields": 15,
         "real_model_acceptance_criteria": 8,
         "real_model_safety_gates": 5,
+        "real_model_evidence_capture": 1,
+        "real_model_capture_required_fields": 17,
+        "real_model_capture_accepted_runs": 0,
+        "real_model_capture_blocked_claims": 4,
         "recommended_actions": 5,
         "implemented_agent_capabilities": 16,
     }

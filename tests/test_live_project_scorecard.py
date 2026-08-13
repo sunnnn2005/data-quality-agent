@@ -11,9 +11,9 @@ def test_live_project_scorecard_summarizes_public_resume_evidence_without_inflat
     markdown = render_markdown(payload)
 
     assert verification["live_project_scorecard_verified"] is True
-    assert payload["headline_metrics"]["passing_tests"] == 122
-    assert payload["headline_metrics"]["verified_resume_claims"] == 65
-    assert len(payload["reviewer_paths"]) == 20
+    assert payload["headline_metrics"]["passing_tests"] == 124
+    assert payload["headline_metrics"]["verified_resume_claims"] == 66
+    assert len(payload["reviewer_paths"]) == 21
     assert any(path["label"] == "Inspect accepted evidence rollup" for path in payload["reviewer_paths"])
     assert payload["headline_metrics"]["implemented_agent_capabilities"] == 16
     assert payload["headline_metrics"]["agent_matrix_implemented_capabilities"] == 13
@@ -24,6 +24,7 @@ def test_live_project_scorecard_summarizes_public_resume_evidence_without_inflat
     assert payload["claim_coverage"]["has_business_data_replay_packet"] is True
     assert payload["claim_coverage"]["has_business_replay_demo"] is True
     assert payload["claim_coverage"]["has_real_model_runbook"] is True
+    assert payload["claim_coverage"]["has_real_model_evidence_capture"] is True
     assert payload["claim_coverage"]["has_pilot_conversion_board"] is True
     assert payload["claim_coverage"]["has_resume_outcome_readiness"] is True
     assert payload["claim_coverage"]["has_reviewer_funnel_board"] is True
@@ -37,6 +38,7 @@ def test_live_project_scorecard_summarizes_public_resume_evidence_without_inflat
     assert any(path["label"] == "Inspect business-data replay packet" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Inspect business replay demo" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Inspect real-model runbook" for path in payload["reviewer_paths"])
+    assert any(path["label"] == "Inspect real-model evidence capture" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Inspect agent capability matrix" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Run the local reviewer demo" for path in payload["reviewer_paths"])
     assert any(path["label"] == "Use external run quickstart" for path in payload["reviewer_paths"])
