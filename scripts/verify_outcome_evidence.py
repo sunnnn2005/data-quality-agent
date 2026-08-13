@@ -22,6 +22,7 @@ LOCAL_REVIEWER_DEMO_PATH = ROOT / "docs" / "local-reviewer-demo.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
+BUSINESS_DATA_INTAKE_BASELINE_PATH = ROOT / "docs" / "business-data-intake-baseline.json"
 LIVE_SCORECARD_PATH = ROOT / "docs" / "live-project-scorecard.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
@@ -64,6 +65,7 @@ def verify_manifest() -> dict[str, int]:
     api_smoke_report = load_payload(API_SMOKE_REPORT_PATH)
     performance_baseline = load_payload(PERFORMANCE_BASELINE_PATH)
     demo_usage_baseline = load_payload(DEMO_USAGE_BASELINE_PATH)
+    business_data_intake = load_payload(BUSINESS_DATA_INTAKE_BASELINE_PATH)
     scorecard = load_payload(LIVE_SCORECARD_PATH)
     openapi = load_payload(OPENAPI_PATH)
     recruiter_pitch = load_payload(RECRUITER_PITCH_PATH)
@@ -226,8 +228,42 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("demo usage baseline must include a dedicated test")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("demo_usage_baseline claim must use metric_value=1")
+            elif metric_name == "business_data_intake_baseline":
+                intake_script = (ROOT / "scripts" / "build_business_data_intake_baseline.py").read_text()
+                intake_tests = (ROOT / "tests" / "test_business_data_intake_baseline.py").read_text()
+                if business_data_intake.get("endpoint_count") != 4:
+                    raise AssertionError("business data intake baseline must verify 4 endpoints")
+                if business_data_intake.get("test_count") != 6:
+                    raise AssertionError("business data intake baseline must verify 6 API tests")
+                if not all(business_data_intake.get("endpoint_verification", {}).values()):
+                    raise AssertionError("business data intake baseline must verify every endpoint")
+                limits = business_data_intake.get("safety_limits", {})
+                expected_limits = {
+                    "max_upload_bytes": 2_000_000,
+                    "max_rows": 10_000,
+                    "max_columns": 80,
+                    "csv_only": True,
+                    "primary_key_required": True,
+                    "empty_file_rejected": True,
+                }
+                for key, expected in expected_limits.items():
+                    if limits.get(key) != expected:
+                        raise AssertionError(f"business data intake {key} expected {expected!r}")
+                not_claimed = " ".join(business_data_intake.get("not_claimed", [])).lower()
+                for required in ("production datasets", "uploaded csv rows", "enterprise production usage"):
+                    if required not in not_claimed:
+                        raise AssertionError(f"business data intake baseline must not claim {required}")
+                if "verify_business_data_intake_baseline" not in intake_script:
+                    raise AssertionError("business data intake baseline must include a script verifier")
+                if (
+                    "test_business_data_intake_baseline_verifies_realistic_input_paths_without_usage_claims"
+                    not in intake_tests
+                ):
+                    raise AssertionError("business data intake baseline must include a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("business_data_intake_baseline claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 81:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 82:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -505,7 +541,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 81:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 82:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -610,7 +646,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 81", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 82", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

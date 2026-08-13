@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 81
+    assert payload["public_metrics"]["test_count"] == 82
     assert payload["verified_project_outcomes"]["root_cause_hypotheses"] == 3
     assert payload["verified_project_outcomes"]["business_risk_areas"] == 4
     assert payload["verified_project_outcomes"]["high_priority_actions"] == 3
@@ -41,6 +41,11 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["demo_usage_baseline"] == 1
     assert payload["verified_project_outcomes"]["demo_usage_tracked_funnel_steps"] == 5
     assert payload["verified_project_outcomes"]["demo_usage_entrypoints_verified"] == 4
+    assert payload["verified_project_outcomes"]["business_data_intake_baseline"] == 1
+    assert payload["verified_project_outcomes"]["business_data_intake_endpoints"] == 4
+    assert payload["verified_project_outcomes"]["business_data_intake_tests"] == 6
+    assert payload["verified_project_outcomes"]["business_data_intake_max_rows"] == 10_000
+    assert payload["verified_project_outcomes"]["business_data_intake_max_columns"] == 80
     assert payload["verified_project_outcomes"]["live_project_scorecard"] == 1
     assert payload["verified_project_outcomes"]["scorecard_reviewer_paths"] == 6
     assert payload["verified_project_outcomes"]["openapi_required_endpoints"] == 6
@@ -75,6 +80,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     )
     assert (
         "Public demo usage baseline with 5 tracked funnel steps and 4 verified entrypoints"
+        in payload["resume_safe_signals"]
+    )
+    assert (
+        "Business-data intake baseline covering 4 integration endpoints, 6 API tests, and bounded CSV uploads up to 10000 rows / 80 columns"
         in payload["resume_safe_signals"]
     )
     assert "6 reviewer paths in a CI-verified live project scorecard" in payload["resume_safe_signals"]

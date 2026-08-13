@@ -17,6 +17,7 @@ LOCAL_REVIEWER_DEMO_PATH = ROOT / "docs" / "local-reviewer-demo.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
 DEMO_USAGE_BASELINE_PATH = ROOT / "docs" / "demo-usage-baseline.json"
+BUSINESS_DATA_INTAKE_BASELINE_PATH = ROOT / "docs" / "business-data-intake-baseline.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
 RECRUITER_PITCH_PATH = ROOT / "docs" / "recruiter-pitch.json"
 APPLICATION_EVIDENCE_PACK_PATH = ROOT / "docs" / "application-evidence-pack.json"
@@ -44,6 +45,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     api_smoke = load_json(API_SMOKE_REPORT_PATH)
     performance = load_json(PERFORMANCE_BASELINE_PATH)
     demo_usage = load_json(DEMO_USAGE_BASELINE_PATH)
+    business_data_intake = load_json(BUSINESS_DATA_INTAKE_BASELINE_PATH)
     openapi = load_json(OPENAPI_PATH)
     recruiter_pitch = load_json(RECRUITER_PITCH_PATH)
     application_pack = load_json(APPLICATION_EVIDENCE_PACK_PATH)
@@ -99,6 +101,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "demo_usage_baseline": 1,
             "demo_usage_tracked_funnel_steps": len(demo_usage["tracked_usage_funnel"]),
             "demo_usage_entrypoints_verified": sum(1 for value in demo_usage["demo_entrypoints_verified"].values() if value),
+            "business_data_intake_baseline": 1,
+            "business_data_intake_endpoints": business_data_intake["endpoint_count"],
+            "business_data_intake_tests": business_data_intake["test_count"],
+            "business_data_intake_max_rows": business_data_intake["safety_limits"]["max_rows"],
+            "business_data_intake_max_columns": business_data_intake["safety_limits"]["max_columns"],
             "live_project_scorecard": 1,
             "scorecard_reviewer_paths": 6,
             "openapi_required_endpoints": 6,
@@ -152,6 +159,12 @@ def build_public_metrics_summary() -> dict[str, Any]:
             (
                 f"Public demo usage baseline with {len(demo_usage['tracked_usage_funnel'])} tracked funnel steps and "
                 f"{sum(1 for value in demo_usage['demo_entrypoints_verified'].values() if value)} verified entrypoints"
+            ),
+            (
+                f"Business-data intake baseline covering {business_data_intake['endpoint_count']} integration endpoints, "
+                f"{business_data_intake['test_count']} API tests, and bounded CSV uploads up to "
+                f"{business_data_intake['safety_limits']['max_rows']} rows / "
+                f"{business_data_intake['safety_limits']['max_columns']} columns"
             ),
             "6 reviewer paths in a CI-verified live project scorecard",
             "CI-verified OpenAPI contract covering 6 integration endpoints",
@@ -229,6 +242,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Demo usage baseline | {outcomes["demo_usage_baseline"]} |
 | Demo usage tracked funnel steps | {outcomes["demo_usage_tracked_funnel_steps"]} |
 | Demo usage entrypoints verified | {outcomes["demo_usage_entrypoints_verified"]} |
+| Business-data intake baseline | {outcomes["business_data_intake_baseline"]} |
+| Business-data intake endpoints | {outcomes["business_data_intake_endpoints"]} |
+| Business-data intake API tests | {outcomes["business_data_intake_tests"]} |
+| Business-data intake max rows | {outcomes["business_data_intake_max_rows"]} |
+| Business-data intake max columns | {outcomes["business_data_intake_max_columns"]} |
 | Live project scorecard | {outcomes["live_project_scorecard"]} |
 | Scorecard reviewer paths | {outcomes["scorecard_reviewer_paths"]} |
 | OpenAPI required integration endpoints | {outcomes["openapi_required_endpoints"]} |
@@ -265,7 +283,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 81,
+        "test_count": 82,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -301,6 +319,11 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "demo_usage_baseline": 1,
         "demo_usage_tracked_funnel_steps": 5,
         "demo_usage_entrypoints_verified": 4,
+        "business_data_intake_baseline": 1,
+        "business_data_intake_endpoints": 4,
+        "business_data_intake_tests": 6,
+        "business_data_intake_max_rows": 10_000,
+        "business_data_intake_max_columns": 80,
         "live_project_scorecard": 1,
         "scorecard_reviewer_paths": 6,
         "openapi_required_endpoints": 6,

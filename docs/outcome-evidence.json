@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "81 passing CI tests",
+      "resume_signal": "82 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 81,
+      "metric_value": 82,
       "status": "verified"
     },
     {
@@ -119,6 +119,16 @@
       "evidence_type": "artifact",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/demo-usage-baseline.json",
       "metric_name": "demo_usage_baseline",
+      "metric_value": 1,
+      "status": "verified"
+    },
+    {
+      "id": "business-data-intake-baseline",
+      "resume_signal": "CI-verified business-data intake baseline",
+      "claim": "The project publishes a generated business-data intake baseline covering bounded CSV uploads, read-only PostgreSQL context, 4 integration endpoints, 3 upload limits, and 6 API tests without claiming production datasets.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-data-intake-baseline.json",
+      "metric_name": "business_data_intake_baseline",
       "metric_value": 1,
       "status": "verified"
     },

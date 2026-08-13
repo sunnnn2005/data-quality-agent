@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 10 |
-| Passing CI tests | 81 |
+| Passing CI tests | 82 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -49,6 +49,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Demo usage baseline | 1 |
 | Demo usage tracked funnel steps | 5 |
 | Demo usage entrypoints verified | 4 |
+| Business-data intake baseline | 1 |
+| Business-data intake endpoints | 4 |
+| Business-data intake API tests | 6 |
+| Business-data intake max rows | 10000 |
+| Business-data intake max columns | 80 |
 | Live project scorecard | 1 |
 | Scorecard reviewer paths | 6 |
 | OpenAPI required integration endpoints | 6 |
@@ -74,7 +79,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.2.0 release
-- 81 passing CI tests
+- 82 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -89,6 +94,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - CI-verified API smoke report covering 6 passing FastAPI route checks
 - CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls
 - Public demo usage baseline with 5 tracked funnel steps and 4 verified entrypoints
+- Business-data intake baseline covering 4 integration endpoints, 6 API tests, and bounded CSV uploads up to 10000 rows / 80 columns
 - 6 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles

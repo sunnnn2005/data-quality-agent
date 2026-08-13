@@ -1,0 +1,52 @@
+{
+  "business_data_inputs_supported": [
+    "bounded CSV upload",
+    "optional read-only PostgreSQL adapter"
+  ],
+  "documentation_verified": {
+    "business_data_curl_documented": true,
+    "csv_limits_documented": true,
+    "no_uploaded_file_persistence_documented": true,
+    "read_only_postgres_documented": true
+  },
+  "endpoint_count": 4,
+  "endpoint_verification": {
+    "csv_agent_report": true,
+    "csv_quality_report": true,
+    "postgres_agent_report": true,
+    "postgres_quality_report": true
+  },
+  "endpoints": {
+    "csv_agent_report": "/business-data/agent-report",
+    "csv_quality_report": "/business-data/quality-report",
+    "postgres_agent_report": "/postgres/support-tickets/agent-report",
+    "postgres_quality_report": "/postgres/support-tickets/quality-report"
+  },
+  "generated_by": "scripts/build_business_data_intake_baseline.py",
+  "not_claimed": [
+    "external production datasets",
+    "persistent storage of uploaded CSV rows",
+    "enterprise production usage",
+    "external users",
+    "customer feedback"
+  ],
+  "project": "Data Quality Agent",
+  "resume_safe_signal": "CI-verified business-data intake baseline covering bounded CSV uploads, read-only PostgreSQL context, 4 integration endpoints, 3 upload limits, and 6 API tests without claiming external production usage.",
+  "safety_limits": {
+    "csv_only": true,
+    "empty_file_rejected": true,
+    "max_columns": 80,
+    "max_rows": 10000,
+    "max_upload_bytes": 2000000,
+    "primary_key_required": true
+  },
+  "test_count": 6,
+  "tests_verified": {
+    "csv_agent_disabled_fallback": true,
+    "csv_upload_acceptance": true,
+    "missing_primary_key_rejection": true,
+    "postgres_agent_disabled_fallback": true,
+    "postgres_read_only_adapter": true,
+    "support_ticket_case_study": true
+  }
+}
