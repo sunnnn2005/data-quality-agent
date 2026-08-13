@@ -45,6 +45,7 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "feedback_intake_quality": f"{scorecard['repo']}/blob/main/docs/feedback-intake-quality.md",
             "business_data_replay_packet": f"{scorecard['repo']}/blob/main/docs/business-data-replay-packet.md",
             "business_replay_demo": f"{scorecard['repo']}/blob/main/docs/business-replay-demo.md",
+            "ai_engineer_readiness": f"{scorecard['repo']}/blob/main/docs/ai-engineer-readiness.md",
             "real_model_runbook": f"{scorecard['repo']}/blob/main/docs/real-model-runbook.md",
             "real_model_evidence_capture": f"{scorecard['repo']}/blob/main/docs/real-model-evidence-capture.md",
             "agent_capability_matrix": f"{scorecard['repo']}/blob/main/docs/agent-capability-matrix.md",
@@ -105,7 +106,7 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "Open the public demo to see the product-style result.",
             "Open the live scorecard for the current tests, claims, release, container, and adoption baseline.",
             "Open the recruiter pitch for resume bullets and interview framing.",
-            "Open the OpenAPI contract and safety boundaries for implementation depth.",
+        "Open the AI Engineer readiness page, OpenAPI contract, and safety boundaries for implementation depth.",
             "Open public metrics to verify stars, forks, feedback, and not-claimed signals.",
         ],
         "honest_baseline": {
@@ -172,14 +173,14 @@ This generated pack gives recruiters and interviewers a compact review path for 
 
 def verify_application_evidence_pack(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
-        "application_link_count": 25,
+        "application_link_count": 26,
         "resume_bullet_count": 3,
         "target_role_count": 4,
-        "passing_tests": 126,
+        "passing_tests": 127,
         "verified_resume_claims": 66,
     }
     if len(payload["application_links"]) != expected["application_link_count"]:
-        raise AssertionError("application evidence pack must include 25 application links")
+            raise AssertionError("application evidence pack must include 26 application links")
     if len(payload["resume_bullets"]) != expected["resume_bullet_count"]:
         raise AssertionError("application evidence pack must include 3 resume bullets")
     if len(payload["target_roles"]) != expected["target_role_count"]:

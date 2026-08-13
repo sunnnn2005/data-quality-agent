@@ -9,8 +9,8 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Stars | 0 |
 | Forks | 1 |
 | Watchers | 0 |
-| GitHub issues | 12 |
-| Passing CI tests | 126 |
+| GitHub issues | 13 |
+| Passing CI tests | 127 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -119,7 +119,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 25 |
+| Application evidence links | 26 |
 | Pilot outreach messages | 3 |
 | Pilot review paths | 10 |
 | Pilot program segments | 3 |
@@ -179,6 +179,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Real-model evidence fields | 15 |
 | Real-model acceptance criteria | 8 |
 | Real-model safety gates | 5 |
+| AI Engineer readiness | 1 |
+| AI Engineer readiness implemented signals | 8 |
+| AI Engineer readiness partial signals | 1 |
+| AI Engineer readiness not-claimed signals | 1 |
 | Recommended remediation actions | 5 |
 | Implemented LLM agent-readiness capabilities | 16 |
 | Partial agent-readiness capabilities documented | 4 |
@@ -193,7 +197,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 126 passing CI tests
+- 127 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -233,7 +237,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 21 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
-- 25 application evidence links in a recruiter-ready evidence pack
+- 26 application evidence links in a recruiter-ready evidence pack
 - 3 pilot outreach messages and 10 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
 - Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups
@@ -243,6 +247,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Business replay demo with 8 anonymized rows, 5 findings, 4 failed check types, 4 business-rule references, and deterministic verification
 - Real-model runbook with 5 run commands, 15 evidence fields, 8 acceptance criteria, 5 safety gates, and zero current real model run claims
 - Real-model evidence capture gate with 17 required fields, 0 accepted real-model runs, and 4 blocked outcome claims until redacted telemetry passes
+- AI Engineer readiness artifact with 8 implemented AI skill signals, 1 partial signal, and 1 explicitly blocked signal
 - 5 evidence-backed remediation actions
 - 16 implemented LLM agent-readiness capabilities
 - 1 public fork and 0 public stars as current honest adoption baseline

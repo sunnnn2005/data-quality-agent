@@ -50,12 +50,13 @@ BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
 BUSINESS_DATA_REPLAY_PACKET_PATH = ROOT / "docs" / "business-data-replay-packet.json"
 REAL_MODEL_RUNBOOK_PATH = ROOT / "docs" / "real-model-runbook.json"
 REAL_MODEL_EVIDENCE_CAPTURE_PATH = ROOT / "docs" / "real-model-evidence-capture.json"
+AI_ENGINEER_READINESS_PATH = ROOT / "docs" / "ai-engineer-readiness.json"
 BUSINESS_REPLAY_DEMO_PATH = ROOT / "docs" / "business-replay-demo.json"
 REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 SCORECARD_REVIEWER_PATH_COUNT = 21
-APPLICATION_EVIDENCE_LINK_COUNT = 25
+APPLICATION_EVIDENCE_LINK_COUNT = 26
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -109,6 +110,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     replay_packet = load_json(BUSINESS_DATA_REPLAY_PACKET_PATH)
     real_model_runbook = load_json(REAL_MODEL_RUNBOOK_PATH)
     real_model_evidence_capture = load_json(REAL_MODEL_EVIDENCE_CAPTURE_PATH)
+    ai_engineer_readiness = load_json(AI_ENGINEER_READINESS_PATH)
     replay_demo = load_json(BUSINESS_REPLAY_DEMO_PATH)
     reviewer_funnel = load_json(REVIEWER_FUNNEL_BOARD_PATH)
     verified_outcomes = outcome["verified_outcomes"]
@@ -303,6 +305,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "real_model_capture_required_fields": real_model_evidence_capture["capture_required_field_count"],
             "real_model_capture_accepted_runs": real_model_evidence_capture["accepted_real_model_run_count"],
             "real_model_capture_blocked_claims": real_model_evidence_capture["blocked_outcome_claim_count"],
+            "ai_engineer_readiness": 1,
+            "ai_engineer_readiness_implemented_signals": ai_engineer_readiness["implemented_signal_count"],
+            "ai_engineer_readiness_partial_signals": ai_engineer_readiness["partial_signal_count"],
+            "ai_engineer_readiness_not_claimed_signals": ai_engineer_readiness["not_claimed_signal_count"],
             "implemented_agent_capabilities": len(readiness["implemented"]),
             "partial_agent_capabilities": len(readiness["partial"]),
         },
@@ -506,6 +512,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"required fields, {real_model_evidence_capture['accepted_real_model_run_count']} accepted real-model runs, "
                 f"and {real_model_evidence_capture['blocked_outcome_claim_count']} blocked outcome claims until redacted telemetry passes"
             ),
+            (
+                f"AI Engineer readiness artifact with {ai_engineer_readiness['implemented_signal_count']} implemented "
+                f"AI skill signals, {ai_engineer_readiness['partial_signal_count']} partial signal, and "
+                f"{ai_engineer_readiness['not_claimed_signal_count']} explicitly blocked signal"
+            ),
             f"{verified_outcomes['recommended_action_count']} evidence-backed remediation actions",
             f"{len(readiness['implemented'])} implemented LLM agent-readiness capabilities",
             f"{adoption['forks']} public fork and {adoption['stars']} public stars as current honest adoption baseline",
@@ -706,6 +717,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Real-model evidence fields | {outcomes["real_model_evidence_fields"]} |
 | Real-model acceptance criteria | {outcomes["real_model_acceptance_criteria"]} |
 | Real-model safety gates | {outcomes["real_model_safety_gates"]} |
+| AI Engineer readiness | {outcomes["ai_engineer_readiness"]} |
+| AI Engineer readiness implemented signals | {outcomes["ai_engineer_readiness_implemented_signals"]} |
+| AI Engineer readiness partial signals | {outcomes["ai_engineer_readiness_partial_signals"]} |
+| AI Engineer readiness not-claimed signals | {outcomes["ai_engineer_readiness_not_claimed_signals"]} |
 | Recommended remediation actions | {outcomes["recommended_actions"]} |
 | Implemented LLM agent-readiness capabilities | {outcomes["implemented_agent_capabilities"]} |
 | Partial agent-readiness capabilities documented | {outcomes["partial_agent_capabilities"]} |
@@ -730,7 +745,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 126,
+        "test_count": 127,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -846,7 +861,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 25,
+        "application_evidence_links": 26,
         "pilot_outreach_messages": 3,
         "pilot_review_paths": 10,
         "pilot_program_segments": 3,
@@ -914,6 +929,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "real_model_capture_required_fields": 17,
         "real_model_capture_accepted_runs": 0,
         "real_model_capture_blocked_claims": 4,
+        "ai_engineer_readiness": 1,
+        "ai_engineer_readiness_implemented_signals": 8,
+        "ai_engineer_readiness_partial_signals": 1,
+        "ai_engineer_readiness_not_claimed_signals": 1,
         "recommended_actions": 5,
         "implemented_agent_capabilities": 16,
     }

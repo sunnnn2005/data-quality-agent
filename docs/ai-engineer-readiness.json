@@ -1,0 +1,93 @@
+{
+  "evidence_counts": {
+    "agent_readiness_implemented": 16,
+    "allowed_tools": 7,
+    "application_evidence_links": 26,
+    "business_replay_findings": 5,
+    "business_replay_rows": 8,
+    "capability_matrix_implemented": 13,
+    "real_model_capture_accepted_runs": 0,
+    "real_model_capture_required_fields": 17,
+    "real_model_run_commands": 5
+  },
+  "generated_by": "scripts/build_ai_engineer_readiness.py",
+  "implemented_signal_count": 8,
+  "not_claimed_signal_count": 1,
+  "not_resume_safe_yet": [
+    "Do not claim production users.",
+    "Do not claim customer feedback.",
+    "Do not claim accepted real-model benchmark runs until accepted_real_model_run_count is greater than 0.",
+    "Do not claim embedding-based RAG until a vector retrieval layer is implemented."
+  ],
+  "partial_signal_count": 1,
+  "project": "Data Quality Agent",
+  "readiness_summary": "This project demonstrates AI Engineer intern readiness through API integration, tool calling, structured output, guardrails, observability, evaluation, and real business-data connectors; it does not yet claim production users or accepted real-model benchmark runs.",
+  "resume_bullet": "Built an OpenAI-compatible data-quality LLM agent for CSV and read-only PostgreSQL business data, with 7 controlled tools, dynamic tool selection, structured reports, trace/cost telemetry, deterministic guardrails, safe fallback, and CI-verified evidence artifacts.",
+  "resume_safe": [
+    "Built an OpenAI-compatible data-quality LLM agent for CSV and read-only PostgreSQL business data, with 7 controlled tools, dynamic tool selection, structured reports, trace/cost telemetry, deterministic guardrails, safe fallback, and CI-verified evidence artifacts.",
+    "Explained LLM decisions through tool-call traces, evidence-backed findings, verification status, prompt version, token usage, latency, and estimated cost fields."
+  ],
+  "skill_signals": [
+    {
+      "evidence": "app/llm.py supports OPENAI_API_KEY, OPENAI_BASE_URL, model selection, retries, timeouts, JSON response parsing, and cost estimation.",
+      "id": "llm-api-integration",
+      "resume_signal": "OpenAI-compatible chat-completions integration",
+      "status": "implemented"
+    },
+    {
+      "evidence": "app/tool_agent.py lets the model choose from 7 allowed tools, appends tool results back into messages, and loops until final answer or max step budget.",
+      "id": "tool-calling-agent-loop",
+      "resume_signal": "LLM tool calling with feedback loop",
+      "status": "implemented"
+    },
+    {
+      "evidence": "FastAPI exposes /business-data/agent-report for CSV exports and /postgres/support-tickets/agent-report for a read-only PostgreSQL table.",
+      "id": "business-data-connectors",
+      "resume_signal": "Real business-data interface",
+      "status": "implemented"
+    },
+    {
+      "evidence": "AgentRunReport and QualityReport are Pydantic response models with findings, hypotheses, recommendations, evidence, verification, telemetry, and trace_id.",
+      "id": "structured-output",
+      "resume_signal": "Structured AI output",
+      "status": "implemented"
+    },
+    {
+      "evidence": "ReportVerifier checks evidence support, known columns, sensitive terms, unsupported LLM evidence, action coverage, and score bounds.",
+      "id": "guardrails",
+      "resume_signal": "Deterministic report guardrails",
+      "status": "implemented"
+    },
+    {
+      "evidence": "Agent evaluation records model, provider, prompt version, latency, token usage, estimated cost, retry budget, distinct tools, duplicate tools, and final report attachment.",
+      "id": "observability-cost",
+      "resume_signal": "Model observability and cost awareness",
+      "status": "implemented"
+    },
+    {
+      "evidence": "Without OPENAI_API_KEY, the agent returns DISABLED with an explicit fallback instead of crashing the API.",
+      "id": "safe-fallback",
+      "resume_signal": "Safe LLM degradation",
+      "status": "implemented"
+    },
+    {
+      "evidence": "evals/scenarios.jsonl and app/evals.py measure status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, and latency.",
+      "id": "eval-harness",
+      "resume_signal": "Agent evaluation harness",
+      "status": "implemented"
+    },
+    {
+      "evidence": "retrieve_business_rules gives the LLM source-cited local Markdown business rules for support-ticket constraints.",
+      "id": "business-rule-retrieval",
+      "resume_signal": "Source-cited retrieval for domain rules",
+      "status": "partial"
+    },
+    {
+      "evidence": "Real-model runbook and capture gate exist, but accepted_real_model_run_count is still 0 until a redacted OpenAI-compatible run is captured.",
+      "id": "real-model-evidence",
+      "resume_signal": "Accepted real-model run evidence",
+      "status": "not_claimed"
+    }
+  ],
+  "target_role": "AI Engineer Intern"
+}
