@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE_PATH = ROOT / "docs" / "outcome-evidence.json"
 METRICS_PATH = ROOT / "docs" / "adoption-metrics.json"
 HISTORY_PATH = ROOT / "docs" / "adoption-history.jsonl"
+BUSINESS_IMPACT_PATH = ROOT / "docs" / "business-impact.json"
 RESUME_EVIDENCE_PATH = ROOT / "docs" / "resume-evidence.md"
 FEEDBACK_LOG_PATH = ROOT / "docs" / "feedback-log.md"
 REQUIRED_CLAIM_FIELDS = {"id", "resume_signal", "claim", "evidence_type", "url", "status"}
@@ -26,6 +27,7 @@ def validate_url(value: str) -> None:
 def verify_manifest() -> dict[str, int]:
     evidence = load_payload(EVIDENCE_PATH)
     metrics = load_payload(METRICS_PATH)
+    business_impact = load_payload(BUSINESS_IMPACT_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
     feedback_log = FEEDBACK_LOG_PATH.read_text().lower()
@@ -55,6 +57,12 @@ def verify_manifest() -> dict[str, int]:
             if metric_name == "external_feedback_items":
                 if claim.get("metric_value") != 0:
                     raise AssertionError("external feedback must stay at 0 until public feedback evidence exists")
+            elif metric_name == "support_ticket_issue_categories":
+                if business_impact.get("issue_category_count") != claim.get("metric_value"):
+                    raise AssertionError(
+                        f"claim {claim['id']} metric mismatch: {metric_name}={claim.get('metric_value')} "
+                        f"but business impact has {business_impact.get('issue_category_count')}"
+                    )
             elif metrics.get(metric_name) != claim.get("metric_value"):
                 raise AssertionError(
                     f"claim {claim['id']} metric mismatch: {metric_name}={claim.get('metric_value')} "

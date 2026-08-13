@@ -54,7 +54,7 @@ Without `OPENAI_API_KEY`, the route returns a safe disabled response instead of 
 
 ## Verified Findings
 
-The deterministic report identifies the following findings. These results are also checked by `scripts/verify_support_ticket_demo.py`, which writes the machine-readable artifact at [`docs/verified-support-ticket-result.json`](verified-support-ticket-result.json) and fails CI if the status, score, checks, or business-rule references drift unexpectedly.
+The deterministic report identifies the following findings. These results are also checked by `scripts/verify_support_ticket_demo.py`, which writes the machine-readable artifact at [`docs/verified-support-ticket-result.json`](verified-support-ticket-result.json) and fails CI if the status, score, checks, or business-rule references drift unexpectedly. `scripts/verify_business_impact.py` turns the same run into [`docs/business-impact.json`](business-impact.json), a resume-safe artifact that quantifies 4 issue categories, 4 affected columns, and 5 recommended actions.
 
 - Duplicate primary key: `ticket_id` contains 1 duplicate record.
 - Missing values: `priority` and `team` each have a 12.5% missing rate.

@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added a CI-verified business impact artifact that quantifies support-ticket issue categories, affected columns, and recommended actions for resume evidence.
 - Added append-only adoption history tracking for stars, forks, watchers, issues, release, commit, and test count.
 - Added a public feedback log that tracks external feedback and confirmed users from an honest zero baseline.
 - Added a human-readable resume evidence page for verified signals, current public metrics, resume-safe wording, and explicitly not-claimed outcomes.
@@ -9,7 +10,7 @@
 - Added CI verification for the outcome evidence manifest so resume claims cannot quietly drift into unsupported user, feedback, or enterprise adoption claims.
 - Added deterministic report verification guardrails for evidence support, known column references, sensitive evidence values, unsupported LLM evidence, recommended actions, and score bounds.
 - Exposed verification status in API reports, incident Markdown exports, and sanitized run traces.
-- Increased the verified test suite from 42 to 47 tests.
+- Increased the verified test suite from 42 to 48 tests.
 
 ## v0.1.0 - 2026-08-13
 

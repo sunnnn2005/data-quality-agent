@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "47 passing CI tests",
+      "resume_signal": "48 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 47,
+      "metric_value": 48,
       "status": "verified"
     },
     {
@@ -42,6 +42,16 @@
       "claim": "Support-ticket case study detects duplicate IDs, missing routing fields, negative amounts, and outliers.",
       "evidence_type": "artifact",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/verified-support-ticket-result.json",
+      "status": "verified"
+    },
+    {
+      "id": "business-impact-artifact",
+      "resume_signal": "Quantified business-impact artifact",
+      "claim": "Support-ticket case study quantifies 4 issue categories across duplicate ticket IDs, missing routing fields, negative amounts, and amount outliers.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact.json",
+      "metric_name": "support_ticket_issue_categories",
+      "metric_value": 4,
       "status": "verified"
     },
     {

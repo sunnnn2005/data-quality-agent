@@ -1,6 +1,8 @@
 import json
 import os
+import re
 import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -70,7 +72,7 @@ def collect_metrics() -> dict[str, Any]:
             "package_url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent",
         },
         "verified_demo_artifact": "docs/verified-support-ticket-result.json",
-        "test_count": 47,
+        "test_count": _collect_test_count(),
         "commit": _current_commit(),
     }
     return metrics
@@ -91,6 +93,24 @@ def _read_nested_int(payload: dict[str, Any] | None, keys: list[str], env_name: 
     for key in keys:
         value = value.get(key, {}) if isinstance(value, dict) else {}
     return int(value or 0)
+
+
+def _collect_test_count() -> int:
+    try:
+        completed = subprocess.run(
+            [sys.executable, "-m", "pytest", "--collect-only", "-q"],
+            check=True,
+            capture_output=True,
+            text=True,
+            cwd=ROOT,
+        )
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        return int(os.environ.get("ADOPTION_TEST_COUNT", "0"))
+
+    match = re.search(r"(\d+)\s+tests?\s+collected", completed.stdout)
+    if match:
+        return int(match.group(1))
+    return int(os.environ.get("ADOPTION_TEST_COUNT", "0"))
 
 
 def main() -> None:

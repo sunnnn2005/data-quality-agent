@@ -1,0 +1,69 @@
+{
+  "affected_column_count": 4,
+  "affected_columns": [
+    "amount",
+    "priority",
+    "team",
+    "ticket_id"
+  ],
+  "amount_outlier_count": 1,
+  "business_rule_reference_count": 4,
+  "business_scenario": "Support-operations ticket export used by internal dashboards.",
+  "dataset_id": "support_tickets",
+  "duplicate_primary_key_count": 1,
+  "finding_count": 5,
+  "generated_by": "scripts/verify_business_impact.py",
+  "impact_summary": {
+    "amount_outliers": {
+      "affected_column": "amount",
+      "business_risk": "Extreme values can skew reporting and need review before publication.",
+      "check": "numeric_outliers",
+      "outlier_count": 1
+    },
+    "check_coverage": {
+      "observed_check_count": 4,
+      "observed_checks": [
+        "duplicate_primary_key",
+        "missing_values",
+        "negative_amount",
+        "numeric_outliers"
+      ]
+    },
+    "duplicate_primary_keys": {
+      "affected_column": "ticket_id",
+      "business_risk": "Dashboards can double-count a support case or attach remediation to the wrong row.",
+      "check": "duplicate_primary_key",
+      "duplicate_count": 1
+    },
+    "missing_routing_fields": {
+      "affected_columns": [
+        "priority",
+        "team"
+      ],
+      "business_risk": "Support operations cannot reliably route or prioritize every ticket.",
+      "check": "missing_values",
+      "missing_field_count": 2,
+      "missing_rate_per_field": 0.125
+    },
+    "negative_amounts": {
+      "affected_column": "amount",
+      "business_risk": "Refund-like events are mixed into positive customer-impact facts.",
+      "check": "negative_amount",
+      "negative_count": 1
+    }
+  },
+  "issue_category_count": 4,
+  "missing_routing_field_count": 2,
+  "negative_amount_count": 1,
+  "not_claimed": [
+    "No verified external users yet.",
+    "No customer production deployment is claimed.",
+    "This artifact measures a reproducible business-data case study, not enterprise adoption."
+  ],
+  "quality_score": 24,
+  "recommended_action_count": 5,
+  "resume_safe_summary": "Quantified 4 support-ticket data quality issue categories across 8 rows, including duplicate ticket IDs, missing routing fields, negative amounts, and amount outliers.",
+  "row_count": 8,
+  "source_artifact": "docs/verified-support-ticket-result.json",
+  "status": "FAIL"
+}

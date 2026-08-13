@@ -16,7 +16,7 @@ def test_adoption_metrics_uses_safe_fallback_values(monkeypatch):
     assert metrics["forks"] == 1
     assert metrics["watchers"] == 0
     assert metrics["issues_total"] == 10
-    assert metrics["test_count"] == 47
+    assert metrics["test_count"] == 48
     assert metrics["commit"] is not None
     assert metrics["container_image"]["image"] == "ghcr.io/sunnnn2005/data-quality-agent:latest"
     assert metrics["release"]["tagName"] == "v0.1.0"
