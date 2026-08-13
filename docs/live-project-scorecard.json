@@ -1,5 +1,6 @@
 {
   "claim_coverage": {
+    "has_agent_capability_matrix": true,
     "has_agent_safety": true,
     "has_business_problem_casebook": true,
     "has_container": true,
@@ -16,13 +17,14 @@
   "container_image": "ghcr.io/sunnnn2005/data-quality-agent:latest",
   "generated_by": "scripts/build_live_project_scorecard.py",
   "headline_metrics": {
+    "agent_matrix_implemented_capabilities": 13,
     "agent_tools_allowed": 7,
     "implemented_agent_capabilities": 16,
     "openapi_required_endpoints": 6,
-    "passing_tests": 87,
+    "passing_tests": 88,
     "support_ticket_issue_categories": 4,
     "unsafe_postgres_queries_rejected": 3,
-    "verified_resume_claims": 46
+    "verified_resume_claims": 47
   },
   "live_footprint": {
     "confirmed_external_users": 0,
@@ -41,7 +43,7 @@
   "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
   "release": "v0.2.0",
   "repo": "https://github.com/sunnnn2005/data-quality-agent",
-  "resume_safe_summary": "Live project scorecard: public demo, v0.2.0 release, container image, 87 passing CI tests, 46 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
+  "resume_safe_summary": "Live project scorecard: public demo, v0.2.0 release, container image, 88 passing CI tests, 47 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
   "reviewer_paths": [
     {
       "label": "Try the public demo",
@@ -74,6 +76,10 @@
     {
       "label": "Inspect safety boundaries",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-safety-boundaries.md"
+    },
+    {
+      "label": "Inspect agent capability matrix",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-capability-matrix.md"
     },
     {
       "label": "Run the local reviewer demo",

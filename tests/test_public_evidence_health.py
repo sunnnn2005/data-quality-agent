@@ -13,6 +13,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "incident-pattern-memory",
         "agent-observability",
         "agent-safety-boundaries",
+        "agent-capability-matrix",
         "local-reviewer-demo",
         "api-smoke-report",
         "performance-baseline",

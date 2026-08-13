@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 10 |
-| Passing CI tests | 87 |
+| Passing CI tests | 88 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -37,6 +37,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Allowed agent tools | 7 |
 | Rejected unsafe PostgreSQL queries | 3 |
 | Report verifier rules | 6 |
+| Agent capability matrix | 1 |
+| Agent matrix implemented capabilities | 13 |
+| Agent matrix partial maturity areas | 4 |
+| Agent matrix not-claimed areas | 1 |
 | Local reviewer demo | 1 |
 | Local reviewer seeded rows | 8 |
 | Local reviewer routes | 3 |
@@ -70,13 +74,13 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Public traction growth channels | 12 |
 | Public traction resume upgrade rules | 3 |
 | Live project scorecard | 1 |
-| Scorecard reviewer paths | 10 |
+| Scorecard reviewer paths | 11 |
 | OpenAPI required integration endpoints | 6 |
 | OpenAPI paths | 14 |
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 12 |
+| Application evidence links | 13 |
 | Pilot outreach messages | 3 |
 | Pilot review paths | 7 |
 | Pilot program segments | 3 |
@@ -99,7 +103,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.2.0 release
-- 87 passing CI tests
+- 88 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -110,6 +114,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 2 observed run traces with fallback and verification status
 - 2 mocked LLM calls with 360 tokens, prompt version, latency, retry budget, and estimated cost telemetry
 - 7 allowed agent tools and 3 rejected unsafe PostgreSQL queries
+- CI-verified agent capability matrix with 13 implemented LLM-agent checklist items, 4 partial maturity areas, and 1 explicit not-claimed area
 - Local Docker Compose reviewer demo with 8 seeded PostgreSQL rows and 3 review paths
 - CI-verified API smoke report covering 6 passing FastAPI route checks
 - CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls
@@ -119,10 +124,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Impact review packet with 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs
 - Business problem casebook with 1 verified case, 4 detected business risks, and 4 owner handoffs
 - Public traction dashboard with 4 live project surfaces, 12 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
-- 10 reviewer paths in a CI-verified live project scorecard
+- 11 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
-- 12 application evidence links in a recruiter-ready evidence pack
+- 13 application evidence links in a recruiter-ready evidence pack
 - 3 pilot outreach messages and 7 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
 - Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups

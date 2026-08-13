@@ -1,0 +1,148 @@
+{
+  "agent_definition": "LLM decision-making + controlled tools + stateful loop + dynamic path + bounded permissions + evidence-backed output.",
+  "capabilities": [
+    {
+      "evidence": "LLMDataQualityAgent.run asks the model to investigate one dataset and determine quality status, primary risks, and remediation actions.",
+      "id": "explicit-task-goal",
+      "question": "Does the agent have a bounded task goal?",
+      "status": "implemented"
+    },
+    {
+      "evidence": "The Chat Completions loop exposes tools with tool_choice=auto, and model-selected tool calls determine which toolbox function runs next.",
+      "id": "llm-decision-making",
+      "question": "Does the LLM choose the next step instead of following a fixed path?",
+      "status": "implemented"
+    },
+    {
+      "evidence": "7 allowed tools: get_dataset_contract, profile_dataset, select_quality_strategy, retrieve_dataset_memory, run_quality_checks, retrieve_business_rules, build_quality_report.",
+      "id": "controlled-tools",
+      "question": "Are there multiple structured tools with a whitelist?",
+      "status": "implemented"
+    },
+    {
+      "evidence": "Each tool result is appended as a role=tool message before the next model call.",
+      "id": "tool-feedback-loop",
+      "question": "Are tool results fed back to the LLM?",
+      "status": "implemented"
+    },
+    {
+      "evidence": "select_quality_strategy returned 5 checks for orders_daily: schema_required_columns, missing_values, duplicate_primary_key, schema_drift, email_completeness.",
+      "id": "dynamic-path",
+      "question": "Can different input shapes trigger different plans?",
+      "status": "implemented"
+    },
+    {
+      "evidence": "AgentRunReport stores status, final_answer, tool_calls, quality_report, evaluation, and trace_id; RunTraceStore persists sanitized run traces when TRACE_DB_PATH is configured.",
+      "id": "state-management",
+      "question": "Does the agent preserve task state and evidence?",
+      "status": "implemented"
+    },
+    {
+      "evidence": "The loop stops when the model returns no tool calls, when build_quality_report attaches a final report, or after six rounds.",
+      "id": "termination-conditions",
+      "question": "Does the loop know when to stop?",
+      "status": "implemented"
+    },
+    {
+      "evidence": "Tool dispatch rejects unknown tools, PostgreSQL is read-only, and 3 unsafe SQL examples are rejected.",
+      "id": "permission-boundary",
+      "question": "Are tool and database permissions bounded?",
+      "status": "implemented"
+    },
+    {
+      "evidence": "Without OPENAI_API_KEY, the agent returns status=DISABLED instead of failing the API.",
+      "id": "fallback",
+      "question": "Does the system degrade safely when the model is unavailable?",
+      "status": "implemented"
+    },
+    {
+      "evidence": "LLM prompt payloads contain dataset metadata, column profiles, redacted samples, and finding evidence rather than raw uploaded files.",
+      "id": "context-management",
+      "question": "Does the model receive summaries instead of full private tables?",
+      "status": "implemented"
+    },
+    {
+      "evidence": "QualityReport and AgentRunReport are Pydantic response models exposed through FastAPI and OpenAPI.",
+      "id": "structured-output",
+      "question": "Is the final output structured and machine-verifiable?",
+      "status": "implemented"
+    },
+    {
+      "evidence": "QualityReport separates findings, likely_causes, root_cause_hypotheses, recommended_next_steps, verification, and llm_assessment.",
+      "id": "evidence-separation",
+      "question": "Are facts, hypotheses, recommendations, and limitations separable?",
+      "status": "implemented"
+    },
+    {
+      "evidence": "ReportVerifier checks finding evidence, known columns, sensitive terms, LLM evidence support, recommended actions, and score bounds.",
+      "id": "guardrails",
+      "question": "Are final reports checked by deterministic code?",
+      "status": "implemented"
+    },
+    {
+      "evidence": "Run traces, prompt_version, model_call_count, token/cost telemetry, and fallback status exist, but there is no production monitoring dashboard.",
+      "id": "observability",
+      "next_step": "Add persisted per-model-call telemetry for real model runs and expose aggregate latency/cost dashboards.",
+      "question": "Can reviewer inspect traces, model metadata, latency, cost, and fallback status?",
+      "status": "partial"
+    },
+    {
+      "evidence": "retrieve_dataset_memory gives the LLM prior sanitized traces and recurring incident patterns, but accepted feedback labels do not yet tune ranking.",
+      "id": "memory",
+      "next_step": "Use accepted/needs-review hypothesis feedback to adjust root-cause ranking in later runs.",
+      "question": "Does memory influence future reasoning?",
+      "status": "partial"
+    },
+    {
+      "evidence": "retrieve_business_rules provides source-cited local Markdown business rules, but there is no embedding/vector search layer yet.",
+      "id": "rag",
+      "next_step": "Add optional embedding-backed retrieval with permission filtering and source citations.",
+      "question": "Does the agent retrieve external knowledge?",
+      "status": "partial"
+    },
+    {
+      "evidence": "The repo has deterministic scenario evals, fallback tests, and tool-planning coverage, but no large labeled real-world eval set.",
+      "id": "evaluation",
+      "next_step": "Add 20-30 labeled business-data scenarios measuring tool-choice accuracy, false positives, evidence support, latency, and cost.",
+      "question": "Is there an eval suite proving agent value?",
+      "status": "partial"
+    },
+    {
+      "evidence": "The current agent is read-only and recommends actions; it does not execute writes or send tickets.",
+      "id": "human-approval",
+      "next_step": "Add an approval boundary before generated SQL, ticket creation, or notification actions.",
+      "question": "Are risky actions gated by human approval?",
+      "status": "planned"
+    },
+    {
+      "evidence": "The public metrics intentionally show zero confirmed external users and no enterprise production deployment claim.",
+      "id": "production-adoption",
+      "question": "Is there production usage or external user proof?",
+      "status": "not_claimed"
+    }
+  ],
+  "generated_by": "scripts/build_agent_capability_matrix.py",
+  "implemented_count": 13,
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "enterprise production deployment",
+    "paid model benchmark results",
+    "autonomous write actions"
+  ],
+  "not_claimed_count": 1,
+  "partial_count": 4,
+  "planned_count": 1,
+  "project": "Data Quality Agent",
+  "resume_safe_summary": "Published a CI-verified agent capability matrix showing 13 implemented LLM-agent capabilities, 4 partial maturity areas, 7 allowed tools, safe fallback, read-only business-data boundaries, and no inflated production-user claims.",
+  "tool_count": 7,
+  "tool_names": [
+    "get_dataset_contract",
+    "profile_dataset",
+    "select_quality_strategy",
+    "retrieve_dataset_memory",
+    "run_quality_checks",
+    "retrieve_business_rules",
+    "build_quality_report"
+  ]
+}

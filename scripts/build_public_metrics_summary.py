@@ -13,6 +13,7 @@ HYPOTHESIS_FEEDBACK_PATH = ROOT / "docs" / "hypothesis-feedback.json"
 INCIDENT_PATTERN_MEMORY_PATH = ROOT / "docs" / "incident-pattern-memory.json"
 AGENT_OBSERVABILITY_PATH = ROOT / "docs" / "agent-observability.json"
 AGENT_SAFETY_PATH = ROOT / "docs" / "agent-safety-boundaries.json"
+AGENT_CAPABILITY_MATRIX_PATH = ROOT / "docs" / "agent-capability-matrix.json"
 LOCAL_REVIEWER_DEMO_PATH = ROOT / "docs" / "local-reviewer-demo.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
@@ -46,6 +47,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     incident_memory = load_json(INCIDENT_PATTERN_MEMORY_PATH)
     observability = load_json(AGENT_OBSERVABILITY_PATH)
     safety = load_json(AGENT_SAFETY_PATH)
+    capability_matrix = load_json(AGENT_CAPABILITY_MATRIX_PATH)
     local_demo = load_json(LOCAL_REVIEWER_DEMO_PATH)
     api_smoke = load_json(API_SMOKE_REPORT_PATH)
     performance = load_json(PERFORMANCE_BASELINE_PATH)
@@ -57,6 +59,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     traction = load_json(PUBLIC_TRACTION_DASHBOARD_PATH)
     openapi = load_json(OPENAPI_PATH)
     recruiter_pitch = load_json(RECRUITER_PITCH_PATH)
+    application_pack = load_json(APPLICATION_EVIDENCE_PACK_PATH)
     pilot_outreach = load_json(PILOT_OUTREACH_KIT_PATH)
     pilot_plan = load_json(PILOT_PROGRAM_PLAN_PATH)
     feedback_intake = load_json(FEEDBACK_INTAKE_QUALITY_PATH)
@@ -98,6 +101,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "tool_allowlist_count": safety["tool_allowlist_count"],
             "postgres_rejected_write_query_count": safety["postgres_rejected_write_query_count"],
             "verifier_rule_count": safety["verifier_rule_count"],
+            "agent_capability_matrix": 1,
+            "agent_matrix_implemented_capabilities": capability_matrix["implemented_count"],
+            "agent_matrix_partial_capabilities": capability_matrix["partial_count"],
+            "agent_matrix_not_claimed_count": capability_matrix["not_claimed_count"],
             "local_reviewer_demo": 1,
             "local_reviewer_seeded_rows": local_demo["seeded_business_table"]["row_count"],
             "local_reviewer_routes": len(local_demo["reviewer_routes"]),
@@ -131,13 +138,13 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "public_traction_growth_channels": traction["growth_channel_count"],
             "public_traction_resume_upgrade_rules": len(traction["resume_upgrade_rules"]),
             "live_project_scorecard": 1,
-            "scorecard_reviewer_paths": 10,
+            "scorecard_reviewer_paths": 11,
             "openapi_required_endpoints": 6,
             "openapi_paths": len(openapi["paths"]),
             "recruiter_pitch_resume_bullets": len(recruiter_pitch["resume_bullets"]),
             "recruiter_pitch_target_roles": len(recruiter_pitch["target_roles"]),
             "application_evidence_pack": 1,
-            "application_evidence_links": 12,
+            "application_evidence_links": len(application_pack["application_links"]),
             "pilot_outreach_messages": len(pilot_outreach["outreach_messages"]),
             "pilot_review_paths": len(pilot_outreach["review_paths"]),
             "pilot_program_segments": len(pilot_plan["participant_segments"]),
@@ -176,6 +183,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 "retry budget, and estimated cost telemetry"
             ),
             f"{safety['tool_allowlist_count']} allowed agent tools and {safety['postgres_rejected_write_query_count']} rejected unsafe PostgreSQL queries",
+            (
+                f"CI-verified agent capability matrix with {capability_matrix['implemented_count']} implemented "
+                f"LLM-agent checklist items, {capability_matrix['partial_count']} partial maturity areas, "
+                f"and {capability_matrix['not_claimed_count']} explicit not-claimed area"
+            ),
             (
                 f"Local Docker Compose reviewer demo with {local_demo['seeded_business_table']['row_count']} seeded "
                 f"PostgreSQL rows and {len(local_demo['reviewer_routes'])} review paths"
@@ -217,10 +229,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{traction['tracked_funnel_steps']} tracked funnel steps, and "
                 f"{len(traction['resume_upgrade_rules'])} resume upgrade rules"
             ),
-            "10 reviewer paths in a CI-verified live project scorecard",
+            "11 reviewer paths in a CI-verified live project scorecard",
             "CI-verified OpenAPI contract covering 6 integration endpoints",
             f"{len(recruiter_pitch['resume_bullets'])} recruiter-safe resume bullets for {len(recruiter_pitch['target_roles'])} target roles",
-            "12 application evidence links in a recruiter-ready evidence pack",
+            "13 application evidence links in a recruiter-ready evidence pack",
             f"{len(pilot_outreach['outreach_messages'])} pilot outreach messages and {len(pilot_outreach['review_paths'])} review paths for collecting real feedback",
             f"{len(pilot_plan['participant_segments'])} pilot participant segments across a {len(pilot_plan['weekly_plan'])}-week feedback plan",
             (
@@ -287,6 +299,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Allowed agent tools | {outcomes["tool_allowlist_count"]} |
 | Rejected unsafe PostgreSQL queries | {outcomes["postgres_rejected_write_query_count"]} |
 | Report verifier rules | {outcomes["verifier_rule_count"]} |
+| Agent capability matrix | {outcomes["agent_capability_matrix"]} |
+| Agent matrix implemented capabilities | {outcomes["agent_matrix_implemented_capabilities"]} |
+| Agent matrix partial maturity areas | {outcomes["agent_matrix_partial_capabilities"]} |
+| Agent matrix not-claimed areas | {outcomes["agent_matrix_not_claimed_count"]} |
 | Local reviewer demo | {outcomes["local_reviewer_demo"]} |
 | Local reviewer seeded rows | {outcomes["local_reviewer_seeded_rows"]} |
 | Local reviewer routes | {outcomes["local_reviewer_routes"]} |
@@ -360,7 +376,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 87,
+        "test_count": 88,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -384,6 +400,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "tool_allowlist_count": 7,
         "postgres_rejected_write_query_count": 3,
         "verifier_rule_count": 6,
+        "agent_capability_matrix": 1,
+        "agent_matrix_implemented_capabilities": 13,
+        "agent_matrix_partial_capabilities": 4,
+        "agent_matrix_not_claimed_count": 1,
         "local_reviewer_demo": 1,
         "local_reviewer_seeded_rows": 8,
         "local_reviewer_routes": 3,
@@ -417,12 +437,12 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "public_traction_growth_channels": 12,
         "public_traction_resume_upgrade_rules": 3,
         "live_project_scorecard": 1,
-        "scorecard_reviewer_paths": 10,
+        "scorecard_reviewer_paths": 11,
         "openapi_required_endpoints": 6,
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 12,
+        "application_evidence_links": 13,
         "pilot_outreach_messages": 3,
         "pilot_review_paths": 7,
         "pilot_program_segments": 3,

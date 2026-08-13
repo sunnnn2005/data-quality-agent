@@ -6,12 +6,13 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 
 | Metric | Value |
 | --- | ---: |
-| Passing Tests | 87 |
-| Verified Resume Claims | 46 |
+| Passing Tests | 88 |
+| Verified Resume Claims | 47 |
 | Implemented Agent Capabilities | 16 |
 | Support Ticket Issue Categories | 4 |
 | Openapi Required Endpoints | 6 |
 | Agent Tools Allowed | 7 |
+| Agent Matrix Implemented Capabilities | 13 |
 | Unsafe Postgres Queries Rejected | 3 |
 
 ## Live Footprint
@@ -34,6 +35,7 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 - [Inspect feedback intake quality](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/feedback-intake-quality.md)
 - [Inspect OpenAPI contract](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/api-contract.md)
 - [Inspect safety boundaries](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-safety-boundaries.md)
+- [Inspect agent capability matrix](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-capability-matrix.md)
 - [Run the local reviewer demo](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/local-reviewer-demo.md)
 - [Inspect public metrics](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-metrics-summary.md)
 
@@ -46,6 +48,7 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 | Has Container | True |
 | Has Openapi Contract | True |
 | Has Agent Safety | True |
+| Has Agent Capability Matrix | True |
 | Has Local Reviewer Demo | True |
 | Has Observability | True |
 | Has Feedback Baseline | True |
@@ -56,7 +59,7 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 
 ## Resume-Safe Summary
 
-Live project scorecard: public demo, v0.2.0 release, container image, 87 passing CI tests, 46 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
+Live project scorecard: public demo, v0.2.0 release, container image, 88 passing CI tests, 47 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
 
 ## Not Claimed
 

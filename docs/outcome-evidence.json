@@ -28,12 +28,12 @@
     },
     {
       "id": "ci-tests",
-      "resume_signal": "87 passing CI tests",
+      "resume_signal": "88 passing CI tests",
       "claim": "Automated test suite passes locally and in GitHub Actions, including the business problem casebook and feedback intake quality verifiers.",
       "evidence_type": "ci",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "metric_name": "test_count",
-      "metric_value": 87,
+      "metric_value": 88,
       "status": "verified"
     },
     {
@@ -261,6 +261,16 @@
       "status": "verified"
     },
     {
+      "id": "agent-capability-matrix",
+      "resume_signal": "CI-verified LLM agent capability matrix",
+      "claim": "The project publishes a generated capability matrix mapping the agent against a practical LLM-agent checklist, with 13 implemented capabilities, 4 partial maturity areas, 7 allowed tools, and explicit not-claimed production adoption.",
+      "evidence_type": "artifact",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-capability-matrix.json",
+      "metric_name": "agent_capability_matrix",
+      "metric_value": 1,
+      "status": "verified"
+    },
+    {
       "id": "live-project-scorecard",
       "resume_signal": "CI-verified live project scorecard",
       "claim": "The project publishes a generated scorecard summarizing the public demo, release, container image, CI tests, verified resume claims, agent capabilities, reviewer paths, and honest zero-adoption baselines.",
@@ -287,7 +297,7 @@
       "evidence_type": "artifact",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 12,
+      "metric_value": 13,
       "status": "verified"
     },
     {

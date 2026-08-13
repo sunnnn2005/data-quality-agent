@@ -18,6 +18,7 @@ HYPOTHESIS_FEEDBACK_PATH = ROOT / "docs" / "hypothesis-feedback.json"
 INCIDENT_PATTERN_MEMORY_PATH = ROOT / "docs" / "incident-pattern-memory.json"
 AGENT_OBSERVABILITY_PATH = ROOT / "docs" / "agent-observability.json"
 AGENT_SAFETY_PATH = ROOT / "docs" / "agent-safety-boundaries.json"
+AGENT_CAPABILITY_MATRIX_PATH = ROOT / "docs" / "agent-capability-matrix.json"
 LOCAL_REVIEWER_DEMO_PATH = ROOT / "docs" / "local-reviewer-demo.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
 PERFORMANCE_BASELINE_PATH = ROOT / "docs" / "performance-baseline.json"
@@ -66,6 +67,7 @@ def verify_manifest() -> dict[str, int]:
     incident_memory = load_payload(INCIDENT_PATTERN_MEMORY_PATH)
     observability = load_payload(AGENT_OBSERVABILITY_PATH)
     safety = load_payload(AGENT_SAFETY_PATH)
+    capability_matrix = load_payload(AGENT_CAPABILITY_MATRIX_PATH)
     local_reviewer_demo = load_payload(LOCAL_REVIEWER_DEMO_PATH)
     api_smoke_report = load_payload(API_SMOKE_REPORT_PATH)
     performance_baseline = load_payload(PERFORMANCE_BASELINE_PATH)
@@ -441,7 +443,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 87:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 88:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -646,6 +648,29 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("agent safety script must verify generated boundaries")
                 if "test_agent_safety_boundaries_capture_tool_permissions_and_guardrails" not in safety_tests:
                     raise AssertionError("agent safety boundaries must have a dedicated test")
+            elif metric_name == "agent_capability_matrix":
+                matrix_tests = (ROOT / "tests" / "test_agent_capability_matrix.py").read_text()
+                matrix_script = (ROOT / "scripts" / "build_agent_capability_matrix.py").read_text()
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("agent capability matrix claim must use metric_value=1")
+                if capability_matrix.get("tool_count") != 7:
+                    raise AssertionError("agent capability matrix must verify seven allowed tools")
+                if capability_matrix.get("implemented_count") != 13:
+                    raise AssertionError("agent capability matrix must verify 13 implemented capabilities")
+                if capability_matrix.get("partial_count") != 4:
+                    raise AssertionError("agent capability matrix must preserve partial maturity areas")
+                if capability_matrix.get("not_claimed_count") != 1:
+                    raise AssertionError("agent capability matrix must preserve explicit not-claimed areas")
+                if "enterprise production deployment" not in capability_matrix.get("not_claimed", []):
+                    raise AssertionError("agent capability matrix must not claim production deployment")
+                capability_ids = {item.get("id") for item in capability_matrix.get("capabilities", [])}
+                for required in ("llm-decision-making", "tool-feedback-loop", "dynamic-path", "production-adoption"):
+                    if required not in capability_ids:
+                        raise AssertionError(f"agent capability matrix missing {required}")
+                if "verify_agent_capability_matrix" not in matrix_script:
+                    raise AssertionError("agent capability matrix script must verify generated metrics")
+                if "test_agent_capability_matrix_maps_real_agent_requirements_without_inflation" not in matrix_tests:
+                    raise AssertionError("agent capability matrix must have a dedicated test")
             elif metric_name == "live_project_scorecard":
                 scorecard_tests = (ROOT / "tests" / "test_live_project_scorecard.py").read_text()
                 scorecard_script = (ROOT / "scripts" / "build_live_project_scorecard.py").read_text()
@@ -719,7 +744,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 87:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 88:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -852,7 +877,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 87", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 88", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 
