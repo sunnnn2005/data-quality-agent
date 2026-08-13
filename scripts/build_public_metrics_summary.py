@@ -37,6 +37,7 @@ FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
 BUSINESS_DATA_REPLAY_PACKET_PATH = ROOT / "docs" / "business-data-replay-packet.json"
+REAL_MODEL_RUNBOOK_PATH = ROOT / "docs" / "real-model-runbook.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 
@@ -79,6 +80,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     star_growth = load_json(STAR_GROWTH_KIT_PATH)
     business_case_intake = load_json(BUSINESS_CASE_INTAKE_PATH)
     replay_packet = load_json(BUSINESS_DATA_REPLAY_PACKET_PATH)
+    real_model_runbook = load_json(REAL_MODEL_RUNBOOK_PATH)
     verified_outcomes = outcome["verified_outcomes"]
     return {
         "project": "Data Quality Agent",
@@ -199,6 +201,12 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "business_data_replay_paths": replay_packet["replay_path_count"],
             "business_data_replay_evidence_fields": replay_packet["evidence_field_count"],
             "business_data_replay_safety_requirements": replay_packet["safety_requirement_count"],
+            "real_model_runbook": 1,
+            "real_model_current_runs": real_model_runbook["current_real_model_runs"],
+            "real_model_run_commands": real_model_runbook["run_command_count"],
+            "real_model_evidence_fields": real_model_runbook["evidence_field_count"],
+            "real_model_acceptance_criteria": real_model_runbook["acceptance_criteria_count"],
+            "real_model_safety_gates": real_model_runbook["safety_gate_count"],
             "implemented_agent_capabilities": len(readiness["implemented"]),
             "partial_agent_capabilities": len(readiness["partial"]),
         },
@@ -321,6 +329,12 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"Business-data replay packet with {replay_packet['replay_path_count']} safe replay paths, "
                 f"{replay_packet['evidence_field_count']} evidence fields, "
                 f"{replay_packet['safety_requirement_count']} safety requirements, and zero current external replay claims"
+            ),
+            (
+                f"Real-model runbook with {real_model_runbook['run_command_count']} run commands, "
+                f"{real_model_runbook['evidence_field_count']} evidence fields, "
+                f"{real_model_runbook['acceptance_criteria_count']} acceptance criteria, "
+                f"{real_model_runbook['safety_gate_count']} safety gates, and zero current real model run claims"
             ),
             f"{verified_outcomes['recommended_action_count']} evidence-backed remediation actions",
             f"{len(readiness['implemented'])} implemented LLM agent-readiness capabilities",
@@ -462,6 +476,12 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business-data replay paths | {outcomes["business_data_replay_paths"]} |
 | Business-data replay evidence fields | {outcomes["business_data_replay_evidence_fields"]} |
 | Business-data replay safety requirements | {outcomes["business_data_replay_safety_requirements"]} |
+| Real-model runbook | {outcomes["real_model_runbook"]} |
+| Current real model runs | {outcomes["real_model_current_runs"]} |
+| Real-model run commands | {outcomes["real_model_run_commands"]} |
+| Real-model evidence fields | {outcomes["real_model_evidence_fields"]} |
+| Real-model acceptance criteria | {outcomes["real_model_acceptance_criteria"]} |
+| Real-model safety gates | {outcomes["real_model_safety_gates"]} |
 | Recommended remediation actions | {outcomes["recommended_actions"]} |
 | Implemented LLM agent-readiness capabilities | {outcomes["implemented_agent_capabilities"]} |
 | Partial agent-readiness capabilities documented | {outcomes["partial_agent_capabilities"]} |
@@ -486,7 +506,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 95,
+        "test_count": 96,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -547,12 +567,12 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "public_traction_growth_channels": 16,
         "public_traction_resume_upgrade_rules": 3,
         "live_project_scorecard": 1,
-        "scorecard_reviewer_paths": 12,
+        "scorecard_reviewer_paths": 13,
         "openapi_required_endpoints": 6,
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 14,
+        "application_evidence_links": 15,
         "pilot_outreach_messages": 3,
         "pilot_review_paths": 9,
         "pilot_program_segments": 3,
@@ -591,6 +611,12 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "business_data_replay_paths": 3,
         "business_data_replay_evidence_fields": 8,
         "business_data_replay_safety_requirements": 5,
+        "real_model_runbook": 1,
+        "real_model_current_runs": 0,
+        "real_model_run_commands": 4,
+        "real_model_evidence_fields": 15,
+        "real_model_acceptance_criteria": 8,
+        "real_model_safety_gates": 5,
         "recommended_actions": 5,
         "implemented_agent_capabilities": 16,
     }

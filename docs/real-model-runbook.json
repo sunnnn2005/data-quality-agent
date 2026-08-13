@@ -1,0 +1,99 @@
+{
+  "acceptance_criteria": [
+    "Agent status is not DISABLED.",
+    "At least two model calls are recorded.",
+    "At least three tool calls are recorded.",
+    "The strategy tool and final report tool are both used.",
+    "A deterministic QualityReport is attached.",
+    "Report verification passes or lists explicit issues.",
+    "Token count, estimated cost, latency, prompt version, provider, and model are recorded.",
+    "No raw prompt, uploaded rows, credentials, customer identifiers, or secrets are published."
+  ],
+  "acceptance_criteria_count": 8,
+  "current_mock_model_calls": 2,
+  "current_mock_tokens": 360,
+  "current_real_model_runs": 0,
+  "evidence_field_count": 15,
+  "evidence_fields": [
+    "provider",
+    "model",
+    "prompt_version",
+    "dataset_id",
+    "model_call_count",
+    "tool_call_count",
+    "distinct_tool_count",
+    "used_strategy_tool",
+    "used_required_report_tool",
+    "final_report_attached",
+    "total_tokens",
+    "estimated_cost_usd",
+    "latency_ms",
+    "verification_passed",
+    "redaction_status"
+  ],
+  "generated_by": "scripts/build_real_model_runbook.py",
+  "implemented_agent_capabilities": 13,
+  "not_claimed": [
+    "real OpenAI model run completed",
+    "paid model benchmark results",
+    "real model accuracy improvement",
+    "production model traffic",
+    "raw prompts published"
+  ],
+  "openapi_agent_routes": [
+    "/business-data/agent-report",
+    "/datasets/{dataset_id}/agent-report",
+    "/postgres/support-tickets/agent-report"
+  ],
+  "project": "Data Quality Agent",
+  "prompt_version": "tool-agent-v3",
+  "purpose": "Define the exact evidence gate for converting the existing mocked tool-calling telemetry into a public, resume-safe real OpenAI-compatible model run once provider credentials are explicitly supplied.",
+  "resume_safe_summary": "Published a CI-verified real-model runbook with 4 run commands, 15 evidence fields, 8 acceptance criteria, and 5 safety gates without claiming a paid model run yet.",
+  "resume_status": "real_model_run_ready_not_claimable",
+  "resume_upgrade_rules": [
+    {
+      "claim_when_met": "executed a real OpenAI-compatible tool-calling run with public redacted telemetry",
+      "current_value": 0,
+      "metric": "real_model_runs",
+      "minimum_before_claim": 1
+    },
+    {
+      "claim_when_met": "real model selected multiple tools before finalizing a verified report",
+      "current_value": 0,
+      "metric": "real_model_tool_calls",
+      "minimum_before_claim": 3
+    }
+  ],
+  "run_command_count": 4,
+  "run_commands": [
+    {
+      "command": "OPENAI_API_KEY=$OPENAI_API_KEY uvicorn app.main:app --reload",
+      "id": "start_api",
+      "purpose": "Start the FastAPI app with an explicit OpenAI-compatible model key."
+    },
+    {
+      "command": "curl -X POST http://127.0.0.1:8000/datasets/orders_daily/agent-report",
+      "id": "run_builtin_agent",
+      "purpose": "Execute the tool-calling agent on a deterministic dataset."
+    },
+    {
+      "command": "curl -X POST http://127.0.0.1:8000/business-data/agent-report -F file=@sample.csv -F dataset_name='Replay Dataset' -F owner='reviewer' -F primary_key='id'",
+      "id": "run_business_csv_agent",
+      "purpose": "Execute the tool-calling agent on anonymized business-shaped CSV data."
+    },
+    {
+      "command": "curl http://127.0.0.1:8000/runs/<trace_id>",
+      "id": "inspect_trace",
+      "purpose": "Inspect sanitized trace, tool calls, final report attachment, and telemetry summary."
+    }
+  ],
+  "safety_gate_count": 5,
+  "safety_gates": [
+    "Do not commit OPENAI_API_KEY or provider credentials.",
+    "Do not publish raw request prompts or raw uploaded business rows.",
+    "Use anonymized or synthetic-but-business-shaped CSV data for public artifacts.",
+    "Store only telemetry summaries and redacted report evidence.",
+    "Keep deterministic report verification as the source of truth."
+  ],
+  "tool_count": 7
+}

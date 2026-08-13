@@ -42,6 +42,7 @@ FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
 BUSINESS_DATA_REPLAY_PACKET_PATH = ROOT / "docs" / "business-data-replay-packet.json"
+REAL_MODEL_RUNBOOK_PATH = ROOT / "docs" / "real-model-runbook.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
 PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
 RESUME_EVIDENCE_PATH = ROOT / "docs" / "resume-evidence.md"
@@ -98,6 +99,7 @@ def verify_manifest() -> dict[str, int]:
     star_growth = load_payload(STAR_GROWTH_KIT_PATH)
     business_case_intake = load_payload(BUSINESS_CASE_INTAKE_PATH)
     replay_packet = load_payload(BUSINESS_DATA_REPLAY_PACKET_PATH)
+    real_model_runbook = load_payload(REAL_MODEL_RUNBOOK_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
     feedback_log = FEEDBACK_LOG_PATH.read_text().lower()
@@ -457,7 +459,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 95:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 96:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -758,7 +760,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 95:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 96:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1059,6 +1061,44 @@ def verify_manifest() -> dict[str, int]:
                     not in replay_tests
                 ):
                     raise AssertionError("business data replay packet must have a dedicated test")
+            elif metric_name == "real_model_runbook":
+                runbook_tests = (ROOT / "tests" / "test_real_model_runbook.py").read_text()
+                runbook_script = (ROOT / "scripts" / "build_real_model_runbook.py").read_text()
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("real model runbook claim must use metric_value=1")
+                expected = {
+                    "current_real_model_runs": 0,
+                    "run_command_count": 4,
+                    "evidence_field_count": 15,
+                    "acceptance_criteria_count": 8,
+                    "safety_gate_count": 5,
+                    "tool_count": 7,
+                }
+                for key, value in expected.items():
+                    if real_model_runbook.get(key) != value:
+                        raise AssertionError(f"real model runbook {key} expected {value}")
+                if real_model_runbook.get("prompt_version") != "tool-agent-v3":
+                    raise AssertionError("real model runbook must pin the current prompt version")
+                if real_model_runbook.get("resume_status") != "real_model_run_ready_not_claimable":
+                    raise AssertionError("real model runbook must not claim a completed real model run")
+                routes = set(real_model_runbook.get("openapi_agent_routes", []))
+                for required in {"/business-data/agent-report", "/datasets/{dataset_id}/agent-report"}:
+                    if required not in routes:
+                        raise AssertionError(f"real model runbook missing route {required}")
+                for required in (
+                    "real OpenAI model run completed",
+                    "paid model benchmark results",
+                    "production model traffic",
+                ):
+                    if required not in real_model_runbook.get("not_claimed", []):
+                        raise AssertionError(f"real model runbook must not claim {required}")
+                if "verify_real_model_runbook" not in runbook_script:
+                    raise AssertionError("real model runbook script must verify generated artifact")
+                if (
+                    "test_real_model_runbook_defines_resume_safe_evidence_gate_without_claiming_paid_run"
+                    not in runbook_tests
+                ):
+                    raise AssertionError("real model runbook must have a dedicated test")
             elif metric_name == "star_growth_kit":
                 star_script = (ROOT / "scripts" / "build_star_growth_kit.py").read_text()
                 star_tests = (ROOT / "tests" / "test_star_growth_kit.py").read_text()
@@ -1146,7 +1186,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 95", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 96", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

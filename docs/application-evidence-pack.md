@@ -4,7 +4,7 @@ This generated pack gives recruiters and interviewers a compact review path for 
 
 ## One-Line Project Proof
 
-Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 95 tests, 54 verified resume claims, and honest adoption baselines.
+Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 96 tests, 55 verified resume claims, and honest adoption baselines.
 
 ## Application Links
 
@@ -19,6 +19,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 - Public Traction Dashboard: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-traction-dashboard.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-traction-dashboard.md)
 - Feedback Intake Quality: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/feedback-intake-quality.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/feedback-intake-quality.md)
 - Business Data Replay Packet: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-data-replay-packet.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-data-replay-packet.md)
+- Real Model Runbook: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-runbook.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-runbook.md)
 - Agent Capability Matrix: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-capability-matrix.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-capability-matrix.md)
 - Api Contract: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/api-contract.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/api-contract.md)
 - Public Metrics: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-metrics-summary.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-metrics-summary.md)
@@ -27,8 +28,8 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 
 | Metric | Value |
 | --- | ---: |
-| Passing Tests | 95 |
-| Verified Resume Claims | 54 |
+| Passing Tests | 96 |
+| Verified Resume Claims | 55 |
 | Implemented Agent Capabilities | 16 |
 | Agent Tools Allowed | 7 |
 | Openapi Required Endpoints | 6 |
@@ -44,13 +45,15 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Feedback Intake Captured Fields | 5 |
 | Business Data Replay Paths | 3 |
 | Business Data Replay Evidence Fields | 8 |
+| Real Model Run Commands | 4 |
+| Real Model Evidence Fields | 15 |
 | Recruiter Safe Resume Bullets | 3 |
 | Target Roles | 4 |
 
 ## Resume Bullets
 
 - Built an LLM tool-calling data-quality agent for real business CSV and read-only PostgreSQL data, with 7 allowed tools, dynamic strategy selection, memory-informed planning, source-cited business-rule retrieval, 6 verified API integration endpoints, and safe model-key fallback.
-- Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 95 passing tests, 54 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
+- Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 96 passing tests, 55 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
 - Added enterprise-style guardrails for agent reliability, including read-only PostgreSQL query limits, 3 rejected unsafe SQL queries, sensitive-field redaction, trace observability, incident-pattern memory, evidence-backed root-cause hypotheses, and deterministic report verification.
 
 ## Email Attachment Note

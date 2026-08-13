@@ -46,7 +46,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 95},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 96},
         "evidence_type": "json",
     },
     {
@@ -195,6 +195,18 @@ PUBLIC_CHECKS = [
             "readonly_postgres_table",
             "business_data_replay.md",
             "real company data analyzed",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "real-model-runbook",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/real-model-runbook.json",
+        "expected_json": {"project": "Data Quality Agent", "current_real_model_runs": 0, "evidence_field_count": 15},
+        "expected_text": "real_model_run_ready_not_claimable",
+        "expected_texts": [
+            "OPENAI_API_KEY",
+            "paid model benchmark results",
+            "/business-data/agent-report",
         ],
         "evidence_type": "json",
     },

@@ -9,7 +9,7 @@ This page maps resume-ready claims for Data Quality Agent to public evidence. It
 | `public-demo` | Launched public demo | [GitHub Pages demo](https://sunnnn2005.github.io/data-quality-agent/) | The project is publicly viewable and has a product-style demo page. |
 | `public-release` | Published release | [v0.3.0 release](https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.3.0) | The project has a tagged public release. |
 | `container-image` | Published runnable container | [GHCR package](https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent) | The FastAPI service is packaged as a container image. |
-| `ci-tests` | 95 passing CI tests | [GitHub Actions CI](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml) | Tests, support-ticket demo verification, business-impact verification, evaluation summary verification, incident-pattern memory verification, agent observability verification, agent safety-boundary verification, local reviewer demo verification, API smoke report verification, performance baseline verification, demo usage baseline verification, business-data intake baseline verification, community growth baseline verification, impact review packet verification, business problem casebook verification, public traction dashboard verification, feedback intake quality verification, business case intake verification, star growth kit verification, live project scorecard verification, recruiter pitch verification, application evidence pack verification, pilot outreach kit verification, pilot program plan verification, pilot review tracker verification, external review evidence ledger verification, outcome upgrade playbook verification, reviewer feedback packet verification, OpenAPI contract verification, hypothesis feedback verification, feedback metrics verification, adoption metrics verification, and outcome evidence verification run in CI. |
+| `ci-tests` | 96 passing CI tests | [GitHub Actions CI](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml) | Tests, support-ticket demo verification, business-impact verification, evaluation summary verification, incident-pattern memory verification, agent observability verification, agent safety-boundary verification, local reviewer demo verification, API smoke report verification, performance baseline verification, demo usage baseline verification, business-data intake baseline verification, community growth baseline verification, impact review packet verification, business problem casebook verification, public traction dashboard verification, feedback intake quality verification, business case intake verification, star growth kit verification, live project scorecard verification, recruiter pitch verification, application evidence pack verification, pilot outreach kit verification, pilot program plan verification, pilot review tracker verification, external review evidence ledger verification, outcome upgrade playbook verification, reviewer feedback packet verification, OpenAPI contract verification, hypothesis feedback verification, feedback metrics verification, adoption metrics verification, and outcome evidence verification run in CI. |
 | `support-ticket-artifact` | CI-verified support-ticket artifact | [Verified JSON artifact](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/verified-support-ticket-result.json) | The business-data case study result is machine-generated and checked for expected findings. |
 | `postgres-agent-route` | Read-only PostgreSQL agent route | [API source](https://github.com/sunnnn2005/data-quality-agent/blob/main/app/main.py) | The project exposes a PostgreSQL support-ticket agent endpoint that reuses the read-only database adapter and safely falls back when no model key is configured. |
 | `business-impact-artifact` | Quantified business-impact artifact | [Business impact JSON](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact.json) | The support-ticket case study quantifies 4 issue categories, 4 affected columns, and 5 recommended actions without claiming external adoption. |
@@ -25,6 +25,7 @@ This page maps resume-ready claims for Data Quality Agent to public evidence. It
 | `model-telemetry-artifact` | CI-verified model telemetry artifact | [Agent observability](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-observability.json) | The project verifies mocked LLM telemetry for 2 model calls, 360 tokens, prompt version, latency, retry budget, estimated cost, and raw-prompt logging status without claiming paid model benchmark results. |
 | `agent-safety-boundaries` | CI-verified agent safety boundaries | [Agent safety boundaries](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-safety-boundaries.json) | The project verifies 7 allowed agent tools, 3 rejected unsafe PostgreSQL queries, sensitive-field redaction, disabled fallback, and 6 report verifier rules without claiming a formal security audit. |
 | `agent-capability-matrix` | CI-verified LLM agent capability matrix | [Agent capability matrix](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-capability-matrix.json) | The project maps itself against a practical LLM-agent checklist with 13 implemented capabilities, 4 partial maturity areas, 7 allowed tools, and explicit not-claimed production adoption. |
+| `real-model-runbook` | CI-verified real-model runbook | [Real model runbook](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/real-model-runbook.json) | The project defines 4 run commands, 15 evidence fields, 8 acceptance criteria, and 5 safety gates for a future OpenAI-compatible tool-calling run without claiming a paid model run yet. |
 | `local-reviewer-demo` | CI-verified local reviewer demo | [Local reviewer demo](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/local-reviewer-demo.json) | The project verifies a Docker Compose reviewer path with 8 seeded PostgreSQL rows, a read-only database user, and 3 local review routes without claiming external reviewer completion. |
 | `api-smoke-report` | CI-verified API smoke report | [API smoke report](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/api-smoke-report.json) | The project verifies 6 FastAPI route checks for health, catalog, profiling, deterministic reports, disabled agent fallback, and incident Markdown export without claiming production uptime. |
 | `performance-baseline` | CI-verified local performance baseline | [Performance baseline](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/performance-baseline.json) | The project verifies 2 local FastAPI route benchmarks and 24 measured endpoint calls without claiming production latency or hosted traffic. |
@@ -37,9 +38,9 @@ This page maps resume-ready claims for Data Quality Agent to public evidence. It
 | `public-traction-dashboard` | CI-verified public traction dashboard | [Public traction dashboard](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-traction-dashboard.json) | The project tracks 4 live project surfaces, 16 growth or review channels, 5 demo funnel steps, and 3 resume-upgrade rules without inflating current traction. |
 | `star-growth-kit` | CI-verified star growth kit | [Star growth kit](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/star-growth-kit.json) | The project verifies 6 repo topics, 4 ethical growth actions, 3 resume-upgrade rules, and the current 0-star baseline without inflating traction. |
 | `business-case-intake` | CI-verified business-case intake path | [Business case intake](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-case-intake.json) | The project publishes a GitHub issue template and generated artifact for collecting anonymized real-world data-quality problems, business context, tried route, outcome signal, and permission boundaries without claiming submitted external cases yet. |
-| `live-project-scorecard` | CI-verified live project scorecard | [Live project scorecard](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/live-project-scorecard.json) | The project gives reviewers one generated artifact for the demo, release, container image, CI tests, verified resume claims, agent capabilities, 12 reviewer paths, and honest zero-adoption baselines. |
+| `live-project-scorecard` | CI-verified live project scorecard | [Live project scorecard](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/live-project-scorecard.json) | The project gives reviewers one generated artifact for the demo, release, container image, CI tests, verified resume claims, agent capabilities, 13 reviewer paths, and honest zero-adoption baselines. |
 | `recruiter-pitch` | CI-verified recruiter pitch artifact | [Recruiter pitch](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json) | The project turns verified evidence into 3 resume bullets, a LinkedIn project description, a 30-second pitch, interview talking points, and evidence links without claiming unverified users or production usage. |
-| `application-evidence-pack` | CI-verified application evidence pack | [Application evidence pack](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json) | The project gives recruiters 14 application evidence links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines. |
+| `application-evidence-pack` | CI-verified application evidence pack | [Application evidence pack](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json) | The project gives recruiters 15 application evidence links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines. |
 | `pilot-outreach-kit` | CI-verified pilot outreach kit | [Pilot outreach kit](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-outreach-kit.json) | The project publishes 3 outreach messages, 9 review paths, tracking rules, and target feedback metrics to collect real public feedback without inflating current adoption. |
 | `pilot-program-plan` | CI-verified pilot program plan | [Pilot program plan](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-program-plan.json) | The project publishes 3 participant segments, a 3-week feedback plan, feedback evidence rules, success thresholds, issue labels, and resume upgrade rules before adoption claims are allowed. |
 | `pilot-review-tracker` | CI-verified pilot review tracker | [Pilot review tracker](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-review-tracker.json) | The project tracks 3 planned reviewer segments, public evidence links, status counts, and resume-upgrade rules without counting unverified outreach as users or feedback. |
@@ -72,7 +73,7 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 11 |
-| Automated tests | 94 |
+| Automated tests | 96 |
 | Support-ticket issue categories | 4 |
 | Affected support-ticket columns | 4 |
 | Recommended support-ticket actions | 5 |
@@ -111,9 +112,15 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Business-data replay paths | 3 |
 | Business-data replay evidence fields | 8 |
 | Business-data replay safety requirements | 5 |
-| Community issue templates | 5 |
-| Community labels | 6 |
-| Community public growth channels | 6 |
+| Real-model runbook | 1 |
+| Current real model runs | 0 |
+| Real-model run commands | 4 |
+| Real-model evidence fields | 15 |
+| Real-model acceptance criteria | 8 |
+| Real-model safety gates | 5 |
+| Community issue templates | 6 |
+| Community labels | 7 |
+| Community public growth channels | 7 |
 | Impact review packet | 1 |
 | Impact review business metrics | 12 |
 | Impact review evidence links | 8 |
@@ -123,16 +130,16 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Business problem owner handoffs | 4 |
 | Public traction dashboard | 1 |
 | Public traction surfaces | 4 |
-| Public traction growth channels | 15 |
+| Public traction growth channels | 16 |
 | Public traction resume upgrade rules | 3 |
 | Live project scorecard | 1 |
-| Scorecard reviewer paths | 12 |
+| Scorecard reviewer paths | 13 |
 | OpenAPI required integration endpoints | 6 |
 | OpenAPI paths | 14 |
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 13 |
+| Application evidence links | 15 |
 | Pilot outreach messages | 3 |
 | Pilot review paths | 9 |
 | Pilot review tracker | 1 |
@@ -167,13 +174,13 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | Feedback intake demo paths | 5 |
 | Feedback intake outcome signals | 4 |
 | Feedback intake captured evidence groups | 5 |
-| Public evidence health checks | 19 |
+| Public evidence health checks | 20 |
 | Public release | v0.3.0 |
 | Public metrics summary | 1 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
-| Adoption history entries | 24 |
+| Adoption history entries | 25 |
 | Implemented agent-readiness capabilities | 16 |
 
 ## Not Claimed Yet
@@ -210,10 +217,10 @@ Use wording that is true today:
 - Added a CI-verified impact review packet with 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs for a support-operations data-quality case study.
 - Added a CI-verified public traction dashboard with 4 live project surfaces, 16 growth or review channels, 5 tracked demo funnel steps, and 3 resume-upgrade rules.
 - Added a CI-verified business problem casebook with 1 support-operations dashboard case, 4 detected business risks, 5 evidence-backed findings, 3 root-cause hypotheses, and 4 owner handoffs.
-- Added a CI-verified live project scorecard with 12 reviewer paths for the demo, resume evidence, impact packet, business problem casebook, traction dashboard, feedback intake quality, business-data replay packet, OpenAPI contract, safety boundaries, agent capability matrix, local reviewer demo, and public metrics.
+- Added a CI-verified live project scorecard with 13 reviewer paths for the demo, resume evidence, impact packet, business problem casebook, traction dashboard, feedback intake quality, business-data replay packet, OpenAPI contract, safety boundaries, agent capability matrix, local reviewer demo, and public metrics.
 - Added a CI-verified agent capability matrix with 13 implemented LLM-agent checklist items, 4 partial maturity areas, 7 allowed tools, and explicit not-claimed production adoption.
-- Added a CI-verified recruiter pitch artifact with 3 resume bullets, LinkedIn project description, 30-second pitch, interview talking points, and 11 evidence links.
-- Added a CI-verified application evidence pack with 13 recruiter review links, verified outcome numbers, resume bullets, an email note, and an interview opening.
+- Added a CI-verified recruiter pitch artifact with 3 resume bullets, LinkedIn project description, 30-second pitch, interview talking points, and 13 evidence links.
+- Added a CI-verified application evidence pack with 15 recruiter review links, verified outcome numbers, resume bullets, an email note, and an interview opening.
 - Added a CI-verified pilot outreach kit with 3 outreach messages, 9 review paths, feedback tracking rules, and target feedback metrics.
 - Added a CI-verified pilot program plan with 3 participant segments, a 3-week feedback plan, success thresholds, issue labels, and resume upgrade rules.
 - Added a CI-verified pilot review tracker with 3 planned reviewer segments, public evidence links, status counts, and resume-upgrade rules without counting unverified outreach.
@@ -221,6 +228,7 @@ Use wording that is true today:
 - Added a CI-verified feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups.
 - Added a CI-verified business-case intake path with 6 required sections, 5 tried paths, 5 outcome signals, and 6 captured evidence groups for future anonymized real-world data-quality problem feedback.
 - Added a CI-verified business-data replay packet with 3 safe replay paths, 8 evidence fields, and 5 safety requirements for collecting confirmed run evidence without claiming external replay.
+- Added a CI-verified real-model runbook with 4 run commands, 15 evidence fields, 8 acceptance criteria, and 5 safety gates without claiming a paid model run yet.
 - Added evidence-ranked root-cause hypotheses with confidence, supporting checks, and recommended actions.
 - Added a CI-verified 14-scenario agent evaluation summary measuring status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, report attachment, and latency.
 - Added CI-verified tool-planning evaluation covering 7 allowed LLM agent tools and 1.0 strategy recommendation recall across 14 dataset scenarios.
@@ -231,7 +239,7 @@ Use wording that is true today:
 - Added a scheduled public evidence health check for the live demo, release page, business-impact artifact, outcome evidence, and adoption metrics.
 - Added machine-readable feedback metrics that track public feedback and reproducible reports from an honest zero baseline.
 - Added a CI-verified star growth kit with 6 verified repo topics, 4 ethical growth actions, 3 resume-upgrade rules, and the current 0-star baseline.
-- Added deterministic report verification guardrails and 95 passing CI tests.
+- Added deterministic report verification guardrails and 96 passing CI tests.
 - Published an agent-readiness checklist that separates implemented tool-calling, business-data, OpenAPI contract, dataset memory, memory-informed planning, source-cited business-rule retrieval, incident-pattern memory, observability artifacts, safety boundaries, persistent trace, root-cause ranking, hypothesis feedback, guardrail, and fallback capabilities from planned embedding-backed RAG, observability, evaluation, and feedback-informed memory work.
 
 Avoid wording that is not true yet:

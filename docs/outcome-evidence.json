@@ -25,12 +25,12 @@
       "url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent"
     },
     {
-      "claim": "Automated test suite passes locally and in GitHub Actions, including the business problem casebook, feedback intake quality, business case intake, and star growth kit verifiers.",
+      "claim": "Automated test suite passes locally and in GitHub Actions, including the business problem casebook, feedback intake quality, business case intake, star growth kit, and real-model runbook verifiers.",
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 95,
-      "resume_signal": "95 passing CI tests",
+      "metric_value": 96,
+      "resume_signal": "96 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 15 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 14,
+      "metric_value": 15,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -511,6 +511,16 @@
       "resume_signal": "Scheduled public evidence health check",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/public-evidence-health.yml"
+    },
+    {
+      "claim": "The project publishes a generated real-model runbook with 4 run commands, 15 evidence fields, 8 acceptance criteria, 5 safety gates, and zero current real model run claims.",
+      "evidence_type": "artifact",
+      "id": "real-model-runbook",
+      "metric_name": "real_model_runbook",
+      "metric_value": 1,
+      "resume_signal": "CI-verified real-model runbook",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/real-model-runbook.json"
     },
     {
       "claim": "The project documents implemented LLM agent capabilities separately from partial embedding-backed RAG, observability, evaluation, and feedback-informed memory work.",
