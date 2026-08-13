@@ -133,6 +133,7 @@ def test_support_ticket_case_study_produces_reproducible_business_findings():
     assert response.status_code == 200
     payload = response.json()
     checks = {finding["check_name"] for finding in payload["findings"]}
+    rule_ids = {rule["rule_id"] for rule in payload["business_rule_references"]}
 
     assert payload["row_count"] == 8
     assert payload["status"] == "FAIL"
@@ -140,6 +141,7 @@ def test_support_ticket_case_study_produces_reproducible_business_findings():
     assert "missing_values" in checks
     assert "negative_amount" in checks
     assert "numeric_outliers" in checks
+    assert {"support_tickets:R1", "support_tickets:R2", "support_tickets:R3", "support_tickets:R4"} <= rule_ids
 
 
 def test_run_trace_endpoint_returns_sanitized_quality_report_trace():
@@ -153,6 +155,7 @@ def test_run_trace_endpoint_returns_sanitized_quality_report_trace():
     assert payload["trace_id"] == trace_id
     assert payload["report_type"] == "quality_report"
     assert payload["summary"]["finding_count"] >= 1
+    assert "business_rule_count" in payload["summary"]
     assert payload["evaluation"]["final_report_attached"] is True
     assert "agent_trace" not in payload
 

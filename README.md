@@ -18,10 +18,11 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Signal | Verified result |
 | --- | --- |
 | Public demo | [sunnnn2005.github.io/data-quality-agent](https://sunnnn2005.github.io/data-quality-agent/) |
-| Test suite | 25 automated tests passing locally and in GitHub Actions |
+| Test suite | 27 automated tests passing locally and in GitHub Actions |
 | CSV safety limit | 10,000 rows, 80 columns, 2 MB upload limit |
 | Report score | 24 / 100, status `FAIL` |
 | Evidence-backed findings | duplicate `ticket_id`, missing `team` / `priority`, negative `amount`, and an `amount` outlier |
+| Business-rule references | source-cited support-ticket rules for identity, routing, amount sign, and outlier review |
 
 This makes the project reviewable without private data or paid model access: open the demo for the output snapshot, or run the same CSV locally through the FastAPI upload route.
 
@@ -53,6 +54,18 @@ Current deterministic baseline on three built-in scenarios:
 | Fallback success rate | 1.0 |
 
 The tool-calling agent eval also runs in CI without a model key and verifies safe disabled fallback behavior. Real model evals should be run separately with explicit provider credentials and cost tracking.
+
+## Business-Rule Retrieval
+
+The agent can attach source-cited business rules to generic quality findings. This is intentionally lightweight and does not require paid embeddings by default:
+
+- rules live in `docs/business-rules/*.md`
+- the retriever matches dataset id, failed check names, and field keywords
+- reports return structured `business_rule_references`
+- trace summaries include referenced rule ids
+- rule docs describe constraints only and must not contain raw uploaded rows or sensitive customer data
+
+For the support-ticket demo, duplicate IDs, missing routing fields, negative amounts, and outliers are linked to concrete rules such as `support_tickets:R1` and `support_tickets:R2`.
 
 ## Run Trace Export
 
@@ -243,6 +256,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md), [ROADMAP.md](ROADMAP.md), and [SECURITY.
 ```text
 app/
   agent.py       Report scoring and likely-cause analysis
+  business_rules.py RAG-style business-rule retrieval
   business_data.py CSV upload adapter for real business data
   checks.py      Deterministic data-quality checks
   data.py        Local datasets and contracts
@@ -256,6 +270,7 @@ app/
   traces.py      Bounded in-memory run trace store
 docs/
   architecture.md
+  business-rules/
   spec.md
 tests/
   test_agent.py

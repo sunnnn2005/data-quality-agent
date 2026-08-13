@@ -30,6 +30,8 @@ class RunTraceStore:
                     "row_count": report.row_count,
                     "finding_count": len(report.findings),
                     "finding_checks": sorted({finding.check_name for finding in report.findings}),
+                    "business_rule_count": len(report.business_rule_references),
+                    "business_rule_ids": [rule.rule_id for rule in report.business_rule_references],
                     "likely_causes": report.likely_causes[:3],
                     "recommended_next_steps": report.recommended_next_steps[:3],
                 },
@@ -58,6 +60,8 @@ class RunTraceStore:
                     "row_count": report.quality_report.row_count,
                     "finding_count": len(report.quality_report.findings),
                     "finding_checks": sorted({finding.check_name for finding in report.quality_report.findings}),
+                    "business_rule_count": len(report.quality_report.business_rule_references),
+                    "business_rule_ids": [rule.rule_id for rule in report.quality_report.business_rule_references],
                 }
             )
         self._save(

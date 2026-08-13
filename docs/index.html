@@ -303,7 +303,7 @@
       </div>
 
       <div class="metric-grid" aria-label="Verified project metrics">
-        <div class="metric"><strong>25</strong><span>automated tests passing locally and in CI</span></div>
+        <div class="metric"><strong>27</strong><span>automated tests passing locally and in CI</span></div>
         <div class="metric"><strong>10K × 80</strong><span>bounded CSV upload limit: rows × columns</span></div>
         <div class="metric"><strong>4</strong><span>reproducible support-ticket issue categories</span></div>
         <div class="metric"><strong>0 secrets</strong><span>default path runs without paid APIs or model keys</span></div>
@@ -362,6 +362,36 @@
             <li><strong>Outlier:</strong> <code>amount</code> has 1 value outside the IQR band; expected range is -60.18 to 194.29.</li>
           </ul>
         </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Business Rules</h2>
+      <p class="section-copy">
+        The report links generic checks to source-cited support-ticket rules. This gives the agent business context
+        without sending private rows to a model or requiring paid embedding infrastructure.
+      </p>
+      <div class="cards">
+        <article class="card">
+          <span class="severity critical">R1</span>
+          <h3>Unique ticket identity</h3>
+          <p><code>ticket_id</code> must identify exactly one support-ticket event.</p>
+        </article>
+        <article class="card">
+          <span class="severity medium">R2</span>
+          <h3>Required routing fields</h3>
+          <p><code>team</code> and <code>priority</code> are required before dashboard publication.</p>
+        </article>
+        <article class="card">
+          <span class="severity high">R3</span>
+          <h3>No negative impact amounts</h3>
+          <p>Refunds or credits must be modeled separately from positive customer-impact values.</p>
+        </article>
+        <article class="card">
+          <span class="severity medium">R4</span>
+          <h3>Review extreme amounts</h3>
+          <p>Extreme <code>amount</code> values require review before publication.</p>
+        </article>
       </div>
     </section>
 

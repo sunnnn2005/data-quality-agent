@@ -47,6 +47,14 @@ class QualityFinding(BaseModel):
     recommendation: str
 
 
+class BusinessRuleReference(BaseModel):
+    rule_id: str
+    source: str
+    title: str
+    text: str
+    matched_checks: list[str] = Field(default_factory=list)
+
+
 class LLMAssessment(BaseModel):
     enabled: bool = False
     provider: str = "disabled"
@@ -86,6 +94,7 @@ class QualityReport(BaseModel):
     status: Literal["PASS", "WARN", "FAIL"]
     row_count: int
     findings: list[QualityFinding]
+    business_rule_references: list[BusinessRuleReference] = Field(default_factory=list)
     likely_causes: list[str]
     recommended_next_steps: list[str]
     llm_assessment: LLMAssessment = Field(default_factory=LLMAssessment)

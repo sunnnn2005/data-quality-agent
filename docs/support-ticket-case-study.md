@@ -61,6 +61,13 @@ The deterministic report identifies:
 - Negative business value: `amount` contains 1 negative value.
 - Numeric outlier: `amount` contains 1 value outside the IQR band.
 
+The report also retrieves source-cited business rules:
+
+- `support_tickets:R1`: ticket identity must be unique.
+- `support_tickets:R2`: routing fields are required before publication.
+- `support_tickets:R3`: customer-impact amounts cannot be negative.
+- `support_tickets:R4`: extreme amounts require review.
+
 These findings map to practical remediation steps:
 
 - Deduplicate support-ticket events by the latest `created_at` timestamp.

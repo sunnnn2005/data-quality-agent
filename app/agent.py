@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 import pandas as pd
 
 from app.checks import QualityCheckRunner
+from app.business_rules import BusinessRuleRetriever
 from app.llm import LLMDataQualityAdvisor
 from app.models import DatasetSummary, QualityFinding, QualityReport, Severity
 from app.profiler import DatasetProfiler
@@ -13,10 +14,12 @@ class DataQualityAgent:
         self,
         profiler: DatasetProfiler | None = None,
         check_runner: QualityCheckRunner | None = None,
+        rule_retriever: BusinessRuleRetriever | None = None,
         llm_advisor: LLMDataQualityAdvisor | None = None,
     ) -> None:
         self.profiler = profiler or DatasetProfiler()
         self.check_runner = check_runner or QualityCheckRunner()
+        self.rule_retriever = rule_retriever or BusinessRuleRetriever()
         self.llm_advisor = llm_advisor or LLMDataQualityAdvisor()
 
     def analyze(self, dataset: DatasetSummary, frame: pd.DataFrame) -> QualityReport:
@@ -26,6 +29,8 @@ class DataQualityAgent:
 
         findings = self.check_runner.run(dataset, frame)
         trace.append(f"called {self.check_runner.name}: {len(findings)} quality findings")
+        business_rule_references = self.rule_retriever.retrieve(dataset, findings)
+        trace.append(f"called {self.rule_retriever.name}: {len(business_rule_references)} business rule references")
 
         score = self._score(findings)
         llm_assessment = self.llm_advisor.assess(profile, findings)
@@ -41,6 +46,7 @@ class DataQualityAgent:
             status=self._status(score, findings),
             row_count=len(frame),
             findings=findings,
+            business_rule_references=business_rule_references,
             likely_causes=self._likely_causes(findings),
             recommended_next_steps=self._next_steps(findings),
             llm_assessment=llm_assessment,
