@@ -1,5 +1,5 @@
 {
-  "check_count": 8,
+  "check_count": 17,
   "checks": [
     {
       "evidence_type": "html",
@@ -48,6 +48,98 @@
     },
     {
       "evidence_type": "json",
+      "id": "openapi-contract",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/openapi.json"
+    },
+    {
+      "evidence_type": "json",
+      "id": "eval-summary",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json",
+      "verified_fields": [
+        "scenario_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "hypothesis-feedback",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/hypothesis-feedback.json",
+      "verified_fields": [
+        "accepted_count",
+        "label_count",
+        "needs_review_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "incident-pattern-memory",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/incident-pattern-memory.json",
+      "verified_fields": [
+        "incident_pattern_count",
+        "trace_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "agent-observability",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-observability.json",
+      "verified_fields": [
+        "fallback_event_count",
+        "observed_trace_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "agent-safety-boundaries",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-safety-boundaries.json",
+      "verified_fields": [
+        "postgres_rejected_write_query_count",
+        "tool_allowlist_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "live-project-scorecard",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/live-project-scorecard.json",
+      "verified_fields": [
+        "release"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "recruiter-pitch",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json",
+      "verified_fields": [
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "application-evidence-pack",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json",
+      "verified_fields": [
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
       "id": "feedback-metrics",
       "passed": true,
       "status_code": 200,
@@ -75,6 +167,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 8,
+  "passed_count": 17,
   "status": "PASS"
 }

@@ -103,7 +103,7 @@ PUBLIC_CHECKS = [
         "id": "application-evidence-pack",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json",
         "expected_json": {"project": "Data Quality Agent"},
-        "expected_text": "Application Evidence Pack",
+        "expected_text": "one_line_project_proof",
         "expected_texts": ["application_links", "honest_baseline", "external users"],
         "evidence_type": "json",
     },
