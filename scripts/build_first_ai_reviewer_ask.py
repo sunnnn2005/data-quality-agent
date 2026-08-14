@@ -34,6 +34,11 @@ def build_first_ai_reviewer_ask() -> dict[str, Any]:
             "question": "Are facts, inferences, limitations, and resume-safe claims separated?",
         },
         {
+            "label": "Adaptive strategy value",
+            "path": "docs/llm-value-comparison.md",
+            "question": "Does the 14-scenario comparison make the agentic strategy selection more credible than a fixed workflow?",
+        },
+        {
             "label": "Real model evidence gate",
             "path": "docs/real-model-evidence-capture.md",
             "question": "Would the telemetry be enough to verify a real OpenAI-compatible run later?",
@@ -63,7 +68,8 @@ def build_first_ai_reviewer_ask() -> dict[str, Any]:
         "submission_url": send_kit["submission_url"],
         "copy_ready_message": (
             "Could you review my Data Quality Agent as an AI Engineer project? "
-            "This page has the shortest inspection path and public review form: "
+            "The short path now includes the LLM value comparison that shows adaptive strategy selection "
+            "beating a fixed checklist across 14 scenarios. Public review form: "
             "https://sunnnn2005.github.io/data-quality-agent/first-ai-reviewer-ask.html"
         ),
         "inspection_target_count": len(inspection_targets),
@@ -86,8 +92,9 @@ def build_first_ai_reviewer_ask() -> dict[str, Any]:
         "current_claimable_ai_reviews": 0,
         "resume_status": "ready_to_send_not_reviewed",
         "resume_safe_summary": (
-            "Published a focused first AI reviewer ask page with 4 inspection targets, 4 review questions, "
-            "permission language, and recording guidance while keeping accepted AI reviews at zero."
+            "Published a focused first AI reviewer ask page with 5 inspection targets, 4 review questions, "
+            "LLM value-comparison evidence, permission language, and recording guidance while keeping "
+            "accepted AI reviews at zero."
         ),
     }
 
@@ -148,13 +155,15 @@ Public page: [{payload["public_url"]}]({payload["public_url"]})
 
 def render_html(payload: dict[str, Any]) -> str:
     targets = "\n".join(
-        f"""
-        <article>
-          <span>{html.escape(target['path'])}</span>
-          <h2>{html.escape(target['label'])}</h2>
-          <p>{html.escape(target['question'])}</p>
-        </article>
-        """
+        "\n".join(
+            [
+                "        <article>",
+                f"          <span>{html.escape(target['path'])}</span>",
+                f"          <h2>{html.escape(target['label'])}</h2>",
+                f"          <p>{html.escape(target['question'])}</p>",
+                "        </article>",
+            ]
+        )
         for target in payload["inspection_targets"]
     )
     questions = "".join(f"<li>{html.escape(question)}</li>" for question in payload["review_questions"])
@@ -307,8 +316,8 @@ def verify_first_ai_reviewer_ask(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("first AI reviewer ask must target ai_engineer_review_items")
     if payload["status_board_slot_id"] != "review_slot_07":
         raise AssertionError("first AI reviewer ask must use review_slot_07")
-    if payload["inspection_target_count"] != 4:
-        raise AssertionError("first AI reviewer ask must include four inspection targets")
+    if payload["inspection_target_count"] != 5:
+        raise AssertionError("first AI reviewer ask must include five inspection targets")
     if payload["review_question_count"] != 4:
         raise AssertionError("first AI reviewer ask must include four review questions")
     if payload["current_claimable_ai_reviews"] != 0:
@@ -320,6 +329,8 @@ def verify_first_ai_reviewer_ask(payload: dict[str, Any]) -> dict[str, Any]:
         "page view does not count",
         "app/agent.py",
         "docs/agent-safety-boundaries.md",
+        "docs/llm-value-comparison.md",
+        "adaptive strategy selection",
     ):
         if phrase not in joined:
             raise AssertionError(f"first AI reviewer ask missing phrase: {phrase}")

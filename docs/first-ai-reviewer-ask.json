@@ -1,9 +1,9 @@
 {
-  "copy_ready_message": "Could you review my Data Quality Agent as an AI Engineer project? This page has the shortest inspection path and public review form: https://sunnnn2005.github.io/data-quality-agent/first-ai-reviewer-ask.html",
+  "copy_ready_message": "Could you review my Data Quality Agent as an AI Engineer project? The short path now includes the LLM value comparison that shows adaptive strategy selection beating a fixed checklist across 14 scenarios. Public review form: https://sunnnn2005.github.io/data-quality-agent/first-ai-reviewer-ask.html",
   "counting_boundary": "This page can support the first AI Engineer review only after a real non-owner reviewer submits a public, redacted GitHub issue with permission to count. A sent message or page view does not count.",
   "current_claimable_ai_reviews": 0,
   "generated_by": "scripts/build_first_ai_reviewer_ask.py",
-  "inspection_target_count": 4,
+  "inspection_target_count": 5,
   "inspection_targets": [
     {
       "label": "Agent loop and tool routing",
@@ -19,6 +19,11 @@
       "label": "Evidence-backed reporting",
       "path": "docs/llm-agent-checklist-verdict.md",
       "question": "Are facts, inferences, limitations, and resume-safe claims separated?"
+    },
+    {
+      "label": "Adaptive strategy value",
+      "path": "docs/llm-value-comparison.md",
+      "question": "Does the 14-scenario comparison make the agentic strategy selection more credible than a fixed workflow?"
     },
     {
       "label": "Real model evidence gate",
@@ -41,7 +46,7 @@
     "I give permission for this public issue to be counted as project review evidence.",
     "no private data, secrets, customer records, private emails, addresses, API keys, or production rows"
   ],
-  "resume_safe_summary": "Published a focused first AI reviewer ask page with 4 inspection targets, 4 review questions, permission language, and recording guidance while keeping accepted AI reviews at zero.",
+  "resume_safe_summary": "Published a focused first AI reviewer ask page with 5 inspection targets, 4 review questions, LLM value-comparison evidence, permission language, and recording guidance while keeping accepted AI reviews at zero.",
   "resume_status": "ready_to_send_not_reviewed",
   "review_question_count": 4,
   "review_questions": [

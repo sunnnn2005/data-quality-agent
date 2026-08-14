@@ -7,7 +7,7 @@ Public page: [https://sunnnn2005.github.io/data-quality-agent/first-ai-reviewer-
 ## Send This
 
 ```text
-Could you review my Data Quality Agent as an AI Engineer project? This page has the shortest inspection path and public review form: https://sunnnn2005.github.io/data-quality-agent/first-ai-reviewer-ask.html
+Could you review my Data Quality Agent as an AI Engineer project? The short path now includes the LLM value comparison that shows adaptive strategy selection beating a fixed checklist across 14 scenarios. Public review form: https://sunnnn2005.github.io/data-quality-agent/first-ai-reviewer-ask.html
 ```
 
 ## Reviewer Task
@@ -22,6 +22,7 @@ Could you review my Data Quality Agent as an AI Engineer project? This page has 
 - `app/agent.py` - Agent loop and tool routing: Does the LLM choose tools based on evidence instead of following a fixed script?
 - `docs/agent-safety-boundaries.md` - Safety boundaries: Are read-only data access, query limits, and redaction rules clear enough?
 - `docs/llm-agent-checklist-verdict.md` - Evidence-backed reporting: Are facts, inferences, limitations, and resume-safe claims separated?
+- `docs/llm-value-comparison.md` - Adaptive strategy value: Does the 14-scenario comparison make the agentic strategy selection more credible than a fixed workflow?
 - `docs/real-model-evidence-capture.md` - Real model evidence gate: Would the telemetry be enough to verify a real OpenAI-compatible run later?
 
 ## Review Questions
@@ -51,4 +52,4 @@ This page can support the first AI Engineer review only after a real non-owner r
 
 ## Resume-Safe Summary
 
-Published a focused first AI reviewer ask page with 4 inspection targets, 4 review questions, permission language, and recording guidance while keeping accepted AI reviews at zero.
+Published a focused first AI reviewer ask page with 5 inspection targets, 4 review questions, LLM value-comparison evidence, permission language, and recording guidance while keeping accepted AI reviews at zero.

@@ -119,6 +119,8 @@ def test_public_evidence_health_requires_core_public_signals():
         "Submit AI review",
         "app/agent.py",
         "docs/agent-safety-boundaries.md",
+        "docs/llm-value-comparison.md",
+        "adaptive strategy selection",
         "Required public evidence",
         "page view does not count",
     } <= set(first_ai_reviewer_page["expected_texts"])
@@ -126,7 +128,9 @@ def test_public_evidence_health_requires_core_public_signals():
     assert first_ai_reviewer["url"].endswith("/first-ai-reviewer-ask.json")
     assert first_ai_reviewer["expected_json"]["target_metric"] == "ai_engineer_review_items"
     assert first_ai_reviewer["expected_json"]["status_board_slot_id"] == "review_slot_07"
+    assert first_ai_reviewer["expected_json"]["inspection_target_count"] == 5
     assert first_ai_reviewer["expected_json"]["current_claimable_ai_reviews"] == 0
+    assert "docs/llm-value-comparison.md" in first_ai_reviewer["expected_texts"]
     assert "ready_to_send_not_reviewed" in first_ai_reviewer["expected_texts"]
     llm_value = next(check for check in PUBLIC_CHECKS if check["id"] == "llm-value-comparison")
     assert llm_value["url"].endswith("/llm-value-comparison.json")
