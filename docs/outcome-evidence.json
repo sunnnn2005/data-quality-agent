@@ -581,6 +581,16 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/real-model-evidence-capture.json"
     },
     {
+      "claim": "The project publishes a real-model preflight gate that checks provider-key presence, local API health, business CSV sample availability, documented agent routes, and redacted telemetry requirements before any paid model call is attempted.",
+      "evidence_type": "artifact",
+      "id": "real-model-preflight",
+      "metric_name": "real_model_preflight",
+      "metric_value": 1,
+      "resume_signal": "CI-verified real-model execution preflight",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/real-model-preflight.json"
+    },
+    {
       "claim": "The project documents implemented LLM agent capabilities separately from partial embedding-backed RAG, observability, evaluation, and feedback-informed memory work.",
       "evidence_type": "documentation",
       "id": "agent-readiness",

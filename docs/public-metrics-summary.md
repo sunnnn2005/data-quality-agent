@@ -378,6 +378,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Business replay demo with 8 anonymized rows, 5 findings, 4 failed check types, 4 business-rule references, and deterministic verification
 - Real-model runbook with 6 run commands, 15 evidence fields, 8 acceptance criteria, 5 safety gates, and zero current real model run claims
 - Real-model evidence capture gate with 17 required fields, 0 accepted real-model runs, and 4 blocked outcome claims until redacted telemetry passes
+- Real-model preflight gate with 5 readiness checks, 3 ready checks, 2 blocked checks, and no paid model call execution
 - AI Engineer readiness artifact with 8 implemented AI skill signals, 1 partial signal, and 1 explicitly blocked signal
 - 5 evidence-backed remediation actions
 - 16 implemented LLM agent-readiness capabilities

@@ -277,6 +277,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["real_model_capture_required_fields"] == 17
     assert payload["verified_project_outcomes"]["real_model_capture_accepted_runs"] == 0
     assert payload["verified_project_outcomes"]["real_model_capture_blocked_claims"] == 4
+    assert payload["verified_project_outcomes"]["real_model_preflight"] == 1
+    assert payload["verified_project_outcomes"]["real_model_preflight_total_checks"] == 5
+    assert payload["verified_project_outcomes"]["real_model_preflight_ready_checks"] == 3
+    assert payload["verified_project_outcomes"]["real_model_preflight_blocked_checks"] == 2
     assert payload["verified_project_outcomes"]["recommended_actions"] == 5
     assert payload["verified_project_outcomes"]["implemented_agent_capabilities"] == 16
     assert "14-scenario agent evaluation harness" in payload["resume_safe_signals"]

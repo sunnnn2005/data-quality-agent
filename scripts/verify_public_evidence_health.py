@@ -141,6 +141,20 @@ PUBLIC_CHECKS = [
         "evidence_type": "json",
     },
     {
+        "id": "real-model-preflight",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/real-model-preflight.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "real_model_execution_status": "not_ready",
+            "real_model_run_executed_by_preflight": False,
+            "total_check_count": 5,
+            "blocked_check_count": 2,
+        },
+        "expected_text": "OPENAI_API_KEY is not configured",
+        "expected_texts": ["raw prompt contents", "raw business rows", "production model traffic"],
+        "evidence_type": "json",
+    },
+    {
         "id": "local-reviewer-demo",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/local-reviewer-demo.json",
         "expected_json": {"project": "Data Quality Agent", "reviewer_command": "docker compose up --build"},

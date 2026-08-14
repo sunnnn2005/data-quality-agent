@@ -71,6 +71,7 @@ BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
 BUSINESS_DATA_REPLAY_PACKET_PATH = ROOT / "docs" / "business-data-replay-packet.json"
 REAL_MODEL_RUNBOOK_PATH = ROOT / "docs" / "real-model-runbook.json"
 REAL_MODEL_EVIDENCE_CAPTURE_PATH = ROOT / "docs" / "real-model-evidence-capture.json"
+REAL_MODEL_PREFLIGHT_PATH = ROOT / "docs" / "real-model-preflight.json"
 AI_ENGINEER_READINESS_PATH = ROOT / "docs" / "ai-engineer-readiness.json"
 BUSINESS_REPLAY_DEMO_PATH = ROOT / "docs" / "business-replay-demo.json"
 REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
@@ -156,6 +157,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     replay_packet = load_json(BUSINESS_DATA_REPLAY_PACKET_PATH)
     real_model_runbook = load_json(REAL_MODEL_RUNBOOK_PATH)
     real_model_evidence_capture = load_json(REAL_MODEL_EVIDENCE_CAPTURE_PATH)
+    real_model_preflight = load_json(REAL_MODEL_PREFLIGHT_PATH)
     ai_engineer_readiness = load_json(AI_ENGINEER_READINESS_PATH)
     replay_demo = load_json(BUSINESS_REPLAY_DEMO_PATH)
     reviewer_funnel = load_json(REVIEWER_FUNNEL_BOARD_PATH)
@@ -475,6 +477,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "real_model_capture_required_fields": real_model_evidence_capture["capture_required_field_count"],
             "real_model_capture_accepted_runs": real_model_evidence_capture["accepted_real_model_run_count"],
             "real_model_capture_blocked_claims": real_model_evidence_capture["blocked_outcome_claim_count"],
+            "real_model_preflight": 1,
+            "real_model_preflight_total_checks": real_model_preflight["total_check_count"],
+            "real_model_preflight_ready_checks": real_model_preflight["ready_check_count"],
+            "real_model_preflight_blocked_checks": real_model_preflight["blocked_check_count"],
             "ai_engineer_readiness": 1,
             "ai_engineer_readiness_implemented_signals": ai_engineer_readiness["implemented_signal_count"],
             "ai_engineer_readiness_partial_signals": ai_engineer_readiness["partial_signal_count"],
@@ -808,6 +814,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"Real-model evidence capture gate with {real_model_evidence_capture['capture_required_field_count']} "
                 f"required fields, {real_model_evidence_capture['accepted_real_model_run_count']} accepted real-model runs, "
                 f"and {real_model_evidence_capture['blocked_outcome_claim_count']} blocked outcome claims until redacted telemetry passes"
+            ),
+            (
+                f"Real-model preflight gate with {real_model_preflight['total_check_count']} readiness checks, "
+                f"{real_model_preflight['ready_check_count']} ready checks, "
+                f"{real_model_preflight['blocked_check_count']} blocked checks, and no paid model call execution"
             ),
             (
                 f"AI Engineer readiness artifact with {ai_engineer_readiness['implemented_signal_count']} implemented "
@@ -1441,6 +1452,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "real_model_capture_required_fields": 17,
         "real_model_capture_accepted_runs": 0,
         "real_model_capture_blocked_claims": 4,
+        "real_model_preflight": 1,
+        "real_model_preflight_total_checks": 5,
+        "real_model_preflight_ready_checks": 3,
+        "real_model_preflight_blocked_checks": 2,
         "ai_engineer_readiness": 1,
         "ai_engineer_readiness_implemented_signals": 8,
         "ai_engineer_readiness_partial_signals": 1,

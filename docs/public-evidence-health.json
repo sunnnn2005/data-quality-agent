@@ -1,5 +1,5 @@
 {
-  "check_count": 75,
+  "check_count": 76,
   "checks": [
     {
       "evidence_type": "html",
@@ -138,6 +138,20 @@
         "blocked_outcome_claim_count",
         "capture_required_field_count",
         "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "real-model-preflight",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/real-model-preflight.json",
+      "verified_fields": [
+        "blocked_check_count",
+        "project",
+        "real_model_execution_status",
+        "real_model_run_executed_by_preflight",
+        "total_check_count"
       ]
     },
     {
@@ -828,6 +842,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 75,
+  "passed_count": 76,
   "status": "PASS"
 }

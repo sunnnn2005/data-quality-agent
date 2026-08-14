@@ -74,6 +74,7 @@ BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
 BUSINESS_DATA_REPLAY_PACKET_PATH = ROOT / "docs" / "business-data-replay-packet.json"
 REAL_MODEL_RUNBOOK_PATH = ROOT / "docs" / "real-model-runbook.json"
 REAL_MODEL_EVIDENCE_CAPTURE_PATH = ROOT / "docs" / "real-model-evidence-capture.json"
+REAL_MODEL_PREFLIGHT_PATH = ROOT / "docs" / "real-model-preflight.json"
 BUSINESS_REPLAY_DEMO_PATH = ROOT / "docs" / "business-replay-demo.json"
 RESUME_CLAIM_UPGRADE_LEDGER_PATH = ROOT / "docs" / "resume-claim-upgrade-ledger.json"
 RESUME_OUTCOME_ADJUDICATION_PATH = ROOT / "docs" / "resume-outcome-adjudication.json"
@@ -166,6 +167,7 @@ def verify_manifest() -> dict[str, int]:
     replay_packet = load_payload(BUSINESS_DATA_REPLAY_PACKET_PATH)
     real_model_runbook = load_payload(REAL_MODEL_RUNBOOK_PATH)
     real_model_evidence_capture = load_payload(REAL_MODEL_EVIDENCE_CAPTURE_PATH)
+    real_model_preflight = load_payload(REAL_MODEL_PREFLIGHT_PATH)
     replay_demo = load_payload(BUSINESS_REPLAY_DEMO_PATH)
     claim_upgrade = load_payload(RESUME_CLAIM_UPGRADE_LEDGER_PATH)
     adjudication = load_payload(RESUME_OUTCOME_ADJUDICATION_PATH)
@@ -2024,6 +2026,38 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("real model evidence capture must have a zero-run test")
                 if "test_real_model_evidence_capture_accepts_redacted_tool_calling_run" not in capture_tests:
                     raise AssertionError("real model evidence capture must have an accepted-run test")
+            elif metric_name == "real_model_preflight":
+                preflight_tests = (ROOT / "tests" / "test_real_model_preflight.py").read_text()
+                preflight_script = (ROOT / "scripts" / "build_real_model_preflight.py").read_text()
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("real model preflight claim must use metric_value=1")
+                expected = {
+                    "real_model_execution_status": "not_ready",
+                    "real_model_run_executed_by_preflight": False,
+                    "ready_check_count": 3,
+                    "total_check_count": 5,
+                    "blocked_check_count": 2,
+                }
+                for key, value in expected.items():
+                    if real_model_preflight.get(key) != value:
+                        raise AssertionError(f"real model preflight {key} expected {value!r}")
+                for required in ("openai_api_key_configured", "local_api_health"):
+                    if required not in real_model_preflight.get("blocked_checks", []):
+                        raise AssertionError(f"real model preflight must block {required} until configured")
+                for required in (
+                    "provider credential value",
+                    "raw prompt contents",
+                    "raw business rows",
+                    "production model traffic",
+                ):
+                    if required not in real_model_preflight.get("not_claimed", []):
+                        raise AssertionError(f"real model preflight must not claim or expose {required}")
+                if "verify_real_model_preflight" not in preflight_script:
+                    raise AssertionError("real model preflight script must verify generated artifact")
+                if "test_real_model_preflight_blocks_without_key_or_running_api" not in preflight_tests:
+                    raise AssertionError("real model preflight must have a blocked-state test")
+                if "test_real_model_preflight_ready_when_all_gates_pass" not in preflight_tests:
+                    raise AssertionError("real model preflight must have a ready-state test")
             elif metric_name == "star_growth_kit":
                 star_script = (ROOT / "scripts" / "build_star_growth_kit.py").read_text()
                 star_tests = (ROOT / "tests" / "test_star_growth_kit.py").read_text()
