@@ -1,5 +1,5 @@
 {
-  "check_count": 115,
+  "check_count": 116,
   "checks": [
     {
       "evidence_type": "html",
@@ -962,6 +962,22 @@
     },
     {
       "evidence_type": "json",
+      "id": "reviewer-outcome-ledger",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-outcome-ledger.json",
+      "verified_fields": [
+        "blocked_row_count",
+        "claimable_row_count",
+        "current_accepted_evidence_count",
+        "current_public_issue_submitted_count",
+        "current_sent_count",
+        "outcome_row_count",
+        "resume_status"
+      ]
+    },
+    {
+      "evidence_type": "json",
       "id": "reviewer-action-queue",
       "passed": true,
       "status_code": 200,
@@ -1293,6 +1309,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 115,
+  "passed_count": 116,
   "status": "PASS"
 }
