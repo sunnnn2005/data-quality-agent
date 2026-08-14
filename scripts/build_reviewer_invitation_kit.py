@@ -31,6 +31,14 @@ def build_reviewer_invitation_kit_payload() -> dict[str, Any]:
         "primary_url": ONE_CLICK_EVIDENCE_LINKS_URL,
         "backup_url": "https://sunnnn2005.github.io/data-quality-agent/",
         "target_metrics": [link["target_metric"] for link in one_click["links"]],
+        "record_sent_command_template": (
+            "python scripts/record_reviewer_outreach_event.py "
+            "--slot-id review_slot_07 "
+            "--status sent "
+            '--reviewer-contact "<name-or-private-label>" '
+            '--channel-used "<LinkedIn|email|Discord|Slack|GitHub>" '
+            '--note "Sent 8-12 minute one-click reviewer share card; no public evidence yet."'
+        ),
         "copy_message": (
             "Could you spend 8-12 minutes reviewing my Data Quality Agent project? "
             "This one-click page lets you choose AI Engineer review, confirmed external use, product feedback, "
@@ -235,6 +243,7 @@ Issue #{review_request["issue_number"]}: [{review_request["url"]}]({review_reque
 - Target metrics: {one_click["target_metric_count"]}
 - Accepted issue count: {one_click["accepted_issue_count"]}
 - Claimable resume metric count: {one_click["claimable_resume_metric_count"]}
+- Record after sending: `{share_card["record_sent_command_template"]}`
 
 Copy message:
 
@@ -294,6 +303,12 @@ def verify_reviewer_invitation_kit(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("reviewer invitation kit must publish a one-click share-card URL")
     if "8-12 minutes" not in share_card["title"] or "8-12 minutes" not in share_card["copy_message"]:
         raise AssertionError("reviewer invitation kit share card must preserve the short review ask")
+    if "record_reviewer_outreach_event.py" not in share_card["record_sent_command_template"]:
+        raise AssertionError("reviewer invitation kit must include a real sent-outreach recorder command")
+    if "--status sent" not in share_card["record_sent_command_template"]:
+        raise AssertionError("reviewer invitation kit recorder command must track sent outreach")
+    if "no public evidence yet" not in share_card["record_sent_command_template"]:
+        raise AssertionError("reviewer invitation kit recorder command must preserve the no-evidence-yet boundary")
     if one_click["link_count"] != expected["one_click_link_count"]:
         raise AssertionError("reviewer invitation kit must link four one-click evidence paths")
     if one_click["target_metric_count"] != expected["one_click_target_metric_count"]:

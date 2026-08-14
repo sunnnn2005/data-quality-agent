@@ -108,6 +108,7 @@
     "copy_message": "Could you spend 8-12 minutes reviewing my Data Quality Agent project? This one-click page lets you choose AI Engineer review, confirmed external use, product feedback, or an anonymized business-case note: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html. Please submit only public, non-private evidence if you are comfortable.",
     "counts_only_after": "Opening a one-click issue link is not evidence by itself. A metric counts only after a non-owner submits the public issue, includes permission, includes no private data, and passes the evidence gate.",
     "primary_url": "https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html",
+    "record_sent_command_template": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_07 --status sent --reviewer-contact \"<name-or-private-label>\" --channel-used \"<LinkedIn|email|Discord|Slack|GitHub>\" --note \"Sent 8-12 minute one-click reviewer share card; no public evidence yet.\"",
     "target_metrics": [
       "ai_engineer_review_items",
       "confirmed_external_users",

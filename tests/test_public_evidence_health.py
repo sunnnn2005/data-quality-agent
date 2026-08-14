@@ -177,6 +177,9 @@ def test_public_evidence_health_requires_core_public_signals():
     assert invitation["expected_json"]["public_evidence_path_count"] == 5
     assert "short_share_card" in invitation["expected_texts"]
     assert "Review Data Quality Agent in 8-12 minutes" in invitation["expected_texts"]
+    assert "record_reviewer_outreach_event.py" in invitation["expected_texts"]
+    assert "--status sent" in invitation["expected_texts"]
+    assert "no public evidence yet" in invitation["expected_texts"]
     assert "https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html" in invitation["expected_texts"]
     assert "\"accepted_issue_count\": 0" in invitation["expected_texts"]
     assert "\"claimable_resume_metric_count\": 0" in invitation["expected_texts"]

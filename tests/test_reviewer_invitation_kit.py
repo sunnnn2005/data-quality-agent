@@ -23,6 +23,9 @@ def test_reviewer_invitation_kit_routes_copy_ready_messages_to_public_evidence()
     assert "8-12 minutes" in payload["short_share_card"]["title"]
     assert "8-12 minutes" in payload["short_share_card"]["copy_message"]
     assert "Opening a one-click issue link is not evidence by itself" in payload["short_share_card"]["counts_only_after"]
+    assert "record_reviewer_outreach_event.py" in payload["short_share_card"]["record_sent_command_template"]
+    assert "--status sent" in payload["short_share_card"]["record_sent_command_template"]
+    assert "no public evidence yet" in payload["short_share_card"]["record_sent_command_template"]
     assert {item["funnel_stage"] for item in payload["invitation_targets"]} == {
         "visit_public_demo",
         "run_local_replay",
@@ -45,3 +48,4 @@ def test_reviewer_invitation_kit_routes_copy_ready_messages_to_public_evidence()
     assert "copy-ready messages" in markdown
     assert "One-Click Reviewer Share Card" in markdown
     assert "Claimable resume metric count: 0" in markdown
+    assert "Record after sending" in markdown

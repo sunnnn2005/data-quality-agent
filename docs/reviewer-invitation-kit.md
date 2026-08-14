@@ -32,6 +32,7 @@ Single public issue for sharing review paths and collecting the first external f
 - Target metrics: 4
 - Accepted issue count: 0
 - Claimable resume metric count: 0
+- Record after sending: `python scripts/record_reviewer_outreach_event.py --slot-id review_slot_07 --status sent --reviewer-contact "<name-or-private-label>" --channel-used "<LinkedIn|email|Discord|Slack|GitHub>" --note "Sent 8-12 minute one-click reviewer share card; no public evidence yet."`
 
 Copy message:
 
