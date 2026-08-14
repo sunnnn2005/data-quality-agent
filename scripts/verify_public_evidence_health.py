@@ -816,6 +816,25 @@ PUBLIC_CHECKS = [
         "evidence_type": "json",
     },
     {
+        "id": "reviewer-send-queue",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-send-queue.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "queue_count": 5,
+            "not_sent_count": 5,
+            "sent_count": 0,
+            "accepted_evidence_count": 0,
+        },
+        "expected_text": "send_ready_not_claimable",
+        "expected_texts": [
+            "ai_engineer_review_items",
+            "https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html",
+            "non-owner public GitHub issue passes the evidence gate",
+            "zero upgraded resume outcome claims",
+        ],
+        "evidence_type": "json",
+    },
+    {
         "id": "reviewer-outreach-execution-pack",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-outreach-execution-pack.json",
         "expected_json": {

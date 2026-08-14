@@ -6,6 +6,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 OUTREACH_LOG_PATH = ROOT / "docs" / "first-10-outreach-execution-log.json"
 SCOREBOARD_PATH = ROOT / "docs" / "resume-outcome-scoreboard.json"
+INVITATION_KIT_PATH = ROOT / "docs" / "reviewer-invitation-kit.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "reviewer-send-queue.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "reviewer-send-queue.md"
 
@@ -63,6 +64,8 @@ def _completion_fields(entry: dict[str, Any]) -> list[str]:
 def build_reviewer_send_queue() -> dict[str, Any]:
     outreach = load_json(OUTREACH_LOG_PATH)
     scoreboard = load_json(SCOREBOARD_PATH)
+    invitation_kit = load_json(INVITATION_KIT_PATH)
+    one_click_url = invitation_kit["short_share_card"]["primary_url"]
     entries = sorted(
         outreach["entries"],
         key=lambda item: (PRIORITY_BY_METRIC[item["target_metric"]], item["sequence"]),
@@ -93,7 +96,7 @@ def build_reviewer_send_queue() -> dict[str, Any]:
                 "public_issue_url": entry["public_issue_url"],
                 "entry_url": entry["entry_url"],
                 "submission_url": entry["submission_url"],
-                "copy_ready_message": entry["copy_ready_message"],
+                "copy_ready_message": _copy_ready_message(entry, one_click_url),
                 "copy_ready_follow_up": entry["copy_ready_follow_up"],
                 "completion_fields": _completion_fields(entry),
                 "counts_only_after": entry["counts_only_after"],
@@ -108,6 +111,7 @@ def build_reviewer_send_queue() -> dict[str, Any]:
             "public, resume-countable evidence without claiming sent outreach or external outcomes prematurely."
         ),
         "source": "docs/first-10-outreach-execution-log.json",
+        "one_click_evidence_url": one_click_url,
         "queue_count": len(next_sends),
         "not_sent_count": sum(1 for item in next_sends if item["status"] == "not_sent"),
         "sent_count": 0,
@@ -126,6 +130,18 @@ def build_reviewer_send_queue() -> dict[str, Any]:
             "zero accepted evidence, and zero upgraded resume outcome claims."
         ),
     }
+
+
+def _copy_ready_message(entry: dict[str, Any], one_click_url: str) -> str:
+    message = entry["copy_ready_message"]
+    if entry["target_metric"] != "ai_engineer_review_items":
+        return message
+    return (
+        message
+        + " Shortest path if you do not want to read every doc: "
+        + one_click_url
+        + "."
+    )
 
 
 def render_markdown(payload: dict[str, Any]) -> str:
@@ -181,6 +197,8 @@ This generated queue turns planned outreach into the next concrete sends.
 | Accepted evidence | {payload["accepted_evidence_count"]} |
 | Scoreboard remaining evidence items | {payload["scoreboard_remaining_evidence_items"]} |
 
+One-click evidence page: [{payload["one_click_evidence_url"]}]({payload["one_click_evidence_url"]})
+
 ## Target Metrics
 
 {target_metrics}
@@ -216,12 +234,16 @@ def verify_reviewer_send_queue(payload: dict[str, Any]) -> dict[str, Any]:
     }
     if set(payload["target_metrics"]) != required_metrics:
         raise AssertionError("reviewer send queue must cover the five most useful non-star outcome metrics")
+    if not payload["one_click_evidence_url"].endswith("/one-click-evidence-links.html"):
+        raise AssertionError("reviewer send queue must expose the one-click evidence page")
     ranks = [item["rank"] for item in payload["next_sends"]]
     if ranks != [1, 2, 3, 4, 5]:
         raise AssertionError("reviewer send queue ranks must be stable and ordered")
     first_metric = payload["next_sends"][0]["target_metric"]
     if first_metric != "ai_engineer_review_items":
         raise AssertionError("AI Engineer review should be the first send for the user's target role")
+    if payload["one_click_evidence_url"] not in payload["next_sends"][0]["copy_ready_message"]:
+        raise AssertionError("first AI Engineer send must include the one-click evidence URL")
     for item in payload["next_sends"]:
         if item["status"] != "not_sent":
             raise AssertionError("send queue must not mark any item sent")

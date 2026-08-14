@@ -49,6 +49,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "application-evidence-pack",
         "reviewer-funnel-board",
         "reviewer-invitation-kit",
+        "reviewer-send-queue",
         "reviewer-landing-page",
         "reviewer-outreach-console",
         "pilot-outreach-kit",
@@ -183,6 +184,11 @@ def test_public_evidence_health_requires_core_public_signals():
     assert "https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html" in invitation["expected_texts"]
     assert "\"accepted_issue_count\": 0" in invitation["expected_texts"]
     assert "\"claimable_resume_metric_count\": 0" in invitation["expected_texts"]
+    send_queue = next(check for check in PUBLIC_CHECKS if check["id"] == "reviewer-send-queue")
+    assert send_queue["expected_json"]["queue_count"] == 5
+    assert send_queue["expected_json"]["sent_count"] == 0
+    assert "https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html" in send_queue["expected_texts"]
+    assert "zero upgraded resume outcome claims" in send_queue["expected_texts"]
 
 
 def test_public_evidence_health_verifier_rejects_failed_checks():
