@@ -4,7 +4,7 @@ This generated pack gives recruiters and interviewers a compact review path for 
 
 ## One-Line Project Proof
 
-Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 153 tests, 84 verified resume claims, and honest adoption baselines.
+Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 154 tests, 84 verified resume claims, and honest adoption baselines.
 
 ## Application Links
 
@@ -17,6 +17,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 - Impact Review Packet: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/impact-review-packet.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/impact-review-packet.md)
 - Business Problem Casebook: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md)
 - Business Resolution Brief: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-resolution-brief.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-resolution-brief.md)
+- Business Resolution Review Request: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-resolution-review-request.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-resolution-review-request.md)
 - Public Traction Dashboard: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-traction-dashboard.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-traction-dashboard.md)
 - Feedback Intake Quality: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/feedback-intake-quality.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/feedback-intake-quality.md)
 - Business Data Replay Packet: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-data-replay-packet.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-data-replay-packet.md)
@@ -60,7 +61,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 
 | Metric | Value |
 | --- | ---: |
-| Passing Tests | 153 |
+| Passing Tests | 154 |
 | Verified Resume Claims | 84 |
 | Implemented Agent Capabilities | 16 |
 | Agent Tools Allowed | 7 |
@@ -75,6 +76,9 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Business Resolution Risk Areas | 4 |
 | Business Resolution High Priority Actions | 3 |
 | Business Resolution Owner Handoffs | 4 |
+| Business Resolution Review Request | 1 |
+| Business Resolution Review Questions | 5 |
+| Business Resolution Review External Feedback | 0 |
 | Public Traction Surfaces | 4 |
 | Public Traction Growth Channels | 19 |
 | Feedback Intake Required Sections | 5 |
@@ -159,7 +163,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 ## Resume Bullets
 
 - Built an LLM tool-calling data-quality agent for real business CSV and read-only PostgreSQL data, with 7 allowed tools, dynamic strategy selection, memory-informed planning, source-cited business-rule retrieval, 6 verified API integration endpoints, and safe model-key fallback.
-- Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 153 passing tests, 84 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
+- Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 154 passing tests, 84 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
 - Added enterprise-style guardrails for agent reliability, including read-only PostgreSQL query limits, 3 rejected unsafe SQL queries, sensitive-field redaction, trace observability, incident-pattern memory, evidence-backed root-cause hypotheses, and deterministic report verification.
 
 ## Email Attachment Note

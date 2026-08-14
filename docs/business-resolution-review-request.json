@@ -1,0 +1,40 @@
+{
+  "brief_signal_counts": {
+    "business_risk_areas": 4,
+    "findings": 5,
+    "high_priority_actions": 3,
+    "owner_handoffs": 4
+  },
+  "evidence_gate": {
+    "counts_only_if": [
+      "reviewer is not the repository owner",
+      "reviewer comments publicly on issue #30 or submits a linked public review issue",
+      "reviewer gives explicit permission to count the review publicly",
+      "review contains no private company data, customer names, emails, secrets, or raw production rows"
+    ],
+    "current_business_case_feedback_items": 0,
+    "current_confirmed_external_users": 0,
+    "current_external_feedback_items": 0,
+    "self_authored_issue_counts_as_feedback": false
+  },
+  "generated_by": "scripts/build_business_resolution_review_request.py",
+  "not_claimed": [
+    "external reviewer feedback from issue creation alone",
+    "customer adoption",
+    "production deployment",
+    "business impact validated by a company",
+    "GitHub stars gained"
+  ],
+  "project": "Data Quality Agent",
+  "resume_safe_progress": "Opened a public business-resolution review request for an anonymized support-operations data-quality case, with explicit evidence gates before any external feedback or business validation claim can count.",
+  "review_goal": "Collect non-owner public review on whether the support-operations business-resolution brief looks realistic, useful, and specific enough for a real data or operations workflow.",
+  "review_issue": "https://github.com/sunnnn2005/data-quality-agent/issues/30",
+  "review_questions": [
+    "Does this support-operations data-quality scenario look realistic?",
+    "Are the 5 findings mapped to the right business risks?",
+    "Are the 3 high-priority actions useful and specific enough?",
+    "Are the 4 owner handoffs believable for a real data/ops team?",
+    "What would make this more useful for a real analyst, data engineer, or operations team?"
+  ],
+  "source_brief": "docs/business-resolution-brief.md"
+}

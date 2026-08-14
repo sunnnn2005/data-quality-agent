@@ -49,7 +49,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "153 passing CI tests",
+            "154 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -62,7 +62,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 153},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 154},
         "evidence_type": "json",
     },
     {
@@ -368,6 +368,34 @@ PUBLIC_CHECKS = [
             "no customer production deployment is claimed",
         ],
         "evidence_type": "json",
+    },
+    {
+        "id": "business-resolution-review-request",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-resolution-review-request.json",
+        "expected_json": {"project": "Data Quality Agent"},
+        "expected_text": "business_resolution_review_request.py",
+        "expected_texts": [
+            "issues/30",
+            "self_authored_issue_counts_as_feedback",
+            "current_external_feedback_items",
+            "current_confirmed_external_users",
+            "explicit permission",
+            "no private company data",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "business-resolution-review-issue",
+        "url": "https://github.com/sunnnn2005/data-quality-agent/issues/30",
+        "expected_text": "Business resolution review",
+        "expected_texts": [
+            "Does this support-operations data-quality scenario look realistic?",
+            "Are the 5 findings mapped to the right business risks?",
+            "Are the 3 high-priority actions useful and specific enough?",
+            "Are the 4 owner handoffs believable for a real data/ops team?",
+            "Self-authored issue does not count as external feedback",
+        ],
+        "evidence_type": "html",
     },
     {
         "id": "public-traction-dashboard",

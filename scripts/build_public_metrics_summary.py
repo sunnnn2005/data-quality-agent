@@ -44,6 +44,7 @@ COMMUNITY_GROWTH_BASELINE_PATH = ROOT / "docs" / "community-growth-baseline.json
 IMPACT_REVIEW_PACKET_PATH = ROOT / "docs" / "impact-review-packet.json"
 BUSINESS_PROBLEM_CASEBOOK_PATH = ROOT / "docs" / "business-problem-casebook.json"
 BUSINESS_RESOLUTION_BRIEF_PATH = ROOT / "docs" / "business-resolution-brief.json"
+BUSINESS_RESOLUTION_REVIEW_REQUEST_PATH = ROOT / "docs" / "business-resolution-review-request.json"
 PUBLIC_TRACTION_DASHBOARD_PATH = ROOT / "docs" / "public-traction-dashboard.json"
 GITHUB_TRAFFIC_SNAPSHOT_PATH = ROOT / "docs" / "github-traffic-snapshot.json"
 PUBLIC_AVAILABILITY_SNAPSHOT_PATH = ROOT / "docs" / "public-availability-snapshot.json"
@@ -77,7 +78,7 @@ RESUME_OUTCOME_ADJUDICATION_PATH = ROOT / "docs" / "resume-outcome-adjudication.
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 SCORECARD_REVIEWER_PATH_COUNT = 23
-APPLICATION_EVIDENCE_LINK_COUNT = 47
+APPLICATION_EVIDENCE_LINK_COUNT = 48
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -125,6 +126,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     impact_review = load_json(IMPACT_REVIEW_PACKET_PATH)
     business_casebook = load_json(BUSINESS_PROBLEM_CASEBOOK_PATH)
     business_resolution = load_json(BUSINESS_RESOLUTION_BRIEF_PATH)
+    business_resolution_review = load_json(BUSINESS_RESOLUTION_REVIEW_REQUEST_PATH)
     traction = load_json(PUBLIC_TRACTION_DASHBOARD_PATH)
     traffic = load_json(GITHUB_TRAFFIC_SNAPSHOT_PATH)
     availability = load_json(PUBLIC_AVAILABILITY_SNAPSHOT_PATH)
@@ -334,6 +336,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "business_resolution_risk_areas": business_resolution["detected_signal_counts"]["business_risk_areas"],
             "business_resolution_high_priority_actions": business_resolution["detected_signal_counts"]["high_priority_actions"],
             "business_resolution_owner_handoffs": business_resolution["detected_signal_counts"]["owner_handoffs"],
+            "business_resolution_review_request": 1,
+            "business_resolution_review_questions": len(business_resolution_review["review_questions"]),
+            "business_resolution_review_external_feedback": business_resolution_review["evidence_gate"][
+                "current_external_feedback_items"
+            ],
             "public_traction_dashboard": 1,
             "public_traction_surfaces": traction["traction_surface_count"],
             "public_traction_growth_channels": traction["growth_channel_count"],
@@ -675,6 +682,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{business_resolution['detected_signal_counts']['owner_handoffs']} owner handoffs without claiming customer adoption"
             ),
             (
+                "Public business-resolution review request with 5 focused questions and explicit evidence gates "
+                "before any external feedback or business validation can count"
+            ),
+            (
                 f"Public traction dashboard with {traction['traction_surface_count']} live project surfaces, "
                 f"{traction['growth_channel_count']} growth or review channels, "
                 f"{traction['tracked_funnel_steps']} tracked funnel steps, and "
@@ -960,6 +971,9 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business resolution risk areas | {outcomes["business_resolution_risk_areas"]} |
 | Business resolution high-priority actions | {outcomes["business_resolution_high_priority_actions"]} |
 | Business resolution owner handoffs | {outcomes["business_resolution_owner_handoffs"]} |
+| Business resolution review request | {outcomes["business_resolution_review_request"]} |
+| Business resolution review questions | {outcomes["business_resolution_review_questions"]} |
+| Business resolution review external feedback | {outcomes["business_resolution_review_external_feedback"]} |
 | Public traction dashboard | {outcomes["public_traction_dashboard"]} |
 | Public traction surfaces | {outcomes["public_traction_surfaces"]} |
 | Public traction growth channels | {outcomes["public_traction_growth_channels"]} |
@@ -1086,7 +1100,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 153,
+        "test_count": 154,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -1256,6 +1270,9 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "business_resolution_risk_areas": 4,
         "business_resolution_high_priority_actions": 3,
         "business_resolution_owner_handoffs": 4,
+        "business_resolution_review_request": 1,
+        "business_resolution_review_questions": 5,
+        "business_resolution_review_external_feedback": 0,
         "public_traction_dashboard": 1,
         "public_traction_surfaces": 4,
         "public_traction_growth_channels": 19,
@@ -1269,7 +1286,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 47,
+        "application_evidence_links": 48,
         "github_discovery_profile": 1,
         "github_discovery_topics": 16,
         "github_discovery_reviewer_entrypoints": 6,

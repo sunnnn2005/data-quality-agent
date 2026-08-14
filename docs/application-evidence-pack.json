@@ -10,6 +10,7 @@
     "business_problem_casebook": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md",
     "business_replay_demo": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-replay-demo.md",
     "business_resolution_brief": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-resolution-brief.md",
+    "business_resolution_review_request": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-resolution-review-request.md",
     "container_image": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent",
     "demo": "https://sunnnn2005.github.io/data-quality-agent/",
     "external_reviewer_evidence_gate": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-reviewer-evidence-gate.md",
@@ -75,11 +76,11 @@
     "enterprise production usage",
     "GitHub stars beyond the current public count"
   ],
-  "one_line_project_proof": "Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 153 tests, 84 verified resume claims, and honest adoption baselines.",
+  "one_line_project_proof": "Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 154 tests, 84 verified resume claims, and honest adoption baselines.",
   "project": "Data Quality Agent",
   "resume_bullets": [
     "Built an LLM tool-calling data-quality agent for real business CSV and read-only PostgreSQL data, with 7 allowed tools, dynamic strategy selection, memory-informed planning, source-cited business-rule retrieval, 6 verified API integration endpoints, and safe model-key fallback.",
-    "Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 153 passing tests, 84 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
+    "Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 154 passing tests, 84 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
     "Added enterprise-style guardrails for agent reliability, including read-only PostgreSQL query limits, 3 rejected unsafe SQL queries, sensitive-field redaction, trace observability, incident-pattern memory, evidence-backed root-cause hypotheses, and deterministic report verification."
   ],
   "target_roles": [
@@ -103,6 +104,9 @@
     "business_resolution_findings": 5,
     "business_resolution_high_priority_actions": 3,
     "business_resolution_owner_handoffs": 4,
+    "business_resolution_review_external_feedback": 0,
+    "business_resolution_review_questions": 5,
+    "business_resolution_review_request": 1,
     "business_resolution_risk_areas": 4,
     "feedback_intake_captured_fields": 5,
     "feedback_intake_required_sections": 5,
@@ -124,7 +128,7 @@
     "outcome_collection_actions": 5,
     "outcome_collection_evidence_fields": 23,
     "outcome_collection_submission_paths": 6,
-    "passing_tests": 153,
+    "passing_tests": 154,
     "pilot_evidence_quicklink_actions": 3,
     "pilot_evidence_quicklink_fields": 12,
     "pilot_evidence_quicklink_target_metrics": 3,

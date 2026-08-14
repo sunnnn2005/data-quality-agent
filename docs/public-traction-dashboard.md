@@ -9,7 +9,7 @@ This generated dashboard separates what is live and trackable from what is not y
 | Stars | 0 |
 | Forks | 1 |
 | Watchers | 0 |
-| Issues Total | 24 |
+| Issues Total | 25 |
 | External Feedback Items | 0 |
 | Confirmed External Users | 0 |
 | Reproducible Feedback Items | 0 |

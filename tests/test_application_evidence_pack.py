@@ -11,11 +11,12 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     markdown = render_markdown(payload)
 
     assert verification["application_evidence_pack_verified"] is True
-    assert len(payload["application_links"]) == 47
+    assert len(payload["application_links"]) == 48
     assert "reviewer_share_kit" in payload["application_links"]
     assert "business_data_replay_packet" in payload["application_links"]
     assert "business_replay_demo" in payload["application_links"]
     assert "business_resolution_brief" in payload["application_links"]
+    assert "business_resolution_review_request" in payload["application_links"]
     assert "real_model_runbook" in payload["application_links"]
     assert "real_model_evidence_capture" in payload["application_links"]
     assert "resume_outcome_readiness" in payload["application_links"]
@@ -41,7 +42,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert "first_10_reviewer_sprint" in payload["application_links"]
     assert "first_10_outreach_execution_log" in payload["application_links"]
     assert len(payload["resume_bullets"]) == 3
-    assert payload["verified_outcome_numbers"]["passing_tests"] == 153
+    assert payload["verified_outcome_numbers"]["passing_tests"] == 154
     assert payload["verified_outcome_numbers"]["verified_resume_claims"] == 84
     assert payload["verified_outcome_numbers"]["outcome_collection_actions"] == 5
     assert payload["verified_outcome_numbers"]["outcome_collection_submission_paths"] == 6
@@ -67,6 +68,9 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert payload["verified_outcome_numbers"]["business_resolution_risk_areas"] == 4
     assert payload["verified_outcome_numbers"]["business_resolution_high_priority_actions"] == 3
     assert payload["verified_outcome_numbers"]["business_resolution_owner_handoffs"] == 4
+    assert payload["verified_outcome_numbers"]["business_resolution_review_request"] == 1
+    assert payload["verified_outcome_numbers"]["business_resolution_review_questions"] == 5
+    assert payload["verified_outcome_numbers"]["business_resolution_review_external_feedback"] == 0
     assert payload["verified_outcome_numbers"]["public_traction_surfaces"] == 4
     assert payload["verified_outcome_numbers"]["public_traction_growth_channels"] == 19
     assert payload["verified_outcome_numbers"]["feedback_intake_required_sections"] == 5

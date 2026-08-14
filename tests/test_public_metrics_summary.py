@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 153
+    assert payload["public_metrics"]["test_count"] == 154
     assert payload["public_metrics"]["github_view_count"] >= 0
     assert payload["public_metrics"]["github_unique_visitors"] <= payload["public_metrics"]["github_view_count"]
     assert payload["public_metrics"]["github_clone_count"] >= 0
@@ -171,7 +171,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["recruiter_pitch_resume_bullets"] == 3
     assert payload["verified_project_outcomes"]["recruiter_pitch_target_roles"] == 4
     assert payload["verified_project_outcomes"]["application_evidence_pack"] == 1
-    assert payload["verified_project_outcomes"]["application_evidence_links"] == 47
+    assert payload["verified_project_outcomes"]["application_evidence_links"] == 48
     assert payload["verified_project_outcomes"]["github_discovery_profile"] == 1
     assert payload["verified_project_outcomes"]["github_discovery_topics"] == 16
     assert payload["verified_project_outcomes"]["github_discovery_reviewer_entrypoints"] == 6
@@ -362,7 +362,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         "First-10 outreach execution log with 10 copy-ready reviewer messages, 10 public issue entrypoints, 10 not-sent entries, and zero claimable external outcomes"
         in payload["resume_safe_signals"]
     )
-    assert "47 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
+    assert "48 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
     assert any("GitHub discovery profile with 16 precise topics" in signal for signal in payload["resume_safe_signals"])
     assert any("Pilot launch control room with 4 public issue threads" in signal for signal in payload["resume_safe_signals"])
     assert any("Resume outcome adjudication report with 5 outcome categories" in signal for signal in payload["resume_safe_signals"])

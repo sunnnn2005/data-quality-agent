@@ -30,6 +30,8 @@ def test_public_evidence_health_requires_core_public_signals():
         "impact-review-packet",
         "business-problem-casebook",
         "business-resolution-brief",
+        "business-resolution-review-request",
+        "business-resolution-review-issue",
         "github-traffic-snapshot",
         "public-metrics-refresh-workflow",
         "public-availability-snapshot",
@@ -78,6 +80,13 @@ def test_public_evidence_health_requires_core_public_signals():
     assert resolution["url"].endswith("/business-resolution-brief.json")
     assert "owner_handoffs" in resolution["expected_texts"]
     assert "no customer production deployment is claimed" in resolution["expected_texts"]
+    resolution_review = next(check for check in PUBLIC_CHECKS if check["id"] == "business-resolution-review-request")
+    assert resolution_review["url"].endswith("/business-resolution-review-request.json")
+    assert "issues/30" in resolution_review["expected_texts"]
+    assert "explicit permission" in resolution_review["expected_texts"]
+    resolution_issue = next(check for check in PUBLIC_CHECKS if check["id"] == "business-resolution-review-issue")
+    assert resolution_issue["url"].endswith("/issues/30")
+    assert "Self-authored issue does not count as external feedback" in resolution_issue["expected_texts"]
     traffic = next(check for check in PUBLIC_CHECKS if check["id"] == "github-traffic-snapshot")
     assert "confirmed users from traffic alone" in traffic["expected_texts"]
     refresh = next(check for check in PUBLIC_CHECKS if check["id"] == "public-metrics-refresh-workflow")
