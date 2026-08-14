@@ -92,6 +92,10 @@ jobs:
         run: python scripts/build_external_review_evidence_ledger.py
       - name: Verify GitHub traffic snapshot
         run: python scripts/build_github_traffic_snapshot.py
+      - name: Verify GitHub discovery profile
+        run: python scripts/build_github_discovery_profile.py
+      - name: Verify pilot evidence quicklink
+        run: python scripts/build_pilot_evidence_quicklink.py
       - name: Verify public availability snapshot
         run: python scripts/build_public_availability_snapshot.py
       - name: Verify outcome upgrade playbook

@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 147,
-      "resume_signal": "147 passing CI tests",
+      "metric_value": 148,
+      "resume_signal": "148 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,12 +299,12 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 41 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 42 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 41,
-      "resume_signal": "CI-verified application evidence pack",
+      "metric_value": 42,
+      "resume_signal": "42 recruiter application evidence links",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
     },
@@ -789,6 +789,16 @@
       "resume_signal": "CI-verified GitHub discovery profile",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/github-discovery-profile.json"
+    },
+    {
+      "claim": "The project publishes a pilot evidence quicklink with 3 short reviewer actions, 12 required evidence fields, 3 target outcome metrics, public submission links, and zero-count baselines before any user, feedback, or business-case outcome is claimed.",
+      "evidence_type": "generated_artifact",
+      "id": "pilot-evidence-quicklink",
+      "metric_name": "pilot_evidence_quicklink",
+      "metric_value": 1,
+      "resume_signal": "CI-verified pilot evidence quicklink",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-evidence-quicklink.json"
     }
   ],
   "not_claimed": [

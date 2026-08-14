@@ -1,0 +1,71 @@
+{
+  "action_count": 3,
+  "actions": [
+    {
+      "counts_after": "non-owner public feedback issue with permission to count",
+      "evidence_to_submit": [
+        "which screen or result you inspected",
+        "one thing that was useful or credible",
+        "one confusing or missing part",
+        "permission to count this as public feedback"
+      ],
+      "id": "try_public_demo",
+      "label": "Try the public demo",
+      "open_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_metric": "external_feedback_items",
+      "time_box_minutes": 5
+    },
+    {
+      "counts_after": "public observed-result evidence from a non-owner reviewer",
+      "evidence_to_submit": [
+        "command, URL, or page used",
+        "environment",
+        "observed result",
+        "permission to count this as an external run"
+      ],
+      "id": "run_container_or_local",
+      "label": "Run the container or local demo",
+      "open_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-quickstart.html",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md",
+      "target_metric": "confirmed_external_users",
+      "time_box_minutes": 8
+    },
+    {
+      "counts_after": "anonymized public issue with no raw production data",
+      "evidence_to_submit": [
+        "workflow affected",
+        "data-quality failure mode",
+        "why it matters operationally",
+        "permission to count anonymized business-case evidence"
+      ],
+      "id": "submit_business_problem",
+      "label": "Submit an anonymized business problem",
+      "open_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-case-intake.md",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "target_metric": "business_case_feedback_items",
+      "time_box_minutes": 10
+    }
+  ],
+  "current_counts": {
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "github_stars": 0
+  },
+  "generated_by": "scripts/build_pilot_evidence_quicklink.py",
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "submitted external business cases",
+    "GitHub stars beyond the current public count"
+  ],
+  "page": "docs/pilot-evidence-quicklink.html",
+  "project": "Data Quality Agent",
+  "public_url": "https://sunnnn2005.github.io/data-quality-agent/pilot-evidence-quicklink.html",
+  "purpose": "Give a reviewer one short public link that routes them to three countable pilot-evidence actions while preserving zero-user, zero-feedback, and zero-business-case baselines until public evidence exists.",
+  "resume_safe_summary": "Published a CI-verified pilot evidence quicklink that gives external reviewers 3 short evidence actions, 12 required evidence fields, public submission links, and explicit zero-count baselines before any outcome claim is upgraded.",
+  "source_submission_hub_paths": 6,
+  "target_metric_count": 3,
+  "total_evidence_fields": 12
+}

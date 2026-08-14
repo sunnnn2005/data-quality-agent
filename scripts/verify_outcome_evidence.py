@@ -62,6 +62,7 @@ REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 GITHUB_DISCOVERY_PROFILE_PATH = ROOT / "docs" / "github-discovery-profile.json"
+PILOT_EVIDENCE_QUICKLINK_PATH = ROOT / "docs" / "pilot-evidence-quicklink.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
 BUSINESS_DATA_REPLAY_PACKET_PATH = ROOT / "docs" / "business-data-replay-packet.json"
 REAL_MODEL_RUNBOOK_PATH = ROOT / "docs" / "real-model-runbook.json"
@@ -145,6 +146,7 @@ def verify_manifest() -> dict[str, int]:
     feedback_intake = load_payload(FEEDBACK_INTAKE_QUALITY_PATH)
     star_growth = load_payload(STAR_GROWTH_KIT_PATH)
     github_discovery = load_payload(GITHUB_DISCOVERY_PROFILE_PATH)
+    pilot_evidence_quicklink = load_payload(PILOT_EVIDENCE_QUICKLINK_PATH)
     business_case_intake = load_payload(BUSINESS_CASE_INTAKE_PATH)
     replay_packet = load_payload(BUSINESS_DATA_REPLAY_PACKET_PATH)
     real_model_runbook = load_payload(REAL_MODEL_RUNBOOK_PATH)
@@ -582,7 +584,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 147:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 148:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -961,7 +963,7 @@ def verify_manifest() -> dict[str, int]:
                     ("confirmed_external_users", 0),
                     ("external_feedback_items", 0),
                     ("github_stars", 0),
-                    ("passing_tests", 147),
+                    ("passing_tests", 148),
                 ):
                     if counts.get(key) != expected_value:
                         raise AssertionError(f"outcome collection {key} expected {expected_value!r}")
@@ -1347,7 +1349,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 147:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 148:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1380,6 +1382,28 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("GitHub discovery profile must include a dedicated test")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("github_discovery_profile claim must use metric_value=1")
+            elif metric_name == "pilot_evidence_quicklink":
+                quicklink_script = (ROOT / "scripts" / "build_pilot_evidence_quicklink.py").read_text()
+                quicklink_tests = (ROOT / "tests" / "test_pilot_evidence_quicklink.py").read_text()
+                if pilot_evidence_quicklink.get("action_count") != 3:
+                    raise AssertionError("pilot evidence quicklink must verify 3 short evidence actions")
+                if pilot_evidence_quicklink.get("total_evidence_fields") != 12:
+                    raise AssertionError("pilot evidence quicklink must verify 12 evidence fields")
+                if pilot_evidence_quicklink.get("target_metric_count") != 3:
+                    raise AssertionError("pilot evidence quicklink must verify 3 target metrics")
+                counts = pilot_evidence_quicklink.get("current_counts", {})
+                for key in ("external_feedback_items", "confirmed_external_users", "business_case_feedback_items"):
+                    if counts.get(key) != 0:
+                        raise AssertionError(f"pilot evidence quicklink must preserve zero baseline for {key}")
+                for required in ("external users", "customer feedback", "submitted external business cases"):
+                    if required not in pilot_evidence_quicklink.get("not_claimed", []):
+                        raise AssertionError(f"pilot evidence quicklink must not claim {required}")
+                if "verify_pilot_evidence_quicklink" not in quicklink_script:
+                    raise AssertionError("pilot evidence quicklink must include a script verifier")
+                if "test_pilot_evidence_quicklink_routes_reviewers_to_real_countable_outcomes" not in quicklink_tests:
+                    raise AssertionError("pilot evidence quicklink must include a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("pilot_evidence_quicklink claim must use metric_value=1")
             elif metric_name == "pilot_outreach_message_count":
                 pilot_tests = (ROOT / "tests" / "test_pilot_outreach_kit.py").read_text()
                 pilot_script = (ROOT / "scripts" / "build_pilot_outreach_kit.py").read_text()
@@ -2218,7 +2242,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 147", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 148", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

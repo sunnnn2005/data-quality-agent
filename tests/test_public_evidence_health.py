@@ -32,6 +32,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "github-traffic-snapshot",
         "public-metrics-refresh-workflow",
         "public-availability-snapshot",
+        "pilot-evidence-quicklink",
         "feedback-intake-quality",
         "business-data-replay-packet",
         "business-replay-demo",
@@ -101,6 +102,11 @@ def test_public_evidence_health_requires_core_public_signals():
     assert quickstart["url"].endswith("/external-run-quickstart.html")
     assert "Comment on Issue #18" in quickstart["expected_texts"]
     assert "No external reviewer run is claimed yet." in quickstart["expected_texts"]
+    quicklink = next(check for check in PUBLIC_CHECKS if check["id"] == "pilot-evidence-quicklink")
+    assert quicklink["url"].endswith("/pilot-evidence-quicklink.json")
+    assert quicklink["expected_json"]["action_count"] == 3
+    assert quicklink["expected_json"]["total_evidence_fields"] == 12
+    assert "zero-count baselines" in quicklink["expected_texts"]
     outreach = next(check for check in PUBLIC_CHECKS if check["id"] == "external-reviewer-outreach-tracker")
     assert outreach["url"].endswith("/external-reviewer-outreach-tracker.json")
     assert outreach["expected_json"]["queue_count"] == 3

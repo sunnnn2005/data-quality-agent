@@ -49,7 +49,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "147 passing CI tests",
+            "148 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -62,7 +62,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 147},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 148},
         "evidence_type": "json",
     },
     {
@@ -444,6 +444,24 @@ PUBLIC_CHECKS = [
             "traffic_snapshot",
             "repository interest",
             "confirmed users from traffic alone",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "pilot-evidence-quicklink",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-evidence-quicklink.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "action_count": 3,
+            "total_evidence_fields": 12,
+            "target_metric_count": 3,
+        },
+        "expected_text": "CI-verified pilot evidence quicklink",
+        "expected_texts": [
+            "zero-count baselines",
+            "external users",
+            "customer feedback",
+            "submitted external business cases",
         ],
         "evidence_type": "json",
     },

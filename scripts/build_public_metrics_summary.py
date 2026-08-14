@@ -60,6 +60,7 @@ REVIEWER_FEEDBACK_PACKET_PATH = ROOT / "docs" / "reviewer-feedback-packet.json"
 FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 GITHUB_DISCOVERY_PROFILE_PATH = ROOT / "docs" / "github-discovery-profile.json"
+PILOT_EVIDENCE_QUICKLINK_PATH = ROOT / "docs" / "pilot-evidence-quicklink.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
 BUSINESS_DATA_REPLAY_PACKET_PATH = ROOT / "docs" / "business-data-replay-packet.json"
 REAL_MODEL_RUNBOOK_PATH = ROOT / "docs" / "real-model-runbook.json"
@@ -71,7 +72,7 @@ RESUME_CLAIM_UPGRADE_LEDGER_PATH = ROOT / "docs" / "resume-claim-upgrade-ledger.
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 SCORECARD_REVIEWER_PATH_COUNT = 23
-APPLICATION_EVIDENCE_LINK_COUNT = 41
+APPLICATION_EVIDENCE_LINK_COUNT = 42
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -135,6 +136,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     feedback_intake = load_json(FEEDBACK_INTAKE_QUALITY_PATH)
     star_growth = load_json(STAR_GROWTH_KIT_PATH)
     github_discovery = load_json(GITHUB_DISCOVERY_PROFILE_PATH)
+    pilot_evidence_quicklink = load_json(PILOT_EVIDENCE_QUICKLINK_PATH)
     business_case_intake = load_json(BUSINESS_CASE_INTAKE_PATH)
     replay_packet = load_json(BUSINESS_DATA_REPLAY_PACKET_PATH)
     real_model_runbook = load_json(REAL_MODEL_RUNBOOK_PATH)
@@ -326,6 +328,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "github_discovery_profile": 1,
             "github_discovery_topics": github_discovery["topic_count"],
             "github_discovery_reviewer_entrypoints": len(github_discovery["reviewer_entrypoints"]),
+            "pilot_evidence_quicklink": 1,
+            "pilot_evidence_quicklink_actions": pilot_evidence_quicklink["action_count"],
+            "pilot_evidence_quicklink_fields": pilot_evidence_quicklink["total_evidence_fields"],
+            "pilot_evidence_quicklink_target_metrics": pilot_evidence_quicklink["target_metric_count"],
             "ai_engineer_review_intake": 1,
             "ai_engineer_review_paths": ai_engineer_review_intake["review_path_count"],
             "ai_engineer_review_questions": ai_engineer_review_intake["review_question_count"],
@@ -642,6 +648,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 "and zero-star baseline"
             ),
             (
+                f"Pilot evidence quicklink with {pilot_evidence_quicklink['action_count']} short reviewer actions, "
+                f"{pilot_evidence_quicklink['total_evidence_fields']} required evidence fields, "
+                f"{pilot_evidence_quicklink['target_metric_count']} target outcome metrics, and zero-count baselines"
+            ),
+            (
                 f"AI Engineer review intake with {ai_engineer_review_intake['review_path_count']} review paths, "
                 f"{ai_engineer_review_intake['review_question_count']} reviewer questions, "
                 f"{ai_engineer_review_intake['countable_condition_count']} countable-evidence conditions, and zero accepted reviews"
@@ -886,6 +897,13 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recruiter pitch target roles | {outcomes["recruiter_pitch_target_roles"]} |
 | Application evidence pack | {outcomes["application_evidence_pack"]} |
 | Application evidence links | {outcomes["application_evidence_links"]} |
+| GitHub discovery profile | {outcomes["github_discovery_profile"]} |
+| GitHub discovery topics | {outcomes["github_discovery_topics"]} |
+| GitHub discovery reviewer entrypoints | {outcomes["github_discovery_reviewer_entrypoints"]} |
+| Pilot evidence quicklink | {outcomes["pilot_evidence_quicklink"]} |
+| Pilot evidence quicklink actions | {outcomes["pilot_evidence_quicklink_actions"]} |
+| Pilot evidence quicklink fields | {outcomes["pilot_evidence_quicklink_fields"]} |
+| Pilot evidence quicklink target metrics | {outcomes["pilot_evidence_quicklink_target_metrics"]} |
 | AI Engineer review intake | {outcomes["ai_engineer_review_intake"]} |
 | AI Engineer review paths | {outcomes["ai_engineer_review_paths"]} |
 | AI Engineer review questions | {outcomes["ai_engineer_review_questions"]} |
@@ -978,7 +996,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 147,
+        "test_count": 148,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -1144,10 +1162,14 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 41,
+        "application_evidence_links": 42,
         "github_discovery_profile": 1,
         "github_discovery_topics": 16,
         "github_discovery_reviewer_entrypoints": 6,
+        "pilot_evidence_quicklink": 1,
+        "pilot_evidence_quicklink_actions": 3,
+        "pilot_evidence_quicklink_fields": 12,
+        "pilot_evidence_quicklink_target_metrics": 3,
         "ai_engineer_review_intake": 1,
         "ai_engineer_review_paths": 6,
         "ai_engineer_review_questions": 6,
