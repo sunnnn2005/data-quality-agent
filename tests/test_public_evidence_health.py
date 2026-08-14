@@ -13,6 +13,8 @@ def test_public_evidence_health_requires_core_public_signals():
         "outcome-collection-page",
         "outcome-proof-page",
         "outcome-proof-page-artifact",
+        "first-external-review-card-page",
+        "first-external-review-card",
         "llm-agent-checklist-verdict",
         "incident-pattern-memory",
         "agent-observability",
@@ -189,6 +191,14 @@ def test_public_evidence_health_requires_core_public_signals():
     assert proof_artifact["expected_json"]["blocked_card_count"] == 6
     assert proof_artifact["expected_json"]["reviewer_action_count"] == 5
     assert "ethical_star_or_fork" in proof_artifact["expected_texts"]
+    review_card_page = next(check for check in PUBLIC_CHECKS if check["id"] == "first-external-review-card-page")
+    assert review_card_page["url"].endswith("/first-external-review-card.html")
+    assert review_card_page["expected_text"] == "Review Data Quality Agent in 5-12 minutes"
+    assert "Submit public evidence" in review_card_page["expected_texts"]
+    review_card = next(check for check in PUBLIC_CHECKS if check["id"] == "first-external-review-card")
+    assert review_card["url"].endswith("/first-external-review-card.json")
+    assert review_card["expected_json"]["blocked_outcome_count"] == 6
+    assert "production adoption" in review_card["expected_texts"]
     agent_verdict = next(check for check in PUBLIC_CHECKS if check["id"] == "llm-agent-checklist-verdict")
     assert agent_verdict["url"].endswith("/llm-agent-checklist-verdict.json")
     assert agent_verdict["expected_json"]["status_counts"] == {"yes": 10, "partial": 4, "not_yet": 2}

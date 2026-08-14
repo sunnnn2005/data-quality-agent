@@ -12,6 +12,7 @@ def test_readme_exposes_countable_reviewer_evidence_path():
     assert "https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html" in readme
     assert "template=business_data_replay.md" in readme
     assert "reviewer quickstart router" in readme.lower()
+    assert "first external review card" in readme.lower()
     assert "evidence acceptance checklist" in readme.lower()
     assert "reviewer submission hub" in readme.lower()
     assert "outcome pipeline board" in readme.lower()
@@ -19,4 +20,4 @@ def test_readme_exposes_countable_reviewer_evidence_path():
     assert "first reviewer send kit" in readme.lower()
     assert "public, non-owner, permissioned, and redacted" in readme
     assert "24 evidence fields" in readme
-    assert "212 automated tests" in readme
+    assert "215 automated tests" in readme

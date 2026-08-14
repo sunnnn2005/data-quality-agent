@@ -53,7 +53,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "212 passing CI tests",
+            "215 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -112,7 +112,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 212},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 215},
         "evidence_type": "json",
     },
     {
@@ -157,6 +157,39 @@ PUBLIC_CHECKS = [
             "confirmed_external_users",
             "github_stars",
             "ethical_star_or_fork",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "first-external-review-card-page",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/first-external-review-card.html",
+        "expected_text": "Review Data Quality Agent in 5-12 minutes",
+        "expected_texts": [
+            "Submit public evidence",
+            "Counting rule",
+            "non-owner GitHub issue",
+            "external_feedback_items",
+            "confirmed_external_users",
+            "ai_engineer_review_items",
+        ],
+        "evidence_type": "html",
+    },
+    {
+        "id": "first-external-review-card",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/first-external-review-card.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "blocked_outcome_count": 6,
+            "fastest_path_minutes": 5,
+            "ai_engineer_path_minutes": 12,
+        },
+        "expected_text": "zero user, feedback, AI-review, and star claims",
+        "expected_texts": [
+            "accepted external review",
+            "confirmed external user",
+            "external feedback",
+            "production adoption",
+            "https://sunnnn2005.github.io/data-quality-agent/first-external-review-card.html",
         ],
         "evidence_type": "json",
     },

@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>First External Review Card</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #071017;
+      --panel: #111a24;
+      --panel-2: #172333;
+      --text: #f6f8fb;
+      --muted: #aab6c7;
+      --line: #283548;
+      --accent: #5eead4;
+      --accent-2: #8ab4ff;
+      --warn: #ffd166;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #071017 0%, #111827 58%, #0f172a 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    main {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 52px 0;
+    }
+    .hero {
+      display: grid;
+      gap: 28px;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr);
+      min-height: 58vh;
+      align-items: center;
+    }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-size: clamp(44px, 7vw, 84px);
+      line-height: .96;
+      letter-spacing: 0;
+      margin: 12px 0 18px;
+    }
+    .lede {
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 23px);
+      max-width: 760px;
+      margin: 0;
+    }
+    .copy {
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .copy p {
+      color: var(--muted);
+      margin: 0 0 12px;
+    }
+    .copy pre {
+      background: #050a10;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: #dbeafe;
+      margin: 0;
+      overflow-x: auto;
+      padding: 14px;
+      white-space: pre-wrap;
+      font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    .paths {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 36px 0;
+    }
+    .path {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+    }
+    .metric {
+      color: var(--accent-2);
+      font-size: 12px;
+      font-weight: 850;
+      margin: 0 0 12px;
+      text-transform: uppercase;
+    }
+    h2 {
+      font-size: 28px;
+      letter-spacing: 0;
+      line-height: 1.05;
+      margin: 0 0 12px;
+    }
+    .path p:not(.metric) {
+      color: var(--muted);
+      margin: 0 0 20px;
+    }
+    .button {
+      align-items: center;
+      background: var(--accent);
+      border-radius: 8px;
+      color: #05201b;
+      display: inline-flex;
+      font-weight: 850;
+      justify-content: center;
+      margin-top: auto;
+      min-height: 44px;
+      padding: 0 16px;
+      text-decoration: none;
+    }
+    .evidence {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+      border-top: 1px solid var(--line);
+      padding-top: 32px;
+    }
+    .counts {
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin: 0;
+      padding: 18px;
+    }
+    .counts li {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+      color: var(--muted);
+    }
+    .counts li:last-child { border-bottom: 0; }
+    .counts strong { color: var(--text); }
+    .rule {
+      background: rgba(255, 209, 102, .08);
+      border: 1px solid rgba(255, 209, 102, .32);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .rule h2 { color: var(--warn); }
+    .rule p { color: var(--muted); margin: 0 0 12px; }
+    @media (max-width: 860px) {
+      .hero, .paths, .evidence { grid-template-columns: 1fr; }
+      main { width: min(100% - 28px, 1120px); padding: 34px 0; }
+      .path { min-height: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">External evidence request</p>
+        <h1>Review Data Quality Agent in 5-12 minutes</h1>
+        <p class="lede">Choose one public feedback path. A resume outcome counts only after a non-owner GitHub issue includes permission and no private data.</p>
+      </div>
+      <aside class="copy">
+        <p>Copy this message to a classmate, mentor, or engineer.</p>
+        <pre>Could you spend 5-12 minutes reviewing my Data Quality Agent project? This page lets you choose the fastest feedback path, an AI Engineer architecture review, or a confirmed-use note: https://sunnnn2005.github.io/data-quality-agent/first-external-review-card.html. Please submit only public, non-private evidence if you are comfortable.</pre>
+      </aside>
+    </section>
+    <section class="paths" aria-label="review paths">
+      
+        <article class="path">
+          <p class="metric">ai_engineer_review_items</p>
+          <h2>I can review the agent architecture</h2>
+          <p>An AI/ML engineer, mentor, or advanced student who can inspect the tool-calling loop.</p>
+          <a class="button" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md">Submit public evidence</a>
+        </article>
+        
+
+        <article class="path">
+          <p class="metric">confirmed_external_users</p>
+          <h2>I can confirm I tried it</h2>
+          <p>Someone who can open the demo or quickstart and confirm the observed result.</p>
+          <a class="button" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md">Submit public evidence</a>
+        </article>
+        
+
+        <article class="path">
+          <p class="metric">external_feedback_items</p>
+          <h2>I only have 5 minutes</h2>
+          <p>A peer, recruiter, or classmate who can open the public demo and leave one specific note.</p>
+          <a class="button" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md">Submit public evidence</a>
+        </article>
+        
+    </section>
+    <section class="evidence">
+      <ul class="counts" aria-label="current outcome counts">
+        <li><span>ai_engineer_review_items</span><strong>0</strong></li>
+<li><span>confirmed_external_users</span><strong>0</strong></li>
+<li><span>external_feedback_items</span><strong>0</strong></li>
+      </ul>
+      <div class="rule">
+        <h2>Counting rule</h2>
+        <p>Do not increase any outcome metric until a non-owner public GitHub issue includes permission, contains no private data, and passes the external reviewer evidence gate.</p>
+        <p><strong>Success:</strong> One non-owner public GitHub issue with permission, no private data, and enough detail to pass the external reviewer evidence gate.</p>
+        <p>Published a one-page external review card routing reviewers to 3 public evidence paths and preserving zero user, feedback, AI-review, and star claims until a non-owner public issue passes the evidence gate.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
