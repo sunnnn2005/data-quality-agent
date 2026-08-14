@@ -18,7 +18,7 @@ def test_launch_evidence_snapshot_summarizes_public_launch_without_adoption_clai
     assert payload["launch_surface_count"] == 5
     assert payload["public_availability"]["available_endpoint_count"] == 4
     assert payload["public_availability"]["successful_workflow_count"] == 3
-    assert payload["application_pack"]["passing_tests"] == 233
+    assert payload["application_pack"]["passing_tests"] == 234
     assert payload["public_github_stats"]["stars"] == 0
     assert payload["public_github_stats"]["forks"] == 1
     assert payload["review_path"]["current_count"] == 0

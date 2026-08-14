@@ -173,7 +173,7 @@ def verify_public_traction_dashboard(payload: dict[str, Any]) -> dict[str, Any]:
         "stars": 0,
         "forks": 1,
         "watchers": 0,
-        "issues_total": 26,
+        "issues_total": 25,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
         "reproducible_feedback_items": 0,

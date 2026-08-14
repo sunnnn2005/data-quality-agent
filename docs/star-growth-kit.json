@@ -1,6 +1,6 @@
 {
-  "community_growth_channels": 10,
-  "current_growth_channels": 20,
+  "community_growth_channels": 11,
+  "current_growth_channels": 21,
   "current_public_counts": {
     "confirmed_external_users": 0,
     "external_feedback_items": 0,
@@ -9,7 +9,7 @@
     "github_unique_cloners_14d": 301,
     "github_unique_visitors_14d": 3,
     "github_views_14d": 9,
-    "issues_total": 26,
+    "issues_total": 25,
     "stars": 0,
     "watchers": 0
   },
