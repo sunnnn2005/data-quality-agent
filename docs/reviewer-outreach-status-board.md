@@ -40,6 +40,33 @@ Track real reviewer outreach from planned to sent, replied, public issue, and ac
 | Public issues submitted | 0 |
 | Accepted evidence | 0 |
 
+## Conversion Metrics
+
+| Metric | Value |
+| --- | ---: |
+| Tracked Slot Count | 9 |
+| Contacted Count | 0 |
+| Not Contacted Count | 9 |
+| Private Reply Count | 0 |
+| Public Issue Count | 0 |
+| Accepted Evidence Count | 0 |
+| Contact Rate | 0.0 |
+| Private Reply Rate From Contacted | 0.0 |
+| Public Issue Rate From Contacted | 0.0 |
+| Accepted Evidence Rate From Public Issues | 0.0 |
+| Remaining Contacts To First Public Issue | 1 |
+| Resume Claim Status | blocked_until_public_evidence |
+
+## Next Resume Unlocks
+
+| Metric | Current | Target | Remaining | Candidate Slots | Claimable Now |
+| --- | ---: | ---: | ---: | --- | --- |
+| external_feedback_items | 0 | 1 | 1 | review_slot_01, review_slot_02, review_slot_08 | False |
+| confirmed_external_users | 0 | 1 | 1 | review_slot_04 | False |
+| reproducible_feedback_items | 0 | 1 | 1 | review_slot_03 | False |
+| business_case_feedback_items | 0 | 1 | 1 | review_slot_05, review_slot_06 | False |
+| ai_engineer_review_items | 0 | 1 | 1 | review_slot_07 | False |
+
 ## Current Outcome Counts
 
 | Metric | Count |
@@ -60,4 +87,4 @@ Track real reviewer outreach from planned to sent, replied, public issue, and ac
 
 ## Resume-Safe Summary
 
-Published a CI-verified outreach status board tracking 9 reviewer slots across 5 status stages, 5 evidence goals, 0 recorded outreach events, and zero accepted-evidence or resume-upgrade claims.
+Published a CI-verified outreach status board tracking 9 reviewer slots across 5 status stages, 5 evidence goals, 0 recorded outreach events, 0% contact-to-slot coverage, and zero accepted-evidence or resume-upgrade claims.

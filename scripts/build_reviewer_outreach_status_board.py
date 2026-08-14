@@ -56,6 +56,84 @@ def apply_outreach_events(slots: list[dict[str, Any]], events: list[dict[str, An
         }[status]
 
 
+def calculate_conversion_metrics(slots: list[dict[str, Any]]) -> dict[str, Any]:
+    slot_count = len(slots)
+    contacted_count = sum(1 for slot in slots if slot["status"] != "not_sent")
+    private_reply_count = sum(1 for slot in slots if slot["status"] == "replied_private")
+    public_issue_count = sum(1 for slot in slots if slot["status"] == "public_issue_submitted")
+    accepted_evidence_count = sum(1 for slot in slots if slot["accepted_by_gate"])
+
+    def rate(numerator: int, denominator: int) -> float:
+        if denominator == 0:
+            return 0.0
+        return round(numerator / denominator, 4)
+
+    return {
+        "tracked_slot_count": slot_count,
+        "contacted_count": contacted_count,
+        "not_contacted_count": slot_count - contacted_count,
+        "private_reply_count": private_reply_count,
+        "public_issue_count": public_issue_count,
+        "accepted_evidence_count": accepted_evidence_count,
+        "contact_rate": rate(contacted_count, slot_count),
+        "private_reply_rate_from_contacted": rate(private_reply_count, contacted_count),
+        "public_issue_rate_from_contacted": rate(public_issue_count, contacted_count),
+        "accepted_evidence_rate_from_public_issues": rate(accepted_evidence_count, public_issue_count),
+        "remaining_contacts_to_first_public_issue": 0 if public_issue_count else 1,
+        "resume_claim_status": "blocked_until_public_evidence",
+    }
+
+
+def build_next_unlocks(current_counts: dict[str, int], slots: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    slot_by_metric: dict[str, list[dict[str, Any]]] = {}
+    for slot in slots:
+        slot_by_metric.setdefault(slot["counts_toward"], []).append(slot)
+
+    targets = {
+        "external_feedback_items": {
+            "target": 1,
+            "resume_line_after_unlock": "Received first public non-owner product feedback issue for the demo.",
+        },
+        "confirmed_external_users": {
+            "target": 1,
+            "resume_line_after_unlock": "Recorded first permissioned external user trying the public demo or local replay.",
+        },
+        "reproducible_feedback_items": {
+            "target": 1,
+            "resume_line_after_unlock": "Received first reproducible local/Docker replay from a non-owner reviewer.",
+        },
+        "business_case_feedback_items": {
+            "target": 1,
+            "resume_line_after_unlock": "Validated the agent against a first anonymized real-world data-quality case.",
+        },
+        "ai_engineer_review_items": {
+            "target": 1,
+            "resume_line_after_unlock": "Received first public AI Engineer review of agent design, tools, and evidence quality.",
+        },
+    }
+    unlocks = []
+    for metric, config in targets.items():
+        current = current_counts.get(metric, 0)
+        candidate_slots = slot_by_metric.get(metric, [])
+        unlocks.append(
+            {
+                "metric": metric,
+                "current_count": current,
+                "target_count": config["target"],
+                "remaining_needed": max(0, config["target"] - current),
+                "candidate_slots": [slot["slot_id"] for slot in candidate_slots],
+                "next_manual_action": (
+                    "Ask one listed reviewer slot to submit a public redacted GitHub issue with permission to count."
+                    if current < config["target"]
+                    else "Run the evidence gate and update resume outcome metrics."
+                ),
+                "resume_line_after_unlock": config["resume_line_after_unlock"],
+                "claimable_now": current >= config["target"],
+            }
+        )
+    return unlocks
+
+
 def build_reviewer_outreach_status_board() -> dict[str, Any]:
     outreach = load_json(OUTREACH_PACK_PATH)
     share_kit = load_json(SHARE_KIT_PATH)
@@ -126,6 +204,8 @@ def build_reviewer_outreach_status_board() -> dict[str, Any]:
         "business_case_feedback_items": tracked_counts["business_case_feedback_items"],
         "ai_engineer_review_items": tracked_counts["ai_engineer_review_items"],
     }
+    conversion_metrics = calculate_conversion_metrics(slots)
+    next_unlocks = build_next_unlocks(current_counts, slots)
 
     return {
         "project": "Data Quality Agent",
@@ -145,6 +225,10 @@ def build_reviewer_outreach_status_board() -> dict[str, Any]:
         "public_issue_submitted_count": sum(1 for slot in slots if slot["status"] == "public_issue_submitted"),
         "accepted_evidence_count": 0,
         "resume_upgrade_count": 0,
+        "conversion_metrics": conversion_metrics,
+        "next_resume_unlocks": next_unlocks,
+        "next_resume_unlock_count": len(next_unlocks),
+        "blocked_unlock_count": sum(1 for unlock in next_unlocks if not unlock["claimable_now"]),
         "current_outcome_counts": current_counts,
         "status_stages": stages,
         "outreach_slots": slots,
@@ -168,7 +252,8 @@ def build_reviewer_outreach_status_board() -> dict[str, Any]:
         "resume_safe_summary": (
             f"Published a CI-verified outreach status board tracking {len(slots)} reviewer slots across "
             f"{len(stages)} status stages, {len(current_counts)} evidence goals, {len(events)} recorded outreach "
-            "events, and zero accepted-evidence or resume-upgrade claims."
+            f"events, {conversion_metrics['contact_rate']:.0%} contact-to-slot coverage, and zero accepted-evidence "
+            "or resume-upgrade claims."
         ),
     }
 
@@ -184,6 +269,20 @@ def render_markdown(payload: dict[str, Any]) -> str:
     )
     rules = "\n".join(f"- {rule}" for rule in payload["resume_upgrade_rules"])
     counts = "\n".join(f"| {key.replace('_', ' ').title()} | {value} |" for key, value in payload["current_outcome_counts"].items())
+    conversion_rows = "\n".join(
+        f"| {key.replace('_', ' ').title()} | {value} |" for key, value in payload["conversion_metrics"].items()
+    )
+    unlock_rows = "\n".join(
+        "| {metric} | {current_count} | {target_count} | {remaining_needed} | {slots} | {claimable_now} |".format(
+            metric=unlock["metric"],
+            current_count=unlock["current_count"],
+            target_count=unlock["target_count"],
+            remaining_needed=unlock["remaining_needed"],
+            slots=", ".join(unlock["candidate_slots"]),
+            claimable_now=unlock["claimable_now"],
+        )
+        for unlock in payload["next_resume_unlocks"]
+    )
     return f"""# Reviewer Outreach Status Board
 
 This generated board tracks reviewer outreach execution without claiming results that have not happened.
@@ -213,6 +312,18 @@ This generated board tracks reviewer outreach execution without claiming results
 | Replies or public submissions | {payload["reply_count"]} |
 | Public issues submitted | {payload["public_issue_submitted_count"]} |
 | Accepted evidence | {payload["accepted_evidence_count"]} |
+
+## Conversion Metrics
+
+| Metric | Value |
+| --- | ---: |
+{conversion_rows}
+
+## Next Resume Unlocks
+
+| Metric | Current | Target | Remaining | Candidate Slots | Claimable Now |
+| --- | ---: | ---: | ---: | --- | --- |
+{unlock_rows}
 
 ## Current Outcome Counts
 
@@ -248,6 +359,23 @@ def verify_reviewer_outreach_status_board(payload: dict[str, Any]) -> dict[str, 
         raise AssertionError("status board must include five status stages")
     if len(payload.get("outreach_slots", [])) != expected["outreach_slot_count"]:
         raise AssertionError("status board must include nine reviewer slots")
+    conversion = payload.get("conversion_metrics", {})
+    expected_conversion = {
+        "tracked_slot_count": expected["outreach_slot_count"],
+        "accepted_evidence_count": 0,
+        "resume_claim_status": "blocked_until_public_evidence",
+    }
+    for key, value in expected_conversion.items():
+        if conversion.get(key) != value:
+            raise AssertionError(f"conversion metric {key} expected {value!r}, got {conversion.get(key)!r}")
+    if conversion.get("contacted_count", 0) > expected["outreach_slot_count"]:
+        raise AssertionError("conversion metrics cannot contact more reviewers than tracked slots")
+    if conversion.get("public_issue_count", 0) > conversion.get("contacted_count", 0):
+        raise AssertionError("conversion metrics cannot submit more public issues than contacted reviewers")
+    if payload.get("next_resume_unlock_count") != 5:
+        raise AssertionError("status board must identify five next resume unlocks")
+    if payload.get("blocked_unlock_count") != len(payload.get("next_resume_unlocks", [])):
+        raise AssertionError("all resume unlocks must remain blocked until evidence exists")
     for value in payload.get("current_outcome_counts", {}).values():
         if value != 0:
             raise AssertionError("status board must preserve zero current outcome counts")
@@ -274,6 +402,7 @@ def verify_reviewer_outreach_status_board(payload: dict[str, Any]) -> dict[str, 
         "self-authored",
         "private replies",
         "evidence gate",
+        "blocked_until_public_evidence",
     ):
         if required not in joined:
             raise AssertionError(f"status board must include {required}")

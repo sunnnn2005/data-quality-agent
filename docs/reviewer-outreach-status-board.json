@@ -1,5 +1,20 @@
 {
   "accepted_evidence_count": 0,
+  "blocked_unlock_count": 5,
+  "conversion_metrics": {
+    "accepted_evidence_count": 0,
+    "accepted_evidence_rate_from_public_issues": 0.0,
+    "contact_rate": 0.0,
+    "contacted_count": 0,
+    "not_contacted_count": 9,
+    "private_reply_count": 0,
+    "private_reply_rate_from_contacted": 0.0,
+    "public_issue_count": 0,
+    "public_issue_rate_from_contacted": 0.0,
+    "remaining_contacts_to_first_public_issue": 1,
+    "resume_claim_status": "blocked_until_public_evidence",
+    "tracked_slot_count": 9
+  },
   "current_outcome_counts": {
     "ai_engineer_review_items": 0,
     "business_case_feedback_items": 0,
@@ -17,6 +32,72 @@
     "sent_at": "ISO-8601 timestamp after the message is actually sent",
     "slot_id": "review_slot_01"
   },
+  "next_resume_unlock_count": 5,
+  "next_resume_unlocks": [
+    {
+      "candidate_slots": [
+        "review_slot_01",
+        "review_slot_02",
+        "review_slot_08"
+      ],
+      "claimable_now": false,
+      "current_count": 0,
+      "metric": "external_feedback_items",
+      "next_manual_action": "Ask one listed reviewer slot to submit a public redacted GitHub issue with permission to count.",
+      "remaining_needed": 1,
+      "resume_line_after_unlock": "Received first public non-owner product feedback issue for the demo.",
+      "target_count": 1
+    },
+    {
+      "candidate_slots": [
+        "review_slot_04"
+      ],
+      "claimable_now": false,
+      "current_count": 0,
+      "metric": "confirmed_external_users",
+      "next_manual_action": "Ask one listed reviewer slot to submit a public redacted GitHub issue with permission to count.",
+      "remaining_needed": 1,
+      "resume_line_after_unlock": "Recorded first permissioned external user trying the public demo or local replay.",
+      "target_count": 1
+    },
+    {
+      "candidate_slots": [
+        "review_slot_03"
+      ],
+      "claimable_now": false,
+      "current_count": 0,
+      "metric": "reproducible_feedback_items",
+      "next_manual_action": "Ask one listed reviewer slot to submit a public redacted GitHub issue with permission to count.",
+      "remaining_needed": 1,
+      "resume_line_after_unlock": "Received first reproducible local/Docker replay from a non-owner reviewer.",
+      "target_count": 1
+    },
+    {
+      "candidate_slots": [
+        "review_slot_05",
+        "review_slot_06"
+      ],
+      "claimable_now": false,
+      "current_count": 0,
+      "metric": "business_case_feedback_items",
+      "next_manual_action": "Ask one listed reviewer slot to submit a public redacted GitHub issue with permission to count.",
+      "remaining_needed": 1,
+      "resume_line_after_unlock": "Validated the agent against a first anonymized real-world data-quality case.",
+      "target_count": 1
+    },
+    {
+      "candidate_slots": [
+        "review_slot_07"
+      ],
+      "claimable_now": false,
+      "current_count": 0,
+      "metric": "ai_engineer_review_items",
+      "next_manual_action": "Ask one listed reviewer slot to submit a public redacted GitHub issue with permission to count.",
+      "remaining_needed": 1,
+      "resume_line_after_unlock": "Received first public AI Engineer review of agent design, tools, and evidence quality.",
+      "target_count": 1
+    }
+  ],
   "not_sent_count": 9,
   "outreach_slot_count": 9,
   "outreach_slots": [
@@ -206,7 +287,7 @@
   "purpose": "Track real reviewer outreach from planned to sent, replied, public issue, and accepted evidence without converting private outreach into resume claims.",
   "recorded_event_count": 0,
   "reply_count": 0,
-  "resume_safe_summary": "Published a CI-verified outreach status board tracking 9 reviewer slots across 5 status stages, 5 evidence goals, 0 recorded outreach events, and zero accepted-evidence or resume-upgrade claims.",
+  "resume_safe_summary": "Published a CI-verified outreach status board tracking 9 reviewer slots across 5 status stages, 5 evidence goals, 0 recorded outreach events, 0% contact-to-slot coverage, and zero accepted-evidence or resume-upgrade claims.",
   "resume_status": "tracking_ready_not_claimable",
   "resume_upgrade_count": 0,
   "resume_upgrade_rules": [
