@@ -53,7 +53,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "221 passing CI tests",
+            "224 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -112,7 +112,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 221},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 224},
         "evidence_type": "json",
     },
     {
@@ -200,6 +200,38 @@ PUBLIC_CHECKS = [
             "confirmed external user",
             "production adoption",
             "https://sunnnn2005.github.io/data-quality-agent/two-minute-review-card.html",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "business-pilot-offer-page",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-pilot-offer.html",
+        "expected_text": "Business Data Pilot Offer",
+        "expected_texts": [
+            "Pilot-ready, not pilot-validated yet",
+            "Eligible data sources",
+            "Evidence gates",
+            "Current public counts",
+        ],
+        "evidence_type": "html",
+    },
+    {
+        "id": "business-pilot-offer",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-pilot-offer.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "pilot_scope_count": 4,
+            "eligible_data_source_count": 4,
+            "evidence_gate_count": 6,
+            "pilot_status": "ready_to_invite_not_validated",
+        },
+        "expected_text": "zero current external pilot claims",
+        "expected_texts": [
+            "completed pilot",
+            "real enterprise customer",
+            "production deployment",
+            "business_data_replay",
+            "business_case_review",
         ],
         "evidence_type": "json",
     },

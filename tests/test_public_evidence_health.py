@@ -15,6 +15,8 @@ def test_public_evidence_health_requires_core_public_signals():
         "outcome-proof-page-artifact",
         "two-minute-review-card-page",
         "two-minute-review-card",
+        "business-pilot-offer-page",
+        "business-pilot-offer",
         "first-external-review-card-page",
         "first-external-review-card",
         "first-feedback-conversion-runbook",
@@ -209,6 +211,16 @@ def test_public_evidence_health_requires_core_public_signals():
     assert micro_card["expected_json"]["micro_step_count"] == 3
     assert micro_card["expected_json"]["required_evidence_count"] == 5
     assert "production adoption" in micro_card["expected_texts"]
+    pilot_offer_page = next(check for check in PUBLIC_CHECKS if check["id"] == "business-pilot-offer-page")
+    assert pilot_offer_page["url"].endswith("/business-pilot-offer.html")
+    assert pilot_offer_page["expected_text"] == "Business Data Pilot Offer"
+    assert "Evidence gates" in pilot_offer_page["expected_texts"]
+    pilot_offer = next(check for check in PUBLIC_CHECKS if check["id"] == "business-pilot-offer")
+    assert pilot_offer["url"].endswith("/business-pilot-offer.json")
+    assert pilot_offer["expected_json"]["pilot_scope_count"] == 4
+    assert pilot_offer["expected_json"]["evidence_gate_count"] == 6
+    assert pilot_offer["expected_json"]["pilot_status"] == "ready_to_invite_not_validated"
+    assert "production deployment" in pilot_offer["expected_texts"]
     review_card = next(check for check in PUBLIC_CHECKS if check["id"] == "first-external-review-card")
     assert review_card["url"].endswith("/first-external-review-card.json")
     assert review_card["expected_json"]["blocked_outcome_count"] == 6

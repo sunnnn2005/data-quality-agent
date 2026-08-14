@@ -17,7 +17,7 @@ The project is designed to keep the data-quality loop visible. The default path 
 
 If you are reviewing the project, the fastest path is:
 
-1. Open the [2-minute review card](https://sunnnn2005.github.io/data-quality-agent/two-minute-review-card.html), [public demo](https://sunnnn2005.github.io/data-quality-agent/), or the [external run quickstart](https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html).
+1. Open the [2-minute review card](https://sunnnn2005.github.io/data-quality-agent/two-minute-review-card.html), [business pilot offer](https://sunnnn2005.github.io/data-quality-agent/business-pilot-offer.html), [public demo](https://sunnnn2005.github.io/data-quality-agent/), or the [external run quickstart](https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html).
 2. Run a deterministic demo, local replay, or anonymized business-shaped CSV through the agent.
 3. Pick the shortest evidence path in the [outcome sprint plan](docs/outcome-sprint-plan.md), [one-click evidence links](docs/one-click-evidence-links.html), [outcome witness packet](docs/outcome-witness-packet.md), or [reviewer quickstart router](docs/reviewer-quickstart-router.md), then submit through the [reviewer submission hub](docs/reviewer-submission-hub.md) or the [business data replay template](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md).
 
@@ -47,7 +47,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | First 10 outreach execution log | [`docs/first-10-outreach-execution-log.md`](docs/first-10-outreach-execution-log.md) turns the 10 public reviewer issue entrypoints into 10 copy-ready manual outreach messages with follow-up timing, evidence fields, and zero claimable outcomes |
 | Public release | [`v0.3.0`](docs/releases/v0.3.0.md) release notes and GitHub Release |
 | Container image | `ghcr.io/sunnnn2005/data-quality-agent:latest` published from `main` |
-| Test suite | 221 automated tests passing locally and in GitHub Actions |
+| Test suite | 224 automated tests passing locally and in GitHub Actions |
 | Live project scorecard | [`docs/live-project-scorecard.md`](docs/live-project-scorecard.md) gives reviewers one page for the demo, release, container, CI, claims, agent capabilities, and honest adoption baselines |
 | Launch evidence snapshot | [`docs/launch-evidence-snapshot.md`](docs/launch-evidence-snapshot.md) gives recruiters 5 public project surfaces, availability/workflow health, GitHub stats, AI review path, and blocked adoption claims in one artifact |
 | AI Engineer readiness | [`docs/ai-engineer-readiness.md`](docs/ai-engineer-readiness.md) maps the project to 8 implemented AI skill signals, 1 partial signal, and 1 not-claimed signal for AI Engineer Intern applications |
@@ -66,6 +66,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Feedback intake quality | [`docs/feedback-intake-quality.md`](docs/feedback-intake-quality.md) verifies 5 required feedback sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups without claiming users |
 | Business case intake | [`docs/business-case-intake.md`](docs/business-case-intake.md) verifies 6 business-case sections, 5 tried paths, 5 outcome signals, and permission boundaries for future real-world data-quality problem feedback |
 | Business data replay packet | [`docs/business-data-replay-packet.md`](docs/business-data-replay-packet.md) gives reviewers 3 safe replay paths, 8 evidence fields, 5 safety requirements, and a dedicated replay issue template for collecting confirmed run evidence without claiming external replay yet |
+| Business pilot offer | [`docs/business-pilot-offer.html`](docs/business-pilot-offer.html) gives potential pilot reviewers 4 safe pilot steps, 4 eligible data-source types, 6 evidence gates, and zero current external pilot claims |
 | Business replay demo | [`docs/business-replay-demo.md`](docs/business-replay-demo.md) verifies an anonymized 8-row support-ticket CSV replay with 5 findings, 4 failed check types, 4 business-rule references, 3 root-cause hypotheses, and deterministic report verification |
 | Business resolution brief | [`docs/business-resolution-brief.md`](docs/business-resolution-brief.md) maps 5 anonymized support-ticket findings to 4 business risks, 3 high-priority actions, and 4 owner handoffs without claiming customer adoption |
 | Business resolution review request | [`docs/business-resolution-review-request.md`](docs/business-resolution-review-request.md) opens public issue [#30](https://github.com/sunnnn2005/data-quality-agent/issues/30) with 5 review questions and evidence gates before any external feedback can count |

@@ -1,0 +1,96 @@
+{
+  "current_public_counts": {
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
+  "eligible_data_source_count": 4,
+  "eligible_data_sources": [
+    "anonymized order, ticket, transaction, inventory, or signup CSV",
+    "read-only PostgreSQL table with non-sensitive columns",
+    "synthetic-but-business-shaped export that mirrors a real workflow",
+    "written business case when data cannot be shared"
+  ],
+  "evidence_gate_count": 6,
+  "evidence_gates": [
+    "non-owner reviewer or pilot contact",
+    "public GitHub issue or public review link",
+    "explicit permission to count the redacted result",
+    "dataset shape and path tried",
+    "one concrete useful, confusing, missing, or reproducible finding",
+    "confirmation that no private data was posted"
+  ],
+  "generated_by": "scripts/build_business_pilot_offer.py",
+  "not_allowed": [
+    "customer names, emails, addresses, phone numbers, tokens, secrets, or raw production rows",
+    "write access to production databases",
+    "unbounded warehouse queries",
+    "private evidence that cannot be audited publicly"
+  ],
+  "not_allowed_count": 4,
+  "not_claimed": [
+    "completed pilot",
+    "real enterprise customer",
+    "production deployment",
+    "external business-data replay",
+    "measured company impact"
+  ],
+  "pilot_scope": [
+    {
+      "name": "Scope a safe dataset",
+      "output": "Dataset shape, non-sensitive field names, business rule candidates, and permission boundary.",
+      "owner": "reviewer_or_pilot_contact",
+      "step": 1
+    },
+    {
+      "name": "Run a bounded replay",
+      "output": "CSV upload or read-only PostgreSQL run with row/column limits and no stored raw data.",
+      "owner": "project_owner_or_reviewer",
+      "step": 2
+    },
+    {
+      "name": "Review evidence-backed findings",
+      "output": "Useful finding, missed rule, confusing recommendation, or accepted root-cause hypothesis.",
+      "owner": "reviewer_or_domain_contact",
+      "step": 3
+    },
+    {
+      "name": "Publish redacted evidence",
+      "output": "GitHub issue with permission to count, no private data, and a concrete observed result.",
+      "owner": "reviewer",
+      "step": 4
+    }
+  ],
+  "pilot_scope_count": 4,
+  "pilot_status": "ready_to_invite_not_validated",
+  "project": "Data Quality Agent",
+  "public_url": "https://sunnnn2005.github.io/data-quality-agent/business-pilot-offer.html",
+  "purpose": "Turn the project from a portfolio demo into a safe pilot-ready offer for people who can bring anonymized business-shaped data or a real data-quality workflow problem.",
+  "resume_safe_summary": "Published a pilot-ready business data offer with 4 pilot steps, 4 eligible data-source types, 6 evidence gates, and zero current external pilot claims.",
+  "resume_upgrade_rules": [
+    {
+      "current_value": 0,
+      "future_metric": "confirmed_external_users",
+      "future_resume_line": "Validated the agent with an external reviewer on an anonymized business-shaped dataset.",
+      "minimum_before_claim": 1
+    },
+    {
+      "current_value": 0,
+      "future_metric": "business_case_feedback_items",
+      "future_resume_line": "Collected public business-case feedback mapping agent findings to a real workflow risk.",
+      "minimum_before_claim": 1
+    },
+    {
+      "current_value": 0,
+      "future_metric": "reproducible_feedback_items",
+      "future_resume_line": "Converted external replay feedback into a reproducible quality-rule improvement.",
+      "minimum_before_claim": 1
+    }
+  ],
+  "submission_paths": {
+    "business_case_review": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+    "business_data_replay": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md",
+    "demo_feedback": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+  }
+}
