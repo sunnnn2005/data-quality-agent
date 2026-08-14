@@ -11,7 +11,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     markdown = render_markdown(payload)
 
     assert verification["application_evidence_pack_verified"] is True
-    assert len(payload["application_links"]) == 39
+    assert len(payload["application_links"]) == 40
     assert "reviewer_share_kit" in payload["application_links"]
     assert "business_data_replay_packet" in payload["application_links"]
     assert "business_replay_demo" in payload["application_links"]
@@ -35,9 +35,10 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert "reviewer_submission_hub" in payload["application_links"]
     assert "outcome_collection" in payload["application_links"]
     assert "public_reviewer_call" in payload["application_links"]
+    assert "resume_claim_upgrade_ledger" in payload["application_links"]
     assert len(payload["resume_bullets"]) == 3
-    assert payload["verified_outcome_numbers"]["passing_tests"] == 145
-    assert payload["verified_outcome_numbers"]["verified_resume_claims"] == 79
+    assert payload["verified_outcome_numbers"]["passing_tests"] == 146
+    assert payload["verified_outcome_numbers"]["verified_resume_claims"] == 80
     assert payload["verified_outcome_numbers"]["outcome_collection_actions"] == 5
     assert payload["verified_outcome_numbers"]["outcome_collection_submission_paths"] == 6
     assert payload["verified_outcome_numbers"]["outcome_collection_evidence_fields"] == 23
@@ -86,6 +87,9 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert payload["verified_outcome_numbers"]["public_reviewer_call_segments"] == 3
     assert payload["verified_outcome_numbers"]["public_reviewer_call_outreach_tasks"] == 8
     assert payload["verified_outcome_numbers"]["public_reviewer_call_evidence_fields"] == 23
+    assert payload["verified_outcome_numbers"]["resume_claim_upgrade_rows"] == 6
+    assert payload["verified_outcome_numbers"]["resume_claim_upgrade_blocked_rows"] == 6
+    assert payload["verified_outcome_numbers"]["resume_claim_upgrade_claimable_rows"] == 0
     assert payload["honest_baseline"]["stars"] == 0
     assert payload["honest_baseline"]["confirmed_external_users"] == 0
     assert "Application Evidence Pack" in markdown

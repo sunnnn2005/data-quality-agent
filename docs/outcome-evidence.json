@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 145,
-      "resume_signal": "145 passing CI tests",
+      "metric_value": 146,
+      "resume_signal": "146 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 39 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 40 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 39,
+      "metric_value": 40,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -769,6 +769,16 @@
       "resume_signal": "CI-verified reviewer outreach status board",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-outreach-status-board.json"
+    },
+    {
+      "claim": "The project publishes a resume claim upgrade ledger mapping 6 real outcome metrics to public evidence gates, exact future resume wording, 6 blocked upgrade rows, and zero current user, feedback, AI review, business-case, or GitHub-star claims.",
+      "evidence_type": "generated_artifact",
+      "id": "resume-claim-upgrade-ledger",
+      "metric_name": "resume_claim_upgrade_ledger",
+      "metric_value": 1,
+      "resume_signal": "CI-verified resume claim upgrade ledger",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-claim-upgrade-ledger.json"
     }
   ],
   "not_claimed": [

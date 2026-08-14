@@ -66,10 +66,11 @@ REAL_MODEL_EVIDENCE_CAPTURE_PATH = ROOT / "docs" / "real-model-evidence-capture.
 AI_ENGINEER_READINESS_PATH = ROOT / "docs" / "ai-engineer-readiness.json"
 BUSINESS_REPLAY_DEMO_PATH = ROOT / "docs" / "business-replay-demo.json"
 REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
+RESUME_CLAIM_UPGRADE_LEDGER_PATH = ROOT / "docs" / "resume-claim-upgrade-ledger.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 SCORECARD_REVIEWER_PATH_COUNT = 23
-APPLICATION_EVIDENCE_LINK_COUNT = 39
+APPLICATION_EVIDENCE_LINK_COUNT = 40
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -139,6 +140,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     ai_engineer_readiness = load_json(AI_ENGINEER_READINESS_PATH)
     replay_demo = load_json(BUSINESS_REPLAY_DEMO_PATH)
     reviewer_funnel = load_json(REVIEWER_FUNNEL_BOARD_PATH)
+    claim_upgrade = load_json(RESUME_CLAIM_UPGRADE_LEDGER_PATH)
     verified_outcomes = outcome["verified_outcomes"]
     return {
         "project": "Data Quality Agent",
@@ -348,6 +350,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "outcome_upgrade_rules": outcome_upgrade["upgrade_rule_count"],
             "outcome_upgrade_blocked_rules": outcome_upgrade["blocked_upgrade_rule_count"],
             "outcome_upgrade_claimable_now": len(outcome_upgrade["claimable_now"]),
+            "resume_claim_upgrade_ledger": 1,
+            "resume_claim_upgrade_rows": claim_upgrade["upgrade_row_count"],
+            "resume_claim_upgrade_blocked_rows": claim_upgrade["blocked_row_count"],
+            "resume_claim_upgrade_claimable_rows": claim_upgrade["claimable_row_count"],
             "reviewer_feedback_packet": 1,
             "reviewer_feedback_tasks": reviewer_packet["reviewer_task_count"],
             "reviewer_feedback_questions": reviewer_packet["evidence_question_count"],
@@ -441,6 +447,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"Outcome upgrade playbook with {outcome_upgrade['upgrade_rule_count']} metric thresholds, "
                 f"{outcome_upgrade['blocked_upgrade_rule_count']} blocked upgrade rules, and "
                 f"{len(outcome_upgrade['claimable_now'])} baseline signals claimable now"
+            ),
+            (
+                f"Resume claim upgrade ledger with {claim_upgrade['upgrade_row_count']} outcome metrics, "
+                f"{claim_upgrade['blocked_row_count']} blocked upgrade rows, "
+                f"{claim_upgrade['claimable_row_count']} claimable outcome rows, and exact future resume wording"
             ),
             (
                 f"Reviewer feedback packet with {reviewer_packet['reviewer_task_count']} task paths, "
@@ -957,7 +968,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 145,
+        "test_count": 146,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -1123,7 +1134,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 39,
+        "application_evidence_links": 40,
         "ai_engineer_review_intake": 1,
         "ai_engineer_review_paths": 6,
         "ai_engineer_review_questions": 6,
@@ -1153,6 +1164,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "outcome_upgrade_rules": 5,
         "outcome_upgrade_blocked_rules": 5,
         "outcome_upgrade_claimable_now": 6,
+        "resume_claim_upgrade_ledger": 1,
+        "resume_claim_upgrade_rows": 6,
+        "resume_claim_upgrade_blocked_rows": 6,
+        "resume_claim_upgrade_claimable_rows": 0,
         "reviewer_feedback_packet": 1,
         "reviewer_feedback_tasks": 4,
         "reviewer_feedback_questions": 6,

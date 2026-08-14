@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 14 |
-| Passing CI tests | 145 |
+| Passing CI tests | 146 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -170,7 +170,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 39 |
+| Application evidence links | 40 |
 | AI Engineer review intake | 1 |
 | AI Engineer review paths | 6 |
 | AI Engineer review questions | 6 |
@@ -254,7 +254,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 145 passing CI tests
+- 146 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -266,6 +266,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Resume outcome readiness evaluator with 6 stages, 2 claimable readiness lines, 4 blocked outcome claims, and 4 missing-evidence items
 - External review evidence ledger with 5 public evidence types, 3 linked planned reviews, and 0 current evidence entries
 - Outcome upgrade playbook with 5 metric thresholds, 5 blocked upgrade rules, and 6 baseline signals claimable now
+- Resume claim upgrade ledger with 6 outcome metrics, 6 blocked upgrade rows, 0 claimable outcome rows, and exact future resume wording
 - Reviewer feedback packet with 4 task paths, 6 evidence questions, and 5 metric conversion paths
 - Reviewer funnel board with 4 public evidence paths and 7 remaining evidence items
 - 3 recurring incident patterns retrieved from sanitized traces
@@ -306,7 +307,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 23 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
-- 39 application evidence links in a recruiter-ready evidence pack
+- 40 application evidence links in a recruiter-ready evidence pack
 - AI Engineer review intake with 6 review paths, 6 reviewer questions, 5 countable-evidence conditions, and zero accepted reviews
 - 3 pilot outreach messages and 10 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan

@@ -1,0 +1,163 @@
+{
+  "baseline_claimable_now": [
+    "Public GitHub Pages demo",
+    "v0.3.0 release",
+    "GHCR container image",
+    "146 passing CI tests",
+    "16 implemented LLM agent-readiness capabilities",
+    "Read-only PostgreSQL and bounded CSV business-data intake"
+  ],
+  "blocked_resume_phrases": [
+    "used by external users",
+    "collected customer feedback",
+    "solved a real enterprise production issue",
+    "received AI Engineer review",
+    "earned GitHub stars"
+  ],
+  "blocked_row_count": 6,
+  "claimable_row_count": 0,
+  "current_counts": {
+    "ai_engineer_review_items": 0,
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "github_stars": 0,
+    "reproducible_feedback_items": 0
+  },
+  "evidence_collection_paths": [
+    {
+      "counting_rule": "Counts only after a non-owner public issue grants permission and passes the evidence gate.",
+      "id": "try_public_demo",
+      "minutes": 5,
+      "review_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_metric": "external_feedback_items"
+    },
+    {
+      "counting_rule": "Counts only when the reviewer ran or opened a runnable path and submitted observed-result evidence.",
+      "id": "confirm_external_run",
+      "minutes": 8,
+      "review_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-quickstart.md",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md",
+      "target_metric": "confirmed_external_users"
+    },
+    {
+      "counting_rule": "Counts only when reproduction steps are specific enough for the maintainer to retry.",
+      "id": "submit_reproducible_issue",
+      "minutes": 10,
+      "review_url": "https://github.com/sunnnn2005/data-quality-agent",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md",
+      "target_metric": "reproducible_feedback_items"
+    },
+    {
+      "counting_rule": "Counts only when the business case is anonymized, permissioned, and contains no raw production data.",
+      "id": "submit_business_case",
+      "minutes": 12,
+      "review_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-case-intake.md",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "target_metric": "business_case_feedback_items"
+    },
+    {
+      "counting_rule": "Counts only when an external reviewer inspects implementation evidence and grants permission.",
+      "id": "submit_ai_engineer_review",
+      "minutes": 12,
+      "review_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+      "target_metric": "ai_engineer_review_items"
+    },
+    {
+      "counting_rule": "Counts only from GitHub public star data; never asks for fake engagement.",
+      "id": "star_or_fork_if_useful",
+      "minutes": 1,
+      "review_url": "https://github.com/sunnnn2005/data-quality-agent",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/stargazers",
+      "target_metric": "github_stars"
+    }
+  ],
+  "generated_by": "scripts/build_resume_claim_upgrade_ledger.py",
+  "input_artifacts": [
+    "docs/accepted-evidence-rollup.json",
+    "docs/adoption-metrics.json",
+    "docs/outcome-collection.json",
+    "docs/outcome-upgrade-playbook.json"
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Map real outcome evidence into exact resume-safe wording while blocking users, feedback, business impact, AI review, and GitHub-star claims until public evidence exists.",
+  "resume_safe_summary": "Published a CI-verified resume claim upgrade ledger mapping 6 outcome metrics to public evidence gates and exact future resume wording while preserving 0 users, 0 feedback items, 0 AI reviews, 0 business-case reviews, and 0 GitHub stars.",
+  "resume_status": "baseline_only_until_public_evidence",
+  "upgrade_row_count": 6,
+  "upgrade_rows": [
+    {
+      "allowed_resume_wording_after_threshold": "Validated the data-quality LLM agent with 1 external reviewer who ran the public demo or local repo.",
+      "current_count": 0,
+      "current_resume_wording": null,
+      "evidence_gate": "A non-owner public GitHub issue confirms the path tried and includes permission to count.",
+      "label": "Confirmed external user",
+      "metric": "confirmed_external_users",
+      "not_allowed_until_met": "Do not claim confirmed external user until the evidence gate passes.",
+      "remaining_to_threshold": 1,
+      "required_count": 1,
+      "status": "blocked_until_public_evidence"
+    },
+    {
+      "allowed_resume_wording_after_threshold": "Collected 3 public reviewer feedback items and converted them into prioritized product fixes.",
+      "current_count": 0,
+      "current_resume_wording": null,
+      "evidence_gate": "Public feedback issues include role, path tried, outcome, improvement request, and permission.",
+      "label": "External feedback",
+      "metric": "external_feedback_items",
+      "not_allowed_until_met": "Do not claim external feedback until the evidence gate passes.",
+      "remaining_to_threshold": 3,
+      "required_count": 3,
+      "status": "blocked_until_public_evidence"
+    },
+    {
+      "allowed_resume_wording_after_threshold": "Converted 1 reproducible external run report into an evidence-backed fix backlog.",
+      "current_count": 0,
+      "current_resume_wording": null,
+      "evidence_gate": "A public issue includes command or URL evidence, expected result, actual result, and environment.",
+      "label": "Reproducible external run or bug",
+      "metric": "reproducible_feedback_items",
+      "not_allowed_until_met": "Do not claim reproducible external run or bug until the evidence gate passes.",
+      "remaining_to_threshold": 1,
+      "required_count": 1,
+      "status": "blocked_until_public_evidence"
+    },
+    {
+      "allowed_resume_wording_after_threshold": "Reviewed the agent against 1 anonymized real-world data-quality workflow and mapped the resulting risks.",
+      "current_count": 0,
+      "current_resume_wording": null,
+      "evidence_gate": "A public business-case issue includes anonymized schema, quality failure, impact, and reviewer role.",
+      "label": "Business-case feedback",
+      "metric": "business_case_feedback_items",
+      "not_allowed_until_met": "Do not claim business-case feedback until the evidence gate passes.",
+      "remaining_to_threshold": 1,
+      "required_count": 1,
+      "status": "blocked_until_public_evidence"
+    },
+    {
+      "allowed_resume_wording_after_threshold": "Received external AI Engineer review of the tool-calling loop, guardrails, structured output, and evidence trail.",
+      "current_count": 0,
+      "current_resume_wording": null,
+      "evidence_gate": "A non-owner public review issue lists inspected paths and grants permission to count.",
+      "label": "AI Engineer review",
+      "metric": "ai_engineer_review_items",
+      "not_allowed_until_met": "Do not claim ai engineer review until the evidence gate passes.",
+      "remaining_to_threshold": 1,
+      "required_count": 1,
+      "status": "blocked_until_public_evidence"
+    },
+    {
+      "allowed_resume_wording_after_threshold": "Reached 5 organic GitHub stars after publishing a reproducible LLM agent demo and evidence pack.",
+      "current_count": 0,
+      "current_resume_wording": null,
+      "evidence_gate": "GitHub public star count and docs/adoption-metrics.json both show at least 5 stars.",
+      "label": "GitHub stars",
+      "metric": "github_stars",
+      "not_allowed_until_met": "Do not claim github stars until the evidence gate passes.",
+      "remaining_to_threshold": 5,
+      "required_count": 5,
+      "status": "blocked_until_public_evidence"
+    }
+  ]
+}

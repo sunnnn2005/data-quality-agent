@@ -66,6 +66,7 @@ BUSINESS_DATA_REPLAY_PACKET_PATH = ROOT / "docs" / "business-data-replay-packet.
 REAL_MODEL_RUNBOOK_PATH = ROOT / "docs" / "real-model-runbook.json"
 REAL_MODEL_EVIDENCE_CAPTURE_PATH = ROOT / "docs" / "real-model-evidence-capture.json"
 BUSINESS_REPLAY_DEMO_PATH = ROOT / "docs" / "business-replay-demo.json"
+RESUME_CLAIM_UPGRADE_LEDGER_PATH = ROOT / "docs" / "resume-claim-upgrade-ledger.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
 PUBLIC_METRICS_REFRESH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "refresh-public-metrics.yml"
 PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
@@ -147,6 +148,7 @@ def verify_manifest() -> dict[str, int]:
     real_model_runbook = load_payload(REAL_MODEL_RUNBOOK_PATH)
     real_model_evidence_capture = load_payload(REAL_MODEL_EVIDENCE_CAPTURE_PATH)
     replay_demo = load_payload(BUSINESS_REPLAY_DEMO_PATH)
+    claim_upgrade = load_payload(RESUME_CLAIM_UPGRADE_LEDGER_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
     feedback_log = FEEDBACK_LOG_PATH.read_text().lower()
@@ -578,7 +580,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 145:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 146:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -774,6 +776,46 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("reviewer outreach status board must include a dedicated test")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("reviewer_outreach_status_board claim must use metric_value=1")
+            elif metric_name == "resume_claim_upgrade_ledger":
+                claim_script = (ROOT / "scripts" / "build_resume_claim_upgrade_ledger.py").read_text()
+                claim_tests = (ROOT / "tests" / "test_resume_claim_upgrade_ledger.py").read_text()
+                expected = {
+                    "upgrade_row_count": 6,
+                    "claimable_row_count": 0,
+                    "blocked_row_count": 6,
+                }
+                for key, value in expected.items():
+                    if claim_upgrade.get(key) != value:
+                        raise AssertionError(f"resume claim upgrade ledger {key} expected {value!r}")
+                for key, value in claim_upgrade.get("current_counts", {}).items():
+                    if value != 0:
+                        raise AssertionError(f"resume claim upgrade ledger must keep {key} at zero before evidence exists")
+                upgrade_metrics = {row.get("metric") for row in claim_upgrade.get("upgrade_rows", [])}
+                required_metrics = {
+                    "confirmed_external_users",
+                    "external_feedback_items",
+                    "reproducible_feedback_items",
+                    "business_case_feedback_items",
+                    "ai_engineer_review_items",
+                    "github_stars",
+                }
+                if upgrade_metrics != required_metrics:
+                    raise AssertionError("resume claim upgrade ledger must track all resume outcome metrics")
+                if not all(
+                    row.get("status") == "blocked_until_public_evidence"
+                    for row in claim_upgrade.get("upgrade_rows", [])
+                ):
+                    raise AssertionError("resume claim upgrade ledger must block all rows before public evidence exists")
+                joined = json.dumps(claim_upgrade, sort_keys=True).lower()
+                for required in ("permission", "public evidence", "evidence gate", "exact future resume wording"):
+                    if required not in joined:
+                        raise AssertionError(f"resume claim upgrade ledger missing boundary: {required}")
+                if "verify_resume_claim_upgrade_ledger" not in claim_script:
+                    raise AssertionError("resume claim upgrade ledger must include a script verifier")
+                if "test_resume_claim_upgrade_ledger_blocks_unproven_outcome_claims" not in claim_tests:
+                    raise AssertionError("resume claim upgrade ledger must include a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("resume_claim_upgrade_ledger claim must use metric_value=1")
             elif metric_name == "resume_outcome_metrics":
                 outcome_metrics_script = (ROOT / "scripts" / "build_resume_outcome_metrics.py").read_text()
                 outcome_metrics_tests = (ROOT / "tests" / "test_resume_outcome_metrics.py").read_text()
@@ -917,7 +959,7 @@ def verify_manifest() -> dict[str, int]:
                     ("confirmed_external_users", 0),
                     ("external_feedback_items", 0),
                     ("github_stars", 0),
-                    ("passing_tests", 145),
+                    ("passing_tests", 146),
                 ):
                     if counts.get(key) != expected_value:
                         raise AssertionError(f"outcome collection {key} expected {expected_value!r}")
@@ -1303,7 +1345,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 145:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 146:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -2153,7 +2195,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 145", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 146", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 
