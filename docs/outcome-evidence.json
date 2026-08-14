@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 169,
-      "resume_signal": "169 passing CI tests",
+      "metric_value": 170,
+      "resume_signal": "170 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },

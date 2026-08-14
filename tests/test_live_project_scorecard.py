@@ -11,7 +11,7 @@ def test_live_project_scorecard_summarizes_public_resume_evidence_without_inflat
     markdown = render_markdown(payload)
 
     assert verification["live_project_scorecard_verified"] is True
-    assert payload["headline_metrics"]["passing_tests"] == 169
+    assert payload["headline_metrics"]["passing_tests"] == 170
     assert payload["headline_metrics"]["verified_resume_claims"] == 84
     assert len(payload["reviewer_paths"]) == 23
     assert any(path["label"] == "Inspect accepted evidence rollup" for path in payload["reviewer_paths"])

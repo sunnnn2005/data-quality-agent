@@ -1,0 +1,105 @@
+{
+  "blocked_resume_claims": [
+    "confirmed_external_users",
+    "external_feedback_items",
+    "ai_engineer_review_items",
+    "business_case_feedback_items",
+    "github_stars"
+  ],
+  "claimable_resume_metric_count": 0,
+  "complete_stage_count": 1,
+  "current_baseline": {
+    "accepted_external_evidence_items": 0,
+    "github_stars": 0,
+    "public_reviewer_issues_submitted": 0,
+    "published_public_broadcasts": 1,
+    "sent_reviewer_messages": 0
+  },
+  "generated_by": "scripts/build_outcome_pipeline_board.py",
+  "next_best_actions": [
+    "Send three real reviewer messages using the reviewer send queue.",
+    "Record each sent message with scripts/record_reviewer_outreach_event.py.",
+    "Ask reviewers to submit public, redacted GitHub issues through the reviewer submission hub.",
+    "Run the external reviewer evidence gate before changing any resume outcome number."
+  ],
+  "pipeline_stage_count": 5,
+  "pipeline_stages": [
+    {
+      "complete": true,
+      "current_count": 1,
+      "stage": "public_launch_published",
+      "target_count": 1
+    },
+    {
+      "complete": false,
+      "current_count": 0,
+      "stage": "real_reviewer_messages_sent",
+      "target_count": 3
+    },
+    {
+      "complete": false,
+      "current_count": 0,
+      "stage": "public_reviewer_issues_submitted",
+      "target_count": 1
+    },
+    {
+      "complete": false,
+      "current_count": 0,
+      "stage": "accepted_external_evidence",
+      "target_count": 1
+    },
+    {
+      "complete": false,
+      "current_count": 0,
+      "stage": "github_stars",
+      "target_count": 5
+    }
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Connect public launch, reviewer outreach, public evidence, accepted evidence, and resume-safe outcome claims in one execution board.",
+  "resume_metric_count": 5,
+  "resume_metric_paths": [
+    {
+      "current_count": 0,
+      "evidence_required": "A non-owner public GitHub issue with permission to count and no private data.",
+      "first_resume_threshold": 1,
+      "next_action": "Send the public launch link to one real reviewer and ask them to open the demo or run the quickstart.",
+      "resume_claimable": false,
+      "resume_metric": "confirmed_external_users"
+    },
+    {
+      "current_count": 0,
+      "evidence_required": "A public issue containing the feedback, reviewer permission, and enough context to reproduce the concern.",
+      "first_resume_threshold": 1,
+      "next_action": "Ask a data or SWE peer to submit one concrete usability, correctness, or README feedback item.",
+      "resume_claimable": false,
+      "resume_metric": "external_feedback_items"
+    },
+    {
+      "current_count": 0,
+      "evidence_required": "A public AI Engineer review issue that names inspected files or commands and gives permission to count.",
+      "first_resume_threshold": 1,
+      "next_action": "Route one AI/ML systems reviewer to issue #26 and ask them to inspect the agent loop, tools, guardrails, and evaluation docs.",
+      "resume_claimable": false,
+      "resume_metric": "ai_engineer_review_items"
+    },
+    {
+      "current_count": 0,
+      "evidence_required": "A redacted business-context issue with impact, fields involved, and permission to count.",
+      "first_resume_threshold": 1,
+      "next_action": "Ask a student org, small business, or operations peer whether the support-ticket demo maps to a real data quality pain.",
+      "resume_claimable": false,
+      "resume_metric": "business_case_feedback_items"
+    },
+    {
+      "current_count": 0,
+      "evidence_required": "Public GitHub star count from the repository, not private messages or self-claims.",
+      "first_resume_threshold": 5,
+      "next_action": "Share the demo and README with reviewers only after asking for real use or feedback, not empty stars.",
+      "resume_claimable": false,
+      "resume_metric": "github_stars"
+    }
+  ],
+  "resume_safe_summary": "Built a CI-verified outcome pipeline board connecting 1 public launch broadcast to reviewer outreach, public evidence, accepted evidence, and resume claim thresholds while preserving zero claimable resume outcomes.",
+  "resume_status": "distribution_started_outcomes_not_claimable"
+}
