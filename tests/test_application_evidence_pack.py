@@ -77,7 +77,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert payload["verified_outcome_numbers"]["business_resolution_review_questions"] == 5
     assert payload["verified_outcome_numbers"]["business_resolution_review_external_feedback"] == 0
     assert payload["verified_outcome_numbers"]["public_traction_surfaces"] == 4
-    assert payload["verified_outcome_numbers"]["public_traction_growth_channels"] == 20
+    assert payload["verified_outcome_numbers"]["public_traction_growth_channels"] == 21
     assert payload["verified_outcome_numbers"]["feedback_intake_required_sections"] == 7
     assert payload["verified_outcome_numbers"]["feedback_intake_captured_fields"] == 7
     assert payload["verified_outcome_numbers"]["reviewer_funnel_stages"] == 4

@@ -1,7 +1,7 @@
 {
   "demo_entrypoints_verified": 7,
   "generated_by": "scripts/build_public_traction_dashboard.py",
-  "growth_channel_count": 20,
+  "growth_channel_count": 21,
   "growth_channels": [
     {
       "name": "Good first issue label",
@@ -47,6 +47,11 @@
       "name": "AI Engineer review issue",
       "purpose": "permissioned external review of LLM tool calling, guardrails, structured output, and interview readiness",
       "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md"
+    },
+    {
+      "name": "Real model run review issue",
+      "purpose": "privacy-safe evidence path for accepted OpenAI-compatible LLM agent runs",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=real_model_run_review.md"
     },
     {
       "name": "Code of Conduct",
@@ -120,7 +125,7 @@
     "stars": 0,
     "watchers": 0
   },
-  "resume_safe_summary": "Published a public traction dashboard covering 4 live project surfaces, 20 growth or review channels, 5 tracked demo funnel steps, and explicit resume-upgrade rules for users, feedback, and stars.",
+  "resume_safe_summary": "Published a public traction dashboard covering 4 live project surfaces, 21 growth or review channels, 5 tracked demo funnel steps, and explicit resume-upgrade rules for users, feedback, and stars.",
   "resume_upgrade_rules": [
     {
       "current_value": 0,

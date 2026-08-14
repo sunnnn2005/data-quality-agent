@@ -33,9 +33,12 @@ def build_community_growth_baseline() -> dict[str, Any]:
         "feature_request.md",
         "good_first_issue.md",
         "ai_engineer_review.md",
+        "real_model_run_review.md",
     }
     required_labels = {
         "ai-engineer-review",
+        "real-model-run",
+        "evidence-candidate",
         "feedback",
         "confirmed-user",
         "reproducible",
@@ -114,6 +117,11 @@ def build_community_growth_baseline() -> dict[str, Any]:
                 "purpose": "permissioned external review of LLM tool calling, guardrails, structured output, and interview readiness",
             },
             {
+                "name": "Real model run review issue",
+                "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=real_model_run_review.md",
+                "purpose": "privacy-safe evidence path for accepted OpenAI-compatible LLM agent runs",
+            },
+            {
                 "name": "Code of Conduct",
                 "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/CODE_OF_CONDUCT.md",
                 "purpose": "community trust boundary for public reviews, issues, and contribution behavior",
@@ -128,8 +136,8 @@ def build_community_growth_baseline() -> dict[str, Any]:
             "reproducible_feedback_items": feedback["reproducible_feedback_items"],
         },
         "resume_safe_signal": (
-            "Published a CI-verified community growth baseline with 8 issue templates, 10 configured labels, "
-            "10 public growth channels, contribution guidance, a code of conduct, and honest current public counts."
+            "Published a CI-verified community growth baseline with 9 issue templates, 12 configured labels, "
+            "11 public growth channels, contribution guidance, a code of conduct, and honest current public counts."
         ),
         "not_claimed": [
             "external contributors",
@@ -187,18 +195,18 @@ This generated artifact verifies the public contribution and feedback paths that
 
 
 def verify_community_growth_baseline(payload: dict[str, Any]) -> dict[str, Any]:
-    if payload["issue_template_count"] != 8:
-        raise AssertionError("community growth baseline must verify 8 issue templates")
-    if payload["label_count"] != 10:
-        raise AssertionError("community growth baseline must verify 10 labels")
+    if payload["issue_template_count"] != 9:
+        raise AssertionError("community growth baseline must verify 9 issue templates")
+    if payload["label_count"] != 12:
+        raise AssertionError("community growth baseline must verify 12 labels")
     if payload["required_issue_templates_present"] is not True:
         raise AssertionError("community growth baseline must verify required issue templates")
     if payload["required_labels_present"] is not True:
         raise AssertionError("community growth baseline must verify required labels")
     if not all(payload["contribution_paths"].values()):
         raise AssertionError("community growth baseline must verify contribution paths")
-    if len(payload["public_growth_channels"]) != 10:
-        raise AssertionError("community growth baseline must expose 10 public growth channels")
+    if len(payload["public_growth_channels"]) != 11:
+        raise AssertionError("community growth baseline must expose 11 public growth channels")
     counts = payload["current_public_counts"]
     expected_counts = {
         "stars": 0,

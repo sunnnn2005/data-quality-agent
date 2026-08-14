@@ -65,6 +65,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "business-data-replay-packet",
         "business-replay-demo",
         "real-model-runbook",
+        "real-model-run-request-pack",
         "live-project-scorecard",
         "resume-outcome-action-checklist",
         "recruiter-pitch",
@@ -83,6 +84,11 @@ def test_public_evidence_health_requires_core_public_signals():
         "postgres-agent-route",
         "github-release",
     } <= check_ids
+    real_model_request = next(check for check in PUBLIC_CHECKS if check["id"] == "real-model-run-request-pack")
+    assert real_model_request["expected_json"]["current_real_model_runs"] == 0
+    assert real_model_request["expected_json"]["acceptance_condition_count"] == 8
+    assert "real_model_tool_calling_runs" in real_model_request["expected_texts"]
+    assert "raw prompt contents" in real_model_request["expected_texts"]
     replay_packet = next(check for check in PUBLIC_CHECKS if check["id"] == "business-data-replay-packet")
     assert "business_data_replay.md" in replay_packet["expected_texts"]
     pilot_checklist = next(check for check in PUBLIC_CHECKS if check["id"] == "business-pilot-evidence-checklist")

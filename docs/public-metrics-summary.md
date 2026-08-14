@@ -161,9 +161,9 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business-data intake max rows | 10000 |
 | Business-data intake max columns | 80 |
 | Community growth baseline | 1 |
-| Community issue templates | 8 |
-| Community labels | 10 |
-| Community public growth channels | 10 |
+| Community issue templates | 9 |
+| Community labels | 12 |
+| Community public growth channels | 11 |
 | Impact review packet | 1 |
 | Impact review business metrics | 12 |
 | Impact review evidence links | 8 |
@@ -181,7 +181,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business resolution review external feedback | 0 |
 | Public traction dashboard | 1 |
 | Public traction surfaces | 4 |
-| Public traction growth channels | 20 |
+| Public traction growth channels | 21 |
 | Public traction resume upgrade rules | 3 |
 | GitHub traffic snapshot | 1 |
 | GitHub traffic available | 1 |
@@ -357,12 +357,12 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls
 - Public demo usage baseline with 5 tracked funnel steps and 7 verified entrypoints
 - Business-data intake baseline covering 4 integration endpoints, 6 API tests, and bounded CSV uploads up to 10000 rows / 80 columns
-- Community growth baseline with 8 issue templates, 10 configured labels, and 10 public contribution or feedback channels
+- Community growth baseline with 9 issue templates, 12 configured labels, and 11 public contribution or feedback channels
 - Impact review packet with 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs
 - Business problem casebook with 1 verified case, 4 detected business risks, and 4 owner handoffs
 - Business resolution brief with 5 findings, 4 business risk areas, 3 high-priority actions, and 4 owner handoffs without claiming customer adoption
 - Public business-resolution review request with 5 focused questions and explicit evidence gates before any external feedback or business validation can count
-- Public traction dashboard with 4 live project surfaces, 20 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
+- Public traction dashboard with 4 live project surfaces, 21 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
 - GitHub traffic snapshot with 9 views, 3 unique visitors, 1240 clones, and 301 unique cloners in GitHub's rolling 14-day window
 - Public availability snapshot with 4/4 reachable public endpoints and 3/3 successful main-branch workflows
 - 23 reviewer paths in a CI-verified live project scorecard

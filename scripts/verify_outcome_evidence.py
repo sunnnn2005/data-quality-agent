@@ -456,14 +456,16 @@ def verify_manifest() -> dict[str, int]:
             elif metric_name == "community_growth_baseline":
                 community_script = (ROOT / "scripts" / "build_community_growth_baseline.py").read_text()
                 community_tests = (ROOT / "tests" / "test_community_growth_baseline.py").read_text()
-                if community_growth.get("issue_template_count") != 8:
-                    raise AssertionError("community growth baseline must verify 8 issue templates")
+                if community_growth.get("issue_template_count") != 9:
+                    raise AssertionError("community growth baseline must verify 9 issue templates")
                 if "external_run_review.md" not in community_growth.get("issue_templates", []):
                     raise AssertionError("community growth baseline must include the external run review template")
-                if community_growth.get("label_count") != 10:
-                    raise AssertionError("community growth baseline must verify 10 labels")
-                if len(community_growth.get("public_growth_channels", [])) != 10:
-                    raise AssertionError("community growth baseline must verify 10 public growth channels")
+                if "real_model_run_review.md" not in community_growth.get("issue_templates", []):
+                    raise AssertionError("community growth baseline must include the real model run review template")
+                if community_growth.get("label_count") != 12:
+                    raise AssertionError("community growth baseline must verify 12 labels")
+                if len(community_growth.get("public_growth_channels", [])) != 11:
+                    raise AssertionError("community growth baseline must verify 11 public growth channels")
                 if not all(community_growth.get("contribution_paths", {}).values()):
                     raise AssertionError("community growth baseline must verify contribution paths")
                 counts = community_growth.get("current_public_counts", {})
@@ -581,8 +583,8 @@ def verify_manifest() -> dict[str, int]:
                 traction_tests = (ROOT / "tests" / "test_public_traction_dashboard.py").read_text()
                 if traction.get("traction_surface_count") != 4:
                     raise AssertionError("public traction dashboard must verify 4 traction surfaces")
-                if traction.get("growth_channel_count") != 20:
-                    raise AssertionError("public traction dashboard must verify 20 growth or review channels")
+                if traction.get("growth_channel_count") != 21:
+                    raise AssertionError("public traction dashboard must verify 21 growth or review channels")
                 if traction.get("tracked_funnel_steps") != 5:
                     raise AssertionError("public traction dashboard must verify 5 tracked funnel steps")
                 if traction.get("demo_entrypoints_verified") != 7:
@@ -2973,11 +2975,11 @@ def verify_manifest() -> dict[str, int]:
         raise AssertionError("public homepage must link reviewers to GitHub public stats")
 
     if "community-growth-baseline" in claim_ids:
-        if "8 issue templates" not in resume_page or "10 public contribution or feedback channels" not in resume_page:
+        if "9 issue templates" not in resume_page or "11 public contribution or feedback channels" not in resume_page:
             raise AssertionError("resume evidence page must reflect the current community growth counts")
 
     if "public-traction-dashboard" in claim_ids:
-        if "20 growth or review channels" not in resume_page:
+        if "21 growth or review channels" not in resume_page:
             raise AssertionError("resume evidence page must reflect the current public traction channel count")
 
     not_claimed = {item["metric"] for item in evidence.get("not_claimed", [])}

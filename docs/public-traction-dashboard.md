@@ -34,6 +34,7 @@ This generated dashboard separates what is live and trackable from what is not y
 - [Business data replay issue](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md) -> confirmed anonymized replay evidence for CSV or read-only data runs
 - [External run review issue](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md) -> structured public evidence when a reviewer runs the demo, container, or PostgreSQL replay
 - [AI Engineer review issue](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md) -> permissioned external review of LLM tool calling, guardrails, structured output, and interview readiness
+- [Real model run review issue](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=real_model_run_review.md) -> privacy-safe evidence path for accepted OpenAI-compatible LLM agent runs
 - [Code of Conduct](https://github.com/sunnnn2005/data-quality-agent/blob/main/CODE_OF_CONDUCT.md) -> community trust boundary for public reviews, issues, and contribution behavior
 - [application_evidence_pack](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/application-evidence-pack.md) -> pilot review path
 - [bug_report](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md) -> pilot review path
@@ -56,7 +57,7 @@ This generated dashboard separates what is live and trackable from what is not y
 
 ## Resume-Safe Summary
 
-Published a public traction dashboard covering 4 live project surfaces, 20 growth or review channels, 5 tracked demo funnel steps, and explicit resume-upgrade rules for users, feedback, and stars.
+Published a public traction dashboard covering 4 live project surfaces, 21 growth or review channels, 5 tracked demo funnel steps, and explicit resume-upgrade rules for users, feedback, and stars.
 
 ## Not Claimed
 

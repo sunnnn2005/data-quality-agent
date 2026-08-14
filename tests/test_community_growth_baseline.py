@@ -11,14 +11,17 @@ def test_community_growth_baseline_verifies_public_contribution_paths_without_ad
     markdown = render_markdown(payload)
 
     assert verification["community_growth_baseline_verified"] is True
-    assert payload["issue_template_count"] == 8
-    assert payload["label_count"] == 10
-    assert len(payload["public_growth_channels"]) == 10
+    assert payload["issue_template_count"] == 9
+    assert payload["label_count"] == 12
+    assert len(payload["public_growth_channels"]) == 11
     assert "business_data_replay.md" in payload["issue_templates"]
     assert "external_run_review.md" in payload["issue_templates"]
     assert "ai_engineer_review.md" in payload["issue_templates"]
+    assert "real_model_run_review.md" in payload["issue_templates"]
     assert "business-data-replay" in payload["required_labels"]
     assert "ai-engineer-review" in payload["required_labels"]
+    assert "real-model-run" in payload["required_labels"]
+    assert "evidence-candidate" in payload["required_labels"]
     assert "community" in payload["required_labels"]
     assert "first-10-reviewer" in payload["required_labels"]
     assert payload["current_public_counts"]["stars"] == 0
@@ -26,6 +29,7 @@ def test_community_growth_baseline_verifies_public_contribution_paths_without_ad
     assert payload["current_public_counts"]["external_feedback_items"] == 0
     assert all(payload["contribution_paths"].values())
     assert payload["contribution_paths"]["code_of_conduct"] is True
+    assert any(channel["name"] == "Real model run review issue" for channel in payload["public_growth_channels"])
     assert any(channel["name"] == "Code of Conduct" for channel in payload["public_growth_channels"])
     assert "external contributors" in payload["not_claimed"]
     assert "community adoption" in payload["not_claimed"]

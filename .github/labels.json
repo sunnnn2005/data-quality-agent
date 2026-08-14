@@ -40,6 +40,16 @@
     "description": "External review of LLM agent design, tool use, guardrails, and AI Engineer readiness"
   },
   {
+    "name": "real-model-run",
+    "color": "5319e7",
+    "description": "Redacted evidence from an accepted OpenAI-compatible LLM agent run"
+  },
+  {
+    "name": "evidence-candidate",
+    "color": "fbca04",
+    "description": "Public issue that may count toward resume-safe evidence after verification"
+  },
+  {
     "name": "community",
     "color": "bfdadc",
     "description": "Organic repository interest, stars, forks, or contributor-readiness discussion"

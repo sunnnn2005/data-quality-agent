@@ -16,7 +16,7 @@
     "stars": 0
   },
   "generated_by": "scripts/build_community_growth_baseline.py",
-  "issue_template_count": 8,
+  "issue_template_count": 9,
   "issue_templates": [
     "ai_engineer_review.md",
     "bug_report.md",
@@ -25,9 +25,10 @@
     "demo_feedback.md",
     "external_run_review.md",
     "feature_request.md",
-    "good_first_issue.md"
+    "good_first_issue.md",
+    "real_model_run_review.md"
   ],
-  "label_count": 10,
+  "label_count": 12,
   "not_claimed": [
     "external contributors",
     "community adoption",
@@ -83,6 +84,11 @@
       "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md"
     },
     {
+      "name": "Real model run review issue",
+      "purpose": "privacy-safe evidence path for accepted OpenAI-compatible LLM agent runs",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=real_model_run_review.md"
+    },
+    {
       "name": "Code of Conduct",
       "purpose": "community trust boundary for public reviews, issues, and contribution behavior",
       "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/CODE_OF_CONDUCT.md"
@@ -96,7 +102,8 @@
     "demo_feedback.md",
     "external_run_review.md",
     "feature_request.md",
-    "good_first_issue.md"
+    "good_first_issue.md",
+    "real_model_run_review.md"
   ],
   "required_issue_templates_present": true,
   "required_labels": [
@@ -107,10 +114,12 @@
     "community",
     "confirmed-user",
     "enhancement",
+    "evidence-candidate",
     "feedback",
     "first-10-reviewer",
+    "real-model-run",
     "reproducible"
   ],
   "required_labels_present": true,
-  "resume_safe_signal": "Published a CI-verified community growth baseline with 8 issue templates, 10 configured labels, 10 public growth channels, contribution guidance, a code of conduct, and honest current public counts."
+  "resume_safe_signal": "Published a CI-verified community growth baseline with 9 issue templates, 12 configured labels, 11 public growth channels, contribution guidance, a code of conduct, and honest current public counts."
 }

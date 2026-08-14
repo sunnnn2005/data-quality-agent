@@ -12,6 +12,7 @@ This generated artifact verifies the public contribution and feedback paths that
 - `external_run_review.md`
 - `feature_request.md`
 - `good_first_issue.md`
+- `real_model_run_review.md`
 
 ## Required Labels
 
@@ -22,8 +23,10 @@ This generated artifact verifies the public contribution and feedback paths that
 - `community`
 - `confirmed-user`
 - `enhancement`
+- `evidence-candidate`
 - `feedback`
 - `first-10-reviewer`
+- `real-model-run`
 - `reproducible`
 
 ## Contribution Paths
@@ -48,6 +51,7 @@ This generated artifact verifies the public contribution and feedback paths that
 - [Business data replay issue](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md) -> confirmed anonymized replay evidence for CSV or read-only data runs
 - [External run review issue](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md) -> structured public evidence when a reviewer runs the demo, container, or PostgreSQL replay
 - [AI Engineer review issue](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md) -> permissioned external review of LLM tool calling, guardrails, structured output, and interview readiness
+- [Real model run review issue](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=real_model_run_review.md) -> privacy-safe evidence path for accepted OpenAI-compatible LLM agent runs
 - [Code of Conduct](https://github.com/sunnnn2005/data-quality-agent/blob/main/CODE_OF_CONDUCT.md) -> community trust boundary for public reviews, issues, and contribution behavior
 
 ## Current Public Counts
@@ -63,7 +67,7 @@ This generated artifact verifies the public contribution and feedback paths that
 
 ## Resume-Safe Signal
 
-Published a CI-verified community growth baseline with 8 issue templates, 10 configured labels, 10 public growth channels, contribution guidance, a code of conduct, and honest current public counts.
+Published a CI-verified community growth baseline with 9 issue templates, 12 configured labels, 11 public growth channels, contribution guidance, a code of conduct, and honest current public counts.
 
 ## Not Claimed
 

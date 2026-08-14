@@ -26,7 +26,7 @@ def test_resume_traction_proof_separates_claimable_launch_from_unproven_growth()
     assert payload["public_counts"]["confirmed_external_users"] == 0
     assert payload["public_counts"]["external_feedback_items"] == 0
     assert payload["linked_public_traction_surfaces"] == 4
-    assert payload["linked_growth_channels"] == 20
+    assert payload["linked_growth_channels"] == 21
     assert all(item["status"] == "claimable" for item in payload["claimable_now"])
     assert all(item["status"] == "not_claimable_yet" for item in payload["future_claims"])
     assert "Launched a public GitHub Pages demo" in markdown

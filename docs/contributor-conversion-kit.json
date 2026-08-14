@@ -91,8 +91,8 @@
   "purpose": "Convert public repo visibility into real, resume-safe outcome evidence by routing reviewers through specific contribution, replay, review, and ethical star paths.",
   "resume_safe_summary": "Published a contributor conversion kit with 5 public contributor paths, 5 evidence gates, 0 contributor-claimable outcomes, and explicit rules for turning reviews, replays, AI-engineering feedback, and organic GitHub stars into future resume-safe metrics.",
   "source_cross_checks": {
-    "issue_template_count": 8,
-    "public_growth_channel_count": 10,
+    "issue_template_count": 9,
+    "public_growth_channel_count": 11,
     "self_authored_planning_excluded": true,
     "topic_readiness": {
       "current_topics": [

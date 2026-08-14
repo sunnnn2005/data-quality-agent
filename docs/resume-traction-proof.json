@@ -82,7 +82,7 @@
     }
   ],
   "generated_by": "scripts/build_resume_traction_proof.py",
-  "linked_growth_channels": 20,
+  "linked_growth_channels": 21,
   "linked_public_traction_surfaces": 4,
   "project": "Data Quality Agent",
   "public_counts": {
