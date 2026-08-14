@@ -1,5 +1,5 @@
 {
-  "check_count": 88,
+  "check_count": 89,
   "checks": [
     {
       "evidence_type": "html",
@@ -314,6 +314,19 @@
         "blocked_claim_count",
         "claimable_now_count",
         "future_claim_count",
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "resume-outcome-conversion-plan",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-conversion-plan.json",
+      "verified_fields": [
+        "blocked_outcome_count",
+        "claimable_now_count",
+        "conversion_row_count",
         "project"
       ]
     },
@@ -999,6 +1012,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 88,
+  "passed_count": 89,
   "status": "PASS"
 }
