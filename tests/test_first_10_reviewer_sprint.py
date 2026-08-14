@@ -13,6 +13,7 @@ def test_first_10_reviewer_sprint_maps_real_outcome_goals_without_claiming_them(
     assert verification["first_10_reviewer_sprint_verified"] is True
     assert payload["slot_count"] == 10
     assert payload["issue_launch_count"] == 10
+    assert payload["public_issue_entrypoint_count"] == 10
     assert payload["not_sent_count"] == 10
     assert payload["completed_count"] == 0
     assert payload["target_metric_count"] == 6
@@ -27,7 +28,11 @@ def test_first_10_reviewer_sprint_maps_real_outcome_goals_without_claiming_them(
     }
     assert all(value == 0 for value in payload["current_counts"].values())
     assert all(slot["status"] == "not_sent" for slot in payload["slots"])
-    assert all(issue["status"] == "draft_not_created" for issue in payload["issue_launch_plan"])
+    assert all(issue["status"] == "public_issue_created_not_sent" for issue in payload["issue_launch_plan"])
+    assert all(
+        issue["issue_url"].startswith("https://github.com/sunnnn2005/data-quality-agent/issues/")
+        for issue in payload["issue_launch_plan"]
+    )
     assert {issue["slot_id"] for issue in payload["issue_launch_plan"]} == {slot["id"] for slot in payload["slots"]}
     assert all("first-10-reviewer" in issue["labels"] for issue in payload["issue_launch_plan"])
     assert all("--body-file docs/first-10-issue-drafts/" in issue["gh_command"] for issue in payload["issue_launch_plan"])
@@ -36,6 +41,7 @@ def test_first_10_reviewer_sprint_maps_real_outcome_goals_without_claiming_them(
         slot["submission_url"].startswith("https://github.com/sunnnn2005/data-quality-agent")
         for slot in payload["slots"]
     )
+    assert "10 public GitHub issue entrypoints" in payload["resume_safe_summary"]
     assert "zero sent outreach" in payload["resume_safe_summary"]
     assert "GitHub star growth" in payload["blocked_resume_claims"]
     assert "First 10 Reviewer Sprint" in markdown

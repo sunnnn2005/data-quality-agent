@@ -9,7 +9,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Stars | 0 |
 | Forks | 1 |
 | Watchers | 0 |
-| GitHub issues | 14 |
+| GitHub issues | 24 |
 | Passing CI tests | 151 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
@@ -116,6 +116,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | First 10 reviewer sprint | 1 |
 | First 10 reviewer slots | 10 |
 | First 10 reviewer issue launch drafts | 10 |
+| First 10 reviewer public issue entrypoints | 10 |
 | First 10 reviewer target metrics | 6 |
 | First 10 reviewer not-sent entries | 10 |
 | First 10 reviewer completed entries | 0 |

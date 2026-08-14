@@ -156,6 +156,7 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "resume_outcome_adjudication_blocked_categories": outcomes["resume_outcome_adjudication_blocked_categories"],
             "resume_outcome_adjudication_claimable_categories": outcomes["resume_outcome_adjudication_claimable_categories"],
             "first_10_reviewer_slots": outcomes["first_10_reviewer_slots"],
+            "first_10_reviewer_public_issue_entrypoints": outcomes["first_10_reviewer_public_issue_entrypoints"],
             "first_10_reviewer_target_metrics": outcomes["first_10_reviewer_target_metrics"],
             "first_10_reviewer_not_sent": outcomes["first_10_reviewer_not_sent"],
             "first_10_reviewer_completed": outcomes["first_10_reviewer_completed"],

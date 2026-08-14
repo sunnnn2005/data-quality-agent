@@ -110,6 +110,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["first_10_reviewer_sprint"] == 1
     assert payload["verified_project_outcomes"]["first_10_reviewer_slots"] == 10
     assert payload["verified_project_outcomes"]["first_10_reviewer_issue_launch_drafts"] == 10
+    assert payload["verified_project_outcomes"]["first_10_reviewer_public_issue_entrypoints"] == 10
     assert payload["verified_project_outcomes"]["first_10_reviewer_target_metrics"] == 6
     assert payload["verified_project_outcomes"]["first_10_reviewer_not_sent"] == 10
     assert payload["verified_project_outcomes"]["first_10_reviewer_completed"] == 0

@@ -102,6 +102,7 @@
     "feedback_intake_required_sections": 5,
     "first_10_reviewer_completed": 0,
     "first_10_reviewer_not_sent": 10,
+    "first_10_reviewer_public_issue_entrypoints": 10,
     "first_10_reviewer_slots": 10,
     "first_10_reviewer_target_metrics": 6,
     "github_discovery_reviewer_entrypoints": 6,

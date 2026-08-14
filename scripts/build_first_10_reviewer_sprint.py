@@ -10,6 +10,18 @@ REVIEWER_SUBMISSION_HUB_PATH = ROOT / "docs" / "reviewer-submission-hub.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "first-10-reviewer-sprint.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "first-10-reviewer-sprint.md"
 OUTPUT_ISSUE_DRAFTS_DIR = ROOT / "docs" / "first-10-issue-drafts"
+PUBLIC_ISSUE_URLS = {
+    "slot_01_ds_peer_demo": "https://github.com/sunnnn2005/data-quality-agent/issues/20",
+    "slot_02_swe_peer_demo": "https://github.com/sunnnn2005/data-quality-agent/issues/21",
+    "slot_03_local_replay": "https://github.com/sunnnn2005/data-quality-agent/issues/22",
+    "slot_04_confirmed_use": "https://github.com/sunnnn2005/data-quality-agent/issues/23",
+    "slot_05_data_analyst_case": "https://github.com/sunnnn2005/data-quality-agent/issues/24",
+    "slot_06_operator_case": "https://github.com/sunnnn2005/data-quality-agent/issues/25",
+    "slot_07_ai_engineer_review": "https://github.com/sunnnn2005/data-quality-agent/issues/26",
+    "slot_08_open_source_review": "https://github.com/sunnnn2005/data-quality-agent/issues/27",
+    "slot_09_public_star_if_useful": "https://github.com/sunnnn2005/data-quality-agent/issues/28",
+    "slot_10_second_replay": "https://github.com/sunnnn2005/data-quality-agent/issues/29",
+}
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -183,6 +195,7 @@ def build_first_10_reviewer_sprint() -> dict[str, Any]:
         },
         "slots": slots,
         "issue_launch_count": len(issue_launch_plan),
+        "public_issue_entrypoint_count": sum(1 for issue in issue_launch_plan if issue.get("issue_url")),
         "issue_launch_plan": issue_launch_plan,
         "success_thresholds": [
             "1 accepted confirmed external user issue",
@@ -202,7 +215,8 @@ def build_first_10_reviewer_sprint() -> dict[str, Any]:
         "resume_status": "first_10_sprint_ready_not_claimable",
         "resume_safe_summary": (
             f"Published a CI-verified first-10 reviewer sprint with {len(slots)} public evidence slots, "
-            f"{len(target_counts)} target metrics, zero sent outreach, and zero upgraded outcome claims."
+            f"{len(issue_launch_plan)} public GitHub issue entrypoints, {len(target_counts)} target metrics, "
+            "zero sent outreach, and zero upgraded outcome claims."
         ),
     }
 
@@ -252,13 +266,14 @@ def _issue_draft(slot: dict[str, Any]) -> dict[str, Any]:
         "title": title,
         "labels": labels,
         "body": body,
+        "issue_url": PUBLIC_ISSUE_URLS.get(slot["id"]),
         "gh_command": (
             "gh issue create "
             f"--title {json.dumps(title)} "
             f"--label {json.dumps(label_args)} "
             f"--body-file docs/first-10-issue-drafts/{slot['id']}.md"
         ),
-        "status": "draft_not_created",
+        "status": "public_issue_created_not_sent" if slot["id"] in PUBLIC_ISSUE_URLS else "draft_not_created",
     }
 
 
@@ -297,6 +312,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
                 f"- Status: `{issue['status']}`",
                 f"- Title: {issue['title']}",
                 f"- Labels: {', '.join(f'`{label}`' for label in issue['labels'])}",
+                f"- Public issue: [{issue.get('issue_url')}]({issue.get('issue_url')})" if issue.get("issue_url") else "- Public issue: not created",
                 "",
                 "```bash",
                 issue["gh_command"],
@@ -333,7 +349,7 @@ This generated sprint converts the project traction goal into 10 concrete extern
 
 ## Issue Launch Plan
 
-These are draft GitHub issues that can be created when outreach is actually sent. Drafts do not count as sent outreach.
+These public GitHub issues are reviewer collection entrypoints. They do not count as sent outreach, completed reviews, users, feedback, stars, or business impact until a non-owner submits accepted evidence.
 
 {issue_plan}
 
@@ -366,6 +382,8 @@ def verify_first_10_reviewer_sprint(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("first reviewer sprint must not claim existing outcomes")
     if payload["issue_launch_count"] != payload["slot_count"]:
         raise AssertionError("first reviewer sprint must define one issue draft per slot")
+    if payload["public_issue_entrypoint_count"] != 10:
+        raise AssertionError("first reviewer sprint must expose 10 public issue entrypoints")
 
     expected_metrics = {
         "external_feedback_items",
@@ -394,8 +412,11 @@ def verify_first_10_reviewer_sprint(payload: dict[str, Any]) -> dict[str, Any]:
     if issue_slot_ids != slot_ids:
         raise AssertionError("first reviewer sprint issue drafts must map to every slot")
     for issue in payload["issue_launch_plan"]:
-        if issue["status"] != "draft_not_created":
-            raise AssertionError("first reviewer sprint issue drafts must not claim created issues")
+        if issue["status"] not in {"draft_not_created", "public_issue_created_not_sent"}:
+            raise AssertionError("first reviewer sprint issues must use a conservative launch status")
+        if issue["status"] == "public_issue_created_not_sent":
+            if not issue.get("issue_url", "").startswith("https://github.com/sunnnn2005/data-quality-agent/issues/"):
+                raise AssertionError("created reviewer issue entrypoints must include a public issue URL")
         if "first-10-reviewer" not in issue["labels"]:
             raise AssertionError("first reviewer sprint issues must include the first-10 label")
         if "--body-file docs/first-10-issue-drafts/" not in issue["gh_command"]:

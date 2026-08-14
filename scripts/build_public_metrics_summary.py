@@ -276,6 +276,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "first_10_reviewer_sprint": 1,
             "first_10_reviewer_slots": first_10_sprint["slot_count"],
             "first_10_reviewer_issue_launch_drafts": first_10_sprint["issue_launch_count"],
+            "first_10_reviewer_public_issue_entrypoints": first_10_sprint["public_issue_entrypoint_count"],
             "first_10_reviewer_target_metrics": first_10_sprint["target_metric_count"],
             "first_10_reviewer_not_sent": first_10_sprint["not_sent_count"],
             "first_10_reviewer_completed": first_10_sprint["completed_count"],
@@ -880,6 +881,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | First 10 reviewer sprint | {outcomes["first_10_reviewer_sprint"]} |
 | First 10 reviewer slots | {outcomes["first_10_reviewer_slots"]} |
 | First 10 reviewer issue launch drafts | {outcomes["first_10_reviewer_issue_launch_drafts"]} |
+| First 10 reviewer public issue entrypoints | {outcomes["first_10_reviewer_public_issue_entrypoints"]} |
 | First 10 reviewer target metrics | {outcomes["first_10_reviewer_target_metrics"]} |
 | First 10 reviewer not-sent entries | {outcomes["first_10_reviewer_not_sent"]} |
 | First 10 reviewer completed entries | {outcomes["first_10_reviewer_completed"]} |
@@ -1165,6 +1167,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "first_10_reviewer_sprint": 1,
         "first_10_reviewer_slots": 10,
         "first_10_reviewer_issue_launch_drafts": 10,
+        "first_10_reviewer_public_issue_entrypoints": 10,
         "first_10_reviewer_target_metrics": 6,
         "first_10_reviewer_not_sent": 10,
         "first_10_reviewer_completed": 0,

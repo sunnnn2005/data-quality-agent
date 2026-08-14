@@ -434,7 +434,7 @@ def verify_manifest() -> dict[str, int]:
                 expected_counts = {
                     "stars": 0,
                     "forks": 1,
-                    "issues_total": 14,
+                    "issues_total": 24,
                     "external_feedback_items": 0,
                     "confirmed_external_users": 0,
                     "reproducible_feedback_items": 0,
@@ -562,7 +562,7 @@ def verify_manifest() -> dict[str, int]:
                 expected_counts = {
                     "stars": 0,
                     "forks": 1,
-                        "issues_total": 14,
+                        "issues_total": 24,
                     "external_feedback_items": 0,
                     "confirmed_external_users": 0,
                     "reproducible_feedback_items": 0,
@@ -1977,7 +1977,7 @@ def verify_manifest() -> dict[str, int]:
                     "stars": 0,
                     "forks": 1,
                     "watchers": 0,
-                    "issues_total": 14,
+                    "issues_total": 24,
                     "external_feedback_items": 0,
                     "confirmed_external_users": 0,
                 }

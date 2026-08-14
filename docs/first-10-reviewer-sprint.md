@@ -191,13 +191,14 @@ Acceptance evidence:
 
 ## Issue Launch Plan
 
-These are draft GitHub issues that can be created when outreach is actually sent. Drafts do not count as sent outreach.
+These public GitHub issues are reviewer collection entrypoints. They do not count as sent outreach, completed reviews, users, feedback, stars, or business impact until a non-owner submits accepted evidence.
 
 ### slot_01_ds_peer_demo
 
-- Status: `draft_not_created`
+- Status: `public_issue_created_not_sent`
 - Title: First 10 reviewer: UC Davis data science peer (external_feedback_items)
 - Labels: `feedback`, `first-10-reviewer`
+- Public issue: [https://github.com/sunnnn2005/data-quality-agent/issues/20](https://github.com/sunnnn2005/data-quality-agent/issues/20)
 
 ```bash
 gh issue create --title "First 10 reviewer: UC Davis data science peer (external_feedback_items)" --label "feedback,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_01_ds_peer_demo.md
@@ -205,9 +206,10 @@ gh issue create --title "First 10 reviewer: UC Davis data science peer (external
 
 ### slot_02_swe_peer_demo
 
-- Status: `draft_not_created`
+- Status: `public_issue_created_not_sent`
 - Title: First 10 reviewer: student software engineer peer (external_feedback_items)
 - Labels: `feedback`, `first-10-reviewer`
+- Public issue: [https://github.com/sunnnn2005/data-quality-agent/issues/21](https://github.com/sunnnn2005/data-quality-agent/issues/21)
 
 ```bash
 gh issue create --title "First 10 reviewer: student software engineer peer (external_feedback_items)" --label "feedback,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_02_swe_peer_demo.md
@@ -215,9 +217,10 @@ gh issue create --title "First 10 reviewer: student software engineer peer (exte
 
 ### slot_03_local_replay
 
-- Status: `draft_not_created`
+- Status: `public_issue_created_not_sent`
 - Title: First 10 reviewer: engineer comfortable with Docker or local setup (reproducible_feedback_items)
 - Labels: `reproducible`, `first-10-reviewer`
+- Public issue: [https://github.com/sunnnn2005/data-quality-agent/issues/22](https://github.com/sunnnn2005/data-quality-agent/issues/22)
 
 ```bash
 gh issue create --title "First 10 reviewer: engineer comfortable with Docker or local setup (reproducible_feedback_items)" --label "reproducible,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_03_local_replay.md
@@ -225,9 +228,10 @@ gh issue create --title "First 10 reviewer: engineer comfortable with Docker or 
 
 ### slot_04_confirmed_use
 
-- Status: `draft_not_created`
+- Status: `public_issue_created_not_sent`
 - Title: First 10 reviewer: reviewer who opened the demo or ran the repo (confirmed_external_users)
 - Labels: `confirmed-user`, `first-10-reviewer`
+- Public issue: [https://github.com/sunnnn2005/data-quality-agent/issues/23](https://github.com/sunnnn2005/data-quality-agent/issues/23)
 
 ```bash
 gh issue create --title "First 10 reviewer: reviewer who opened the demo or ran the repo (confirmed_external_users)" --label "confirmed-user,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_04_confirmed_use.md
@@ -235,9 +239,10 @@ gh issue create --title "First 10 reviewer: reviewer who opened the demo or ran 
 
 ### slot_05_data_analyst_case
 
-- Status: `draft_not_created`
+- Status: `public_issue_created_not_sent`
 - Title: First 10 reviewer: data analyst or analytics student (business_case_feedback_items)
 - Labels: `business-case`, `first-10-reviewer`
+- Public issue: [https://github.com/sunnnn2005/data-quality-agent/issues/24](https://github.com/sunnnn2005/data-quality-agent/issues/24)
 
 ```bash
 gh issue create --title "First 10 reviewer: data analyst or analytics student (business_case_feedback_items)" --label "business-case,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_05_data_analyst_case.md
@@ -245,9 +250,10 @@ gh issue create --title "First 10 reviewer: data analyst or analytics student (b
 
 ### slot_06_operator_case
 
-- Status: `draft_not_created`
+- Status: `public_issue_created_not_sent`
 - Title: First 10 reviewer: small-business operator or operations teammate (business_case_feedback_items)
 - Labels: `business-case`, `first-10-reviewer`
+- Public issue: [https://github.com/sunnnn2005/data-quality-agent/issues/25](https://github.com/sunnnn2005/data-quality-agent/issues/25)
 
 ```bash
 gh issue create --title "First 10 reviewer: small-business operator or operations teammate (business_case_feedback_items)" --label "business-case,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_06_operator_case.md
@@ -255,9 +261,10 @@ gh issue create --title "First 10 reviewer: small-business operator or operation
 
 ### slot_07_ai_engineer_review
 
-- Status: `draft_not_created`
+- Status: `public_issue_created_not_sent`
 - Title: First 10 reviewer: AI engineer, mentor, or ML systems reviewer (ai_engineer_review_items)
 - Labels: `ai-engineer-review`, `first-10-reviewer`
+- Public issue: [https://github.com/sunnnn2005/data-quality-agent/issues/26](https://github.com/sunnnn2005/data-quality-agent/issues/26)
 
 ```bash
 gh issue create --title "First 10 reviewer: AI engineer, mentor, or ML systems reviewer (ai_engineer_review_items)" --label "ai-engineer-review,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_07_ai_engineer_review.md
@@ -265,9 +272,10 @@ gh issue create --title "First 10 reviewer: AI engineer, mentor, or ML systems r
 
 ### slot_08_open_source_review
 
-- Status: `draft_not_created`
+- Status: `public_issue_created_not_sent`
 - Title: First 10 reviewer: open-source maintainer or GitHub contributor (external_feedback_items)
 - Labels: `feedback`, `first-10-reviewer`
+- Public issue: [https://github.com/sunnnn2005/data-quality-agent/issues/27](https://github.com/sunnnn2005/data-quality-agent/issues/27)
 
 ```bash
 gh issue create --title "First 10 reviewer: open-source maintainer or GitHub contributor (external_feedback_items)" --label "feedback,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_08_open_source_review.md
@@ -275,9 +283,10 @@ gh issue create --title "First 10 reviewer: open-source maintainer or GitHub con
 
 ### slot_09_public_star_if_useful
 
-- Status: `draft_not_created`
+- Status: `public_issue_created_not_sent`
 - Title: First 10 reviewer: reviewer who finds the repo useful enough to save (github_stars)
 - Labels: `community`, `first-10-reviewer`
+- Public issue: [https://github.com/sunnnn2005/data-quality-agent/issues/28](https://github.com/sunnnn2005/data-quality-agent/issues/28)
 
 ```bash
 gh issue create --title "First 10 reviewer: reviewer who finds the repo useful enough to save (github_stars)" --label "community,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_09_public_star_if_useful.md
@@ -285,9 +294,10 @@ gh issue create --title "First 10 reviewer: reviewer who finds the repo useful e
 
 ### slot_10_second_replay
 
-- Status: `draft_not_created`
+- Status: `public_issue_created_not_sent`
 - Title: First 10 reviewer: second technical reviewer for independent reproducibility (reproducible_feedback_items)
 - Labels: `reproducible`, `first-10-reviewer`
+- Public issue: [https://github.com/sunnnn2005/data-quality-agent/issues/29](https://github.com/sunnnn2005/data-quality-agent/issues/29)
 
 ```bash
 gh issue create --title "First 10 reviewer: second technical reviewer for independent reproducibility (reproducible_feedback_items)" --label "reproducible,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_10_second_replay.md
@@ -304,7 +314,7 @@ gh issue create --title "First 10 reviewer: second technical reviewer for indepe
 
 ## Resume-Safe Summary
 
-Published a CI-verified first-10 reviewer sprint with 10 public evidence slots, 6 target metrics, zero sent outreach, and zero upgraded outcome claims.
+Published a CI-verified first-10 reviewer sprint with 10 public evidence slots, 10 public GitHub issue entrypoints, 6 target metrics, zero sent outreach, and zero upgraded outcome claims.
 
 ## Still Blocked
 

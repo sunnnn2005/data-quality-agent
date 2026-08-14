@@ -59,6 +59,7 @@
   ],
   "generated_by": "scripts/build_external_review_evidence_ledger.py",
   "ignored_planning_labels": [
+    "first-10-reviewer",
     "pilot",
     "roadmap"
   ],

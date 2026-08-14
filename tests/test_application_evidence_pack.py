@@ -87,6 +87,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert payload["verified_outcome_numbers"]["reviewer_submission_paths"] == 6
     assert payload["verified_outcome_numbers"]["reviewer_submission_required_fields"] == 23
     assert payload["verified_outcome_numbers"]["first_10_reviewer_slots"] == 10
+    assert payload["verified_outcome_numbers"]["first_10_reviewer_public_issue_entrypoints"] == 10
     assert payload["verified_outcome_numbers"]["first_10_reviewer_target_metrics"] == 6
     assert payload["verified_outcome_numbers"]["first_10_reviewer_not_sent"] == 10
     assert payload["verified_outcome_numbers"]["first_10_reviewer_completed"] == 0

@@ -19,7 +19,7 @@ TRACKED_LABELS = {
     "reproducible": "reproducible_feedback_items",
     "ai-engineer-review": "ai_engineer_review_items",
 }
-PLANNING_LABELS = {"pilot", "roadmap"}
+PLANNING_LABELS = {"pilot", "roadmap", "first-10-reviewer"}
 
 
 def load_json(path: Path) -> dict[str, Any]:
