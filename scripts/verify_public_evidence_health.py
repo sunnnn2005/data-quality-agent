@@ -70,7 +70,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "245 passing CI tests",
+            "247 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -192,7 +192,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 245},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 247},
         "evidence_type": "json",
     },
     {
@@ -1332,6 +1332,39 @@ PUBLIC_CHECKS = [
             "Resume-Safe Bullets Now",
             "Submit public evidence",
             "No confirmed external users are claimed.",
+        ],
+        "evidence_type": "html",
+    },
+    {
+        "id": "first-outcome-evidence-request",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/first-outcome-evidence-request.json",
+        "expected_json": {
+            "target_metric": "ai_engineer_review_items",
+            "current_count": 0,
+            "required_count": 1,
+            "accepted_external_evidence_count": 0,
+            "resume_status": "first_external_outcome_request_ready_not_claimable",
+        },
+        "expected_text": "first resume-countable external outcome",
+        "expected_texts": [
+            "non-owner public GitHub issue",
+            "permission to count",
+            "not evidence by itself",
+            "No AI Engineer review has been accepted yet.",
+            "future resume line is locked",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "first-outcome-evidence-request-page",
+        "url": "https://sunnnn2005.github.io/data-quality-agent/first-outcome-evidence-request.html",
+        "expected_text": "First Outcome Evidence Request",
+        "expected_texts": [
+            "Submit public review",
+            "Inspection Targets",
+            "Required Public Evidence",
+            "Locked Resume Line",
+            "No AI Engineer review has been accepted yet.",
         ],
         "evidence_type": "html",
     },

@@ -1,6 +1,6 @@
 {
   "application_pack": {
-    "passing_tests": 245,
+    "passing_tests": 247,
     "target_roles": [
       "AI Engineer Intern",
       "Software Engineer Intern",
@@ -20,7 +20,7 @@
   "claimable_now": [
     "4/4 public launch surfaces reachable",
     "3/3 main-branch workflows successful at snapshot time",
-    "245 passing CI test status",
+    "247 passing CI test status",
     "1 public fork and 0 public stars as the current GitHub baseline",
     "6 AI-agent inspection targets available for external review"
   ],
@@ -76,7 +76,7 @@
   },
   "purpose": "Summarize public launch readiness, reachability, review paths, and honest traction baselines in one recruiter-readable artifact.",
   "resume_policy": "Use this as public launch and review-readiness evidence only. It does not prove users, customer feedback, business adoption, or external AI Engineer review until the corresponding public counts are above zero.",
-  "resume_safe_summary": "Published a recruiter-readable launch evidence snapshot covering 5 public project surfaces, 4/4 reachable endpoints, 3/3 successful workflows, 245 passing tests, and honest GitHub/reviewer baselines.",
+  "resume_safe_summary": "Published a recruiter-readable launch evidence snapshot covering 5 public project surfaces, 4/4 reachable endpoints, 3/3 successful workflows, 247 passing tests, and honest GitHub/reviewer baselines.",
   "review_path": {
     "current_count": 0,
     "inspection_target_count": 6,

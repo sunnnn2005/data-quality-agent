@@ -39,7 +39,7 @@ Public page: [https://sunnnn2005.github.io/data-quality-agent/public-outcome-int
 
 - Built and released a public, containerized LLM data-quality agent with a GitHub Pages demo, OpenAPI contract, GHCR image, and CI-verified evidence artifacts.
 - Implemented 16 agent-readiness capabilities including tool selection, read-only data checks, guardrails, structured reports, observability artifacts, and deterministic fallback paths.
-- Maintained a resume-safe proof system with 245 passing test baseline, 96 verified claim entries, and 118/118 public evidence checks passing.
+- Maintained a resume-safe proof system with 247 passing test baseline, 96 verified claim entries, and 118/118 public evidence checks passing.
 - Published a redacted business-data pilot offer and public GitHub issue to collect external business replay evidence without claiming completed pilots or enterprise adoption.
 
 ## Next Resume Unlocks

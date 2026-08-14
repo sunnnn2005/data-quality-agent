@@ -25,7 +25,7 @@ Map real outcome evidence into exact resume-safe wording while blocking users, f
 - Public GitHub Pages demo
 - v0.3.0 release
 - GHCR container image
-- 245 passing CI tests
+- 247 passing CI tests
 - 16 implemented LLM agent-readiness capabilities
 - Read-only PostgreSQL and bounded CSV business-data intake
 

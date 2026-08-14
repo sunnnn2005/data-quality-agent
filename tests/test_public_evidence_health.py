@@ -77,6 +77,8 @@ def test_public_evidence_health_requires_core_public_signals():
         "reviewer-outcome-ledger",
         "public-outcome-intake-dashboard",
         "public-outcome-intake-dashboard-page",
+        "first-outcome-evidence-request",
+        "first-outcome-evidence-request-page",
         "reviewer-send-queue",
         "reviewer-landing-page",
         "reviewer-outreach-console",
@@ -161,6 +163,17 @@ def test_public_evidence_health_requires_core_public_signals():
     assert outcome_intake_page["url"].endswith("/public-outcome-intake-dashboard.html")
     assert "Submit Evidence For Real Outcomes" in outcome_intake_page["expected_texts"]
     assert "Submit public evidence" in outcome_intake_page["expected_texts"]
+    first_outcome_request = next(check for check in PUBLIC_CHECKS if check["id"] == "first-outcome-evidence-request")
+    assert first_outcome_request["url"].endswith("/first-outcome-evidence-request.json")
+    assert first_outcome_request["expected_json"]["target_metric"] == "ai_engineer_review_items"
+    assert first_outcome_request["expected_json"]["accepted_external_evidence_count"] == 0
+    assert "not evidence by itself" in first_outcome_request["expected_texts"]
+    first_outcome_request_page = next(
+        check for check in PUBLIC_CHECKS if check["id"] == "first-outcome-evidence-request-page"
+    )
+    assert first_outcome_request_page["url"].endswith("/first-outcome-evidence-request.html")
+    assert "Submit public review" in first_outcome_request_page["expected_texts"]
+    assert "Locked Resume Line" in first_outcome_request_page["expected_texts"]
     llm_value = next(check for check in PUBLIC_CHECKS if check["id"] == "llm-value-comparison")
     assert llm_value["url"].endswith("/llm-value-comparison.json")
     assert llm_value["expected_json"]["scenario_count"] == 14

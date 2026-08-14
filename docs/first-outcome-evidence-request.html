@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>First Outcome Evidence Request</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0c1017; --panel: #151c26; --line: #2f3948; --text: #f7f9fc; --muted: #aeb8c8; --blue: #67d4ff; --pink: #ff2d6f; --green: #42d392; --amber: #ffd166; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    main { max-width: 1120px; margin: 0 auto; padding: 46px 20px 70px; }
+    h1 { margin: 0 0 10px; font-size: 46px; letter-spacing: 0; }
+    h2 { font-size: 22px; margin: 0 0 14px; letter-spacing: 0; }
+    p, li, span { color: var(--muted); line-height: 1.55; }
+    .lede { max-width: 820px; font-size: 18px; }
+    .stats, .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+    .stats { margin: 28px 0 34px; }
+    .stat, section { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
+    .stat strong { display: block; font-size: 30px; color: var(--text); }
+    section { margin-top: 16px; }
+    a { color: var(--blue); font-weight: 800; }
+    .button { display: inline-block; margin: 8px 10px 0 0; background: var(--pink); color: white; text-decoration: none; padding: 10px 14px; border-radius: 6px; }
+    code, pre { white-space: pre-wrap; color: var(--text); background: #0a0e14; border-radius: 6px; }
+    pre { padding: 14px; overflow-x: auto; }
+    li strong { display: block; color: var(--text); }
+    .locked { color: var(--amber); font-weight: 800; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>First Outcome Evidence Request</h1>
+  <p class="lede">A single sendable request for the first public, resume-countable external outcome: an AI Engineer review of the Data Quality Agent's tool-calling loop, guardrails, and evidence trail.</p>
+  <div class="stats">
+    <div class="stat"><strong>0/1</strong><span>accepted AI Engineer reviews</span></div>
+    <div class="stat"><strong>1</strong><span>remaining to unlock</span></div>
+    <div class="stat"><strong>12</strong><span>minutes requested</span></div>
+    <div class="stat"><strong>0</strong><span>accepted external evidence</span></div>
+  </div>
+  <section>
+    <h2>Send This Review Request</h2>
+    <p>Choose one AI/ML engineer, professor, mentor, or advanced student who can inspect agent architecture.</p>
+    <a class="button" href="https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md">Open reviewer start page</a>
+    <a class="button" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md">Submit public review</a>
+    <a href="https://github.com/sunnnn2005/data-quality-agent/issues/26">Public tracking issue</a>
+  </section>
+  <section>
+    <h2>Copy-Ready Message</h2>
+    <pre>Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/26. The ask is: Inspect the LLM tool-calling loop, guardrails, and evidence trail for AI Engineer credibility. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it. Shortest path if you do not want to read every doc: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html.</pre>
+  </section>
+  <section>
+    <h2>Inspection Targets</h2>
+    <ul><li><strong>app/tool_agent.py</strong><span>shows LLM-driven tool choice, loop state, and tool-result feedback</span></li><li><strong>app/llm.py</strong><span>shows structured model calls, fallback handling, and output validation boundaries</span></li><li><strong>app/models.py</strong><span>shows structured request and response schemas used by the API and agent</span></li><li><strong>app/postgres_adapter.py</strong><span>shows read-only PostgreSQL access for realistic tabular business data</span></li><li><strong>app/verifier.py</strong><span>shows deterministic checks that keep LLM conclusions tied to evidence</span></li><li><strong>evals/scenarios.jsonl</strong><span>shows the project is evaluated against repeatable agent behavior cases</span></li></ul>
+  </section>
+  <section>
+    <h2>Review Prompts</h2>
+    <ul><li>Does the model choose tools from evidence, or does the code force a fixed workflow?</li><li>Are tool outputs fed back into the agent before the final report is produced?</li><li>Are findings, hypotheses, recommendations, evidence, confidence, and limitations separated?</li><li>Where would prompt injection, sensitive data, or unsupported claims be blocked?</li><li>What one change would make this more credible for an AI Engineer Intern resume?</li></ul>
+  </section>
+  <section>
+    <h2>Required Public Evidence</h2>
+    <ul><li>implementation paths inspected</li><li>strongest AI-agent signal</li><li>least credible gap</li><li>permission sentence if the reviewer allows the evidence to count</li></ul>
+  </section>
+  <section>
+    <h2>Locked Resume Line</h2>
+    <p class="locked">Locked until the public evidence gate passes.</p>
+    <pre>Received external AI Engineer review of the tool-calling loop, guardrails, structured output, and evidence trail.</pre>
+  </section>
+  <section>
+    <h2>Counting Boundary</h2>
+    <p>This request page is not evidence by itself. The outcome becomes resume-countable only after a non-owner public GitHub issue includes permission to count, no private data, inspected paths, and passes the external reviewer evidence gate.</p>
+    <h2>Not Claimed</h2>
+    <ul><li>No AI Engineer review has been accepted yet.</li><li>No reviewer message is recorded as sent yet.</li><li>No external user, customer feedback, business impact, production deployment, or GitHub star is claimed.</li><li>The future resume line is locked until the public evidence gate passes.</li></ul>
+  </section>
+</main>
+</body>
+</html>
