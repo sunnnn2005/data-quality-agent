@@ -1,0 +1,105 @@
+{
+  "accepted_public_evidence_count": 0,
+  "blocked_claim_count": 5,
+  "future_bullet_templates": [
+    {
+      "blocked_reason": "Cannot claim external users until at least one non-owner reviewer issue passes the evidence gate.",
+      "current_count": 0,
+      "materialized": false,
+      "metric": "confirmed_external_users",
+      "rendered_bullet": null,
+      "required_public_evidence": "Non-owner public GitHub issue with inspected path or run evidence, no private data, explicit permission to count, and accepted evidence-gate status.",
+      "status": "blocked_until_accepted_public_evidence",
+      "template": "Validated the data-quality LLM agent with {count} external reviewer(s) who inspected the public demo, local run path, or repository evidence."
+    },
+    {
+      "blocked_reason": "Cannot claim user feedback until at least one accepted reviewer issue includes feedback permission and non-placeholder feedback.",
+      "current_count": 0,
+      "materialized": false,
+      "metric": "external_feedback_items",
+      "rendered_bullet": null,
+      "required_public_evidence": "Non-owner public GitHub issue with inspected path or run evidence, no private data, explicit permission to count, and accepted evidence-gate status.",
+      "status": "blocked_until_accepted_public_evidence",
+      "template": "Incorporated {count} accepted external feedback item(s) into the data-quality agent roadmap and evidence gate."
+    },
+    {
+      "blocked_reason": "Cannot claim reproducible external runs until a reviewer submits runnable command or URL evidence.",
+      "current_count": 0,
+      "materialized": false,
+      "metric": "reproducible_feedback_items",
+      "rendered_bullet": null,
+      "required_public_evidence": "Non-owner public GitHub issue with inspected path or run evidence, no private data, explicit permission to count, and accepted evidence-gate status.",
+      "status": "blocked_until_accepted_public_evidence",
+      "template": "Collected {count} reproducible external run report(s) covering the FastAPI, Docker, CSV, or read-only PostgreSQL data-quality workflow."
+    },
+    {
+      "blocked_reason": "Cannot claim real business-case feedback until an anonymized business-case issue passes the gate.",
+      "current_count": 0,
+      "materialized": false,
+      "metric": "business_case_feedback_items",
+      "rendered_bullet": null,
+      "required_public_evidence": "Non-owner public GitHub issue with inspected path or run evidence, no private data, explicit permission to count, and accepted evidence-gate status.",
+      "status": "blocked_until_accepted_public_evidence",
+      "template": "Reviewed {count} anonymized business-data quality case(s) and converted feedback into evidence-backed remediation guidance."
+    },
+    {
+      "blocked_reason": "Cannot claim external AI Engineer review feedback until a non-owner reviewer submits inspected-path evidence and permission to count.",
+      "current_count": 0,
+      "materialized": false,
+      "metric": "ai_engineer_review_items",
+      "rendered_bullet": null,
+      "required_public_evidence": "Non-owner public GitHub issue with inspected path or run evidence, no private data, explicit permission to count, and accepted evidence-gate status.",
+      "status": "blocked_until_accepted_public_evidence",
+      "template": "Collected {count} AI Engineer review item(s) covering tool calling, structured outputs, guardrails, traceability, and model fallback behavior."
+    }
+  ],
+  "future_template_count": 5,
+  "generated_by": "scripts/build_resume_claim_materializer.py",
+  "materialized_claim_count": 0,
+  "materialized_outcome_bullets": [],
+  "not_claimed": [
+    "No external users are claimed.",
+    "No customer feedback is claimed.",
+    "No enterprise deployment is claimed.",
+    "No GitHub-star growth is claimed.",
+    "No accepted real-model benchmark result is claimed."
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Convert accepted public outcome evidence into exact resume bullets while keeping unverified users, feedback, business impact, AI review, and GitHub-star claims blocked.",
+  "recorded_outreach_event_count": 0,
+  "resume_safe_summary": "Published a resume claim materializer with 4 current claimable engineering bullets, 0 materialized external outcome bullets, 5 blocked future outcome templates, and 0 accepted public evidence items.",
+  "resume_upgrade_count": 0,
+  "reviewer_lead_count": 8,
+  "safe_current_bullet_count": 4,
+  "safe_current_bullets": [
+    {
+      "bullet": "Published a public demo, container image, OpenAPI contract, and CI-verified project evidence pages.",
+      "evidence_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "proof_type": "public_url_and_ci",
+      "source_signal": "public_launch",
+      "status": "claimable_now"
+    },
+    {
+      "bullet": "Maintained 197 passing tests across agent behavior, APIs, evidence gates, and safety checks.",
+      "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
+      "proof_type": "ci",
+      "source_signal": "ci_quality",
+      "status": "claimable_now"
+    },
+    {
+      "bullet": "Built an LLM tool-calling data-quality agent with controlled tools, structured reports, read-only PostgreSQL access, trace persistence, and evidence guardrails.",
+      "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-readiness.md",
+      "proof_type": "source_and_docs",
+      "source_signal": "agent_implementation",
+      "status": "claimable_now"
+    },
+    {
+      "bullet": "Published 50 recruiter-readable evidence links while separating blocked outcome claims from verified work.",
+      "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/application-evidence-pack.md",
+      "proof_type": "generated_artifact",
+      "source_signal": "recruiter_evidence_pack",
+      "status": "claimable_now"
+    }
+  ],
+  "target_metric_count": 5
+}

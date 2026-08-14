@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 195,
-      "resume_signal": "195 passing CI tests",
+      "metric_value": 197,
+      "resume_signal": "197 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -849,6 +849,16 @@
       "resume_signal": "CI-verified pilot reviewer CRM",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-reviewer-crm.json"
+    },
+    {
+      "claim": "The project publishes a resume claim materializer that converts accepted public evidence into exact resume bullets while preserving zero materialized external outcome bullets until non-owner public evidence passes the gate.",
+      "evidence_type": "generated_artifact",
+      "id": "resume-claim-materializer",
+      "metric_name": "resume_claim_materializer",
+      "metric_value": 1,
+      "resume_signal": "CI-verified resume claim materializer",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-claim-materializer.json"
     }
   ],
   "not_claimed": [

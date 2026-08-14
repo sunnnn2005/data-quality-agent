@@ -51,7 +51,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "195 passing CI tests",
+            "197 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -59,14 +59,33 @@ PUBLIC_CHECKS = [
             "reviewer-outreach-status-board",
             "resume-outcome-evidence-ledger",
             "pilot-reviewer-crm",
+            "resume-claim-materializer",
             "resume-outcome-metrics",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "resume-claim-materializer",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-claim-materializer.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "safe_current_bullet_count": 4,
+            "future_template_count": 5,
+            "materialized_claim_count": 0,
+            "accepted_public_evidence_count": 0,
+        },
+        "expected_text": "exact resume bullets",
+        "expected_texts": [
+            "confirmed_external_users",
+            "ai_engineer_review_items",
+            "No enterprise deployment is claimed",
         ],
         "evidence_type": "json",
     },
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 195},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 197},
         "evidence_type": "json",
     },
     {

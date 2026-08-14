@@ -80,6 +80,7 @@ RESUME_CLAIM_UPGRADE_LEDGER_PATH = ROOT / "docs" / "resume-claim-upgrade-ledger.
 RESUME_OUTCOME_ADJUDICATION_PATH = ROOT / "docs" / "resume-outcome-adjudication.json"
 RESUME_OUTCOME_EVIDENCE_LEDGER_PATH = ROOT / "docs" / "resume-outcome-evidence-ledger.json"
 PILOT_REVIEWER_CRM_PATH = ROOT / "docs" / "pilot-reviewer-crm.json"
+RESUME_CLAIM_MATERIALIZER_PATH = ROOT / "docs" / "resume-claim-materializer.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
 PUBLIC_METRICS_REFRESH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "refresh-public-metrics.yml"
 PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
@@ -175,6 +176,7 @@ def verify_manifest() -> dict[str, int]:
     adjudication = load_payload(RESUME_OUTCOME_ADJUDICATION_PATH)
     resume_outcome_evidence_ledger = load_payload(RESUME_OUTCOME_EVIDENCE_LEDGER_PATH)
     pilot_reviewer_crm = load_payload(PILOT_REVIEWER_CRM_PATH)
+    resume_claim_materializer = load_payload(RESUME_CLAIM_MATERIALIZER_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
     feedback_log = FEEDBACK_LOG_PATH.read_text().lower()
@@ -606,7 +608,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 195:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 197:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("tracked_public_metrics") != 8:
                     raise AssertionError("public metrics summary must include provenance tracked metric count")
@@ -879,6 +881,58 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("pilot reviewer CRM must include a dedicated test")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("pilot_reviewer_crm claim must use metric_value=1")
+            elif metric_name == "resume_claim_materializer":
+                materializer_script = (ROOT / "scripts" / "build_resume_claim_materializer.py").read_text()
+                materializer_tests = (ROOT / "tests" / "test_resume_claim_materializer.py").read_text()
+                materializer_page = (ROOT / "docs" / "resume-claim-materializer.md").read_text()
+                expected = {
+                    "safe_current_bullet_count": 4,
+                    "future_template_count": 5,
+                    "blocked_claim_count": 5,
+                    "materialized_claim_count": 0,
+                    "accepted_public_evidence_count": 0,
+                    "resume_upgrade_count": 0,
+                    "reviewer_lead_count": 8,
+                    "target_metric_count": 5,
+                }
+                for key, value in expected.items():
+                    if resume_claim_materializer.get(key) != value:
+                        raise AssertionError(
+                            f"resume_claim_materializer {key} mismatch: "
+                            f"{resume_claim_materializer.get(key)} != {value}"
+                        )
+                required_metrics = {
+                    "ai_engineer_review_items",
+                    "business_case_feedback_items",
+                    "confirmed_external_users",
+                    "external_feedback_items",
+                    "reproducible_feedback_items",
+                }
+                materializer_metrics = {
+                    item.get("metric") for item in resume_claim_materializer.get("future_bullet_templates", [])
+                }
+                if materializer_metrics != required_metrics:
+                    raise AssertionError("resume_claim_materializer future template metrics mismatch")
+                if any(item.get("materialized") for item in resume_claim_materializer.get("future_bullet_templates", [])):
+                    raise AssertionError("resume_claim_materializer must not materialize zero-count outcome bullets")
+                for required in [
+                    "verify_resume_claim_materializer",
+                    "FUTURE_BULLET_TEMPLATES",
+                    "exact resume bullets",
+                ]:
+                    if required not in materializer_script:
+                        raise AssertionError(f"resume claim materializer script missing {required}")
+                for required in [
+                    "test_resume_claim_materializer_blocks_external_outcome_bullets_without_evidence",
+                    "test_resume_claim_materializer_markdown_is_recruiter_readable",
+                ]:
+                    if required not in materializer_tests:
+                        raise AssertionError(f"resume claim materializer tests missing {required}")
+                for required in ["Resume Claim Materializer", "Materialized Outcome Bullets", "Blocked Future Templates"]:
+                    if required not in materializer_page:
+                        raise AssertionError(f"resume claim materializer page missing {required}")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("resume_claim_materializer claim must use metric_value=1")
             elif metric_name == "resume_claim_upgrade_ledger":
                 claim_script = (ROOT / "scripts" / "build_resume_claim_upgrade_ledger.py").read_text()
                 claim_tests = (ROOT / "tests" / "test_resume_claim_upgrade_ledger.py").read_text()
@@ -1062,7 +1116,7 @@ def verify_manifest() -> dict[str, int]:
                     ("confirmed_external_users", 0),
                     ("external_feedback_items", 0),
                     ("github_stars", 0),
-                    ("passing_tests", 195),
+                    ("passing_tests", 197),
                 ):
                     if counts.get(key) != expected_value:
                         raise AssertionError(f"outcome collection {key} expected {expected_value!r}")
@@ -1454,7 +1508,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 195:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 197:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -2465,7 +2519,7 @@ def verify_manifest() -> dict[str, int]:
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
         for phrase in (
-            "passing ci tests | 195",
+            "passing ci tests | 197",
             "tracked public outcome metrics | 8",
             "claimable public outcome metrics | 2",
             "confirmed external users | 0",
@@ -2521,7 +2575,7 @@ def verify_manifest() -> dict[str, int]:
 
     resume_metric_phrases = (
         "github issues | 25",
-        "automated tests | 195",
+        "automated tests | 197",
         "github views | 9",
         "github unique visitors | 3",
         "github clones | 79",
@@ -2536,7 +2590,7 @@ def verify_manifest() -> dict[str, int]:
     badges_by_id = {badge["id"]: badge for badge in outcome_badges.get("badges", [])}
     if outcome_badges.get("badge_count") != 6:
         raise AssertionError("outcome badges must expose six badge artifacts")
-    if badges_by_id.get("ci-tests", {}).get("message") != "195 passing":
+    if badges_by_id.get("ci-tests", {}).get("message") != "197 passing":
         raise AssertionError("outcome badges must display the current passing test count")
     for blocked_badge in ("github-stars", "confirmed-users", "external-feedback", "ai-review"):
         if badges_by_id.get(blocked_badge, {}).get("resume_claimable") is not False:
@@ -2570,7 +2624,7 @@ def verify_manifest() -> dict[str, int]:
         raise AssertionError("launch evidence snapshot workflow count is inconsistent")
     if launch_workflows.get("workflow_count") != 3:
         raise AssertionError("launch evidence snapshot must track the three main workflows")
-    if launch_evidence_snapshot.get("application_pack", {}).get("passing_tests") != 195:
+    if launch_evidence_snapshot.get("application_pack", {}).get("passing_tests") != 197:
         raise AssertionError("launch evidence snapshot must reflect the current passing test count")
     if launch_evidence_snapshot.get("public_github_stats", {}).get("stars") != 0:
         raise AssertionError("launch evidence snapshot must preserve the zero-star baseline")
