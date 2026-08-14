@@ -47,14 +47,14 @@ This generated artifact gives recruiters and technical reviewers one place to ve
 | Metric | Value |
 | --- | --- |
 | Verified resume claims | 96 |
-| Passing tests | 237 |
+| Passing tests | 239 |
 | Target roles | AI Engineer Intern, Software Engineer Intern, Data Engineering Intern, Data Science Intern |
 
 ## Claimable Now
 
 - 4/4 public launch surfaces reachable
 - 3/3 main-branch workflows successful at snapshot time
-- 237 passing CI test status
+- 239 passing CI test status
 - 1 public fork and 0 public stars as the current GitHub baseline
 - 6 AI-agent inspection targets available for external review
 
@@ -72,4 +72,4 @@ Use this as public launch and review-readiness evidence only. It does not prove 
 
 ## Resume-Safe Summary
 
-Published a recruiter-readable launch evidence snapshot covering 5 public project surfaces, 4/4 reachable endpoints, 3/3 successful workflows, 237 passing tests, and honest GitHub/reviewer baselines.
+Published a recruiter-readable launch evidence snapshot covering 5 public project surfaces, 4/4 reachable endpoints, 3/3 successful workflows, 239 passing tests, and honest GitHub/reviewer baselines.

@@ -1,0 +1,76 @@
+{
+  "accepted_example_count": 2,
+  "example_count": 4,
+  "examples": [
+    {
+      "accepted": true,
+      "author": "external-reviewer",
+      "counts_toward": [
+        "business_case_feedback_items"
+      ],
+      "evidence_type": "business_case_review",
+      "failure_reasons": [],
+      "id": "accepted_business_case",
+      "labels": [
+        "business-case"
+      ],
+      "purpose": "Unlocks one anonymized business-case feedback item after a non-owner reviewer maps a real workflow problem to project evidence."
+    },
+    {
+      "accepted": true,
+      "author": "external-reviewer",
+      "counts_toward": [
+        "accepted_real_model_runs"
+      ],
+      "evidence_type": "real_model_run_review",
+      "failure_reasons": [],
+      "id": "accepted_real_model_run",
+      "labels": [
+        "real-model-run"
+      ],
+      "purpose": "Unlocks one accepted real-model run after a non-owner reviewer captures redacted model, tool, token, cost, latency, and verification evidence."
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "business_case_review",
+      "failure_reasons": [
+        "self-authored issue"
+      ],
+      "id": "rejected_self_authored_business_case",
+      "labels": [
+        "business-case"
+      ],
+      "purpose": "Shows why owner-authored evidence cannot count as external feedback or business impact."
+    },
+    {
+      "accepted": false,
+      "author": "external-reviewer",
+      "counts_toward": [],
+      "evidence_type": "business_data_replay",
+      "failure_reasons": [
+        "docs-only review is not a confirmed business-data replay",
+        "missing business-data replay path tried"
+      ],
+      "id": "rejected_docs_only_replay",
+      "labels": [
+        "business-data-replay",
+        "confirmed-user"
+      ],
+      "purpose": "Shows why reading docs is useful feedback but not enough for confirmed business-data replay evidence."
+    }
+  ],
+  "generated_by": "scripts/build_first_accepted_evidence_examples.py",
+  "not_claimed": [
+    "Synthetic examples are not counted as users, feedback, stars, pilots, or accepted real-model runs.",
+    "Resume outcome metrics change only after a real non-owner public GitHub issue passes the evidence gate.",
+    "Owner-authored evidence and docs-only reviews remain blocked from outcome claims."
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Show reviewers exactly what the first acceptable public evidence issue looks like, and what the gate rejects, without increasing real resume outcome counts.",
+  "real_public_issue_required": true,
+  "rejected_example_count": 2,
+  "resume_claim_allowed_now": false,
+  "resume_safe_summary": "Published gate-tested examples for the first acceptable business-case and real-model-run evidence, plus rejected self-authored and docs-only examples, while keeping real outcome counts unchanged."
+}

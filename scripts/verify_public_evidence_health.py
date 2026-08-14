@@ -70,7 +70,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "237 passing CI tests",
+            "239 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -192,7 +192,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 237},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 239},
         "evidence_type": "json",
     },
     {
@@ -675,6 +675,26 @@ PUBLIC_CHECKS = [
             "Issues containing sensitive-data risk terms are rejected until redacted.",
             "The default artifact collects tracked public GitHub issues before applying the evidence gate.",
             "No accepted external reviewer issue exists yet.",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "first-accepted-evidence-examples",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/first-accepted-evidence-examples.json",
+        "expected_json": {
+            "example_count": 4,
+            "accepted_example_count": 2,
+            "rejected_example_count": 2,
+            "resume_claim_allowed_now": False,
+        },
+        "expected_text": "first acceptable public evidence issue",
+        "expected_texts": [
+            "accepted_business_case",
+            "accepted_real_model_run",
+            "rejected_self_authored_business_case",
+            "rejected_docs_only_replay",
+            "Synthetic examples are not counted as users",
+            "Resume outcome metrics change only after a real non-owner public GitHub issue passes the evidence gate.",
         ],
         "evidence_type": "json",
     },

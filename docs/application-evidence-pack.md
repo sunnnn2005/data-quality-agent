@@ -4,7 +4,7 @@ This generated pack gives recruiters and interviewers a compact review path for 
 
 ## One-Line Project Proof
 
-Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 237 tests, 96 verified resume claims, and honest adoption baselines.
+Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 239 tests, 96 verified resume claims, and honest adoption baselines.
 
 ## Application Links
 
@@ -63,7 +63,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 
 | Metric | Value |
 | --- | ---: |
-| Passing Tests | 237 |
+| Passing Tests | 239 |
 | Verified Resume Claims | 96 |
 | Implemented Agent Capabilities | 16 |
 | Agent Tools Allowed | 9 |
@@ -171,7 +171,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 ## Resume Bullets
 
 - Built an LLM tool-calling data-quality agent for real business CSV and read-only PostgreSQL data, with 9 allowed tools, dynamic strategy selection, memory-informed planning, source-cited business-rule retrieval, 6 verified API integration endpoints, and safe model-key fallback.
-- Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 237 passing tests, 96 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
+- Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 239 passing tests, 96 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
 - Added enterprise-style guardrails for agent reliability, including read-only PostgreSQL query limits, 3 rejected unsafe SQL queries, sensitive-field redaction, trace observability, incident-pattern memory, evidence-backed root-cause hypotheses, and deterministic report verification.
 
 ## Email Attachment Note

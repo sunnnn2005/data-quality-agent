@@ -43,6 +43,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "external-run-quickstart-page",
         "external-reviewer-outreach-tracker",
         "external-reviewer-evidence-gate",
+        "first-accepted-evidence-examples",
         "resume-outcome-conversion-plan",
         "api-smoke-report",
         "performance-baseline",
@@ -170,6 +171,14 @@ def test_public_evidence_health_requires_core_public_signals():
     assert "current_accepted_business_cases" in impact_validation["expected_texts"]
     assert "manual_review_minutes_estimated" in impact_validation["expected_texts"]
     assert "manual time saved" in impact_validation["expected_texts"]
+    first_evidence_examples = next(check for check in PUBLIC_CHECKS if check["id"] == "first-accepted-evidence-examples")
+    assert first_evidence_examples["url"].endswith("/first-accepted-evidence-examples.json")
+    assert first_evidence_examples["expected_json"]["example_count"] == 4
+    assert first_evidence_examples["expected_json"]["accepted_example_count"] == 2
+    assert first_evidence_examples["expected_json"]["rejected_example_count"] == 2
+    assert first_evidence_examples["expected_json"]["resume_claim_allowed_now"] is False
+    assert "accepted_real_model_run" in first_evidence_examples["expected_texts"]
+    assert "Synthetic examples are not counted as users" in first_evidence_examples["expected_texts"]
     resolution_review = next(check for check in PUBLIC_CHECKS if check["id"] == "business-resolution-review-request")
     assert resolution_review["url"].endswith("/business-resolution-review-request.json")
     assert "issues/30" in resolution_review["expected_texts"]
