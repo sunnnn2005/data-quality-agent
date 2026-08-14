@@ -19,6 +19,7 @@
     }
   ],
   "current_count": 0,
+  "fast_path_comment_url": "https://github.com/sunnnn2005/data-quality-agent/issues/26#issuecomment-5293612291",
   "generated_by": "scripts/build_ai_engineer_reviewer_card.py",
   "inspection_target_count": 6,
   "inspection_targets": [

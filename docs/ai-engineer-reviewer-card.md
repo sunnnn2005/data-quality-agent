@@ -45,6 +45,7 @@ Give one external AI/ML reviewer a single low-friction card for inspecting the a
 ## Submit Public Review
 
 - Public slot: [https://github.com/sunnnn2005/data-quality-agent/issues/26](https://github.com/sunnnn2005/data-quality-agent/issues/26)
+- Fast-path reviewer comment: [https://github.com/sunnnn2005/data-quality-agent/issues/26#issuecomment-5293612291](https://github.com/sunnnn2005/data-quality-agent/issues/26#issuecomment-5293612291)
 - Submit review: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md)
 
 ## Outcome Badge Snapshot

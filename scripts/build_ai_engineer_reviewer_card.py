@@ -9,6 +9,7 @@ QUICKSTART_ROUTER_PATH = ROOT / "docs" / "reviewer-quickstart-router.json"
 OUTCOME_BADGES_PATH = ROOT / "docs" / "outcome-badges.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "ai-engineer-reviewer-card.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "ai-engineer-reviewer-card.md"
+FAST_PATH_COMMENT_URL = "https://github.com/sunnnn2005/data-quality-agent/issues/26#issuecomment-5293612291"
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -96,6 +97,7 @@ def build_ai_engineer_reviewer_card() -> dict[str, Any]:
         "review_prompts": review_prompts,
         "submit_review_url": ai_route["submission_url"],
         "public_slot_url": router["prioritized_next_send"]["public_issue"],
+        "fast_path_comment_url": FAST_PATH_COMMENT_URL,
         "outcome_badge_snapshot": {
             "ci_tests": badge_by_id["ci-tests"]["message"],
             "ai_review": badge_by_id["ai-review"]["message"],
@@ -170,6 +172,7 @@ This generated card gives one external AI/ML reviewer the shortest path to inspe
 ## Submit Public Review
 
 - Public slot: [{payload["public_slot_url"]}]({payload["public_slot_url"]})
+- Fast-path reviewer comment: [{payload["fast_path_comment_url"]}]({payload["fast_path_comment_url"]})
 - Submit review: [{payload["submit_review_url"]}]({payload["submit_review_url"]})
 
 ## Outcome Badge Snapshot
@@ -205,6 +208,8 @@ def verify_ai_engineer_reviewer_card(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("reviewer card must expose 5 focused review prompts")
     if not payload["submit_review_url"].startswith("https://github.com/"):
         raise AssertionError("reviewer card must submit to a public GitHub evidence surface")
+    if not payload["fast_path_comment_url"].startswith(payload["public_slot_url"] + "#issuecomment-"):
+        raise AssertionError("reviewer card must link the public fast-path issue comment")
     if payload["outcome_badge_snapshot"]["ai_review"] != "0 accepted":
         raise AssertionError("reviewer card must not claim accepted AI reviews")
     required_paths = {"app/tool_agent.py", "app/llm.py", "app/postgres_adapter.py", "app/verifier.py"}

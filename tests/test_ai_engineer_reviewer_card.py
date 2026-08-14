@@ -20,6 +20,7 @@ def test_ai_engineer_reviewer_card_routes_external_review_without_claiming_it():
     assert payload["inspection_target_count"] == 6
     assert payload["command_count"] == 3
     assert payload["review_prompt_count"] == 5
+    assert payload["fast_path_comment_url"].endswith("#issuecomment-5293612291")
     assert payload["outcome_badge_snapshot"]["ai_review"] == "0 accepted"
     assert payload["resume_status"] == "review_card_ready_not_claimable"
 
@@ -31,6 +32,7 @@ def test_ai_engineer_reviewer_card_markdown_is_a_low_friction_review_path():
     assert "# AI Engineer Reviewer Card" in markdown
     assert "`app/tool_agent.py`" in markdown
     assert "`app/postgres_adapter.py`" in markdown
+    assert "Fast-path reviewer comment" in markdown
     assert "Submit Public Review" in markdown
     assert "Current accepted reviews | 0" in markdown
     assert "No external AI Engineer review has been accepted yet." in markdown
@@ -44,5 +46,6 @@ def test_generated_ai_engineer_reviewer_card_artifacts_are_current():
     generated_md = (ROOT / "docs" / "ai-engineer-reviewer-card.md").read_text()
 
     assert '"inspection_target_count": 6' in generated_json
+    assert '"fast_path_comment_url": "https://github.com/sunnnn2005/data-quality-agent/issues/26#issuecomment-5293612291"' in generated_json
     assert '"target_metric": "ai_engineer_review_items"' in generated_json
     assert "# AI Engineer Reviewer Card" in generated_md
