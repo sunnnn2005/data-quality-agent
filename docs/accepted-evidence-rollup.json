@@ -253,6 +253,7 @@
       "failure_reasons": [
         "self-authored issue",
         "contains sensitive-data risk terms",
+        "missing no-private-data AI review checkbox",
         "missing AI Engineer review counting permission",
         "missing inspected path or command evidence",
         "missing strongest ai engineer signals evidence",

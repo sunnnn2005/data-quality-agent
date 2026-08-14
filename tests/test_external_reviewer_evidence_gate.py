@@ -89,6 +89,7 @@ It still needs one captured real-model run and a larger labeled eval set.
 
 ## Permission to count publicly
 
+- [x] This issue contains no private business data, secrets, customer names, emails, addresses, or raw production rows.
 - [x] You may count this public issue as external AI Engineer project feedback.
 - [ ] Do not count this issue publicly.
 """

@@ -224,7 +224,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | AI Engineer review intake | 1 |
 | AI Engineer review paths | 6 |
 | AI Engineer review questions | 6 |
-| AI Engineer review countable conditions | 5 |
+| AI Engineer review countable conditions | 6 |
 | Pilot outreach messages | 3 |
 | Pilot review paths | 10 |
 | Pilot program segments | 3 |
@@ -373,7 +373,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Pilot evidence quicklink with 4 short reviewer actions, 17 required evidence fields, 4 target outcome metrics, and zero-count baselines
 - Pilot launch control room with 4 public issue threads, 5 launch gates, 4 target outcome metrics, and 3 reviewer-send paths
 - Resume outcome adjudication report with 5 outcome categories, 0 claimable external categories, 5 blocked categories, and explicit unlock conditions
-- AI Engineer review intake with 6 review paths, 6 reviewer questions, 5 countable-evidence conditions, and zero accepted reviews
+- AI Engineer review intake with 6 review paths, 6 reviewer questions, 6 countable-evidence conditions, and zero accepted reviews
 - 3 pilot outreach messages and 10 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
 - Feedback intake system with 7 required sections, 4 demo paths, 4 outcome signals, and 7 captured evidence groups

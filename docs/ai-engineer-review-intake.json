@@ -1,10 +1,11 @@
 {
-  "countable_condition_count": 5,
+  "countable_condition_count": 6,
   "countable_conditions": [
     "Issue is created by a non-owner reviewer.",
     "Issue uses ai_engineer_review.md or includes equivalent answers.",
     "Reviewer grants permission to count the public issue.",
     "Review includes at least one inspected path or command.",
+    "Reviewer confirms the issue contains no private business data, secrets, or raw production rows.",
     "Review does not include private customer data, secrets, or raw business rows."
   ],
   "current_counts": {
@@ -22,7 +23,7 @@
   "partial_ai_signals": 1,
   "project": "Data Quality Agent",
   "purpose": "Collect public, permissioned reviewer feedback specifically about AI Engineer readiness.",
-  "resume_safe_summary": "Published an AI Engineer review intake path with 6 review paths, 6 reviewer questions, 5 countable-evidence conditions, and an explicit zero-review baseline.",
+  "resume_safe_summary": "Published an AI Engineer review intake path with 6 review paths, 6 reviewer questions, 6 countable-evidence conditions, and an explicit zero-review baseline.",
   "resume_status": "review_intake_ready_not_claimable",
   "review_path_count": 6,
   "review_paths": {
@@ -46,8 +47,10 @@
   "template_checks": {
     "asks_missing_signal": true,
     "asks_strongest_signal": true,
+    "has_no_private_data_checkbox": true,
     "has_not_count_checkbox": true,
     "has_permission_checkbox": true,
+    "mentions_planning_trace": true,
     "mentions_tool_calling": true
   }
 }

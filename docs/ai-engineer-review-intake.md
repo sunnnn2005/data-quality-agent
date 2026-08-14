@@ -30,6 +30,7 @@ Collect public, permissioned reviewer feedback specifically about AI Engineer re
 - Issue uses ai_engineer_review.md or includes equivalent answers.
 - Reviewer grants permission to count the public issue.
 - Review includes at least one inspected path or command.
+- Reviewer confirms the issue contains no private business data, secrets, or raw production rows.
 - Review does not include private customer data, secrets, or raw business rows.
 
 ## Template Checks
@@ -38,9 +39,11 @@ Collect public, permissioned reviewer feedback specifically about AI Engineer re
 | --- | --- |
 | Has Permission Checkbox | True |
 | Has Not Count Checkbox | True |
+| Has No Private Data Checkbox | True |
 | Asks Strongest Signal | True |
 | Asks Missing Signal | True |
 | Mentions Tool Calling | True |
+| Mentions Planning Trace | True |
 
 ## Current Counts
 
@@ -51,7 +54,7 @@ Collect public, permissioned reviewer feedback specifically about AI Engineer re
 
 ## Resume-Safe Summary
 
-Published an AI Engineer review intake path with 6 review paths, 6 reviewer questions, 5 countable-evidence conditions, and an explicit zero-review baseline.
+Published an AI Engineer review intake path with 6 review paths, 6 reviewer questions, 6 countable-evidence conditions, and an explicit zero-review baseline.
 
 ## Not Claimed
 

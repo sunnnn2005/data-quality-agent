@@ -40,6 +40,7 @@ def build_ai_engineer_review_intake() -> dict[str, Any]:
         "Issue uses ai_engineer_review.md or includes equivalent answers.",
         "Reviewer grants permission to count the public issue.",
         "Review includes at least one inspected path or command.",
+        "Reviewer confirms the issue contains no private business data, secrets, or raw production rows.",
         "Review does not include private customer data, secrets, or raw business rows.",
     ]
     return {
@@ -59,9 +60,11 @@ def build_ai_engineer_review_intake() -> dict[str, Any]:
         "template_checks": {
             "has_permission_checkbox": "You may count this public issue" in template_text,
             "has_not_count_checkbox": "Do not count this issue publicly" in template_text,
+            "has_no_private_data_checkbox": "This issue contains no private business data" in template_text,
             "asks_strongest_signal": "What was strongest?" in template_text,
             "asks_missing_signal": "What was not credible enough yet?" in template_text,
             "mentions_tool_calling": "LLM tool calling" in template_text,
+            "mentions_planning_trace": "planning trace" in template_text.lower(),
         },
         "current_counts": {
             "accepted_ai_engineer_reviews": 0,
@@ -70,7 +73,7 @@ def build_ai_engineer_review_intake() -> dict[str, Any]:
         "resume_status": "review_intake_ready_not_claimable",
         "resume_safe_summary": (
             "Published an AI Engineer review intake path with 6 review paths, 6 reviewer questions, "
-            "5 countable-evidence conditions, and an explicit zero-review baseline."
+            "6 countable-evidence conditions, and an explicit zero-review baseline."
         ),
         "not_claimed": [
             "AI Engineer reviewers have not submitted accepted public feedback yet.",
@@ -134,8 +137,8 @@ def verify_ai_engineer_review_intake(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("AI Engineer review intake must expose 6 review paths")
     if payload["review_question_count"] != 6:
         raise AssertionError("AI Engineer review intake must define 6 review questions")
-    if payload["countable_condition_count"] != 5:
-        raise AssertionError("AI Engineer review intake must define 5 countable conditions")
+    if payload["countable_condition_count"] != 6:
+        raise AssertionError("AI Engineer review intake must define 6 countable conditions")
     if not all(payload["template_checks"].values()):
         raise AssertionError("AI Engineer review template is missing required fields")
     if payload["implemented_ai_signals"] != 8:
