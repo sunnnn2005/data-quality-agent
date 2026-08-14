@@ -194,7 +194,7 @@ def test_public_evidence_health_requires_core_public_signals():
     assert conversion["expected_json"]["conversion_row_count"] == 6
     assert conversion["expected_json"]["blocked_outcome_count"] == 6
     assert "one-click-evidence-links.html" in conversion["expected_texts"]
-    assert "outreach attempts alone do not count" in conversion["expected_texts"]
+    assert "Outreach attempts alone do not count" in conversion["expected_texts"]
 
 
 def test_public_evidence_health_verifier_rejects_failed_checks():

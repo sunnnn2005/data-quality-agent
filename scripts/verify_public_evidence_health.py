@@ -402,7 +402,7 @@ PUBLIC_CHECKS = [
             "one-click-evidence-links.html",
             "ai_engineer_review_items",
             "github_stars",
-            "outreach attempts alone do not count",
+            "Outreach attempts alone do not count",
             "zero upgraded outcome claims",
         ],
         "evidence_type": "json",
