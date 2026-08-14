@@ -19,7 +19,7 @@ Public page: [https://sunnnn2005.github.io/data-quality-agent/outcome-proof-page
 | Signal | Resume-Safe Line | Evidence |
 | --- | --- | --- |
 | Public launch | Published a public LLM data-quality agent demo with release v0.3.0 and GHCR container packaging. | [evidence](https://sunnnn2005.github.io/data-quality-agent/) |
-| CI verification | Maintained 235 passing tests covering agent behavior, APIs, evidence gates, and resume-safe metrics. | [evidence](https://github.com/sunnnn2005/data-quality-agent/actions) |
+| CI verification | Maintained 236 passing tests covering agent behavior, APIs, evidence gates, and resume-safe metrics. | [evidence](https://github.com/sunnnn2005/data-quality-agent/actions) |
 | AI Engineer readiness | Documented 8 implemented AI Engineer signals across tool calling, guardrails, structured output, evidence traces, and evaluation. | [evidence](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-readiness.md) |
 | Public discovery traffic | Captured public GitHub interest in the rolling 14-day window: 0 views, 0 unique visitors, 0 clones, and 0 unique cloners without counting them as users. | [evidence](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md) |
 | Public availability | Verified 4/4 public project surfaces and 3/3 main-branch workflows in a generated availability snapshot without claiming production SLA. | [evidence](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-availability-snapshot.md) |

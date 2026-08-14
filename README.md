@@ -66,7 +66,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | First 10 outreach execution log | [`docs/first-10-outreach-execution-log.md`](docs/first-10-outreach-execution-log.md) turns the 10 public reviewer issue entrypoints into 10 copy-ready manual outreach messages with follow-up timing, evidence fields, and zero claimable outcomes |
 | Public release | [`v0.3.0`](docs/releases/v0.3.0.md) release notes and GitHub Release |
 | Container image | `ghcr.io/sunnnn2005/data-quality-agent:latest` published from `main` |
-| Test suite | 235 automated tests passing locally and in GitHub Actions |
+| Test suite | 236 automated tests passing locally and in GitHub Actions |
 | Live project scorecard | [`docs/live-project-scorecard.md`](docs/live-project-scorecard.md) gives reviewers one page for the demo, release, container, CI, claims, agent capabilities, and honest adoption baselines |
 | Launch evidence snapshot | [`docs/launch-evidence-snapshot.md`](docs/launch-evidence-snapshot.md) gives recruiters 5 public project surfaces, availability/workflow health, GitHub stats, AI review path, and blocked adoption claims in one artifact |
 | AI Engineer readiness | [`docs/ai-engineer-readiness.md`](docs/ai-engineer-readiness.md) maps the project to 8 implemented AI skill signals, 1 partial signal, and 1 not-claimed signal for AI Engineer Intern applications |
