@@ -1,4 +1,14 @@
 {
+  "after_send_expected_pipeline_change": {
+    "claimable_resume_metric_count": {
+      "after_recording_one_real_send": 0,
+      "before": 0
+    },
+    "sent_reviewer_messages": {
+      "after_recording_one_real_send": 1,
+      "before": 0
+    }
+  },
   "completion_fields": [
     "reviewer_contact",
     "sent_at",
@@ -9,6 +19,7 @@
   ],
   "copy_ready_follow_up": "Quick follow-up on the Data Quality Agent review request. The public slot is still here: https://github.com/sunnnn2005/data-quality-agent/issues/26. A short observed-result note is enough, and private data should not be included.",
   "copy_ready_message": "Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/26. The ask is: Inspect the LLM tool-calling loop, guardrails, and evidence trail for AI Engineer credibility. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.",
+  "counting_boundary": "Recording a sent outreach event proves distribution execution only. It does not count as an external user, accepted feedback, AI Engineer review, business validation, or GitHub star.",
   "current_count": 0,
   "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md",
   "evidence_gate": "A non-owner public review issue lists inspected paths and grants permission to count.",
@@ -26,6 +37,7 @@
   "public_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/26",
   "purpose": "Give the maintainer one concrete next outreach action that can unlock the first real, public, resume-countable AI Engineer review signal.",
   "recommended_channel": "LinkedIn DM or mentor email",
+  "record_sent_command": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_07 --status sent --reviewer-contact \"<reviewer name or handle>\" --channel-used \"LinkedIn DM or mentor email\" --note \"Sent first AI Engineer reviewer request\"",
   "required_count": 1,
   "required_public_fields": [
     "implementation paths inspected",

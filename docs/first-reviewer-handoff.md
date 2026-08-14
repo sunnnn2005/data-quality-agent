@@ -52,6 +52,23 @@ Quick follow-up on the Data Quality Agent review request. The public slot is sti
 - `permission_sentence_present`
 - `no_private_data_confirmed`
 
+## After You Send
+
+Run this only after the message is sent to a real reviewer:
+
+```bash
+python scripts/record_reviewer_outreach_event.py --slot-id review_slot_07 --status sent --reviewer-contact "<reviewer name or handle>" --channel-used "LinkedIn DM or mentor email" --note "Sent first AI Engineer reviewer request"
+```
+
+Expected pipeline change after recording one real send:
+
+| Metric | Before | After recording one real send |
+| --- | ---: | ---: |
+| Sent reviewer messages | 0 | 1 |
+| Claimable resume metrics | 0 | 0 |
+
+Recording a sent outreach event proves distribution execution only. It does not count as an external user, accepted feedback, AI Engineer review, business validation, or GitHub star.
+
 ## Acceptance Gate
 
 A non-owner public review issue lists inspected paths and grants permission to count.

@@ -6,6 +6,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 SEND_QUEUE_PATH = ROOT / "docs" / "reviewer-send-queue.json"
 ACCEPTANCE_CHECKLIST_PATH = ROOT / "docs" / "evidence-acceptance-checklist.json"
+FIRST_REVIEWER_SEND_KIT_PATH = ROOT / "docs" / "first-reviewer-send-kit.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "first-reviewer-handoff.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "first-reviewer-handoff.md"
 
@@ -17,6 +18,7 @@ def load_json(path: Path) -> dict[str, Any]:
 def build_first_reviewer_handoff() -> dict[str, Any]:
     send_queue = load_json(SEND_QUEUE_PATH)
     checklist = load_json(ACCEPTANCE_CHECKLIST_PATH)
+    first_send_kit = load_json(FIRST_REVIEWER_SEND_KIT_PATH)
     first_send = send_queue["next_sends"][0]
     acceptance_by_metric = {item["metric"]: item for item in checklist["acceptance_items"]}
     acceptance = acceptance_by_metric[first_send["target_metric"]]
@@ -41,6 +43,9 @@ def build_first_reviewer_handoff() -> dict[str, Any]:
         "copy_ready_follow_up": first_send["copy_ready_follow_up"],
         "required_public_fields": acceptance["required_fields"],
         "completion_fields": first_send["completion_fields"],
+        "record_sent_command": first_send_kit["record_sent_command"],
+        "after_send_expected_pipeline_change": first_send_kit["after_send_expected_pipeline_change"],
+        "counting_boundary": first_send_kit["counting_boundary"],
         "evidence_gate": acceptance["evidence_gate"],
         "future_resume_line": acceptance["future_resume_line"],
         "manual_acceptance_rule": checklist["manual_counting_rule"],
@@ -64,6 +69,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
     required_fields = "\n".join(f"- {field}" for field in payload["required_public_fields"])
     completion_fields = "\n".join(f"- `{field}`" for field in payload["completion_fields"])
     not_claimed = "\n".join(f"- {item}" for item in payload["not_claimed"])
+    pipeline_change = payload["after_send_expected_pipeline_change"]
     return f"""# First Reviewer Handoff
 
 This generated handoff picks the single next reviewer ask most likely to unlock an honest AI Engineer resume signal.
@@ -110,6 +116,23 @@ This generated handoff picks the single next reviewer ask most likely to unlock 
 
 {completion_fields}
 
+## After You Send
+
+Run this only after the message is sent to a real reviewer:
+
+```bash
+{payload["record_sent_command"]}
+```
+
+Expected pipeline change after recording one real send:
+
+| Metric | Before | After recording one real send |
+| --- | ---: | ---: |
+| Sent reviewer messages | {pipeline_change["sent_reviewer_messages"]["before"]} | {pipeline_change["sent_reviewer_messages"]["after_recording_one_real_send"]} |
+| Claimable resume metrics | {pipeline_change["claimable_resume_metric_count"]["before"]} | {pipeline_change["claimable_resume_metric_count"]["after_recording_one_real_send"]} |
+
+{payload["counting_boundary"]}
+
 ## Acceptance Gate
 
 {payload["evidence_gate"]}
@@ -149,6 +172,12 @@ def verify_first_reviewer_handoff(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("first reviewer message must keep recipient placeholder")
     if payload["public_issue_url"] not in payload["copy_ready_message"]:
         raise AssertionError("first reviewer message must include the public issue URL")
+    if "--slot-id review_slot_07" not in payload["record_sent_command"]:
+        raise AssertionError("first reviewer handoff must include the real send recorder command")
+    if payload["after_send_expected_pipeline_change"]["sent_reviewer_messages"]["after_recording_one_real_send"] != 1:
+        raise AssertionError("first reviewer handoff must show that a real send changes the outreach pipeline")
+    if payload["after_send_expected_pipeline_change"]["claimable_resume_metric_count"]["after_recording_one_real_send"] != 0:
+        raise AssertionError("first reviewer handoff must not turn sent outreach into a resume claim")
     if len(payload["required_public_fields"]) < 4:
         raise AssertionError("first reviewer handoff must require enough public evidence fields")
     joined = json.dumps(payload, sort_keys=True).lower()
