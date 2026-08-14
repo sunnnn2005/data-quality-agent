@@ -1,5 +1,5 @@
 {
-  "check_count": 86,
+  "check_count": 87,
   "checks": [
     {
       "evidence_type": "html",
@@ -852,6 +852,20 @@
     },
     {
       "evidence_type": "json",
+      "id": "one-click-evidence-links",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/one-click-evidence-links.json",
+      "verified_fields": [
+        "accepted_issue_count",
+        "claimable_resume_metric_count",
+        "link_count",
+        "project",
+        "target_metric_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
       "id": "pilot-outreach-kit",
       "passed": true,
       "status_code": 200,
@@ -971,6 +985,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 86,
+  "passed_count": 87,
   "status": "PASS"
 }
