@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 199,
-      "resume_signal": "199 passing CI tests",
+      "metric_value": 200,
+      "resume_signal": "200 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -849,6 +849,16 @@
       "resume_signal": "CI-verified pilot reviewer CRM",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-reviewer-crm.json"
+    },
+    {
+      "claim": "The project publishes a privacy-safe reviewer lead workflow that defines a gitignored private reviewer-lead CSV, 11 required columns, 6 statuses, 6 target outcome metrics, and conversion rules from private outreach to public, permissioned evidence without claiming private rows as resume outcomes.",
+      "evidence_type": "generated_artifact",
+      "id": "private-reviewer-lead-workflow",
+      "metric_name": "private_reviewer_lead_workflow",
+      "metric_value": 1,
+      "resume_signal": "CI-verified private reviewer lead workflow",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/private-reviewer-lead-workflow.json"
     },
     {
       "claim": "The project publishes a resume claim materializer that converts accepted public evidence into exact resume bullets while preserving zero materialized external outcome bullets until non-owner public evidence passes the gate.",

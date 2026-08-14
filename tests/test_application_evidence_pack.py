@@ -43,8 +43,8 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert "first_10_reviewer_sprint" in payload["application_links"]
     assert "first_10_outreach_execution_log" in payload["application_links"]
     assert len(payload["resume_bullets"]) == 3
-    assert payload["verified_outcome_numbers"]["passing_tests"] == 199
-    assert payload["verified_outcome_numbers"]["verified_resume_claims"] == 89
+    assert payload["verified_outcome_numbers"]["passing_tests"] == 200
+    assert payload["verified_outcome_numbers"]["verified_resume_claims"] == 90
     assert payload["verified_outcome_numbers"]["outcome_collection_actions"] == 5
     assert payload["verified_outcome_numbers"]["outcome_collection_submission_paths"] == 6
     assert payload["verified_outcome_numbers"]["outcome_collection_evidence_fields"] == 24

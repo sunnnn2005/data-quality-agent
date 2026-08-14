@@ -51,7 +51,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "199 passing CI tests",
+            "200 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -109,7 +109,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 199},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 200},
         "evidence_type": "json",
     },
     {
@@ -971,6 +971,25 @@ PUBLIC_CHECKS = [
             "record_reviewer_outreach_event.py",
             "Do not buy, trade, or pressure",
             "No enterprise deployment is claimed",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "private-reviewer-lead-workflow",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/private-reviewer-lead-workflow.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "private_paths_gitignored": True,
+            "required_column_count": 11,
+            "allowed_status_count": 6,
+            "target_metric_count": 6,
+        },
+        "expected_text": "Private lead rows are not public evidence",
+        "expected_texts": [
+            "private_contact_label",
+            "record_reviewer_outreach_event.py",
+            "raw customer data",
+            "gitignored private lead paths",
         ],
         "evidence_type": "json",
     },

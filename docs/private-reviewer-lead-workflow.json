@@ -1,0 +1,57 @@
+{
+  "allowed_status_count": 6,
+  "allowed_statuses": [
+    "not_contacted",
+    "sent",
+    "replied_private",
+    "public_issue_submitted",
+    "accepted_evidence",
+    "declined"
+  ],
+  "conversion_rules": [
+    "Keep real names, emails, phone numbers, and private notes only in the ignored local CSV.",
+    "Record a sent event only after a message is actually sent to a real reviewer.",
+    "Do not count private replies as resume evidence.",
+    "Ask the reviewer to submit a public redacted GitHub issue before any outcome metric can increase.",
+    "Run the external reviewer evidence gate before upgrading any resume claim.",
+    "Never ask for fake stars, traded stars, raw customer data, secrets, or private production rows."
+  ],
+  "example_csv": "lead_id,reviewer_segment,private_contact_label,channel,target_metric,status,next_action_date,public_evidence_url,permission_to_count,no_private_data_confirmed,notes_private\r\nlead_001,AI engineer or ML systems mentor,keep-real-name-private,LinkedIn,ai_engineer_review_items,not_contacted,2026-08-15,,false,false,Store real contact details only in the local ignored file.\r\n",
+  "generated_by": "scripts/build_private_reviewer_lead_workflow.py",
+  "legacy_private_lead_path": "private-reviewer-leads.csv",
+  "not_claimed": [
+    "This workflow does not claim contacted reviewers until real events are recorded.",
+    "This workflow does not claim users, feedback, business validation, AI reviews, or GitHub stars.",
+    "Private lead rows are not public evidence."
+  ],
+  "private_lead_path": "private/reviewer-leads.csv",
+  "private_paths_gitignored": true,
+  "project": "Data Quality Agent",
+  "public_evidence_command_template": "python scripts/record_reviewer_outreach_event.py --slot-id <review_slot_id> --status public_issue_submitted --reviewer-contact \"<public handle>\" --channel-used <channel> --public-evidence-url <github issue url> --permission-to-count --no-private-data-confirmed",
+  "purpose": "Give the project a privacy-safe workflow for tracking real reviewer leads locally while publishing only redacted, permissioned, non-owner evidence after a reviewer submits a public issue.",
+  "record_sent_command_template": "python scripts/record_reviewer_outreach_event.py --slot-id <review_slot_id> --status sent --reviewer-contact \"<private label or public handle>\" --channel-used <channel>",
+  "required_column_count": 11,
+  "required_columns": [
+    "lead_id",
+    "reviewer_segment",
+    "private_contact_label",
+    "channel",
+    "target_metric",
+    "status",
+    "next_action_date",
+    "public_evidence_url",
+    "permission_to_count",
+    "no_private_data_confirmed",
+    "notes_private"
+  ],
+  "resume_safe_summary": "Published a privacy-safe reviewer lead workflow with 11 required private CSV columns, 6 lead statuses, 6 target outcome metrics, gitignored private lead paths, and zero upgraded outcome claims.",
+  "target_metric_count": 6,
+  "target_metrics": [
+    "ai_engineer_review_items",
+    "confirmed_external_users",
+    "external_feedback_items",
+    "reproducible_feedback_items",
+    "business_case_feedback_items",
+    "github_stars"
+  ]
+}
