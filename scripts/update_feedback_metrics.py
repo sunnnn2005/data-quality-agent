@@ -4,11 +4,16 @@ import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from urllib.error import URLError
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
 
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_PATH = ROOT / "docs" / "feedback-metrics.json"
+EXTERNAL_REVIEWER_GATE_PATH = ROOT / "docs" / "external-reviewer-evidence-gate.json"
 REPO = "sunnnn2005/data-quality-agent"
+PUBLIC_ISSUES_API = f"https://api.github.com/repos/{REPO}/issues"
 OWNER_LOGINS = {"sunnnn2005"}
 PLANNING_LABELS = {"pilot", "roadmap"}
 EXTERNAL_EVIDENCE_METRICS = {
@@ -101,8 +106,22 @@ def collect_feedback_metrics() -> dict[str, Any]:
 def _read_count(env_name: str, label: str, metric_name: str | None = None) -> int:
     if env_name in os.environ:
         return int(os.environ[env_name])
+    if metric_name in EXTERNAL_EVIDENCE_METRICS:
+        gate_count = _read_external_gate_count(metric_name)
+        if gate_count is not None:
+            return gate_count
     count = _count_issues_by_label(label, exclude_self_authored_planning=metric_name in EXTERNAL_EVIDENCE_METRICS)
     return 0 if count is None else count
+
+
+def _read_external_gate_count(metric_name: str | None) -> int | None:
+    if not metric_name or not EXTERNAL_REVIEWER_GATE_PATH.exists():
+        return None
+    payload = json.loads(EXTERNAL_REVIEWER_GATE_PATH.read_text())
+    accepted_counts = payload.get("accepted_counts", {})
+    if metric_name in accepted_counts:
+        return int(accepted_counts[metric_name])
+    return None
 
 
 def _count_issues_by_label(label: str, *, exclude_self_authored_planning: bool = False) -> int | None:
@@ -129,8 +148,11 @@ def _count_issues_by_label(label: str, *, exclude_self_authored_planning: bool =
             cwd=ROOT,
         )
     except (FileNotFoundError, subprocess.CalledProcessError):
-        return None
-    payload = json.loads(completed.stdout)
+        payload = _collect_public_issues_by_label(label)
+        if payload is None:
+            return None
+    else:
+        payload = json.loads(completed.stdout)
     if exclude_self_authored_planning:
         payload = [
             issue
@@ -141,6 +163,32 @@ def _count_issues_by_label(label: str, *, exclude_self_authored_planning: bool =
             )
         ]
     return len(payload)
+
+
+def _collect_public_issues_by_label(label: str) -> list[dict[str, Any]] | None:
+    query = urlencode({"state": "all", "labels": label, "per_page": "100"})
+    request = Request(
+        f"{PUBLIC_ISSUES_API}?{query}",
+        headers={
+            "Accept": "application/vnd.github+json",
+            "User-Agent": "data-quality-agent-feedback-metrics",
+            "X-GitHub-Api-Version": "2022-11-28",
+        },
+    )
+    try:
+        with urlopen(request, timeout=15) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+    except (URLError, TimeoutError, json.JSONDecodeError):
+        return None
+    return [_normalize_public_api_issue(issue) for issue in payload if "pull_request" not in issue]
+
+
+def _normalize_public_api_issue(issue: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "number": issue.get("number"),
+        "author": {"login": (issue.get("user") or {}).get("login", "")},
+        "labels": [{"name": label.get("name", "")} for label in issue.get("labels", [])],
+    }
 
 
 def write_feedback_metrics() -> dict[str, Any]:

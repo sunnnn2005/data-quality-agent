@@ -6,6 +6,8 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from urllib.error import URLError
+from urllib.request import Request, urlopen
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,6 +16,8 @@ HISTORY_PATH = ROOT / "docs" / "adoption-history.jsonl"
 FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
 REPO = "sunnnn2005/data-quality-agent"
 CURRENT_RELEASE_TAG = "v0.3.0"
+PUBLIC_REPO_API = f"https://api.github.com/repos/{REPO}"
+PUBLIC_RELEASE_API = f"{PUBLIC_REPO_API}/releases/tags/{CURRENT_RELEASE_TAG}"
 
 
 def _run_gh(args: list[str]) -> dict[str, Any] | None:
@@ -41,6 +45,7 @@ def collect_metrics() -> dict[str, Any]:
             "stargazerCount,forkCount,watchers,issues,url",
         ]
     )
+    repo_payload = repo_payload or _public_repo_payload()
     release_payload = _run_gh(
         [
             "release",
@@ -52,6 +57,7 @@ def collect_metrics() -> dict[str, Any]:
             "tagName,url,publishedAt,isDraft,isPrerelease",
         ]
     )
+    release_payload = release_payload or _public_release_payload()
 
     metrics = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -99,6 +105,48 @@ def _read_nested_int(payload: dict[str, Any] | None, keys: list[str], env_name: 
     for key in keys:
         value = value.get(key, {}) if isinstance(value, dict) else {}
     return int(value or 0)
+
+
+def _public_repo_payload() -> dict[str, Any] | None:
+    payload = _github_api_get(PUBLIC_REPO_API)
+    if payload is None:
+        return None
+    return {
+        "stargazerCount": payload.get("stargazers_count", 0),
+        "forkCount": payload.get("forks_count", 0),
+        "watchers": {"totalCount": payload.get("subscribers_count", payload.get("watchers_count", 0))},
+        "issues": {"totalCount": payload.get("open_issues_count", 0)},
+        "url": payload.get("html_url", f"https://github.com/{REPO}"),
+    }
+
+
+def _public_release_payload() -> dict[str, Any] | None:
+    payload = _github_api_get(PUBLIC_RELEASE_API)
+    if payload is None:
+        return None
+    return {
+        "tagName": payload.get("tag_name", CURRENT_RELEASE_TAG),
+        "url": payload.get("html_url", f"https://github.com/{REPO}/releases/tag/{CURRENT_RELEASE_TAG}"),
+        "publishedAt": payload.get("published_at"),
+        "isDraft": bool(payload.get("draft", False)),
+        "isPrerelease": bool(payload.get("prerelease", False)),
+    }
+
+
+def _github_api_get(url: str) -> dict[str, Any] | None:
+    request = Request(
+        url,
+        headers={
+            "Accept": "application/vnd.github+json",
+            "User-Agent": "data-quality-agent-adoption-metrics",
+            "X-GitHub-Api-Version": "2022-11-28",
+        },
+    )
+    try:
+        with urlopen(request, timeout=15) as response:
+            return json.loads(response.read().decode("utf-8"))
+    except (URLError, TimeoutError, json.JSONDecodeError):
+        return None
 
 
 def _load_feedback_metrics() -> dict[str, Any]:
