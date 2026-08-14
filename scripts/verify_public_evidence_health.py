@@ -1005,7 +1005,7 @@ PUBLIC_CHECKS = [
         },
         "expected_text": "Private lead rows are not public evidence",
         "expected_texts": [
-            "private reviewer names",
+            "Private reviewer names",
             "sensitive_columns_excluded",
             "validation_error_count",
             "zero resume outcome upgrades",
@@ -1168,7 +1168,7 @@ def _verify_check(check: dict[str, Any]) -> dict[str, Any]:
         "passed": status_code == 200,
     }
 
-    if status_code != 202:
+    if status_code != 200:
         result["error"] = f"expected 200, got {status_code}"
         return result
 

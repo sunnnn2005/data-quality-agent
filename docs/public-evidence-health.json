@@ -1,5 +1,5 @@
 {
-  "check_count": 83,
+  "check_count": 84,
   "checks": [
     {
       "evidence_type": "html",
@@ -810,6 +810,20 @@
     },
     {
       "evidence_type": "json",
+      "id": "private-reviewer-lead-summary",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/private-reviewer-lead-summary.json",
+      "verified_fields": [
+        "accepted_ready_count",
+        "private_source_path",
+        "project",
+        "public_evidence_url_count",
+        "resume_outcome_upgraded"
+      ]
+    },
+    {
+      "evidence_type": "json",
       "id": "pilot-outreach-kit",
       "passed": true,
       "status_code": 200,
@@ -929,6 +943,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 83,
+  "passed_count": 84,
   "status": "PASS"
 }
