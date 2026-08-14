@@ -83,8 +83,8 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Business Resolution Review External Feedback | 0 |
 | Public Traction Surfaces | 4 |
 | Public Traction Growth Channels | 19 |
-| Feedback Intake Required Sections | 5 |
-| Feedback Intake Captured Fields | 5 |
+| Feedback Intake Required Sections | 7 |
+| Feedback Intake Captured Fields | 7 |
 | Business Data Replay Paths | 3 |
 | Business Data Replay Evidence Fields | 8 |
 | Business Replay Demo Rows | 8 |

@@ -7,15 +7,18 @@ This generated artifact verifies that the public feedback template collects usef
 | Field | Captured |
 | --- | --- |
 | Review Path | True |
-| Positive Signal | True |
-| Confusion Or Gap | True |
+| Command Or Url Evidence | True |
+| Observed Result | True |
+| Main Feedback | True |
 | Environment | True |
 | Outcome Labels | True |
+| Permission To Count | True |
 
 ## Tracking Labels
 
 | Metric | Label |
 | --- | --- |
+| ai_engineer_review_items | `ai-engineer-review` |
 | bug_feedback_items | `bug` |
 | business_case_feedback_items | `business-case` |
 | confirmed_external_users | `confirmed-user` |
@@ -35,7 +38,7 @@ This generated artifact verifies that the public feedback template collects usef
 
 ## Resume-Safe Summary
 
-Added a CI-verified feedback intake system that collects reviewer path, environment, reproducibility outcome, bug/feature signals, and real-workflow usefulness without claiming external users or customer feedback.
+Added a CI-verified feedback intake system that collects reviewer path, command or URL evidence, observed result, environment, reproducibility outcome, bug/feature signals, and explicit permission to count public feedback without claiming external users or customer feedback.
 
 ## Not Claimed
 

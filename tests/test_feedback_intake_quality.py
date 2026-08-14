@@ -11,11 +11,14 @@ def test_feedback_intake_quality_verifies_public_feedback_template_without_usage
     markdown = render_markdown(payload)
 
     assert verification["feedback_intake_quality_verified"] is True
-    assert payload["required_section_count"] == 5
-    assert payload["required_try_path_count"] == 5
+    assert payload["required_section_count"] == 7
+    assert payload["required_try_path_count"] == 4
     assert payload["required_outcome_count"] == 4
-    assert payload["captured_field_count"] == 5
+    assert payload["captured_field_count"] == 7
     assert payload["captured_fields"]["review_path"] is True
+    assert payload["captured_fields"]["command_or_url_evidence"] is True
+    assert payload["captured_fields"]["observed_result"] is True
+    assert payload["captured_fields"]["permission_to_count"] is True
     assert payload["captured_fields"]["environment"] is True
     assert payload["current_public_counts"]["external_feedback_items"] == 0
     assert payload["current_public_counts"]["confirmed_external_users"] == 0

@@ -8,25 +8,33 @@ assignees: ""
 
 ## What did you try?
 
-- [ ] Public demo page
-- [ ] Support-ticket case study
-- [ ] CSV upload endpoint
-- [ ] PostgreSQL Docker Compose demo
-- [ ] LLM tool-calling route
+- [ ] Public demo review
+- [ ] GHCR container smoke run
+- [ ] Docker Compose PostgreSQL replay
+- [ ] I reviewed the docs but did not run it
 
-## What worked well?
+## Commands or URLs used
 
-What felt clear, useful, or realistic?
+Paste only safe commands, public URLs, endpoint paths, or screenshots with private data removed.
 
-## What was confusing or missing?
+```bash
+# Example: curl http://localhost:8000/datasets/support_tickets/report
+```
 
-Where did the project fail to explain the data-quality workflow?
+## Observed result
+
+- Page or endpoint opened:
+- Report or finding inspected:
+- Result/status observed:
+
+## Main feedback
+
+What worked, what was confusing, what failed, or what would make this more useful?
 
 ## Your environment
 
 - OS:
 - Python version:
-- Command or URL used:
 
 ## Outcome
 
@@ -34,3 +42,10 @@ Where did the project fail to explain the data-quality workflow?
 - [ ] I found a bug.
 - [ ] I have a feature request.
 - [ ] I would use this pattern in a real data workflow.
+
+## Permission to count publicly
+
+- [ ] This issue contains no private business data, secrets, customer names, emails, addresses, or raw production rows.
+- [ ] This can be counted as public external run evidence.
+- [ ] This can be counted as external feedback.
+- [ ] Do not quote my name, organization, or private context.

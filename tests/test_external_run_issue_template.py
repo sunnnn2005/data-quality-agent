@@ -3,10 +3,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATE = ROOT / ".github" / "ISSUE_TEMPLATE" / "external_run_review.md"
+DEMO_FEEDBACK_TEMPLATE = ROOT / ".github" / "ISSUE_TEMPLATE" / "demo_feedback.md"
 
 
 def test_external_run_issue_template_collects_countable_public_evidence():
     text = TEMPLATE.read_text()
+    demo_text = DEMO_FEEDBACK_TEMPLATE.read_text()
 
     assert "name: External run review" in text
     assert "labels: feedback,pilot,reproducible" in text
@@ -22,3 +24,16 @@ def test_external_run_issue_template_collects_countable_public_evidence():
     assert "This can be counted as external feedback." in text
     assert "This can be counted as a reproducible local replay" in text
     assert "private business data, secrets, customer names, emails, addresses, or raw production rows" in text
+    assert "name: Demo feedback" in demo_text
+    assert "labels: feedback" in demo_text
+    assert "Public demo review" in demo_text
+    assert "GHCR container smoke run" in demo_text
+    assert "Docker Compose PostgreSQL replay" in demo_text
+    assert "I reviewed the docs but did not run it" in demo_text
+    assert "## Commands or URLs used" in demo_text
+    assert "## Observed result" in demo_text
+    assert "## Main feedback" in demo_text
+    assert "## Permission to count publicly" in demo_text
+    assert "This can be counted as public external run evidence." in demo_text
+    assert "This can be counted as external feedback." in demo_text
+    assert "private business data, secrets, customer names, emails, addresses, or raw production rows" in demo_text

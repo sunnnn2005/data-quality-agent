@@ -255,10 +255,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Reviewer feedback evidence questions | 6 |
 | Reviewer feedback conversion paths | 5 |
 | Feedback intake quality | 1 |
-| Feedback intake required sections | 5 |
-| Feedback intake demo paths | 5 |
+| Feedback intake required sections | 7 |
+| Feedback intake demo paths | 4 |
 | Feedback intake outcome signals | 4 |
-| Feedback intake captured evidence groups | 5 |
+| Feedback intake captured evidence groups | 7 |
 | Star growth kit | 1 |
 | Star growth required topics | 20 |
 | Star growth ethical actions | 4 |
@@ -371,7 +371,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - AI Engineer review intake with 6 review paths, 6 reviewer questions, 5 countable-evidence conditions, and zero accepted reviews
 - 3 pilot outreach messages and 10 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
-- Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups
+- Feedback intake system with 7 required sections, 4 demo paths, 4 outcome signals, and 7 captured evidence groups
 - Star growth kit with 20 verified repo topics, 4 ethical growth actions, and 4 resume upgrade rules with traffic context without inflating current stars
 - Business-case intake path with 8 required sections, 5 tried paths, 8 outcome signals, and 8 captured evidence groups including 9 resume outcome fields
 - Business-data replay packet with 3 safe replay paths, 8 evidence fields, 5 safety requirements, and zero current external replay claims

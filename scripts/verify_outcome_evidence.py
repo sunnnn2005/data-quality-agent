@@ -1777,10 +1777,10 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("feedback intake quality claim must use metric_value=1")
                 expected = {
-                    "required_section_count": 5,
-                    "required_try_path_count": 5,
+                    "required_section_count": 7,
+                    "required_try_path_count": 4,
                     "required_outcome_count": 4,
-                    "captured_field_count": 5,
+                    "captured_field_count": 7,
                 }
                 for key, value in expected.items():
                     if feedback_intake.get(key) != value:
@@ -1791,7 +1791,15 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("feedback intake must preserve zero external feedback baseline")
                 if feedback_intake.get("current_public_counts", {}).get("confirmed_external_users") != 0:
                     raise AssertionError("feedback intake must preserve zero confirmed-user baseline")
-                for required in ("Public demo page", "CSV upload endpoint", "LLM tool-calling route", "Command or URL used:"):
+                for required in (
+                    "Public demo review",
+                    "GHCR container smoke run",
+                    "Docker Compose PostgreSQL replay",
+                    "Commands or URLs used",
+                    "Observed result",
+                    "Permission to count publicly",
+                    "This can be counted as public external run evidence.",
+                ):
                     if required not in template_text:
                         raise AssertionError(f"feedback template missing required prompt: {required}")
                 if "verify_feedback_intake_quality" not in intake_script:

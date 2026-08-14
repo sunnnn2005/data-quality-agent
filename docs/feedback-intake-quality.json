@@ -1,10 +1,12 @@
 {
-  "captured_field_count": 5,
+  "captured_field_count": 7,
   "captured_fields": {
-    "confusion_or_gap": true,
+    "command_or_url_evidence": true,
     "environment": true,
+    "main_feedback": true,
+    "observed_result": true,
     "outcome_labels": true,
-    "positive_signal": true,
+    "permission_to_count": true,
     "review_path": true
   },
   "current_public_counts": {
@@ -24,11 +26,12 @@
   ],
   "project": "Data Quality Agent",
   "required_outcome_count": 4,
-  "required_section_count": 5,
-  "required_try_path_count": 5,
-  "resume_safe_summary": "Added a CI-verified feedback intake system that collects reviewer path, environment, reproducibility outcome, bug/feature signals, and real-workflow usefulness without claiming external users or customer feedback.",
+  "required_section_count": 7,
+  "required_try_path_count": 4,
+  "resume_safe_summary": "Added a CI-verified feedback intake system that collects reviewer path, command or URL evidence, observed result, environment, reproducibility outcome, bug/feature signals, and explicit permission to count public feedback without claiming external users or customer feedback.",
   "template_path": ".github/ISSUE_TEMPLATE/demo_feedback.md",
   "tracking_labels": {
+    "ai_engineer_review_items": "ai-engineer-review",
     "bug_feedback_items": "bug",
     "business_case_feedback_items": "business-case",
     "confirmed_external_users": "confirmed-user",

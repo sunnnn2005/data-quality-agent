@@ -11,18 +11,19 @@ OUTPUT_MD_PATH = ROOT / "docs" / "feedback-intake-quality.md"
 
 
 REQUIRED_TRY_PATHS = [
-    "Public demo page",
-    "Support-ticket case study",
-    "CSV upload endpoint",
-    "PostgreSQL Docker Compose demo",
-    "LLM tool-calling route",
+    "Public demo review",
+    "GHCR container smoke run",
+    "Docker Compose PostgreSQL replay",
+    "I reviewed the docs but did not run it",
 ]
 REQUIRED_SECTIONS = [
     "What did you try?",
-    "What worked well?",
-    "What was confusing or missing?",
+    "Commands or URLs used",
+    "Observed result",
+    "Main feedback",
     "Your environment",
     "Outcome",
+    "Permission to count publicly",
 ]
 REQUIRED_OUTCOMES = [
     "I could reproduce the verified support-ticket result.",
@@ -41,10 +42,19 @@ def build_feedback_intake_quality_payload() -> dict[str, Any]:
     metrics = load_json(FEEDBACK_METRICS_PATH)
     captured_fields = {
         "review_path": all(item in template for item in REQUIRED_TRY_PATHS),
-        "positive_signal": "What worked well?" in template,
-        "confusion_or_gap": "What was confusing or missing?" in template,
-        "environment": all(item in template for item in ("OS:", "Python version:", "Command or URL used:")),
+        "command_or_url_evidence": "## Commands or URLs used" in template,
+        "observed_result": "## Observed result" in template,
+        "main_feedback": "## Main feedback" in template,
+        "environment": all(item in template for item in ("OS:", "Python version:")),
         "outcome_labels": all(item in template for item in REQUIRED_OUTCOMES),
+        "permission_to_count": all(
+            item in template
+            for item in (
+                "This issue contains no private business data, secrets, customer names, emails, addresses, or raw production rows.",
+                "This can be counted as public external run evidence.",
+                "This can be counted as external feedback.",
+            )
+        ),
     }
     return {
         "project": "Data Quality Agent",
@@ -65,9 +75,9 @@ def build_feedback_intake_quality_payload() -> dict[str, Any]:
             "feature_feedback_items": metrics["feature_feedback_items"],
         },
         "resume_safe_summary": (
-            "Added a CI-verified feedback intake system that collects reviewer path, environment, "
-            "reproducibility outcome, bug/feature signals, and real-workflow usefulness without "
-            "claiming external users or customer feedback."
+            "Added a CI-verified feedback intake system that collects reviewer path, command or URL evidence, "
+            "observed result, environment, reproducibility outcome, bug/feature signals, and explicit permission "
+            "to count public feedback without claiming external users or customer feedback."
         ),
         "not_claimed": [
             "external users",
@@ -119,10 +129,10 @@ This generated artifact verifies that the public feedback template collects usef
 
 def verify_feedback_intake_quality(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
-        "required_section_count": 5,
-        "required_try_path_count": 5,
+        "required_section_count": 7,
+        "required_try_path_count": 4,
         "required_outcome_count": 4,
-        "captured_field_count": 5,
+        "captured_field_count": 7,
     }
     for key, value in expected.items():
         if payload.get(key) != value:

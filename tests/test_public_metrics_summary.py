@@ -243,10 +243,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["reviewer_funnel_open_gaps"] == 4
     assert payload["verified_project_outcomes"]["reviewer_funnel_remaining_evidence_items"] == 7
     assert payload["verified_project_outcomes"]["feedback_intake_quality"] == 1
-    assert payload["verified_project_outcomes"]["feedback_intake_required_sections"] == 5
-    assert payload["verified_project_outcomes"]["feedback_intake_try_paths"] == 5
+    assert payload["verified_project_outcomes"]["feedback_intake_required_sections"] == 7
+    assert payload["verified_project_outcomes"]["feedback_intake_try_paths"] == 4
     assert payload["verified_project_outcomes"]["feedback_intake_outcomes"] == 4
-    assert payload["verified_project_outcomes"]["feedback_intake_captured_fields"] == 5
+    assert payload["verified_project_outcomes"]["feedback_intake_captured_fields"] == 7
     assert payload["verified_project_outcomes"]["star_growth_kit"] == 1
     assert payload["verified_project_outcomes"]["star_growth_required_topics"] == 20
     assert payload["verified_project_outcomes"]["star_growth_ethical_actions"] == 4
@@ -412,7 +412,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     )
     assert "3 pilot participant segments across a 3-week feedback plan" in payload["resume_safe_signals"]
     assert (
-        "Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups"
+        "Feedback intake system with 7 required sections, 4 demo paths, 4 outcome signals, and 7 captured evidence groups"
         in payload["resume_safe_signals"]
     )
     assert (
