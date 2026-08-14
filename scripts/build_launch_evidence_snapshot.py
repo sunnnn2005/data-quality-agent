@@ -201,7 +201,7 @@ def verify_launch_evidence_snapshot(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("successful workflow count cannot exceed workflow count")
     if payload["public_availability"]["workflow_count"] != 3:
         raise AssertionError("launch evidence snapshot must reflect the three tracked workflows")
-    if payload["application_pack"]["passing_tests"] != 218:
+    if payload["application_pack"]["passing_tests"] != 221:
         raise AssertionError("launch evidence snapshot must reflect the current passing test count")
     if payload["public_github_stats"]["stars"] != 0:
         raise AssertionError("launch evidence snapshot must preserve the current zero-star baseline")

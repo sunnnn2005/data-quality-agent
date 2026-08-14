@@ -122,7 +122,7 @@ def render_html(payload: dict[str, Any]) -> str:
     :root {{
       color-scheme: dark;
       --bg: #0b0f14;
-      --panel: #121821;
+      --panel: #122121;
       --panel-2: #182131;
       --text: #f6f8fb;
       --muted: #a9b5c9;
@@ -237,7 +237,7 @@ def verify_outcome_collection_payload(payload: dict[str, Any]) -> dict[str, Any]
         "confirmed_external_users": 0,
         "external_feedback_items": 0,
         "github_stars": 0,
-            "passing_tests": 218,
+            "passing_tests": 221,
     }
     if payload["tracked_action_count"] != expected["tracked_action_count"]:
         raise AssertionError("outcome collection page must expose five next actions")
