@@ -1,5 +1,5 @@
 {
-  "check_count": 101,
+  "check_count": 102,
   "checks": [
     {
       "evidence_type": "html",
@@ -144,8 +144,16 @@
         "evidence_gate_count",
         "pilot_scope_count",
         "pilot_status",
-        "project"
+        "project",
+        "public_issue_status"
       ]
+    },
+    {
+      "evidence_type": "html",
+      "id": "business-pilot-offer-issue",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/31"
     },
     {
       "evidence_type": "json",
@@ -1135,6 +1143,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 101,
+  "passed_count": 102,
   "status": "PASS"
 }
