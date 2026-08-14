@@ -575,7 +575,7 @@ PUBLIC_CHECKS = [
     {
         "id": "feedback-intake-quality",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/feedback-intake-quality.json",
-        "expected_json": {"project": "Data Quality Agent", "required_section_count": 5, "captured_field_count": 5},
+        "expected_json": {"project": "Data Quality Agent", "required_section_count": 7, "captured_field_count": 7},
         "expected_text": "CI-verified feedback intake system",
         "expected_texts": ["external users", "survey responses"],
         "evidence_type": "json",
