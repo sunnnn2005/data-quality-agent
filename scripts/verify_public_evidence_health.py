@@ -1,6 +1,7 @@
 import json
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -968,13 +969,27 @@ def _cache_busted_url(url: str, commit: str) -> str:
 def _fetch(url: str, commit: str | None = None) -> tuple[int, str]:
     request_url = _cache_busted_url(url, commit or _current_commit())
     request = urllib.request.Request(request_url, headers={"User-Agent": "data-quality-agent-public-health/1.0"})
-    try:
-        with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:
-            body = response.read().decode("utf-8", errors="replace")
-            return int(response.status), body
-    except urllib.error.HTTPError as exc:
-        body = exc.read().decode("utf-8", errors="replace")
-        return int(exc.code), body
+    last_status = 0
+    last_body = ""
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:
+                body = response.read().decode("utf-8", errors="replace")
+                return int(response.status), body
+        except urllib.error.HTTPError as exc:
+            body = exc.read().decode("utf-8", errors="replace")
+            status = int(exc.code)
+            last_status = status
+            last_body = body
+            if status not in {429, 500, 502, 503, 504} or attempt == 2:
+                return status, body
+        except urllib.error.URLError as exc:
+            last_status = 0
+            last_body = str(exc)
+            if attempt == 2:
+                return last_status, last_body
+        time.sleep(1 + attempt)
+    return last_status, last_body
 
 
 def _verify_check(check: dict[str, Any]) -> dict[str, Any]:

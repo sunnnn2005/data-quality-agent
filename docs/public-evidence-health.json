@@ -1,5 +1,5 @@
 {
-  "check_count": 73,
+  "check_count": 75,
   "checks": [
     {
       "evidence_type": "html",
@@ -345,6 +345,23 @@
       "verified_fields": [
         "project"
       ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "business-resolution-review-request",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-resolution-review-request.json",
+      "verified_fields": [
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "html",
+      "id": "business-resolution-review-issue",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/30"
     },
     {
       "evidence_type": "json",
@@ -811,6 +828,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 73,
+  "passed_count": 75,
   "status": "PASS"
 }
