@@ -1,5 +1,5 @@
 {
-  "check_count": 92,
+  "check_count": 93,
   "checks": [
     {
       "evidence_type": "html",
@@ -97,6 +97,17 @@
         "claimable_card_count",
         "project",
         "reviewer_action_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "llm-agent-checklist-verdict",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/llm-agent-checklist-verdict.json",
+      "verified_fields": [
+        "project",
+        "status_counts"
       ]
     },
     {
@@ -1045,6 +1056,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 92,
+  "passed_count": 93,
   "status": "PASS"
 }
