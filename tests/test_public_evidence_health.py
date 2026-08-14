@@ -79,6 +79,8 @@ def test_public_evidence_health_requires_core_public_signals():
         "public-outcome-intake-dashboard-page",
         "first-outcome-evidence-request",
         "first-outcome-evidence-request-page",
+        "first-external-proof-action-sheet",
+        "first-external-proof-action-sheet-page",
         "reviewer-send-queue",
         "outcome-launch-day-tracker",
         "external-evidence-triage-board",
@@ -176,6 +178,20 @@ def test_public_evidence_health_requires_core_public_signals():
     assert first_outcome_request_page["url"].endswith("/first-outcome-evidence-request.html")
     assert "Submit public review" in first_outcome_request_page["expected_texts"]
     assert "Locked Resume Line" in first_outcome_request_page["expected_texts"]
+    first_proof_sheet = next(check for check in PUBLIC_CHECKS if check["id"] == "first-external-proof-action-sheet")
+    assert first_proof_sheet["url"].endswith("/first-external-proof-action-sheet.json")
+    assert first_proof_sheet["expected_json"]["primary_target_metric"] == "ai_engineer_review_items"
+    assert first_proof_sheet["expected_json"]["current_accepted_external_evidence"] == 0
+    assert first_proof_sheet["expected_json"]["current_github_stars"] == 0
+    assert first_proof_sheet["expected_json"]["reviewer_target_count"] == 3
+    assert first_proof_sheet["expected_json"]["required_success_field_count"] == 6
+    assert "record_reviewer_outreach_event.py" in first_proof_sheet["expected_texts"]
+    first_proof_sheet_page = next(
+        check for check in PUBLIC_CHECKS if check["id"] == "first-external-proof-action-sheet-page"
+    )
+    assert first_proof_sheet_page["url"].endswith("/first-external-proof-action-sheet.html")
+    assert "Today Execution Order" in first_proof_sheet_page["expected_texts"]
+    assert "Locked Resume Line" in first_proof_sheet_page["expected_texts"]
     launch_day = next(check for check in PUBLIC_CHECKS if check["id"] == "outcome-launch-day-tracker")
     assert launch_day["url"].endswith("/outcome-launch-day-tracker.json")
     assert launch_day["expected_json"]["baseline"]["planned_send_count"] == 5

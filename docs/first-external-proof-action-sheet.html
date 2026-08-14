@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>First External Proof Action Sheet</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0b1020; --panel: #131b2d; --line: #2a3954; --text: #f8fafc; --muted: #aab6ca; --green: #4ade80; --cyan: #67e8f9; --pink: #fb2f78; --amber: #fbbf24; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: linear-gradient(135deg, #0b1020 0%, #111827 100%); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    main { width: min(1120px, calc(100% - 36px)); margin: 0 auto; padding: 48px 0 72px; }
+    h1 { margin: 0 0 12px; font-size: clamp(42px, 7vw, 76px); line-height: .95; letter-spacing: 0; }
+    h2 { margin: 0 0 12px; font-size: 23px; letter-spacing: 0; }
+    h3 { margin: 16px 0 8px; }
+    p, li { color: var(--muted); line-height: 1.55; }
+    .lede { max-width: 820px; font-size: 19px; }
+    .stats, .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 28px 0; }
+    .stat, article, section { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
+    .stat strong { display: block; font-size: 34px; }
+    article span { color: var(--green); font-weight: 800; text-transform: uppercase; font-size: 13px; }
+    a { display: inline-block; margin: 6px 8px 0 0; color: #06111f; background: var(--cyan); border-radius: 6px; padding: 9px 12px; text-decoration: none; font-weight: 800; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #080d18; border: 1px solid var(--line); border-radius: 6px; padding: 14px; color: var(--text); }
+    .locked { color: var(--amber); font-weight: 800; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>First External Proof Action Sheet</h1>
+  <p class="lede">Turn the first resume-outcome goal into a single action sheet for getting one real, public, non-owner evidence item without inflating users, feedback, stars, or business impact.</p>
+  <div class="stats">
+    <div class="stat"><strong>0</strong><span>accepted external evidence</span></div>
+    <div class="stat"><strong>0</strong><span>GitHub stars</span></div>
+    <div class="stat"><strong>0</strong><span>confirmed external users</span></div>
+    <div class="stat"><strong>3</strong><span>reviewer targets</span></div>
+  </div>
+  <section>
+    <h2>Today Execution Order</h2>
+    <ol><li>Send rank 1 AI Engineer review request to one real reviewer.</li><li>Record only the sent outreach event after sending it.</li><li>If no response after two days, send the follow-up from first-outcome-evidence-request.md.</li><li>Do not update resume outcome metrics until the public issue passes the evidence gate.</li></ol>
+  </section>
+  <div class="cards">
+        <article>
+          <span>Rank 1</span>
+          <h2>ai_engineer_review_items</h2>
+          <p>AI/ML engineer, mentor, or advanced CS/data science peer</p>
+          <p>This unlocks the strongest AI Engineer Intern resume signal if the issue passes the gate.</p>
+          <a href="https://sunnnn2005.github.io/data-quality-agent/first-outcome-evidence-request.html">Start</a>
+          <a href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md">Submit evidence</a>
+        </article>
+        
+        <article>
+          <span>Rank 2</span>
+          <h2>external_feedback_items</h2>
+          <p>Classmate or student developer who can open the public demo</p>
+          <p>This is the fastest path to one concrete external feedback item.</p>
+          <a href="https://sunnnn2005.github.io/data-quality-agent/two-minute-review-card.html">Start</a>
+          <a href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md">Submit evidence</a>
+        </article>
+        
+        <article>
+          <span>Rank 3</span>
+          <h2>reproducible_feedback_items</h2>
+          <p>Developer comfortable with Docker or local API testing</p>
+          <p>This can prove the project is runnable outside the owner machine.</p>
+          <a href="https://github.com/sunnnn2005/data-quality-agent">Start</a>
+          <a href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md">Submit evidence</a>
+        </article>
+        </div>
+  
+        <section>
+          <h2>Rank 1 Message</h2>
+          <pre>Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/26. The ask is: Inspect the LLM tool-calling loop, guardrails, and evidence trail for AI Engineer credibility. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it. Shortest path if you do not want to read every doc: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html.</pre>
+          <h3>Record after sending</h3>
+          <pre>python scripts/record_reviewer_outreach_event.py --slot-id review_slot_07 --status sent --reviewer-contact &quot;&lt;reviewer name or handle&gt;&quot; --channel-used &quot;LinkedIn DM or mentor email&quot; --note &quot;Sent first AI Engineer reviewer request&quot;</pre>
+        </section>
+        
+        <section>
+          <h2>Rank 2 Message</h2>
+          <pre>Could you spend 2 minutes reviewing my Data Quality Agent demo? Open this card, inspect one result, and leave one concrete public note if you are comfortable: https://sunnnn2005.github.io/data-quality-agent/two-minute-review-card.html</pre>
+          <h3>Record after sending</h3>
+          <pre>python scripts/record_reviewer_outreach_event.py --slot-id review_slot_01 --status sent --reviewer-contact &quot;&lt;reviewer name or handle&gt;&quot; --channel-used &quot;class Discord, LinkedIn DM, or text&quot; --note &quot;Sent two-minute demo feedback request&quot;</pre>
+        </section>
+        
+        <section>
+          <h2>Rank 3 Message</h2>
+          <pre>Could you try a reproducible run of my Data Quality Agent and leave public redacted evidence only if it works for you? Start here: https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html</pre>
+          <h3>Record after sending</h3>
+          <pre>python scripts/record_reviewer_outreach_event.py --slot-id review_slot_03 --status sent --reviewer-contact &quot;&lt;reviewer name or handle&gt;&quot; --channel-used &quot;GitHub, Discord, or LinkedIn DM&quot; --note &quot;Sent reproducible local replay request&quot;</pre>
+        </section>
+        
+  <section>
+    <h2>Required Success Fields</h2>
+    <ul><li>reviewer is not the repository owner</li><li>public GitHub issue URL exists</li><li>issue includes explicit permission to count</li><li>issue confirms no private data was posted</li><li>issue has one concrete observed result</li><li>external reviewer evidence gate accepts it</li></ul>
+  </section>
+  <section>
+    <h2>Locked Resume Line</h2>
+    <p class="locked">Locked until the external reviewer evidence gate passes.</p>
+    <pre>Received external AI Engineer review of the tool-calling loop, guardrails, structured output, and evidence trail.</pre>
+  </section>
+  <section>
+    <h2>Counting Boundary</h2>
+    <p>This action sheet and any sent message are distribution evidence only. Resume outcome metrics stay at zero until a non-owner public GitHub issue passes the external reviewer evidence gate.</p>
+    <h2>Not Claimed</h2>
+    <ul><li>No external feedback is claimed by this action sheet.</li><li>No confirmed user is claimed by this action sheet.</li><li>No business impact is claimed by this action sheet.</li><li>No GitHub star growth is claimed by this action sheet.</li><li>No AI Engineer review is claimed until a non-owner issue passes the gate.</li></ul>
+  </section>
+</main>
+</body>
+</html>

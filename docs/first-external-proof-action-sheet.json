@@ -1,0 +1,72 @@
+{
+  "counting_boundary": "This action sheet and any sent message are distribution evidence only. Resume outcome metrics stay at zero until a non-owner public GitHub issue passes the external reviewer evidence gate.",
+  "current_accepted_external_evidence": 0,
+  "current_confirmed_external_users": 0,
+  "current_github_stars": 0,
+  "generated_by": "scripts/build_first_external_proof_action_sheet.py",
+  "not_claimed": [
+    "No external feedback is claimed by this action sheet.",
+    "No confirmed user is claimed by this action sheet.",
+    "No business impact is claimed by this action sheet.",
+    "No GitHub star growth is claimed by this action sheet.",
+    "No AI Engineer review is claimed until a non-owner issue passes the gate."
+  ],
+  "primary_target_metric": "ai_engineer_review_items",
+  "priority_outcome": "first accepted external evidence item",
+  "project": "Data Quality Agent",
+  "public_url": "https://sunnnn2005.github.io/data-quality-agent/first-external-proof-action-sheet.html",
+  "purpose": "Turn the first resume-outcome goal into a single action sheet for getting one real, public, non-owner evidence item without inflating users, feedback, stars, or business impact.",
+  "required_success_field_count": 6,
+  "required_success_fields": [
+    "reviewer is not the repository owner",
+    "public GitHub issue URL exists",
+    "issue includes explicit permission to count",
+    "issue confirms no private data was posted",
+    "issue has one concrete observed result",
+    "external reviewer evidence gate accepts it"
+  ],
+  "resume_safe_summary": "Published a first external proof action sheet with 3 prioritized reviewer targets, 3 copy-ready asks, 6 required success fields, recorder commands, and zero upgraded resume outcomes.",
+  "resume_unlock_after_acceptance": "Received external AI Engineer review of the tool-calling loop, guardrails, structured output, and evidence trail.",
+  "reviewer_target_count": 3,
+  "reviewer_targets": [
+    {
+      "acceptance_gate": "A non-owner public review issue lists inspected paths and grants permission to count.",
+      "copy_ready_message": "Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/26. The ask is: Inspect the LLM tool-calling loop, guardrails, and evidence trail for AI Engineer credibility. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it. Shortest path if you do not want to read every doc: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html.",
+      "entry_url": "https://sunnnn2005.github.io/data-quality-agent/first-outcome-evidence-request.html",
+      "rank": 1,
+      "record_sent_command": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_07 --status sent --reviewer-contact \"<reviewer name or handle>\" --channel-used \"LinkedIn DM or mentor email\" --note \"Sent first AI Engineer reviewer request\"",
+      "reviewer_type": "AI/ML engineer, mentor, or advanced CS/data science peer",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+      "target_metric": "ai_engineer_review_items",
+      "why_this_first": "This unlocks the strongest AI Engineer Intern resume signal if the issue passes the gate."
+    },
+    {
+      "acceptance_gate": "A non-owner public feedback issue includes one concrete observation and permission to count.",
+      "copy_ready_message": "Could you spend 2 minutes reviewing my Data Quality Agent demo? Open this card, inspect one result, and leave one concrete public note if you are comfortable: https://sunnnn2005.github.io/data-quality-agent/two-minute-review-card.html",
+      "entry_url": "https://sunnnn2005.github.io/data-quality-agent/two-minute-review-card.html",
+      "rank": 2,
+      "record_sent_command": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_01 --status sent --reviewer-contact \"<reviewer name or handle>\" --channel-used \"class Discord, LinkedIn DM, or text\" --note \"Sent two-minute demo feedback request\"",
+      "reviewer_type": "Classmate or student developer who can open the public demo",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_metric": "external_feedback_items",
+      "why_this_first": "This is the fastest path to one concrete external feedback item."
+    },
+    {
+      "acceptance_gate": "A non-owner public issue includes the command or URL used, observed result, environment, and permission to count.",
+      "copy_ready_message": "Could you try a reproducible run of my Data Quality Agent and leave public redacted evidence only if it works for you? Start here: https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent",
+      "rank": 3,
+      "record_sent_command": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_03 --status sent --reviewer-contact \"<reviewer name or handle>\" --channel-used \"GitHub, Discord, or LinkedIn DM\" --note \"Sent reproducible local replay request\"",
+      "reviewer_type": "Developer comfortable with Docker or local API testing",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md",
+      "target_metric": "reproducible_feedback_items",
+      "why_this_first": "This can prove the project is runnable outside the owner machine."
+    }
+  ],
+  "today_execution_order": [
+    "Send rank 1 AI Engineer review request to one real reviewer.",
+    "Record only the sent outreach event after sending it.",
+    "If no response after two days, send the follow-up from first-outcome-evidence-request.md.",
+    "Do not update resume outcome metrics until the public issue passes the evidence gate."
+  ]
+}

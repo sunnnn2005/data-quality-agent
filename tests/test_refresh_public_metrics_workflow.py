@@ -53,6 +53,10 @@ def test_refresh_public_metrics_workflow_updates_resume_evidence_sources():
     assert "tests/test_first_external_review_card.py" in run_commands
     assert "python scripts/build_first_feedback_conversion_runbook.py" in run_commands
     assert "tests/test_first_feedback_conversion_runbook.py" in run_commands
+    assert "python scripts/build_first_outcome_evidence_request.py" in run_commands
+    assert "tests/test_first_outcome_evidence_request.py" in run_commands
+    assert "python scripts/build_first_external_proof_action_sheet.py" in run_commands
+    assert "tests/test_first_external_proof_action_sheet.py" in run_commands
     assert "python scripts/build_llm_agent_checklist_verdict.py" in run_commands
     assert "python scripts/verify_outcome_evidence.py" in run_commands
     assert (
@@ -150,6 +154,18 @@ def test_refresh_public_metrics_workflow_updates_resume_evidence_sources():
     )
     assert run_commands.index("python scripts/build_reviewer_send_queue.py") < run_commands.index(
         "python scripts/build_first_feedback_conversion_runbook.py"
+    )
+    assert run_commands.index("python scripts/build_first_reviewer_handoff.py") < run_commands.index(
+        "python scripts/build_first_outcome_evidence_request.py"
+    )
+    assert run_commands.index("python scripts/build_first_outcome_evidence_request.py") < run_commands.index(
+        "python scripts/build_first_external_proof_action_sheet.py"
+    )
+    assert run_commands.index("python scripts/build_reviewer_submission_hub.py") < run_commands.index(
+        "python scripts/build_first_external_proof_action_sheet.py"
+    )
+    assert run_commands.index("python scripts/build_first_external_proof_action_sheet.py") < run_commands.index(
+        "python scripts/build_public_metrics_summary.py"
     )
     assert run_commands.index("python scripts/build_agent_maturity_audit.py") < run_commands.index(
         "python scripts/build_llm_agent_checklist_verdict.py"

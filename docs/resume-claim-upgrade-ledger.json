@@ -3,7 +3,7 @@
     "Public GitHub Pages demo",
     "v0.3.0 release",
     "GHCR container image",
-    "250 passing CI tests",
+    "252 passing CI tests",
     "16 implemented LLM agent-readiness capabilities",
     "Read-only PostgreSQL and bounded CSV business-data intake"
   ],
@@ -64,6 +64,14 @@
       "review_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md",
       "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
       "target_metric": "ai_engineer_review_items"
+    },
+    {
+      "counting_rule": "Counts only when a redacted real-model issue includes provider, model, tool calls, token, cost, latency, verification evidence, and permission to count publicly.",
+      "id": "submit_real_model_run",
+      "minutes": 15,
+      "review_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-run-request-pack.md",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=real_model_run_review.md",
+      "target_metric": "accepted_real_model_runs"
     },
     {
       "counting_rule": "Counts only from GitHub public star data; never asks for fake engagement.",
