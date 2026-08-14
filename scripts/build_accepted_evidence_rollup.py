@@ -14,6 +14,7 @@ METRIC_LABELS = {
     "reproducible_feedback_items": "reproducible external runs",
     "business_case_feedback_items": "business-case feedback items",
     "ai_engineer_review_items": "AI Engineer review items",
+    "accepted_real_model_runs": "accepted real-model LLM runs",
 }
 
 BLOCKED_CLAIMS = {
@@ -22,6 +23,10 @@ BLOCKED_CLAIMS = {
     "reproducible_feedback_items": "Cannot claim reproducible external runs until a reviewer submits runnable command or URL evidence.",
     "business_case_feedback_items": "Cannot claim real business-case feedback until an anonymized business-case issue passes the gate.",
     "ai_engineer_review_items": "Cannot claim external AI Engineer review feedback until a non-owner reviewer submits inspected-path evidence and permission to count.",
+    "accepted_real_model_runs": (
+        "Cannot claim accepted real-model LLM runs until a redacted run issue includes model, prompt version, "
+        "tool calls, latency, token, cost, retry, verification, and permission evidence."
+    ),
 }
 
 
@@ -114,14 +119,15 @@ def build_accepted_evidence_rollup(gate_payload: dict[str, Any] | None = None) -
             f"{accepted_counts['external_feedback_items']} feedback items, "
             f"{accepted_counts['reproducible_feedback_items']} reproducible runs, and "
             f"{accepted_counts['business_case_feedback_items']} business-case feedback items, and "
-            f"{accepted_counts['ai_engineer_review_items']} AI Engineer review items before stronger "
+            f"{accepted_counts['ai_engineer_review_items']} AI Engineer review items, and "
+            f"{accepted_counts['accepted_real_model_runs']} accepted real-model LLM runs before stronger "
             "resume outcome claims are allowed."
         ),
         "not_claimed": [
             "No accepted external reviewer issue exists yet."
             if accepted_issue_count == 0
             else "Only accepted external reviewer issues are counted.",
-            "No user, feedback, reproducible-run, business-case, or AI Engineer review outcome is claimable while its accepted count is zero.",
+            "No user, feedback, reproducible-run, business-case, AI Engineer review, or real-model outcome is claimable while its accepted count is zero.",
             "No private business data is used as outcome evidence.",
         ],
     }
@@ -211,6 +217,7 @@ def verify_accepted_evidence_rollup(payload: dict[str, Any]) -> dict[str, Any]:
         "external_feedback_items": 0,
         "reproducible_feedback_items": 0,
         "ai_engineer_review_items": 0,
+        "accepted_real_model_runs": 0,
     }
     if payload["linked_outreach_queue_count"] != 3:
         raise AssertionError("accepted evidence rollup must link the 3 queued reviewer segments")
@@ -218,10 +225,10 @@ def verify_accepted_evidence_rollup(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("accepted evidence rollup must preserve zero accepted-count baseline")
     if payload["accepted_issue_count"] != 0:
         raise AssertionError("accepted evidence rollup must not count accepted issues before public proof exists")
-    if payload["claimable_metric_count"] != 5:
-        raise AssertionError("accepted evidence rollup must track five claimable outcome metrics")
-    if payload["blocked_outcome_claim_count"] != 5:
-        raise AssertionError("accepted evidence rollup must block all five outcome claims at zero baseline")
+    if payload["claimable_metric_count"] != 6:
+        raise AssertionError("accepted evidence rollup must track six claimable outcome metrics")
+    if payload["blocked_outcome_claim_count"] != 6:
+        raise AssertionError("accepted evidence rollup must block all six outcome claims at zero baseline")
     if any(item["claimable"] for item in payload["claimable_metrics"]):
         raise AssertionError("accepted evidence rollup must not mark zero-count metrics as claimable")
     for required in (

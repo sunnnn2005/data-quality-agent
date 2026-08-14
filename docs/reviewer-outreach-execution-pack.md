@@ -10,13 +10,14 @@ Convert the reviewer action queue into ready-to-send outreach messages, follow-u
 
 | Field | Value |
 | --- | ---: |
-| Queue Count | 8 |
-| Evidence Goal Count | 5 |
-| Not Contacted Count | 8 |
+| Queue Count | 9 |
+| Evidence Goal Count | 6 |
+| Not Contacted Count | 9 |
 | Resume Status | outreach_queue_ready_not_claimable |
 
 ## Evidence Goals
 
+- `accepted_real_model_runs`
 - `ai_engineer_review_items`
 - `business_case_feedback_items`
 - `confirmed_external_users`
@@ -37,7 +38,7 @@ Convert the reviewer action queue into ready-to-send outreach messages, follow-u
 
 Message:
 
-Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. Could you spend 8 minutes trying my public Data Quality Agent demo and leave one GitHub issue with anything confusing, useful, or broken? I am tracking feedback publicly instead of claiming users without proof. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.
+Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. Could you spend 8 minutes trying my public Data Quality Agent demo and leave one GitHub issue with anything confusing, useful, or broken? The shortest route is the one-click evidence page: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html. I am tracking feedback publicly instead of claiming users without proof. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.
 
 Personalization checklist:
 - Name the reviewer segment: UC Davis data science peer.
@@ -68,7 +69,7 @@ Status update rule: Move from not_sent to sent only after the message is actuall
 
 Message:
 
-Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. I am collecting public review evidence for a data-quality LLM agent project. If anyone can try the demo, please leave one GitHub issue with what worked, what broke, or what would make it more useful for real data workflows. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.
+Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. I am collecting public review evidence for a data-quality LLM agent project. If anyone can try the demo, please leave one GitHub issue with what worked, what broke, or what would make it more useful for real data workflows. Fastest path: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.
 
 Personalization checklist:
 - Name the reviewer segment: student software engineer peer.
@@ -130,7 +131,7 @@ Status update rule: Move from not_sent to sent only after the message is actuall
 
 Message:
 
-Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. If you already tried the Data Quality Agent demo or ran the repo locally, could you leave a short public note saying what path you used and whether the result was understandable? I only count confirmed external use when it is public and specific. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.
+Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. If you already tried the Data Quality Agent demo or ran the repo locally, could you leave a short public note saying what path you used and whether the result was understandable? The one-click evidence page has the confirmed-use form: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html. I only count confirmed external use when it is public and specific. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.
 
 Personalization checklist:
 - Name the reviewer segment: reviewer who tried demo or local repo.
@@ -161,7 +162,7 @@ Status update rule: Move from not_sent to sent only after the message is actuall
 
 Message:
 
-Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. Do you have an anonymized data-quality problem this project should handle, such as duplicate IDs, stale exports, missing routing fields, or suspicious numeric values? A public business-case issue with no raw data would help me test real usefulness. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.
+Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. Do you have an anonymized data-quality problem this project should handle, such as duplicate IDs, stale exports, missing routing fields, or suspicious numeric values? A public business-case issue with no raw data would help me test real usefulness. The one-click evidence page is here: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.
 
 Personalization checklist:
 - Name the reviewer segment: data analyst or analytics student.
@@ -192,7 +193,7 @@ Status update rule: Move from not_sent to sent only after the message is actuall
 
 Message:
 
-Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. Do you have an anonymized data-quality problem this project should handle, such as duplicate IDs, stale exports, missing routing fields, or suspicious numeric values? A public business-case issue with no raw data would help me test real usefulness. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.
+Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. Do you have an anonymized data-quality problem this project should handle, such as duplicate IDs, stale exports, missing routing fields, or suspicious numeric values? A public business-case issue with no raw data would help me test real usefulness. The one-click evidence page is here: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.
 
 Personalization checklist:
 - Name the reviewer segment: small-business operator or operations teammate.
@@ -223,7 +224,7 @@ Status update rule: Move from not_sent to sent only after the message is actuall
 
 Message:
 
-Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. I am improving this project for AI Engineer internship applications. Could you review whether the LLM tool-calling loop, business-data connector, structured output, guardrails, and evidence trail look credible enough for an intern interview? If yes, please leave a public AI Engineer review issue with the path you inspected. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.
+Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. I am improving this project for AI Engineer internship applications. Could you review whether the LLM tool-calling loop, business-data connector, structured output, guardrails, and evidence trail look credible enough for an intern interview? If yes, please use the one-click evidence page or leave a public AI Engineer review issue with the path you inspected: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html. If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.
 
 Personalization checklist:
 - Name the reviewer segment: AI engineer, mentor, or ML systems reviewer.
@@ -273,6 +274,38 @@ Quick follow-up on my Data Quality Agent review request. No pressure, but if you
 
 Status update rule: Move from not_sent to sent only after the message is actually sent. Move to completed only after a public GitHub issue passes the evidence gate.
 
+### outreach_09_review_real_model_run_evidence
+
+- Segment: AI engineer or developer willing to inspect a redacted real-model trace
+- Channel: LinkedIn, email, or mentor message
+- Status: `not_sent`
+- Counts toward: `accepted_real_model_runs`
+- Entry: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-run-request-pack.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-run-request-pack.md)
+- Submission: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=real_model_run_review.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=real_model_run_review.md)
+- Subject: Could you review my Data Quality Agent project? (AI engineer or developer willing to inspect a redacted real-model trace)
+
+Message:
+
+Hi {name}, I am trying to make my Data Quality Agent project credible for AI Engineer and SWE internship applications. I added a privacy-safe evidence path for a real OpenAI-compatible LLM agent run. Could you review the runbook, capture gate, and issue template, then help verify one redacted trace after I run it locally with credentials that are never shared? If you are comfortable with it, please submit the review here: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=real_model_run_review.md and include the sentence 'I give permission for this public issue to be counted as project review evidence.' Please do not include raw customer data, secrets, private emails, addresses, API keys, or production rows. Thank you.
+
+Personalization checklist:
+- Name the reviewer segment: AI engineer or developer willing to inspect a redacted real-model trace.
+- Mention that the project is public and starts from a zero-feedback baseline.
+- Ask them to use this entry path: https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-run-request-pack.md.
+- Ask them not to share private data and to submit only public, redacted evidence.
+
+Evidence acceptance checklist:
+- Accepted redacted real-model run issue
+- Trace id, model name, prompt version, tool calls, latency, tokens, and estimated cost
+- Final structured report verification result
+- Permission to count the public issue as real-model LLM agent evidence
+
+Follow-up after 4 days:
+
+Quick follow-up on my Data Quality Agent review request. No pressure, but if you have 8-15 minutes, the entry point is https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-run-request-pack.md and the public evidence form is https://github.com/sunnnn2005/data-quality-agent/issues/new?template=real_model_run_review.md. A short redacted comment is enough.
+
+Status update rule: Move from not_sent to sent only after the message is actually sent. Move to completed only after a public GitHub issue passes the evidence gate.
+
 ## Manual Execution Rules
 
 - Do not mark a message as sent until it is actually sent to a real reviewer.
@@ -283,4 +316,4 @@ Status update rule: Move from not_sent to sent only after the message is actuall
 
 ## Resume-Safe Summary
 
-Published a CI-verified outreach execution pack with 8 ready-to-send reviewer messages, 8 follow-up rules, 5 evidence goals, and zero sent or completed outreach claimed.
+Published a CI-verified outreach execution pack with 9 ready-to-send reviewer messages, 9 follow-up rules, 6 evidence goals, and zero sent or completed outreach claimed.

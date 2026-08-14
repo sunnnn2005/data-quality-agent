@@ -10,6 +10,7 @@ Turn outcome evidence collection into an executable reviewer CRM without fabrica
 
 | Metric | Lead Count |
 | --- | ---: |
+| accepted_real_model_runs | 1 |
 | ai_engineer_review_items | 1 |
 | business_case_feedback_items | 2 |
 | confirmed_external_users | 1 |
@@ -28,6 +29,7 @@ Turn outcome evidence collection into an executable reviewer CRM without fabrica
 | pilot_review_slot_01 | UC Davis data science peer | `external_feedback_items` | 5 | `not_sent` | Collect concrete product feedback from a peer reviewer without counting private replies. |
 | pilot_review_slot_02 | student software engineer peer | `external_feedback_items` | 5 | `not_sent` | Collect concrete product feedback from a peer reviewer without counting private replies. |
 | pilot_review_slot_08 | open-source maintainer or GitHub contributor | `external_feedback_items` | 5 | `not_sent` | Collect concrete product feedback from a peer reviewer without counting private replies. |
+| pilot_review_slot_09 | AI engineer or developer willing to inspect a redacted real-model trace | `accepted_real_model_runs` | 9 | `not_sent` | Collect public reviewer evidence. |
 
 ## Three-Week Sprint
 
@@ -35,7 +37,7 @@ Turn outcome evidence collection into an executable reviewer CRM without fabrica
 | --- | --- | --- | --- |
 | Week 1 | Send the top AI Engineer review ask and one confirmed-user ask. | pilot_review_slot_07, pilot_review_slot_04 | 2 real sends recorded, 0 resume outcomes upgraded until public evidence exists. |
 | Week 2 | Follow up on week 1 and send reproducible-run plus business-case asks. | pilot_review_slot_03, pilot_review_slot_05, pilot_review_slot_06 | At least 1 public issue submitted or clear rejection reason recorded. |
-| Week 3 | Collect remaining peer feedback and route public submissions through the evidence gate. | pilot_review_slot_01, pilot_review_slot_02, pilot_review_slot_08 | Accepted evidence rollup remains the source of truth for any resume upgrade. |
+| Week 3 | Collect remaining peer feedback and route public submissions through the evidence gate. | pilot_review_slot_01, pilot_review_slot_02, pilot_review_slot_08, pilot_review_slot_09 | Accepted evidence rollup remains the source of truth for any resume upgrade. |
 
 ## First Commands To Record Real Sends
 
@@ -59,4 +61,4 @@ Turn outcome evidence collection into an executable reviewer CRM without fabrica
 
 ## Resume-Safe Summary
 
-Published a pilot reviewer CRM with 8 reviewer leads, 5 target outcome metrics, a 3-week evidence collection plan, 0 recorded sends, and 0 accepted public evidence items.
+Published a pilot reviewer CRM with 9 reviewer leads, 6 target outcome metrics, a 3-week evidence collection plan, 0 recorded sends, and 0 accepted public evidence items.

@@ -77,9 +77,9 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | External reviewer evidence gate accepted issues | 0 |
 | External reviewer evidence gate linked queue entries | 3 |
 | Accepted evidence rollup | 1 |
-| Accepted evidence rollup claimable metrics | 5 |
+| Accepted evidence rollup claimable metrics | 6 |
 | Accepted evidence rollup accepted issues | 0 |
-| Accepted evidence rollup blocked claims | 5 |
+| Accepted evidence rollup blocked claims | 6 |
 | Business impact ledger | 1 |
 | Business impact ledger accepted signals | 0 |
 | Reviewer evidence kit | 1 |
@@ -90,23 +90,23 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Resume traction future claims | 4 |
 | Resume traction blocked claims | 5 |
 | Reviewer action queue | 1 |
-| Reviewer action tasks | 8 |
-| Reviewer action not-contacted entries | 8 |
-| Reviewer action evidence goals | 5 |
+| Reviewer action tasks | 9 |
+| Reviewer action not-contacted entries | 9 |
+| Reviewer action evidence goals | 6 |
 | Reviewer outreach execution pack | 1 |
-| Reviewer outreach ready messages | 8 |
-| Reviewer outreach follow-up rules | 8 |
-| Reviewer outreach not-sent entries | 8 |
-| Reviewer outreach evidence goals | 5 |
+| Reviewer outreach ready messages | 9 |
+| Reviewer outreach follow-up rules | 9 |
+| Reviewer outreach not-sent entries | 9 |
+| Reviewer outreach evidence goals | 6 |
 | Reviewer outreach status board | 1 |
-| Reviewer outreach status slots | 8 |
+| Reviewer outreach status slots | 9 |
 | Reviewer outreach status stages | 5 |
-| Reviewer outreach status not-sent entries | 8 |
+| Reviewer outreach status not-sent entries | 9 |
 | Reviewer outreach status accepted evidence | 0 |
 | Resume outcome metrics | 1 |
-| Resume outcome metrics tracked | 6 |
+| Resume outcome metrics tracked | 7 |
 | Resume outcome metrics claimable | 0 |
-| Resume outcome metrics blocked | 6 |
+| Resume outcome metrics blocked | 7 |
 | Public metrics provenance | 1 |
 | Public metrics provenance tracked metrics | 8 |
 | Public metrics provenance claimable metrics | 2 |
@@ -138,7 +138,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Public reviewer call | 1 |
 | Public reviewer call segments | 3 |
 | Public reviewer call submission paths | 6 |
-| Public reviewer call outreach tasks | 8 |
+| Public reviewer call outreach tasks | 9 |
 | Public reviewer call evidence fields | 24 |
 | Reviewer share kit | 1 |
 | Reviewer share channels | 5 |
@@ -337,21 +337,21 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - External-run quickstart page with 3 reviewer run paths, 8 evidence fields, public issue #18, and privacy boundaries
 - External reviewer outreach tracker with 3 queued reviewer segments, 3 source messages, 3 not-contacted baseline entries, and public-evidence rules
 - External reviewer evidence gate with 9 validation rules, 15 collected public GitHub issues, 3 linked outreach queue entries, 0 accepted public reviewer issues, and sensitive-data safeguards
-- Accepted evidence rollup with 5 tracked outcome metrics, 0 accepted reviewer issues, and 5 blocked claims until public evidence exists
+- Accepted evidence rollup with 6 tracked outcome metrics, 0 accepted reviewer issues, and 6 blocked claims until public evidence exists
 - Business impact ledger with 0 accepted business-impact signals, anonymized workflow fields, and blocked resume claims until public evidence exists
 - Reviewer evidence kit with 5 public issue templates, 5 copy-ready privacy and permission steps, and zero current external outcome counts
 - Resume traction proof with 6 claimable launch/quality/traffic/availability signals, 4 threshold-based future outcome claims, and 5 blocked overclaiming rules
-- Reviewer action queue with 8 concrete outreach tasks, 5 public evidence goals, 8 not-contacted baseline entries, and zero completed reviews claimed
-- Reviewer outreach execution pack with 8 ready-to-send messages, 8 follow-up rules, 8 not-sent baseline entries, and zero sent outreach claimed
-- Reviewer outreach status board tracking 8 reviewer slots, 5 status stages, and zero sent/replied/accepted outreach claims
+- Reviewer action queue with 9 concrete outreach tasks, 6 public evidence goals, 9 not-contacted baseline entries, and zero completed reviews claimed
+- Reviewer outreach execution pack with 9 ready-to-send messages, 9 follow-up rules, 9 not-sent baseline entries, and zero sent outreach claimed
+- Reviewer outreach status board tracking 9 reviewer slots, 5 status stages, and zero sent/replied/accepted outreach claims
 - First-10 outreach execution log with 10 copy-ready reviewer messages, 10 public issue entrypoints, 10 not-sent entries, and zero claimable external outcomes
-- Resume outcome metrics board tracking 6 outcome metrics, 0 claimable outcome lines, 6 blocked outcome lines, and honest user/feedback/star baselines
+- Resume outcome metrics board tracking 7 outcome metrics, 0 claimable outcome lines, 7 blocked outcome lines, and honest user/feedback/star baselines
 - Public metrics provenance with 8 tracked metrics, 2 currently claimable metrics, and evidence-gated zero counts for users, external feedback, business-case validation, AI Engineer review, and star growth
-- Resume outcome action checklist with 5 concrete next actions, 4 evaluated public GitHub issues, 0 accepted public evidence items, and 8 not-sent reviewer outreach slots
+- Resume outcome action checklist with 5 concrete next actions, 15 evaluated public GitHub issues, 0 accepted public evidence items, and 9 not-sent reviewer outreach slots
 - Reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, 24 required evidence fields, and zero current outcome claims upgraded
 - First-10 reviewer sprint with 10 public evidence slots, 10 issue launch drafts, 6 target metrics, 10 not-sent outreach slots, and zero upgraded outcome claims
 - Outcome collection page with 5 next actions, 6 submission paths, 24 required evidence fields, 0 confirmed users, 0 feedback items, and 0 GitHub stars
-- Public reviewer call linked to 3 reviewer segments, 6 submission paths, 8 outreach tasks, and 24 evidence fields without claiming outcomes
+- Public reviewer call linked to 3 reviewer segments, 6 submission paths, 9 outreach tasks, and 24 evidence fields without claiming outcomes
 - Reviewer share kit with 5 copy-ready messages, 5 share channels, issue #19, 6 submission paths, and zero sent or completed outreach claimed
 - CI-verified API smoke report covering 6 passing FastAPI route checks
 - CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls

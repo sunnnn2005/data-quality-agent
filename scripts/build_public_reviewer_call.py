@@ -81,7 +81,7 @@ def build_public_reviewer_call() -> dict[str, Any]:
         "resume_status": "public_call_open_not_claimable",
         "resume_safe_summary": (
             "Published a public reviewer call linked to 3 reviewer segments, 6 submission paths, "
-            "8 outreach tasks, and 24 evidence fields while keeping current outcome counts at zero."
+            "9 outreach tasks, and 24 evidence fields while keeping current outcome counts at zero."
         ),
     }
 
@@ -143,8 +143,8 @@ def verify_public_reviewer_call(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("public reviewer call must target three reviewer segments")
     if payload["linked_submission_paths"] != 6:
         raise AssertionError("public reviewer call must link the six submission paths")
-    if payload["linked_outreach_tasks"] != 8:
-        raise AssertionError("public reviewer call must link the eight outreach tasks")
+    if payload["linked_outreach_tasks"] != 9:
+        raise AssertionError("public reviewer call must link the nine outreach tasks")
     if payload["required_public_evidence_fields"] != 24:
         raise AssertionError("public reviewer call must preserve the 24 evidence fields")
     if payload["resume_status"] != "public_call_open_not_claimable":

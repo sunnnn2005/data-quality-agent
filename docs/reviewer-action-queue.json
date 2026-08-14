@@ -1,5 +1,6 @@
 {
   "baseline": {
+    "accepted_real_model_runs": 0,
     "ai_engineer_review_items": 0,
     "business_case_feedback_items": 0,
     "confirmed_external_users": 0,
@@ -12,10 +13,12 @@
     "customer feedback",
     "enterprise production usage",
     "earned GitHub stars beyond the current public count",
-    "completed external reviews"
+    "completed external reviews",
+    "accepted real-model LLM runs"
   ],
-  "evidence_goal_count": 5,
+  "evidence_goal_count": 6,
   "evidence_goals": [
+    "accepted_real_model_runs",
     "ai_engineer_review_items",
     "business_case_feedback_items",
     "confirmed_external_users",
@@ -23,16 +26,16 @@
     "reproducible_feedback_items"
   ],
   "generated_by": "scripts/build_reviewer_action_queue.py",
-  "not_contacted_count": 8,
+  "not_contacted_count": 9,
   "project": "Data Quality Agent",
   "purpose": "Turn the zero-user, zero-feedback baseline into a concrete public reviewer action queue without claiming any reviewer has been contacted or completed.",
-  "queue_count": 8,
-  "resume_safe_summary": "Published a CI-verified reviewer action queue with 8 concrete outreach tasks mapped to 5 evidence goals and zero contacted or completed reviewers.",
+  "queue_count": 9,
+  "resume_safe_summary": "Published a CI-verified reviewer action queue with 9 concrete outreach tasks mapped to 6 evidence goals and zero contacted or completed reviewers.",
   "resume_status": "outreach_queue_ready_not_claimable",
   "status_counts": {
     "completed": 0,
     "contacted": 0,
-    "not_contacted": 8
+    "not_contacted": 9
   },
   "tasks": [
     {
@@ -40,7 +43,7 @@
       "counts_toward": "external_feedback_items",
       "entry_url": "https://sunnnn2005.github.io/data-quality-agent/",
       "id": "review_uc_davis_ds_peer_demo",
-      "message_template": "Could you spend 8 minutes trying my public Data Quality Agent demo and leave one GitHub issue with anything confusing, useful, or broken? I am tracking feedback publicly instead of claiming users without proof.",
+      "message_template": "Could you spend 8 minutes trying my public Data Quality Agent demo and leave one GitHub issue with anything confusing, useful, or broken? The shortest route is the one-click evidence page: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html. I am tracking feedback publicly instead of claiming users without proof.",
       "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
       "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
       "required_public_evidence": [
@@ -57,7 +60,7 @@
       "counts_toward": "external_feedback_items",
       "entry_url": "https://sunnnn2005.github.io/data-quality-agent/",
       "id": "review_student_swe_peer_demo",
-      "message_template": "I am collecting public review evidence for a data-quality LLM agent project. If anyone can try the demo, please leave one GitHub issue with what worked, what broke, or what would make it more useful for real data workflows.",
+      "message_template": "I am collecting public review evidence for a data-quality LLM agent project. If anyone can try the demo, please leave one GitHub issue with what worked, what broke, or what would make it more useful for real data workflows. Fastest path: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html.",
       "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
       "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
       "required_public_evidence": [
@@ -91,7 +94,7 @@
       "counts_toward": "confirmed_external_users",
       "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-feedback-packet.md",
       "id": "review_confirmed_external_use",
-      "message_template": "If you already tried the Data Quality Agent demo or ran the repo locally, could you leave a short public note saying what path you used and whether the result was understandable? I only count confirmed external use when it is public and specific.",
+      "message_template": "If you already tried the Data Quality Agent demo or ran the repo locally, could you leave a short public note saying what path you used and whether the result was understandable? The one-click evidence page has the confirmed-use form: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html. I only count confirmed external use when it is public and specific.",
       "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
       "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
       "required_public_evidence": [
@@ -108,7 +111,7 @@
       "counts_toward": "business_case_feedback_items",
       "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md",
       "id": "review_data_analyst_business_case",
-      "message_template": "Do you have an anonymized data-quality problem this project should handle, such as duplicate IDs, stale exports, missing routing fields, or suspicious numeric values? A public business-case issue with no raw data would help me test real usefulness.",
+      "message_template": "Do you have an anonymized data-quality problem this project should handle, such as duplicate IDs, stale exports, missing routing fields, or suspicious numeric values? A public business-case issue with no raw data would help me test real usefulness. The one-click evidence page is here: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html.",
       "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
       "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
       "required_public_evidence": [
@@ -125,7 +128,7 @@
       "counts_toward": "business_case_feedback_items",
       "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md",
       "id": "review_operator_business_case",
-      "message_template": "Do you have an anonymized data-quality problem this project should handle, such as duplicate IDs, stale exports, missing routing fields, or suspicious numeric values? A public business-case issue with no raw data would help me test real usefulness.",
+      "message_template": "Do you have an anonymized data-quality problem this project should handle, such as duplicate IDs, stale exports, missing routing fields, or suspicious numeric values? A public business-case issue with no raw data would help me test real usefulness. The one-click evidence page is here: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html.",
       "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
       "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
       "required_public_evidence": [
@@ -142,7 +145,7 @@
       "counts_toward": "ai_engineer_review_items",
       "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md",
       "id": "review_ai_engineer_agent_readiness",
-      "message_template": "I am improving this project for AI Engineer internship applications. Could you review whether the LLM tool-calling loop, business-data connector, structured output, guardrails, and evidence trail look credible enough for an intern interview? If yes, please leave a public AI Engineer review issue with the path you inspected.",
+      "message_template": "I am improving this project for AI Engineer internship applications. Could you review whether the LLM tool-calling loop, business-data connector, structured output, guardrails, and evidence trail look credible enough for an intern interview? If yes, please use the one-click evidence page or leave a public AI Engineer review issue with the path you inspected: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html.",
       "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
       "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
       "required_public_evidence": [
@@ -170,6 +173,24 @@
       "reviewer_segment": "open-source maintainer or GitHub contributor",
       "status": "not_contacted",
       "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    },
+    {
+      "claimable_when": "Counts only after the real-model run request pack reaches at least 1 accepted redacted run.",
+      "counts_toward": "accepted_real_model_runs",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-run-request-pack.md",
+      "id": "review_real_model_run_evidence",
+      "message_template": "I added a privacy-safe evidence path for a real OpenAI-compatible LLM agent run. Could you review the runbook, capture gate, and issue template, then help verify one redacted trace after I run it locally with credentials that are never shared?",
+      "permission_to_count": "Reviewer must give explicit permission for the public GitHub issue to be counted as project feedback or usage evidence.",
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "required_public_evidence": [
+        "Accepted redacted real-model run issue",
+        "Trace id, model name, prompt version, tool calls, latency, tokens, and estimated cost",
+        "Final structured report verification result",
+        "Permission to count the public issue as real-model LLM agent evidence"
+      ],
+      "reviewer_segment": "AI engineer or developer willing to inspect a redacted real-model trace",
+      "status": "not_contacted",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=real_model_run_review.md"
     }
   ]
 }

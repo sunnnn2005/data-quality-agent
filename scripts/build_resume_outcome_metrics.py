@@ -9,6 +9,7 @@ FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
 ACCEPTED_EVIDENCE_ROLLUP_PATH = ROOT / "docs" / "accepted-evidence-rollup.json"
 REVIEWER_OUTREACH_EXECUTION_PACK_PATH = ROOT / "docs" / "reviewer-outreach-execution-pack.json"
 GITHUB_TRAFFIC_SNAPSHOT_PATH = ROOT / "docs" / "github-traffic-snapshot.json"
+REAL_MODEL_RUN_REQUEST_PACK_PATH = ROOT / "docs" / "real-model-run-request-pack.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "resume-outcome-metrics.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "resume-outcome-metrics.md"
 
@@ -46,6 +47,7 @@ def build_resume_outcome_metrics() -> dict[str, Any]:
     accepted = load_json(ACCEPTED_EVIDENCE_ROLLUP_PATH)
     outreach = load_json(REVIEWER_OUTREACH_EXECUTION_PACK_PATH)
     traffic = load_json(GITHUB_TRAFFIC_SNAPSHOT_PATH)
+    real_model_pack = load_json(REAL_MODEL_RUN_REQUEST_PACK_PATH)
 
     accepted_counts = accepted["accepted_counts"]
     tracked_metrics = [
@@ -101,6 +103,15 @@ def build_resume_outcome_metrics() -> dict[str, Any]:
             resume_wording_when_claimable=f"Earned {adoption['stars']} GitHub stars for a public LLM data-quality agent.",
             blocked_reason="Needs public GitHub stars above zero; never buy, trade, or fake stars.",
         ),
+        _outcome_metric(
+            metric="accepted_real_model_runs",
+            current_count=real_model_pack["current_real_model_runs"],
+            evidence_url="https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-run-request-pack.md",
+            resume_wording_when_claimable=(
+                f"Captured {real_model_pack['current_real_model_runs']} accepted OpenAI-compatible LLM agent run with redacted public telemetry."
+            ),
+            blocked_reason="Needs one accepted redacted real-model run issue with tool calls, tokens, latency, cost, and verification evidence.",
+        ),
     ]
 
     claimable_metrics = [item for item in tracked_metrics if item["resume_status"] == "claimable"]
@@ -113,8 +124,9 @@ def build_resume_outcome_metrics() -> dict[str, Any]:
         "github_clones_14_day": traffic["clones"]["count"],
         "github_unique_cloners_14_day": traffic["clones"]["uniques"],
         "issue_count": adoption["issues_total"],
-        "feature_feedback_items": feedback["feature_feedback_items"],
-    }
+            "feature_feedback_items": feedback["feature_feedback_items"],
+            "accepted_real_model_runs": real_model_pack["current_real_model_runs"],
+        }
     return {
         "project": "Data Quality Agent",
         "generated_by": "scripts/build_resume_outcome_metrics.py",
@@ -152,6 +164,7 @@ def build_resume_outcome_metrics() -> dict[str, Any]:
             "No customer feedback is claimed while external_feedback_items is zero.",
             "No real business impact is claimed while business_case_feedback_items is zero.",
             "No GitHub star growth is claimed while github_stars is zero.",
+            "No accepted real-model LLM run is claimed while accepted_real_model_runs is zero.",
             "GitHub traffic is treated as repository interest, not as users.",
         ],
     }
@@ -230,12 +243,12 @@ This generated board keeps real outcome claims separate from readiness signals.
 
 
 def verify_resume_outcome_metrics(payload: dict[str, Any]) -> dict[str, Any]:
-    if payload["tracked_outcome_count"] != 6:
-        raise AssertionError("resume outcome metrics must track six outcome metrics")
+    if payload["tracked_outcome_count"] != 7:
+        raise AssertionError("resume outcome metrics must track seven outcome metrics")
     if payload["claimable_outcome_count"] != 0:
         raise AssertionError("resume outcome metrics must not mark zero-count outcomes as claimable")
-    if payload["blocked_outcome_count"] != 6:
-        raise AssertionError("resume outcome metrics must block all six zero-count outcome claims")
+    if payload["blocked_outcome_count"] != 7:
+        raise AssertionError("resume outcome metrics must block all seven zero-count outcome claims")
     outcomes = {item["metric"]: item for item in payload["tracked_outcomes"]}
     required = {
         "confirmed_external_users",
@@ -244,9 +257,10 @@ def verify_resume_outcome_metrics(payload: dict[str, Any]) -> dict[str, Any]:
         "business_case_feedback_items",
         "ai_engineer_review_items",
         "github_stars",
+        "accepted_real_model_runs",
     }
     if set(outcomes) != required:
-        raise AssertionError("resume outcome metrics must cover user, feedback, replay, business, AI review, and star metrics")
+        raise AssertionError("resume outcome metrics must cover user, feedback, replay, business, AI review, star, and real-model metrics")
     for metric in required:
         if outcomes[metric]["current_count"] != 0:
             raise AssertionError(f"{metric} must stay at zero until public evidence exists")
@@ -254,15 +268,16 @@ def verify_resume_outcome_metrics(payload: dict[str, Any]) -> dict[str, Any]:
             raise AssertionError(f"{metric} must not be claimable at zero")
         if not outcomes[metric]["blocked_reason"]:
             raise AssertionError(f"{metric} must explain why it is blocked")
-    if payload["outreach_readiness"]["ready_message_count"] != 8:
-        raise AssertionError("resume outcome metrics must link the 8-message outreach execution pack")
-    if payload["outreach_readiness"]["not_sent_count"] != 8:
+    if payload["outreach_readiness"]["ready_message_count"] != 9:
+        raise AssertionError("resume outcome metrics must link the 9-message outreach execution pack")
+    if payload["outreach_readiness"]["not_sent_count"] != 9:
         raise AssertionError("resume outcome metrics must preserve the not-sent baseline")
     for required_phrase in (
         "No external users are claimed",
         "No customer feedback is claimed",
         "No real business impact is claimed",
         "No GitHub star growth is claimed",
+        "No accepted real-model LLM run is claimed",
         "GitHub traffic is treated as repository interest, not as users.",
     ):
         if not any(required_phrase in item for item in payload["not_claimed"]):

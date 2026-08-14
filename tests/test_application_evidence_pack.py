@@ -82,21 +82,21 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert payload["verified_outcome_numbers"]["feedback_intake_captured_fields"] == 7
     assert payload["verified_outcome_numbers"]["reviewer_funnel_stages"] == 4
     assert payload["verified_outcome_numbers"]["reviewer_funnel_remaining_evidence_items"] == 7
-    assert payload["verified_outcome_numbers"]["accepted_evidence_rollup_claimable_metrics"] == 5
-    assert payload["verified_outcome_numbers"]["accepted_evidence_rollup_blocked_claims"] == 5
+    assert payload["verified_outcome_numbers"]["accepted_evidence_rollup_claimable_metrics"] == 6
+    assert payload["verified_outcome_numbers"]["accepted_evidence_rollup_blocked_claims"] == 6
     assert payload["verified_outcome_numbers"]["business_impact_ledger_accepted_signals"] == 0
     assert payload["verified_outcome_numbers"]["reviewer_evidence_forms"] == 5
     assert payload["verified_outcome_numbers"]["reviewer_evidence_script_steps"] == 5
     assert payload["verified_outcome_numbers"]["resume_traction_claimable_now"] == 6
     assert payload["verified_outcome_numbers"]["resume_traction_future_claims"] == 4
     assert payload["verified_outcome_numbers"]["resume_traction_blocked_claims"] == 5
-    assert payload["verified_outcome_numbers"]["reviewer_outreach_ready_messages"] == 8
-    assert payload["verified_outcome_numbers"]["reviewer_outreach_status_slots"] == 8
+    assert payload["verified_outcome_numbers"]["reviewer_outreach_ready_messages"] == 9
+    assert payload["verified_outcome_numbers"]["reviewer_outreach_status_slots"] == 9
     assert payload["verified_outcome_numbers"]["reviewer_outreach_status_stages"] == 5
     assert payload["verified_outcome_numbers"]["reviewer_outreach_status_accepted_evidence"] == 0
-    assert payload["verified_outcome_numbers"]["resume_outcome_metrics_tracked"] == 6
+    assert payload["verified_outcome_numbers"]["resume_outcome_metrics_tracked"] == 7
     assert payload["verified_outcome_numbers"]["resume_outcome_metrics_claimable"] == 0
-    assert payload["verified_outcome_numbers"]["resume_outcome_metrics_blocked"] == 6
+    assert payload["verified_outcome_numbers"]["resume_outcome_metrics_blocked"] == 7
     assert payload["verified_outcome_numbers"]["resume_outcome_action_count"] == 5
     assert payload["verified_outcome_numbers"]["resume_outcome_next_actions_needed"] == 5
     assert payload["verified_outcome_numbers"]["reviewer_submission_paths"] == 6
@@ -111,7 +111,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert payload["verified_outcome_numbers"]["first_10_outreach_not_sent"] == 10
     assert payload["verified_outcome_numbers"]["first_10_outreach_accepted_evidence"] == 0
     assert payload["verified_outcome_numbers"]["public_reviewer_call_segments"] == 3
-    assert payload["verified_outcome_numbers"]["public_reviewer_call_outreach_tasks"] == 8
+    assert payload["verified_outcome_numbers"]["public_reviewer_call_outreach_tasks"] == 9
     assert payload["verified_outcome_numbers"]["public_reviewer_call_evidence_fields"] == 24
     assert payload["verified_outcome_numbers"]["resume_claim_upgrade_rows"] == 6
     assert payload["verified_outcome_numbers"]["resume_claim_upgrade_blocked_rows"] == 6

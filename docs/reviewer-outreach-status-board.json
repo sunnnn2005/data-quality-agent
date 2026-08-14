@@ -17,8 +17,8 @@
     "sent_at": "ISO-8601 timestamp after the message is actually sent",
     "slot_id": "review_slot_01"
   },
-  "not_sent_count": 8,
-  "outreach_slot_count": 8,
+  "not_sent_count": 9,
+  "outreach_slot_count": 9,
   "outreach_slots": [
     {
       "accepted_by_gate": false,
@@ -179,6 +179,26 @@
       "slot_id": "review_slot_08",
       "source_outreach_id": "outreach_08_review_open_source_maintainer",
       "status": "not_sent"
+    },
+    {
+      "accepted_by_gate": false,
+      "channel": "LinkedIn, email, or mentor message",
+      "channel_used": null,
+      "counts_toward": "accepted_real_model_runs",
+      "last_event_at": null,
+      "next_action": "Send manually only after choosing a real reviewer.",
+      "no_private_data_confirmed": false,
+      "permission_to_count": false,
+      "privacy_boundary": "Do not share raw customer data, secrets, private emails, addresses, API keys, or production rows. Use redacted screenshots, public demo links, synthetic CSVs, or short summaries only.",
+      "public_evidence_url": null,
+      "reply_received": false,
+      "resume_counting_rule": "Does not count until a non-owner public GitHub issue passes the evidence gate.",
+      "reviewer_contact": null,
+      "reviewer_segment": "AI engineer or developer willing to inspect a redacted real-model trace",
+      "sent_at": null,
+      "slot_id": "review_slot_09",
+      "source_outreach_id": "outreach_09_review_real_model_run_evidence",
+      "status": "not_sent"
     }
   ],
   "project": "Data Quality Agent",
@@ -186,7 +206,7 @@
   "purpose": "Track real reviewer outreach from planned to sent, replied, public issue, and accepted evidence without converting private outreach into resume claims.",
   "recorded_event_count": 0,
   "reply_count": 0,
-  "resume_safe_summary": "Published a CI-verified outreach status board tracking 8 reviewer slots across 5 status stages, 5 evidence goals, 0 recorded outreach events, and zero accepted-evidence or resume-upgrade claims.",
+  "resume_safe_summary": "Published a CI-verified outreach status board tracking 9 reviewer slots across 5 status stages, 5 evidence goals, 0 recorded outreach events, and zero accepted-evidence or resume-upgrade claims.",
   "resume_status": "tracking_ready_not_claimable",
   "resume_upgrade_count": 0,
   "resume_upgrade_rules": [
@@ -197,7 +217,7 @@
     "Accepted evidence updates resume-outcome-metrics only after the evidence gate passes."
   ],
   "sent_count": 0,
-  "source_outreach_item_count": 8,
+  "source_outreach_item_count": 9,
   "source_share_channel_count": 5,
   "status_stage_count": 5,
   "status_stages": [

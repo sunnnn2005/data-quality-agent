@@ -16,7 +16,7 @@
     "Counts only public, non-owner GitHub issues with explicit permission and no private data.",
     "Keep all user, feedback, business-impact, AI-review, and star claims blocked while accepted counts are zero."
   ],
-  "outreach_tasks_linked": 8,
+  "outreach_tasks_linked": 9,
   "project": "Data Quality Agent",
   "public_call_issue": "https://github.com/sunnnn2005/data-quality-agent/issues/19",
   "purpose": "Package the public reviewer call into copy-ready sharing messages so real reviewers can try the project and submit public evidence without upgrading any resume outcome claim prematurely.",

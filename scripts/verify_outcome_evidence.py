@@ -678,9 +678,9 @@ def verify_manifest() -> dict[str, int]:
                 queue_script = (ROOT / "scripts" / "build_reviewer_action_queue.py").read_text()
                 queue_tests = (ROOT / "tests" / "test_reviewer_action_queue.py").read_text()
                 expected = {
-                    "queue_count": 8,
-                    "not_contacted_count": 8,
-                    "evidence_goal_count": 5,
+                    "queue_count": 9,
+                    "not_contacted_count": 9,
+                    "evidence_goal_count": 6,
                 }
                 for key, value in expected.items():
                     if reviewer_action_queue.get(key) != value:
@@ -697,6 +697,7 @@ def verify_manifest() -> dict[str, int]:
                     "reproducible_feedback_items",
                     "business_case_feedback_items",
                     "ai_engineer_review_items",
+                    "accepted_real_model_runs",
                 }
                 if set(reviewer_action_queue.get("evidence_goals", [])) != required_goals:
                     raise AssertionError("reviewer action queue must cover all tracked public evidence goals")
@@ -709,7 +710,7 @@ def verify_manifest() -> dict[str, int]:
                         raise AssertionError("reviewer action queue tasks must include sensitive-data boundaries")
                     if "permission" not in task.get("permission_to_count", "").lower():
                         raise AssertionError("reviewer action queue tasks must require permission to count")
-                for blocked in ("active users", "customer feedback", "enterprise production usage"):
+                for blocked in ("active users", "customer feedback", "enterprise production usage", "accepted real-model LLM runs"):
                     if blocked not in reviewer_action_queue.get("blocked_resume_claims", []):
                         raise AssertionError(f"reviewer action queue must block {blocked}")
                 if "verify_reviewer_action_queue" not in queue_script:
@@ -722,17 +723,17 @@ def verify_manifest() -> dict[str, int]:
                 outreach_script = (ROOT / "scripts" / "build_reviewer_outreach_execution_pack.py").read_text()
                 outreach_tests = (ROOT / "tests" / "test_reviewer_outreach_execution_pack.py").read_text()
                 expected = {
-                    "outreach_item_count": 8,
-                    "ready_message_count": 8,
-                    "follow_up_rule_count": 8,
-                    "evidence_goal_count": 5,
+                    "outreach_item_count": 9,
+                    "ready_message_count": 9,
+                    "follow_up_rule_count": 9,
+                    "evidence_goal_count": 6,
                 }
                 for key, value in expected.items():
                     if reviewer_outreach_execution.get(key) != value:
                         raise AssertionError(f"reviewer outreach execution pack {key} expected {value!r}")
                 statuses = reviewer_outreach_execution.get("send_status_counts", {})
-                if statuses.get("not_sent") != 8:
-                    raise AssertionError("reviewer outreach execution pack must preserve 8 not-sent entries")
+                if statuses.get("not_sent") != 9:
+                    raise AssertionError("reviewer outreach execution pack must preserve 9 not-sent entries")
                 if statuses.get("sent") != 0:
                     raise AssertionError("reviewer outreach execution pack must not claim sent outreach")
                 if statuses.get("completed") != 0:
@@ -745,6 +746,7 @@ def verify_manifest() -> dict[str, int]:
                     "reproducible_feedback_items",
                     "business_case_feedback_items",
                     "ai_engineer_review_items",
+                    "accepted_real_model_runs",
                 }
                 if set(reviewer_outreach_execution.get("evidence_goals", [])) != required_goals:
                     raise AssertionError("reviewer outreach execution pack must cover all tracked evidence goals")
@@ -781,11 +783,11 @@ def verify_manifest() -> dict[str, int]:
                 status_script = (ROOT / "scripts" / "build_reviewer_outreach_status_board.py").read_text()
                 status_tests = (ROOT / "tests" / "test_reviewer_outreach_status_board.py").read_text()
                 expected = {
-                    "source_outreach_item_count": 8,
+                    "source_outreach_item_count": 9,
                     "source_share_channel_count": 5,
                     "status_stage_count": 5,
-                    "outreach_slot_count": 8,
-                    "not_sent_count": 8,
+                    "outreach_slot_count": 9,
+                    "not_sent_count": 9,
                     "sent_count": 0,
                     "reply_count": 0,
                     "accepted_evidence_count": 0,
@@ -833,8 +835,8 @@ def verify_manifest() -> dict[str, int]:
                 expected = {
                     "claimable_now_count": 4,
                     "in_pipeline_count": 2,
-                    "blocked_until_evidence_count": 5,
-                    "outreach_slot_count": 8,
+                    "blocked_until_evidence_count": 6,
+                    "outreach_slot_count": 9,
                     "accepted_public_evidence_count": 0,
                     "resume_upgrade_count": 0,
                 }
@@ -846,6 +848,7 @@ def verify_manifest() -> dict[str, int]:
                     "external_feedback_items",
                     "ai_engineer_review_items",
                     "business_case_feedback_items",
+                    "accepted_real_model_runs",
                 ):
                     if resume_outcome_evidence_ledger.get("public_counts", {}).get(key) != 0:
                         raise AssertionError(f"resume outcome evidence ledger must preserve zero {key}")
@@ -866,8 +869,8 @@ def verify_manifest() -> dict[str, int]:
                 crm_tests = (ROOT / "tests" / "test_pilot_reviewer_crm.py").read_text()
                 crm_page = (ROOT / "docs" / "pilot-reviewer-crm.md").read_text()
                 expected = {
-                    "lead_count": 8,
-                    "priority_metric_count": 5,
+                    "lead_count": 9,
+                    "priority_metric_count": 6,
                     "week_count": 3,
                     "recorded_outreach_event_count": 0,
                     "accepted_public_evidence_count": 0,
@@ -1085,13 +1088,13 @@ def verify_manifest() -> dict[str, int]:
                 materializer_page = (ROOT / "docs" / "resume-claim-materializer.md").read_text()
                 expected = {
                     "safe_current_bullet_count": 4,
-                    "future_template_count": 5,
-                    "blocked_claim_count": 5,
+                    "future_template_count": 6,
+                    "blocked_claim_count": 6,
                     "materialized_claim_count": 0,
                     "accepted_public_evidence_count": 0,
                     "resume_upgrade_count": 0,
-                    "reviewer_lead_count": 8,
-                    "target_metric_count": 5,
+                    "reviewer_lead_count": 9,
+                    "target_metric_count": 6,
                 }
                 for key, value in expected.items():
                     if resume_claim_materializer.get(key) != value:
@@ -1101,6 +1104,7 @@ def verify_manifest() -> dict[str, int]:
                         )
                 required_metrics = {
                     "ai_engineer_review_items",
+                    "accepted_real_model_runs",
                     "business_case_feedback_items",
                     "confirmed_external_users",
                     "external_feedback_items",
@@ -1277,9 +1281,9 @@ def verify_manifest() -> dict[str, int]:
                 outcome_metrics_script = (ROOT / "scripts" / "build_resume_outcome_metrics.py").read_text()
                 outcome_metrics_tests = (ROOT / "tests" / "test_resume_outcome_metrics.py").read_text()
                 expected = {
-                    "tracked_outcome_count": 6,
+                    "tracked_outcome_count": 7,
                     "claimable_outcome_count": 0,
-                    "blocked_outcome_count": 6,
+                    "blocked_outcome_count": 7,
                 }
                 for key, value in expected.items():
                     if resume_outcome_metrics.get(key) != value:
@@ -1291,6 +1295,7 @@ def verify_manifest() -> dict[str, int]:
                     "business_case_feedback_items",
                     "ai_engineer_review_items",
                     "github_stars",
+                    "accepted_real_model_runs",
                 }
                 outcomes = {item.get("metric"): item for item in resume_outcome_metrics.get("tracked_outcomes", [])}
                 if set(outcomes) != required_metrics:
@@ -1303,15 +1308,16 @@ def verify_manifest() -> dict[str, int]:
                         raise AssertionError(f"resume outcome metrics must block {metric} at zero")
                     if not item.get("blocked_reason"):
                         raise AssertionError(f"resume outcome metrics must explain why {metric} is blocked")
-                if resume_outcome_metrics.get("outreach_readiness", {}).get("ready_message_count") != 8:
-                    raise AssertionError("resume outcome metrics must link 8 ready reviewer messages")
-                if resume_outcome_metrics.get("outreach_readiness", {}).get("not_sent_count") != 8:
+                if resume_outcome_metrics.get("outreach_readiness", {}).get("ready_message_count") != 9:
+                    raise AssertionError("resume outcome metrics must link 9 ready reviewer messages")
+                if resume_outcome_metrics.get("outreach_readiness", {}).get("not_sent_count") != 9:
                     raise AssertionError("resume outcome metrics must preserve the zero-sent baseline")
                 for required in (
                     "No external users are claimed while confirmed_external_users is zero.",
                     "No customer feedback is claimed while external_feedback_items is zero.",
                     "No real business impact is claimed while business_case_feedback_items is zero.",
                     "No GitHub star growth is claimed while github_stars is zero.",
+                    "No accepted real-model LLM run is claimed while accepted_real_model_runs is zero.",
                     "GitHub traffic is treated as repository interest, not as users.",
                 ):
                     if required not in resume_outcome_metrics.get("not_claimed", []):
@@ -1330,8 +1336,8 @@ def verify_manifest() -> dict[str, int]:
                     "next_action_needed_count": 5,
                     "claimable_action_count": 0,
                     "accepted_public_issue_count": 0,
-                    "outreach_slot_count": 8,
-                    "not_sent_outreach_count": 8,
+                    "outreach_slot_count": 9,
+                    "not_sent_outreach_count": 9,
                 }
                 for key, value in expected.items():
                     if resume_outcome_action_checklist.get(key) != value:
@@ -1442,7 +1448,7 @@ def verify_manifest() -> dict[str, int]:
                 expected = {
                     "reviewer_segment_count": 3,
                     "linked_submission_paths": 6,
-                    "linked_outreach_tasks": 8,
+                    "linked_outreach_tasks": 9,
                     "required_public_evidence_fields": 24,
                 }
                 for key, value in expected.items():
@@ -1483,7 +1489,7 @@ def verify_manifest() -> dict[str, int]:
                     "linked_submission_paths": 6,
                     "linked_public_call_segments": 3,
                     "required_evidence_fields": 24,
-                    "outreach_tasks_linked": 8,
+                    "outreach_tasks_linked": 9,
                 }
                 for key, value in expected.items():
                     if reviewer_share_kit.get(key) != value:
@@ -2675,15 +2681,16 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("accepted evidence rollup must link 3 outreach queue entries")
                 if accepted_evidence_rollup.get("accepted_issue_count") != 0:
                     raise AssertionError("accepted evidence rollup must preserve zero accepted issue baseline")
-                if accepted_evidence_rollup.get("claimable_metric_count") != 5:
-                    raise AssertionError("accepted evidence rollup must track five claimable metrics")
-                if accepted_evidence_rollup.get("blocked_outcome_claim_count") != 5:
-                    raise AssertionError("accepted evidence rollup must block five outcome claims at baseline")
+                if accepted_evidence_rollup.get("claimable_metric_count") != 6:
+                    raise AssertionError("accepted evidence rollup must track six claimable metrics")
+                if accepted_evidence_rollup.get("blocked_outcome_claim_count") != 6:
+                    raise AssertionError("accepted evidence rollup must block six outcome claims at baseline")
                 for key in (
                     "external_feedback_items",
                     "confirmed_external_users",
                     "reproducible_feedback_items",
                     "business_case_feedback_items",
+                    "accepted_real_model_runs",
                 ):
                     if accepted_evidence_rollup.get("accepted_counts", {}).get(key) != 0:
                         raise AssertionError(f"accepted evidence rollup must preserve zero {key}")

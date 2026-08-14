@@ -28,6 +28,7 @@ Track real reviewer outreach from planned to sent, replied, public issue, and ac
 | review_slot_06 | small-business operator or operations teammate | `business_case_feedback_items` | `not_sent` |
 | review_slot_07 | AI engineer, mentor, or ML systems reviewer | `ai_engineer_review_items` | `not_sent` |
 | review_slot_08 | open-source maintainer or GitHub contributor | `external_feedback_items` | `not_sent` |
+| review_slot_09 | AI engineer or developer willing to inspect a redacted real-model trace | `accepted_real_model_runs` | `not_sent` |
 
 ## Recorded Events
 
@@ -59,4 +60,4 @@ Track real reviewer outreach from planned to sent, replied, public issue, and ac
 
 ## Resume-Safe Summary
 
-Published a CI-verified outreach status board tracking 8 reviewer slots across 5 status stages, 5 evidence goals, 0 recorded outreach events, and zero accepted-evidence or resume-upgrade claims.
+Published a CI-verified outreach status board tracking 9 reviewer slots across 5 status stages, 5 evidence goals, 0 recorded outreach events, and zero accepted-evidence or resume-upgrade claims.

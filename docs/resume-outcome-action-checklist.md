@@ -9,10 +9,10 @@ This generated checklist shows the shortest honest path from blocked outcome cla
 | Tracked actions | 5 |
 | Next actions needed | 5 |
 | Claimable actions | 0 |
-| Evaluated public issues | 4 |
+| Evaluated public issues | 15 |
 | Accepted public evidence | 0 |
-| Outreach slots | 8 |
-| Not-sent outreach slots | 8 |
+| Outreach slots | 9 |
+| Not-sent outreach slots | 9 |
 
 ## Action Table
 
@@ -59,7 +59,7 @@ This generated checklist shows the shortest honest path from blocked outcome cla
 
 ## Resume-Safe Summary
 
-Published a CI-verified action checklist with 5 concrete next actions, 4 evaluated public GitHub issues, 0 accepted public evidence items, and 8 reviewer outreach slots still not sent.
+Published a CI-verified action checklist with 5 concrete next actions, 15 evaluated public GitHub issues, 0 accepted public evidence items, and 9 reviewer outreach slots still not sent.
 
 ## Not Claimed
 

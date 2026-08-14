@@ -68,17 +68,17 @@
     }
   ],
   "claimable_action_count": 0,
-  "evaluated_public_issue_count": 4,
+  "evaluated_public_issue_count": 15,
   "generated_by": "scripts/build_resume_outcome_action_checklist.py",
   "next_action_needed_count": 5,
   "not_claimed": [
     "The checklist does not claim users, feedback, business impact, or stars.",
     "A resume line becomes claimable only after the referenced public evidence check passes."
   ],
-  "not_sent_outreach_count": 8,
-  "outreach_slot_count": 8,
+  "not_sent_outreach_count": 9,
+  "outreach_slot_count": 9,
   "project": "Data Quality Agent",
   "purpose": "Turn blocked resume outcome claims into the shortest honest next actions with public evidence checks.",
-  "resume_safe_summary": "Published a CI-verified action checklist with 5 concrete next actions, 4 evaluated public GitHub issues, 0 accepted public evidence items, and 8 reviewer outreach slots still not sent.",
+  "resume_safe_summary": "Published a CI-verified action checklist with 5 concrete next actions, 15 evaluated public GitHub issues, 0 accepted public evidence items, and 9 reviewer outreach slots still not sent.",
   "tracked_action_count": 5
 }

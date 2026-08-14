@@ -6,9 +6,9 @@ This generated board keeps real outcome claims separate from readiness signals.
 
 | Metric | Value |
 | --- | ---: |
-| Tracked outcomes | 6 |
+| Tracked outcomes | 7 |
 | Claimable outcome lines | 0 |
-| Blocked outcome lines | 6 |
+| Blocked outcome lines | 7 |
 
 ## Tracked Outcomes
 
@@ -20,6 +20,7 @@ This generated board keeps real outcome claims separate from readiness signals.
 | business_case_feedback_items | 0 | `not_claimable_yet` | - | Needs anonymized business-case issue evidence with explicit permission to count. | [evidence](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/accepted-evidence-rollup.md) |
 | ai_engineer_review_items | 0 | `not_claimable_yet` | - | Needs a non-owner AI Engineer review issue with inspected paths and permission to count. | [evidence](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/accepted-evidence-rollup.md) |
 | github_stars | 0 | `not_claimable_yet` | - | Needs public GitHub stars above zero; never buy, trade, or fake stars. | [evidence](https://github.com/sunnnn2005/data-quality-agent/stargazers) |
+| accepted_real_model_runs | 0 | `not_claimable_yet` | - | Needs one accepted redacted real-model run issue with tool calls, tokens, latency, cost, and verification evidence. | [evidence](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-run-request-pack.md) |
 
 ## Public Interest Signals
 
@@ -33,15 +34,16 @@ This generated board keeps real outcome claims separate from readiness signals.
 | Github Unique Cloners 14 Day | 301 |
 | Issue Count | 25 |
 | Feature Feedback Items | 8 |
+| Accepted Real Model Runs | 0 |
 
 ## Outreach Readiness
 
 | Metric | Value |
 | --- | ---: |
-| Ready Message Count | 8 |
-| Follow Up Rule Count | 8 |
-| Evidence Goal Count | 5 |
-| Not Sent Count | 8 |
+| Ready Message Count | 9 |
+| Follow Up Rule Count | 9 |
+| Evidence Goal Count | 6 |
+| Not Sent Count | 9 |
 | Resume Status | ready_to_send_not_claimable |
 
 ## Claimable Resume Lines
@@ -56,10 +58,11 @@ This generated board keeps real outcome claims separate from readiness signals.
 - `business_case_feedback_items`: Needs anonymized business-case issue evidence with explicit permission to count.
 - `ai_engineer_review_items`: Needs a non-owner AI Engineer review issue with inspected paths and permission to count.
 - `github_stars`: Needs public GitHub stars above zero; never buy, trade, or fake stars.
+- `accepted_real_model_runs`: Needs one accepted redacted real-model run issue with tool calls, tokens, latency, cost, and verification evidence.
 
 ## Resume-Safe Summary
 
-Published a CI-verified resume outcome metrics board tracking 6 outcome metrics, 0 currently claimable outcome lines, 6 blocked outcome lines, 8 ready reviewer messages, and honest public-interest baselines.
+Published a CI-verified resume outcome metrics board tracking 7 outcome metrics, 0 currently claimable outcome lines, 7 blocked outcome lines, 9 ready reviewer messages, and honest public-interest baselines.
 
 ## Not Claimed
 
@@ -67,4 +70,5 @@ Published a CI-verified resume outcome metrics board tracking 6 outcome metrics,
 - No customer feedback is claimed while external_feedback_items is zero.
 - No real business impact is claimed while business_case_feedback_items is zero.
 - No GitHub star growth is claimed while github_stars is zero.
+- No accepted real-model LLM run is claimed while accepted_real_model_runs is zero.
 - GitHub traffic is treated as repository interest, not as users.

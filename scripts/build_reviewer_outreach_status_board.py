@@ -232,10 +232,10 @@ This generated board tracks reviewer outreach execution without claiming results
 
 def verify_reviewer_outreach_status_board(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
-        "source_outreach_item_count": 8,
+        "source_outreach_item_count": 9,
         "source_share_channel_count": 5,
         "status_stage_count": 5,
-        "outreach_slot_count": 8,
+        "outreach_slot_count": 9,
         "accepted_evidence_count": 0,
         "resume_upgrade_count": 0,
     }
@@ -247,7 +247,7 @@ def verify_reviewer_outreach_status_board(payload: dict[str, Any]) -> dict[str, 
     if len(payload.get("status_stages", [])) != expected["status_stage_count"]:
         raise AssertionError("status board must include five status stages")
     if len(payload.get("outreach_slots", [])) != expected["outreach_slot_count"]:
-        raise AssertionError("status board must include eight reviewer slots")
+        raise AssertionError("status board must include nine reviewer slots")
     for value in payload.get("current_outcome_counts", {}).values():
         if value != 0:
             raise AssertionError("status board must preserve zero current outcome counts")

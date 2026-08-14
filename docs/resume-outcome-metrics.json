@@ -1,5 +1,5 @@
 {
-  "blocked_outcome_count": 6,
+  "blocked_outcome_count": 7,
   "blocked_resume_lines": [
     {
       "blocked_reason": "Needs a non-owner public reviewer issue that passes the external evidence gate.",
@@ -24,6 +24,10 @@
     {
       "blocked_reason": "Needs public GitHub stars above zero; never buy, trade, or fake stars.",
       "metric": "github_stars"
+    },
+    {
+      "blocked_reason": "Needs one accepted redacted real-model run issue with tool calls, tokens, latency, cost, and verification evidence.",
+      "metric": "accepted_real_model_runs"
     }
   ],
   "claimable_outcome_count": 0,
@@ -34,17 +38,19 @@
     "No customer feedback is claimed while external_feedback_items is zero.",
     "No real business impact is claimed while business_case_feedback_items is zero.",
     "No GitHub star growth is claimed while github_stars is zero.",
+    "No accepted real-model LLM run is claimed while accepted_real_model_runs is zero.",
     "GitHub traffic is treated as repository interest, not as users."
   ],
   "outreach_readiness": {
-    "evidence_goal_count": 5,
-    "follow_up_rule_count": 8,
-    "not_sent_count": 8,
-    "ready_message_count": 8,
+    "evidence_goal_count": 6,
+    "follow_up_rule_count": 9,
+    "not_sent_count": 9,
+    "ready_message_count": 9,
     "resume_status": "ready_to_send_not_claimable"
   },
   "project": "Data Quality Agent",
   "public_interest_signals": {
+    "accepted_real_model_runs": 0,
     "feature_feedback_items": 8,
     "github_clones_14_day": 1240,
     "github_forks": 1,
@@ -55,8 +61,8 @@
     "issue_count": 25
   },
   "purpose": "Convert public metrics, accepted evidence, and outreach readiness into resume-safe outcome wording without claiming users, feedback, business impact, or GitHub stars before evidence exists.",
-  "resume_safe_summary": "Published a CI-verified resume outcome metrics board tracking 6 outcome metrics, 0 currently claimable outcome lines, 6 blocked outcome lines, 8 ready reviewer messages, and honest public-interest baselines.",
-  "tracked_outcome_count": 6,
+  "resume_safe_summary": "Published a CI-verified resume outcome metrics board tracking 7 outcome metrics, 0 currently claimable outcome lines, 7 blocked outcome lines, 9 ready reviewer messages, and honest public-interest baselines.",
+  "tracked_outcome_count": 7,
   "tracked_outcomes": [
     {
       "blocked_reason": "Needs a non-owner public reviewer issue that passes the external evidence gate.",
@@ -103,6 +109,14 @@
       "current_count": 0,
       "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/stargazers",
       "metric": "github_stars",
+      "resume_status": "not_claimable_yet",
+      "resume_wording": null
+    },
+    {
+      "blocked_reason": "Needs one accepted redacted real-model run issue with tool calls, tokens, latency, cost, and verification evidence.",
+      "current_count": 0,
+      "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-run-request-pack.md",
+      "metric": "accepted_real_model_runs",
       "resume_status": "not_claimable_yet",
       "resume_wording": null
     }

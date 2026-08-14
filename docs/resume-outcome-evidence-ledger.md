@@ -31,6 +31,7 @@ Keep resume outcome claims honest by separating verified accomplishments, active
 | reproducible_feedback_items | 0 | Cannot claim reproducible external runs until a reviewer submits runnable command or URL evidence. |
 | business_case_feedback_items | 0 | Cannot claim real business-case feedback until an anonymized business-case issue passes the gate. |
 | ai_engineer_review_items | 0 | Cannot claim external AI Engineer review feedback until a non-owner reviewer submits inspected-path evidence and permission to count. |
+| accepted_real_model_runs | 0 | Cannot claim accepted real-model LLM runs until a redacted run issue includes model, prompt version, tool calls, latency, token, cost, retry, verification, and permission evidence. |
 
 ## Public Counts
 
@@ -44,6 +45,7 @@ Keep resume outcome claims honest by separating verified accomplishments, active
 | reproducible feedback items | 0 |
 | ai engineer review items | 0 |
 | business case feedback items | 0 |
+| accepted real model runs | 0 |
 
 ## Manual Update Commands
 
@@ -57,9 +59,10 @@ Keep resume outcome claims honest by separating verified accomplishments, active
 - No external users are claimed while confirmed_external_users is 0.
 - No feedback impact is claimed while accepted public feedback is 0.
 - No AI Engineer review is claimed while accepted AI-review evidence is 0.
+- No accepted real-model LLM run is claimed while accepted_real_model_runs is 0.
 - No GitHub-star growth is claimed beyond the live public count.
 - No enterprise production deployment is claimed.
 
 ## Resume-Safe Summary
 
-Published a resume outcome evidence ledger with 4 claimable engineering signals, 2 active but non-claimable outcome pipeline stages, 5 blocked outcome claims, 0 recorded outreach events, and 0 accepted public evidence items.
+Published a resume outcome evidence ledger with 4 claimable engineering signals, 2 active but non-claimable outcome pipeline stages, 6 blocked outcome claims, 0 recorded outreach events, and 0 accepted public evidence items.

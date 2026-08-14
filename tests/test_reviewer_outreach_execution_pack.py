@@ -11,12 +11,12 @@ def test_reviewer_outreach_execution_pack_makes_queue_sendable_without_claiming_
     markdown = render_markdown(payload)
 
     assert verification["reviewer_outreach_execution_pack_verified"] is True
-    assert payload["outreach_item_count"] == 8
-    assert payload["ready_message_count"] == 8
-    assert payload["follow_up_rule_count"] == 8
-    assert payload["evidence_goal_count"] == 5
+    assert payload["outreach_item_count"] == 9
+    assert payload["ready_message_count"] == 9
+    assert payload["follow_up_rule_count"] == 9
+    assert payload["evidence_goal_count"] == 6
     assert payload["send_status_counts"] == {
-        "not_sent": 8,
+        "not_sent": 9,
         "sent": 0,
         "completed": 0,
     }

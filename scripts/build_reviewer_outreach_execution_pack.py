@@ -198,22 +198,22 @@ This generated pack turns the reviewer action queue into messages that can be se
 
 def verify_reviewer_outreach_execution_pack(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
-        "outreach_item_count": 8,
-        "ready_message_count": 8,
-        "follow_up_rule_count": 8,
-        "evidence_goal_count": 5,
-        "not_sent_count": 8,
+        "outreach_item_count": 9,
+        "ready_message_count": 9,
+        "follow_up_rule_count": 9,
+        "evidence_goal_count": 6,
+        "not_sent_count": 9,
         "sent_count": 0,
         "completed_count": 0,
     }
     if payload["outreach_item_count"] != expected["outreach_item_count"]:
-        raise AssertionError("outreach execution pack must include eight outreach items")
+        raise AssertionError("outreach execution pack must include nine outreach items")
     if payload["ready_message_count"] != expected["ready_message_count"]:
-        raise AssertionError("outreach execution pack must include eight ready messages")
+        raise AssertionError("outreach execution pack must include nine ready messages")
     if payload["follow_up_rule_count"] != expected["follow_up_rule_count"]:
-        raise AssertionError("outreach execution pack must include eight follow-up rules")
+        raise AssertionError("outreach execution pack must include nine follow-up rules")
     if payload["evidence_goal_count"] != expected["evidence_goal_count"]:
-        raise AssertionError("outreach execution pack must cover five evidence goals")
+        raise AssertionError("outreach execution pack must cover six evidence goals")
     if payload["send_status_counts"]["not_sent"] != expected["not_sent_count"]:
         raise AssertionError("outreach execution pack must preserve not-sent baseline")
     if payload["send_status_counts"]["sent"] != expected["sent_count"]:
@@ -231,6 +231,7 @@ def verify_reviewer_outreach_execution_pack(payload: dict[str, Any]) -> dict[str
         "reproducible_feedback_items",
         "business_case_feedback_items",
         "ai_engineer_review_items",
+        "accepted_real_model_runs",
     }
     if set(payload["evidence_goals"]) != required_goals:
         raise AssertionError("outreach execution pack must map to tracked evidence goals")

@@ -8,6 +8,7 @@ FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
 REVIEWER_FUNNEL_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 REVIEWER_INVITATION_KIT_PATH = ROOT / "docs" / "reviewer-invitation-kit.json"
 RESUME_TRACTION_PROOF_PATH = ROOT / "docs" / "resume-traction-proof.json"
+REAL_MODEL_RUN_REQUEST_PACK_PATH = ROOT / "docs" / "real-model-run-request-pack.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "reviewer-action-queue.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "reviewer-action-queue.md"
 
@@ -52,6 +53,7 @@ def build_reviewer_action_queue() -> dict[str, Any]:
     funnel = load_json(REVIEWER_FUNNEL_PATH)
     invitation = load_json(REVIEWER_INVITATION_KIT_PATH)
     traction = load_json(RESUME_TRACTION_PROOF_PATH)
+    real_model_pack = load_json(REAL_MODEL_RUN_REQUEST_PACK_PATH)
     stages = {stage["id"]: stage for stage in funnel["funnel_stages"]}
     invitation_by_target = {item["target"]: item for item in invitation["invitation_targets"]}
 
@@ -172,6 +174,28 @@ def build_reviewer_action_queue() -> dict[str, Any]:
             ],
             claimable_when="Counts as feedback only after the issue gives contributor-facing evidence.",
         ),
+        _task(
+            task_id="review_real_model_run_evidence",
+            reviewer_segment="AI engineer or developer willing to inspect a redacted real-model trace",
+            counts_toward="accepted_real_model_runs",
+            entry_url="https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-run-request-pack.md",
+            submission_url="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=real_model_run_review.md",
+            message_template=(
+                "I added a privacy-safe evidence path for a real OpenAI-compatible LLM agent run. "
+                "Could you review the runbook, capture gate, and issue template, then help verify one redacted trace "
+                "after I run it locally with credentials that are never shared?"
+            ),
+            required_public_evidence=[
+                "Accepted redacted real-model run issue",
+                "Trace id, model name, prompt version, tool calls, latency, tokens, and estimated cost",
+                "Final structured report verification result",
+                "Permission to count the public issue as real-model LLM agent evidence",
+            ],
+            claimable_when=(
+                "Counts only after the real-model run request pack reaches at least "
+                f"{real_model_pack['resume_unlocks'][0]['target']} accepted redacted run."
+            ),
+        ),
     ]
 
     evidence_goals = sorted({task["counts_toward"] for task in tasks})
@@ -195,6 +219,7 @@ def build_reviewer_action_queue() -> dict[str, Any]:
             "business_case_feedback_items": feedback["business_case_feedback_items"],
             "ai_engineer_review_items": feedback["ai_engineer_review_items"],
             "stars": traction["public_counts"]["stars"],
+            "accepted_real_model_runs": real_model_pack["current_real_model_runs"],
         },
         "queue_count": len(tasks),
         "not_contacted_count": status_counts["not_contacted"],
@@ -208,6 +233,7 @@ def build_reviewer_action_queue() -> dict[str, Any]:
             "enterprise production usage",
             "earned GitHub stars beyond the current public count",
             "completed external reviews",
+            "accepted real-model LLM runs",
         ],
         "resume_status": "outreach_queue_ready_not_claimable",
         "resume_safe_summary": (
@@ -279,18 +305,18 @@ This generated queue turns reviewer outreach into public, countable evidence tas
 
 def verify_reviewer_action_queue(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
-        "queue_count": 8,
-        "not_contacted_count": 8,
-        "evidence_goal_count": 5,
+        "queue_count": 9,
+        "not_contacted_count": 9,
+        "evidence_goal_count": 6,
         "completed_count": 0,
         "contacted_count": 0,
     }
     if payload["queue_count"] != expected["queue_count"]:
-        raise AssertionError("reviewer action queue must include eight outreach tasks")
+        raise AssertionError("reviewer action queue must include nine outreach tasks")
     if payload["not_contacted_count"] != expected["not_contacted_count"]:
         raise AssertionError("reviewer action queue must preserve not-contacted baseline")
     if payload["evidence_goal_count"] != expected["evidence_goal_count"]:
-        raise AssertionError("reviewer action queue must cover five evidence goals")
+        raise AssertionError("reviewer action queue must cover six evidence goals")
     if payload["status_counts"]["completed"] != expected["completed_count"]:
         raise AssertionError("reviewer action queue must not claim completed reviews")
     if payload["status_counts"]["contacted"] != expected["contacted_count"]:
@@ -303,9 +329,10 @@ def verify_reviewer_action_queue(payload: dict[str, Any]) -> dict[str, Any]:
         "reproducible_feedback_items",
         "business_case_feedback_items",
         "ai_engineer_review_items",
+        "accepted_real_model_runs",
     }
     if set(payload["evidence_goals"]) != required_goals:
-        raise AssertionError("reviewer action queue must map to the tracked feedback metrics")
+        raise AssertionError("reviewer action queue must map to the tracked outcome evidence goals")
     for value in payload["baseline"].values():
         if value != 0:
             raise AssertionError("reviewer action queue must start from the zero evidence baseline")
@@ -327,7 +354,7 @@ def verify_reviewer_action_queue(payload: dict[str, Any]) -> dict[str, Any]:
     for forbidden in ("active users: 1", "customer traction", "production adoption", "completed reviewers: 1"):
         if forbidden in joined:
             raise AssertionError(f"reviewer action queue must not claim {forbidden}")
-    for blocked in ("active users", "customer feedback", "enterprise production usage"):
+    for blocked in ("active users", "customer feedback", "enterprise production usage", "accepted real-model LLM runs"):
         if blocked not in payload["blocked_resume_claims"]:
             raise AssertionError(f"reviewer action queue must block {blocked}")
     return {"reviewer_action_queue_verified": True, **expected}

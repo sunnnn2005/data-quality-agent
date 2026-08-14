@@ -13,7 +13,7 @@
     "github_stars": 0
   },
   "generated_by": "scripts/build_public_reviewer_call.py",
-  "linked_outreach_tasks": 8,
+  "linked_outreach_tasks": 9,
   "linked_submission_paths": 6,
   "max_review_minutes": 12,
   "minimum_review_minutes": 1,
@@ -21,7 +21,7 @@
   "public_call_issue": "https://github.com/sunnnn2005/data-quality-agent/issues/19",
   "purpose": "Publish one public call for external reviewers and pilot users so future resume outcome claims can be backed by non-owner GitHub evidence instead of private messages or self-authored notes.",
   "required_public_evidence_fields": 24,
-  "resume_safe_summary": "Published a public reviewer call linked to 3 reviewer segments, 6 submission paths, 8 outreach tasks, and 24 evidence fields while keeping current outcome counts at zero.",
+  "resume_safe_summary": "Published a public reviewer call linked to 3 reviewer segments, 6 submission paths, 9 outreach tasks, and 24 evidence fields while keeping current outcome counts at zero.",
   "resume_status": "public_call_open_not_claimable",
   "reviewer_segment_count": 3,
   "reviewer_segments": [

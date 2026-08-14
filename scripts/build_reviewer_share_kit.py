@@ -207,7 +207,7 @@ def verify_reviewer_share_kit(payload: dict[str, Any]) -> dict[str, Any]:
         "linked_submission_paths": 6,
         "linked_public_call_segments": 3,
         "required_evidence_fields": 24,
-        "outreach_tasks_linked": 8,
+        "outreach_tasks_linked": 9,
     }
     for key, expected in expected_counts.items():
         if payload[key] != expected:

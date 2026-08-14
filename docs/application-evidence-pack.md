@@ -95,26 +95,26 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Resume Outcome Missing Evidence Items | 4 |
 | Reviewer Funnel Stages | 4 |
 | Reviewer Funnel Remaining Evidence Items | 7 |
-| Accepted Evidence Rollup Claimable Metrics | 5 |
-| Accepted Evidence Rollup Blocked Claims | 5 |
+| Accepted Evidence Rollup Claimable Metrics | 6 |
+| Accepted Evidence Rollup Blocked Claims | 6 |
 | Business Impact Ledger Accepted Signals | 0 |
 | Reviewer Evidence Forms | 5 |
 | Reviewer Evidence Script Steps | 5 |
 | Resume Traction Claimable Now | 6 |
 | Resume Traction Future Claims | 4 |
 | Resume Traction Blocked Claims | 5 |
-| Reviewer Action Tasks | 8 |
-| Reviewer Action Evidence Goals | 5 |
-| Reviewer Action Not Contacted | 8 |
-| Reviewer Outreach Ready Messages | 8 |
-| Reviewer Outreach Follow Up Rules | 8 |
-| Reviewer Outreach Not Sent | 8 |
-| Reviewer Outreach Status Slots | 8 |
+| Reviewer Action Tasks | 9 |
+| Reviewer Action Evidence Goals | 6 |
+| Reviewer Action Not Contacted | 9 |
+| Reviewer Outreach Ready Messages | 9 |
+| Reviewer Outreach Follow Up Rules | 9 |
+| Reviewer Outreach Not Sent | 9 |
+| Reviewer Outreach Status Slots | 9 |
 | Reviewer Outreach Status Stages | 5 |
 | Reviewer Outreach Status Accepted Evidence | 0 |
-| Resume Outcome Metrics Tracked | 6 |
+| Resume Outcome Metrics Tracked | 7 |
 | Resume Outcome Metrics Claimable | 0 |
-| Resume Outcome Metrics Blocked | 6 |
+| Resume Outcome Metrics Blocked | 7 |
 | Resume Outcome Action Count | 5 |
 | Resume Outcome Next Actions Needed | 5 |
 | Reviewer Submission Paths | 6 |
@@ -123,7 +123,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Outcome Collection Submission Paths | 6 |
 | Outcome Collection Evidence Fields | 24 |
 | Public Reviewer Call Segments | 3 |
-| Public Reviewer Call Outreach Tasks | 8 |
+| Public Reviewer Call Outreach Tasks | 9 |
 | Public Reviewer Call Evidence Fields | 24 |
 | Reviewer Share Channels | 5 |
 | Reviewer Share Ready Messages | 5 |

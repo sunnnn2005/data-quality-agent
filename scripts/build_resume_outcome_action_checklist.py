@@ -216,7 +216,7 @@ def verify_resume_outcome_action_checklist(payload: dict[str, Any]) -> dict[str,
         raise AssertionError("resume outcome action checklist must keep five next actions open")
     if payload["accepted_public_issue_count"] != 0:
         raise AssertionError("resume outcome action checklist must not claim accepted public evidence yet")
-    if payload["outreach_slot_count"] != 8 or payload["not_sent_outreach_count"] != 8:
+    if payload["outreach_slot_count"] != 9 or payload["not_sent_outreach_count"] != 9:
         raise AssertionError("resume outcome action checklist must preserve the not-sent outreach baseline")
     required = {
         "send_first_reviewer_request",

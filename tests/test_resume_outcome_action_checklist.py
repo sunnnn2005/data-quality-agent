@@ -15,8 +15,8 @@ def test_resume_outcome_action_checklist_turns_blocked_outcomes_into_next_action
     assert payload["next_action_needed_count"] == 5
     assert payload["claimable_action_count"] == 0
     assert payload["accepted_public_issue_count"] == 0
-    assert payload["outreach_slot_count"] == 8
-    assert payload["not_sent_outreach_count"] == 8
+    assert payload["outreach_slot_count"] == 9
+    assert payload["not_sent_outreach_count"] == 9
     assert {action["id"] for action in payload["actions"]} == {
         "send_first_reviewer_request",
         "collect_first_public_run_issue",

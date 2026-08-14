@@ -201,10 +201,10 @@ This generated CRM turns the outcome-evidence goal into concrete reviewer leads 
 
 
 def verify_pilot_reviewer_crm(payload: dict[str, Any]) -> dict[str, Any]:
-    if payload["lead_count"] != 8:
-        raise AssertionError("pilot reviewer CRM must expose eight reviewer leads")
-    if payload["priority_metric_count"] != 5:
-        raise AssertionError("pilot reviewer CRM must cover five target outcome metrics")
+    if payload["lead_count"] != 9:
+        raise AssertionError("pilot reviewer CRM must expose nine reviewer leads")
+    if payload["priority_metric_count"] != 6:
+        raise AssertionError("pilot reviewer CRM must cover six target outcome metrics")
     if payload["week_count"] != 3:
         raise AssertionError("pilot reviewer CRM must include a three-week sprint")
     if payload["recorded_outreach_event_count"] != 0:

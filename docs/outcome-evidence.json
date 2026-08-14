@@ -701,7 +701,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-traction-proof.json"
     },
     {
-      "claim": "The project publishes a reviewer action queue with 8 concrete outreach tasks, 5 public evidence goals, privacy boundaries, permission-to-count rules, and a zero contacted or completed baseline.",
+      "claim": "The project publishes a reviewer action queue with 9 concrete outreach tasks, 6 public evidence goals including accepted real-model run evidence, privacy boundaries, permission-to-count rules, and a zero contacted or completed baseline.",
       "evidence_type": "generated_artifact",
       "id": "reviewer-action-queue",
       "metric_name": "reviewer_action_queue",
@@ -711,7 +711,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-action-queue.json"
     },
     {
-      "claim": "The project publishes a reviewer outreach execution pack with 8 ready-to-send messages, 8 follow-up rules, 5 public evidence goals, privacy boundaries, permission-to-count rules, and a zero sent or completed baseline.",
+      "claim": "The project publishes a reviewer outreach execution pack with 9 ready-to-send messages, 9 follow-up rules, 6 public evidence goals including accepted real-model run evidence, privacy boundaries, permission-to-count rules, and a zero sent or completed baseline.",
       "evidence_type": "generated_artifact",
       "id": "reviewer-outreach-execution-pack",
       "metric_name": "reviewer_outreach_execution_pack",
@@ -731,7 +731,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-metrics.json"
     },
     {
-      "claim": "The project converts blocked user, feedback, AI Engineer review, business-case, and GitHub-star outcome goals into 5 concrete next actions with public evidence paths, completion checks, zero accepted public evidence, and 8 not-sent reviewer outreach slots preserved.",
+      "claim": "The project converts blocked user, feedback, AI Engineer review, business-case, real-model, and GitHub-star outcome goals into 5 concrete next actions with public evidence paths, completion checks, zero accepted public evidence, and 9 not-sent reviewer outreach slots preserved.",
       "evidence_type": "generated_json",
       "id": "resume-outcome-action-checklist",
       "metric_name": "resume_outcome_action_checklist",
@@ -761,7 +761,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-collection.json"
     },
     {
-      "claim": "The project publishes a public reviewer call for 3 reviewer segments, 6 submission paths, 8 outreach tasks, 24 required evidence fields, conservative counting rules, and zero current outcome counts upgraded.",
+      "claim": "The project publishes a public reviewer call for 3 reviewer segments, 6 submission paths, 9 outreach tasks, 24 required evidence fields, conservative counting rules, and zero current outcome counts upgraded.",
       "evidence_type": "generated_artifact",
       "id": "public-reviewer-call",
       "metric_name": "public_reviewer_call",
@@ -841,7 +841,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-adjudication.json"
     },
     {
-      "claim": "The project publishes a resume outcome evidence ledger that separates 4 currently claimable engineering signals from 2 active but non-claimable pipeline stages and 5 blocked outcome claims, preserving zero accepted public evidence and zero resume upgrades until non-owner public evidence passes the gate.",
+      "claim": "The project publishes a resume outcome evidence ledger that separates 4 currently claimable engineering signals from 2 active but non-claimable pipeline stages and 6 blocked outcome claims, preserving zero accepted public evidence and zero resume upgrades until non-owner public evidence passes the gate.",
       "evidence_type": "generated_artifact",
       "id": "resume-outcome-evidence-ledger",
       "metric_name": "resume_outcome_evidence_ledger",
@@ -851,7 +851,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-evidence-ledger.json"
     },
     {
-      "claim": "The project publishes a pilot reviewer CRM that turns outcome evidence collection into 8 reviewer leads, 5 target metrics, and a 3-week evidence collection plan while preserving zero sent outreach, zero accepted public evidence, and zero resume upgrades.",
+      "claim": "The project publishes a pilot reviewer CRM that turns outcome evidence collection into 9 reviewer leads, 6 target metrics, and a 3-week evidence collection plan while preserving zero sent outreach, zero accepted public evidence, and zero resume upgrades.",
       "evidence_type": "generated_artifact",
       "id": "pilot-reviewer-crm",
       "metric_name": "pilot_reviewer_crm",

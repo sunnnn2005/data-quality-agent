@@ -102,6 +102,7 @@ def build_resume_outcome_evidence_ledger() -> dict[str, Any]:
         "reproducible_feedback_items": feedback["reproducible_feedback_items"],
         "ai_engineer_review_items": feedback.get("ai_engineer_review_items", 0),
         "business_case_feedback_items": feedback.get("business_case_feedback_items", 0),
+        "accepted_real_model_runs": accepted_rollup["accepted_counts"].get("accepted_real_model_runs", 0),
     }
 
     return {
@@ -135,6 +136,7 @@ def build_resume_outcome_evidence_ledger() -> dict[str, Any]:
             "No external users are claimed while confirmed_external_users is 0.",
             "No feedback impact is claimed while accepted public feedback is 0.",
             "No AI Engineer review is claimed while accepted AI-review evidence is 0.",
+            "No accepted real-model LLM run is claimed while accepted_real_model_runs is 0.",
             "No GitHub-star growth is claimed beyond the live public count.",
             "No enterprise production deployment is claimed.",
         ],
@@ -216,10 +218,10 @@ def verify_resume_outcome_evidence_ledger(payload: dict[str, Any]) -> dict[str, 
         raise AssertionError("ledger must expose four claimable engineering signals")
     if payload["in_pipeline_count"] != 2:
         raise AssertionError("ledger must expose two active non-claimable pipeline stages")
-    if payload["blocked_until_evidence_count"] != 5:
-        raise AssertionError("ledger must preserve five blocked outcome claims")
-    if payload["outreach_slot_count"] != 8:
-        raise AssertionError("ledger must read the eight reviewer outreach slots")
+    if payload["blocked_until_evidence_count"] != 6:
+        raise AssertionError("ledger must preserve six blocked outcome claims")
+    if payload["outreach_slot_count"] != 9:
+        raise AssertionError("ledger must read the nine reviewer outreach slots")
     if payload["accepted_public_evidence_count"] != 0:
         raise AssertionError("ledger must not claim accepted external evidence yet")
     if payload["resume_upgrade_count"] != 0:
@@ -230,6 +232,7 @@ def verify_resume_outcome_evidence_ledger(payload: dict[str, Any]) -> dict[str, 
         "reproducible_feedback_items",
         "ai_engineer_review_items",
         "business_case_feedback_items",
+        "accepted_real_model_runs",
     ):
         if payload["public_counts"][key] != 0:
             raise AssertionError(f"ledger must preserve zero {key}")

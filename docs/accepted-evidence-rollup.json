@@ -1,5 +1,6 @@
 {
   "accepted_counts": {
+    "accepted_real_model_runs": 0,
     "ai_engineer_review_items": 0,
     "business_case_feedback_items": 0,
     "confirmed_external_users": 0,
@@ -8,7 +9,7 @@
   },
   "accepted_issue_count": 0,
   "accepted_issue_urls": [],
-  "blocked_outcome_claim_count": 5,
+  "blocked_outcome_claim_count": 6,
   "blocked_outcome_claims": [
     {
       "blocked_claim": "confirmed external users",
@@ -34,9 +35,14 @@
       "blocked_claim": "AI Engineer review items",
       "metric": "ai_engineer_review_items",
       "reason": "Cannot claim external AI Engineer review feedback until a non-owner reviewer submits inspected-path evidence and permission to count."
+    },
+    {
+      "blocked_claim": "accepted real-model LLM runs",
+      "metric": "accepted_real_model_runs",
+      "reason": "Cannot claim accepted real-model LLM runs until a redacted run issue includes model, prompt version, tool calls, latency, token, cost, retry, verification, and permission evidence."
     }
   ],
-  "claimable_metric_count": 5,
+  "claimable_metric_count": 6,
   "claimable_metrics": [
     {
       "claimable": false,
@@ -77,26 +83,35 @@
       "metric": "ai_engineer_review_items",
       "missing_reason": "Cannot claim external AI Engineer review feedback until a non-owner reviewer submits inspected-path evidence and permission to count.",
       "resume_wording": null
+    },
+    {
+      "claimable": false,
+      "current_count": 0,
+      "label": "accepted real-model LLM runs",
+      "metric": "accepted_real_model_runs",
+      "missing_reason": "Cannot claim accepted real-model LLM runs until a redacted run issue includes model, prompt version, tool calls, latency, token, cost, retry, verification, and permission evidence.",
+      "resume_wording": null
     }
   ],
   "current_public_counts": {
+    "accepted_real_model_runs": 0,
     "ai_engineer_review_items": 0,
     "business_case_feedback_items": 0,
     "confirmed_external_users": 0,
     "external_feedback_items": 0,
     "reproducible_feedback_items": 0
   },
-  "evaluated_issue_count": 14,
+  "evaluated_issue_count": 15,
   "generated_by": "scripts/build_accepted_evidence_rollup.py",
   "linked_outreach_queue_count": 3,
   "not_claimed": [
     "No accepted external reviewer issue exists yet.",
-    "No user, feedback, reproducible-run, business-case, or AI Engineer review outcome is claimable while its accepted count is zero.",
+    "No user, feedback, reproducible-run, business-case, AI Engineer review, or real-model outcome is claimable while its accepted count is zero.",
     "No private business data is used as outcome evidence."
   ],
   "project": "Data Quality Agent",
   "purpose": "Summarize accepted public reviewer evidence into resume-safe outcome metrics while preserving blocked claims until the external reviewer evidence gate accepts proof.",
-  "rejected_issue_count": 14,
+  "rejected_issue_count": 15,
   "rejected_issue_summaries": [
     {
       "failure_reasons": [
@@ -256,6 +271,7 @@
         "missing no-private-data AI review checkbox",
         "missing AI Engineer review counting permission",
         "missing inspected path or command evidence",
+        "missing LLM value comparison inspection",
         "missing strongest ai engineer signals evidence",
         "missing missing or weak ai engineer signals evidence"
       ],
@@ -307,7 +323,28 @@
       "issue_number": 30,
       "title": "Business resolution review: validate support-operations remediation brief",
       "url": "https://github.com/sunnnn2005/data-quality-agent/issues/30"
+    },
+    {
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-sensitive-data replay checkbox",
+        "missing confirmed anonymized replay permission",
+        "missing external feedback permission",
+        "missing business-data replay path tried",
+        "missing data source type evidence",
+        "missing dataset shape evidence",
+        "missing agent run summary evidence",
+        "missing what did it catch or miss? evidence",
+        "missing replay run summary field: Command or endpoint used:",
+        "missing replay run summary field: Report status:",
+        "missing replay run summary field: Finding count:",
+        "missing replay run summary field: Selected tools shown in the agent trace:"
+      ],
+      "issue_number": 31,
+      "title": "Business pilot offer: collect redacted data-quality replay evidence",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/31"
     }
   ],
-  "resume_safe_summary": "Published a CI-verified accepted evidence rollup that summarizes 0 accepted reviewer issues, 0 confirmed users, 0 feedback items, 0 reproducible runs, and 0 business-case feedback items, and 0 AI Engineer review items before stronger resume outcome claims are allowed."
+  "resume_safe_summary": "Published a CI-verified accepted evidence rollup that summarizes 0 accepted reviewer issues, 0 confirmed users, 0 feedback items, 0 reproducible runs, and 0 business-case feedback items, and 0 AI Engineer review items, and 0 accepted real-model LLM runs before stronger resume outcome claims are allowed."
 }

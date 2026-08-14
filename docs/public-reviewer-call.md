@@ -24,7 +24,7 @@ Publish one public call for external reviewers and pilot users so future resume 
 | --- | ---: |
 | Reviewer segments | 3 |
 | Linked submission paths | 6 |
-| Linked outreach tasks | 8 |
+| Linked outreach tasks | 9 |
 | Minimum review minutes | 1 |
 | Maximum review minutes | 12 |
 | Required public evidence fields | 24 |
@@ -48,4 +48,4 @@ Publish one public call for external reviewers and pilot users so future resume 
 
 ## Resume-Safe Summary
 
-Published a public reviewer call linked to 3 reviewer segments, 6 submission paths, 8 outreach tasks, and 24 evidence fields while keeping current outcome counts at zero.
+Published a public reviewer call linked to 3 reviewer segments, 6 submission paths, 9 outreach tasks, and 24 evidence fields while keeping current outcome counts at zero.

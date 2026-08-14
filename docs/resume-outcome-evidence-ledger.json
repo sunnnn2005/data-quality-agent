@@ -35,9 +35,16 @@
       "metric": "ai_engineer_review_items",
       "required_public_evidence": "Non-owner public GitHub issue with inspected path or run evidence, no private data, explicit permission to count, and accepted evidence-gate status.",
       "target_resume_claim": "AI Engineer review items"
+    },
+    {
+      "blocked_reason": "Cannot claim accepted real-model LLM runs until a redacted run issue includes model, prompt version, tool calls, latency, token, cost, retry, verification, and permission evidence.",
+      "current_count": 0,
+      "metric": "accepted_real_model_runs",
+      "required_public_evidence": "Non-owner public GitHub issue with inspected path or run evidence, no private data, explicit permission to count, and accepted evidence-gate status.",
+      "target_resume_claim": "accepted real-model LLM runs"
     }
   ],
-  "blocked_until_evidence_count": 5,
+  "blocked_until_evidence_count": 6,
   "claimable_now": [
     {
       "evidence_url": "https://sunnnn2005.github.io/data-quality-agent/",
@@ -96,12 +103,14 @@
     "No external users are claimed while confirmed_external_users is 0.",
     "No feedback impact is claimed while accepted public feedback is 0.",
     "No AI Engineer review is claimed while accepted AI-review evidence is 0.",
+    "No accepted real-model LLM run is claimed while accepted_real_model_runs is 0.",
     "No GitHub-star growth is claimed beyond the live public count.",
     "No enterprise production deployment is claimed."
   ],
-  "outreach_slot_count": 8,
+  "outreach_slot_count": 9,
   "project": "Data Quality Agent",
   "public_counts": {
+    "accepted_real_model_runs": 0,
     "ai_engineer_review_items": 0,
     "business_case_feedback_items": 0,
     "confirmed_external_users": 0,
@@ -113,6 +122,6 @@
   },
   "purpose": "Keep resume outcome claims honest by separating verified accomplishments, active outcome pipeline work, and blocked claims that still need public non-owner evidence.",
   "recorded_outreach_event_count": 0,
-  "resume_safe_summary": "Published a resume outcome evidence ledger with 4 claimable engineering signals, 2 active but non-claimable outcome pipeline stages, 5 blocked outcome claims, 0 recorded outreach events, and 0 accepted public evidence items.",
+  "resume_safe_summary": "Published a resume outcome evidence ledger with 4 claimable engineering signals, 2 active but non-claimable outcome pipeline stages, 6 blocked outcome claims, 0 recorded outreach events, and 0 accepted public evidence items.",
   "resume_upgrade_count": 0
 }

@@ -11,9 +11,9 @@ def test_reviewer_outreach_status_board_tracks_slots_without_claiming_results():
     markdown = render_markdown(payload)
 
     assert verification["reviewer_outreach_status_board_verified"] is True
-    assert payload["outreach_slot_count"] == 8
+    assert payload["outreach_slot_count"] == 9
     assert payload["status_stage_count"] == 5
-    assert payload["not_sent_count"] == 8
+    assert payload["not_sent_count"] == 9
     assert payload["sent_count"] == 0
     assert payload["reply_count"] == 0
     assert payload["accepted_evidence_count"] == 0

@@ -1,7 +1,7 @@
 {
   "accepted_public_evidence_count": 0,
   "generated_by": "scripts/build_pilot_reviewer_crm.py",
-  "lead_count": 8,
+  "lead_count": 9,
   "leads": [
     {
       "lead_id": "pilot_review_slot_07",
@@ -138,6 +138,23 @@
       "tracking_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/20",
       "upgrade_gate": "Only upgrade after a non-owner public GitHub issue includes permission to count, no private data, and enough evidence for the external reviewer gate.",
       "weekly_goal": "Collect concrete product feedback from a peer reviewer without counting private replies."
+    },
+    {
+      "lead_id": "pilot_review_slot_09",
+      "next_action": "Send manually only after choosing a real reviewer.",
+      "priority": 9,
+      "recommended_channel": "LinkedIn, email, or mentor message",
+      "record_sent_command": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_09 --status sent --reviewer-contact \"<real reviewer>\" --channel-used LinkedIn, email, or mentor message",
+      "resume_countable_now": false,
+      "review_context_url": null,
+      "reviewer_segment": "AI engineer or developer willing to inspect a redacted real-model trace",
+      "slot_id": "review_slot_09",
+      "status": "not_sent",
+      "submission_url": null,
+      "target_metric": "accepted_real_model_runs",
+      "tracking_issue_url": null,
+      "upgrade_gate": "Only upgrade after a non-owner public GitHub issue includes permission to count, no private data, and enough evidence for the external reviewer gate.",
+      "weekly_goal": "Collect public reviewer evidence."
     }
   ],
   "not_claimed": [
@@ -152,11 +169,11 @@
     "Every upgraded resume claim must point to accepted public evidence.",
     "Keep raw business rows, customer names, emails, phone numbers, tokens, and addresses out of public issues."
   ],
-  "priority_metric_count": 5,
+  "priority_metric_count": 6,
   "project": "Data Quality Agent",
   "purpose": "Turn outcome evidence collection into an executable reviewer CRM without fabricating reviewer names, private replies, users, feedback, or GitHub stars.",
   "recorded_outreach_event_count": 0,
-  "resume_safe_summary": "Published a pilot reviewer CRM with 8 reviewer leads, 5 target outcome metrics, a 3-week evidence collection plan, 0 recorded sends, and 0 accepted public evidence items.",
+  "resume_safe_summary": "Published a pilot reviewer CRM with 9 reviewer leads, 6 target outcome metrics, a 3-week evidence collection plan, 0 recorded sends, and 0 accepted public evidence items.",
   "resume_upgrade_count": 0,
   "sprint_plan": [
     {
@@ -183,13 +200,15 @@
       "lead_ids": [
         "pilot_review_slot_01",
         "pilot_review_slot_02",
-        "pilot_review_slot_08"
+        "pilot_review_slot_08",
+        "pilot_review_slot_09"
       ],
       "success_metric": "Accepted evidence rollup remains the source of truth for any resume upgrade.",
       "week": 3
     }
   ],
   "target_counts": {
+    "accepted_real_model_runs": 1,
     "ai_engineer_review_items": 1,
     "business_case_feedback_items": 2,
     "confirmed_external_users": 1,

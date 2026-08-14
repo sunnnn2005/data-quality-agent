@@ -32,6 +32,10 @@ FUTURE_BULLET_TEMPLATES = {
         "Collected {count} AI Engineer review item(s) covering tool calling, structured outputs, "
         "guardrails, traceability, and model fallback behavior."
     ),
+    "accepted_real_model_runs": (
+        "Captured {count} accepted real-model LLM agent run(s) with redacted tool calls, "
+        "latency, token, cost, retry, and evidence-verification telemetry."
+    ),
 }
 
 
@@ -93,7 +97,7 @@ def build_resume_claim_materializer() -> dict[str, Any]:
         "generated_by": "scripts/build_resume_claim_materializer.py",
         "purpose": (
             "Convert accepted public outcome evidence into exact resume bullets while keeping "
-            "unverified users, feedback, business impact, AI review, and GitHub-star claims blocked."
+            "unverified users, feedback, business impact, AI review, real-model, and GitHub-star claims blocked."
         ),
         "safe_current_bullets": safe_current_bullets,
         "safe_current_bullet_count": len(safe_current_bullets),
@@ -129,8 +133,8 @@ def build_resume_claim_materializer() -> dict[str, Any]:
 def verify_resume_claim_materializer(payload: dict[str, Any]) -> None:
     if payload["safe_current_bullet_count"] != 4:
         raise AssertionError("expected 4 current claimable engineering bullets")
-    if payload["future_template_count"] != 5:
-        raise AssertionError("expected 5 blocked future outcome templates")
+    if payload["future_template_count"] != 6:
+        raise AssertionError("expected 6 blocked future outcome templates")
     if payload["materialized_claim_count"] != 0:
         raise AssertionError("must not materialize external outcome bullets without accepted evidence")
     if payload["accepted_public_evidence_count"] != 0:
@@ -153,6 +157,7 @@ def verify_resume_claim_materializer(payload: dict[str, Any]) -> None:
         "exact resume bullets",
         "confirmed_external_users",
         "ai_engineer_review_items",
+        "accepted_real_model_runs",
         "No enterprise deployment is claimed.",
     ]
     for text in required_text:
