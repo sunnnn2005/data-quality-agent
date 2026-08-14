@@ -1,5 +1,5 @@
 {
-  "check_count": 99,
+  "check_count": 101,
   "checks": [
     {
       "evidence_type": "html",
@@ -124,6 +124,27 @@
         "project",
         "required_evidence_count",
         "time_budget_minutes"
+      ]
+    },
+    {
+      "evidence_type": "html",
+      "id": "business-pilot-offer-page",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-pilot-offer.html"
+    },
+    {
+      "evidence_type": "json",
+      "id": "business-pilot-offer",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-pilot-offer.json",
+      "verified_fields": [
+        "eligible_data_source_count",
+        "evidence_gate_count",
+        "pilot_scope_count",
+        "pilot_status",
+        "project"
       ]
     },
     {
@@ -1114,6 +1135,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 99,
+  "passed_count": 101,
   "status": "PASS"
 }
