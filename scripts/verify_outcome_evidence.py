@@ -84,6 +84,7 @@ PRIVATE_REVIEWER_LEAD_WORKFLOW_PATH = ROOT / "docs" / "private-reviewer-lead-wor
 PRIVATE_REVIEWER_LEAD_SUMMARY_PATH = ROOT / "docs" / "private-reviewer-lead-summary.json"
 OUTCOME_WITNESS_PACKET_PATH = ROOT / "docs" / "outcome-witness-packet.json"
 OUTCOME_SPRINT_PLAN_PATH = ROOT / "docs" / "outcome-sprint-plan.json"
+ONE_CLICK_EVIDENCE_LINKS_PATH = ROOT / "docs" / "one-click-evidence-links.json"
 RESUME_CLAIM_MATERIALIZER_PATH = ROOT / "docs" / "resume-claim-materializer.json"
 EVIDENCE_GAP_DIAGNOSTICS_PATH = ROOT / "docs" / "evidence-gap-diagnostics.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
@@ -185,6 +186,7 @@ def verify_manifest() -> dict[str, int]:
     private_reviewer_lead_summary = load_payload(PRIVATE_REVIEWER_LEAD_SUMMARY_PATH)
     outcome_witness_packet = load_payload(OUTCOME_WITNESS_PACKET_PATH)
     outcome_sprint_plan = load_payload(OUTCOME_SPRINT_PLAN_PATH)
+    one_click_evidence_links = load_payload(ONE_CLICK_EVIDENCE_LINKS_PATH)
     resume_claim_materializer = load_payload(RESUME_CLAIM_MATERIALIZER_PATH)
     evidence_gap_diagnostics = load_payload(EVIDENCE_GAP_DIAGNOSTICS_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
@@ -618,7 +620,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 206:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 208:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("tracked_public_metrics") != 8:
                     raise AssertionError("public metrics summary must include provenance tracked metric count")
@@ -1037,6 +1039,40 @@ def verify_manifest() -> dict[str, int]:
                         raise AssertionError(f"outcome sprint plan missing test {required_test}")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("outcome_sprint_plan claim must use metric_value=1")
+            elif metric_name == "one_click_evidence_links":
+                one_click_script = (ROOT / "scripts" / "build_one_click_evidence_links.py").read_text()
+                one_click_tests = (ROOT / "tests" / "test_one_click_evidence_links.py").read_text()
+                expected = {
+                    "link_count": 4,
+                    "target_metric_count": 4,
+                    "claimable_resume_metric_count": 0,
+                    "accepted_issue_count": 0,
+                }
+                for key, value in expected.items():
+                    if one_click_evidence_links.get(key) != value:
+                        raise AssertionError(f"one-click evidence links {key} expected {value!r}")
+                if any(value != 0 for value in one_click_evidence_links.get("current_public_counts", {}).values()):
+                    raise AssertionError("one-click evidence links must preserve zero public outcome counts")
+                joined = json.dumps(one_click_evidence_links, sort_keys=True)
+                for required in (
+                    "Opening a one-click issue link is not evidence by itself.",
+                    "non-owner submits the public issue",
+                    "I give permission for this public issue to be counted as project review evidence.",
+                    "I confirm this public issue contains no raw customer data",
+                    "zero resume upgrades",
+                ):
+                    if required not in joined:
+                        raise AssertionError(f"one-click evidence links missing {required}")
+                if "verify_one_click_evidence_links" not in one_click_script:
+                    raise AssertionError("one-click evidence links script must include verifier")
+                for required_test in (
+                    "test_one_click_evidence_links_prefill_public_permissioned_issues",
+                    "test_one_click_evidence_links_cover_reviewer_facing_outcomes_only",
+                ):
+                    if required_test not in one_click_tests:
+                        raise AssertionError(f"one-click evidence links missing test {required_test}")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("one_click_evidence_links claim must use metric_value=1")
             elif metric_name == "resume_claim_materializer":
                 materializer_script = (ROOT / "scripts" / "build_resume_claim_materializer.py").read_text()
                 materializer_tests = (ROOT / "tests" / "test_resume_claim_materializer.py").read_text()
@@ -1310,7 +1346,7 @@ def verify_manifest() -> dict[str, int]:
                     ("confirmed_external_users", 0),
                     ("external_feedback_items", 0),
                     ("github_stars", 0),
-                    ("passing_tests", 206),
+                    ("passing_tests", 208),
                 ):
                     if counts.get(key) != expected_value:
                         raise AssertionError(f"outcome collection {key} expected {expected_value!r}")
@@ -1702,7 +1738,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 206:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 208:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -2713,7 +2749,7 @@ def verify_manifest() -> dict[str, int]:
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
         for phrase in (
-            "passing ci tests | 206",
+            "passing ci tests | 208",
             "tracked public outcome metrics | 8",
             "claimable public outcome metrics | 2",
             "confirmed external users | 0",
@@ -2769,7 +2805,7 @@ def verify_manifest() -> dict[str, int]:
 
     resume_metric_phrases = (
         "github issues | 25",
-        "automated tests | 206",
+        "automated tests | 208",
         "github views | 9",
         "github unique visitors | 3",
         "github clones | 79",
@@ -2784,7 +2820,7 @@ def verify_manifest() -> dict[str, int]:
     badges_by_id = {badge["id"]: badge for badge in outcome_badges.get("badges", [])}
     if outcome_badges.get("badge_count") != 6:
         raise AssertionError("outcome badges must expose six badge artifacts")
-    if badges_by_id.get("ci-tests", {}).get("message") != "206 passing":
+    if badges_by_id.get("ci-tests", {}).get("message") != "208 passing":
         raise AssertionError("outcome badges must display the current passing test count")
     for blocked_badge in ("github-stars", "confirmed-users", "external-feedback", "ai-review"):
         if badges_by_id.get(blocked_badge, {}).get("resume_claimable") is not False:
@@ -2818,7 +2854,7 @@ def verify_manifest() -> dict[str, int]:
         raise AssertionError("launch evidence snapshot workflow count is inconsistent")
     if launch_workflows.get("workflow_count") != 3:
         raise AssertionError("launch evidence snapshot must track the three main workflows")
-    if launch_evidence_snapshot.get("application_pack", {}).get("passing_tests") != 206:
+    if launch_evidence_snapshot.get("application_pack", {}).get("passing_tests") != 208:
         raise AssertionError("launch evidence snapshot must reflect the current passing test count")
     if launch_evidence_snapshot.get("public_github_stats", {}).get("stars") != 0:
         raise AssertionError("launch evidence snapshot must preserve the zero-star baseline")

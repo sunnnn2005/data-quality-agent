@@ -1,0 +1,76 @@
+{
+  "accepted_issue_count": 0,
+  "claimable_resume_metric_count": 0,
+  "counting_rule": "Opening a one-click issue link is not evidence by itself. A metric counts only after a non-owner submits the public issue, includes permission, includes no private data, and passes the evidence gate.",
+  "current_public_counts": {
+    "ai_engineer_review_items": 0,
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
+  "generated_by": "scripts/build_one_click_evidence_links.py",
+  "link_count": 4,
+  "links": [
+    {
+      "current_count": 0,
+      "day": 1,
+      "issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?title=Evidence+candidate%3A+Send+the+first+AI+Engineer+review+request+%28ai_engineer_review_items%29&labels=ai-engineer-review%2Cevidence-candidate&body=%23%23+Review+Path%0A%0ATarget+metric%3A+%60ai_engineer_review_items%60%0AExecution+artifact%3A+%60docs%2Ffirst-reviewer-send-kit.md%60%0AReviewer+profile%3A+AI+engineer%2C+mentor%2C+or+ML+systems+reviewer%0A%0A%23%23+What+I+Tried%0A%0A-+URL%2C+command%2C+or+file+inspected%3A%0A-+What+worked%3A%0A-+What+was+confusing%2C+broken%2C+or+useful%3A%0A%0A%23%23+Completion+Evidence%0A%0A-+%5B+%5D+one+real+reviewer+contact+chosen%0A-+%5B+%5D+message+actually+sent+through+the+recommended+channel%0A-+%5B+%5D+outreach+event+recorded+with+scripts%2Frecord_reviewer_outreach_event.py%0A%0A%23%23+Permission+and+Privacy%0A%0A-+%5B+%5D+I+am+not+the+repository+owner.%0A-+%5B+%5D+I+give+permission+for+this+public+issue+to+be+counted+as+project+review+evidence.%0A-+%5B+%5D+I+confirm+this+public+issue+contains+no+raw+customer+data%2C+private+business+data%2C+secrets%2C+tokens%2C+private+emails%2C+addresses%2C+or+production+rows.%0A%0A%23%23+Resume+Boundary%0A%0ANo+resume+outcome+changes+until+a+non-owner+AI+Engineer+review+issue+passes+the+evidence+gate.%0A",
+      "labels": [
+        "ai-engineer-review",
+        "evidence-candidate"
+      ],
+      "required_no_private_data_sentence": "I confirm this public issue contains no raw customer data, private business data, secrets, tokens, private emails, addresses, or production rows.",
+      "required_permission_sentence": "I give permission for this public issue to be counted as project review evidence.",
+      "resume_unlock_gate": "No resume outcome changes until a non-owner AI Engineer review issue passes the evidence gate.",
+      "target_metric": "ai_engineer_review_items",
+      "title": "Send the first AI Engineer review request"
+    },
+    {
+      "current_count": 0,
+      "day": 2,
+      "issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?title=Evidence+candidate%3A+Collect+one+confirmed+external+run+%28confirmed_external_users%29&labels=confirmed-user%2Cevidence-candidate&body=%23%23+Review+Path%0A%0ATarget+metric%3A+%60confirmed_external_users%60%0AExecution+artifact%3A+%60docs%2Foutcome-witness-packet.md%23witness_confirmed_external_users%60%0AReviewer+profile%3A+reviewer+who+opened+the+demo+or+ran+the+repo%0A%0A%23%23+What+I+Tried%0A%0A-+URL%2C+command%2C+or+file+inspected%3A%0A-+What+worked%3A%0A-+What+was+confusing%2C+broken%2C+or+useful%3A%0A%0A%23%23+Completion+Evidence%0A%0A-+%5B+%5D+reviewer+opened+the+public+demo+or+ran+the+quickstart%0A-+%5B+%5D+reviewer+submits+a+public+issue+with+observed+result%0A-+%5B+%5D+reviewer+gives+permission+for+the+issue+to+count+publicly%0A%0A%23%23+Permission+and+Privacy%0A%0A-+%5B+%5D+I+am+not+the+repository+owner.%0A-+%5B+%5D+I+give+permission+for+this+public+issue+to+be+counted+as+project+review+evidence.%0A-+%5B+%5D+I+confirm+this+public+issue+contains+no+raw+customer+data%2C+private+business+data%2C+secrets%2C+tokens%2C+private+emails%2C+addresses%2C+or+production+rows.%0A%0A%23%23+Resume+Boundary%0A%0AFirst+claimable+user+metric+unlocks+only+after+accepted+public+issue+evidence.%0A",
+      "labels": [
+        "confirmed-user",
+        "evidence-candidate"
+      ],
+      "required_no_private_data_sentence": "I confirm this public issue contains no raw customer data, private business data, secrets, tokens, private emails, addresses, or production rows.",
+      "required_permission_sentence": "I give permission for this public issue to be counted as project review evidence.",
+      "resume_unlock_gate": "First claimable user metric unlocks only after accepted public issue evidence.",
+      "target_metric": "confirmed_external_users",
+      "title": "Collect one confirmed external run"
+    },
+    {
+      "current_count": 0,
+      "day": 3,
+      "issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?title=Evidence+candidate%3A+Collect+one+concrete+product+or+README+feedback+item+%28external_feedback_items%29&labels=feedback%2Cevidence-candidate&body=%23%23+Review+Path%0A%0ATarget+metric%3A+%60external_feedback_items%60%0AExecution+artifact%3A+%60docs%2Freviewer-send-queue.md%60%0AReviewer+profile%3A+UC+Davis+data+science+peer%0A%0A%23%23+What+I+Tried%0A%0A-+URL%2C+command%2C+or+file+inspected%3A%0A-+What+worked%3A%0A-+What+was+confusing%2C+broken%2C+or+useful%3A%0A%0A%23%23+Completion+Evidence%0A%0A-+%5B+%5D+reviewer+names+the+page%2C+command%2C+or+file+inspected%0A-+%5B+%5D+reviewer+gives+one+specific+useful%2C+confusing%2C+or+broken+point%0A-+%5B+%5D+public+issue+contains+no+private+data+and+grants+counting+permission%0A%0A%23%23+Permission+and+Privacy%0A%0A-+%5B+%5D+I+am+not+the+repository+owner.%0A-+%5B+%5D+I+give+permission+for+this+public+issue+to+be+counted+as+project+review+evidence.%0A-+%5B+%5D+I+confirm+this+public+issue+contains+no+raw+customer+data%2C+private+business+data%2C+secrets%2C+tokens%2C+private+emails%2C+addresses%2C+or+production+rows.%0A%0A%23%23+Resume+Boundary%0A%0AFeedback+count+remains+zero+until+the+external+reviewer+evidence+gate+accepts+the+issue.%0A",
+      "labels": [
+        "feedback",
+        "evidence-candidate"
+      ],
+      "required_no_private_data_sentence": "I confirm this public issue contains no raw customer data, private business data, secrets, tokens, private emails, addresses, or production rows.",
+      "required_permission_sentence": "I give permission for this public issue to be counted as project review evidence.",
+      "resume_unlock_gate": "Feedback count remains zero until the external reviewer evidence gate accepts the issue.",
+      "target_metric": "external_feedback_items",
+      "title": "Collect one concrete product or README feedback item"
+    },
+    {
+      "current_count": 0,
+      "day": 4,
+      "issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?title=Evidence+candidate%3A+Ask+for+one+anonymized+business+data-quality+scenario+%28business_case_feedback_items%29&labels=business-case%2Cevidence-candidate&body=%23%23+Review+Path%0A%0ATarget+metric%3A+%60business_case_feedback_items%60%0AExecution+artifact%3A+%60docs%2Foutcome-witness-packet.md%23witness_business_case_feedback_items%60%0AReviewer+profile%3A+data+analyst+or+analytics+student%0A%0A%23%23+What+I+Tried%0A%0A-+URL%2C+command%2C+or+file+inspected%3A%0A-+What+worked%3A%0A-+What+was+confusing%2C+broken%2C+or+useful%3A%0A%0A%23%23+Completion+Evidence%0A%0A-+%5B+%5D+reviewer+describes+a+real+workflow+problem+without+raw+business+rows%0A-+%5B+%5D+issue+includes+impacted+decision%2C+fields+involved%2C+and+expected+usefulness%0A-+%5B+%5D+issue+grants+permission+to+count+as+public+business-case+evidence%0A%0A%23%23+Permission+and+Privacy%0A%0A-+%5B+%5D+I+am+not+the+repository+owner.%0A-+%5B+%5D+I+give+permission+for+this+public+issue+to+be+counted+as+project+review+evidence.%0A-+%5B+%5D+I+confirm+this+public+issue+contains+no+raw+customer+data%2C+private+business+data%2C+secrets%2C+tokens%2C+private+emails%2C+addresses%2C+or+production+rows.%0A%0A%23%23+Resume+Boundary%0A%0ABusiness-problem+outcome+wording+unlocks+only+after+an+accepted+anonymized+public+issue.%0A",
+      "labels": [
+        "business-case",
+        "evidence-candidate"
+      ],
+      "required_no_private_data_sentence": "I confirm this public issue contains no raw customer data, private business data, secrets, tokens, private emails, addresses, or production rows.",
+      "required_permission_sentence": "I give permission for this public issue to be counted as project review evidence.",
+      "resume_unlock_gate": "Business-problem outcome wording unlocks only after an accepted anonymized public issue.",
+      "target_metric": "business_case_feedback_items",
+      "title": "Ask for one anonymized business data-quality scenario"
+    }
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Reduce reviewer friction by publishing one-click GitHub issue links with prefilled public evidence fields, permission text, and privacy boundaries for the outcome sprint.",
+  "resume_safe_summary": "Published 4 one-click public evidence links for external reviewers, each with prefilled permission and privacy language, while preserving zero accepted evidence and zero resume upgrades.",
+  "target_metric_count": 4
+}

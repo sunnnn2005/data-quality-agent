@@ -30,7 +30,7 @@ Give one external AI/ML reviewer a single low-friction card for inspecting the a
 
 | Step | Command | Expected Result |
 | --- | --- | --- |
-| Run tests | `.venv/bin/python -m pytest` | 206 passing tests before this card is regenerated |
+| Run tests | `.venv/bin/python -m pytest` | 208 passing tests before this card is regenerated |
 | Run evidence verifier | `.venv/bin/python scripts/verify_outcome_evidence.py` | all resume outcome gates pass without upgrading zero-count claims |
 | Run local demo | `docker compose up --build` | FastAPI, dashboard, and seeded PostgreSQL replay are available locally |
 
@@ -51,7 +51,7 @@ Give one external AI/ML reviewer a single low-friction card for inspecting the a
 
 | Signal | Current Value |
 | --- | --- |
-| Ci Tests | 206 passing |
+| Ci Tests | 208 passing |
 | Ai Review | 0 accepted |
 | Confirmed Users | 0 accepted |
 | External Feedback | 0 accepted |

@@ -51,7 +51,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "206 passing CI tests",
+            "208 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -61,6 +61,7 @@ PUBLIC_CHECKS = [
             "pilot-reviewer-crm",
             "resume-claim-materializer",
             "evidence-gap-diagnostics",
+            "one-click-evidence-links",
             "resume-outcome-metrics",
         ],
         "evidence_type": "json",
@@ -109,7 +110,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 206},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 208},
         "evidence_type": "json",
     },
     {
@@ -1045,6 +1046,24 @@ PUBLIC_CHECKS = [
             "real non-owner action",
             "resume claim materializer",
             "Do not add user",
+            "zero resume upgrades",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "one-click-evidence-links",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/one-click-evidence-links.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "link_count": 4,
+            "target_metric_count": 4,
+            "claimable_resume_metric_count": 0,
+            "accepted_issue_count": 0,
+        },
+        "expected_text": "Opening a one-click issue link is not evidence by itself.",
+        "expected_texts": [
+            "I give permission for this public issue to be counted as project review evidence.",
+            "I confirm this public issue contains no raw customer data",
             "zero resume upgrades",
         ],
         "evidence_type": "json",

@@ -19,4 +19,4 @@ def test_readme_exposes_countable_reviewer_evidence_path():
     assert "first reviewer send kit" in readme.lower()
     assert "public, non-owner, permissioned, and redacted" in readme
     assert "24 evidence fields" in readme
-    assert "206 automated tests" in readme
+    assert "208 automated tests" in readme
