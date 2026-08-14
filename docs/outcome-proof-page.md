@@ -12,7 +12,7 @@ Public page: [https://sunnnn2005.github.io/data-quality-agent/outcome-proof-page
 | Blocked future outcome cards | 6 |
 | Reviewer action paths | 5 |
 | Public evidence health | PASS |
-| Public evidence checks | 113 |
+| Public evidence checks | 114 |
 
 ## Verified Now
 
@@ -52,7 +52,7 @@ A resume outcome is upgraded only after public, non-owner, permissioned, redacte
 
 ## Resume-Safe Summary
 
-Published an outcome proof page with 6 verified resume-safe proof cards, 6 blocked future outcome cards, 5 reviewer action paths, and public evidence health at 113/113 PASS.
+Published an outcome proof page with 6 verified resume-safe proof cards, 6 blocked future outcome cards, 5 reviewer action paths, and public evidence health at 114/114 PASS.
 
 ## Not Claimed
 

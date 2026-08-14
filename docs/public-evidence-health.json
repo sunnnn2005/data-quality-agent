@@ -1,5 +1,5 @@
 {
-  "check_count": 113,
+  "check_count": 114,
   "checks": [
     {
       "evidence_type": "html",
@@ -486,6 +486,19 @@
         "evaluated_issue_count",
         "linked_outreach_queue_count",
         "rejected_issue_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "first-accepted-evidence-examples",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/first-accepted-evidence-examples.json",
+      "verified_fields": [
+        "accepted_example_count",
+        "example_count",
+        "rejected_example_count",
+        "resume_claim_allowed_now"
       ]
     },
     {
@@ -1264,6 +1277,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 113,
+  "passed_count": 114,
   "status": "PASS"
 }
