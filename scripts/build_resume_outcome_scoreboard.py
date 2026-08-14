@@ -12,6 +12,7 @@ REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 AI_ENGINEER_READINESS_PATH = ROOT / "docs" / "ai-engineer-readiness.json"
 GITHUB_TRAFFIC_SNAPSHOT_PATH = ROOT / "docs" / "github-traffic-snapshot.json"
 PUBLIC_AVAILABILITY_SNAPSHOT_PATH = ROOT / "docs" / "public-availability-snapshot.json"
+BUSINESS_PROBLEM_CASEBOOK_PATH = ROOT / "docs" / "business-problem-casebook.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "resume-outcome-scoreboard.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "resume-outcome-scoreboard.md"
 
@@ -29,7 +30,9 @@ def build_resume_outcome_scoreboard() -> dict[str, Any]:
     ai_readiness = load_json(AI_ENGINEER_READINESS_PATH)
     traffic = load_json(GITHUB_TRAFFIC_SNAPSHOT_PATH)
     availability = load_json(PUBLIC_AVAILABILITY_SNAPSHOT_PATH)
+    business_casebook = load_json(BUSINESS_PROBLEM_CASEBOOK_PATH)
     traffic_metrics = traffic["traffic_metrics"]
+    business_case = business_casebook["casebook"][0]
 
     unlocked = [
         {
@@ -67,6 +70,11 @@ def build_resume_outcome_scoreboard() -> dict[str, Any]:
                 "workflows in a generated availability snapshot without claiming production SLA."
             ),
             "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-availability-snapshot.md",
+        },
+        {
+            "label": "Business problem casebook",
+            "resume_line": business_case["resume_safe_result"],
+            "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md",
         },
     ]
 
@@ -106,9 +114,14 @@ def build_resume_outcome_scoreboard() -> dict[str, Any]:
             "public_endpoint_count": availability["endpoint_count"],
             "successful_main_branch_workflows": availability["successful_workflow_count"],
             "main_branch_workflow_count": availability["workflow_count"],
+            "business_problem_cases": business_casebook["business_case_count"],
+            "business_detected_risks": business_casebook["detected_risk_count"],
+            "business_owner_handoffs": business_casebook["owner_handoff_count"],
+            "business_evidence_links": business_casebook["evidence_link_count"],
         },
         "public_interest_policy": traffic["resume_policy"],
         "public_availability_policy": availability["resume_policy"],
+        "business_problem_boundaries": business_casebook["not_claimed"],
         "reviewer_funnel": {
             "funnel_stage_count": funnel["funnel_stage_count"],
             "open_gap_count": funnel["open_gap_count"],
@@ -122,8 +135,8 @@ def build_resume_outcome_scoreboard() -> dict[str, Any]:
         "resume_safe_summary": (
             f"Published a resume outcome scoreboard with {len(unlocked)} currently claimable evidence-backed lines, "
             f"{upgrade['blocked_row_count']} blocked outcome claims, {funnel['total_remaining_evidence_items']} remaining "
-            "reviewer evidence items, public traffic and availability separated from users, and zero external-user, "
-            "feedback, business-validation, AI-review, or star claims."
+            "reviewer evidence items, a verified business-problem casebook, public traffic and availability separated "
+            "from users, and zero external-user, feedback, business-validation, AI-review, or star claims."
         ),
         "not_claimed": [
             "external users",
@@ -194,8 +207,8 @@ def render_markdown(payload: dict[str, Any]) -> str:
 
 
 def verify_resume_outcome_scoreboard(payload: dict[str, Any]) -> dict[str, Any]:
-    if payload["claimable_now_count"] != 5:
-        raise AssertionError("scoreboard must keep exactly five currently claimable evidence-backed lines")
+    if payload["claimable_now_count"] != 6:
+        raise AssertionError("scoreboard must keep exactly six currently claimable evidence-backed lines")
     if payload["blocked_outcome_count"] != 6:
         raise AssertionError("scoreboard must keep six outcome claims blocked before public evidence")
     if payload["reviewer_funnel"]["remaining_evidence_items"] != 7:
@@ -226,6 +239,15 @@ def verify_resume_outcome_scoreboard(payload: dict[str, Any]) -> dict[str, Any]:
         > payload["current_public_counts"]["main_branch_workflow_count"]
     ):
         raise AssertionError("successful workflows cannot exceed workflow count")
+    expected_business_counts = {
+        "business_problem_cases": 1,
+        "business_detected_risks": 4,
+        "business_owner_handoffs": 4,
+        "business_evidence_links": 5,
+    }
+    for metric, expected in expected_business_counts.items():
+        if payload["current_public_counts"][metric] != expected:
+            raise AssertionError(f"{metric} expected {expected}")
     policy = payload["public_interest_policy"].lower()
     for phrase in ("do not claim", "confirmed users", "customer feedback", "production adoption"):
         if phrase not in policy:
@@ -234,6 +256,9 @@ def verify_resume_outcome_scoreboard(payload: dict[str, Any]) -> dict[str, Any]:
     for phrase in ("do not claim", "production uptime sla", "active users", "customer adoption"):
         if phrase not in availability_policy:
             raise AssertionError(f"scoreboard must preserve availability policy phrase: {phrase}")
+    for claim in ("real customer dataset", "external users", "customer feedback", "production deployment"):
+        if claim not in payload["business_problem_boundaries"]:
+            raise AssertionError(f"scoreboard must preserve business-problem not-claimed boundary: {claim}")
     joined = json.dumps(payload, sort_keys=True).lower()
     for required in (
         "tool calling",
@@ -243,6 +268,8 @@ def verify_resume_outcome_scoreboard(payload: dict[str, Any]) -> dict[str, Any]:
         "evaluation",
         "unique visitors",
         "public project surfaces",
+        "business risks",
+        "owner handoffs",
     ):
         if required not in joined:
             raise AssertionError(f"scoreboard must preserve AI Engineer signal: {required}")

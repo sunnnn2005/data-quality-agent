@@ -133,7 +133,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Resume Claim Upgrade Rows | 6 |
 | Resume Claim Upgrade Blocked Rows | 6 |
 | Resume Claim Upgrade Claimable Rows | 0 |
-| Resume Outcome Scoreboard Claimable Now | 5 |
+| Resume Outcome Scoreboard Claimable Now | 6 |
 | Resume Outcome Scoreboard Blocked | 6 |
 | Resume Outcome Scoreboard Remaining Evidence | 7 |
 | Evidence Acceptance Items | 6 |

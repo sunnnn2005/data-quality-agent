@@ -11,7 +11,7 @@ def test_resume_outcome_scoreboard_separates_claimable_and_locked_outcomes():
     markdown = render_markdown(payload)
 
     assert verification["resume_outcome_scoreboard_verified"] is True
-    assert payload["claimable_now_count"] == 5
+    assert payload["claimable_now_count"] == 6
     assert payload["blocked_outcome_count"] == 6
     assert payload["reviewer_funnel"]["remaining_evidence_items"] == 7
     assert payload["current_public_counts"]["github_forks"] == 1
@@ -24,6 +24,10 @@ def test_resume_outcome_scoreboard_separates_claimable_and_locked_outcomes():
     assert payload["current_public_counts"]["public_endpoint_count"] == 4
     assert payload["current_public_counts"]["successful_main_branch_workflows"] == 3
     assert payload["current_public_counts"]["main_branch_workflow_count"] == 3
+    assert payload["current_public_counts"]["business_problem_cases"] == 1
+    assert payload["current_public_counts"]["business_detected_risks"] == 4
+    assert payload["current_public_counts"]["business_owner_handoffs"] == 4
+    assert payload["current_public_counts"]["business_evidence_links"] == 5
     assert payload["current_public_counts"]["confirmed_external_users"] == 0
     assert payload["current_public_counts"]["external_feedback_items"] == 0
     assert payload["current_public_counts"]["business_case_feedback_items"] == 0
@@ -42,5 +46,9 @@ def test_resume_outcome_scoreboard_separates_claimable_and_locked_outcomes():
     assert "without counting them as users" in payload["claimable_now"][3]["resume_line"]
     assert "public project surfaces" in payload["claimable_now"][4]["resume_line"]
     assert "without claiming production SLA" in payload["claimable_now"][4]["resume_line"]
+    assert "4 business risks" in payload["claimable_now"][5]["resume_line"]
+    assert "4 remediation owner handoffs" in payload["claimable_now"][5]["resume_line"]
+    assert "real customer dataset" in payload["business_problem_boundaries"]
+    assert "production deployment" in payload["business_problem_boundaries"]
     assert "Locked Until Public Evidence" in markdown
     assert "external users" in payload["not_claimed"]

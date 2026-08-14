@@ -214,7 +214,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Resume outcome adjudication blocked categories | 5 |
 | Resume outcome adjudication claimable categories | 0 |
 | Resume outcome scoreboard | 1 |
-| Resume outcome scoreboard claimable now | 5 |
+| Resume outcome scoreboard claimable now | 6 |
 | Resume outcome scoreboard blocked claims | 6 |
 | Resume outcome scoreboard remaining evidence | 7 |
 | Evidence acceptance checklist | 1 |
@@ -317,7 +317,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - External review evidence ledger with 5 public evidence types, 3 linked planned reviews, and 0 current evidence entries
 - Outcome upgrade playbook with 5 metric thresholds, 5 blocked upgrade rules, and 6 baseline signals claimable now
 - Resume claim upgrade ledger with 6 outcome metrics, 6 blocked upgrade rows, 0 claimable outcome rows, and exact future resume wording
-- Resume outcome scoreboard with 5 claimable evidence-backed lines now, 6 locked outcome claims, and 7 remaining public evidence items
+- Resume outcome scoreboard with 6 claimable evidence-backed lines now, 6 locked outcome claims, and 7 remaining public evidence items
 - Reviewer feedback packet with 4 task paths, 6 evidence questions, and 5 metric conversion paths
 - Reviewer funnel board with 4 public evidence paths and 7 remaining evidence items
 - 3 recurring incident patterns retrieved from sanitized traces
