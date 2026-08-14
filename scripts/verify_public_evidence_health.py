@@ -51,7 +51,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "202 passing CI tests",
+            "204 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -109,7 +109,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 202},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 204},
         "evidence_type": "json",
     },
     {
@@ -1009,6 +1009,24 @@ PUBLIC_CHECKS = [
             "sensitive_columns_excluded",
             "validation_error_count",
             "zero resume outcome upgrades",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "outcome-witness-packet",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-witness-packet.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "witness_card_count": 5,
+            "target_metric_count": 5,
+            "total_required_evidence_fields": 22,
+            "resume_outcome_upgraded": False,
+        },
+        "expected_text": "Witness cards are invitations, not users or feedback",
+        "expected_texts": [
+            "I give permission for this public issue to be counted as project review evidence.",
+            "I confirm this public issue contains no raw customer data",
+            "non-owner public GitHub issue passes the evidence gate",
         ],
         "evidence_type": "json",
     },

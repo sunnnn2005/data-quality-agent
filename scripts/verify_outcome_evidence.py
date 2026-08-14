@@ -82,6 +82,7 @@ RESUME_OUTCOME_EVIDENCE_LEDGER_PATH = ROOT / "docs" / "resume-outcome-evidence-l
 PILOT_REVIEWER_CRM_PATH = ROOT / "docs" / "pilot-reviewer-crm.json"
 PRIVATE_REVIEWER_LEAD_WORKFLOW_PATH = ROOT / "docs" / "private-reviewer-lead-workflow.json"
 PRIVATE_REVIEWER_LEAD_SUMMARY_PATH = ROOT / "docs" / "private-reviewer-lead-summary.json"
+OUTCOME_WITNESS_PACKET_PATH = ROOT / "docs" / "outcome-witness-packet.json"
 RESUME_CLAIM_MATERIALIZER_PATH = ROOT / "docs" / "resume-claim-materializer.json"
 EVIDENCE_GAP_DIAGNOSTICS_PATH = ROOT / "docs" / "evidence-gap-diagnostics.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
@@ -181,6 +182,7 @@ def verify_manifest() -> dict[str, int]:
     pilot_reviewer_crm = load_payload(PILOT_REVIEWER_CRM_PATH)
     private_reviewer_lead_workflow = load_payload(PRIVATE_REVIEWER_LEAD_WORKFLOW_PATH)
     private_reviewer_lead_summary = load_payload(PRIVATE_REVIEWER_LEAD_SUMMARY_PATH)
+    outcome_witness_packet = load_payload(OUTCOME_WITNESS_PACKET_PATH)
     resume_claim_materializer = load_payload(RESUME_CLAIM_MATERIALIZER_PATH)
     evidence_gap_diagnostics = load_payload(EVIDENCE_GAP_DIAGNOSTICS_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
@@ -614,7 +616,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 202:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 204:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("tracked_public_metrics") != 8:
                     raise AssertionError("public metrics summary must include provenance tracked metric count")
@@ -966,6 +968,40 @@ def verify_manifest() -> dict[str, int]:
                         raise AssertionError(f"private reviewer lead summary missing test {required_test}")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("private_reviewer_lead_summary claim must use metric_value=1")
+            elif metric_name == "outcome_witness_packet":
+                witness_script = (ROOT / "scripts" / "build_outcome_witness_packet.py").read_text()
+                witness_tests = (ROOT / "tests" / "test_outcome_witness_packet.py").read_text()
+                if outcome_witness_packet.get("resume_outcome_upgraded") is not False:
+                    raise AssertionError("outcome witness packet must not upgrade resume outcomes")
+                expected = {
+                    "witness_card_count": 5,
+                    "target_metric_count": 5,
+                    "total_required_evidence_fields": 22,
+                }
+                for key, value in expected.items():
+                    if outcome_witness_packet.get(key) != value:
+                        raise AssertionError(f"outcome witness packet {key} expected {value!r}")
+                if any(value != 0 for value in outcome_witness_packet.get("current_public_counts", {}).values()):
+                    raise AssertionError("outcome witness packet must preserve zero external outcome counts")
+                joined = json.dumps(outcome_witness_packet, sort_keys=True)
+                for required in (
+                    "I give permission for this public issue to be counted as project review evidence.",
+                    "I confirm this public issue contains no raw customer data",
+                    "non-owner public GitHub issue passes the evidence gate",
+                    "Witness cards are invitations, not users or feedback.",
+                ):
+                    if required not in joined:
+                        raise AssertionError(f"outcome witness packet missing {required}")
+                if "verify_outcome_witness_packet" not in witness_script:
+                    raise AssertionError("outcome witness packet script must include verifier")
+                for required_test in (
+                    "test_outcome_witness_packet_turns_reviewers_into_countable_public_tasks",
+                    "test_outcome_witness_packet_rejects_unverified_resume_upgrade",
+                ):
+                    if required_test not in witness_tests:
+                        raise AssertionError(f"outcome witness packet missing test {required_test}")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("outcome_witness_packet claim must use metric_value=1")
             elif metric_name == "resume_claim_materializer":
                 materializer_script = (ROOT / "scripts" / "build_resume_claim_materializer.py").read_text()
                 materializer_tests = (ROOT / "tests" / "test_resume_claim_materializer.py").read_text()
@@ -1239,7 +1275,7 @@ def verify_manifest() -> dict[str, int]:
                     ("confirmed_external_users", 0),
                     ("external_feedback_items", 0),
                     ("github_stars", 0),
-                    ("passing_tests", 202),
+                    ("passing_tests", 204),
                 ):
                     if counts.get(key) != expected_value:
                         raise AssertionError(f"outcome collection {key} expected {expected_value!r}")
@@ -1631,7 +1667,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 202:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 204:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -2642,7 +2678,7 @@ def verify_manifest() -> dict[str, int]:
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
         for phrase in (
-            "passing ci tests | 202",
+            "passing ci tests | 204",
             "tracked public outcome metrics | 8",
             "claimable public outcome metrics | 2",
             "confirmed external users | 0",
@@ -2698,7 +2734,7 @@ def verify_manifest() -> dict[str, int]:
 
     resume_metric_phrases = (
         "github issues | 25",
-        "automated tests | 202",
+        "automated tests | 204",
         "github views | 9",
         "github unique visitors | 3",
         "github clones | 79",
@@ -2713,7 +2749,7 @@ def verify_manifest() -> dict[str, int]:
     badges_by_id = {badge["id"]: badge for badge in outcome_badges.get("badges", [])}
     if outcome_badges.get("badge_count") != 6:
         raise AssertionError("outcome badges must expose six badge artifacts")
-    if badges_by_id.get("ci-tests", {}).get("message") != "202 passing":
+    if badges_by_id.get("ci-tests", {}).get("message") != "204 passing":
         raise AssertionError("outcome badges must display the current passing test count")
     for blocked_badge in ("github-stars", "confirmed-users", "external-feedback", "ai-review"):
         if badges_by_id.get(blocked_badge, {}).get("resume_claimable") is not False:
@@ -2747,7 +2783,7 @@ def verify_manifest() -> dict[str, int]:
         raise AssertionError("launch evidence snapshot workflow count is inconsistent")
     if launch_workflows.get("workflow_count") != 3:
         raise AssertionError("launch evidence snapshot must track the three main workflows")
-    if launch_evidence_snapshot.get("application_pack", {}).get("passing_tests") != 202:
+    if launch_evidence_snapshot.get("application_pack", {}).get("passing_tests") != 204:
         raise AssertionError("launch evidence snapshot must reflect the current passing test count")
     if launch_evidence_snapshot.get("public_github_stats", {}).get("stars") != 0:
         raise AssertionError("launch evidence snapshot must preserve the zero-star baseline")

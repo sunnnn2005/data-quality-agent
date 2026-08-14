@@ -80,7 +80,7 @@
       "status": "claimable_now"
     },
     {
-      "bullet": "Maintained 202 passing tests across agent behavior, APIs, evidence gates, and safety checks.",
+      "bullet": "Maintained 204 passing tests across agent behavior, APIs, evidence gates, and safety checks.",
       "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
       "proof_type": "ci",
       "source_signal": "ci_quality",

@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 202,
-      "resume_signal": "202 passing CI tests",
+      "metric_value": 204,
+      "resume_signal": "204 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -869,6 +869,16 @@
       "resume_signal": "CI-verified private reviewer lead summary",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/private-reviewer-lead-summary.json"
+    },
+    {
+      "claim": "The project publishes a generated outcome witness packet that gives one external reviewer five short public task cards with permission text, no-private-data boundaries, required evidence fields, and resume-upgrade gates before any external outcome can count.",
+      "evidence_type": "generated_artifact",
+      "id": "outcome-witness-packet",
+      "metric_name": "outcome_witness_packet",
+      "metric_value": 1,
+      "resume_signal": "CI-verified outcome witness packet",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-witness-packet.json"
     },
     {
       "claim": "The project publishes a resume claim materializer that converts accepted public evidence into exact resume bullets while preserving zero materialized external outcome bullets until non-owner public evidence passes the gate.",
