@@ -6,7 +6,7 @@ Give recruiters and reviewers a single resume outcome scoreboard: what is claima
 
 | Metric | Value |
 | --- | ---: |
-| Claimable lines now | 3 |
+| Claimable lines now | 4 |
 | Blocked outcome claims | 6 |
 | Reviewer funnel stages | 4 |
 | Open reviewer gaps | 4 |
@@ -23,6 +23,10 @@ Give recruiters and reviewers a single resume outcome scoreboard: what is claima
 | Reproducible Feedback Items | 0 |
 | Github Stars | 0 |
 | Github Forks | 1 |
+| Github Views | 9 |
+| Github Unique Visitors | 3 |
+| Github Clones | 79 |
+| Github Unique Cloners | 50 |
 
 ## Claimable Now
 
@@ -31,6 +35,7 @@ Give recruiters and reviewers a single resume outcome scoreboard: what is claima
 | Public launch | Published a public LLM data-quality agent demo with release v0.3.0 and GHCR container packaging. | [evidence](https://sunnnn2005.github.io/data-quality-agent/) |
 | CI verification | Maintained 187 passing tests covering agent behavior, APIs, evidence gates, and resume-safe metrics. | [evidence](https://github.com/sunnnn2005/data-quality-agent/actions) |
 | AI Engineer readiness | Documented 8 implemented AI Engineer signals across tool calling, guardrails, structured output, evidence traces, and evaluation. | [evidence](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-readiness.md) |
+| Public discovery traffic | Captured public GitHub interest in the rolling 14-day window: 9 views, 3 unique visitors, 79 clones, and 50 unique cloners without counting them as users. | [evidence](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md) |
 
 ## Locked Until Public Evidence
 
@@ -45,7 +50,7 @@ Give recruiters and reviewers a single resume outcome scoreboard: what is claima
 
 ## Resume-Safe Summary
 
-Published a resume outcome scoreboard with 3 currently claimable evidence-backed lines, 6 blocked outcome claims, 7 remaining reviewer evidence items, and zero external-user, feedback, business-validation, AI-review, or star claims.
+Published a resume outcome scoreboard with 4 currently claimable evidence-backed lines, 6 blocked outcome claims, 7 remaining reviewer evidence items, public traffic separated from users, and zero external-user, feedback, business-validation, AI-review, or star claims.
 
 ## Not Claimed
 

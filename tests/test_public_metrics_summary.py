@@ -195,7 +195,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["resume_outcome_adjudication_blocked_categories"] == 5
     assert payload["verified_project_outcomes"]["resume_outcome_adjudication_claimable_categories"] == 0
     assert payload["verified_project_outcomes"]["resume_outcome_scoreboard"] == 1
-    assert payload["verified_project_outcomes"]["resume_outcome_scoreboard_claimable_now"] == 3
+    assert payload["verified_project_outcomes"]["resume_outcome_scoreboard_claimable_now"] == 4
     assert payload["verified_project_outcomes"]["resume_outcome_scoreboard_blocked"] == 6
     assert payload["verified_project_outcomes"]["resume_outcome_scoreboard_remaining_evidence"] == 7
     assert payload["verified_project_outcomes"]["reviewer_share_channels"] == 5

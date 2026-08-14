@@ -65,16 +65,25 @@
       "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-readiness.md",
       "label": "AI Engineer readiness",
       "resume_line": "Documented 8 implemented AI Engineer signals across tool calling, guardrails, structured output, evidence traces, and evaluation."
+    },
+    {
+      "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md",
+      "label": "Public discovery traffic",
+      "resume_line": "Captured public GitHub interest in the rolling 14-day window: 9 views, 3 unique visitors, 79 clones, and 50 unique cloners without counting them as users."
     }
   ],
-  "claimable_now_count": 3,
+  "claimable_now_count": 4,
   "current_public_counts": {
     "ai_engineer_review_items": 0,
     "business_case_feedback_items": 0,
     "confirmed_external_users": 0,
     "external_feedback_items": 0,
+    "github_clones": 79,
     "github_forks": 1,
     "github_stars": 0,
+    "github_unique_cloners": 50,
+    "github_unique_visitors": 3,
+    "github_views": 9,
     "reproducible_feedback_items": 0
   },
   "generated_by": "scripts/build_resume_outcome_scoreboard.py",
@@ -86,8 +95,9 @@
     "GitHub stars"
   ],
   "project": "Data Quality Agent",
+  "public_interest_policy": "Traffic, views, and clones are repository-interest signals only. Do not claim these as confirmed users, customer feedback, production adoption, or successful business outcomes.",
   "purpose": "Give recruiters and reviewers a single resume outcome scoreboard: what is claimable now, what is blocked, and which public evidence unlocks stronger user, feedback, business, AI-review, and GitHub-star claims.",
-  "resume_safe_summary": "Published a resume outcome scoreboard with 3 currently claimable evidence-backed lines, 6 blocked outcome claims, 7 remaining reviewer evidence items, and zero external-user, feedback, business-validation, AI-review, or star claims.",
+  "resume_safe_summary": "Published a resume outcome scoreboard with 4 currently claimable evidence-backed lines, 6 blocked outcome claims, 7 remaining reviewer evidence items, public traffic separated from users, and zero external-user, feedback, business-validation, AI-review, or star claims.",
   "reviewer_funnel": {
     "funnel_stage_count": 4,
     "open_gap_count": 4,

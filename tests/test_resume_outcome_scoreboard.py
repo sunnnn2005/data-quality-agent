@@ -11,11 +11,15 @@ def test_resume_outcome_scoreboard_separates_claimable_and_locked_outcomes():
     markdown = render_markdown(payload)
 
     assert verification["resume_outcome_scoreboard_verified"] is True
-    assert payload["claimable_now_count"] == 3
+    assert payload["claimable_now_count"] == 4
     assert payload["blocked_outcome_count"] == 6
     assert payload["reviewer_funnel"]["remaining_evidence_items"] == 7
     assert payload["current_public_counts"]["github_forks"] == 1
     assert payload["current_public_counts"]["github_stars"] == 0
+    assert payload["current_public_counts"]["github_views"] == 9
+    assert payload["current_public_counts"]["github_unique_visitors"] == 3
+    assert payload["current_public_counts"]["github_clones"] == 79
+    assert payload["current_public_counts"]["github_unique_cloners"] == 50
     assert payload["current_public_counts"]["confirmed_external_users"] == 0
     assert payload["current_public_counts"]["external_feedback_items"] == 0
     assert payload["current_public_counts"]["business_case_feedback_items"] == 0
@@ -30,5 +34,7 @@ def test_resume_outcome_scoreboard_separates_claimable_and_locked_outcomes():
     assert "tool calling" in payload["claimable_now"][2]["resume_line"]
     assert "guardrails" in payload["claimable_now"][2]["resume_line"]
     assert "structured output" in payload["claimable_now"][2]["resume_line"]
+    assert "unique visitors" in payload["claimable_now"][3]["resume_line"]
+    assert "without counting them as users" in payload["claimable_now"][3]["resume_line"]
     assert "Locked Until Public Evidence" in markdown
     assert "external users" in payload["not_claimed"]
