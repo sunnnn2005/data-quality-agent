@@ -2,6 +2,7 @@ import json
 import subprocess
 from pathlib import Path
 from typing import Any
+from urllib.request import Request, urlopen
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -84,21 +85,53 @@ def build_github_discovery_profile() -> dict[str, Any]:
 
 
 def _load_repo_metadata() -> dict[str, Any]:
-    completed = subprocess.run(
-        [
-            "gh",
-            "repo",
-            "view",
-            "sunnnn2005/data-quality-agent",
-            "--json",
-            "description,forkCount,homepageUrl,isPrivate,repositoryTopics,stargazerCount,url,watchers",
-        ],
-        check=True,
-        capture_output=True,
-        text=True,
-        cwd=ROOT,
+    gh_command = [
+        "gh",
+        "repo",
+        "view",
+        "sunnnn2005/data-quality-agent",
+        "--json",
+        "description,forkCount,homepageUrl,isPrivate,repositoryTopics,stargazerCount,url,watchers",
+    ]
+    try:
+        completed = subprocess.run(
+            gh_command,
+            check=True,
+            capture_output=True,
+            text=True,
+            cwd=ROOT,
+        )
+        return json.loads(completed.stdout)
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        return _load_repo_metadata_from_public_api()
+
+
+def _load_repo_metadata_from_public_api() -> dict[str, Any]:
+    repo = _github_api_get("https://api.github.com/repos/sunnnn2005/data-quality-agent")
+    topics = _github_api_get("https://api.github.com/repos/sunnnn2005/data-quality-agent/topics")
+    return {
+        "description": repo["description"],
+        "forkCount": repo["forks_count"],
+        "homepageUrl": repo["homepage"],
+        "isPrivate": repo["private"],
+        "repositoryTopics": [{"name": topic} for topic in topics.get("names", [])],
+        "stargazerCount": repo["stargazers_count"],
+        "url": repo["html_url"],
+        "watchers": {"totalCount": repo.get("subscribers_count", 0)},
+    }
+
+
+def _github_api_get(url: str) -> dict[str, Any]:
+    request = Request(
+        url,
+        headers={
+            "Accept": "application/vnd.github+json",
+            "User-Agent": "data-quality-agent-discovery-profile",
+            "X-GitHub-Api-Version": "2022-11-28",
+        },
     )
-    return json.loads(completed.stdout)
+    with urlopen(request, timeout=15) as response:
+        return json.loads(response.read().decode("utf-8"))
 
 
 def render_markdown(payload: dict[str, Any]) -> str:
