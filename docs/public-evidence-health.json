@@ -1,5 +1,5 @@
 {
-  "check_count": 97,
+  "check_count": 99,
   "checks": [
     {
       "evidence_type": "html",
@@ -105,6 +105,26 @@
       "passed": true,
       "status_code": 200,
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/first-external-review-card.html"
+    },
+    {
+      "evidence_type": "html",
+      "id": "two-minute-review-card-page",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/two-minute-review-card.html"
+    },
+    {
+      "evidence_type": "json",
+      "id": "two-minute-review-card",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/two-minute-review-card.json",
+      "verified_fields": [
+        "micro_step_count",
+        "project",
+        "required_evidence_count",
+        "time_budget_minutes"
+      ]
     },
     {
       "evidence_type": "json",
@@ -1094,6 +1114,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 97,
+  "passed_count": 99,
   "status": "PASS"
 }
