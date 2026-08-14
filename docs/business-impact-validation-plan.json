@@ -1,0 +1,108 @@
+{
+  "current_demo_baseline": {
+    "business_risk_areas": 4,
+    "casebook_cases": 1,
+    "dataset_id": "support_tickets",
+    "external_validated_business_cases": 0,
+    "findings": 5,
+    "high_priority_actions": 3,
+    "owner_handoffs": 4,
+    "quality_score": 24,
+    "resolution_steps": 4,
+    "status": "FAIL"
+  },
+  "first_pilot_protocol": [
+    {
+      "done_when": "The reviewer confirms there is no private data, secrets, or customer identifiers.",
+      "step": "Collect an anonymized CSV or table schema"
+    },
+    {
+      "done_when": "The run produces findings, evidence, recommendations, and limitations.",
+      "step": "Run the deterministic checks and LLM-agent report"
+    },
+    {
+      "done_when": "The reviewer marks each key finding as useful, noisy, incorrect, or needs context.",
+      "step": "Ask the reviewer to label findings"
+    },
+    {
+      "done_when": "At least one detected issue is tied to a dashboard, report, owner, or operational process.",
+      "step": "Map findings to a workflow decision"
+    },
+    {
+      "done_when": "A non-owner public GitHub issue includes permission to count and no sensitive data.",
+      "step": "Submit public redacted evidence"
+    }
+  ],
+  "future_resume_lines_after_evidence": [
+    "Validated the agent on a non-owner data-quality case and surfaced confirmed defects before reporting consumption.",
+    "Mapped data-quality findings to reviewer-confirmed operational handoffs.",
+    "Collected reviewer-estimated manual review time for a real anonymized workflow.",
+    "Linked confirmed data-quality findings to a concrete downstream decision risk.",
+    "Used reviewer feedback to calibrate data-quality findings and reduce noisy recommendations."
+  ],
+  "generated_by": "scripts/build_business_impact_validation_plan.py",
+  "minimum_resume_upgrade_gate": {
+    "current_accepted_business_cases": 0,
+    "required_non_owner_author": true,
+    "required_public_issues": 1,
+    "requires_business_workflow_mapping": true,
+    "requires_no_sensitive_data": true,
+    "requires_permission_to_count": true,
+    "resume_claim_allowed": false
+  },
+  "not_claimed": [
+    "validated business impact",
+    "production adoption",
+    "external business users",
+    "revenue saved",
+    "manual time saved",
+    "customer dataset"
+  ],
+  "pilot_step_count": 5,
+  "project": "Data Quality Agent",
+  "purpose": "Define how a reviewer can turn the current anonymized business demo into externally validated, resume-safe business impact evidence without fabricating users, ROI, or production adoption.",
+  "resume_safe_now": "Built a CI-verified business-impact validation plan mapping 5 measurable pilot metrics to public evidence requirements, while preserving a zero external-business-case baseline.",
+  "source_artifacts": [
+    "docs/business-impact.json",
+    "docs/business-problem-casebook.json",
+    "docs/business-resolution-brief.json"
+  ],
+  "validation_metric_count": 5,
+  "validation_metrics": [
+    {
+      "current_demo_value": 5,
+      "evidence_required": "public business-case issue with anonymized row/field summary and permission to count",
+      "metric": "defects_found_per_dataset",
+      "resume_upgrade_after_evidence": "Validated the agent on a non-owner data-quality case and surfaced confirmed defects before reporting consumption.",
+      "target_for_first_external_case": ">= 1 confirmed issue on an anonymized non-owner dataset"
+    },
+    {
+      "current_demo_value": 4,
+      "evidence_required": "reviewer confirms at least one suggested owner/action maps to their workflow",
+      "metric": "owner_handoffs_created",
+      "resume_upgrade_after_evidence": "Mapped data-quality findings to reviewer-confirmed operational handoffs.",
+      "target_for_first_external_case": ">= 1 reviewer-confirmed owner or workflow handoff"
+    },
+    {
+      "current_demo_value": null,
+      "evidence_required": "reviewer reports approximate manual check time and whether the report changed their triage path",
+      "metric": "manual_review_minutes_estimated",
+      "resume_upgrade_after_evidence": "Collected reviewer-estimated manual review time for a real anonymized workflow.",
+      "target_for_first_external_case": "reviewer-provided before/after estimate"
+    },
+    {
+      "current_demo_value": 4,
+      "evidence_required": "reviewer states which business workflow, decision, or report would have been affected by the detected issue",
+      "metric": "dashboard_risk_prevented",
+      "resume_upgrade_after_evidence": "Linked confirmed data-quality findings to a concrete downstream decision risk.",
+      "target_for_first_external_case": ">= 1 reviewer-confirmed dashboard, report, or workflow risk"
+    },
+    {
+      "current_demo_value": null,
+      "evidence_required": "public feedback issue separates useful findings from false positives",
+      "metric": "false_positive_review",
+      "resume_upgrade_after_evidence": "Used reviewer feedback to calibrate data-quality findings and reduce noisy recommendations.",
+      "target_for_first_external_case": "reviewer labels at least one finding as useful, noisy, or incorrect"
+    }
+  ]
+}

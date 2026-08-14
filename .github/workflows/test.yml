@@ -72,6 +72,8 @@ jobs:
         run: python scripts/build_impact_review_packet.py
       - name: Verify business problem casebook artifact
         run: python scripts/build_business_problem_casebook.py
+      - name: Verify business impact validation plan
+        run: python scripts/build_business_impact_validation_plan.py
       - name: Verify public traction dashboard artifact
         run: python scripts/build_public_traction_dashboard.py
       - name: Verify live project scorecard

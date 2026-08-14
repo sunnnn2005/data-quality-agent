@@ -70,7 +70,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "236 passing CI tests",
+            "237 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -192,7 +192,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 236},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 237},
         "evidence_type": "json",
     },
     {
@@ -845,6 +845,28 @@ PUBLIC_CHECKS = [
             "owner_handoffs",
             "high_priority_actions",
             "no customer production deployment is claimed",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "business-impact-validation-plan",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact-validation-plan.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "validation_metric_count": 5,
+            "pilot_step_count": 5,
+            "minimum_resume_upgrade_gate": {
+                "current_accepted_business_cases": 0,
+                "resume_claim_allowed": False,
+            },
+        },
+        "expected_text": "business-impact validation plan",
+        "expected_texts": [
+            "defects_found_per_dataset",
+            "manual_review_minutes_estimated",
+            "requires_business_workflow_mapping",
+            "validated business impact",
+            "manual time saved",
         ],
         "evidence_type": "json",
     },

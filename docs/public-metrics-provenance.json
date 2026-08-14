@@ -27,7 +27,7 @@
       "metric": "passing_tests",
       "resume_rule": "May claim passing test count after local and CI verification.",
       "resume_status": "claimable",
-      "value": 236
+      "value": 237
     },
     {
       "accepted_gate_count": 0,

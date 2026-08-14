@@ -45,7 +45,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert "first_10_reviewer_sprint" in payload["application_links"]
     assert "first_10_outreach_execution_log" in payload["application_links"]
     assert len(payload["resume_bullets"]) == 3
-    assert payload["verified_outcome_numbers"]["passing_tests"] == 236
+    assert payload["verified_outcome_numbers"]["passing_tests"] == 237
     assert payload["verified_outcome_numbers"]["verified_resume_claims"] == load_json(SCORECARD_PATH)["headline_metrics"][
         "verified_resume_claims"
     ]
