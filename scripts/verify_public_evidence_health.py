@@ -238,6 +238,23 @@ PUBLIC_CHECKS = [
         "evidence_type": "json",
     },
     {
+        "id": "resume-live-proof-snapshot",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-live-proof-snapshot.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "purpose": "Give recruiters a concise, resume-safe snapshot of public proof without inflating adoption.",
+        },
+        "expected_text": "resume_safe_bullets",
+        "expected_texts": [
+            "102/102 public evidence checks passing",
+            "business_pilot_issue",
+            "blocked_until_external_evidence",
+            "confirmed external users",
+            "Self-authored issues",
+        ],
+        "evidence_type": "json",
+    },
+    {
         "id": "business-pilot-offer-issue",
         "url": "https://github.com/sunnnn2005/data-quality-agent/issues/31",
         "expected_text": "Business pilot offer: collect redacted data-quality replay evidence",

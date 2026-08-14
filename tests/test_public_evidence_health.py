@@ -17,6 +17,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "two-minute-review-card",
         "business-pilot-offer-page",
         "business-pilot-offer",
+        "resume-live-proof-snapshot",
         "business-pilot-offer-issue",
         "first-external-review-card-page",
         "first-external-review-card",
@@ -224,6 +225,11 @@ def test_public_evidence_health_requires_core_public_signals():
     assert pilot_offer["expected_json"]["public_issue_status"] == "open_self_authored_entrypoint_not_outcome_evidence"
     assert "production deployment" in pilot_offer["expected_texts"]
     assert "https://github.com/sunnnn2005/data-quality-agent/issues/31" in pilot_offer["expected_texts"]
+    resume_live_proof = next(check for check in PUBLIC_CHECKS if check["id"] == "resume-live-proof-snapshot")
+    assert resume_live_proof["url"].endswith("/resume-live-proof-snapshot.json")
+    assert resume_live_proof["expected_text"] == "resume_safe_bullets"
+    assert "business_pilot_issue" in resume_live_proof["expected_texts"]
+    assert "Self-authored issues" in resume_live_proof["expected_texts"]
     pilot_offer_issue = next(check for check in PUBLIC_CHECKS if check["id"] == "business-pilot-offer-issue")
     assert pilot_offer_issue["url"].endswith("/issues/31")
     assert pilot_offer_issue["expected_text"] == "Business pilot offer: collect redacted data-quality replay evidence"
