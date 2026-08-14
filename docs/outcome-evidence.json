@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 197,
-      "resume_signal": "197 passing CI tests",
+      "metric_value": 199,
+      "resume_signal": "199 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -859,6 +859,16 @@
       "resume_signal": "CI-verified resume claim materializer",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-claim-materializer.json"
+    },
+    {
+      "claim": "The project publishes evidence-gap diagnostics that explain why current public reviewer issues do not unlock resume outcomes, identify self-authored planning issues as excluded evidence, and give three nearest public evidence paths for future AI Engineer, confirmed-user, and business-case claims.",
+      "evidence_type": "generated_artifact",
+      "id": "evidence-gap-diagnostics",
+      "metric_name": "evidence_gap_diagnostics",
+      "metric_value": 1,
+      "resume_signal": "CI-verified evidence gap diagnostics",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/evidence-gap-diagnostics.json"
     }
   ],
   "not_claimed": [

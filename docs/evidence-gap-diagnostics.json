@@ -1,0 +1,193 @@
+{
+  "accepted_counts": {
+    "ai_engineer_review_items": 0,
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
+  "accepted_issue_count": 0,
+  "evaluated_issue_count": 14,
+  "evidence_type_gaps": [
+    {
+      "accepted_issue_count": 0,
+      "evaluated_issue_count": 1,
+      "evidence_type": "ai_engineer_review",
+      "next_reviewer_checklist": [
+        "Use a non-owner GitHub account.",
+        "Confirm no private business data, secrets, customer names, emails, addresses, or raw production rows.",
+        "Grant permission to count the issue as external AI Engineer project feedback.",
+        "Include inspected paths or commands.",
+        "Include strongest AI Engineer signals and missing or weak signals."
+      ],
+      "rejected_issue_count": 1,
+      "top_failure_reasons": [
+        {
+          "count": 1,
+          "reason": "self-authored issue"
+        },
+        {
+          "count": 1,
+          "reason": "contains sensitive-data risk terms"
+        },
+        {
+          "count": 1,
+          "reason": "missing no-private-data AI review checkbox"
+        },
+        {
+          "count": 1,
+          "reason": "missing AI Engineer review counting permission"
+        },
+        {
+          "count": 1,
+          "reason": "missing inspected path or command evidence"
+        }
+      ]
+    },
+    {
+      "accepted_issue_count": 0,
+      "evaluated_issue_count": 2,
+      "evidence_type": "business_case_review",
+      "next_reviewer_checklist": [
+        "Use a non-owner GitHub account.",
+        "Grant anonymized business-case and business-impact counting permission.",
+        "Describe business context, data-quality problem, business impact, fields involved, and project evidence mapping.",
+        "Keep organization names, customer names, raw rows, and sensitive identifiers out of the issue."
+      ],
+      "rejected_issue_count": 2,
+      "top_failure_reasons": [
+        {
+          "count": 2,
+          "reason": "self-authored issue"
+        },
+        {
+          "count": 2,
+          "reason": "contains sensitive-data risk terms"
+        },
+        {
+          "count": 2,
+          "reason": "missing business-case counting permission"
+        },
+        {
+          "count": 2,
+          "reason": "missing business-impact counting permission"
+        },
+        {
+          "count": 2,
+          "reason": "missing business context evidence"
+        }
+      ]
+    },
+    {
+      "accepted_issue_count": 0,
+      "evaluated_issue_count": 11,
+      "evidence_type": "external_run_review",
+      "next_reviewer_checklist": [
+        "Use a non-owner GitHub account.",
+        "Check the no-private-data permission box.",
+        "Check the public external run permission box.",
+        "Select a runnable path such as public demo, GHCR container, or Docker Compose replay.",
+        "Include non-placeholder commands or URLs used.",
+        "Include observed result and main feedback."
+      ],
+      "rejected_issue_count": 11,
+      "top_failure_reasons": [
+        {
+          "count": 11,
+          "reason": "self-authored issue"
+        },
+        {
+          "count": 11,
+          "reason": "missing no-private-data checkbox"
+        },
+        {
+          "count": 11,
+          "reason": "missing public external run permission"
+        },
+        {
+          "count": 11,
+          "reason": "missing runnable path tried"
+        },
+        {
+          "count": 11,
+          "reason": "missing command or URL evidence"
+        }
+      ]
+    }
+  ],
+  "failure_reason_count": 20,
+  "generated_by": "scripts/build_evidence_gap_diagnostics.py",
+  "nearest_unlock_paths": [
+    {
+      "current_count": 0,
+      "first_unlock_requirement": "One non-owner `ai-engineer-review` issue with inspected paths, no-private-data checkbox, and permission to count.",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+      "target_metric": "ai_engineer_review_items"
+    },
+    {
+      "current_count": 0,
+      "first_unlock_requirement": "One non-owner external run issue with a runnable path, observed result, command or URL evidence, and permission to count.",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md",
+      "target_metric": "confirmed_external_users"
+    },
+    {
+      "current_count": 0,
+      "first_unlock_requirement": "One anonymized business-case review issue with workflow context, impact, fields, project evidence mapping, and permission to count.",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "target_metric": "business_case_feedback_items"
+    }
+  ],
+  "not_claimed": [
+    "No rejected issue is counted as a user, feedback item, reproducible run, business case, or AI Engineer review.",
+    "Self-authored planning issues remain excluded from outcome metrics.",
+    "Sensitive or private data must be redacted before any public issue can count."
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Diagnose why current public reviewer issues do not yet unlock resume outcome claims and give the next reviewer the shortest path to countable evidence.",
+  "rejected_issue_count": 14,
+  "resume_safe_summary": "Published evidence-gap diagnostics for 14 evaluated public issues, 0 accepted issues, 14 rejected issues, 14 self-authored rejections, and 3 nearest unlock paths for future resume-safe outcome evidence.",
+  "self_authored_rejection_count": 14,
+  "sensitive_risk_rejection_count": 13,
+  "top_failure_reasons": [
+    {
+      "count": 14,
+      "reason": "self-authored issue"
+    },
+    {
+      "count": 13,
+      "reason": "contains sensitive-data risk terms"
+    },
+    {
+      "count": 11,
+      "reason": "missing no-private-data checkbox"
+    },
+    {
+      "count": 11,
+      "reason": "missing public external run permission"
+    },
+    {
+      "count": 11,
+      "reason": "missing runnable path tried"
+    },
+    {
+      "count": 11,
+      "reason": "missing command or URL evidence"
+    },
+    {
+      "count": 11,
+      "reason": "missing observed result evidence"
+    },
+    {
+      "count": 11,
+      "reason": "missing main feedback"
+    },
+    {
+      "count": 2,
+      "reason": "missing business-case counting permission"
+    },
+    {
+      "count": 2,
+      "reason": "missing business-impact counting permission"
+    }
+  ]
+}

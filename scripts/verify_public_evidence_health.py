@@ -51,7 +51,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "197 passing CI tests",
+            "199 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -60,6 +60,7 @@ PUBLIC_CHECKS = [
             "resume-outcome-evidence-ledger",
             "pilot-reviewer-crm",
             "resume-claim-materializer",
+            "evidence-gap-diagnostics",
             "resume-outcome-metrics",
         ],
         "evidence_type": "json",
@@ -83,9 +84,32 @@ PUBLIC_CHECKS = [
         "evidence_type": "json",
     },
     {
+        "id": "evidence-gap-diagnostics",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/evidence-gap-diagnostics.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "accepted_issue_count": 0,
+            "accepted_counts": {
+                "ai_engineer_review_items": 0,
+                "business_case_feedback_items": 0,
+                "confirmed_external_users": 0,
+                "external_feedback_items": 0,
+                "reproducible_feedback_items": 0,
+            },
+        },
+        "expected_text": "Self-authored planning issues remain excluded from outcome metrics",
+        "expected_texts": [
+            "ai_engineer_review_items",
+            "confirmed_external_users",
+            "business_case_feedback_items",
+            "nearest_unlock_paths",
+        ],
+        "evidence_type": "json",
+    },
+    {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 197},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 199},
         "evidence_type": "json",
     },
     {
