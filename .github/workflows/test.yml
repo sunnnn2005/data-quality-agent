@@ -142,16 +142,17 @@ jobs:
           CONFIRMED_EXTERNAL_USERS: "0"
           REPRODUCIBLE_FEEDBACK_ITEMS: "0"
           BUG_FEEDBACK_ITEMS: "0"
-          FEATURE_FEEDBACK_ITEMS: "0"
+          FEATURE_FEEDBACK_ITEMS: "8"
           BUSINESS_CASE_FEEDBACK_ITEMS: "0"
+          AI_ENGINEER_REVIEW_ITEMS: "0"
         run: python scripts/update_feedback_metrics.py
       - name: Verify adoption metrics artifact
         env:
           ADOPTION_STARS: "0"
           ADOPTION_FORKS: "1"
           ADOPTION_WATCHERS: "0"
-          ADOPTION_ISSUES_TOTAL: "12"
-          ADOPTION_TEST_COUNT: "182"
+          ADOPTION_ISSUES_TOTAL: "25"
+          ADOPTION_TEST_COUNT: "183"
         run: python scripts/update_adoption_metrics.py
       - name: Verify outcome evidence manifest
         run: python scripts/verify_outcome_evidence.py
