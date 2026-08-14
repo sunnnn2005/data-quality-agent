@@ -1,5 +1,5 @@
 {
-  "check_count": 72,
+  "check_count": 73,
   "checks": [
     {
       "evidence_type": "html",
@@ -333,6 +333,16 @@
       "verified_fields": [
         "business_case_count",
         "detected_risk_count",
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "business-resolution-brief",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-resolution-brief.json",
+      "verified_fields": [
         "project"
       ]
     },
@@ -801,6 +811,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 72,
+  "passed_count": 73,
   "status": "PASS"
 }
