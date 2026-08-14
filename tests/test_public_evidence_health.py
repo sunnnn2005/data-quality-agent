@@ -13,6 +13,8 @@ def test_public_evidence_health_requires_core_public_signals():
         "adoption-metrics",
         "first-ai-reviewer-ask-page",
         "first-ai-reviewer-ask",
+        "llm-value-comparison",
+        "llm-value-comparison-page",
         "outcome-collection-page",
         "outcome-proof-page",
         "outcome-proof-page-artifact",
@@ -126,6 +128,16 @@ def test_public_evidence_health_requires_core_public_signals():
     assert first_ai_reviewer["expected_json"]["status_board_slot_id"] == "review_slot_07"
     assert first_ai_reviewer["expected_json"]["current_claimable_ai_reviews"] == 0
     assert "ready_to_send_not_reviewed" in first_ai_reviewer["expected_texts"]
+    llm_value = next(check for check in PUBLIC_CHECKS if check["id"] == "llm-value-comparison")
+    assert llm_value["url"].endswith("/llm-value-comparison.json")
+    assert llm_value["expected_json"]["scenario_count"] == 14
+    assert llm_value["expected_json"]["fixed_generic_average_recall"] == 0.417
+    assert llm_value["expected_json"]["adaptive_strategy_average_recall"] == 1.0
+    assert llm_value["expected_json"]["absolute_recall_lift"] == 0.583
+    assert "select_quality_strategy" in llm_value["expected_texts"]
+    llm_value_page = next(check for check in PUBLIC_CHECKS if check["id"] == "llm-value-comparison-page")
+    assert llm_value_page["url"].endswith("/llm-value-comparison.html")
+    assert "139.8%" in llm_value_page["expected_texts"]
     external_ledger = next(check for check in PUBLIC_CHECKS if check["id"] == "external-review-evidence-ledger")
     assert external_ledger["expected_json"]["self_authored_planning_excluded"] is True
     assert "evidence_counts" in external_ledger["expected_texts"]

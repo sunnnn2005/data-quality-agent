@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 229,
-      "resume_signal": "229 passing CI tests",
+      "metric_value": 231,
+      "resume_signal": "231 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -467,6 +467,16 @@
       "resume_signal": "CI-verified tool-planning evaluation",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json"
+    },
+    {
+      "claim": "The project publishes a 14-scenario comparison showing adaptive strategy selection improves finding recall from 0.417 to 1.0 versus a fixed generic checklist without claiming paid model benchmark results.",
+      "evidence_type": "artifact",
+      "id": "llm-value-comparison",
+      "metric_name": "adaptive_strategy_recall_lift",
+      "metric_value": 0.583,
+      "resume_signal": "CI-verified adaptive strategy lift",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/llm-value-comparison.json"
     },
     {
       "claim": "The project publishes a generated feedback artifact with accepted/needs-review labels for 3 root-cause hypotheses without claiming external product feedback.",

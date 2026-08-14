@@ -1,0 +1,377 @@
+{
+  "absolute_recall_lift": 0.583,
+  "adaptive_strategy_average_recall": 1.0,
+  "adaptive_tool_name": "select_quality_strategy",
+  "comparison_rows": [
+    {
+      "adaptive_strategy_checks": [
+        "duplicate_primary_key",
+        "freshness_sla",
+        "missing_values",
+        "negative_amount",
+        "numeric_outliers",
+        "schema_required_columns",
+        "volume_anomaly"
+      ],
+      "adaptive_strategy_recall": 1.0,
+      "dataset_id": "orders_daily",
+      "expected_findings": [
+        "duplicate_primary_key",
+        "missing_values",
+        "numeric_outliers"
+      ],
+      "fixed_generic_checks": [
+        "schema_required_columns",
+        "missing_values",
+        "volume_anomaly"
+      ],
+      "fixed_generic_recall": 0.333,
+      "incremental_recall": 0.667,
+      "scenario_id": "orders_daily_core_failures",
+      "strategy_reason": "Payment, order, or transaction-like data needs freshness, amount-domain, volume, and outlier checks."
+    },
+    {
+      "adaptive_strategy_checks": [
+        "duplicate_primary_key",
+        "freshness_sla",
+        "missing_values",
+        "negative_amount",
+        "numeric_outliers",
+        "schema_required_columns",
+        "volume_anomaly"
+      ],
+      "adaptive_strategy_recall": 1.0,
+      "dataset_id": "orders_daily",
+      "expected_findings": [
+        "duplicate_primary_key"
+      ],
+      "fixed_generic_checks": [
+        "schema_required_columns",
+        "missing_values",
+        "volume_anomaly"
+      ],
+      "fixed_generic_recall": 0.0,
+      "incremental_recall": 1.0,
+      "scenario_id": "orders_daily_duplicate_key_guardrail",
+      "strategy_reason": "Payment, order, or transaction-like data needs freshness, amount-domain, volume, and outlier checks."
+    },
+    {
+      "adaptive_strategy_checks": [
+        "duplicate_primary_key",
+        "freshness_sla",
+        "missing_values",
+        "negative_amount",
+        "numeric_outliers",
+        "schema_required_columns",
+        "volume_anomaly"
+      ],
+      "adaptive_strategy_recall": 1.0,
+      "dataset_id": "orders_daily",
+      "expected_findings": [
+        "missing_values"
+      ],
+      "fixed_generic_checks": [
+        "schema_required_columns",
+        "missing_values",
+        "volume_anomaly"
+      ],
+      "fixed_generic_recall": 1.0,
+      "incremental_recall": 0.0,
+      "scenario_id": "orders_daily_revenue_null_monitor",
+      "strategy_reason": "Payment, order, or transaction-like data needs freshness, amount-domain, volume, and outlier checks."
+    },
+    {
+      "adaptive_strategy_checks": [
+        "duplicate_primary_key",
+        "freshness_sla",
+        "missing_values",
+        "negative_amount",
+        "numeric_outliers",
+        "schema_required_columns",
+        "volume_anomaly"
+      ],
+      "adaptive_strategy_recall": 1.0,
+      "dataset_id": "orders_daily",
+      "expected_findings": [
+        "numeric_outliers"
+      ],
+      "fixed_generic_checks": [
+        "schema_required_columns",
+        "missing_values",
+        "volume_anomaly"
+      ],
+      "fixed_generic_recall": 0.0,
+      "incremental_recall": 1.0,
+      "scenario_id": "orders_daily_high_value_outlier_review",
+      "strategy_reason": "Payment, order, or transaction-like data needs freshness, amount-domain, volume, and outlier checks."
+    },
+    {
+      "adaptive_strategy_checks": [
+        "duplicate_primary_key",
+        "freshness_sla",
+        "missing_values",
+        "negative_amount",
+        "numeric_outliers",
+        "schema_required_columns",
+        "volume_anomaly"
+      ],
+      "adaptive_strategy_recall": 1.0,
+      "dataset_id": "payments_events",
+      "expected_findings": [
+        "freshness_sla",
+        "negative_amount"
+      ],
+      "fixed_generic_checks": [
+        "schema_required_columns",
+        "missing_values",
+        "volume_anomaly"
+      ],
+      "fixed_generic_recall": 0.0,
+      "incremental_recall": 1.0,
+      "scenario_id": "payments_events_freshness_negative_amount",
+      "strategy_reason": "Payment, order, or transaction-like data needs freshness, amount-domain, volume, and outlier checks."
+    },
+    {
+      "adaptive_strategy_checks": [
+        "duplicate_primary_key",
+        "freshness_sla",
+        "missing_values",
+        "negative_amount",
+        "numeric_outliers",
+        "schema_required_columns",
+        "volume_anomaly"
+      ],
+      "adaptive_strategy_recall": 1.0,
+      "dataset_id": "payments_events",
+      "expected_findings": [
+        "missing_values"
+      ],
+      "fixed_generic_checks": [
+        "schema_required_columns",
+        "missing_values",
+        "volume_anomaly"
+      ],
+      "fixed_generic_recall": 1.0,
+      "incremental_recall": 0.0,
+      "scenario_id": "payments_events_missing_status_monitor",
+      "strategy_reason": "Payment, order, or transaction-like data needs freshness, amount-domain, volume, and outlier checks."
+    },
+    {
+      "adaptive_strategy_checks": [
+        "duplicate_primary_key",
+        "freshness_sla",
+        "missing_values",
+        "negative_amount",
+        "numeric_outliers",
+        "schema_required_columns",
+        "volume_anomaly"
+      ],
+      "adaptive_strategy_recall": 1.0,
+      "dataset_id": "payments_events",
+      "expected_findings": [
+        "freshness_sla"
+      ],
+      "fixed_generic_checks": [
+        "schema_required_columns",
+        "missing_values",
+        "volume_anomaly"
+      ],
+      "fixed_generic_recall": 0.0,
+      "incremental_recall": 1.0,
+      "scenario_id": "payments_events_settlement_freshness_sla",
+      "strategy_reason": "Payment, order, or transaction-like data needs freshness, amount-domain, volume, and outlier checks."
+    },
+    {
+      "adaptive_strategy_checks": [
+        "duplicate_primary_key",
+        "freshness_sla",
+        "missing_values",
+        "negative_amount",
+        "numeric_outliers",
+        "schema_required_columns",
+        "volume_anomaly"
+      ],
+      "adaptive_strategy_recall": 1.0,
+      "dataset_id": "payments_events",
+      "expected_findings": [
+        "negative_amount"
+      ],
+      "fixed_generic_checks": [
+        "schema_required_columns",
+        "missing_values",
+        "volume_anomaly"
+      ],
+      "fixed_generic_recall": 0.0,
+      "incremental_recall": 1.0,
+      "scenario_id": "payments_events_refund_domain_guardrail",
+      "strategy_reason": "Payment, order, or transaction-like data needs freshness, amount-domain, volume, and outlier checks."
+    },
+    {
+      "adaptive_strategy_checks": [
+        "duplicate_primary_key",
+        "freshness_sla",
+        "missing_values",
+        "negative_amount",
+        "numeric_outliers",
+        "schema_required_columns",
+        "volume_anomaly"
+      ],
+      "adaptive_strategy_recall": 1.0,
+      "dataset_id": "payments_events",
+      "expected_findings": [
+        "volume_anomaly"
+      ],
+      "fixed_generic_checks": [
+        "schema_required_columns",
+        "missing_values",
+        "volume_anomaly"
+      ],
+      "fixed_generic_recall": 1.0,
+      "incremental_recall": 0.0,
+      "scenario_id": "payments_events_low_volume_ingestion_check",
+      "strategy_reason": "Payment, order, or transaction-like data needs freshness, amount-domain, volume, and outlier checks."
+    },
+    {
+      "adaptive_strategy_checks": [
+        "duplicate_primary_key",
+        "email_completeness",
+        "missing_values",
+        "numeric_outliers",
+        "schema_drift",
+        "schema_required_columns",
+        "volume_anomaly"
+      ],
+      "adaptive_strategy_recall": 1.0,
+      "dataset_id": "customer_profiles",
+      "expected_findings": [
+        "missing_values",
+        "schema_drift"
+      ],
+      "fixed_generic_checks": [
+        "schema_required_columns",
+        "missing_values",
+        "volume_anomaly"
+      ],
+      "fixed_generic_recall": 0.5,
+      "incremental_recall": 0.5,
+      "scenario_id": "customer_profiles_schema_missingness",
+      "strategy_reason": "Customer or user profile data needs identity, schema, contact-field, volume, and numeric distribution checks."
+    },
+    {
+      "adaptive_strategy_checks": [
+        "duplicate_primary_key",
+        "email_completeness",
+        "missing_values",
+        "numeric_outliers",
+        "schema_drift",
+        "schema_required_columns",
+        "volume_anomaly"
+      ],
+      "adaptive_strategy_recall": 1.0,
+      "dataset_id": "customer_profiles",
+      "expected_findings": [
+        "schema_drift"
+      ],
+      "fixed_generic_checks": [
+        "schema_required_columns",
+        "missing_values",
+        "volume_anomaly"
+      ],
+      "fixed_generic_recall": 0.0,
+      "incremental_recall": 1.0,
+      "scenario_id": "customer_profiles_unexpected_column_contract",
+      "strategy_reason": "Customer or user profile data needs identity, schema, contact-field, volume, and numeric distribution checks."
+    },
+    {
+      "adaptive_strategy_checks": [
+        "duplicate_primary_key",
+        "email_completeness",
+        "missing_values",
+        "numeric_outliers",
+        "schema_drift",
+        "schema_required_columns",
+        "volume_anomaly"
+      ],
+      "adaptive_strategy_recall": 1.0,
+      "dataset_id": "customer_profiles",
+      "expected_findings": [
+        "missing_values"
+      ],
+      "fixed_generic_checks": [
+        "schema_required_columns",
+        "missing_values",
+        "volume_anomaly"
+      ],
+      "fixed_generic_recall": 1.0,
+      "incremental_recall": 0.0,
+      "scenario_id": "customer_profiles_contact_completeness",
+      "strategy_reason": "Customer or user profile data needs identity, schema, contact-field, volume, and numeric distribution checks."
+    },
+    {
+      "adaptive_strategy_checks": [
+        "duplicate_primary_key",
+        "email_completeness",
+        "missing_values",
+        "numeric_outliers",
+        "schema_drift",
+        "schema_required_columns",
+        "volume_anomaly"
+      ],
+      "adaptive_strategy_recall": 1.0,
+      "dataset_id": "customer_profiles",
+      "expected_findings": [
+        "numeric_outliers"
+      ],
+      "fixed_generic_checks": [
+        "schema_required_columns",
+        "missing_values",
+        "volume_anomaly"
+      ],
+      "fixed_generic_recall": 0.0,
+      "incremental_recall": 1.0,
+      "scenario_id": "customer_profiles_ltv_outlier_review",
+      "strategy_reason": "Customer or user profile data needs identity, schema, contact-field, volume, and numeric distribution checks."
+    },
+    {
+      "adaptive_strategy_checks": [
+        "duplicate_primary_key",
+        "email_completeness",
+        "missing_values",
+        "numeric_outliers",
+        "schema_drift",
+        "schema_required_columns",
+        "volume_anomaly"
+      ],
+      "adaptive_strategy_recall": 1.0,
+      "dataset_id": "customer_profiles",
+      "expected_findings": [
+        "volume_anomaly"
+      ],
+      "fixed_generic_checks": [
+        "schema_required_columns",
+        "missing_values",
+        "volume_anomaly"
+      ],
+      "fixed_generic_recall": 1.0,
+      "incremental_recall": 0.0,
+      "scenario_id": "customer_profiles_low_volume_ingestion_check",
+      "strategy_reason": "Customer or user profile data needs identity, schema, contact-field, volume, and numeric distribution checks."
+    }
+  ],
+  "fixed_generic_average_recall": 0.417,
+  "fixed_generic_check_count": 3,
+  "generated_by": "scripts/build_llm_value_comparison.py",
+  "improved_scenario_count": 9,
+  "not_claimed": [
+    "paid model benchmark results",
+    "production traffic evaluation",
+    "external human-labeled evaluation set",
+    "enterprise customer impact"
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Compare a fixed generic quality workflow against the agent's adaptive strategy-selection tool on the same public eval scenarios.",
+  "relative_recall_lift_percent": 139.8,
+  "resume_safe_summary": "Published a 14-scenario comparison showing adaptive data-quality strategy selection improved finding recall from 0.417 to 1.0 versus a fixed generic checklist, without claiming paid-model benchmark results or external adoption.",
+  "scenario_count": 14,
+  "unchanged_scenario_count": 5
+}

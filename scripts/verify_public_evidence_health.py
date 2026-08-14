@@ -70,7 +70,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "229 passing CI tests",
+            "231 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -186,7 +186,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 229},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 231},
         "evidence_type": "json",
     },
     {
@@ -408,6 +408,37 @@ PUBLIC_CHECKS = [
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json",
         "expected_json": {"scenario_count": 14},
         "evidence_type": "json",
+    },
+    {
+        "id": "llm-value-comparison",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/llm-value-comparison.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "scenario_count": 14,
+            "fixed_generic_average_recall": 0.417,
+            "adaptive_strategy_average_recall": 1.0,
+            "absolute_recall_lift": 0.583,
+            "improved_scenario_count": 9,
+        },
+        "expected_texts": [
+            "select_quality_strategy",
+            "relative_recall_lift_percent",
+            "without claiming paid-model benchmark results or external adoption",
+            "enterprise customer impact",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "llm-value-comparison-page",
+        "url": "https://sunnnn2005.github.io/data-quality-agent/llm-value-comparison.html",
+        "expected_text": "LLM Value Comparison",
+        "expected_texts": [
+            "fixed average recall",
+            "adaptive average recall",
+            "139.8%",
+            "external adoption",
+        ],
+        "evidence_type": "html",
     },
     {
         "id": "hypothesis-feedback",
