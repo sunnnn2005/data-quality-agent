@@ -253,7 +253,7 @@ def verify_application_evidence_pack(payload: dict[str, Any]) -> dict[str, Any]:
         "application_link_count": 46,
         "resume_bullet_count": 3,
         "target_role_count": 4,
-        "passing_tests": 151,
+        "passing_tests": 152,
         "verified_resume_claims": 84,
     }
     if len(payload["application_links"]) != expected["application_link_count"]:
