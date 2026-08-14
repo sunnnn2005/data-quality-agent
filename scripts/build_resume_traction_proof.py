@@ -69,6 +69,16 @@ def build_resume_traction_proof() -> dict[str, Any]:
             "evidence": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-evidence-kit.md",
             "status": "claimable",
         },
+        {
+            "signal": "early repository interest",
+            "resume_phrase": (
+                f"Captured GitHub's rolling 14-day traffic snapshot with {public_counts['github_views']} views, "
+                f"{public_counts['github_unique_visitors']} unique visitors, {public_counts['github_clones']} clones, "
+                f"and {public_counts['github_unique_cloners']} unique cloners without counting traffic as users."
+            ),
+            "evidence": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md",
+            "status": "claimable",
+        },
     ]
     future_claims = [
         {
@@ -125,7 +135,7 @@ def build_resume_traction_proof() -> dict[str, Any]:
         "linked_growth_channels": traction["growth_channel_count"],
         "resume_status": "baseline_claimable_growth_not_yet_claimable",
         "resume_safe_summary": (
-            f"Published a CI-verified resume traction proof with {len(claimable_now)} claimable launch/quality signals, "
+            f"Published a CI-verified resume traction proof with {len(claimable_now)} claimable launch/quality/traffic signals, "
             f"{len(future_claims)} threshold-based future outcome claims, and {len(blocked_claims)} blocked claims "
             "to prevent overstating users, feedback, production adoption, or stars."
         ),
@@ -189,8 +199,8 @@ def verify_resume_traction_proof(payload: dict[str, Any]) -> dict[str, Any]:
     for key, expected in expected_counts.items():
         if payload["public_counts"].get(key) != expected:
             raise AssertionError(f"resume traction proof {key} expected {expected!r}")
-    if payload["claimable_now_count"] != 4:
-        raise AssertionError("resume traction proof must include 4 claimable baseline signals")
+    if payload["claimable_now_count"] != 5:
+        raise AssertionError("resume traction proof must include 5 claimable baseline signals")
     if payload["future_claim_count"] != 4:
         raise AssertionError("resume traction proof must include 4 future threshold claims")
     if payload["blocked_claim_count"] != 5:

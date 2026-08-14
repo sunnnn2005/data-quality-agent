@@ -31,9 +31,15 @@
       "resume_phrase": "Built a reviewer evidence system with 5 public issue templates and 5 privacy/permission steps.",
       "signal": "evidence collection system",
       "status": "claimable"
+    },
+    {
+      "evidence": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md",
+      "resume_phrase": "Captured GitHub's rolling 14-day traffic snapshot with 9 views, 3 unique visitors, 79 clones, and 50 unique cloners without counting traffic as users.",
+      "signal": "early repository interest",
+      "status": "claimable"
     }
   ],
-  "claimable_now_count": 4,
+  "claimable_now_count": 5,
   "future_claim_count": 4,
   "future_claims": [
     {
@@ -86,6 +92,6 @@
     "stars": 0,
     "watchers": 0
   },
-  "resume_safe_summary": "Published a CI-verified resume traction proof with 4 claimable launch/quality signals, 4 threshold-based future outcome claims, and 5 blocked claims to prevent overstating users, feedback, production adoption, or stars.",
+  "resume_safe_summary": "Published a CI-verified resume traction proof with 5 claimable launch/quality/traffic signals, 4 threshold-based future outcome claims, and 5 blocked claims to prevent overstating users, feedback, production adoption, or stars.",
   "resume_status": "baseline_claimable_growth_not_yet_claimable"
 }

@@ -84,7 +84,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Reviewer evidence forms | 5 |
 | Reviewer evidence script steps | 5 |
 | Resume traction proof | 1 |
-| Resume traction claimable now | 4 |
+| Resume traction claimable now | 5 |
 | Resume traction future claims | 4 |
 | Resume traction blocked claims | 5 |
 | Reviewer action queue | 1 |
@@ -312,7 +312,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Accepted evidence rollup with 5 tracked outcome metrics, 0 accepted reviewer issues, and 5 blocked claims until public evidence exists
 - Business impact ledger with 0 accepted business-impact signals, anonymized workflow fields, and blocked resume claims until public evidence exists
 - Reviewer evidence kit with 5 public issue templates, 5 copy-ready privacy and permission steps, and zero current external outcome counts
-- Resume traction proof with 4 claimable launch/quality signals, 4 threshold-based future outcome claims, and 5 blocked overclaiming rules
+- Resume traction proof with 5 claimable launch/quality/traffic signals, 4 threshold-based future outcome claims, and 5 blocked overclaiming rules
 - Reviewer action queue with 8 concrete outreach tasks, 5 public evidence goals, 8 not-contacted baseline entries, and zero completed reviews claimed
 - Reviewer outreach execution pack with 8 ready-to-send messages, 8 follow-up rules, 8 not-sent baseline entries, and zero sent outreach claimed
 - Reviewer outreach status board tracking 8 reviewer slots, 5 status stages, and zero sent/replied/accepted outreach claims

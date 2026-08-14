@@ -606,8 +606,8 @@ def verify_manifest() -> dict[str, int]:
                 for key, expected in expected_counts.items():
                     if resume_traction_proof.get("public_counts", {}).get(key) != expected:
                         raise AssertionError(f"resume traction proof {key} expected {expected!r}")
-                if resume_traction_proof.get("claimable_now_count") != 4:
-                    raise AssertionError("resume traction proof must include 4 claimable current signals")
+                if resume_traction_proof.get("claimable_now_count") != 5:
+                    raise AssertionError("resume traction proof must include 5 claimable current signals")
                 if resume_traction_proof.get("future_claim_count") != 4:
                     raise AssertionError("resume traction proof must include 4 future outcome claims")
                 if resume_traction_proof.get("blocked_claim_count") != 5:

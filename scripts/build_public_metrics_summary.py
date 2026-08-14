@@ -566,7 +566,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 "and zero current external outcome counts"
             ),
             (
-                f"Resume traction proof with {resume_traction_proof['claimable_now_count']} claimable launch/quality signals, "
+                f"Resume traction proof with {resume_traction_proof['claimable_now_count']} claimable launch/quality/traffic signals, "
                 f"{resume_traction_proof['future_claim_count']} threshold-based future outcome claims, and "
                 f"{resume_traction_proof['blocked_claim_count']} blocked overclaiming rules"
             ),
@@ -1152,7 +1152,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "reviewer_evidence_forms": 5,
         "reviewer_evidence_script_steps": 5,
         "resume_traction_proof": 1,
-        "resume_traction_claimable_now": 4,
+        "resume_traction_claimable_now": 5,
         "resume_traction_future_claims": 4,
         "resume_traction_blocked_claims": 5,
         "reviewer_action_queue": 1,

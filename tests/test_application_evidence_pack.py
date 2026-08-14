@@ -73,7 +73,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert payload["verified_outcome_numbers"]["business_impact_ledger_accepted_signals"] == 0
     assert payload["verified_outcome_numbers"]["reviewer_evidence_forms"] == 5
     assert payload["verified_outcome_numbers"]["reviewer_evidence_script_steps"] == 5
-    assert payload["verified_outcome_numbers"]["resume_traction_claimable_now"] == 4
+    assert payload["verified_outcome_numbers"]["resume_traction_claimable_now"] == 5
     assert payload["verified_outcome_numbers"]["resume_traction_future_claims"] == 4
     assert payload["verified_outcome_numbers"]["resume_traction_blocked_claims"] == 5
     assert payload["verified_outcome_numbers"]["reviewer_outreach_ready_messages"] == 8

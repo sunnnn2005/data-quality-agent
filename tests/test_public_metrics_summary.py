@@ -79,7 +79,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["reviewer_evidence_forms"] == 5
     assert payload["verified_project_outcomes"]["reviewer_evidence_script_steps"] == 5
     assert payload["verified_project_outcomes"]["resume_traction_proof"] == 1
-    assert payload["verified_project_outcomes"]["resume_traction_claimable_now"] == 4
+    assert payload["verified_project_outcomes"]["resume_traction_claimable_now"] == 5
     assert payload["verified_project_outcomes"]["resume_traction_future_claims"] == 4
     assert payload["verified_project_outcomes"]["resume_traction_blocked_claims"] == 5
     assert payload["verified_project_outcomes"]["reviewer_action_queue"] == 1
@@ -361,7 +361,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert any("Resume claim upgrade ledger with 6 outcome metrics" in signal for signal in payload["resume_safe_signals"])
     assert any("Reviewer share kit with 5 copy-ready messages" in signal for signal in payload["resume_safe_signals"])
     assert any("Business impact ledger with 0 accepted business-impact signals" in signal for signal in payload["resume_safe_signals"])
-    assert any("Resume traction proof with 4 claimable launch/quality signals" in signal for signal in payload["resume_safe_signals"])
+    assert any("Resume traction proof with 5 claimable launch/quality/traffic signals" in signal for signal in payload["resume_safe_signals"])
     assert (
         "AI Engineer review intake with 6 review paths, 6 reviewer questions, 5 countable-evidence conditions, and zero accepted reviews"
         in payload["resume_safe_signals"]
