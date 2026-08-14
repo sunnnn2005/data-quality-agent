@@ -1,0 +1,113 @@
+{
+  "contact_pool_count": 5,
+  "counting_policy": "A sent message is only distribution evidence. Resume outcomes increase only when a non-owner public GitHub issue includes permission to count, contains no private data, and passes the evidence gate.",
+  "current_baseline": {
+    "accepted_public_evidence": 0,
+    "ai_engineer_review_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "github_stars_claimable": 0
+  },
+  "first_action": {
+    "metric": "ai_engineer_review_items",
+    "record_command": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_07 --status sent --reviewer-contact \"<reviewer name or handle>\" --channel-used \"LinkedIn DM or mentor email\" --note \"Sent first AI Engineer reviewer request\"",
+    "reviewer_profile": "AI engineer, mentor, or ML systems reviewer",
+    "slot_id": "review_slot_07"
+  },
+  "generated_by": "scripts/build_real_reviewer_outreach_playbook.py",
+  "not_claimed": [
+    "message sent",
+    "external user",
+    "external feedback",
+    "AI Engineer review",
+    "business pilot",
+    "GitHub star growth"
+  ],
+  "outreach_step_count": 5,
+  "outreach_steps": [
+    {
+      "contact_pool": "UC Davis technical mentor",
+      "copy_ready_message": "Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/26. The ask is: Inspect the LLM tool-calling loop, guardrails, and evidence trail for AI Engineer credibility. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it. Shortest path if you do not want to read every doc: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html.",
+      "counts_only_after": "A non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.",
+      "public_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/26",
+      "rank": 1,
+      "record_after_real_send": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_07 --status sent --reviewer-contact \"<private label or public handle>\" --channel-used \"LinkedIn, email, Discord, or in-person follow-up\" --note \"Sent ai_engineer_review_items reviewer ask from real outreach playbook\"",
+      "resume_outcome_after_send": false,
+      "status_board_slot_id": "review_slot_07",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+      "suggested_channel": "LinkedIn, email, Discord, or in-person follow-up",
+      "target_metric": "ai_engineer_review_items",
+      "who_to_find": "TA, professor office-hour contact, AI/ML club officer, or advanced CS/data science student",
+      "why_it_matters": "This is the strongest first evidence for an AI Engineer Intern resume because the reviewer can inspect architecture, tool calling, and guardrails."
+    },
+    {
+      "contact_pool": "Student developer peer",
+      "copy_ready_message": "Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/23. The ask is: Confirm the exact path used and whether the result was understandable. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.",
+      "counts_only_after": "A non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.",
+      "public_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/23",
+      "rank": 2,
+      "record_after_real_send": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_04 --status sent --reviewer-contact \"<private label or public handle>\" --channel-used \"class Discord, club Slack, or direct message\" --note \"Sent confirmed_external_users reviewer ask from real outreach playbook\"",
+      "resume_outcome_after_send": false,
+      "status_board_slot_id": "review_slot_04",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "suggested_channel": "class Discord, club Slack, or direct message",
+      "target_metric": "confirmed_external_users",
+      "who_to_find": "classmate or hackathon peer who can open the public demo and submit a short public run issue",
+      "why_it_matters": "One confirmed non-owner run turns the project from only self-published into externally tried."
+    },
+    {
+      "contact_pool": "Developer comfortable with Docker",
+      "copy_ready_message": "Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/22. The ask is: Run the local replay path and confirm whether the report is reproducible. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.",
+      "counts_only_after": "A non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.",
+      "public_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/22",
+      "rank": 3,
+      "record_after_real_send": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_03 --status sent --reviewer-contact \"<private label or public handle>\" --channel-used \"GitHub, Discord, or direct message\" --note \"Sent reproducible_feedback_items reviewer ask from real outreach playbook\"",
+      "resume_outcome_after_send": false,
+      "status_board_slot_id": "review_slot_03",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md",
+      "suggested_channel": "GitHub, Discord, or direct message",
+      "target_metric": "reproducible_feedback_items",
+      "who_to_find": "peer who can run docker compose or inspect the local PostgreSQL replay path",
+      "why_it_matters": "Reproducible run evidence is stronger than a casual demo view and supports engineering credibility."
+    },
+    {
+      "contact_pool": "Operations or spreadsheet-heavy user",
+      "copy_ready_message": "Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/24. The ask is: Submit one anonymized data-quality problem this agent should handle. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.",
+      "counts_only_after": "A non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.",
+      "public_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/24",
+      "rank": 4,
+      "record_after_real_send": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_05 --status sent --reviewer-contact \"<private label or public handle>\" --channel-used \"email, LinkedIn, or in-person ask\" --note \"Sent business_case_feedback_items reviewer ask from real outreach playbook\"",
+      "resume_outcome_after_send": false,
+      "status_board_slot_id": "review_slot_05",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "suggested_channel": "email, LinkedIn, or in-person ask",
+      "target_metric": "business_case_feedback_items",
+      "who_to_find": "student org treasurer, tutoring coordinator, small-business operator, or anyone who has cleaned messy CSVs",
+      "why_it_matters": "Business-case feedback is the closest honest substitute for enterprise impact before a real company pilot exists."
+    },
+    {
+      "contact_pool": "General product reviewer",
+      "copy_ready_message": "Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/20. The ask is: Try the public demo and report one confusing or useful workflow detail. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.",
+      "counts_only_after": "A non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.",
+      "public_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/20",
+      "rank": 5,
+      "record_after_real_send": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_01 --status sent --reviewer-contact \"<private label or public handle>\" --channel-used \"direct message or class group\" --note \"Sent external_feedback_items reviewer ask from real outreach playbook\"",
+      "resume_outcome_after_send": false,
+      "status_board_slot_id": "review_slot_01",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "suggested_channel": "direct message or class group",
+      "target_metric": "external_feedback_items",
+      "who_to_find": "friend, classmate, or club member who can say what was useful, confusing, or broken",
+      "why_it_matters": "Specific product feedback creates a real iteration loop without pretending there are users yet."
+    }
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Turn the zero-outcome baseline into a concrete manual outreach plan for getting real, non-owner, permissioned public evidence that can eventually unlock stronger resume claims.",
+  "resume_safe_summary": "Added a real reviewer outreach playbook with 5 contact pools, 5 evidence targets, copy-ready asks, recording commands, and strict counting boundaries for converting future external reviews into resume-safe outcome claims.",
+  "today_completion_definition": [
+    "Choose one real person from the first contact pool.",
+    "Send the copy-ready message outside the repo.",
+    "Record only the sent event with scripts/record_reviewer_outreach_event.py.",
+    "Do not change user, feedback, star, or business-impact counts until public evidence is accepted."
+  ]
+}

@@ -149,8 +149,8 @@ def verify_resume_live_proof_snapshot(payload: dict[str, Any]) -> dict[str, Any]
     links = payload["evidence_links"]
     if len(payload["resume_safe_bullets"]) != 4:
         raise AssertionError("resume live proof snapshot must provide four resume-safe bullets")
-    if verified["passing_test_baseline"] != 225:
-        raise AssertionError("snapshot must preserve the verified 225-test baseline")
+    if verified["passing_test_baseline"] != 226:
+        raise AssertionError("snapshot must preserve the verified 226-test baseline")
     if verified["verified_resume_claims"] != 94:
         raise AssertionError("snapshot must preserve 94 verified resume claims")
     if verified["implemented_agent_capabilities"] != 16:
