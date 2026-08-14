@@ -1,5 +1,5 @@
 {
-  "check_count": 89,
+  "check_count": 90,
   "checks": [
     {
       "evidence_type": "html",
@@ -374,6 +374,19 @@
       "verified_fields": [
         "issue_template_count",
         "label_count",
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "contributor-conversion-kit",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/contributor-conversion-kit.json",
+      "verified_fields": [
+        "contributor_claimable_count",
+        "conversion_path_count",
+        "evidence_gate_count",
         "project"
       ]
     },
@@ -1012,6 +1025,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 89,
+  "passed_count": 90,
   "status": "PASS"
 }
