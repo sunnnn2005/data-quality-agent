@@ -2511,6 +2511,8 @@ def verify_manifest() -> dict[str, int]:
         raise AssertionError("public homepage must link reviewers to the outcome pipeline board")
     if "outcome-badges.md" not in index_page or "outcome badges" not in index_page:
         raise AssertionError("public homepage must link reviewers to outcome badges")
+    if "reviewer-outreach-console.html" not in index_page or "reviewer outreach console" not in index_page:
+        raise AssertionError("public homepage must link reviewers to the reviewer outreach console")
     if "ai-engineer-reviewer-card.md" not in index_page or "ai engineer reviewer card" not in index_page:
         raise AssertionError("public homepage must link reviewers to the AI Engineer reviewer card")
     if "launch-evidence-snapshot.md" not in index_page or "launch evidence snapshot" not in index_page:

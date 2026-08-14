@@ -15,6 +15,7 @@ def test_readme_exposes_countable_reviewer_evidence_path():
     assert "evidence acceptance checklist" in readme.lower()
     assert "reviewer submission hub" in readme.lower()
     assert "outcome pipeline board" in readme.lower()
+    assert "reviewer outreach console" in readme.lower()
     assert "first reviewer send kit" in readme.lower()
     assert "public, non-owner, permissioned, and redacted" in readme
     assert "24 evidence fields" in readme
