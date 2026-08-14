@@ -1,5 +1,5 @@
 {
-  "check_count": 122,
+  "check_count": 124,
   "checks": [
     {
       "evidence_type": "html",
@@ -1019,6 +1019,29 @@
     },
     {
       "evidence_type": "json",
+      "id": "first-external-proof-action-sheet",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/first-external-proof-action-sheet.json",
+      "verified_fields": [
+        "current_accepted_external_evidence",
+        "current_confirmed_external_users",
+        "current_github_stars",
+        "primary_target_metric",
+        "project",
+        "required_success_field_count",
+        "reviewer_target_count"
+      ]
+    },
+    {
+      "evidence_type": "html",
+      "id": "first-external-proof-action-sheet-page",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/first-external-proof-action-sheet.html"
+    },
+    {
+      "evidence_type": "json",
       "id": "reviewer-action-queue",
       "passed": true,
       "status_code": 200,
@@ -1377,6 +1400,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 122,
+  "passed_count": 124,
   "status": "PASS"
 }
