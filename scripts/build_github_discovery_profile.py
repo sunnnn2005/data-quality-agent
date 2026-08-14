@@ -11,15 +11,19 @@ OUTPUT_JSON_PATH = ROOT / "docs" / "github-discovery-profile.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "github-discovery-profile.md"
 
 REQUIRED_DISCOVERY_TOPICS = {
+    "agentic-ai",
+    "ai-engineering",
     "ai-agent",
     "data-engineering",
     "data-quality",
     "data-reliability",
     "docker",
+    "evaluation",
     "fastapi",
     "github-actions",
     "llm",
     "llm-agent",
+    "observability",
     "openai",
     "pandas",
     "postgres",
@@ -71,7 +75,7 @@ def build_github_discovery_profile() -> dict[str, Any]:
             f"{repo['url']}/issues/new?template=ai_engineer_review.md",
         ],
         "resume_safe_summary": (
-            "Published a CI-verified GitHub discovery profile with 16 relevant repository topics, "
+            "Published a CI-verified GitHub discovery profile with 20 relevant repository topics, "
             "public homepage metadata, reviewer entrypoints, and honest zero-star baseline."
         ),
         "not_claimed": [
@@ -183,8 +187,8 @@ def verify_github_discovery_profile(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("GitHub discovery profile requires a public repository")
     if payload["homepage_url"] != "https://sunnnn2005.github.io/data-quality-agent/":
         raise AssertionError("GitHub discovery profile must verify the public GitHub Pages homepage")
-    if payload["topic_count"] != 16:
-        raise AssertionError("GitHub discovery profile must verify 16 precise discovery topics")
+    if payload["topic_count"] != 20:
+        raise AssertionError("GitHub discovery profile must verify 20 precise discovery topics")
     if payload["missing_topics"]:
         raise AssertionError(f"GitHub discovery profile missing topics: {payload['missing_topics']}")
     if payload["discovery_ready"] is not True:

@@ -13,15 +13,19 @@ OUTPUT_MD_PATH = ROOT / "docs" / "star-growth-kit.md"
 
 
 REQUIRED_TOPICS = {
+    "agentic-ai",
+    "ai-engineering",
     "ai-agent",
     "data-engineering",
     "data-quality",
     "data-reliability",
     "docker",
+    "evaluation",
     "fastapi",
     "github-actions",
     "llm",
     "llm-agent",
+    "observability",
     "openai",
     "pandas",
     "postgres",

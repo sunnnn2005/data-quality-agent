@@ -192,7 +192,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Application evidence pack | 1 |
 | Application evidence links | 50 |
 | GitHub discovery profile | 1 |
-| GitHub discovery topics | 16 |
+| GitHub discovery topics | 20 |
 | GitHub discovery reviewer entrypoints | 6 |
 | Pilot evidence quicklink | 1 |
 | Pilot evidence quicklink actions | 4 |
@@ -254,7 +254,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Feedback intake outcome signals | 4 |
 | Feedback intake captured evidence groups | 5 |
 | Star growth kit | 1 |
-| Star growth required topics | 16 |
+| Star growth required topics | 20 |
 | Star growth ethical actions | 4 |
 | Star growth resume upgrade rules | 4 |
 | Business-case intake | 1 |
@@ -357,7 +357,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
 - 50 application evidence links in a recruiter-ready evidence pack
-- GitHub discovery profile with 16 precise topics, 6 reviewer entrypoints, public homepage metadata, and zero-star baseline
+- GitHub discovery profile with 20 precise topics, 6 reviewer entrypoints, public homepage metadata, and zero-star baseline
 - Pilot evidence quicklink with 4 short reviewer actions, 17 required evidence fields, 4 target outcome metrics, and zero-count baselines
 - Pilot launch control room with 4 public issue threads, 5 launch gates, 4 target outcome metrics, and 3 reviewer-send paths
 - Resume outcome adjudication report with 5 outcome categories, 0 claimable external categories, 5 blocked categories, and explicit unlock conditions
@@ -365,7 +365,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 3 pilot outreach messages and 10 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
 - Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups
-- Star growth kit with 16 verified repo topics, 4 ethical growth actions, and 4 resume upgrade rules with traffic context without inflating current stars
+- Star growth kit with 20 verified repo topics, 4 ethical growth actions, and 4 resume upgrade rules with traffic context without inflating current stars
 - Business-case intake path with 8 required sections, 5 tried paths, 8 outcome signals, and 8 captured evidence groups including 9 resume outcome fields
 - Business-data replay packet with 3 safe replay paths, 8 evidence fields, 5 safety requirements, and zero current external replay claims
 - Business replay demo with 8 anonymized rows, 5 findings, 4 failed check types, 4 business-rule references, and deterministic verification

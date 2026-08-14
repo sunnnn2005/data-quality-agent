@@ -125,7 +125,7 @@
     "first_10_reviewer_slots": 10,
     "first_10_reviewer_target_metrics": 6,
     "github_discovery_reviewer_entrypoints": 6,
-    "github_discovery_topics": 16,
+    "github_discovery_topics": 20,
     "impact_review_business_metrics": 12,
     "impact_review_evidence_links": 8,
     "implemented_agent_capabilities": 16,

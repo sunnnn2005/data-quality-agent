@@ -115,7 +115,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert payload["verified_outcome_numbers"]["resume_outcome_scoreboard_claimable_now"] == 3
     assert payload["verified_outcome_numbers"]["resume_outcome_scoreboard_blocked"] == 6
     assert payload["verified_outcome_numbers"]["resume_outcome_scoreboard_remaining_evidence"] == 7
-    assert payload["verified_outcome_numbers"]["github_discovery_topics"] == 16
+    assert payload["verified_outcome_numbers"]["github_discovery_topics"] == 20
     assert payload["verified_outcome_numbers"]["github_discovery_reviewer_entrypoints"] == 6
     assert payload["honest_baseline"]["stars"] == 0
     assert payload["honest_baseline"]["confirmed_external_users"] == 0

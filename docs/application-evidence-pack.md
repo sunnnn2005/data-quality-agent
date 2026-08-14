@@ -139,7 +139,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Evidence Acceptance Items | 6 |
 | Evidence Acceptance Accepted Issues | 0 |
 | Evidence Acceptance Rejected Issues | 14 |
-| Github Discovery Topics | 16 |
+| Github Discovery Topics | 20 |
 | Github Discovery Reviewer Entrypoints | 6 |
 | Pilot Evidence Quicklink Actions | 4 |
 | Pilot Evidence Quicklink Fields | 17 |

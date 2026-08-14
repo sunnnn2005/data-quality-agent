@@ -781,7 +781,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-claim-upgrade-ledger.json"
     },
     {
-      "claim": "The project publishes a GitHub discovery profile verifying 16 precise repository topics, public homepage metadata, 6 reviewer entrypoints, and the current zero-star baseline without claiming organic discovery or adoption.",
+      "claim": "The project publishes a GitHub discovery profile verifying 20 precise repository topics, public homepage metadata, 6 reviewer entrypoints, and the current zero-star baseline without claiming organic discovery or adoption.",
       "evidence_type": "generated_artifact",
       "id": "github-discovery-profile",
       "metric_name": "github_discovery_profile",

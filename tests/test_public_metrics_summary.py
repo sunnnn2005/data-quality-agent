@@ -173,7 +173,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["application_evidence_pack"] == 1
     assert payload["verified_project_outcomes"]["application_evidence_links"] == 50
     assert payload["verified_project_outcomes"]["github_discovery_profile"] == 1
-    assert payload["verified_project_outcomes"]["github_discovery_topics"] == 16
+    assert payload["verified_project_outcomes"]["github_discovery_topics"] == 20
     assert payload["verified_project_outcomes"]["github_discovery_reviewer_entrypoints"] == 6
     assert payload["verified_project_outcomes"]["pilot_evidence_quicklink"] == 1
     assert payload["verified_project_outcomes"]["pilot_evidence_quicklink_actions"] == 4
@@ -242,7 +242,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["feedback_intake_outcomes"] == 4
     assert payload["verified_project_outcomes"]["feedback_intake_captured_fields"] == 5
     assert payload["verified_project_outcomes"]["star_growth_kit"] == 1
-    assert payload["verified_project_outcomes"]["star_growth_required_topics"] == 16
+    assert payload["verified_project_outcomes"]["star_growth_required_topics"] == 20
     assert payload["verified_project_outcomes"]["star_growth_ethical_actions"] == 4
     assert payload["verified_project_outcomes"]["star_growth_resume_upgrade_rules"] == 4
     assert payload["verified_project_outcomes"]["business_case_intake"] == 1
@@ -367,7 +367,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert "50 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
-    assert any("GitHub discovery profile with 16 precise topics" in signal for signal in payload["resume_safe_signals"])
+    assert any("GitHub discovery profile with 20 precise topics" in signal for signal in payload["resume_safe_signals"])
     assert any("Pilot launch control room with 4 public issue threads" in signal for signal in payload["resume_safe_signals"])
     assert any("Resume outcome adjudication report with 5 outcome categories" in signal for signal in payload["resume_safe_signals"])
     assert any("First-10 reviewer sprint with 10 public evidence slots" in signal for signal in payload["resume_safe_signals"])
@@ -410,7 +410,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-            "Star growth kit with 16 verified repo topics, 4 ethical growth actions, and 4 resume upgrade rules with traffic context without inflating current stars"
+            "Star growth kit with 20 verified repo topics, 4 ethical growth actions, and 4 resume upgrade rules with traffic context without inflating current stars"
         in payload["resume_safe_signals"]
     )
     assert (

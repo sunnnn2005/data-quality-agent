@@ -1390,8 +1390,8 @@ def verify_manifest() -> dict[str, int]:
             elif metric_name == "github_discovery_profile":
                 discovery_script = (ROOT / "scripts" / "build_github_discovery_profile.py").read_text()
                 discovery_tests = (ROOT / "tests" / "test_github_discovery_profile.py").read_text()
-                if github_discovery.get("topic_count") != 16:
-                    raise AssertionError("GitHub discovery profile must verify 16 precise topics")
+                if github_discovery.get("topic_count") != 20:
+                    raise AssertionError("GitHub discovery profile must verify 20 precise topics")
                 if len(github_discovery.get("reviewer_entrypoints", [])) != 6:
                     raise AssertionError("GitHub discovery profile must verify 6 reviewer entrypoints")
                 if github_discovery.get("discovery_ready") is not True:
@@ -2018,8 +2018,8 @@ def verify_manifest() -> dict[str, int]:
                 topics = star_growth.get("topic_readiness", {})
                 if topics.get("ready") is not True:
                     raise AssertionError("star growth kit must verify topic readiness")
-                if len(topics.get("required_topics", [])) != 16:
-                    raise AssertionError("star growth kit must verify 16 required topics")
+                if len(topics.get("required_topics", [])) != 20:
+                    raise AssertionError("star growth kit must verify 20 required topics")
                 if len(star_growth.get("ethical_growth_actions", [])) != 4:
                     raise AssertionError("star growth kit must verify 4 ethical growth actions")
                 rules = star_growth.get("resume_upgrade_rules", [])

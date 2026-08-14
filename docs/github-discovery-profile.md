@@ -8,19 +8,23 @@ Verify the public GitHub discovery surface that can help real reviewers, contrib
 - Homepage: [https://sunnnn2005.github.io/data-quality-agent/](https://sunnnn2005.github.io/data-quality-agent/)
 - Private: `False`
 - Discovery ready: `True`
-- Description: Local-first data reliability agent with dataset profiling, typed findings, quality scoring, and report traces.
+- Description: LLM tool-calling data quality agent with read-only PostgreSQL, evidence guardrails, traces, evals, FastAPI, Docker, and CI-verified reports.
 
 ## Topics
 
+- `agentic-ai`
 - `ai-agent`
+- `ai-engineering`
 - `data-engineering`
 - `data-quality`
 - `data-reliability`
 - `docker`
+- `evaluation`
 - `fastapi`
 - `github-actions`
 - `llm`
 - `llm-agent`
+- `observability`
 - `openai`
 - `pandas`
 - `postgres`
@@ -50,7 +54,7 @@ Verify the public GitHub discovery surface that can help real reviewers, contrib
 
 ## Resume-Safe Summary
 
-Published a CI-verified GitHub discovery profile with 16 relevant repository topics, public homepage metadata, reviewer entrypoints, and honest zero-star baseline.
+Published a CI-verified GitHub discovery profile with 20 relevant repository topics, public homepage metadata, reviewer entrypoints, and honest zero-star baseline.
 
 ## Not Claimed
 
