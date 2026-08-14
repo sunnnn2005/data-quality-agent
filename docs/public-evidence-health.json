@@ -1,5 +1,5 @@
 {
-  "check_count": 105,
+  "check_count": 107,
   "checks": [
     {
       "evidence_type": "html",
@@ -52,6 +52,28 @@
         "current_baseline",
         "outreach_step_count",
         "project"
+      ]
+    },
+    {
+      "evidence_type": "html",
+      "id": "first-ai-reviewer-ask-page",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://sunnnn2005.github.io/data-quality-agent/first-ai-reviewer-ask.html"
+    },
+    {
+      "evidence_type": "json",
+      "id": "first-ai-reviewer-ask",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/first-ai-reviewer-ask.json",
+      "verified_fields": [
+        "current_claimable_ai_reviews",
+        "inspection_target_count",
+        "project",
+        "review_question_count",
+        "status_board_slot_id",
+        "target_metric"
       ]
     },
     {
@@ -1174,6 +1196,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 105,
+  "passed_count": 107,
   "status": "PASS"
 }
