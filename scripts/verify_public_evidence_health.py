@@ -175,6 +175,35 @@ PUBLIC_CHECKS = [
         "evidence_type": "html",
     },
     {
+        "id": "two-minute-review-card-page",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/two-minute-review-card.html",
+        "expected_text": "Review Data Quality Agent in 2 minutes",
+        "expected_texts": [
+            "Required evidence",
+            "external_feedback_items",
+            "non-owner GitHub issue",
+        ],
+        "evidence_type": "html",
+    },
+    {
+        "id": "two-minute-review-card",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/two-minute-review-card.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "time_budget_minutes": 2,
+            "micro_step_count": 3,
+            "required_evidence_count": 5,
+        },
+        "expected_text": "zero outcome upgrades",
+        "expected_texts": [
+            "external feedback",
+            "confirmed external user",
+            "production adoption",
+            "https://sunnnn2005.github.io/data-quality-agent/two-minute-review-card.html",
+        ],
+        "evidence_type": "json",
+    },
+    {
         "id": "first-external-review-card",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/first-external-review-card.json",
         "expected_json": {

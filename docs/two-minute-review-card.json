@@ -1,0 +1,57 @@
+{
+  "ai_engineer_review_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+  "copy_ready_message": "Could you spend 2 minutes reviewing my Data Quality Agent demo? Open this card, inspect one result, and leave one concrete public note if you are comfortable: https://sunnnn2005.github.io/data-quality-agent/two-minute-review-card.html",
+  "current_counts": {
+    "ai_engineer_review_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0
+  },
+  "fallback_evidence_hub": "https://sunnnn2005.github.io/data-quality-agent/pilot-evidence-quicklink.html",
+  "generated_by": "scripts/build_two_minute_review_card.py",
+  "micro_step_count": 3,
+  "micro_steps": [
+    {
+      "action": "Open the hosted demo and inspect the support-ticket data-quality result.",
+      "counts_as_outcome": false,
+      "label": "Open the public demo",
+      "step": 1,
+      "url": "https://sunnnn2005.github.io/data-quality-agent/"
+    },
+    {
+      "action": "Choose one concrete observation about the report, agent behavior, guardrails, or UI.",
+      "counts_as_outcome": false,
+      "label": "Pick one useful or confusing detail",
+      "step": 2,
+      "url": "https://sunnnn2005.github.io/data-quality-agent/first-external-review-card.html"
+    },
+    {
+      "action": "Open the feedback issue template and include permission/no-private-data checks.",
+      "counts_as_outcome": false,
+      "label": "Submit public evidence",
+      "step": 3,
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    }
+  ],
+  "not_claimed": [
+    "external feedback",
+    "confirmed external user",
+    "GitHub stars",
+    "production adoption",
+    "business impact validated by a company"
+  ],
+  "primary_feedback_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+  "project": "Data Quality Agent",
+  "public_url": "https://sunnnn2005.github.io/data-quality-agent/two-minute-review-card.html",
+  "purpose": "Give a busy reviewer the shortest safe path to produce the first countable public feedback item without inflating users, stars, or adoption.",
+  "required_evidence": [
+    "what page, command, or route was reviewed",
+    "one concrete observed result",
+    "one useful, confusing, or missing detail",
+    "permission to count publicly",
+    "confirmation that no private data was posted"
+  ],
+  "required_evidence_count": 5,
+  "resume_safe_summary": "Published a two-minute external review card with 3 micro-steps, 5 required evidence fields, and zero outcome upgrades until a non-owner public issue passes the evidence gate.",
+  "success_definition": "One non-owner GitHub issue that includes a concrete observation, explicit permission to count, and no private data.",
+  "time_budget_minutes": 2
+}

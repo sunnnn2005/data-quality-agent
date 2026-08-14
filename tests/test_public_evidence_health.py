@@ -13,6 +13,8 @@ def test_public_evidence_health_requires_core_public_signals():
         "outcome-collection-page",
         "outcome-proof-page",
         "outcome-proof-page-artifact",
+        "two-minute-review-card-page",
+        "two-minute-review-card",
         "first-external-review-card-page",
         "first-external-review-card",
         "first-feedback-conversion-runbook",
@@ -197,6 +199,16 @@ def test_public_evidence_health_requires_core_public_signals():
     assert review_card_page["url"].endswith("/first-external-review-card.html")
     assert review_card_page["expected_text"] == "Review Data Quality Agent in 5-12 minutes"
     assert "Submit public evidence" in review_card_page["expected_texts"]
+    micro_card_page = next(check for check in PUBLIC_CHECKS if check["id"] == "two-minute-review-card-page")
+    assert micro_card_page["url"].endswith("/two-minute-review-card.html")
+    assert micro_card_page["expected_text"] == "Review Data Quality Agent in 2 minutes"
+    assert "Required evidence" in micro_card_page["expected_texts"]
+    micro_card = next(check for check in PUBLIC_CHECKS if check["id"] == "two-minute-review-card")
+    assert micro_card["url"].endswith("/two-minute-review-card.json")
+    assert micro_card["expected_json"]["time_budget_minutes"] == 2
+    assert micro_card["expected_json"]["micro_step_count"] == 3
+    assert micro_card["expected_json"]["required_evidence_count"] == 5
+    assert "production adoption" in micro_card["expected_texts"]
     review_card = next(check for check in PUBLIC_CHECKS if check["id"] == "first-external-review-card")
     assert review_card["url"].endswith("/first-external-review-card.json")
     assert review_card["expected_json"]["blocked_outcome_count"] == 6

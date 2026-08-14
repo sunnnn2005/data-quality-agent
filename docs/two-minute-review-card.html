@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Two-Minute Review Card</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #08111f;
+      --panel: #101b2b;
+      --line: #243247;
+      --text: #f7fafc;
+      --muted: #a9b6c8;
+      --accent: #5eead4;
+      --accent2: #facc15;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 20% 10%, rgba(94, 234, 212, .16), transparent 32%),
+        linear-gradient(135deg, #08111f 0%, #121827 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    main {
+      width: min(1040px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 52px 0;
+    }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-size: clamp(46px, 8vw, 88px);
+      line-height: .95;
+      letter-spacing: 0;
+      margin: 10px 0 18px;
+      max-width: 880px;
+    }
+    .lede {
+      color: var(--muted);
+      font-size: 21px;
+      max-width: 760px;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 36px 0;
+    }
+    article, .panel {
+      background: rgba(16, 27, 43, .88);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+    }
+    article span {
+      color: var(--accent2);
+      font-weight: 850;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    h2 {
+      font-size: 26px;
+      letter-spacing: 0;
+      margin: 10px 0;
+    }
+    p, li {
+      color: var(--muted);
+    }
+    a {
+      color: #06121f;
+      background: var(--accent);
+      display: inline-flex;
+      border-radius: 8px;
+      font-weight: 850;
+      margin-top: 10px;
+      padding: 10px 14px;
+      text-decoration: none;
+    }
+    .grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1fr 1fr;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    .counts {
+      list-style: none;
+      padding: 0;
+    }
+    .counts li {
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+    }
+    code {
+      color: var(--accent);
+    }
+    @media (max-width: 760px) {
+      .steps, .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Fastest honest evidence path</div>
+    <h1>Review Data Quality Agent in 2 minutes</h1>
+    <p class="lede">Give a busy reviewer the shortest safe path to produce the first countable public feedback item without inflating users, stars, or adoption.</p>
+    <section class="steps">
+        <article>
+          <span>Step 1</span>
+          <h2>Open the public demo</h2>
+          <p>Open the hosted demo and inspect the support-ticket data-quality result.</p>
+          <a href="https://sunnnn2005.github.io/data-quality-agent/">Open</a>
+        </article>
+        
+
+        <article>
+          <span>Step 2</span>
+          <h2>Pick one useful or confusing detail</h2>
+          <p>Choose one concrete observation about the report, agent behavior, guardrails, or UI.</p>
+          <a href="https://sunnnn2005.github.io/data-quality-agent/first-external-review-card.html">Open</a>
+        </article>
+        
+
+        <article>
+          <span>Step 3</span>
+          <h2>Submit public evidence</h2>
+          <p>Open the feedback issue template and include permission/no-private-data checks.</p>
+          <a href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md">Open</a>
+        </article>
+        </section>
+    <section class="grid">
+      <div class="panel">
+        <h2>Required evidence</h2>
+        <ul><li>what page, command, or route was reviewed</li><li>one concrete observed result</li><li>one useful, confusing, or missing detail</li><li>permission to count publicly</li><li>confirmation that no private data was posted</li></ul>
+      </div>
+      <div class="panel">
+        <h2>Current counts</h2>
+        <ul class="counts"><li><span>ai_engineer_review_items</span><strong>0</strong></li><li><span>confirmed_external_users</span><strong>0</strong></li><li><span>external_feedback_items</span><strong>0</strong></li></ul>
+        <p>Success: One non-owner GitHub issue that includes a concrete observation, explicit permission to count, and no private data.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
