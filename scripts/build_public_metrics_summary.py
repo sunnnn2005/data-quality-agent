@@ -1171,7 +1171,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 191,
+        "test_count": 192,
         "tracked_public_metrics": 8,
         "claimable_public_metrics": 2,
         "external_feedback_items": 0,

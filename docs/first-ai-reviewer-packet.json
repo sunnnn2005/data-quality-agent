@@ -1,0 +1,71 @@
+{
+  "acceptance_gate": "A non-owner public review issue lists inspected paths and grants permission to count.",
+  "current_agent_maturity_implemented": 15,
+  "current_agent_maturity_partial": 4,
+  "current_ai_engineer_signal_count": 8,
+  "current_count": 0,
+  "evidence_required_to_count": [
+    "implementation paths inspected",
+    "strongest AI-agent signal",
+    "least credible gap",
+    "permission sentence if the reviewer allows the evidence to count"
+  ],
+  "future_resume_line": "Received external AI Engineer review of the tool-calling loop, guardrails, structured output, and evidence trail.",
+  "generated_by": "scripts/build_first_ai_reviewer_packet.py",
+  "inspection_targets": [
+    {
+      "label": "LLM tool loop and planning trace",
+      "path": "app/tool_agent.py",
+      "question": "Does the model choose tools based on tool feedback, and are planning steps recorded clearly?"
+    },
+    {
+      "label": "Structured API contract",
+      "path": "app/models.py",
+      "question": "Are final outputs, tool calls, and planning steps machine-verifiable enough for downstream use?"
+    },
+    {
+      "label": "Agent maturity audit",
+      "path": "docs/agent-maturity-audit.md",
+      "question": "Which implemented agent signals are credible, and which gaps should stay off the resume?"
+    },
+    {
+      "label": "AI Engineer readiness",
+      "path": "docs/ai-engineer-readiness.md",
+      "question": "Does the project show enough LLM API, tool-calling, guardrail, and evaluation work for an AI Engineer intern signal?"
+    },
+    {
+      "label": "Outcome evidence policy",
+      "path": "docs/resume-outcome-action-checklist.md",
+      "question": "Does the project avoid claiming users, feedback, or stars without public proof?"
+    }
+  ],
+  "not_claimed": [
+    "sent outreach",
+    "accepted AI Engineer review",
+    "external user",
+    "customer feedback",
+    "production deployment"
+  ],
+  "optional_local_checks": [
+    ".venv/bin/python -m pytest tests/test_agent.py tests/test_agent_maturity_audit.py -q",
+    ".venv/bin/python scripts/verify_outcome_evidence.py",
+    ".venv/bin/python scripts/verify_public_evidence_health.py"
+  ],
+  "project": "Data Quality Agent",
+  "public_slot_url": "https://github.com/sunnnn2005/data-quality-agent/issues/26",
+  "purpose": "Give one external AI/ML systems reviewer a short, concrete review path that can produce the first public AI Engineer review signal without inflating resume outcomes.",
+  "required_count": 1,
+  "resume_safe_summary": "Prepared a first AI Engineer reviewer packet with 8 implemented AI Engineer signals, 15 implemented maturity areas, 5 inspection targets, and a public submission gate while preserving zero accepted AI reviews.",
+  "resume_status": "ready_to_send_not_claimable",
+  "review_questions": [
+    "What is the strongest AI Engineer signal in this repo?",
+    "What is the least credible or most incomplete AI-agent claim?",
+    "Would you describe this as a real LLM agent, a workflow, or something in between?",
+    "Which one change would most improve interview credibility?",
+    "Can this review be counted publicly without exposing private data?"
+  ],
+  "review_time_minutes": "8-15",
+  "reviewer_profile": "AI engineer, mentor, or ML systems reviewer",
+  "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+  "target_metric": "ai_engineer_review_items"
+}
