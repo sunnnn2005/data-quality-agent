@@ -1,5 +1,5 @@
 {
-  "check_count": 109,
+  "check_count": 110,
   "checks": [
     {
       "evidence_type": "html",
@@ -434,6 +434,13 @@
       "passed": true,
       "status_code": 200,
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/.github/ISSUE_TEMPLATE/external_run_review.md"
+    },
+    {
+      "evidence_type": "source",
+      "id": "ai-engineer-review-template",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/.github/ISSUE_TEMPLATE/ai_engineer_review.md"
     },
     {
       "evidence_type": "html",
@@ -1218,6 +1225,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 109,
+  "passed_count": 110,
   "status": "PASS"
 }
