@@ -12,14 +12,14 @@ Public page: [https://sunnnn2005.github.io/data-quality-agent/outcome-proof-page
 | Blocked future outcome cards | 6 |
 | Reviewer action paths | 5 |
 | Public evidence health | PASS |
-| Public evidence checks | 93 |
+| Public evidence checks | 95 |
 
 ## Verified Now
 
 | Signal | Resume-Safe Line | Evidence |
 | --- | --- | --- |
 | Public launch | Published a public LLM data-quality agent demo with release v0.3.0 and GHCR container packaging. | [evidence](https://sunnnn2005.github.io/data-quality-agent/) |
-| CI verification | Maintained 215 passing tests covering agent behavior, APIs, evidence gates, and resume-safe metrics. | [evidence](https://github.com/sunnnn2005/data-quality-agent/actions) |
+| CI verification | Maintained 218 passing tests covering agent behavior, APIs, evidence gates, and resume-safe metrics. | [evidence](https://github.com/sunnnn2005/data-quality-agent/actions) |
 | AI Engineer readiness | Documented 8 implemented AI Engineer signals across tool calling, guardrails, structured output, evidence traces, and evaluation. | [evidence](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-readiness.md) |
 | Public discovery traffic | Captured public GitHub interest in the rolling 14-day window: 9 views, 3 unique visitors, 1240 clones, and 301 unique cloners without counting them as users. | [evidence](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md) |
 | Public availability | Verified 4/4 public project surfaces and 3/3 main-branch workflows in a generated availability snapshot without claiming production SLA. | [evidence](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-availability-snapshot.md) |
@@ -52,7 +52,7 @@ A resume outcome is upgraded only after public, non-owner, permissioned, redacte
 
 ## Resume-Safe Summary
 
-Published an outcome proof page with 6 verified resume-safe proof cards, 6 blocked future outcome cards, 5 reviewer action paths, and public evidence health at 93/93 PASS.
+Published an outcome proof page with 6 verified resume-safe proof cards, 6 blocked future outcome cards, 5 reviewer action paths, and public evidence health at 95/95 PASS.
 
 ## Not Claimed
 

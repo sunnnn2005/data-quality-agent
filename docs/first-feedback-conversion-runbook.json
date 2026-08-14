@@ -1,0 +1,96 @@
+{
+  "current_counts": {
+    "ai_engineer_review_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0
+  },
+  "first_send": {
+    "copy_ready_message": "Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/26. The ask is: Inspect the LLM tool-calling loop, guardrails, and evidence trail for AI Engineer credibility. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it. Shortest path if you do not want to read every doc: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html.",
+    "recommended_channel": "LinkedIn DM or mentor email",
+    "reviewer_profile": "AI engineer, mentor, or ML systems reviewer",
+    "slot_id": "slot_07_ai_engineer_review",
+    "target_metric": "ai_engineer_review_items"
+  },
+  "first_unlock_options": [
+    {
+      "current_count": 0,
+      "evidence_gate": "A non-owner public review issue lists inspected paths and grants permission to count.",
+      "future_resume_line": "Received external AI Engineer review of the tool-calling loop, guardrails, structured output, and evidence trail.",
+      "metric": "ai_engineer_review_items",
+      "required_count": 1,
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md"
+    },
+    {
+      "current_count": 0,
+      "evidence_gate": "A non-owner public GitHub issue confirms the path tried and includes permission to count.",
+      "future_resume_line": "Validated the data-quality LLM agent with 1 external reviewer who ran the public demo or local repo.",
+      "metric": "confirmed_external_users",
+      "required_count": 1,
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md"
+    },
+    {
+      "current_count": 0,
+      "evidence_gate": "Public feedback issues include role, path tried, outcome, improvement request, and permission.",
+      "future_resume_line": "Collected 3 public reviewer feedback items and converted them into prioritized product fixes.",
+      "metric": "external_feedback_items",
+      "required_count": 3,
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    }
+  ],
+  "generated_by": "scripts/build_first_feedback_conversion_runbook.py",
+  "not_claimed": [
+    "message sent",
+    "accepted review",
+    "confirmed external user",
+    "external feedback",
+    "GitHub stars",
+    "production adoption"
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Convert the first real reviewer contact into a public evidence item that can unlock stronger resume outcome wording only after the evidence gate accepts it.",
+  "resume_safe_summary": "Published a first-feedback conversion runbook that turns one reviewer message into a 5-step evidence workflow, 3 possible public metric unlocks, and zero resume upgrades until a non-owner issue passes the gate.",
+  "review_card_url": "https://sunnnn2005.github.io/data-quality-agent/first-external-review-card.html",
+  "sprint_step_count": 5,
+  "sprint_steps": [
+    {
+      "counts_as_resume_outcome": false,
+      "evidence_record_command": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_07 --status sent --reviewer-contact \"<private-label>\" --channel-used \"<LinkedIn|email|Discord>\" --note \"Sent first external review card; no public evidence yet.\"",
+      "name": "Send the first AI Engineer review ask",
+      "owner_action": "Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/26. The ask is: Inspect the LLM tool-calling loop, guardrails, and evidence trail for AI Engineer credibility. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it. Shortest path if you do not want to read every doc: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html.",
+      "step": 1,
+      "why": "Sending a message creates outreach trace only; it does not prove feedback, use, or review quality."
+    },
+    {
+      "counts_as_resume_outcome": false,
+      "evidence_record_command": null,
+      "name": "Ask the reviewer to choose one public path",
+      "owner_action": "https://sunnnn2005.github.io/data-quality-agent/first-external-review-card.html",
+      "step": 2,
+      "why": "Opening the card is not enough; the reviewer must submit public, permissioned evidence."
+    },
+    {
+      "counts_as_resume_outcome": false,
+      "evidence_record_command": null,
+      "name": "Collect the first public GitHub issue",
+      "owner_action": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+      "step": 3,
+      "why": "A submitted issue still needs to pass the evidence gate before it upgrades a metric."
+    },
+    {
+      "counts_as_resume_outcome": false,
+      "evidence_record_command": null,
+      "name": "Run the evidence gate and refresh outcome artifacts",
+      "owner_action": "python scripts/build_external_reviewer_evidence_gate.py && python scripts/build_accepted_evidence_rollup.py && python scripts/build_resume_outcome_metrics.py && python scripts/build_resume_claim_materializer.py",
+      "step": 4,
+      "why": "Deterministic scripts decide whether the public issue is countable; the owner does not manually inflate metrics."
+    },
+    {
+      "counts_as_resume_outcome": true,
+      "evidence_record_command": null,
+      "name": "Use only materialized resume wording",
+      "owner_action": "docs/resume-claim-materializer.md",
+      "step": 5,
+      "why": "The final resume line is allowed only after the materializer sees accepted public evidence."
+    }
+  ]
+}

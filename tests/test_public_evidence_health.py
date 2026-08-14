@@ -15,6 +15,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "outcome-proof-page-artifact",
         "first-external-review-card-page",
         "first-external-review-card",
+        "first-feedback-conversion-runbook",
         "llm-agent-checklist-verdict",
         "incident-pattern-memory",
         "agent-observability",
@@ -199,6 +200,10 @@ def test_public_evidence_health_requires_core_public_signals():
     assert review_card["url"].endswith("/first-external-review-card.json")
     assert review_card["expected_json"]["blocked_outcome_count"] == 6
     assert "production adoption" in review_card["expected_texts"]
+    conversion_runbook = next(check for check in PUBLIC_CHECKS if check["id"] == "first-feedback-conversion-runbook")
+    assert conversion_runbook["url"].endswith("/first-feedback-conversion-runbook.json")
+    assert conversion_runbook["expected_json"]["sprint_step_count"] == 5
+    assert "record_reviewer_outreach_event.py" in conversion_runbook["expected_texts"]
     agent_verdict = next(check for check in PUBLIC_CHECKS if check["id"] == "llm-agent-checklist-verdict")
     assert agent_verdict["url"].endswith("/llm-agent-checklist-verdict.json")
     assert agent_verdict["expected_json"]["status_counts"] == {"yes": 10, "partial": 4, "not_yet": 2}

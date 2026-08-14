@@ -53,7 +53,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "215 passing CI tests",
+            "218 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -112,7 +112,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 215},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 218},
         "evidence_type": "json",
     },
     {
@@ -190,6 +190,23 @@ PUBLIC_CHECKS = [
             "external feedback",
             "production adoption",
             "https://sunnnn2005.github.io/data-quality-agent/first-external-review-card.html",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "first-feedback-conversion-runbook",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/first-feedback-conversion-runbook.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "sprint_step_count": 5,
+        },
+        "expected_text": "zero resume upgrades",
+        "expected_texts": [
+            "ai_engineer_review_items",
+            "confirmed_external_users",
+            "external_feedback_items",
+            "record_reviewer_outreach_event.py",
+            "non-owner issue passes the gate",
         ],
         "evidence_type": "json",
     },
