@@ -34,6 +34,7 @@ This generated artifact verifies the public contribution and feedback paths that
 | contributing_setup | True |
 | good_first_issue_guidance | True |
 | feedback_guidance | True |
+| code_of_conduct | True |
 | pull_request_template | True |
 
 ## Public Growth Channels
@@ -47,6 +48,7 @@ This generated artifact verifies the public contribution and feedback paths that
 - [Business data replay issue](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md) -> confirmed anonymized replay evidence for CSV or read-only data runs
 - [External run review issue](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md) -> structured public evidence when a reviewer runs the demo, container, or PostgreSQL replay
 - [AI Engineer review issue](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md) -> permissioned external review of LLM tool calling, guardrails, structured output, and interview readiness
+- [Code of Conduct](https://github.com/sunnnn2005/data-quality-agent/blob/main/CODE_OF_CONDUCT.md) -> community trust boundary for public reviews, issues, and contribution behavior
 
 ## Current Public Counts
 
@@ -61,7 +63,7 @@ This generated artifact verifies the public contribution and feedback paths that
 
 ## Resume-Safe Signal
 
-Published a CI-verified community growth baseline with 8 issue templates, 10 configured labels, 9 public growth channels, contribution guidance, and honest current public counts.
+Published a CI-verified community growth baseline with 8 issue templates, 10 configured labels, 10 public growth channels, contribution guidance, a code of conduct, and honest current public counts.
 
 ## Not Claimed
 

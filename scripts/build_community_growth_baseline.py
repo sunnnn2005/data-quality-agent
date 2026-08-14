@@ -18,6 +18,7 @@ def build_community_growth_baseline() -> dict[str, Any]:
     feedback = load_json(ROOT / "docs" / "feedback-metrics.json")
     readme = (ROOT / "README.md").read_text()
     contributing = (ROOT / "CONTRIBUTING.md").read_text()
+    code_of_conduct = (ROOT / "CODE_OF_CONDUCT.md").read_text()
     pr_template = (ROOT / ".github" / "pull_request_template.md").read_text()
     issue_template_dir = ROOT / ".github" / "ISSUE_TEMPLATE"
     issue_templates = sorted(path.name for path in issue_template_dir.glob("*.md"))
@@ -50,6 +51,9 @@ def build_community_growth_baseline() -> dict[str, Any]:
         "contributing_setup": "## Local Setup" in contributing,
         "good_first_issue_guidance": "good first issue" in readme and "Good First Issues" in contributing,
         "feedback_guidance": "Demo Feedback" in contributing,
+        "code_of_conduct": "CODE_OF_CONDUCT.md" in readme
+        and "CODE_OF_CONDUCT.md" in contributing
+        and "Outcome Evidence Boundary" in code_of_conduct,
         "pull_request_template": "## Test Plan" in pr_template and "## Checklist" in pr_template,
     }
     return {
@@ -109,6 +113,11 @@ def build_community_growth_baseline() -> dict[str, Any]:
                 "url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
                 "purpose": "permissioned external review of LLM tool calling, guardrails, structured output, and interview readiness",
             },
+            {
+                "name": "Code of Conduct",
+                "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/CODE_OF_CONDUCT.md",
+                "purpose": "community trust boundary for public reviews, issues, and contribution behavior",
+            },
         ],
         "current_public_counts": {
             "stars": adoption["stars"],
@@ -120,7 +129,7 @@ def build_community_growth_baseline() -> dict[str, Any]:
         },
         "resume_safe_signal": (
             "Published a CI-verified community growth baseline with 8 issue templates, 10 configured labels, "
-            "9 public growth channels, contribution guidance, and honest current public counts."
+            "10 public growth channels, contribution guidance, a code of conduct, and honest current public counts."
         ),
         "not_claimed": [
             "external contributors",
@@ -188,8 +197,8 @@ def verify_community_growth_baseline(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("community growth baseline must verify required labels")
     if not all(payload["contribution_paths"].values()):
         raise AssertionError("community growth baseline must verify contribution paths")
-    if len(payload["public_growth_channels"]) != 9:
-        raise AssertionError("community growth baseline must expose 9 public growth channels")
+    if len(payload["public_growth_channels"]) != 10:
+        raise AssertionError("community growth baseline must expose 10 public growth channels")
     counts = payload["current_public_counts"]
     expected_counts = {
         "stars": 0,

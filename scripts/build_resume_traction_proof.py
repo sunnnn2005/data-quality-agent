@@ -219,7 +219,7 @@ def verify_resume_traction_proof(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("resume traction proof must include 5 blocked claims")
     if payload["linked_public_traction_surfaces"] != 4:
         raise AssertionError("resume traction proof must link public traction surfaces")
-    if payload["linked_growth_channels"] != 19:
+    if payload["linked_growth_channels"] != 20:
         raise AssertionError("resume traction proof must link growth channels")
     if not all(item["status"] == "claimable" for item in payload["claimable_now"]):
         raise AssertionError("current launch and quality signals must be claimable")

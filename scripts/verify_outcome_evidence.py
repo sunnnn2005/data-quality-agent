@@ -458,8 +458,8 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("community growth baseline must include the external run review template")
                 if community_growth.get("label_count") != 10:
                     raise AssertionError("community growth baseline must verify 10 labels")
-                if len(community_growth.get("public_growth_channels", [])) != 9:
-                    raise AssertionError("community growth baseline must verify 9 public growth channels")
+                if len(community_growth.get("public_growth_channels", [])) != 10:
+                    raise AssertionError("community growth baseline must verify 10 public growth channels")
                 if not all(community_growth.get("contribution_paths", {}).values()):
                     raise AssertionError("community growth baseline must verify contribution paths")
                 counts = community_growth.get("current_public_counts", {})
@@ -577,8 +577,8 @@ def verify_manifest() -> dict[str, int]:
                 traction_tests = (ROOT / "tests" / "test_public_traction_dashboard.py").read_text()
                 if traction.get("traction_surface_count") != 4:
                     raise AssertionError("public traction dashboard must verify 4 traction surfaces")
-                if traction.get("growth_channel_count") != 19:
-                    raise AssertionError("public traction dashboard must verify 19 growth or review channels")
+                if traction.get("growth_channel_count") != 20:
+                    raise AssertionError("public traction dashboard must verify 20 growth or review channels")
                 if traction.get("tracked_funnel_steps") != 5:
                     raise AssertionError("public traction dashboard must verify 5 tracked funnel steps")
                 if traction.get("demo_entrypoints_verified") != 7:
@@ -2884,11 +2884,11 @@ def verify_manifest() -> dict[str, int]:
         raise AssertionError("public homepage must link reviewers to GitHub public stats")
 
     if "community-growth-baseline" in claim_ids:
-        if "8 issue templates" not in resume_page or "9 public contribution or feedback channels" not in resume_page:
+        if "8 issue templates" not in resume_page or "10 public contribution or feedback channels" not in resume_page:
             raise AssertionError("resume evidence page must reflect the current community growth counts")
 
     if "public-traction-dashboard" in claim_ids:
-        if "19 growth or review channels" not in resume_page:
+        if "20 growth or review channels" not in resume_page:
             raise AssertionError("resume evidence page must reflect the current public traction channel count")
 
     not_claimed = {item["metric"] for item in evidence.get("not_claimed", [])}

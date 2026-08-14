@@ -539,8 +539,26 @@ PUBLIC_CHECKS = [
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/community-growth-baseline.json",
         "expected_json": {"project": "Data Quality Agent", "issue_template_count": 8, "label_count": 10},
         "expected_text": "external contributors",
-        "expected_texts": ["public_growth_channels", "good%20first%20issue", "business_data_replay.md", "external_run_review.md"],
+        "expected_texts": [
+            "public_growth_channels",
+            "good%20first%20issue",
+            "business_data_replay.md",
+            "external_run_review.md",
+            "Code of Conduct",
+        ],
         "evidence_type": "json",
+    },
+    {
+        "id": "code-of-conduct",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/CODE_OF_CONDUCT.md",
+        "expected_text": "Outcome Evidence Boundary",
+        "expected_texts": [
+            "fake stars",
+            "fake feedback",
+            "unverifiable endorsements",
+            "Do not post private data",
+        ],
+        "evidence_type": "markdown",
     },
     {
         "id": "contributor-conversion-kit",
@@ -623,7 +641,7 @@ PUBLIC_CHECKS = [
     {
         "id": "public-traction-dashboard",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-traction-dashboard.json",
-        "expected_json": {"project": "Data Quality Agent", "traction_surface_count": 4, "growth_channel_count": 19},
+        "expected_json": {"project": "Data Quality Agent", "traction_surface_count": 4, "growth_channel_count": 20},
         "expected_text": "not_claimable_yet",
         "expected_texts": ["public_demo", "feedback_issue_template", "GitHub star growth beyond the current public count"],
         "evidence_type": "json",

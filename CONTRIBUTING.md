@@ -63,4 +63,4 @@ The public adoption baseline lives in `docs/adoption-metrics.json`. Do not edit 
 - Keep quality checks explicit and testable.
 - Avoid large refactors unless they unlock a clear feature.
 
-See [SECURITY.md](SECURITY.md) before adding integrations that touch external systems, credentials, or datasets.
+See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community expectations and [SECURITY.md](SECURITY.md) before adding integrations that touch external systems, credentials, or datasets.

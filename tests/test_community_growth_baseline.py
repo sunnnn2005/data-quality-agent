@@ -13,7 +13,7 @@ def test_community_growth_baseline_verifies_public_contribution_paths_without_ad
     assert verification["community_growth_baseline_verified"] is True
     assert payload["issue_template_count"] == 8
     assert payload["label_count"] == 10
-    assert len(payload["public_growth_channels"]) == 9
+    assert len(payload["public_growth_channels"]) == 10
     assert "business_data_replay.md" in payload["issue_templates"]
     assert "external_run_review.md" in payload["issue_templates"]
     assert "ai_engineer_review.md" in payload["issue_templates"]
@@ -25,6 +25,8 @@ def test_community_growth_baseline_verifies_public_contribution_paths_without_ad
     assert payload["current_public_counts"]["forks"] == 1
     assert payload["current_public_counts"]["external_feedback_items"] == 0
     assert all(payload["contribution_paths"].values())
+    assert payload["contribution_paths"]["code_of_conduct"] is True
+    assert any(channel["name"] == "Code of Conduct" for channel in payload["public_growth_channels"])
     assert "external contributors" in payload["not_claimed"]
     assert "community adoption" in payload["not_claimed"]
     assert "Community Growth Baseline" in markdown

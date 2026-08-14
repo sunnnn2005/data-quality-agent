@@ -55,7 +55,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | AI Engineer review intake | [`docs/ai-engineer-review-intake.md`](docs/ai-engineer-review-intake.md) gives external reviewers 6 review paths, 6 questions, and 6 countable-evidence conditions for permissioned AI Engineer feedback |
 | Impact review packet | [`docs/impact-review-packet.md`](docs/impact-review-packet.md) maps the support-operations case study to 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs |
 | Business problem casebook | [`docs/business-problem-casebook.md`](docs/business-problem-casebook.md) explains the support-operations dashboard failure mode with 4 business risks, 5 findings, 3 root-cause hypotheses, and 4 owner handoffs |
-| Public traction dashboard | [`docs/public-traction-dashboard.md`](docs/public-traction-dashboard.md) tracks 4 live project surfaces, 19 growth or review channels, 5 demo funnel steps, and resume-upgrade thresholds |
+| Public traction dashboard | [`docs/public-traction-dashboard.md`](docs/public-traction-dashboard.md) tracks 4 live project surfaces, 20 growth or review channels, 5 demo funnel steps, and resume-upgrade thresholds |
 | GitHub traffic snapshot | [`docs/github-traffic-snapshot.md`](docs/github-traffic-snapshot.md) captures GitHub views, unique visitors, clones, unique cloners, referrers, and paths as repository-interest signals without claiming users or feedback |
 | GitHub public stats snapshot | [`docs/github-public-stats-snapshot.md`](docs/github-public-stats-snapshot.md) captures live public stars, forks, watchers, subscribers, and open issues from the GitHub API without claiming users or feedback |
 | Public availability snapshot | [`docs/public-availability-snapshot.md`](docs/public-availability-snapshot.md) captures reachable public endpoints and recent main-branch workflow health without claiming production uptime or users |
@@ -135,7 +135,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Performance baseline | [`docs/performance-baseline.md`](docs/performance-baseline.md) verifies 2 local FastAPI route benchmarks and 24 measured endpoint calls without claiming production latency |
 | Demo usage baseline | [`docs/demo-usage-baseline.md`](docs/demo-usage-baseline.md) verifies public demo entrypoints and tracks feedback, confirmed users, stars, and forks without claiming visitor analytics |
 | Business data intake baseline | [`docs/business-data-intake-baseline.md`](docs/business-data-intake-baseline.md) verifies bounded CSV uploads, read-only PostgreSQL context, 4 integration endpoints, 3 upload limits, and 6 API tests without claiming production data usage |
-| Community growth baseline | [`docs/community-growth-baseline.md`](docs/community-growth-baseline.md) verifies 8 issue templates, 10 labels, 9 public contribution or feedback channels, and honest current public counts |
+| Community growth baseline | [`docs/community-growth-baseline.md`](docs/community-growth-baseline.md) verifies 8 issue templates, 10 labels, 10 public contribution or feedback channels, and honest current public counts |
 | Hypothesis feedback | [`docs/hypothesis-feedback.md`](docs/hypothesis-feedback.md) records accepted / needs-review labels for generated root-cause hypotheses |
 | Public evidence health | [`Public Evidence Health`](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/public-evidence-health.yml) checks the demo, release, business-impact artifact, outcome evidence, and adoption metrics on a schedule |
 | Public metrics refresh | [`Refresh Public Metrics`](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/refresh-public-metrics.yml) refreshes feedback, adoption, GitHub traffic, GitHub discovery, star-growth, scorecard, and application evidence artifacts on a schedule |
@@ -473,7 +473,7 @@ Useful first contributions:
 - Improve dashboard accessibility
 - Improve documentation or examples
 
-See [CONTRIBUTING.md](CONTRIBUTING.md), [ROADMAP.md](ROADMAP.md), and [SECURITY.md](SECURITY.md) before opening a pull request.
+See [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), [ROADMAP.md](ROADMAP.md), and [SECURITY.md](SECURITY.md) before opening a pull request.
 
 ## Repository Layout
 

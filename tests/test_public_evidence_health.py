@@ -34,6 +34,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "api-smoke-report",
         "performance-baseline",
         "demo-usage-baseline",
+        "code-of-conduct",
         "contributor-conversion-kit",
         "impact-review-packet",
         "business-problem-casebook",
@@ -237,6 +238,14 @@ def test_public_evidence_health_requires_core_public_signals():
     assert "business_data_replay.md" in contributor["expected_texts"]
     assert "ai_engineer_review.md" in contributor["expected_texts"]
     assert "organic GitHub stars" in contributor["expected_texts"]
+    community = next(check for check in PUBLIC_CHECKS if check["id"] == "community-growth-baseline")
+    assert "Code of Conduct" in community["expected_texts"]
+    conduct = next(check for check in PUBLIC_CHECKS if check["id"] == "code-of-conduct")
+    assert conduct["url"].endswith("/CODE_OF_CONDUCT.md")
+    assert conduct["expected_text"] == "Outcome Evidence Boundary"
+    assert "fake stars" in conduct["expected_texts"]
+    assert "fake feedback" in conduct["expected_texts"]
+    assert "Do not post private data" in conduct["expected_texts"]
 
 
 def test_public_evidence_health_verifier_rejects_failed_checks():

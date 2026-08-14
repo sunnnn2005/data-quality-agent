@@ -151,7 +151,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["community_growth_baseline"] == 1
     assert payload["verified_project_outcomes"]["community_issue_templates"] == 8
     assert payload["verified_project_outcomes"]["community_labels"] == 10
-    assert payload["verified_project_outcomes"]["community_public_growth_channels"] == 9
+    assert payload["verified_project_outcomes"]["community_public_growth_channels"] == 10
     assert payload["verified_project_outcomes"]["impact_review_packet"] == 1
     assert payload["verified_project_outcomes"]["impact_review_business_metrics"] == 12
     assert payload["verified_project_outcomes"]["impact_review_evidence_links"] == 8
@@ -166,7 +166,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["business_resolution_owner_handoffs"] == 4
     assert payload["verified_project_outcomes"]["public_traction_dashboard"] == 1
     assert payload["verified_project_outcomes"]["public_traction_surfaces"] == 4
-    assert payload["verified_project_outcomes"]["public_traction_growth_channels"] == 19
+    assert payload["verified_project_outcomes"]["public_traction_growth_channels"] == 20
     assert payload["verified_project_outcomes"]["public_traction_resume_upgrade_rules"] == 3
     assert payload["verified_project_outcomes"]["github_traffic_snapshot"] == 1
     assert payload["verified_project_outcomes"]["public_availability_snapshot"] == 1
@@ -323,7 +323,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-        "Community growth baseline with 8 issue templates, 10 configured labels, and 9 public contribution or feedback channels"
+        "Community growth baseline with 8 issue templates, 10 configured labels, and 10 public contribution or feedback channels"
         in payload["resume_safe_signals"]
     )
     assert (
@@ -339,7 +339,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         for signal in payload["resume_safe_signals"]
     )
     assert (
-            "Public traction dashboard with 4 live project surfaces, 19 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules"
+            "Public traction dashboard with 4 live project surfaces, 20 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules"
         in payload["resume_safe_signals"]
     )
     assert any("GitHub traffic snapshot with" in signal for signal in payload["resume_safe_signals"])
