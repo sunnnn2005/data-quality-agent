@@ -1,0 +1,105 @@
+{
+  "accepted_issue_count": 0,
+  "claimable_resume_metric_count": 0,
+  "current_public_counts": {
+    "ai_engineer_review_items": 0,
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
+  "daily_success_rule": "A day is complete only when a real non-owner action happened and the evidence can be inspected publicly or recorded in the outreach status board.",
+  "generated_by": "scripts/build_outcome_sprint_plan.py",
+  "not_claimed": [
+    "No external users are claimed while confirmed_external_users is zero.",
+    "No external feedback is claimed while external_feedback_items is zero.",
+    "No AI Engineer review is claimed while ai_engineer_review_items is zero.",
+    "No business validation is claimed while business_case_feedback_items is zero.",
+    "No GitHub star growth is claimed while github_stars is zero."
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Turn the public launch and reviewer packets into a five-day execution sprint for earning real, public, resume-countable outcome evidence.",
+  "resume_safe_summary": "Published a five-day outcome sprint plan mapping 5 target metrics to real reviewer actions, public evidence gates, and zero resume upgrades until accepted non-owner evidence exists.",
+  "resume_upgrade_rule": "Do not add user, feedback, business validation, AI review, or GitHub star wording to the resume until the evidence gate accepts public evidence and the resume claim materializer emits exact wording.",
+  "sprint_day_count": 5,
+  "sprint_days": [
+    {
+      "completion_evidence": [
+        "one real reviewer contact chosen",
+        "message actually sent through the recommended channel",
+        "outreach event recorded with scripts/record_reviewer_outreach_event.py"
+      ],
+      "current_count": 0,
+      "day": 1,
+      "execution_artifact": "docs/first-reviewer-send-kit.md",
+      "resume_unlock_gate": "No resume outcome changes until a non-owner AI Engineer review issue passes the evidence gate.",
+      "reviewer_profile": "AI engineer, mentor, or ML systems reviewer",
+      "target_metric": "ai_engineer_review_items",
+      "title": "Send the first AI Engineer review request"
+    },
+    {
+      "completion_evidence": [
+        "reviewer opened the public demo or ran the quickstart",
+        "reviewer submits a public issue with observed result",
+        "reviewer gives permission for the issue to count publicly"
+      ],
+      "current_count": 0,
+      "day": 2,
+      "execution_artifact": "docs/outcome-witness-packet.md#witness_confirmed_external_users",
+      "resume_unlock_gate": "First claimable user metric unlocks only after accepted public issue evidence.",
+      "reviewer_profile": "reviewer who opened the demo or ran the repo",
+      "target_metric": "confirmed_external_users",
+      "title": "Collect one confirmed external run"
+    },
+    {
+      "completion_evidence": [
+        "reviewer names the page, command, or file inspected",
+        "reviewer gives one specific useful, confusing, or broken point",
+        "public issue contains no private data and grants counting permission"
+      ],
+      "current_count": 0,
+      "day": 3,
+      "execution_artifact": "docs/reviewer-send-queue.md",
+      "resume_unlock_gate": "Feedback count remains zero until the external reviewer evidence gate accepts the issue.",
+      "reviewer_profile": "UC Davis data science peer",
+      "target_metric": "external_feedback_items",
+      "title": "Collect one concrete product or README feedback item"
+    },
+    {
+      "completion_evidence": [
+        "reviewer describes a real workflow problem without raw business rows",
+        "issue includes impacted decision, fields involved, and expected usefulness",
+        "issue grants permission to count as public business-case evidence"
+      ],
+      "current_count": 0,
+      "day": 4,
+      "execution_artifact": "docs/outcome-witness-packet.md#witness_business_case_feedback_items",
+      "resume_unlock_gate": "Business-problem outcome wording unlocks only after an accepted anonymized public issue.",
+      "reviewer_profile": "data analyst or analytics student",
+      "target_metric": "business_case_feedback_items",
+      "title": "Ask for one anonymized business data-quality scenario"
+    },
+    {
+      "completion_evidence": [
+        "scripts/update_feedback_metrics.py has been run",
+        "scripts/build_external_reviewer_evidence_gate.py has been run",
+        "scripts/build_resume_claim_materializer.py shows only accepted public evidence"
+      ],
+      "current_count": 0,
+      "day": 5,
+      "execution_artifact": "docs/resume-claim-materializer.md",
+      "resume_unlock_gate": "Only generated materialized claims from accepted public evidence can be copied into the resume.",
+      "reviewer_profile": "maintainer verification pass",
+      "target_metric": "all_outcome_metrics",
+      "title": "Run the evidence gate and materialize only accepted outcomes"
+    }
+  ],
+  "target_metric_count": 5,
+  "target_metrics": [
+    "ai_engineer_review_items",
+    "all_outcome_metrics",
+    "business_case_feedback_items",
+    "confirmed_external_users",
+    "external_feedback_items"
+  ]
+}

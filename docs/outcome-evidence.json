@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 204,
-      "resume_signal": "204 passing CI tests",
+      "metric_value": 206,
+      "resume_signal": "206 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -879,6 +879,16 @@
       "resume_signal": "CI-verified outcome witness packet",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-witness-packet.json"
+    },
+    {
+      "claim": "The project publishes a five-day outcome sprint plan that maps five target outcome metrics to real reviewer actions, public evidence gates, and resume-upgrade rules while preserving zero resume outcome upgrades until accepted non-owner evidence exists.",
+      "evidence_type": "generated_artifact",
+      "id": "outcome-sprint-plan",
+      "metric_name": "outcome_sprint_plan",
+      "metric_value": 1,
+      "resume_signal": "CI-verified outcome sprint plan",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-sprint-plan.json"
     },
     {
       "claim": "The project publishes a resume claim materializer that converts accepted public evidence into exact resume bullets while preserving zero materialized external outcome bullets until non-owner public evidence passes the gate.",

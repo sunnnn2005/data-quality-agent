@@ -51,7 +51,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "204 passing CI tests",
+            "206 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -109,7 +109,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 204},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 206},
         "evidence_type": "json",
     },
     {
@@ -1027,6 +1027,25 @@ PUBLIC_CHECKS = [
             "I give permission for this public issue to be counted as project review evidence.",
             "I confirm this public issue contains no raw customer data",
             "non-owner public GitHub issue passes the evidence gate",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "outcome-sprint-plan",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-sprint-plan.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "sprint_day_count": 5,
+            "target_metric_count": 5,
+            "claimable_resume_metric_count": 0,
+            "accepted_issue_count": 0,
+        },
+        "expected_text": "five-day outcome sprint plan",
+        "expected_texts": [
+            "real non-owner action",
+            "resume claim materializer",
+            "Do not add user",
+            "zero resume upgrades",
         ],
         "evidence_type": "json",
     },
