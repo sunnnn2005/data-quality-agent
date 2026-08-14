@@ -51,12 +51,13 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "193 passing CI tests",
+            "194 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
             "reviewer-outreach-execution-pack",
             "reviewer-outreach-status-board",
+            "resume-outcome-evidence-ledger",
             "resume-outcome-metrics",
         ],
         "evidence_type": "json",
@@ -64,7 +65,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 193},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 194},
         "evidence_type": "json",
     },
     {
@@ -890,6 +891,25 @@ PUBLIC_CHECKS = [
             "Do not buy, trade, or pressure",
         ],
         "evidence_type": "html",
+    },
+    {
+        "id": "resume-outcome-evidence-ledger",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-evidence-ledger.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "claimable_now_count": 4,
+            "blocked_until_evidence_count": 5,
+            "accepted_public_evidence_count": 0,
+            "resume_upgrade_count": 0,
+        },
+        "expected_text": "claimable engineering signals",
+        "expected_texts": [
+            "record_reviewer_outreach_event.py",
+            "confirmed_external_users",
+            "ai_engineer_review_items",
+            "No enterprise production deployment is claimed",
+        ],
+        "evidence_type": "json",
     },
     {
         "id": "pilot-outreach-kit",

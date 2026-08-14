@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 193,
-      "resume_signal": "193 passing CI tests",
+      "metric_value": 194,
+      "resume_signal": "194 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -829,6 +829,16 @@
       "resume_signal": "CI-verified resume outcome adjudication",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-adjudication.json"
+    },
+    {
+      "claim": "The project publishes a resume outcome evidence ledger that separates 4 currently claimable engineering signals from 2 active but non-claimable pipeline stages and 5 blocked outcome claims, preserving zero accepted public evidence and zero resume upgrades until non-owner public evidence passes the gate.",
+      "evidence_type": "generated_artifact",
+      "id": "resume-outcome-evidence-ledger",
+      "metric_name": "resume_outcome_evidence_ledger",
+      "metric_value": 1,
+      "resume_signal": "CI-verified resume outcome evidence ledger",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-evidence-ledger.json"
     }
   ],
   "not_claimed": [

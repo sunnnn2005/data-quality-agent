@@ -1,0 +1,118 @@
+{
+  "accepted_public_evidence_count": 0,
+  "blocked_until_evidence": [
+    {
+      "blocked_reason": "Cannot claim external users until at least one non-owner reviewer issue passes the evidence gate.",
+      "current_count": 0,
+      "metric": "confirmed_external_users",
+      "required_public_evidence": "Non-owner public GitHub issue with inspected path or run evidence, no private data, explicit permission to count, and accepted evidence-gate status.",
+      "target_resume_claim": "confirmed external users"
+    },
+    {
+      "blocked_reason": "Cannot claim user feedback until at least one accepted reviewer issue includes feedback permission and non-placeholder feedback.",
+      "current_count": 0,
+      "metric": "external_feedback_items",
+      "required_public_evidence": "Non-owner public GitHub issue with inspected path or run evidence, no private data, explicit permission to count, and accepted evidence-gate status.",
+      "target_resume_claim": "external feedback items"
+    },
+    {
+      "blocked_reason": "Cannot claim reproducible external runs until a reviewer submits runnable command or URL evidence.",
+      "current_count": 0,
+      "metric": "reproducible_feedback_items",
+      "required_public_evidence": "Non-owner public GitHub issue with inspected path or run evidence, no private data, explicit permission to count, and accepted evidence-gate status.",
+      "target_resume_claim": "reproducible external runs"
+    },
+    {
+      "blocked_reason": "Cannot claim real business-case feedback until an anonymized business-case issue passes the gate.",
+      "current_count": 0,
+      "metric": "business_case_feedback_items",
+      "required_public_evidence": "Non-owner public GitHub issue with inspected path or run evidence, no private data, explicit permission to count, and accepted evidence-gate status.",
+      "target_resume_claim": "business-case feedback items"
+    },
+    {
+      "blocked_reason": "Cannot claim external AI Engineer review feedback until a non-owner reviewer submits inspected-path evidence and permission to count.",
+      "current_count": 0,
+      "metric": "ai_engineer_review_items",
+      "required_public_evidence": "Non-owner public GitHub issue with inspected path or run evidence, no private data, explicit permission to count, and accepted evidence-gate status.",
+      "target_resume_claim": "AI Engineer review items"
+    }
+  ],
+  "blocked_until_evidence_count": 5,
+  "claimable_now": [
+    {
+      "evidence_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "proof_type": "public_url_and_ci",
+      "resume_safe_line": "Published a public demo, container image, OpenAPI contract, and CI-verified project evidence pages.",
+      "signal": "public_launch"
+    },
+    {
+      "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
+      "proof_type": "ci",
+      "resume_safe_line": "Maintained 194 passing tests across agent behavior, APIs, evidence gates, and safety checks.",
+      "signal": "ci_quality"
+    },
+    {
+      "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-readiness.md",
+      "proof_type": "source_and_docs",
+      "resume_safe_line": "Built an LLM tool-calling data-quality agent with controlled tools, structured reports, read-only PostgreSQL access, trace persistence, and evidence guardrails.",
+      "signal": "agent_implementation"
+    },
+    {
+      "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/application-evidence-pack.md",
+      "proof_type": "generated_artifact",
+      "resume_safe_line": "Published 50 recruiter-readable evidence links while separating blocked outcome claims from verified work.",
+      "signal": "recruiter_evidence_pack"
+    }
+  ],
+  "claimable_now_count": 4,
+  "generated_by": "scripts/build_resume_outcome_evidence_ledger.py",
+  "in_pipeline_count": 2,
+  "in_pipeline_not_claimable": [
+    {
+      "current_count": 0,
+      "next_action": "Send the first real reviewer message, then record it with scripts/record_reviewer_outreach_event.py.",
+      "pipeline_stage": "reviewer_outreach",
+      "public_issue_submitted_count": 0,
+      "reply_count": 0,
+      "resume_countable": false,
+      "sent_count": 0,
+      "why_not_claimable": "Outreach is not a resume outcome until public non-owner evidence passes the gate."
+    },
+    {
+      "current_count": 0,
+      "next_action": "Ask reviewers to submit redacted GitHub issues with permission to count.",
+      "pipeline_stage": "accepted_public_evidence",
+      "resume_countable": false,
+      "why_not_claimable": "No public reviewer issue has passed the evidence gate yet."
+    }
+  ],
+  "manual_update_commands": [
+    "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_07 --status sent --reviewer-contact \"<real reviewer>\" --channel-used LinkedIn",
+    "python scripts/build_external_reviewer_evidence_gate.py",
+    "python scripts/build_accepted_evidence_rollup.py",
+    "python scripts/build_resume_outcome_evidence_ledger.py"
+  ],
+  "not_claimed": [
+    "No external users are claimed while confirmed_external_users is 0.",
+    "No feedback impact is claimed while accepted public feedback is 0.",
+    "No AI Engineer review is claimed while accepted AI-review evidence is 0.",
+    "No GitHub-star growth is claimed beyond the live public count.",
+    "No enterprise production deployment is claimed."
+  ],
+  "outreach_slot_count": 8,
+  "project": "Data Quality Agent",
+  "public_counts": {
+    "ai_engineer_review_items": 0,
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "forks": 1,
+    "reproducible_feedback_items": 0,
+    "stars": 0,
+    "watchers": 0
+  },
+  "purpose": "Keep resume outcome claims honest by separating verified accomplishments, active outcome pipeline work, and blocked claims that still need public non-owner evidence.",
+  "recorded_outreach_event_count": 0,
+  "resume_safe_summary": "Published a resume outcome evidence ledger with 4 claimable engineering signals, 2 active but non-claimable outcome pipeline stages, 5 blocked outcome claims, 0 recorded outreach events, and 0 accepted public evidence items.",
+  "resume_upgrade_count": 0
+}
