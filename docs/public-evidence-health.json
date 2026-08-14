@@ -1,5 +1,5 @@
 {
-  "check_count": 78,
+  "check_count": 81,
   "checks": [
     {
       "evidence_type": "html",
@@ -33,6 +33,20 @@
       "passed": true,
       "status_code": 200,
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-evidence.json"
+    },
+    {
+      "evidence_type": "json",
+      "id": "resume-claim-materializer",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-claim-materializer.json",
+      "verified_fields": [
+        "accepted_public_evidence_count",
+        "future_template_count",
+        "materialized_claim_count",
+        "project",
+        "safe_current_bullet_count"
+      ]
     },
     {
       "evidence_type": "json",
@@ -742,6 +756,34 @@
     },
     {
       "evidence_type": "json",
+      "id": "resume-outcome-evidence-ledger",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-evidence-ledger.json",
+      "verified_fields": [
+        "accepted_public_evidence_count",
+        "blocked_until_evidence_count",
+        "claimable_now_count",
+        "project",
+        "resume_upgrade_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "pilot-reviewer-crm",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-reviewer-crm.json",
+      "verified_fields": [
+        "accepted_public_evidence_count",
+        "lead_count",
+        "priority_metric_count",
+        "project",
+        "week_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
       "id": "pilot-outreach-kit",
       "passed": true,
       "status_code": 200,
@@ -861,6 +903,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 78,
+  "passed_count": 81,
   "status": "PASS"
 }
