@@ -13,6 +13,16 @@ Data Quality Agent is a local-first data reliability agent. It profiles a datase
 
 The project is designed to keep the data-quality loop visible. The default path is deterministic and runs without secrets, while an optional OpenAI-compatible LLM agent can choose tools, inspect evidence, build a source-of-truth report, and return a structured assessment when `OPENAI_API_KEY` is configured. In addition to built-in demo datasets, the API accepts CSV exports from real business workflows with explicit dataset context.
 
+## Try It and Leave Countable Evidence
+
+If you are reviewing the project, the fastest path is:
+
+1. Open the [public demo](https://sunnnn2005.github.io/data-quality-agent/) or the [external run quickstart](https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html).
+2. Run a deterministic demo, local replay, or anonymized business-shaped CSV through the agent.
+3. Submit a public evidence issue using the [reviewer submission hub](docs/reviewer-submission-hub.md) or the [business data replay template](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md).
+
+Evidence only counts when it is public, non-owner, permissioned, and redacted. Stars, feedback, external users, and business-data replays stay at zero until public evidence proves otherwise.
+
 ![Data Quality Agent dashboard](docs/assets/data-quality-dashboard.png)
 
 ## Verified Demo Result
@@ -23,14 +33,14 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | --- | --- |
 | Public demo | [sunnnn2005.github.io/data-quality-agent](https://sunnnn2005.github.io/data-quality-agent/) |
 | 8-minute review page | [`docs/review.html`](docs/review.html) gives reviewers the shortest public path from demo inspection to GitHub feedback |
-| Outcome collection page | [`docs/outcome-collection.html`](docs/outcome-collection.html) gives reviewers one public page for 5 next actions, 6 submission paths, 23 evidence fields, and current zero-count outcome baselines |
+| Outcome collection page | [`docs/outcome-collection.html`](docs/outcome-collection.html) gives reviewers one public page for 5 next actions, 6 submission paths, 24 evidence fields, and current zero-count outcome baselines |
 | Pilot evidence quicklink | [`docs/pilot-evidence-quicklink.html`](docs/pilot-evidence-quicklink.html) gives reviewers 3 short evidence actions, 12 required evidence fields, public submission links, and zero-count baselines before outcome claims are upgraded |
 | Pilot launch control room | [`docs/pilot-launch-control-room.md`](docs/pilot-launch-control-room.md) tracks 4 public issue threads, 5 launch gates, 4 target outcome metrics, and 3 reviewer-send paths while keeping external outcome claims blocked at zero |
 | First 10 reviewer sprint | [`docs/first-10-reviewer-sprint.md`](docs/first-10-reviewer-sprint.md) turns the outcome goal into 10 concrete external-review slots, 10 GitHub issue launch drafts, and 6 target metrics with zero sent outreach and zero upgraded claims |
 | First 10 outreach execution log | [`docs/first-10-outreach-execution-log.md`](docs/first-10-outreach-execution-log.md) turns the 10 public reviewer issue entrypoints into 10 copy-ready manual outreach messages with follow-up timing, evidence fields, and zero claimable outcomes |
 | Public release | [`v0.3.0`](docs/releases/v0.3.0.md) release notes and GitHub Release |
 | Container image | `ghcr.io/sunnnn2005/data-quality-agent:latest` published from `main` |
-| Test suite | 154 automated tests passing locally and in GitHub Actions |
+| Test suite | 155 automated tests passing locally and in GitHub Actions |
 | Live project scorecard | [`docs/live-project-scorecard.md`](docs/live-project-scorecard.md) gives reviewers one page for the demo, release, container, CI, claims, agent capabilities, and honest adoption baselines |
 | AI Engineer readiness | [`docs/ai-engineer-readiness.md`](docs/ai-engineer-readiness.md) maps the project to 8 implemented AI skill signals, 1 partial signal, and 1 not-claimed signal for AI Engineer Intern applications |
 | AI Engineer review intake | [`docs/ai-engineer-review-intake.md`](docs/ai-engineer-review-intake.md) gives external reviewers 6 review paths, 6 questions, and 5 countable-evidence conditions for permissioned AI Engineer feedback |
@@ -48,8 +58,8 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Business resolution brief | [`docs/business-resolution-brief.md`](docs/business-resolution-brief.md) maps 5 anonymized support-ticket findings to 4 business risks, 3 high-priority actions, and 4 owner handoffs without claiming customer adoption |
 | Business resolution review request | [`docs/business-resolution-review-request.md`](docs/business-resolution-review-request.md) opens public issue [#30](https://github.com/sunnnn2005/data-quality-agent/issues/30) with 5 review questions and evidence gates before any external feedback can count |
 | Application evidence pack | [`docs/application-evidence-pack.md`](docs/application-evidence-pack.md) gives recruiters 48 review links, verified outcome numbers, resume bullets, an email note, and an interview opening |
-| Reviewer submission hub | [`docs/reviewer-submission-hub.md`](docs/reviewer-submission-hub.md) maps 6 outcome metrics to public submission paths, 23 required evidence fields, and conservative counting rules for future reviewer evidence |
-| Public reviewer call | [`docs/public-reviewer-call.md`](docs/public-reviewer-call.md) opens a public call for 3 reviewer segments, 6 submission paths, and 23 evidence fields without claiming outcomes yet |
+| Reviewer submission hub | [`docs/reviewer-submission-hub.md`](docs/reviewer-submission-hub.md) maps 6 outcome metrics to public submission paths, 24 required evidence fields, and conservative counting rules for future reviewer evidence |
+| Public reviewer call | [`docs/public-reviewer-call.md`](docs/public-reviewer-call.md) opens a public call for 3 reviewer segments, 6 submission paths, and 24 evidence fields without claiming outcomes yet |
 | Reviewer share kit | [`docs/reviewer-share-kit.md`](docs/reviewer-share-kit.md) gives 5 copy-ready messages across 5 share channels linked to issue #19 and public evidence forms without claiming sent outreach |
 | Pilot outreach kit | [`docs/pilot-outreach-kit.md`](docs/pilot-outreach-kit.md) provides 3 outreach messages, 10 review paths, tracking rules, and feedback targets without inflating adoption |
 | Pilot program plan | [`docs/pilot-program-plan.md`](docs/pilot-program-plan.md) defines 3 participant segments, a 3-week feedback plan, thresholds, issue labels, and resume upgrade rules |

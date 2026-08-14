@@ -721,7 +721,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-action-checklist.json"
     },
     {
-      "claim": "The project publishes a reviewer submission hub with 6 public submission paths, 6 tracked outcome categories, 23 required evidence fields, conservative counting rules, and zero current outcome claims upgraded.",
+      "claim": "The project publishes a reviewer submission hub with 6 public submission paths, 6 tracked outcome categories, 24 required evidence fields, conservative counting rules, and zero current outcome claims upgraded.",
       "evidence_type": "generated_artifact",
       "id": "reviewer-submission-hub",
       "metric_name": "reviewer_submission_hub",
@@ -731,7 +731,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-submission-hub.json"
     },
     {
-      "claim": "The project publishes a public outcome collection page with 5 next actions, 6 submission paths, 23 required evidence fields, zero-count outcome baselines, and privacy boundaries for collecting future resume-safe evidence.",
+      "claim": "The project publishes a public outcome collection page with 5 next actions, 6 submission paths, 24 required evidence fields, zero-count outcome baselines, and privacy boundaries for collecting future resume-safe evidence.",
       "evidence_type": "generated_artifact",
       "id": "outcome-collection-page",
       "metric_name": "outcome_collection_page",
@@ -741,7 +741,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-collection.json"
     },
     {
-      "claim": "The project publishes a public reviewer call for 3 reviewer segments, 6 submission paths, 8 outreach tasks, 23 required evidence fields, conservative counting rules, and zero current outcome counts upgraded.",
+      "claim": "The project publishes a public reviewer call for 3 reviewer segments, 6 submission paths, 8 outreach tasks, 24 required evidence fields, conservative counting rules, and zero current outcome counts upgraded.",
       "evidence_type": "generated_artifact",
       "id": "public-reviewer-call",
       "metric_name": "public_reviewer_call",
