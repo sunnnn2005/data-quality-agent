@@ -269,7 +269,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["business_replay_demo_root_causes"] == 3
     assert payload["verified_project_outcomes"]["real_model_runbook"] == 1
     assert payload["verified_project_outcomes"]["real_model_current_runs"] == 0
-    assert payload["verified_project_outcomes"]["real_model_run_commands"] == 5
+    assert payload["verified_project_outcomes"]["real_model_run_commands"] == 6
     assert payload["verified_project_outcomes"]["real_model_evidence_fields"] == 15
     assert payload["verified_project_outcomes"]["real_model_acceptance_criteria"] == 8
     assert payload["verified_project_outcomes"]["real_model_safety_gates"] == 5
@@ -432,7 +432,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-        "Real-model runbook with 5 run commands, 15 evidence fields, 8 acceptance criteria, 5 safety gates, and zero current real model run claims"
+        "Real-model runbook with 6 run commands, 15 evidence fields, 8 acceptance criteria, 5 safety gates, and zero current real model run claims"
         in payload["resume_safe_signals"]
     )
     assert "Dataset-level memory retrieval over recent sanitized traces" in payload["resume_safe_signals"]

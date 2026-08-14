@@ -561,7 +561,7 @@
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/refresh-public-metrics.yml"
     },
     {
-      "claim": "The project publishes a generated real-model runbook with 5 run commands, 15 evidence fields, 8 acceptance criteria, 5 safety gates, and zero current real model run claims.",
+      "claim": "The project publishes a generated real-model runbook with 6 run commands, 15 evidence fields, 8 acceptance criteria, 5 safety gates, and zero current real model run claims.",
       "evidence_type": "artifact",
       "id": "real-model-runbook",
       "metric_name": "real_model_runbook",

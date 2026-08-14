@@ -281,7 +281,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business replay demo root causes | 3 |
 | Real-model runbook | 1 |
 | Current real model runs | 0 |
-| Real-model run commands | 5 |
+| Real-model run commands | 6 |
 | Real-model evidence fields | 15 |
 | Real-model acceptance criteria | 8 |
 | Real-model safety gates | 5 |
@@ -376,7 +376,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Business-case intake path with 8 required sections, 5 tried paths, 8 outcome signals, and 8 captured evidence groups including 9 resume outcome fields
 - Business-data replay packet with 3 safe replay paths, 8 evidence fields, 5 safety requirements, and zero current external replay claims
 - Business replay demo with 8 anonymized rows, 5 findings, 4 failed check types, 4 business-rule references, and deterministic verification
-- Real-model runbook with 5 run commands, 15 evidence fields, 8 acceptance criteria, 5 safety gates, and zero current real model run claims
+- Real-model runbook with 6 run commands, 15 evidence fields, 8 acceptance criteria, 5 safety gates, and zero current real model run claims
 - Real-model evidence capture gate with 17 required fields, 0 accepted real-model runs, and 4 blocked outcome claims until redacted telemetry passes
 - AI Engineer readiness artifact with 8 implemented AI skill signals, 1 partial signal, and 1 explicitly blocked signal
 - 5 evidence-backed remediation actions

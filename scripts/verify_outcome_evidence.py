@@ -1950,7 +1950,7 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("real model runbook claim must use metric_value=1")
                 expected = {
                     "current_real_model_runs": 0,
-                    "run_command_count": 5,
+                    "run_command_count": 6,
                     "evidence_field_count": 15,
                     "acceptance_criteria_count": 8,
                     "safety_gate_count": 5,
@@ -1978,10 +1978,16 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("real model runbook script must verify generated artifact")
                 if "capture_real_model_run.py --dataset-id orders_daily --write" not in runbook_script:
                     raise AssertionError("real model runbook must document the capture command")
+                if "capture_business_csv_real_model_evidence" not in runbook_script:
+                    raise AssertionError("real model runbook must document business CSV capture")
                 if "capture_real_model_run" not in capture_script or "build_capture_record" not in capture_script:
                     raise AssertionError("real model runbook must have a capture CLI")
+                if "post_multipart" not in capture_script or "/business-data/agent-report" not in capture_script:
+                    raise AssertionError("real model capture CLI must support business CSV agent route")
                 if "test_capture_real_model_run_calls_agent_and_trace_endpoints_then_verifies_gate" not in capture_tests:
                     raise AssertionError("real model capture CLI must have a dedicated endpoint test")
+                if "test_capture_real_model_run_can_target_business_csv_agent_endpoint" not in capture_tests:
+                    raise AssertionError("real model capture CLI must test business CSV endpoint")
                 if (
                     "test_real_model_runbook_defines_resume_safe_evidence_gate_without_claiming_paid_run"
                     not in runbook_tests

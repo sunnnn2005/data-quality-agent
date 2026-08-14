@@ -34,7 +34,7 @@ Built an OpenAI-compatible data-quality LLM agent for CSV and read-only PostgreS
 | Allowed Tools | 9 |
 | Business Replay Rows | 8 |
 | Business Replay Findings | 5 |
-| Real Model Run Commands | 5 |
+| Real Model Run Commands | 6 |
 | Real Model Capture Required Fields | 17 |
 | Real Model Capture Accepted Runs | 0 |
 | Application Evidence Links | 50 |

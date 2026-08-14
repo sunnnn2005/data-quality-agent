@@ -65,6 +65,14 @@ Capture a redacted real-model run artifact from the local API and verify it agai
 python scripts/capture_real_model_run.py --dataset-id orders_daily --write
 ```
 
+### capture_business_csv_real_model_evidence
+
+Capture a redacted real-model run artifact from the business CSV agent route so resume evidence can show the agent works on anonymized business-shaped data, not only built-in examples.
+
+```bash
+python scripts/capture_real_model_run.py --csv-path sample.csv --dataset-name 'Replay Dataset' --owner reviewer --primary-key id --expected-columns 'id,status,amount' --description 'Anonymized business replay dataset' --write
+```
+
 ## Evidence Fields
 
 - `provider`
@@ -111,7 +119,7 @@ python scripts/capture_real_model_run.py --dataset-id orders_daily --write
 
 ## Resume-Safe Summary
 
-Published a CI-verified real-model runbook with 5 run commands, 15 evidence fields, 8 acceptance criteria, and 5 safety gates without claiming a paid model run yet.
+Published a CI-verified real-model runbook with 6 run commands, 15 evidence fields, 8 acceptance criteria, and 5 safety gates without claiming a paid model run yet.
 
 ## Not Claimed
 

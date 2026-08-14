@@ -59,6 +59,18 @@ RUN_COMMANDS = [
         "command": "python scripts/capture_real_model_run.py --dataset-id orders_daily --write",
         "purpose": "Capture a redacted real-model run artifact from the local API and verify it against the evidence gate.",
     },
+    {
+        "id": "capture_business_csv_real_model_evidence",
+        "command": (
+            "python scripts/capture_real_model_run.py --csv-path sample.csv "
+            "--dataset-name 'Replay Dataset' --owner reviewer --primary-key id "
+            "--expected-columns 'id,status,amount' --description 'Anonymized business replay dataset' --write"
+        ),
+        "purpose": (
+            "Capture a redacted real-model run artifact from the business CSV agent route so resume evidence can "
+            "show the agent works on anonymized business-shaped data, not only built-in examples."
+        ),
+    },
 ]
 
 ACCEPTANCE_CRITERIA = [
@@ -131,7 +143,7 @@ def build_real_model_runbook_payload() -> dict[str, Any]:
         ],
         "resume_status": "real_model_run_ready_not_claimable",
         "resume_safe_summary": (
-            "Published a CI-verified real-model runbook with 5 run commands, 15 evidence fields, "
+            "Published a CI-verified real-model runbook with 6 run commands, 15 evidence fields, "
             "8 acceptance criteria, and 5 safety gates without claiming a paid model run yet."
         ),
         "not_claimed": [
@@ -219,7 +231,7 @@ def verify_real_model_runbook(payload: dict[str, Any]) -> dict[str, Any]:
         "current_mock_model_calls": 2,
         "current_mock_tokens": 360,
         "tool_count": 9,
-        "run_command_count": 5,
+        "run_command_count": 6,
         "evidence_field_count": 15,
         "acceptance_criteria_count": 8,
         "safety_gate_count": 5,
@@ -235,7 +247,14 @@ def verify_real_model_runbook(payload: dict[str, Any]) -> dict[str, Any]:
     if payload["resume_status"] != "real_model_run_ready_not_claimable":
         raise AssertionError("real model runbook must not claim a real model run before evidence")
     joined = json.dumps(payload, sort_keys=True).lower()
-    for required in ("openai_api_key", "total_tokens", "estimated_cost_usd", "final_report_attached"):
+    for required in (
+        "openai_api_key",
+        "total_tokens",
+        "estimated_cost_usd",
+        "final_report_attached",
+        "capture_business_csv_real_model_evidence",
+        "business csv agent route",
+    ):
         if required not in joined:
             raise AssertionError(f"real model runbook missing {required}")
     not_claimed = {item.lower() for item in payload["not_claimed"]}

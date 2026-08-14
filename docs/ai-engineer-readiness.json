@@ -8,7 +8,7 @@
     "capability_matrix_implemented": 13,
     "real_model_capture_accepted_runs": 0,
     "real_model_capture_required_fields": 17,
-    "real_model_run_commands": 5
+    "real_model_run_commands": 6
   },
   "generated_by": "scripts/build_ai_engineer_readiness.py",
   "implemented_signal_count": 8,

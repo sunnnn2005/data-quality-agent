@@ -160,7 +160,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | First 10 Outreach Public Issue Entrypoints | 10 |
 | First 10 Outreach Not Sent | 10 |
 | First 10 Outreach Accepted Evidence | 0 |
-| Real Model Run Commands | 5 |
+| Real Model Run Commands | 6 |
 | Real Model Evidence Fields | 15 |
 | Real Model Capture Required Fields | 17 |
 | Real Model Capture Accepted Runs | 0 |

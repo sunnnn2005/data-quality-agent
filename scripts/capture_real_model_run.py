@@ -1,9 +1,11 @@
 import argparse
 import json
+import mimetypes
 from pathlib import Path
 from typing import Any, Protocol
 from urllib.parse import quote
 import urllib.request
+from uuid import uuid4
 
 from scripts.build_real_model_evidence_capture import (
     build_real_model_evidence_capture_payload,
@@ -19,6 +21,9 @@ OUTPUT_MD_PATH = ROOT / "docs" / "real-model-evidence-capture.md"
 
 class Transport(Protocol):
     def post(self, url: str, timeout: int):
+        ...
+
+    def post_multipart(self, url: str, fields: dict[str, str], files: dict[str, Path], timeout: int):
         ...
 
     def get(self, url: str, timeout: int):
@@ -44,10 +49,51 @@ class UrllibTransport:
         with urllib.request.urlopen(request, timeout=timeout) as response:
             return UrllibResponse(response.read(), response.status)
 
+    def post_multipart(self, url: str, fields: dict[str, str], files: dict[str, Path], timeout: int) -> UrllibResponse:
+        boundary = f"----data-quality-agent-{uuid4().hex}"
+        body = _encode_multipart(fields, files, boundary)
+        request = urllib.request.Request(
+            url,
+            data=body,
+            headers={"Content-Type": f"multipart/form-data; boundary={boundary}"},
+            method="POST",
+        )
+        with urllib.request.urlopen(request, timeout=timeout) as response:
+            return UrllibResponse(response.read(), response.status)
+
     def get(self, url: str, timeout: int) -> UrllibResponse:
         request = urllib.request.Request(url, method="GET")
         with urllib.request.urlopen(request, timeout=timeout) as response:
             return UrllibResponse(response.read(), response.status)
+
+
+def _encode_multipart(fields: dict[str, str], files: dict[str, Path], boundary: str) -> bytes:
+    chunks: list[bytes] = []
+    for name, value in fields.items():
+        chunks.extend(
+            [
+                f"--{boundary}\r\n".encode("utf-8"),
+                f'Content-Disposition: form-data; name="{name}"\r\n\r\n'.encode("utf-8"),
+                str(value).encode("utf-8"),
+                b"\r\n",
+            ]
+        )
+    for name, path in files.items():
+        filename = path.name
+        content_type = mimetypes.guess_type(filename)[0] or "application/octet-stream"
+        chunks.extend(
+            [
+                f"--{boundary}\r\n".encode("utf-8"),
+                (
+                    f'Content-Disposition: form-data; name="{name}"; filename="{filename}"\r\n'
+                    f"Content-Type: {content_type}\r\n\r\n"
+                ).encode("utf-8"),
+                path.read_bytes(),
+                b"\r\n",
+            ]
+        )
+    chunks.append(f"--{boundary}--\r\n".encode("utf-8"))
+    return b"".join(chunks)
 
 
 def _verification_passed(report: dict[str, Any], trace: dict[str, Any]) -> bool:
@@ -88,16 +134,39 @@ def capture_real_model_run(
     *,
     base_url: str,
     dataset_id: str,
+    csv_path: Path | None = None,
+    dataset_name: str = "Business Replay Dataset",
+    owner: str = "reviewer",
+    primary_key: str = "id",
+    expected_columns: str | None = None,
+    description: str | None = None,
     timeout: int = 60,
     transport: Transport | None = None,
 ) -> dict[str, Any]:
     active_transport = transport or UrllibTransport()
     normalized_base = base_url.rstrip("/")
-    encoded_dataset = quote(dataset_id, safe="")
-    report_response = active_transport.post(
-        f"{normalized_base}/datasets/{encoded_dataset}/agent-report",
-        timeout=timeout,
-    )
+    if csv_path is None:
+        encoded_dataset = quote(dataset_id, safe="")
+        report_response = active_transport.post(
+            f"{normalized_base}/datasets/{encoded_dataset}/agent-report",
+            timeout=timeout,
+        )
+    else:
+        fields = {
+            "dataset_name": dataset_name,
+            "owner": owner,
+            "primary_key": primary_key,
+        }
+        if expected_columns:
+            fields["expected_columns"] = expected_columns
+        if description:
+            fields["description"] = description
+        report_response = active_transport.post_multipart(
+            f"{normalized_base}/business-data/agent-report",
+            fields=fields,
+            files={"file": csv_path},
+            timeout=timeout,
+        )
     report_response.raise_for_status()
     report = report_response.json()
     trace_id = report.get("trace_id")
@@ -120,11 +189,27 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Capture a redacted real LLM agent run from the local FastAPI API.")
     parser.add_argument("--base-url", default="http://127.0.0.1:8000")
     parser.add_argument("--dataset-id", default="orders_daily")
+    parser.add_argument("--csv-path", type=Path, help="Optional anonymized business CSV to send to /business-data/agent-report")
+    parser.add_argument("--dataset-name", default="Business Replay Dataset")
+    parser.add_argument("--owner", default="reviewer")
+    parser.add_argument("--primary-key", default="id")
+    parser.add_argument("--expected-columns")
+    parser.add_argument("--description")
     parser.add_argument("--timeout", type=int, default=60)
     parser.add_argument("--write", action="store_true", help="Write docs/real-model-evidence-capture.json and .md")
     args = parser.parse_args()
 
-    payload = capture_real_model_run(base_url=args.base_url, dataset_id=args.dataset_id, timeout=args.timeout)
+    payload = capture_real_model_run(
+        base_url=args.base_url,
+        dataset_id=args.dataset_id,
+        csv_path=args.csv_path,
+        dataset_name=args.dataset_name,
+        owner=args.owner,
+        primary_key=args.primary_key,
+        expected_columns=args.expected_columns,
+        description=args.description,
+        timeout=args.timeout,
+    )
     if args.write:
         OUTPUT_JSON_PATH.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
         OUTPUT_MD_PATH.write_text(render_markdown(payload))

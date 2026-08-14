@@ -56,7 +56,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert payload["verified_outcome_numbers"]["business_replay_demo_rows"] == 8
     assert payload["verified_outcome_numbers"]["business_replay_demo_findings"] == 5
     assert payload["verified_outcome_numbers"]["business_replay_demo_check_types"] == 4
-    assert payload["verified_outcome_numbers"]["real_model_run_commands"] == 5
+    assert payload["verified_outcome_numbers"]["real_model_run_commands"] == 6
     assert payload["verified_outcome_numbers"]["real_model_evidence_fields"] == 15
     assert payload["verified_outcome_numbers"]["real_model_capture_required_fields"] == 17
     assert payload["verified_outcome_numbers"]["real_model_capture_accepted_runs"] == 0
