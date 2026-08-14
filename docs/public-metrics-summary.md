@@ -165,6 +165,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business problem cases | 1 |
 | Business problem detected risks | 4 |
 | Business problem owner handoffs | 4 |
+| Business resolution brief | 1 |
+| Business resolution findings | 5 |
+| Business resolution risk areas | 4 |
+| Business resolution high-priority actions | 3 |
+| Business resolution owner handoffs | 4 |
 | Public traction dashboard | 1 |
 | Public traction surfaces | 4 |
 | Public traction growth channels | 19 |
@@ -182,7 +187,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 46 |
+| Application evidence links | 47 |
 | GitHub discovery profile | 1 |
 | GitHub discovery topics | 16 |
 | GitHub discovery reviewer entrypoints | 6 |
@@ -331,13 +336,14 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Community growth baseline with 8 issue templates, 10 configured labels, and 9 public contribution or feedback channels
 - Impact review packet with 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs
 - Business problem casebook with 1 verified case, 4 detected business risks, and 4 owner handoffs
+- Business resolution brief with 5 findings, 4 business risk areas, 3 high-priority actions, and 4 owner handoffs without claiming customer adoption
 - Public traction dashboard with 4 live project surfaces, 19 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
 - GitHub traffic snapshot with 9 views, 3 unique visitors, 79 clones, and 50 unique cloners in GitHub's rolling 14-day window
 - Public availability snapshot with 4/4 reachable public endpoints and 3/3 successful main-branch workflows
 - 23 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
-- 46 application evidence links in a recruiter-ready evidence pack
+- 47 application evidence links in a recruiter-ready evidence pack
 - GitHub discovery profile with 16 precise topics, 6 reviewer entrypoints, public homepage metadata, and zero-star baseline
 - Pilot evidence quicklink with 3 short reviewer actions, 12 required evidence fields, 3 target outcome metrics, and zero-count baselines
 - Pilot launch control room with 4 public issue threads, 5 launch gates, 4 target outcome metrics, and 3 reviewer-send paths

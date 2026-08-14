@@ -1,0 +1,80 @@
+{
+  "business_problem": "Support dashboards can continue refreshing while duplicate ticket ids, missing routing fields, negative amounts, and outliers silently corrupt operational decisions.",
+  "claim_boundaries": [
+    "anonymized replay, not a real customer dataset",
+    "no external user validated this brief yet",
+    "no customer production deployment is claimed",
+    "no revenue, SLA, or time-saved number is claimed without external evidence"
+  ],
+  "dataset_context": {
+    "contains_pii": false,
+    "contains_real_company_data": false,
+    "dataset_id": "support_tickets",
+    "quality_score": 24,
+    "row_count": 8,
+    "scenario": "Support-operations ticket export used by internal dashboards.",
+    "status": "FAIL"
+  },
+  "detected_checks": [
+    "duplicate_primary_key",
+    "missing_values",
+    "negative_amount",
+    "numeric_outliers"
+  ],
+  "detected_signal_counts": {
+    "affected_columns": 4,
+    "business_risk_areas": 4,
+    "business_rule_references": 4,
+    "findings": 5,
+    "high_priority_actions": 3,
+    "issue_categories": 4,
+    "owner_handoffs": 4,
+    "root_cause_hypotheses": 3
+  },
+  "generated_by": "scripts/build_business_resolution_brief.py",
+  "interview_story": "I modeled a realistic support-operations dashboard failure, ran the agent on an anonymized CSV export, and converted raw quality checks into prioritized remediation handoffs for data engineering, support operations, analytics engineering, and data analytics owners.",
+  "next_evidence_to_unlock_stronger_claim": {
+    "current_value": 0,
+    "required_evidence": "accepted non-owner public business-case review issue with anonymized workflow, impact field, project evidence mapping, and permission to count",
+    "target": "validated business-impact scenario"
+  },
+  "owners": [
+    "Analytics Engineering",
+    "Data Analytics",
+    "Data Engineering",
+    "Support Operations"
+  ],
+  "project": "Data Quality Agent",
+  "resolution_steps": [
+    {
+      "evidence": "1 duplicate ticket_id can double-count support volume.",
+      "owner": "Data Engineering",
+      "recommended_action": "Deduplicate by latest event timestamp and add an idempotent merge check.",
+      "step": "Block duplicate identities before dashboard publication"
+    },
+    {
+      "evidence": "priority and team each have missing values.",
+      "owner": "Support Operations",
+      "recommended_action": "Trace null generation and reject rows missing required routing fields.",
+      "step": "Require routing fields before support operations consume the export"
+    },
+    {
+      "evidence": "1 negative amount is mixed into the support-ticket export.",
+      "owner": "Analytics Engineering",
+      "recommended_action": "Validate amount sign rules and split credits/refunds into an explicit event type.",
+      "step": "Separate refund-like records from positive customer-impact facts"
+    },
+    {
+      "evidence": "1 amount outlier can skew aggregate reporting.",
+      "owner": "Data Analytics",
+      "recommended_action": "Inspect outlier ticket records before publishing dashboard aggregates.",
+      "step": "Review extreme values before executive metrics refresh"
+    }
+  ],
+  "resume_safe_result": "Produced a verified business-resolution brief for an anonymized support-operations export, mapping 5 findings across 4 business risks to 3 high-priority actions and 4 owner handoffs.",
+  "source_artifacts": [
+    "docs/business-impact.json",
+    "docs/business-replay-demo.json",
+    "docs/support-ticket-case-study.md"
+  ]
+}

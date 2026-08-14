@@ -29,6 +29,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "demo-usage-baseline",
         "impact-review-packet",
         "business-problem-casebook",
+        "business-resolution-brief",
         "github-traffic-snapshot",
         "public-metrics-refresh-workflow",
         "public-availability-snapshot",
@@ -73,6 +74,10 @@ def test_public_evidence_health_requires_core_public_signals():
     external_ledger = next(check for check in PUBLIC_CHECKS if check["id"] == "external-review-evidence-ledger")
     assert external_ledger["expected_json"]["self_authored_planning_excluded"] is True
     assert "evidence_counts" in external_ledger["expected_texts"]
+    resolution = next(check for check in PUBLIC_CHECKS if check["id"] == "business-resolution-brief")
+    assert resolution["url"].endswith("/business-resolution-brief.json")
+    assert "owner_handoffs" in resolution["expected_texts"]
+    assert "no customer production deployment is claimed" in resolution["expected_texts"]
     traffic = next(check for check in PUBLIC_CHECKS if check["id"] == "github-traffic-snapshot")
     assert "confirmed users from traffic alone" in traffic["expected_texts"]
     refresh = next(check for check in PUBLIC_CHECKS if check["id"] == "public-metrics-refresh-workflow")

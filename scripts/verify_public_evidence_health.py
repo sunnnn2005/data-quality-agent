@@ -357,6 +357,19 @@ PUBLIC_CHECKS = [
         "evidence_type": "json",
     },
     {
+        "id": "business-resolution-brief",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-resolution-brief.json",
+        "expected_json": {"project": "Data Quality Agent"},
+        "expected_text": "business_problem",
+        "expected_texts": [
+            "resume_safe_result",
+            "owner_handoffs",
+            "high_priority_actions",
+            "no customer production deployment is claimed",
+        ],
+        "evidence_type": "json",
+    },
+    {
         "id": "public-traction-dashboard",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-traction-dashboard.json",
         "expected_json": {"project": "Data Quality Agent", "traction_surface_count": 4, "growth_channel_count": 19},

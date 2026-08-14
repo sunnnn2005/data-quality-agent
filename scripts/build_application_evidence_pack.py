@@ -41,6 +41,7 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "resume_evidence": f"{scorecard['repo']}/blob/main/docs/resume-evidence.md",
             "impact_review_packet": f"{scorecard['repo']}/blob/main/docs/impact-review-packet.md",
             "business_problem_casebook": f"{scorecard['repo']}/blob/main/docs/business-problem-casebook.md",
+            "business_resolution_brief": f"{scorecard['repo']}/blob/main/docs/business-resolution-brief.md",
             "public_traction_dashboard": f"{scorecard['repo']}/blob/main/docs/public-traction-dashboard.md",
             "feedback_intake_quality": f"{scorecard['repo']}/blob/main/docs/feedback-intake-quality.md",
             "business_data_replay_packet": f"{scorecard['repo']}/blob/main/docs/business-data-replay-packet.md",
@@ -92,6 +93,10 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "impact_review_evidence_links": outcomes["impact_review_evidence_links"],
             "business_problem_cases": outcomes["business_problem_cases"],
             "business_problem_detected_risks": outcomes["business_problem_detected_risks"],
+            "business_resolution_findings": outcomes["business_resolution_findings"],
+            "business_resolution_risk_areas": outcomes["business_resolution_risk_areas"],
+            "business_resolution_high_priority_actions": outcomes["business_resolution_high_priority_actions"],
+            "business_resolution_owner_handoffs": outcomes["business_resolution_owner_handoffs"],
             "public_traction_surfaces": outcomes["public_traction_surfaces"],
             "public_traction_growth_channels": outcomes["public_traction_growth_channels"],
             "feedback_intake_required_sections": outcomes["feedback_intake_required_sections"],
@@ -250,14 +255,14 @@ This generated pack gives recruiters and interviewers a compact review path for 
 
 def verify_application_evidence_pack(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
-        "application_link_count": 46,
+        "application_link_count": 47,
         "resume_bullet_count": 3,
         "target_role_count": 4,
         "passing_tests": 152,
         "verified_resume_claims": 84,
     }
     if len(payload["application_links"]) != expected["application_link_count"]:
-            raise AssertionError("application evidence pack must include 46 application links")
+        raise AssertionError("application evidence pack must include 47 application links")
     if len(payload["resume_bullets"]) != expected["resume_bullet_count"]:
         raise AssertionError("application evidence pack must include 3 resume bullets")
     if len(payload["target_roles"]) != expected["target_role_count"]:
@@ -266,6 +271,14 @@ def verify_application_evidence_pack(payload: dict[str, Any]) -> dict[str, Any]:
     for key in ("passing_tests", "verified_resume_claims"):
         if numbers.get(key) != expected[key]:
             raise AssertionError(f"{key} expected {expected[key]!r}, got {numbers.get(key)!r}")
+    for key, expected_value in {
+        "business_resolution_findings": 5,
+        "business_resolution_risk_areas": 4,
+        "business_resolution_high_priority_actions": 3,
+        "business_resolution_owner_handoffs": 4,
+    }.items():
+        if numbers.get(key) != expected_value:
+            raise AssertionError(f"{key} expected {expected_value!r}, got {numbers.get(key)!r}")
     if payload["honest_baseline"]["stars"] != 0:
         raise AssertionError("application evidence pack must preserve current star baseline")
     if payload["honest_baseline"]["confirmed_external_users"] != 0:

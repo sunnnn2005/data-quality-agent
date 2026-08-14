@@ -45,6 +45,7 @@ BUSINESS_DATA_INTAKE_BASELINE_PATH = ROOT / "docs" / "business-data-intake-basel
 COMMUNITY_GROWTH_BASELINE_PATH = ROOT / "docs" / "community-growth-baseline.json"
 IMPACT_REVIEW_PACKET_PATH = ROOT / "docs" / "impact-review-packet.json"
 BUSINESS_PROBLEM_CASEBOOK_PATH = ROOT / "docs" / "business-problem-casebook.json"
+BUSINESS_RESOLUTION_BRIEF_PATH = ROOT / "docs" / "business-resolution-brief.json"
 PUBLIC_TRACTION_DASHBOARD_PATH = ROOT / "docs" / "public-traction-dashboard.json"
 LIVE_SCORECARD_PATH = ROOT / "docs" / "live-project-scorecard.json"
 OPENAPI_PATH = ROOT / "docs" / "openapi.json"
@@ -131,6 +132,7 @@ def verify_manifest() -> dict[str, int]:
     community_growth = load_payload(COMMUNITY_GROWTH_BASELINE_PATH)
     impact_review = load_payload(IMPACT_REVIEW_PACKET_PATH)
     business_casebook = load_payload(BUSINESS_PROBLEM_CASEBOOK_PATH)
+    business_resolution = load_payload(BUSINESS_RESOLUTION_BRIEF_PATH)
     traction = load_payload(PUBLIC_TRACTION_DASHBOARD_PATH)
     scorecard = load_payload(LIVE_SCORECARD_PATH)
     openapi = load_payload(OPENAPI_PATH)
@@ -1357,6 +1359,18 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
+                if "business_resolution_brief" not in application_pack.get("application_links", {}):
+                    raise AssertionError("application evidence pack must link the business resolution brief")
+                if (
+                    application_pack.get("verified_outcome_numbers", {}).get("business_resolution_findings")
+                    != business_resolution.get("detected_signal_counts", {}).get("findings")
+                ):
+                    raise AssertionError("application evidence pack must include business-resolution finding count")
+                if (
+                    application_pack.get("verified_outcome_numbers", {}).get("business_resolution_owner_handoffs")
+                    != business_resolution.get("detected_signal_counts", {}).get("owner_handoffs")
+                ):
+                    raise AssertionError("application evidence pack must include business-resolution owner handoffs")
                 if application_pack.get("honest_baseline", {}).get("stars") != 0:
                     raise AssertionError("application evidence pack must preserve the zero-star baseline")
                 if application_pack.get("honest_baseline", {}).get("confirmed_external_users") != 0:

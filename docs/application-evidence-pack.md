@@ -16,6 +16,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 - Resume Evidence: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-evidence.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-evidence.md)
 - Impact Review Packet: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/impact-review-packet.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/impact-review-packet.md)
 - Business Problem Casebook: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md)
+- Business Resolution Brief: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-resolution-brief.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-resolution-brief.md)
 - Public Traction Dashboard: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-traction-dashboard.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-traction-dashboard.md)
 - Feedback Intake Quality: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/feedback-intake-quality.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/feedback-intake-quality.md)
 - Business Data Replay Packet: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-data-replay-packet.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-data-replay-packet.md)
@@ -70,6 +71,10 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Impact Review Evidence Links | 8 |
 | Business Problem Cases | 1 |
 | Business Problem Detected Risks | 4 |
+| Business Resolution Findings | 5 |
+| Business Resolution Risk Areas | 4 |
+| Business Resolution High Priority Actions | 3 |
+| Business Resolution Owner Handoffs | 4 |
 | Public Traction Surfaces | 4 |
 | Public Traction Growth Channels | 19 |
 | Feedback Intake Required Sections | 5 |
