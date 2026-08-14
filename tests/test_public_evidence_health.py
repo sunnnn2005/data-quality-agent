@@ -6,6 +6,7 @@ def test_public_evidence_health_requires_core_public_signals():
 
     assert {
         "public-demo",
+        "readme-real-reviewer-tasks",
         "demo-feedback-entrypoints",
         "business-impact-artifact",
         "outcome-evidence-manifest",
@@ -93,6 +94,20 @@ def test_public_evidence_health_requires_core_public_signals():
         "outcome-proof-page.html",
         "automated tests passing locally and in CI",
     } <= set(feedback_entrypoints["expected_texts"])
+    readme_reviewer_tasks = next(check for check in PUBLIC_CHECKS if check["id"] == "readme-real-reviewer-tasks")
+    assert readme_reviewer_tasks["url"].endswith("/README.md")
+    assert readme_reviewer_tasks["expected_text"] == "5 Real Reviewer Tasks"
+    assert {
+        "AI Engineer review",
+        "Confirmed external run",
+        "Reproducible local replay",
+        "Business-case validation",
+        "Product feedback",
+        "ai_engineer_review.md",
+        "business_case_review.md",
+        "review_slot_07",
+        "A sent message is distribution evidence, not a resume outcome.",
+    } <= set(readme_reviewer_tasks["expected_texts"])
     external_ledger = next(check for check in PUBLIC_CHECKS if check["id"] == "external-review-evidence-ledger")
     assert external_ledger["expected_json"]["self_authored_planning_excluded"] is True
     assert "evidence_counts" in external_ledger["expected_texts"]

@@ -19,6 +19,17 @@ def test_readme_exposes_countable_reviewer_evidence_path():
     assert "outcome pipeline board" in readme.lower()
     assert "reviewer outreach console" in readme.lower()
     assert "first reviewer send kit" in readme.lower()
+    assert "### 5 Real Reviewer Tasks" in readme
+    assert "AI Engineer review" in readme
+    assert "Confirmed external run" in readme
+    assert "Reproducible local replay" in readme
+    assert "Business-case validation" in readme
+    assert "Product feedback" in readme
+    assert "ai_engineer_review.md" in readme
+    assert "demo_feedback.md" in readme
+    assert "business_case_review.md" in readme
+    assert "review_slot_07" in readme
+    assert "A sent message is distribution evidence, not a resume outcome." in readme
     assert "public, non-owner, permissioned, and redacted" in readme
     assert "24 evidence fields" in readme
     assert "226 automated tests" in readme

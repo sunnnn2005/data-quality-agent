@@ -42,6 +42,23 @@ PUBLIC_CHECKS = [
         "evidence_type": "source",
     },
     {
+        "id": "readme-real-reviewer-tasks",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/README.md",
+        "expected_text": "5 Real Reviewer Tasks",
+        "expected_texts": [
+            "AI Engineer review",
+            "Confirmed external run",
+            "Reproducible local replay",
+            "Business-case validation",
+            "Product feedback",
+            "ai_engineer_review.md",
+            "business_case_review.md",
+            "review_slot_07",
+            "A sent message is distribution evidence, not a resume outcome.",
+        ],
+        "evidence_type": "source",
+    },
+    {
         "id": "business-impact-artifact",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact.json",
         "expected_json": {"issue_category_count": 4, "affected_column_count": 4, "recommended_action_count": 5},

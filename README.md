@@ -23,6 +23,20 @@ If you are reviewing the project, the fastest path is:
 
 Evidence only counts when it is public, non-owner, permissioned, and redacted. Stars, feedback, external users, and business-data replays stay at zero until public evidence proves otherwise.
 
+### 5 Real Reviewer Tasks
+
+These are the five evidence paths that can turn this from a self-published project into resume-safe public outcomes. Each task should be completed by a real non-owner reviewer, with no private data in the issue.
+
+| Outcome to unlock | Best reviewer | Start here | Countable evidence |
+| --- | --- | --- | --- |
+| AI Engineer review | AI engineer, ML systems reviewer, mentor, or advanced CS/data science peer | [AI Engineer reviewer card](docs/ai-engineer-reviewer-card.md) | Public issue from `ai_engineer_review.md` with permission to count |
+| Confirmed external run | Classmate, student developer, or peer who can open the demo | [2-minute review card](https://sunnnn2005.github.io/data-quality-agent/two-minute-review-card.html) | Public issue from `demo_feedback.md` naming the path tried |
+| Reproducible local replay | Developer comfortable with Docker or local APIs | [External run quickstart](https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html) | Public issue from `business_data_replay.md` with run evidence |
+| Business-case validation | Spreadsheet-heavy user, student org operator, or small-business operator | [Business pilot offer](https://sunnnn2005.github.io/data-quality-agent/business-pilot-offer.html) | Public issue from `business_case_review.md` with an anonymized problem |
+| Product feedback | Friend, classmate, or club member who can review usability | [One-click evidence links](docs/one-click-evidence-links.html) | Public issue from `demo_feedback.md` with one specific useful or confusing point |
+
+First manual send: use `review_slot_07` from the [real reviewer outreach playbook](docs/real-reviewer-outreach-playbook.md), then record only the sent event. A sent message is distribution evidence, not a resume outcome.
+
 ![Data Quality Agent dashboard](docs/assets/data-quality-dashboard.png)
 
 ## Verified Demo Result
