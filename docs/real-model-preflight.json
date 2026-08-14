@@ -1,0 +1,64 @@
+{
+  "blocked_check_count": 2,
+  "blocked_checks": [
+    "openai_api_key_configured",
+    "local_api_health"
+  ],
+  "checks": [
+    {
+      "evidence": "OPENAI_API_KEY is not configured in the environment.",
+      "name": "openai_api_key_configured",
+      "ready": false
+    },
+    {
+      "evidence": {
+        "error_type": "URLError",
+        "name": "local_api_health",
+        "ready": false,
+        "status": "unavailable",
+        "url": "http://127.0.0.1:8000/health"
+      },
+      "name": "local_api_health",
+      "ready": false
+    },
+    {
+      "evidence": "examples/support_tickets.csv",
+      "name": "business_csv_sample_available",
+      "ready": true
+    },
+    {
+      "evidence": [
+        "/business-data/agent-report",
+        "/datasets/{dataset_id}/agent-report",
+        "/postgres/support-tickets/agent-report"
+      ],
+      "name": "business_agent_route_documented",
+      "ready": true
+    },
+    {
+      "evidence": {
+        "capture_required_field_count": 17,
+        "requires_raw_prompt_logged_false": true
+      },
+      "name": "redacted_capture_gate_ready",
+      "ready": true
+    }
+  ],
+  "generated_by": "scripts/build_real_model_preflight.py",
+  "next_real_model_capture_command": "Start the API with OPENAI_API_KEY, then rerun this preflight.",
+  "not_claimed": [
+    "real model run completed by this preflight",
+    "provider credential value",
+    "raw prompt contents",
+    "raw business rows",
+    "production model traffic"
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Check whether the environment is ready to execute and capture a public-safe real OpenAI-compatible LLM agent run without exposing secrets or raw business rows.",
+  "ready_check_count": 3,
+  "real_model_execution_status": "not_ready",
+  "real_model_run_executed_by_preflight": false,
+  "resume_safe_summary": "Published a real-model preflight gate that checks API readiness, provider-key presence, business CSV sample availability, documented agent routes, and redacted telemetry requirements before any real LLM run is claimed.",
+  "resume_status": "preflight_blocked_not_claimable",
+  "total_check_count": 5
+}
