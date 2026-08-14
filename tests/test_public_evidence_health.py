@@ -172,6 +172,14 @@ def test_public_evidence_health_requires_core_public_signals():
     assert outcome_collection["expected_text"] == "Turn reviews into resume-safe evidence"
     assert "Submit Evidence" in outcome_collection["expected_texts"]
     assert "Do not post raw customer data" in outcome_collection["expected_texts"]
+    invitation = next(check for check in PUBLIC_CHECKS if check["id"] == "reviewer-invitation-kit")
+    assert invitation["expected_json"]["invitation_count"] == 6
+    assert invitation["expected_json"]["public_evidence_path_count"] == 5
+    assert "short_share_card" in invitation["expected_texts"]
+    assert "Review Data Quality Agent in 8-12 minutes" in invitation["expected_texts"]
+    assert "https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html" in invitation["expected_texts"]
+    assert "\"accepted_issue_count\": 0" in invitation["expected_texts"]
+    assert "\"claimable_resume_metric_count\": 0" in invitation["expected_texts"]
 
 
 def test_public_evidence_health_verifier_rejects_failed_checks():
