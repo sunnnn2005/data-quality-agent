@@ -1,5 +1,5 @@
 {
-  "check_count": 114,
+  "check_count": 115,
   "checks": [
     {
       "evidence_type": "html",
@@ -946,6 +946,22 @@
     },
     {
       "evidence_type": "json",
+      "id": "reviewer-outcome-sprint-calendar",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-outcome-sprint-calendar.json",
+      "verified_fields": [
+        "completion_criteria_count",
+        "current_accepted_evidence_count",
+        "current_sent_count",
+        "resume_claim_allowed_now",
+        "send_day_count",
+        "sprint_day_count",
+        "target_metric_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
       "id": "reviewer-action-queue",
       "passed": true,
       "status_code": 200,
@@ -1277,6 +1293,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 114,
+  "passed_count": 115,
   "status": "PASS"
 }
