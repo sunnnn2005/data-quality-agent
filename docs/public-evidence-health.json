@@ -1,5 +1,5 @@
 {
-  "check_count": 112,
+  "check_count": 113,
   "checks": [
     {
       "evidence_type": "html",
@@ -640,6 +640,18 @@
     },
     {
       "evidence_type": "json",
+      "id": "business-impact-validation-plan",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact-validation-plan.json",
+      "verified_fields": [
+        "pilot_step_count",
+        "project",
+        "validation_metric_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
       "id": "business-resolution-review-request",
       "passed": true,
       "status_code": 200,
@@ -1252,6 +1264,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 112,
+  "passed_count": 113,
   "status": "PASS"
 }

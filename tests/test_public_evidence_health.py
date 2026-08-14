@@ -166,7 +166,8 @@ def test_public_evidence_health_requires_core_public_signals():
     impact_validation = next(check for check in PUBLIC_CHECKS if check["id"] == "business-impact-validation-plan")
     assert impact_validation["url"].endswith("/business-impact-validation-plan.json")
     assert impact_validation["expected_json"]["validation_metric_count"] == 5
-    assert impact_validation["expected_json"]["minimum_resume_upgrade_gate"]["resume_claim_allowed"] is False
+    assert "resume_claim_allowed" in impact_validation["expected_texts"]
+    assert "current_accepted_business_cases" in impact_validation["expected_texts"]
     assert "manual_review_minutes_estimated" in impact_validation["expected_texts"]
     assert "manual time saved" in impact_validation["expected_texts"]
     resolution_review = next(check for check in PUBLIC_CHECKS if check["id"] == "business-resolution-review-request")

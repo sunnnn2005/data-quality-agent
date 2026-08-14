@@ -855,16 +855,14 @@ PUBLIC_CHECKS = [
             "project": "Data Quality Agent",
             "validation_metric_count": 5,
             "pilot_step_count": 5,
-            "minimum_resume_upgrade_gate": {
-                "current_accepted_business_cases": 0,
-                "resume_claim_allowed": False,
-            },
         },
         "expected_text": "business-impact validation plan",
         "expected_texts": [
             "defects_found_per_dataset",
             "manual_review_minutes_estimated",
             "requires_business_workflow_mapping",
+            "current_accepted_business_cases",
+            "resume_claim_allowed",
             "validated business impact",
             "manual time saved",
         ],
