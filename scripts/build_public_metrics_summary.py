@@ -75,6 +75,7 @@ BUSINESS_REPLAY_DEMO_PATH = ROOT / "docs" / "business-replay-demo.json"
 REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 RESUME_CLAIM_UPGRADE_LEDGER_PATH = ROOT / "docs" / "resume-claim-upgrade-ledger.json"
 RESUME_OUTCOME_ADJUDICATION_PATH = ROOT / "docs" / "resume-outcome-adjudication.json"
+RESUME_OUTCOME_SCOREBOARD_PATH = ROOT / "docs" / "resume-outcome-scoreboard.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 SCORECARD_REVIEWER_PATH_COUNT = 23
@@ -157,6 +158,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     reviewer_funnel = load_json(REVIEWER_FUNNEL_BOARD_PATH)
     claim_upgrade = load_json(RESUME_CLAIM_UPGRADE_LEDGER_PATH)
     adjudication = load_json(RESUME_OUTCOME_ADJUDICATION_PATH)
+    outcome_scoreboard = load_json(RESUME_OUTCOME_SCOREBOARD_PATH)
     verified_outcomes = outcome["verified_outcomes"]
     return {
         "project": "Data Quality Agent",
@@ -375,6 +377,12 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "resume_outcome_adjudication_categories": adjudication["claim_category_count"],
             "resume_outcome_adjudication_blocked_categories": adjudication["blocked_category_count"],
             "resume_outcome_adjudication_claimable_categories": adjudication["claimable_category_count"],
+            "resume_outcome_scoreboard": 1,
+            "resume_outcome_scoreboard_claimable_now": outcome_scoreboard["claimable_now_count"],
+            "resume_outcome_scoreboard_blocked": outcome_scoreboard["blocked_outcome_count"],
+            "resume_outcome_scoreboard_remaining_evidence": outcome_scoreboard["reviewer_funnel"][
+                "remaining_evidence_items"
+            ],
             "ai_engineer_review_intake": 1,
             "ai_engineer_review_paths": ai_engineer_review_intake["review_path_count"],
             "ai_engineer_review_questions": ai_engineer_review_intake["review_question_count"],
@@ -506,6 +514,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"Resume claim upgrade ledger with {claim_upgrade['upgrade_row_count']} outcome metrics, "
                 f"{claim_upgrade['blocked_row_count']} blocked upgrade rows, "
                 f"{claim_upgrade['claimable_row_count']} claimable outcome rows, and exact future resume wording"
+            ),
+            (
+                f"Resume outcome scoreboard with {outcome_scoreboard['claimable_now_count']} claimable evidence-backed "
+                f"lines now, {outcome_scoreboard['blocked_outcome_count']} locked outcome claims, and "
+                f"{outcome_scoreboard['reviewer_funnel']['remaining_evidence_items']} remaining public evidence items"
             ),
             (
                 f"Reviewer feedback packet with {reviewer_packet['reviewer_task_count']} task paths, "
@@ -1008,6 +1021,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Resume outcome adjudication categories | {outcomes["resume_outcome_adjudication_categories"]} |
 | Resume outcome adjudication blocked categories | {outcomes["resume_outcome_adjudication_blocked_categories"]} |
 | Resume outcome adjudication claimable categories | {outcomes["resume_outcome_adjudication_claimable_categories"]} |
+| Resume outcome scoreboard | {outcomes["resume_outcome_scoreboard"]} |
+| Resume outcome scoreboard claimable now | {outcomes["resume_outcome_scoreboard_claimable_now"]} |
+| Resume outcome scoreboard blocked claims | {outcomes["resume_outcome_scoreboard_blocked"]} |
+| Resume outcome scoreboard remaining evidence | {outcomes["resume_outcome_scoreboard_remaining_evidence"]} |
 | AI Engineer review intake | {outcomes["ai_engineer_review_intake"]} |
 | AI Engineer review paths | {outcomes["ai_engineer_review_paths"]} |
 | AI Engineer review questions | {outcomes["ai_engineer_review_questions"]} |
@@ -1100,7 +1117,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 156,
+        "test_count": 157,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -1303,6 +1320,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "resume_outcome_adjudication_categories": 5,
         "resume_outcome_adjudication_blocked_categories": 5,
         "resume_outcome_adjudication_claimable_categories": 0,
+        "resume_outcome_scoreboard": 1,
+        "resume_outcome_scoreboard_claimable_now": 3,
+        "resume_outcome_scoreboard_blocked": 6,
+        "resume_outcome_scoreboard_remaining_evidence": 7,
         "ai_engineer_review_intake": 1,
         "ai_engineer_review_paths": 6,
         "ai_engineer_review_questions": 6,

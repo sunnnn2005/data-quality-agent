@@ -4,7 +4,7 @@ This generated pack gives recruiters and interviewers a compact review path for 
 
 ## One-Line Project Proof
 
-Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 156 tests, 84 verified resume claims, and honest adoption baselines.
+Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 157 tests, 84 verified resume claims, and honest adoption baselines.
 
 ## Application Links
 
@@ -50,6 +50,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 - Public Reviewer Call: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-reviewer-call.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-reviewer-call.md)
 - Reviewer Share Kit: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-share-kit.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-share-kit.md)
 - Resume Claim Upgrade Ledger: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-claim-upgrade-ledger.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-claim-upgrade-ledger.md)
+- Resume Outcome Scoreboard: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-outcome-scoreboard.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-outcome-scoreboard.md)
 - Github Discovery Profile: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-discovery-profile.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-discovery-profile.md)
 - Pilot Evidence Quicklink: [https://sunnnn2005.github.io/data-quality-agent/pilot-evidence-quicklink.html](https://sunnnn2005.github.io/data-quality-agent/pilot-evidence-quicklink.html)
 - Pilot Launch Control Room: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/pilot-launch-control-room.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/pilot-launch-control-room.md)
@@ -61,7 +62,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 
 | Metric | Value |
 | --- | ---: |
-| Passing Tests | 156 |
+| Passing Tests | 157 |
 | Verified Resume Claims | 84 |
 | Implemented Agent Capabilities | 16 |
 | Agent Tools Allowed | 7 |
@@ -131,6 +132,9 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Resume Claim Upgrade Rows | 6 |
 | Resume Claim Upgrade Blocked Rows | 6 |
 | Resume Claim Upgrade Claimable Rows | 0 |
+| Resume Outcome Scoreboard Claimable Now | 3 |
+| Resume Outcome Scoreboard Blocked | 6 |
+| Resume Outcome Scoreboard Remaining Evidence | 7 |
 | Github Discovery Topics | 16 |
 | Github Discovery Reviewer Entrypoints | 6 |
 | Pilot Evidence Quicklink Actions | 4 |
@@ -163,7 +167,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 ## Resume Bullets
 
 - Built an LLM tool-calling data-quality agent for real business CSV and read-only PostgreSQL data, with 7 allowed tools, dynamic strategy selection, memory-informed planning, source-cited business-rule retrieval, 6 verified API integration endpoints, and safe model-key fallback.
-- Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 156 passing tests, 84 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
+- Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 157 passing tests, 84 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
 - Added enterprise-style guardrails for agent reliability, including read-only PostgreSQL query limits, 3 rejected unsafe SQL queries, sensitive-field redaction, trace observability, incident-pattern memory, evidence-backed root-cause hypotheses, and deterministic report verification.
 
 ## Email Attachment Note

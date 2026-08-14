@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 156
+    assert payload["public_metrics"]["test_count"] == 157
     assert payload["public_metrics"]["github_view_count"] >= 0
     assert payload["public_metrics"]["github_unique_visitors"] <= payload["public_metrics"]["github_view_count"]
     assert payload["public_metrics"]["github_clone_count"] >= 0
@@ -188,6 +188,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["resume_outcome_adjudication_categories"] == 5
     assert payload["verified_project_outcomes"]["resume_outcome_adjudication_blocked_categories"] == 5
     assert payload["verified_project_outcomes"]["resume_outcome_adjudication_claimable_categories"] == 0
+    assert payload["verified_project_outcomes"]["resume_outcome_scoreboard"] == 1
+    assert payload["verified_project_outcomes"]["resume_outcome_scoreboard_claimable_now"] == 3
+    assert payload["verified_project_outcomes"]["resume_outcome_scoreboard_blocked"] == 6
+    assert payload["verified_project_outcomes"]["resume_outcome_scoreboard_remaining_evidence"] == 7
     assert payload["verified_project_outcomes"]["reviewer_share_channels"] == 5
     assert payload["verified_project_outcomes"]["reviewer_share_ready_messages"] == 5
     assert payload["verified_project_outcomes"]["reviewer_share_not_sent"] == 5

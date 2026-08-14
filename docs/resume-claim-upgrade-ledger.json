@@ -37,16 +37,16 @@
       "counting_rule": "Counts only when the reviewer ran or opened a runnable path and submitted observed-result evidence.",
       "id": "confirm_external_run",
       "minutes": 8,
-      "review_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-quickstart.md",
+      "review_url": "https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html",
       "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md",
       "target_metric": "confirmed_external_users"
     },
     {
-      "counting_rule": "Counts only when reproduction steps are specific enough for the maintainer to retry.",
+      "counting_rule": "Counts only when a non-owner submits a sanitized business-data replay issue with run evidence, agent trace summary, and permission to count publicly.",
       "id": "submit_reproducible_issue",
       "minutes": 10,
       "review_url": "https://github.com/sunnnn2005/data-quality-agent",
-      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md",
       "target_metric": "reproducible_feedback_items"
     },
     {

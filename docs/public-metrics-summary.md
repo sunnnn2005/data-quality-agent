@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 25 |
-| Passing CI tests | 156 |
+| Passing CI tests | 157 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -207,6 +207,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Resume outcome adjudication categories | 5 |
 | Resume outcome adjudication blocked categories | 5 |
 | Resume outcome adjudication claimable categories | 0 |
+| Resume outcome scoreboard | 1 |
+| Resume outcome scoreboard claimable now | 3 |
+| Resume outcome scoreboard blocked claims | 6 |
+| Resume outcome scoreboard remaining evidence | 7 |
 | AI Engineer review intake | 1 |
 | AI Engineer review paths | 6 |
 | AI Engineer review questions | 6 |
@@ -290,7 +294,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 156 passing CI tests
+- 157 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -303,6 +307,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - External review evidence ledger with 5 public evidence types, 3 linked planned reviews, and 0 current evidence entries
 - Outcome upgrade playbook with 5 metric thresholds, 5 blocked upgrade rules, and 6 baseline signals claimable now
 - Resume claim upgrade ledger with 6 outcome metrics, 6 blocked upgrade rows, 0 claimable outcome rows, and exact future resume wording
+- Resume outcome scoreboard with 3 claimable evidence-backed lines now, 6 locked outcome claims, and 7 remaining public evidence items
 - Reviewer feedback packet with 4 task paths, 6 evidence questions, and 5 metric conversion paths
 - Reviewer funnel board with 4 public evidence paths and 7 remaining evidence items
 - 3 recurring incident patterns retrieved from sanitized traces
