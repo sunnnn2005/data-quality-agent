@@ -590,7 +590,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 154:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 155:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -969,7 +969,7 @@ def verify_manifest() -> dict[str, int]:
                     ("confirmed_external_users", 0),
                     ("external_feedback_items", 0),
                     ("github_stars", 0),
-                    ("passing_tests", 154),
+                    ("passing_tests", 155),
                 ):
                     if counts.get(key) != expected_value:
                         raise AssertionError(f"outcome collection {key} expected {expected_value!r}")
@@ -1355,7 +1355,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 154:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 155:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -2304,13 +2304,13 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 154", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 155", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 
     resume_metric_phrases = (
         "github issues | 25",
-        "automated tests | 154",
+        "automated tests | 155",
         "github views | 9",
         "github unique visitors | 3",
         "github clones | 79",
@@ -2323,7 +2323,7 @@ def verify_manifest() -> dict[str, int]:
             raise AssertionError(f"resume evidence page missing current public metric phrase: {phrase}")
 
     index_page = (ROOT / "docs" / "index.html").read_text().lower()
-    if "<strong>154</strong><span>automated tests passing locally and in ci</span>" not in index_page:
+    if "<strong>155</strong><span>automated tests passing locally and in ci</span>" not in index_page:
         raise AssertionError("public homepage must display the current passing test count")
 
     if "community-growth-baseline" in claim_ids:
