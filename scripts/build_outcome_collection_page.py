@@ -91,7 +91,7 @@ def render_html(payload: dict[str, Any]) -> str:
           <p><strong>Done when:</strong> {action["completion_check"]}</p>
           <a href="{action["evidence_path"]}">Evidence path</a>
         </article>
-        """
+"""
         for action in payload["actions"]
     )
     submission_cards = "\n".join(
@@ -107,7 +107,7 @@ def render_html(payload: dict[str, Any]) -> str:
             <a class="button" href="{path["submit_url"]}">Submit Evidence</a>
           </div>
         </article>
-        """
+"""
         for path in payload["submission_paths"]
     )
     counts = payload["current_counts"]
@@ -231,7 +231,7 @@ def render_html(payload: dict[str, Any]) -> str:
 
 def verify_outcome_collection_payload(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
-        "tracked_action_count": 5,
+        "tracked_action_count": 6,
         "submission_path_count": 6,
         "required_evidence_field_count": 24,
         "confirmed_external_users": 0,
@@ -240,7 +240,7 @@ def verify_outcome_collection_payload(payload: dict[str, Any]) -> dict[str, Any]
             "passing_tests": 235,
     }
     if payload["tracked_action_count"] != expected["tracked_action_count"]:
-        raise AssertionError("outcome collection page must expose five next actions")
+        raise AssertionError("outcome collection page must expose six next actions")
     if payload["submission_path_count"] != expected["submission_path_count"]:
         raise AssertionError("outcome collection page must expose six submission paths")
     if payload["required_evidence_field_count"] != expected["required_evidence_field_count"]:

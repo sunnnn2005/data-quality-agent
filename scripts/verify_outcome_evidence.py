@@ -1333,8 +1333,8 @@ def verify_manifest() -> dict[str, int]:
                 checklist_script = (ROOT / "scripts" / "build_resume_outcome_action_checklist.py").read_text()
                 checklist_tests = (ROOT / "tests" / "test_resume_outcome_action_checklist.py").read_text()
                 expected = {
-                    "tracked_action_count": 5,
-                    "next_action_needed_count": 5,
+                    "tracked_action_count": 6,
+                    "next_action_needed_count": 6,
                     "claimable_action_count": 0,
                     "accepted_public_issue_count": 0,
                     "outreach_slot_count": 9,
@@ -1344,6 +1344,7 @@ def verify_manifest() -> dict[str, int]:
                     if resume_outcome_action_checklist.get(key) != value:
                         raise AssertionError(f"resume outcome action checklist {key} expected {value!r}")
                 required_actions = {
+                    "capture_first_real_model_run",
                     "send_first_reviewer_request",
                     "collect_first_public_run_issue",
                     "collect_ai_engineer_review",
@@ -1358,6 +1359,11 @@ def verify_manifest() -> dict[str, int]:
                         raise AssertionError(f"resume outcome action {action.get('id')} must still need proof")
                     if not action.get("completion_check"):
                         raise AssertionError(f"resume outcome action {action.get('id')} must include completion check")
+                real_model_action = actions["capture_first_real_model_run"]
+                real_model_text = json.dumps(real_model_action, sort_keys=True).lower()
+                for required in ("provider", "model", "tool calls", "tokens", "cost", "latency", "verification"):
+                    if required not in real_model_text:
+                        raise AssertionError(f"real-model action must require {required} evidence")
                 if "verify_resume_outcome_action_checklist" not in checklist_script:
                     raise AssertionError("resume outcome action checklist must include a script verifier")
                 if "test_resume_outcome_action_checklist_turns_blocked_outcomes_into_next_actions" not in checklist_tests:
@@ -1411,7 +1417,7 @@ def verify_manifest() -> dict[str, int]:
                 outcome_tests = (ROOT / "tests" / "test_outcome_collection_page.py").read_text()
                 expected = {
                     "project": "Data Quality Agent",
-                    "tracked_action_count": 5,
+                    "tracked_action_count": 6,
                     "submission_path_count": 6,
                     "required_evidence_field_count": 24,
                 }
@@ -1427,8 +1433,8 @@ def verify_manifest() -> dict[str, int]:
                 ):
                     if counts.get(key) != expected_value:
                         raise AssertionError(f"outcome collection {key} expected {expected_value!r}")
-                if len(outcome_collection.get("actions", [])) != 5:
-                    raise AssertionError("outcome collection must include 5 action cards")
+                if len(outcome_collection.get("actions", [])) != 6:
+                    raise AssertionError("outcome collection must include 6 action cards")
                 if len(outcome_collection.get("submission_paths", [])) != 6:
                     raise AssertionError("outcome collection must include 6 submission paths")
                 joined = json.dumps(outcome_collection, sort_keys=True).lower()

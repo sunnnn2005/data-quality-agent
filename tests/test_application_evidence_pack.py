@@ -49,7 +49,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert payload["verified_outcome_numbers"]["verified_resume_claims"] == load_json(SCORECARD_PATH)["headline_metrics"][
         "verified_resume_claims"
     ]
-    assert payload["verified_outcome_numbers"]["outcome_collection_actions"] == 5
+    assert payload["verified_outcome_numbers"]["outcome_collection_actions"] == 6
     assert payload["verified_outcome_numbers"]["outcome_collection_submission_paths"] == 6
     assert payload["verified_outcome_numbers"]["outcome_collection_evidence_fields"] == 24
     assert payload["verified_outcome_numbers"]["reviewer_share_channels"] == 5
@@ -97,8 +97,8 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert payload["verified_outcome_numbers"]["resume_outcome_metrics_tracked"] == 7
     assert payload["verified_outcome_numbers"]["resume_outcome_metrics_claimable"] == 0
     assert payload["verified_outcome_numbers"]["resume_outcome_metrics_blocked"] == 7
-    assert payload["verified_outcome_numbers"]["resume_outcome_action_count"] == 5
-    assert payload["verified_outcome_numbers"]["resume_outcome_next_actions_needed"] == 5
+    assert payload["verified_outcome_numbers"]["resume_outcome_action_count"] == 6
+    assert payload["verified_outcome_numbers"]["resume_outcome_next_actions_needed"] == 6
     assert payload["verified_outcome_numbers"]["reviewer_submission_paths"] == 6
     assert payload["verified_outcome_numbers"]["reviewer_submission_required_fields"] == 24
     assert payload["verified_outcome_numbers"]["first_10_reviewer_slots"] == 10

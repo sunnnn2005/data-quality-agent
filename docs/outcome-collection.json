@@ -1,6 +1,17 @@
 {
   "actions": [
     {
+      "completion_check": "One accepted real-model run issue includes provider, model, prompt version, trace id, tool calls, tokens, estimated cost, latency, verification status, and permission to count.",
+      "current_count": 0,
+      "evidence_path": "docs/real-model-run-request-pack.md",
+      "id": "capture_first_real_model_run",
+      "owner_action": "Run the real-model preflight, execute scripts/capture_real_model_run.py with an OpenAI-compatible model key, verify the final structured report, then submit only redacted telemetry through the real_model_run_review issue template.",
+      "remaining_to_claim": 1,
+      "status": "next_action_needed",
+      "target_metric": "accepted_real_model_runs",
+      "title": "Capture one accepted real-model agent run"
+    },
+    {
       "completion_check": "One outreach slot has status sent and no resume outcome is claimed yet.",
       "current_count": 0,
       "evidence_path": "docs/reviewer-outreach-status-board.md",
@@ -73,7 +84,7 @@
   "project": "Data Quality Agent",
   "purpose": "Give external reviewers one public page for trying the project, submitting countable evidence, and seeing which outcome claims are still blocked.",
   "required_evidence_field_count": 24,
-  "resume_safe_summary": "Published a public outcome collection page with 5 next actions, 6 submission paths, 24 required evidence fields, 0 confirmed users, 0 feedback items, and 0 GitHub stars.",
+  "resume_safe_summary": "Published a public outcome collection page with 6 next actions, 6 submission paths, 24 required evidence fields, 0 confirmed users, 0 feedback items, and 0 GitHub stars.",
   "submission_path_count": 6,
   "submission_paths": [
     {
@@ -125,5 +136,5 @@
       "target_metric": "github_stars"
     }
   ],
-  "tracked_action_count": 5
+  "tracked_action_count": 6
 }

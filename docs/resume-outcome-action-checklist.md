@@ -6,8 +6,8 @@ This generated checklist shows the shortest honest path from blocked outcome cla
 
 | Metric | Value |
 | --- | ---: |
-| Tracked actions | 5 |
-| Next actions needed | 5 |
+| Tracked actions | 6 |
+| Next actions needed | 6 |
 | Claimable actions | 0 |
 | Evaluated public issues | 15 |
 | Accepted public evidence | 0 |
@@ -18,6 +18,7 @@ This generated checklist shows the shortest honest path from blocked outcome cla
 
 | Action | Target Metric | Current | Threshold | Remaining | Status | Evidence |
 | --- | --- | ---: | ---: | ---: | --- | --- |
+| capture_first_real_model_run | accepted_real_model_runs | 0 | 1 | 1 | `next_action_needed` | [evidence](docs/real-model-run-request-pack.md) |
 | send_first_reviewer_request | external_feedback_items | 0 | 1 | 1 | `next_action_needed` | [evidence](docs/reviewer-outreach-status-board.md) |
 | collect_first_public_run_issue | confirmed_external_users | 0 | 1 | 1 | `next_action_needed` | [evidence](docs/external-reviewer-evidence-gate.md) |
 | collect_ai_engineer_review | ai_engineer_review_items | 0 | 1 | 1 | `next_action_needed` | [evidence](docs/ai-engineer-review-intake.md) |
@@ -25,6 +26,12 @@ This generated checklist shows the shortest honest path from blocked outcome cla
 | earn_first_star | github_stars | 0 | 1 | 1 | `next_action_needed` | [evidence](docs/star-growth-kit.md) |
 
 ## Action Details
+
+### Capture one accepted real-model agent run
+
+- Owner action: Run the real-model preflight, execute scripts/capture_real_model_run.py with an OpenAI-compatible model key, verify the final structured report, then submit only redacted telemetry through the real_model_run_review issue template.
+- Completion check: One accepted real-model run issue includes provider, model, prompt version, trace id, tool calls, tokens, estimated cost, latency, verification status, and permission to count.
+- Resume line after proof: Not claimable yet
 
 ### Send one prepared reviewer request
 
@@ -59,7 +66,7 @@ This generated checklist shows the shortest honest path from blocked outcome cla
 
 ## Resume-Safe Summary
 
-Published a CI-verified action checklist with 5 concrete next actions, 15 evaluated public GitHub issues, 0 accepted public evidence items, and 9 reviewer outreach slots still not sent.
+Published a CI-verified action checklist with 6 concrete next actions, 15 evaluated public GitHub issues, 0 accepted public evidence items, and 9 reviewer outreach slots still not sent.
 
 ## Not Claimed
 

@@ -23,6 +23,10 @@ If you are reviewing the project, the fastest path is:
 
 Evidence only counts when it is public, non-owner, permissioned, and redacted. Stars, feedback, external users, and business-data replays stay at zero until public evidence proves otherwise.
 
+### First AI Engineer Outcome to Unlock
+
+Before claiming a real LLM-agent outcome, capture one redacted OpenAI-compatible run through the [real model run request pack](docs/real-model-run-request-pack.md). The evidence must include provider, model, prompt version, trace id, selected tools, token usage, estimated cost, latency, report verification, and explicit permission to count. Until that issue passes the evidence gate, the project should be described as real-model-ready rather than as having completed a real paid model run.
+
 ### 5 Real Reviewer Tasks
 
 These are the five evidence paths that can turn this from a self-published project into resume-safe public outcomes. Each task should be completed by a real non-owner reviewer, with no private data in the issue.
@@ -48,7 +52,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Public demo | [sunnnn2005.github.io/data-quality-agent](https://sunnnn2005.github.io/data-quality-agent/) |
 | 2-minute review card | [`docs/two-minute-review-card.html`](docs/two-minute-review-card.html) gives busy reviewers 3 micro-steps and 5 required evidence fields for the first countable public feedback item |
 | 8-minute review page | [`docs/review.html`](docs/review.html) gives reviewers the shortest public path from demo inspection to GitHub feedback |
-| Outcome collection page | [`docs/outcome-collection.html`](docs/outcome-collection.html) gives reviewers one public page for 5 next actions, 6 submission paths, 24 evidence fields, and current zero-count outcome baselines |
+| Outcome collection page | [`docs/outcome-collection.html`](docs/outcome-collection.html) gives reviewers one public page for 6 next actions, 6 submission paths, 24 evidence fields, and current zero-count outcome baselines |
 | Outcome proof page | [`docs/outcome-proof-page.html`](docs/outcome-proof-page.html) separates 6 verified resume-safe proof cards from 6 blocked future outcome cards and gives reviewers 5 evidence actions |
 | First external review card | [`docs/first-external-review-card.html`](docs/first-external-review-card.html) gives a 5-12 minute shareable reviewer page with 3 public evidence paths while preserving zero external-user, feedback, AI-review, star, or adoption claims |
 | First feedback conversion runbook | [`docs/first-feedback-conversion-runbook.md`](docs/first-feedback-conversion-runbook.md) converts one reviewer message into a 5-step evidence workflow, 3 possible public metric unlocks, and zero resume upgrades until a non-owner issue passes the gate |
@@ -120,7 +124,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Evidence acceptance checklist | [`docs/evidence-acceptance-checklist.md`](docs/evidence-acceptance-checklist.md) maps 6 blocked resume outcome metrics to required public fields, submission URLs, evidence gates, and future resume lines while preserving zero accepted external evidence |
 | Resume outcome metrics | [`docs/resume-outcome-metrics.md`](docs/resume-outcome-metrics.md) tracks 6 user, feedback, business-case, AI-review, reproducible-run, and GitHub-star outcome metrics with 0 claimable lines and 6 blocked lines until public evidence exists |
 | Resume outcome scoreboard | [`docs/resume-outcome-scoreboard.md`](docs/resume-outcome-scoreboard.md) separates 6 claimable evidence-backed resume lines from 6 locked outcome claims and 7 remaining public reviewer evidence items |
-| Resume outcome action checklist | [`docs/resume-outcome-action-checklist.md`](docs/resume-outcome-action-checklist.md) turns blocked outcome claims into 5 concrete next actions with public evidence paths, completion checks, and zero accepted public evidence claimed |
+| Resume outcome action checklist | [`docs/resume-outcome-action-checklist.md`](docs/resume-outcome-action-checklist.md) turns blocked outcome claims into 6 concrete next actions with public evidence paths, completion checks, and zero accepted public evidence claimed |
 | External review evidence ledger | [`docs/external-review-evidence-ledger.md`](docs/external-review-evidence-ledger.md) collects public feedback/replay/business-case issue evidence, excludes self-authored planning issues, and keeps outcome counts at zero until external proof exists |
 | Outcome upgrade playbook | [`docs/outcome-upgrade-playbook.md`](docs/outcome-upgrade-playbook.md) defines 5 metric thresholds that block adoption, feedback, business-case, and repository-interest resume claims until public evidence exists |
 | Reviewer feedback packet | [`docs/reviewer-feedback-packet.md`](docs/reviewer-feedback-packet.md) gives external reviewers 3 task paths, 5 evidence questions, and 4 metric conversion paths for public feedback |

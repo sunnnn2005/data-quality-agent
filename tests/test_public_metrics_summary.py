@@ -106,8 +106,8 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["public_metrics_provenance_claimable"] == 2
     assert payload["verified_project_outcomes"]["public_metrics_provenance_blocked_or_baseline"] == 5
     assert payload["verified_project_outcomes"]["resume_outcome_action_checklist"] == 1
-    assert payload["verified_project_outcomes"]["resume_outcome_action_count"] == 5
-    assert payload["verified_project_outcomes"]["resume_outcome_next_actions_needed"] == 5
+    assert payload["verified_project_outcomes"]["resume_outcome_action_count"] == 6
+    assert payload["verified_project_outcomes"]["resume_outcome_next_actions_needed"] == 6
     assert payload["verified_project_outcomes"]["resume_outcome_action_accepted_public_evidence"] == 0
     assert payload["verified_project_outcomes"]["reviewer_submission_hub"] == 1
     assert payload["verified_project_outcomes"]["reviewer_submission_paths"] == 6
@@ -126,7 +126,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["first_10_outreach_not_sent"] == 10
     assert payload["verified_project_outcomes"]["first_10_outreach_accepted_evidence"] == 0
     assert payload["verified_project_outcomes"]["outcome_collection_page"] == 1
-    assert payload["verified_project_outcomes"]["outcome_collection_actions"] == 5
+    assert payload["verified_project_outcomes"]["outcome_collection_actions"] == 6
     assert payload["verified_project_outcomes"]["outcome_collection_submission_paths"] == 6
     assert payload["verified_project_outcomes"]["outcome_collection_evidence_fields"] == 24
     assert payload["verified_project_outcomes"]["public_reviewer_call"] == 1
@@ -364,12 +364,12 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-        "Resume outcome action checklist with 5 concrete next actions, 15 evaluated public GitHub issues, "
+        "Resume outcome action checklist with 6 concrete next actions, 15 evaluated public GitHub issues, "
         "0 accepted public evidence items, and 9 not-sent reviewer outreach slots"
         in payload["resume_safe_signals"]
     )
     assert (
-        "Outcome collection page with 5 next actions, 6 submission paths, 24 required evidence fields, 0 confirmed users, 0 feedback items, and 0 GitHub stars"
+        "Outcome collection page with 6 next actions, 6 submission paths, 24 required evidence fields, 0 confirmed users, 0 feedback items, and 0 GitHub stars"
         in payload["resume_safe_signals"]
     )
     assert (

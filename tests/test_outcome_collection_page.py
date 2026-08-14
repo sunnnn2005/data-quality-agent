@@ -11,7 +11,7 @@ def test_outcome_collection_page_routes_reviewers_to_countable_evidence():
     html = render_html(payload)
 
     assert verification["outcome_collection_page_verified"] is True
-    assert payload["tracked_action_count"] == 5
+    assert payload["tracked_action_count"] == 6
     assert payload["submission_path_count"] == 6
     assert payload["required_evidence_field_count"] == 24
     assert payload["current_counts"]["confirmed_external_users"] == 0

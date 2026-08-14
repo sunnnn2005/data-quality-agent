@@ -54,6 +54,27 @@ def build_resume_outcome_action_checklist() -> dict[str, Any]:
 
     actions = [
         _next_action(
+            action_id="capture_first_real_model_run",
+            title="Capture one accepted real-model agent run",
+            target_metric="accepted_real_model_runs",
+            current_count=counts["accepted_real_model_runs"],
+            threshold=1,
+            evidence_path="docs/real-model-run-request-pack.md",
+            owner_action=(
+                "Run the real-model preflight, execute scripts/capture_real_model_run.py with an OpenAI-compatible "
+                "model key, verify the final structured report, then submit only redacted telemetry through the "
+                "real_model_run_review issue template."
+            ),
+            completion_check=(
+                "One accepted real-model run issue includes provider, model, prompt version, trace id, tool calls, "
+                "tokens, estimated cost, latency, verification status, and permission to count."
+            ),
+            resulting_resume_line=(
+                "Captured 1 accepted OpenAI-compatible LLM agent run with redacted tool-call, token, cost, latency, "
+                "and verification evidence."
+            ),
+        ),
+        _next_action(
             action_id="send_first_reviewer_request",
             title="Send one prepared reviewer request",
             target_metric="external_feedback_items",
@@ -208,17 +229,18 @@ This generated checklist shows the shortest honest path from blocked outcome cla
 
 
 def verify_resume_outcome_action_checklist(payload: dict[str, Any]) -> dict[str, Any]:
-    if payload["tracked_action_count"] != 5:
-        raise AssertionError("resume outcome action checklist must track five next actions")
+    if payload["tracked_action_count"] != 6:
+        raise AssertionError("resume outcome action checklist must track six next actions")
     if payload["claimable_action_count"] != 0:
         raise AssertionError("resume outcome action checklist must not mark zero-count actions as claimable")
-    if payload["next_action_needed_count"] != 5:
-        raise AssertionError("resume outcome action checklist must keep five next actions open")
+    if payload["next_action_needed_count"] != 6:
+        raise AssertionError("resume outcome action checklist must keep six next actions open")
     if payload["accepted_public_issue_count"] != 0:
         raise AssertionError("resume outcome action checklist must not claim accepted public evidence yet")
     if payload["outreach_slot_count"] != 9 or payload["not_sent_outreach_count"] != 9:
         raise AssertionError("resume outcome action checklist must preserve the not-sent outreach baseline")
     required = {
+        "capture_first_real_model_run",
         "send_first_reviewer_request",
         "collect_first_public_run_issue",
         "collect_ai_engineer_review",

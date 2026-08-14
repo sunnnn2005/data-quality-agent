@@ -1146,8 +1146,8 @@ PUBLIC_CHECKS = [
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-action-checklist.json",
         "expected_json": {
             "project": "Data Quality Agent",
-            "tracked_action_count": 5,
-            "next_action_needed_count": 5,
+            "tracked_action_count": 6,
+            "next_action_needed_count": 6,
             "claimable_action_count": 0,
             "accepted_public_issue_count": 0,
         },

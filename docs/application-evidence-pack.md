@@ -115,11 +115,11 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Resume Outcome Metrics Tracked | 7 |
 | Resume Outcome Metrics Claimable | 0 |
 | Resume Outcome Metrics Blocked | 7 |
-| Resume Outcome Action Count | 5 |
-| Resume Outcome Next Actions Needed | 5 |
+| Resume Outcome Action Count | 6 |
+| Resume Outcome Next Actions Needed | 6 |
 | Reviewer Submission Paths | 6 |
 | Reviewer Submission Required Fields | 24 |
-| Outcome Collection Actions | 5 |
+| Outcome Collection Actions | 6 |
 | Outcome Collection Submission Paths | 6 |
 | Outcome Collection Evidence Fields | 24 |
 | Public Reviewer Call Segments | 3 |

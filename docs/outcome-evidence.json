@@ -731,7 +731,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-metrics.json"
     },
     {
-      "claim": "The project converts blocked user, feedback, AI Engineer review, business-case, real-model, and GitHub-star outcome goals into 5 concrete next actions with public evidence paths, completion checks, zero accepted public evidence, and 9 not-sent reviewer outreach slots preserved.",
+      "claim": "The project converts blocked user, feedback, AI Engineer review, business-case, real-model, and GitHub-star outcome goals into 6 concrete next actions with public evidence paths, completion checks, zero accepted public evidence, and 9 not-sent reviewer outreach slots preserved.",
       "evidence_type": "generated_json",
       "id": "resume-outcome-action-checklist",
       "metric_name": "resume_outcome_action_checklist",
@@ -751,7 +751,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-submission-hub.json"
     },
     {
-      "claim": "The project publishes a public outcome collection page with 5 next actions, 6 submission paths, 24 required evidence fields, zero-count outcome baselines, and privacy boundaries for collecting future resume-safe evidence.",
+      "claim": "The project publishes a public outcome collection page with 6 next actions, 6 submission paths, 24 required evidence fields, zero-count outcome baselines, and privacy boundaries for collecting future resume-safe evidence.",
       "evidence_type": "generated_artifact",
       "id": "outcome-collection-page",
       "metric_name": "outcome_collection_page",

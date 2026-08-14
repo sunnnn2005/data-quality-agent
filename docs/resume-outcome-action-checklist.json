@@ -2,6 +2,19 @@
   "accepted_public_issue_count": 0,
   "actions": [
     {
+      "completion_check": "One accepted real-model run issue includes provider, model, prompt version, trace id, tool calls, tokens, estimated cost, latency, verification status, and permission to count.",
+      "current_count": 0,
+      "evidence_path": "docs/real-model-run-request-pack.md",
+      "id": "capture_first_real_model_run",
+      "owner_action": "Run the real-model preflight, execute scripts/capture_real_model_run.py with an OpenAI-compatible model key, verify the final structured report, then submit only redacted telemetry through the real_model_run_review issue template.",
+      "remaining_to_claim": 1,
+      "resulting_resume_line": null,
+      "status": "next_action_needed",
+      "target_metric": "accepted_real_model_runs",
+      "threshold": 1,
+      "title": "Capture one accepted real-model agent run"
+    },
+    {
       "completion_check": "One outreach slot has status sent and no resume outcome is claimed yet.",
       "current_count": 0,
       "evidence_path": "docs/reviewer-outreach-status-board.md",
@@ -70,7 +83,7 @@
   "claimable_action_count": 0,
   "evaluated_public_issue_count": 15,
   "generated_by": "scripts/build_resume_outcome_action_checklist.py",
-  "next_action_needed_count": 5,
+  "next_action_needed_count": 6,
   "not_claimed": [
     "The checklist does not claim users, feedback, business impact, or stars.",
     "A resume line becomes claimable only after the referenced public evidence check passes."
@@ -79,6 +92,6 @@
   "outreach_slot_count": 9,
   "project": "Data Quality Agent",
   "purpose": "Turn blocked resume outcome claims into the shortest honest next actions with public evidence checks.",
-  "resume_safe_summary": "Published a CI-verified action checklist with 5 concrete next actions, 15 evaluated public GitHub issues, 0 accepted public evidence items, and 9 reviewer outreach slots still not sent.",
-  "tracked_action_count": 5
+  "resume_safe_summary": "Published a CI-verified action checklist with 6 concrete next actions, 15 evaluated public GitHub issues, 0 accepted public evidence items, and 9 reviewer outreach slots still not sent.",
+  "tracked_action_count": 6
 }

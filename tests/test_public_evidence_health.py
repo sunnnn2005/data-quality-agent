@@ -247,7 +247,7 @@ def test_public_evidence_health_requires_core_public_signals():
     assert "Reviewer must grant explicit permission before a run or feedback is counted." in gate["expected_texts"]
     action_checklist = next(check for check in PUBLIC_CHECKS if check["id"] == "resume-outcome-action-checklist")
     assert action_checklist["url"].endswith("/resume-outcome-action-checklist.json")
-    assert action_checklist["expected_json"]["tracked_action_count"] == 5
+    assert action_checklist["expected_json"]["tracked_action_count"] == 6
     assert action_checklist["expected_json"]["claimable_action_count"] == 0
     assert "earn_first_star" in action_checklist["expected_texts"]
     assert "The checklist does not claim users, feedback, business impact, or stars." in action_checklist["expected_texts"]
