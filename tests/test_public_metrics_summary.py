@@ -13,7 +13,9 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 186
+    assert payload["public_metrics"]["test_count"] == 187
+    assert payload["public_metrics"]["tracked_public_metrics"] == 8
+    assert payload["public_metrics"]["claimable_public_metrics"] == 2
     assert payload["public_metrics"]["github_view_count"] >= 0
     assert payload["public_metrics"]["github_unique_visitors"] <= payload["public_metrics"]["github_view_count"]
     assert payload["public_metrics"]["github_clone_count"] >= 0
@@ -99,6 +101,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["resume_outcome_metrics_tracked"] == 6
     assert payload["verified_project_outcomes"]["resume_outcome_metrics_claimable"] == 0
     assert payload["verified_project_outcomes"]["resume_outcome_metrics_blocked"] == 6
+    assert payload["verified_project_outcomes"]["public_metrics_provenance"] == 1
+    assert payload["verified_project_outcomes"]["public_metrics_provenance_tracked"] == 8
+    assert payload["verified_project_outcomes"]["public_metrics_provenance_claimable"] == 2
+    assert payload["verified_project_outcomes"]["public_metrics_provenance_blocked_or_baseline"] == 5
     assert payload["verified_project_outcomes"]["resume_outcome_action_checklist"] == 1
     assert payload["verified_project_outcomes"]["resume_outcome_action_count"] == 5
     assert payload["verified_project_outcomes"]["resume_outcome_next_actions_needed"] == 5

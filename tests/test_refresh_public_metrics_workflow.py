@@ -26,6 +26,7 @@ def test_refresh_public_metrics_workflow_updates_resume_evidence_sources():
     assert "python scripts/build_github_traffic_snapshot.py" in run_commands
     assert "python scripts/build_github_discovery_profile.py" in run_commands
     assert "python scripts/build_star_growth_kit.py" in run_commands
+    assert "python scripts/build_public_metrics_provenance.py" in run_commands
     assert "python scripts/build_public_metrics_summary.py" in run_commands
     assert "python scripts/build_resume_traction_proof.py" in run_commands
     assert "python scripts/build_reviewer_action_queue.py" in run_commands
@@ -53,7 +54,7 @@ def test_refresh_public_metrics_workflow_updates_resume_evidence_sources():
         "tests/test_github_discovery_profile.py tests/test_pilot_evidence_quicklink.py tests/test_pilot_launch_control_room.py "
         "tests/test_public_launch_broadcast.py tests/test_outcome_pipeline_board.py tests/test_resume_outcome_adjudication.py "
         "tests/test_first_10_reviewer_sprint.py "
-        "tests/test_star_growth_kit.py tests/test_public_metrics_summary.py "
+        "tests/test_star_growth_kit.py tests/test_public_metrics_provenance.py tests/test_public_metrics_summary.py "
         "tests/test_business_impact_ledger.py tests/test_reviewer_evidence_kit.py tests/test_resume_traction_proof.py "
         "tests/test_reviewer_action_queue.py tests/test_reviewer_outreach_execution_pack.py "
         "tests/test_reviewer_outreach_status_board.py "
@@ -119,6 +120,9 @@ def test_refresh_public_metrics_workflow_updates_resume_evidence_sources():
         "python scripts/build_outcome_collection_page.py"
     )
     assert run_commands.index("python scripts/build_outcome_collection_page.py") < run_commands.index(
+        "python scripts/build_public_metrics_summary.py"
+    )
+    assert run_commands.index("python scripts/build_public_metrics_provenance.py") < run_commands.index(
         "python scripts/build_public_metrics_summary.py"
     )
     assert run_commands.index("python scripts/build_resume_claim_upgrade_ledger.py") < run_commands.index(

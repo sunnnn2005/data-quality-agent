@@ -1,0 +1,94 @@
+{
+  "blocked_or_baseline_metric_count": 5,
+  "claimable_metric_count": 2,
+  "external_reviewer_gate": "docs/external-reviewer-evidence-gate.json",
+  "generated_by": "scripts/build_public_metrics_provenance.py",
+  "metric_count": 8,
+  "metrics": [
+    {
+      "counts_match_gate": null,
+      "evidence_source": "GitHub public repository count via update_adoption_metrics.py",
+      "metric": "github_stars",
+      "resume_rule": "May claim the exact public star count only; never imply growth beyond GitHub's public number.",
+      "resume_status": "baseline_only",
+      "value": 0
+    },
+    {
+      "counts_match_gate": null,
+      "evidence_source": "GitHub public repository count via update_adoption_metrics.py",
+      "metric": "github_forks",
+      "resume_rule": "May claim the exact public fork baseline because it is visible on GitHub.",
+      "resume_status": "claimable",
+      "value": 1
+    },
+    {
+      "counts_match_gate": null,
+      "evidence_source": "pytest collection and CI evidence via update_adoption_metrics.py",
+      "metric": "passing_tests",
+      "resume_rule": "May claim passing test count after local and CI verification.",
+      "resume_status": "claimable",
+      "value": 187
+    },
+    {
+      "accepted_gate_count": 0,
+      "counts_match_gate": true,
+      "evidence_source": "docs/external-reviewer-evidence-gate.json accepted_counts",
+      "metric": "confirmed_external_users",
+      "resume_rule": "Counts only accepted public reviewer issues with explicit permission and non-owner authorship.",
+      "resume_status": "blocked_until_accepted_evidence",
+      "value": 0
+    },
+    {
+      "accepted_gate_count": 0,
+      "counts_match_gate": true,
+      "evidence_source": "docs/external-reviewer-evidence-gate.json accepted_counts",
+      "metric": "external_feedback_items",
+      "resume_rule": "Counts only accepted public reviewer issues that pass the evidence gate.",
+      "resume_status": "blocked_until_accepted_evidence",
+      "value": 0
+    },
+    {
+      "accepted_gate_count": 0,
+      "counts_match_gate": true,
+      "evidence_source": "docs/external-reviewer-evidence-gate.json accepted_counts",
+      "metric": "business_case_feedback_items",
+      "resume_rule": "Counts only accepted anonymized business-case reviews.",
+      "resume_status": "blocked_until_accepted_evidence",
+      "value": 0
+    },
+    {
+      "accepted_gate_count": 0,
+      "counts_match_gate": true,
+      "evidence_source": "docs/external-reviewer-evidence-gate.json accepted_counts",
+      "metric": "ai_engineer_review_items",
+      "resume_rule": "Counts only accepted AI Engineer review issues with inspected paths and concrete feedback.",
+      "resume_status": "blocked_until_accepted_evidence",
+      "value": 0
+    },
+    {
+      "counts_match_gate": null,
+      "evidence_source": "GitHub issue labels via update_feedback_metrics.py",
+      "metric": "feature_feedback_items",
+      "resume_rule": "Feature-request labels are product backlog signal, not user adoption or customer feedback.",
+      "resume_status": "tracking_only",
+      "value": 8
+    }
+  ],
+  "not_claimed": [
+    "No external users are claimed while confirmed_external_users is zero.",
+    "No external feedback is claimed while external_feedback_items is zero.",
+    "No business-case validation is claimed while business_case_feedback_items is zero.",
+    "No AI Engineer review is claimed while ai_engineer_review_items is zero.",
+    "No GitHub star growth is claimed while github_stars is zero."
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Explain where each public outcome metric comes from and whether it can be used in resume wording.",
+  "repo": "https://github.com/sunnnn2005/data-quality-agent",
+  "resume_safe_summary": "Published a public metrics provenance record for 8 outcome metrics, showing 2 currently claimable metrics and evidence-gated zero counts for users, feedback, business-case validation, and AI Engineer review.",
+  "source_controls": [
+    "GitHub public metrics use update_adoption_metrics.py with gh CLI first and GitHub public API fallback.",
+    "External users, external feedback, business-case feedback, and AI Engineer reviews are counted only from accepted evidence-gate counts.",
+    "Self-authored planning issues and unaccepted labeled issues do not unlock resume outcome claims.",
+    "Feature-request labels are tracked separately from user/customer outcome metrics."
+  ]
+}

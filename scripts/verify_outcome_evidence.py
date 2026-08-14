@@ -12,6 +12,7 @@ BUSINESS_IMPACT_PATH = ROOT / "docs" / "business-impact.json"
 OUTCOME_SUMMARY_PATH = ROOT / "docs" / "outcome-summary.json"
 SUPPORT_TICKET_ARTIFACT_PATH = ROOT / "docs" / "verified-support-ticket-result.json"
 PUBLIC_METRICS_SUMMARY_PATH = ROOT / "docs" / "public-metrics-summary.json"
+PUBLIC_METRICS_PROVENANCE_PATH = ROOT / "docs" / "public-metrics-provenance.json"
 AGENT_READINESS_PATH = ROOT / "docs" / "agent-readiness.json"
 EVAL_SUMMARY_PATH = ROOT / "docs" / "eval-summary.json"
 HYPOTHESIS_FEEDBACK_PATH = ROOT / "docs" / "hypothesis-feedback.json"
@@ -103,6 +104,7 @@ def verify_manifest() -> dict[str, int]:
     outcome_summary = load_payload(OUTCOME_SUMMARY_PATH)
     support_ticket_artifact = load_payload(SUPPORT_TICKET_ARTIFACT_PATH)
     public_metrics_summary = load_payload(PUBLIC_METRICS_SUMMARY_PATH)
+    public_metrics_provenance = load_payload(PUBLIC_METRICS_PROVENANCE_PATH)
     agent_readiness = load_payload(AGENT_READINESS_PATH)
     eval_summary = load_payload(EVAL_SUMMARY_PATH)
     hypothesis_feedback = load_payload(HYPOTHESIS_FEEDBACK_PATH)
@@ -598,8 +600,12 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 186:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 187:
                     raise AssertionError("public metrics summary must include the current CI test count")
+                if public_metrics_summary.get("public_metrics", {}).get("tracked_public_metrics") != 8:
+                    raise AssertionError("public metrics summary must include provenance tracked metric count")
+                if public_metrics_summary.get("public_metrics", {}).get("claimable_public_metrics") != 2:
+                    raise AssertionError("public metrics summary must include provenance claimable metric count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
                 if claim.get("metric_value") != 1:
@@ -977,7 +983,7 @@ def verify_manifest() -> dict[str, int]:
                     ("confirmed_external_users", 0),
                     ("external_feedback_items", 0),
                     ("github_stars", 0),
-                    ("passing_tests", 186),
+                    ("passing_tests", 187),
                 ):
                     if counts.get(key) != expected_value:
                         raise AssertionError(f"outcome collection {key} expected {expected_value!r}")
@@ -1363,7 +1369,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 186:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 187:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -2285,6 +2291,7 @@ def verify_manifest() -> dict[str, int]:
             "scripts/build_public_reviewer_call.py",
             "scripts/build_reviewer_share_kit.py",
             "scripts/build_reviewer_outreach_status_board.py",
+            "scripts/build_public_metrics_provenance.py",
             "scripts/verify_outcome_evidence.py",
             "git-auto-commit-action",
         ):
@@ -2326,9 +2333,45 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 186", "confirmed external users | 0", "forks | 1"):
+        for phrase in (
+            "passing ci tests | 187",
+            "tracked public outcome metrics | 8",
+            "claimable public outcome metrics | 2",
+            "confirmed external users | 0",
+            "forks | 1",
+        ):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
+
+    provenance_metrics = {item["metric"]: item for item in public_metrics_provenance.get("metrics", [])}
+    if public_metrics_provenance.get("metric_count") != 8:
+        raise AssertionError("public metrics provenance must track eight outcome metrics")
+    if public_metrics_provenance.get("claimable_metric_count") != 2:
+        raise AssertionError("public metrics provenance must keep only two metrics claimable")
+    if public_metrics_provenance.get("blocked_or_baseline_metric_count") != 5:
+        raise AssertionError("public metrics provenance must preserve five blocked or baseline metrics")
+    if provenance_metrics.get("github_stars", {}).get("resume_status") != "baseline_only":
+        raise AssertionError("zero GitHub stars must remain baseline-only in public metrics provenance")
+    if provenance_metrics.get("github_forks", {}).get("resume_status") != "claimable":
+        raise AssertionError("public fork count must remain claimable in public metrics provenance")
+    if provenance_metrics.get("passing_tests", {}).get("value") != metrics.get("test_count"):
+        raise AssertionError("public metrics provenance passing test count must match adoption metrics")
+    for key in (
+        "confirmed_external_users",
+        "external_feedback_items",
+        "business_case_feedback_items",
+        "ai_engineer_review_items",
+    ):
+        item = provenance_metrics.get(key, {})
+        if item.get("value") != 0:
+            raise AssertionError(f"{key} must remain zero in public metrics provenance")
+        if item.get("resume_status") != "blocked_until_accepted_evidence":
+            raise AssertionError(f"{key} must stay blocked until accepted evidence exists")
+        if item.get("counts_match_gate") is not True:
+            raise AssertionError(f"{key} must match the accepted evidence gate")
+    for phrase in ("github public api fallback", "accepted evidence-gate counts", "self-authored planning issues"):
+        if phrase not in " ".join(public_metrics_provenance.get("source_controls", [])).lower():
+            raise AssertionError(f"public metrics provenance missing source-control phrase: {phrase}")
 
     public_stats_page = (ROOT / "docs" / "github-public-stats-snapshot.md").read_text().lower()
     public_stats = github_public_stats.get("public_stats", {})
@@ -2347,7 +2390,7 @@ def verify_manifest() -> dict[str, int]:
 
     resume_metric_phrases = (
         "github issues | 25",
-        "automated tests | 186",
+        "automated tests | 187",
         "github views | 9",
         "github unique visitors | 3",
         "github clones | 79",
@@ -2362,7 +2405,7 @@ def verify_manifest() -> dict[str, int]:
     badges_by_id = {badge["id"]: badge for badge in outcome_badges.get("badges", [])}
     if outcome_badges.get("badge_count") != 6:
         raise AssertionError("outcome badges must expose six badge artifacts")
-    if badges_by_id.get("ci-tests", {}).get("message") != "186 passing":
+    if badges_by_id.get("ci-tests", {}).get("message") != "187 passing":
         raise AssertionError("outcome badges must display the current passing test count")
     for blocked_badge in ("github-stars", "confirmed-users", "external-feedback", "ai-review"):
         if badges_by_id.get(blocked_badge, {}).get("resume_claimable") is not False:
@@ -2396,7 +2439,7 @@ def verify_manifest() -> dict[str, int]:
         raise AssertionError("launch evidence snapshot workflow count is inconsistent")
     if launch_workflows.get("workflow_count") != 3:
         raise AssertionError("launch evidence snapshot must track the three main workflows")
-    if launch_evidence_snapshot.get("application_pack", {}).get("passing_tests") != 186:
+    if launch_evidence_snapshot.get("application_pack", {}).get("passing_tests") != 187:
         raise AssertionError("launch evidence snapshot must reflect the current passing test count")
     if launch_evidence_snapshot.get("public_github_stats", {}).get("stars") != 0:
         raise AssertionError("launch evidence snapshot must preserve the zero-star baseline")
@@ -2408,7 +2451,7 @@ def verify_manifest() -> dict[str, int]:
         raise AssertionError("launch evidence snapshot must expose five blocked overclaiming rules")
 
     index_page = (ROOT / "docs" / "index.html").read_text().lower()
-    if "<strong>186</strong><span>automated tests passing locally and in ci</span>" not in index_page:
+    if "<strong>187</strong><span>automated tests passing locally and in ci</span>" not in index_page:
         raise AssertionError("public homepage must display the current passing test count")
     if "outcome-pipeline-board.md" not in index_page or "outcome pipeline" not in index_page:
         raise AssertionError("public homepage must link reviewers to the outcome pipeline board")

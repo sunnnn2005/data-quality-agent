@@ -6,6 +6,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 ADOPTION_METRICS_PATH = ROOT / "docs" / "adoption-metrics.json"
 FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
+PUBLIC_METRICS_PROVENANCE_PATH = ROOT / "docs" / "public-metrics-provenance.json"
 OUTCOME_SUMMARY_PATH = ROOT / "docs" / "outcome-summary.json"
 AGENT_READINESS_PATH = ROOT / "docs" / "agent-readiness.json"
 EVAL_SUMMARY_PATH = ROOT / "docs" / "eval-summary.json"
@@ -90,6 +91,7 @@ def load_json(path: Path) -> dict[str, Any]:
 def build_public_metrics_summary() -> dict[str, Any]:
     adoption = load_json(ADOPTION_METRICS_PATH)
     feedback = load_json(FEEDBACK_METRICS_PATH)
+    metrics_provenance = load_json(PUBLIC_METRICS_PROVENANCE_PATH)
     outcome = load_json(OUTCOME_SUMMARY_PATH)
     readiness = load_json(AGENT_READINESS_PATH)
     eval_summary = load_json(EVAL_SUMMARY_PATH)
@@ -175,6 +177,8 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "watchers": adoption["watchers"],
             "issues_total": adoption["issues_total"],
             "test_count": adoption["test_count"],
+            "claimable_public_metrics": metrics_provenance["claimable_metric_count"],
+            "tracked_public_metrics": metrics_provenance["metric_count"],
             "external_feedback_items": feedback["external_feedback_items"],
             "confirmed_external_users": feedback["confirmed_external_users"],
             "reproducible_feedback_items": feedback["reproducible_feedback_items"],
@@ -273,6 +277,12 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "resume_outcome_metrics_tracked": resume_outcome_metrics["tracked_outcome_count"],
             "resume_outcome_metrics_claimable": resume_outcome_metrics["claimable_outcome_count"],
             "resume_outcome_metrics_blocked": resume_outcome_metrics["blocked_outcome_count"],
+            "public_metrics_provenance": 1,
+            "public_metrics_provenance_tracked": metrics_provenance["metric_count"],
+            "public_metrics_provenance_claimable": metrics_provenance["claimable_metric_count"],
+            "public_metrics_provenance_blocked_or_baseline": metrics_provenance[
+                "blocked_or_baseline_metric_count"
+            ],
             "resume_outcome_action_checklist": 1,
             "resume_outcome_action_count": resume_outcome_action_checklist["tracked_action_count"],
             "resume_outcome_next_actions_needed": resume_outcome_action_checklist["next_action_needed_count"],
@@ -628,6 +638,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{resume_outcome_metrics['blocked_outcome_count']} blocked outcome lines, and honest user/feedback/star baselines"
             ),
             (
+                f"Public metrics provenance with {metrics_provenance['metric_count']} tracked metrics, "
+                f"{metrics_provenance['claimable_metric_count']} currently claimable metrics, and evidence-gated "
+                "zero counts for users, external feedback, business-case validation, AI Engineer review, and star growth"
+            ),
+            (
                 f"Resume outcome action checklist with {resume_outcome_action_checklist['tracked_action_count']} concrete next actions, "
                 f"{resume_outcome_action_checklist['evaluated_public_issue_count']} evaluated public GitHub issues, "
                 f"{resume_outcome_action_checklist['accepted_public_issue_count']} accepted public evidence items, and "
@@ -831,6 +846,8 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Watchers | {metrics["watchers"]} |
 | GitHub issues | {metrics["issues_total"]} |
 | Passing CI tests | {metrics["test_count"]} |
+| Tracked public outcome metrics | {metrics["tracked_public_metrics"]} |
+| Claimable public outcome metrics | {metrics["claimable_public_metrics"]} |
 | External feedback items | {metrics["external_feedback_items"]} |
 | Confirmed external users | {metrics["confirmed_external_users"]} |
 | Reproducible feedback items | {metrics["reproducible_feedback_items"]} |
@@ -925,6 +942,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Resume outcome metrics tracked | {outcomes["resume_outcome_metrics_tracked"]} |
 | Resume outcome metrics claimable | {outcomes["resume_outcome_metrics_claimable"]} |
 | Resume outcome metrics blocked | {outcomes["resume_outcome_metrics_blocked"]} |
+| Public metrics provenance | {outcomes["public_metrics_provenance"]} |
+| Public metrics provenance tracked metrics | {outcomes["public_metrics_provenance_tracked"]} |
+| Public metrics provenance claimable metrics | {outcomes["public_metrics_provenance_claimable"]} |
+| Public metrics provenance blocked or baseline metrics | {outcomes["public_metrics_provenance_blocked_or_baseline"]} |
 | Resume outcome action checklist | {outcomes["resume_outcome_action_checklist"]} |
 | Resume outcome action count | {outcomes["resume_outcome_action_count"]} |
 | Resume outcome next actions needed | {outcomes["resume_outcome_next_actions_needed"]} |
@@ -1127,7 +1148,9 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 186,
+        "test_count": 187,
+        "tracked_public_metrics": 8,
+        "claimable_public_metrics": 2,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -1232,6 +1255,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "resume_outcome_metrics_tracked": 6,
         "resume_outcome_metrics_claimable": 0,
         "resume_outcome_metrics_blocked": 6,
+        "public_metrics_provenance": 1,
+        "public_metrics_provenance_tracked": 8,
+        "public_metrics_provenance_claimable": 2,
+        "public_metrics_provenance_blocked_or_baseline": 5,
         "resume_outcome_action_checklist": 1,
         "resume_outcome_action_count": 5,
         "resume_outcome_next_actions_needed": 5,

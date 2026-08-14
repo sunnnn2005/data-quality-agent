@@ -152,8 +152,10 @@ jobs:
           ADOPTION_FORKS: "1"
           ADOPTION_WATCHERS: "0"
           ADOPTION_ISSUES_TOTAL: "25"
-          ADOPTION_TEST_COUNT: "186"
+          ADOPTION_TEST_COUNT: "187"
         run: python scripts/update_adoption_metrics.py
+      - name: Verify public metrics provenance
+        run: python scripts/build_public_metrics_provenance.py
       - name: Verify outcome evidence manifest
         run: python scripts/verify_outcome_evidence.py
       - name: Verify public evidence health contract

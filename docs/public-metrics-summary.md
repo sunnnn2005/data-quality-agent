@@ -10,7 +10,9 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 25 |
-| Passing CI tests | 186 |
+| Passing CI tests | 187 |
+| Tracked public outcome metrics | 8 |
+| Claimable public outcome metrics | 2 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -105,6 +107,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Resume outcome metrics tracked | 6 |
 | Resume outcome metrics claimable | 0 |
 | Resume outcome metrics blocked | 6 |
+| Public metrics provenance | 1 |
+| Public metrics provenance tracked metrics | 8 |
+| Public metrics provenance claimable metrics | 2 |
+| Public metrics provenance blocked or baseline metrics | 5 |
 | Resume outcome action checklist | 1 |
 | Resume outcome action count | 5 |
 | Resume outcome next actions needed | 5 |
@@ -298,7 +304,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 186 passing CI tests
+- 187 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -335,6 +341,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Reviewer outreach status board tracking 8 reviewer slots, 5 status stages, and zero sent/replied/accepted outreach claims
 - First-10 outreach execution log with 10 copy-ready reviewer messages, 10 public issue entrypoints, 10 not-sent entries, and zero claimable external outcomes
 - Resume outcome metrics board tracking 6 outcome metrics, 0 claimable outcome lines, 6 blocked outcome lines, and honest user/feedback/star baselines
+- Public metrics provenance with 8 tracked metrics, 2 currently claimable metrics, and evidence-gated zero counts for users, external feedback, business-case validation, AI Engineer review, and star growth
 - Resume outcome action checklist with 5 concrete next actions, 4 evaluated public GitHub issues, 0 accepted public evidence items, and 8 not-sent reviewer outreach slots
 - Reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, 24 required evidence fields, and zero current outcome claims upgraded
 - First-10 reviewer sprint with 10 public evidence slots, 10 issue launch drafts, 6 target metrics, 10 not-sent outreach slots, and zero upgraded outcome claims
