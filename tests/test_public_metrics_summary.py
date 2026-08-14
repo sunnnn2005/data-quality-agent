@@ -107,6 +107,11 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["reviewer_submission_paths"] == 6
     assert payload["verified_project_outcomes"]["reviewer_submission_target_metrics"] == 6
     assert payload["verified_project_outcomes"]["reviewer_submission_required_fields"] == 23
+    assert payload["verified_project_outcomes"]["first_10_reviewer_sprint"] == 1
+    assert payload["verified_project_outcomes"]["first_10_reviewer_slots"] == 10
+    assert payload["verified_project_outcomes"]["first_10_reviewer_target_metrics"] == 6
+    assert payload["verified_project_outcomes"]["first_10_reviewer_not_sent"] == 10
+    assert payload["verified_project_outcomes"]["first_10_reviewer_completed"] == 0
     assert payload["verified_project_outcomes"]["outcome_collection_page"] == 1
     assert payload["verified_project_outcomes"]["outcome_collection_actions"] == 5
     assert payload["verified_project_outcomes"]["outcome_collection_submission_paths"] == 6
@@ -154,7 +159,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["recruiter_pitch_resume_bullets"] == 3
     assert payload["verified_project_outcomes"]["recruiter_pitch_target_roles"] == 4
     assert payload["verified_project_outcomes"]["application_evidence_pack"] == 1
-    assert payload["verified_project_outcomes"]["application_evidence_links"] == 44
+    assert payload["verified_project_outcomes"]["application_evidence_links"] == 45
     assert payload["verified_project_outcomes"]["github_discovery_profile"] == 1
     assert payload["verified_project_outcomes"]["github_discovery_topics"] == 16
     assert payload["verified_project_outcomes"]["github_discovery_reviewer_entrypoints"] == 6
@@ -337,10 +342,11 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         "Outcome collection page with 5 next actions, 6 submission paths, 23 required evidence fields, 0 confirmed users, 0 feedback items, and 0 GitHub stars"
         in payload["resume_safe_signals"]
     )
-    assert "44 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
+    assert "45 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
     assert any("GitHub discovery profile with 16 precise topics" in signal for signal in payload["resume_safe_signals"])
     assert any("Pilot launch control room with 4 public issue threads" in signal for signal in payload["resume_safe_signals"])
     assert any("Resume outcome adjudication report with 5 outcome categories" in signal for signal in payload["resume_safe_signals"])
+    assert any("First-10 reviewer sprint with 10 public evidence slots" in signal for signal in payload["resume_safe_signals"])
     assert any("Resume claim upgrade ledger with 6 outcome metrics" in signal for signal in payload["resume_safe_signals"])
     assert any("Reviewer share kit with 5 copy-ready messages" in signal for signal in payload["resume_safe_signals"])
     assert any("Business impact ledger with 0 accepted business-impact signals" in signal for signal in payload["resume_safe_signals"])

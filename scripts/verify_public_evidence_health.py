@@ -507,6 +507,27 @@ PUBLIC_CHECKS = [
         "evidence_type": "json",
     },
     {
+        "id": "first-10-reviewer-sprint",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/first-10-reviewer-sprint.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "sprint_name": "first_10_external_reviewer_sprint",
+            "slot_count": 10,
+            "not_sent_count": 10,
+            "completed_count": 0,
+            "target_metric_count": 6,
+        },
+        "expected_text": "CI-verified first-10 reviewer sprint",
+        "expected_texts": [
+            "slot_07_ai_engineer_review",
+            "slot_09_public_star_if_useful",
+            "github_stars",
+            "zero sent outreach",
+            "zero upgraded outcome claims",
+        ],
+        "evidence_type": "json",
+    },
+    {
         "id": "feedback-intake-quality",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/feedback-intake-quality.json",
         "expected_json": {"project": "Data Quality Agent", "required_section_count": 5, "captured_field_count": 5},

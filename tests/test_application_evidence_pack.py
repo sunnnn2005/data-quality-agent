@@ -11,7 +11,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     markdown = render_markdown(payload)
 
     assert verification["application_evidence_pack_verified"] is True
-    assert len(payload["application_links"]) == 44
+    assert len(payload["application_links"]) == 45
     assert "reviewer_share_kit" in payload["application_links"]
     assert "business_data_replay_packet" in payload["application_links"]
     assert "business_replay_demo" in payload["application_links"]
@@ -37,6 +37,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert "public_reviewer_call" in payload["application_links"]
     assert "resume_claim_upgrade_ledger" in payload["application_links"]
     assert "github_discovery_profile" in payload["application_links"]
+    assert "first_10_reviewer_sprint" in payload["application_links"]
     assert len(payload["resume_bullets"]) == 3
     assert payload["verified_outcome_numbers"]["passing_tests"] == 150
     assert payload["verified_outcome_numbers"]["verified_resume_claims"] == 84
@@ -85,6 +86,10 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert payload["verified_outcome_numbers"]["resume_outcome_next_actions_needed"] == 5
     assert payload["verified_outcome_numbers"]["reviewer_submission_paths"] == 6
     assert payload["verified_outcome_numbers"]["reviewer_submission_required_fields"] == 23
+    assert payload["verified_outcome_numbers"]["first_10_reviewer_slots"] == 10
+    assert payload["verified_outcome_numbers"]["first_10_reviewer_target_metrics"] == 6
+    assert payload["verified_outcome_numbers"]["first_10_reviewer_not_sent"] == 10
+    assert payload["verified_outcome_numbers"]["first_10_reviewer_completed"] == 0
     assert payload["verified_outcome_numbers"]["public_reviewer_call_segments"] == 3
     assert payload["verified_outcome_numbers"]["public_reviewer_call_outreach_tasks"] == 8
     assert payload["verified_outcome_numbers"]["public_reviewer_call_evidence_fields"] == 23

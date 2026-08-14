@@ -1,0 +1,204 @@
+{
+  "blocked_resume_claims": [
+    "users",
+    "customer feedback",
+    "business impact",
+    "AI Engineer external review",
+    "GitHub star growth"
+  ],
+  "completed_count": 0,
+  "current_counts": {
+    "ai_engineer_review_items": 0,
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "github_stars": 0,
+    "reproducible_feedback_items": 0
+  },
+  "generated_by": "scripts/build_first_10_reviewer_sprint.py",
+  "not_sent_count": 10,
+  "project": "Data Quality Agent",
+  "purpose": "Turn the zero-user and zero-feedback baseline into a 10-slot reviewer sprint that can produce resume-safe public evidence without inflating current outcomes.",
+  "resume_safe_summary": "Published a CI-verified first-10 reviewer sprint with 10 public evidence slots, 6 target metrics, zero sent outreach, and zero upgraded outcome claims.",
+  "resume_status": "first_10_sprint_ready_not_claimable",
+  "slot_count": 10,
+  "slots": [
+    {
+      "acceptance_evidence": [
+        "demo path tried",
+        "specific feedback",
+        "permission to count publicly"
+      ],
+      "ask": "Try the public demo and report one confusing or useful workflow detail.",
+      "counts_only_after": "A non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.",
+      "entry_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "id": "slot_01_ds_peer_demo",
+      "reviewer_profile": "UC Davis data science peer",
+      "source_task_id": "review_uc_davis_ds_peer_demo",
+      "status": "not_sent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_metric": "external_feedback_items"
+    },
+    {
+      "acceptance_evidence": [
+        "reviewed URL",
+        "engineering feedback",
+        "permission to count publicly"
+      ],
+      "ask": "Review setup clarity, README flow, and whether the project looks runnable.",
+      "counts_only_after": "A non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.",
+      "entry_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "id": "slot_02_swe_peer_demo",
+      "reviewer_profile": "student software engineer peer",
+      "source_task_id": "review_student_swe_peer_demo",
+      "status": "not_sent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_metric": "external_feedback_items"
+    },
+    {
+      "acceptance_evidence": [
+        "command or URL used",
+        "observed result",
+        "environment summary"
+      ],
+      "ask": "Run the local replay path and confirm whether the report is reproducible.",
+      "counts_only_after": "A non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent",
+      "id": "slot_03_local_replay",
+      "reviewer_profile": "engineer comfortable with Docker or local setup",
+      "source_task_id": "review_local_replay_engineer",
+      "status": "not_sent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md",
+      "target_metric": "reproducible_feedback_items"
+    },
+    {
+      "acceptance_evidence": [
+        "path used",
+        "observed result",
+        "permission to count as external use"
+      ],
+      "ask": "Confirm the exact path used and whether the result was understandable.",
+      "counts_only_after": "A non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-feedback-packet.md",
+      "id": "slot_04_confirmed_use",
+      "reviewer_profile": "reviewer who opened the demo or ran the repo",
+      "source_task_id": "review_confirmed_external_use",
+      "status": "not_sent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_metric": "confirmed_external_users"
+    },
+    {
+      "acceptance_evidence": [
+        "anonymized workflow",
+        "data-quality problem",
+        "business impact"
+      ],
+      "ask": "Submit one anonymized data-quality problem this agent should handle.",
+      "counts_only_after": "A non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md",
+      "id": "slot_05_data_analyst_case",
+      "reviewer_profile": "data analyst or analytics student",
+      "source_task_id": "review_data_analyst_business_case",
+      "status": "not_sent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "target_metric": "business_case_feedback_items"
+    },
+    {
+      "acceptance_evidence": [
+        "workflow affected",
+        "decision risk",
+        "permission to count anonymized case"
+      ],
+      "ask": "Describe one workflow where bad data would cause a wrong operational decision.",
+      "counts_only_after": "A non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md",
+      "id": "slot_06_operator_case",
+      "reviewer_profile": "small-business operator or operations teammate",
+      "source_task_id": "review_operator_business_case",
+      "status": "not_sent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "target_metric": "business_case_feedback_items"
+    },
+    {
+      "acceptance_evidence": [
+        "inspected implementation path",
+        "AI-agent signal feedback",
+        "permission to count publicly"
+      ],
+      "ask": "Inspect the LLM tool-calling loop, guardrails, and evidence trail for AI Engineer credibility.",
+      "counts_only_after": "A non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md",
+      "id": "slot_07_ai_engineer_review",
+      "reviewer_profile": "AI engineer, mentor, or ML systems reviewer",
+      "source_task_id": "review_ai_engineer_agent_readiness",
+      "status": "not_sent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+      "target_metric": "ai_engineer_review_items"
+    },
+    {
+      "acceptance_evidence": [
+        "contributor-readiness feedback",
+        "suggested improvement",
+        "permission to count publicly"
+      ],
+      "ask": "Review whether a first-time contributor can understand and run the project.",
+      "counts_only_after": "A non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.",
+      "entry_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "id": "slot_08_open_source_review",
+      "reviewer_profile": "open-source maintainer or GitHub contributor",
+      "source_task_id": "review_open_source_maintainer",
+      "status": "not_sent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_metric": "external_feedback_items"
+    },
+    {
+      "acceptance_evidence": [
+        "public GitHub star count above zero",
+        "no paid or traded engagement"
+      ],
+      "ask": "Star or fork only if the project is genuinely useful; no traded or fake engagement.",
+      "counts_only_after": "A non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent",
+      "id": "slot_09_public_star_if_useful",
+      "reviewer_profile": "reviewer who finds the repo useful enough to save",
+      "source_task_id": "star_or_fork_if_useful",
+      "status": "not_sent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/stargazers",
+      "target_metric": "github_stars"
+    },
+    {
+      "acceptance_evidence": [
+        "independent run path",
+        "observed result",
+        "permission to count public run evidence"
+      ],
+      "ask": "Run either the public demo or local replay and submit an independent observed result.",
+      "counts_only_after": "A non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.",
+      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-quickstart.md",
+      "id": "slot_10_second_replay",
+      "reviewer_profile": "second technical reviewer for independent reproducibility",
+      "source_task_id": "confirm_external_run",
+      "status": "not_sent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md",
+      "target_metric": "reproducible_feedback_items"
+    }
+  ],
+  "sprint_name": "first_10_external_reviewer_sprint",
+  "success_thresholds": [
+    "1 accepted confirmed external user issue",
+    "3 accepted external feedback issues",
+    "1 accepted reproducible run issue",
+    "1 accepted anonymized business case",
+    "1 accepted AI Engineer review issue",
+    "1 organic public GitHub star or fork"
+  ],
+  "target_counts": {
+    "ai_engineer_review_items": 1,
+    "business_case_feedback_items": 2,
+    "confirmed_external_users": 1,
+    "external_feedback_items": 3,
+    "github_stars": 1,
+    "reproducible_feedback_items": 2
+  },
+  "target_metric_count": 6
+}

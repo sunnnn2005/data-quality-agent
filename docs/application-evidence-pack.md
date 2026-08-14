@@ -52,6 +52,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 - Pilot Evidence Quicklink: [https://sunnnn2005.github.io/data-quality-agent/pilot-evidence-quicklink.html](https://sunnnn2005.github.io/data-quality-agent/pilot-evidence-quicklink.html)
 - Pilot Launch Control Room: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/pilot-launch-control-room.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/pilot-launch-control-room.md)
 - Resume Outcome Adjudication: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-outcome-adjudication.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-outcome-adjudication.md)
+- First 10 Reviewer Sprint: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/first-10-reviewer-sprint.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/first-10-reviewer-sprint.md)
 
 ## Verified Outcome Numbers
 
@@ -132,6 +133,10 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Resume Outcome Adjudication Categories | 5 |
 | Resume Outcome Adjudication Blocked Categories | 5 |
 | Resume Outcome Adjudication Claimable Categories | 0 |
+| First 10 Reviewer Slots | 10 |
+| First 10 Reviewer Target Metrics | 6 |
+| First 10 Reviewer Not Sent | 10 |
+| First 10 Reviewer Completed | 0 |
 | Real Model Run Commands | 5 |
 | Real Model Evidence Fields | 15 |
 | Real Model Capture Required Fields | 17 |

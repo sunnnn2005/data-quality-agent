@@ -31,6 +31,7 @@ REVIEWER_OUTREACH_STATUS_BOARD_PATH = ROOT / "docs" / "reviewer-outreach-status-
 RESUME_OUTCOME_METRICS_PATH = ROOT / "docs" / "resume-outcome-metrics.json"
 RESUME_OUTCOME_ACTION_CHECKLIST_PATH = ROOT / "docs" / "resume-outcome-action-checklist.json"
 REVIEWER_SUBMISSION_HUB_PATH = ROOT / "docs" / "reviewer-submission-hub.json"
+FIRST_10_REVIEWER_SPRINT_PATH = ROOT / "docs" / "first-10-reviewer-sprint.json"
 OUTCOME_COLLECTION_PATH = ROOT / "docs" / "outcome-collection.json"
 PUBLIC_REVIEWER_CALL_PATH = ROOT / "docs" / "public-reviewer-call.json"
 REVIEWER_SHARE_KIT_PATH = ROOT / "docs" / "reviewer-share-kit.json"
@@ -74,7 +75,7 @@ RESUME_OUTCOME_ADJUDICATION_PATH = ROOT / "docs" / "resume-outcome-adjudication.
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 SCORECARD_REVIEWER_PATH_COUNT = 23
-APPLICATION_EVIDENCE_LINK_COUNT = 44
+APPLICATION_EVIDENCE_LINK_COUNT = 45
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -109,6 +110,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     resume_outcome_metrics = load_json(RESUME_OUTCOME_METRICS_PATH)
     resume_outcome_action_checklist = load_json(RESUME_OUTCOME_ACTION_CHECKLIST_PATH)
     reviewer_submission_hub = load_json(REVIEWER_SUBMISSION_HUB_PATH)
+    first_10_sprint = load_json(FIRST_10_REVIEWER_SPRINT_PATH)
     outcome_collection = load_json(OUTCOME_COLLECTION_PATH)
     public_reviewer_call = load_json(PUBLIC_REVIEWER_CALL_PATH)
     reviewer_share_kit = load_json(REVIEWER_SHARE_KIT_PATH)
@@ -271,6 +273,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "reviewer_submission_paths": reviewer_submission_hub["submission_path_count"],
             "reviewer_submission_target_metrics": reviewer_submission_hub["target_metric_count"],
             "reviewer_submission_required_fields": reviewer_submission_hub["total_required_evidence_fields"],
+            "first_10_reviewer_sprint": 1,
+            "first_10_reviewer_slots": first_10_sprint["slot_count"],
+            "first_10_reviewer_target_metrics": first_10_sprint["target_metric_count"],
+            "first_10_reviewer_not_sent": first_10_sprint["not_sent_count"],
+            "first_10_reviewer_completed": first_10_sprint["completed_count"],
             "outcome_collection_page": 1,
             "outcome_collection_actions": outcome_collection["tracked_action_count"],
             "outcome_collection_submission_paths": outcome_collection["submission_path_count"],
@@ -585,6 +592,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{reviewer_submission_hub['total_required_evidence_fields']} required evidence fields, and zero current outcome claims upgraded"
             ),
             (
+                f"First-10 reviewer sprint with {first_10_sprint['slot_count']} public evidence slots, "
+                f"{first_10_sprint['target_metric_count']} target metrics, "
+                f"{first_10_sprint['not_sent_count']} not-sent outreach slots, and zero upgraded outcome claims"
+            ),
+            (
                 f"Outcome collection page with {outcome_collection['tracked_action_count']} next actions, "
                 f"{outcome_collection['submission_path_count']} submission paths, "
                 f"{outcome_collection['required_evidence_field_count']} required evidence fields, "
@@ -863,6 +875,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Reviewer submission paths | {outcomes["reviewer_submission_paths"]} |
 | Reviewer submission target metrics | {outcomes["reviewer_submission_target_metrics"]} |
 | Reviewer submission required fields | {outcomes["reviewer_submission_required_fields"]} |
+| First 10 reviewer sprint | {outcomes["first_10_reviewer_sprint"]} |
+| First 10 reviewer slots | {outcomes["first_10_reviewer_slots"]} |
+| First 10 reviewer target metrics | {outcomes["first_10_reviewer_target_metrics"]} |
+| First 10 reviewer not-sent entries | {outcomes["first_10_reviewer_not_sent"]} |
+| First 10 reviewer completed entries | {outcomes["first_10_reviewer_completed"]} |
 | Outcome collection page | {outcomes["outcome_collection_page"]} |
 | Outcome collection actions | {outcomes["outcome_collection_actions"]} |
 | Outcome collection submission paths | {outcomes["outcome_collection_submission_paths"]} |
@@ -1142,6 +1159,11 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "reviewer_submission_paths": 6,
         "reviewer_submission_target_metrics": 6,
         "reviewer_submission_required_fields": 23,
+        "first_10_reviewer_sprint": 1,
+        "first_10_reviewer_slots": 10,
+        "first_10_reviewer_target_metrics": 6,
+        "first_10_reviewer_not_sent": 10,
+        "first_10_reviewer_completed": 0,
         "outcome_collection_page": 1,
         "outcome_collection_actions": 5,
         "outcome_collection_submission_paths": 6,
@@ -1195,7 +1217,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 44,
+        "application_evidence_links": 45,
         "github_discovery_profile": 1,
         "github_discovery_topics": 16,
         "github_discovery_reviewer_entrypoints": 6,

@@ -35,6 +35,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "pilot-evidence-quicklink",
         "pilot-launch-control-room",
         "resume-outcome-adjudication",
+        "first-10-reviewer-sprint",
         "feedback-intake-quality",
         "business-data-replay-packet",
         "business-replay-demo",
@@ -122,6 +123,12 @@ def test_public_evidence_health_requires_core_public_signals():
     assert adjudication["expected_json"]["claimable_category_count"] == 0
     assert adjudication["expected_json"]["blocked_category_count"] == 5
     assert "exact public evidence required" in adjudication["expected_texts"]
+    sprint = next(check for check in PUBLIC_CHECKS if check["id"] == "first-10-reviewer-sprint")
+    assert sprint["url"].endswith("/first-10-reviewer-sprint.json")
+    assert sprint["expected_json"]["slot_count"] == 10
+    assert sprint["expected_json"]["target_metric_count"] == 6
+    assert sprint["expected_json"]["completed_count"] == 0
+    assert "github_stars" in sprint["expected_texts"]
     outreach = next(check for check in PUBLIC_CHECKS if check["id"] == "external-reviewer-outreach-tracker")
     assert outreach["url"].endswith("/external-reviewer-outreach-tracker.json")
     assert outreach["expected_json"]["queue_count"] == 3
