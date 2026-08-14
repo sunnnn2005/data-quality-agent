@@ -1,5 +1,5 @@
 {
-  "check_count": 107,
+  "check_count": 109,
   "checks": [
     {
       "evidence_type": "html",
@@ -259,6 +259,28 @@
       "verified_fields": [
         "scenario_count"
       ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "llm-value-comparison",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/llm-value-comparison.json",
+      "verified_fields": [
+        "absolute_recall_lift",
+        "adaptive_strategy_average_recall",
+        "fixed_generic_average_recall",
+        "improved_scenario_count",
+        "project",
+        "scenario_count"
+      ]
+    },
+    {
+      "evidence_type": "html",
+      "id": "llm-value-comparison-page",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://sunnnn2005.github.io/data-quality-agent/llm-value-comparison.html"
     },
     {
       "evidence_type": "json",
@@ -1196,6 +1218,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 107,
+  "passed_count": 109,
   "status": "PASS"
 }
