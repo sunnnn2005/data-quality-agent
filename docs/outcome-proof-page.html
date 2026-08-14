@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Outcome Proof Page</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0e1116; --panel: #161b22; --line: #303847; --text: #f5f7fb; --muted: #aeb7c8; --pink: #ff2d6f; --green: #42d392; --amber: #ffd166; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
+    main { max-width: 1120px; margin: 0 auto; padding: 48px 20px 64px; }
+    h1 { font-size: 48px; margin: 0 0 12px; letter-spacing: 0; }
+    h2 { font-size: 20px; margin: 0 0 10px; letter-spacing: 0; }
+    p { color: var(--muted); line-height: 1.55; }
+    .lede { max-width: 780px; font-size: 18px; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 28px 0; }
+    .stat, article { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
+    .stat strong { display: block; font-size: 30px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 18px 0 34px; }
+    .eyebrow { color: var(--green); font-weight: 800; margin: 0 0 8px; }
+    .blocked { color: var(--amber); }
+    .action { color: var(--pink); }
+    a { color: #7cc7ff; font-weight: 700; }
+    .button { display: inline-block; margin-top: 8px; background: var(--pink); color: white; text-decoration: none; padding: 10px 14px; border-radius: 6px; }
+    .rule { border-top: 1px solid var(--line); padding-top: 20px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Outcome Proof Page</h1>
+  <p class="lede">A public, resume-safe proof page for Data Quality Agent. Verified signals are separated from blocked future outcome claims, and every reviewer action points to a public evidence path.</p>
+  <section class="stats">
+    <div class="stat"><strong>6</strong><span>verified proof cards</span></div>
+    <div class="stat"><strong>6</strong><span>blocked future claims</span></div>
+    <div class="stat"><strong>5</strong><span>reviewer action paths</span></div>
+    <div class="stat"><strong>90</strong><span>public health checks</span></div>
+  </section>
+  <h2>Verified Now</h2>
+  <section class="grid"><article>
+  <p class="eyebrow">Verified now</p>
+  <h2>Public launch</h2>
+  <p>Published a public LLM data-quality agent demo with release v0.3.0 and GHCR container packaging.</p>
+  <a href="https://sunnnn2005.github.io/data-quality-agent/">View evidence</a>
+</article><article>
+  <p class="eyebrow">Verified now</p>
+  <h2>CI verification</h2>
+  <p>Maintained 212 passing tests covering agent behavior, APIs, evidence gates, and resume-safe metrics.</p>
+  <a href="https://github.com/sunnnn2005/data-quality-agent/actions">View evidence</a>
+</article><article>
+  <p class="eyebrow">Verified now</p>
+  <h2>AI Engineer readiness</h2>
+  <p>Documented 8 implemented AI Engineer signals across tool calling, guardrails, structured output, evidence traces, and evaluation.</p>
+  <a href="https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-readiness.md">View evidence</a>
+</article><article>
+  <p class="eyebrow">Verified now</p>
+  <h2>Public discovery traffic</h2>
+  <p>Captured public GitHub interest in the rolling 14-day window: 9 views, 3 unique visitors, 79 clones, and 50 unique cloners without counting them as users.</p>
+  <a href="https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md">View evidence</a>
+</article><article>
+  <p class="eyebrow">Verified now</p>
+  <h2>Public availability</h2>
+  <p>Verified 4/4 public project surfaces and 3/3 main-branch workflows in a generated availability snapshot without claiming production SLA.</p>
+  <a href="https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-availability-snapshot.md">View evidence</a>
+</article><article>
+  <p class="eyebrow">Verified now</p>
+  <h2>Business problem casebook</h2>
+  <p>Converted a support-operations CSV export into a verified data-quality casebook with 4 business risks, 5 evidence-backed findings, 3 ranked root-cause hypotheses, and 4 remediation owner handoffs.</p>
+  <a href="https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md">View evidence</a>
+</article></section>
+  <h2>Blocked Until Evidence</h2>
+  <section class="grid"><article>
+  <p class="eyebrow blocked">Blocked future claim</p>
+  <h2>confirmed_external_users</h2>
+  <p><strong>0/1</strong> collected. Remaining: 1.</p>
+  <p>A non-owner public GitHub issue confirms the path tried and includes permission to count.</p>
+</article><article>
+  <p class="eyebrow blocked">Blocked future claim</p>
+  <h2>external_feedback_items</h2>
+  <p><strong>0/3</strong> collected. Remaining: 3.</p>
+  <p>Public feedback issues include role, path tried, outcome, improvement request, and permission.</p>
+</article><article>
+  <p class="eyebrow blocked">Blocked future claim</p>
+  <h2>reproducible_feedback_items</h2>
+  <p><strong>0/1</strong> collected. Remaining: 1.</p>
+  <p>A public issue includes command or URL evidence, expected result, actual result, and environment.</p>
+</article><article>
+  <p class="eyebrow blocked">Blocked future claim</p>
+  <h2>business_case_feedback_items</h2>
+  <p><strong>0/1</strong> collected. Remaining: 1.</p>
+  <p>A public business-case issue includes anonymized schema, quality failure, impact, and reviewer role.</p>
+</article><article>
+  <p class="eyebrow blocked">Blocked future claim</p>
+  <h2>ai_engineer_review_items</h2>
+  <p><strong>0/1</strong> collected. Remaining: 1.</p>
+  <p>A non-owner public review issue lists inspected paths and grants permission to count.</p>
+</article><article>
+  <p class="eyebrow blocked">Blocked future claim</p>
+  <h2>github_stars</h2>
+  <p><strong>0/5</strong> collected. Remaining: 5.</p>
+  <p>GitHub public star count and docs/adoption-metrics.json both show at least 5 stars.</p>
+</article></section>
+  <h2>Help Unlock Real Outcomes</h2>
+  <section class="grid"><article>
+  <p class="eyebrow action">Reviewer action</p>
+  <h2>demo_feedback_review</h2>
+  <p>classmate, club member, or engineer who can try the public demo</p>
+  <a class="button" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md">Open evidence path</a>
+</article><article>
+  <p class="eyebrow action">Reviewer action</p>
+  <h2>business_data_replay</h2>
+  <p>data analyst, data engineer, or operations teammate with an anonymized CSV workflow</p>
+  <a class="button" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md">Open evidence path</a>
+</article><article>
+  <p class="eyebrow action">Reviewer action</p>
+  <h2>ai_engineer_review</h2>
+  <p>AI engineer, ML engineer, or senior CS student familiar with LLM agents</p>
+  <a class="button" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md">Open evidence path</a>
+</article><article>
+  <p class="eyebrow action">Reviewer action</p>
+  <h2>business_case_review</h2>
+  <p>someone who has worked with support, billing, ecommerce, or operations data</p>
+  <a class="button" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md">Open evidence path</a>
+</article><article>
+  <p class="eyebrow action">Reviewer action</p>
+  <h2>ethical_star_or_fork</h2>
+  <p>developer who inspected the repo, demo, tests, or Docker run and genuinely wants to follow it</p>
+  <a class="button" href="https://github.com/sunnnn2005/data-quality-agent">Open evidence path</a>
+</article></section>
+  <section class="rule">
+    <h2>Counting Rule</h2>
+    <p>A resume outcome is upgraded only after public, non-owner, permissioned, redacted evidence passes the evidence gate. Traffic, self-authored planning issues, and outreach attempts do not count as users, feedback, business validation, or stars.</p>
+  </section>
+</main>
+</body>
+</html>

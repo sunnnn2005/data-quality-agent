@@ -34,6 +34,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Public demo | [sunnnn2005.github.io/data-quality-agent](https://sunnnn2005.github.io/data-quality-agent/) |
 | 8-minute review page | [`docs/review.html`](docs/review.html) gives reviewers the shortest public path from demo inspection to GitHub feedback |
 | Outcome collection page | [`docs/outcome-collection.html`](docs/outcome-collection.html) gives reviewers one public page for 5 next actions, 6 submission paths, 24 evidence fields, and current zero-count outcome baselines |
+| Outcome proof page | [`docs/outcome-proof-page.html`](docs/outcome-proof-page.html) separates 6 verified resume-safe proof cards from 6 blocked future outcome cards and gives reviewers 5 evidence actions |
 | Outcome sprint plan | [`docs/outcome-sprint-plan.md`](docs/outcome-sprint-plan.md) maps 5 target outcome metrics to a five-day execution sprint, real reviewer actions, public evidence gates, and zero resume upgrades until accepted non-owner evidence exists |
 | One-click evidence links | [`docs/one-click-evidence-links.html`](docs/one-click-evidence-links.html) gives reviewers 4 prefilled public GitHub issue links for AI Engineer review, confirmed external use, business-case validation, and external feedback while keeping accepted evidence and resume upgrades at zero |
 | Homepage conversion paths | [`docs/index.html`](docs/index.html) routes reviewers directly to external-run, demo-feedback, business-case, AI-review, and ethical star/fork evidence paths without counting unverified outcomes |
@@ -43,7 +44,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | First 10 outreach execution log | [`docs/first-10-outreach-execution-log.md`](docs/first-10-outreach-execution-log.md) turns the 10 public reviewer issue entrypoints into 10 copy-ready manual outreach messages with follow-up timing, evidence fields, and zero claimable outcomes |
 | Public release | [`v0.3.0`](docs/releases/v0.3.0.md) release notes and GitHub Release |
 | Container image | `ghcr.io/sunnnn2005/data-quality-agent:latest` published from `main` |
-| Test suite | 210 automated tests passing locally and in GitHub Actions |
+| Test suite | 212 automated tests passing locally and in GitHub Actions |
 | Live project scorecard | [`docs/live-project-scorecard.md`](docs/live-project-scorecard.md) gives reviewers one page for the demo, release, container, CI, claims, agent capabilities, and honest adoption baselines |
 | Launch evidence snapshot | [`docs/launch-evidence-snapshot.md`](docs/launch-evidence-snapshot.md) gives recruiters 5 public project surfaces, availability/workflow health, GitHub stats, AI review path, and blocked adoption claims in one artifact |
 | AI Engineer readiness | [`docs/ai-engineer-readiness.md`](docs/ai-engineer-readiness.md) maps the project to 8 implemented AI skill signals, 1 partial signal, and 1 not-claimed signal for AI Engineer Intern applications |

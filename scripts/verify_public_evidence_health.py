@@ -36,6 +36,7 @@ PUBLIC_CHECKS = [
             "reviewer-funnel-board.md",
             "reviewer-invitation-kit.md",
             "external-reviewer-request-pack.md",
+            "outcome-proof-page.html",
             "automated tests passing locally and in CI",
         ],
         "evidence_type": "source",
@@ -52,7 +53,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "210 passing CI tests",
+            "212 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -111,7 +112,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 210},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 212},
         "evidence_type": "json",
     },
     {
@@ -126,6 +127,38 @@ PUBLIC_CHECKS = [
             "Action checklist",
         ],
         "evidence_type": "html",
+    },
+    {
+        "id": "outcome-proof-page",
+        "url": "https://sunnnn2005.github.io/data-quality-agent/outcome-proof-page.html",
+        "expected_text": "Outcome Proof Page",
+        "expected_texts": [
+            "Verified Now",
+            "Blocked Until Evidence",
+            "Help Unlock Real Outcomes",
+            "Open evidence path",
+            "Traffic, self-authored planning issues, and outreach attempts do not count",
+        ],
+        "evidence_type": "html",
+    },
+    {
+        "id": "outcome-proof-page-artifact",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-proof-page.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "claimable_card_count": 6,
+            "blocked_card_count": 6,
+            "reviewer_action_count": 5,
+        },
+        "expected_text": "verified resume-safe proof cards",
+        "expected_texts": [
+            "public, non-owner",
+            "outreach attempts do not count",
+            "confirmed_external_users",
+            "github_stars",
+            "ethical_star_or_fork",
+        ],
+        "evidence_type": "json",
     },
     {
         "id": "openapi-contract",

@@ -11,6 +11,8 @@ def test_public_evidence_health_requires_core_public_signals():
         "outcome-evidence-manifest",
         "adoption-metrics",
         "outcome-collection-page",
+        "outcome-proof-page",
+        "outcome-proof-page-artifact",
         "incident-pattern-memory",
         "agent-observability",
         "agent-safety-boundaries",
@@ -77,6 +79,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "reviewer-feedback-packet.md",
         "reviewer-funnel-board.md",
         "reviewer-invitation-kit.md",
+        "outcome-proof-page.html",
         "automated tests passing locally and in CI",
     } <= set(feedback_entrypoints["expected_texts"])
     external_ledger = next(check for check in PUBLIC_CHECKS if check["id"] == "external-review-evidence-ledger")
@@ -175,6 +178,16 @@ def test_public_evidence_health_requires_core_public_signals():
     assert outcome_collection["expected_text"] == "Turn reviews into resume-safe evidence"
     assert "Submit Evidence" in outcome_collection["expected_texts"]
     assert "Do not post raw customer data" in outcome_collection["expected_texts"]
+    proof_page = next(check for check in PUBLIC_CHECKS if check["id"] == "outcome-proof-page")
+    assert proof_page["url"].endswith("/outcome-proof-page.html")
+    assert proof_page["expected_text"] == "Outcome Proof Page"
+    assert "Help Unlock Real Outcomes" in proof_page["expected_texts"]
+    proof_artifact = next(check for check in PUBLIC_CHECKS if check["id"] == "outcome-proof-page-artifact")
+    assert proof_artifact["url"].endswith("/outcome-proof-page.json")
+    assert proof_artifact["expected_json"]["claimable_card_count"] == 6
+    assert proof_artifact["expected_json"]["blocked_card_count"] == 6
+    assert proof_artifact["expected_json"]["reviewer_action_count"] == 5
+    assert "ethical_star_or_fork" in proof_artifact["expected_texts"]
     invitation = next(check for check in PUBLIC_CHECKS if check["id"] == "reviewer-invitation-kit")
     assert invitation["expected_json"]["invitation_count"] == 6
     assert invitation["expected_json"]["public_evidence_path_count"] == 5
