@@ -18,7 +18,7 @@ def test_ai_engineer_readiness_maps_agent_work_to_resume_safe_signals():
     assert payload["evidence_counts"]["business_replay_rows"] == 8
     assert payload["evidence_counts"]["business_replay_findings"] == 5
     assert payload["evidence_counts"]["real_model_capture_accepted_runs"] == 0
-    assert payload["evidence_counts"]["application_evidence_links"] == 49
+    assert payload["evidence_counts"]["application_evidence_links"] == 50
     assert "AI Engineer Intern" in markdown
     assert "OpenAI-compatible" in payload["resume_bullet"]
     assert "tool calling" in payload["readiness_summary"].lower()

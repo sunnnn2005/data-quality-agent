@@ -76,10 +76,11 @@ REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 RESUME_CLAIM_UPGRADE_LEDGER_PATH = ROOT / "docs" / "resume-claim-upgrade-ledger.json"
 RESUME_OUTCOME_ADJUDICATION_PATH = ROOT / "docs" / "resume-outcome-adjudication.json"
 RESUME_OUTCOME_SCOREBOARD_PATH = ROOT / "docs" / "resume-outcome-scoreboard.json"
+EVIDENCE_ACCEPTANCE_CHECKLIST_PATH = ROOT / "docs" / "evidence-acceptance-checklist.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 SCORECARD_REVIEWER_PATH_COUNT = 23
-APPLICATION_EVIDENCE_LINK_COUNT = 48
+APPLICATION_EVIDENCE_LINK_COUNT = 50
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -159,6 +160,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     claim_upgrade = load_json(RESUME_CLAIM_UPGRADE_LEDGER_PATH)
     adjudication = load_json(RESUME_OUTCOME_ADJUDICATION_PATH)
     outcome_scoreboard = load_json(RESUME_OUTCOME_SCOREBOARD_PATH)
+    evidence_acceptance = load_json(EVIDENCE_ACCEPTANCE_CHECKLIST_PATH)
     verified_outcomes = outcome["verified_outcomes"]
     return {
         "project": "Data Quality Agent",
@@ -383,6 +385,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "resume_outcome_scoreboard_remaining_evidence": outcome_scoreboard["reviewer_funnel"][
                 "remaining_evidence_items"
             ],
+            "evidence_acceptance_checklist": 1,
+            "evidence_acceptance_items": evidence_acceptance["acceptance_item_count"],
+            "evidence_acceptance_accepted_issues": evidence_acceptance["accepted_issue_count"],
+            "evidence_acceptance_rejected_issues": evidence_acceptance["rejected_issue_count"],
             "ai_engineer_review_intake": 1,
             "ai_engineer_review_paths": ai_engineer_review_intake["review_path_count"],
             "ai_engineer_review_questions": ai_engineer_review_intake["review_question_count"],
@@ -1025,6 +1031,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Resume outcome scoreboard claimable now | {outcomes["resume_outcome_scoreboard_claimable_now"]} |
 | Resume outcome scoreboard blocked claims | {outcomes["resume_outcome_scoreboard_blocked"]} |
 | Resume outcome scoreboard remaining evidence | {outcomes["resume_outcome_scoreboard_remaining_evidence"]} |
+| Evidence acceptance checklist | {outcomes["evidence_acceptance_checklist"]} |
+| Evidence acceptance items | {outcomes["evidence_acceptance_items"]} |
+| Evidence acceptance accepted issues | {outcomes["evidence_acceptance_accepted_issues"]} |
+| Evidence acceptance rejected issues | {outcomes["evidence_acceptance_rejected_issues"]} |
 | AI Engineer review intake | {outcomes["ai_engineer_review_intake"]} |
 | AI Engineer review paths | {outcomes["ai_engineer_review_paths"]} |
 | AI Engineer review questions | {outcomes["ai_engineer_review_questions"]} |
@@ -1303,7 +1313,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 48,
+        "application_evidence_links": 50,
         "github_discovery_profile": 1,
         "github_discovery_topics": 16,
         "github_discovery_reviewer_entrypoints": 6,
@@ -1324,6 +1334,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "resume_outcome_scoreboard_claimable_now": 3,
         "resume_outcome_scoreboard_blocked": 6,
         "resume_outcome_scoreboard_remaining_evidence": 7,
+        "evidence_acceptance_checklist": 1,
+        "evidence_acceptance_items": 6,
+        "evidence_acceptance_accepted_issues": 0,
+        "evidence_acceptance_rejected_issues": 14,
         "ai_engineer_review_intake": 1,
         "ai_engineer_review_paths": 6,
         "ai_engineer_review_questions": 6,

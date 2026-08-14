@@ -1,0 +1,134 @@
+{
+  "acceptance_item_count": 6,
+  "acceptance_items": [
+    {
+      "current_count": 0,
+      "evidence_gate": "A non-owner public review issue lists inspected paths and grants permission to count.",
+      "future_resume_line": "Received external AI Engineer review of the tool-calling loop, guardrails, structured output, and evidence trail.",
+      "metric": "ai_engineer_review_items",
+      "remaining_to_threshold": 1,
+      "required_count": 1,
+      "required_fields": [
+        "implementation paths inspected",
+        "strongest AI-agent signal",
+        "least credible gap",
+        "permission sentence if the reviewer allows the evidence to count"
+      ],
+      "review_path": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md",
+      "reviewer_situation": "I can review the agent architecture",
+      "status": "blocked_until_public_evidence",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md"
+    },
+    {
+      "current_count": 0,
+      "evidence_gate": "A non-owner public GitHub issue confirms the path tried and includes permission to count.",
+      "future_resume_line": "Validated the data-quality LLM agent with 1 external reviewer who ran the public demo or local repo.",
+      "metric": "confirmed_external_users",
+      "remaining_to_threshold": 1,
+      "required_count": 1,
+      "required_fields": [
+        "command or URL used",
+        "observed result",
+        "environment",
+        "permission sentence if the reviewer allows the evidence to count"
+      ],
+      "review_path": "https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html",
+      "reviewer_situation": "I can confirm I tried it",
+      "status": "blocked_until_public_evidence",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md"
+    },
+    {
+      "current_count": 0,
+      "evidence_gate": "A public issue includes command or URL evidence, expected result, actual result, and environment.",
+      "future_resume_line": "Converted 1 reproducible external run report into an evidence-backed fix backlog.",
+      "metric": "reproducible_feedback_items",
+      "remaining_to_threshold": 1,
+      "required_count": 1,
+      "required_fields": [
+        "endpoint or command used",
+        "dataset shape without raw rows",
+        "report status and finding count",
+        "selected tools shown in the trace"
+      ],
+      "review_path": "https://github.com/sunnnn2005/data-quality-agent",
+      "reviewer_situation": "I can run the project",
+      "status": "blocked_until_public_evidence",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md"
+    },
+    {
+      "current_count": 0,
+      "evidence_gate": "A public business-case issue includes anonymized schema, quality failure, impact, and reviewer role.",
+      "future_resume_line": "Reviewed the agent against 1 anonymized real-world data-quality workflow and mapped the resulting risks.",
+      "metric": "business_case_feedback_items",
+      "remaining_to_threshold": 1,
+      "required_count": 1,
+      "required_fields": [
+        "anonymized workflow",
+        "data-quality problem",
+        "business impact",
+        "permission sentence if the reviewer allows the evidence to count"
+      ],
+      "review_path": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-case-intake.md",
+      "reviewer_situation": "I can describe a real messy-data problem",
+      "status": "blocked_until_public_evidence",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md"
+    },
+    {
+      "current_count": 0,
+      "evidence_gate": "Public feedback issues include role, path tried, outcome, improvement request, and permission.",
+      "future_resume_line": "Collected 3 public reviewer feedback items and converted them into prioritized product fixes.",
+      "metric": "external_feedback_items",
+      "remaining_to_threshold": 3,
+      "required_count": 3,
+      "required_fields": [
+        "exact demo path opened",
+        "one useful or confusing workflow detail",
+        "permission sentence if the reviewer allows the evidence to count"
+      ],
+      "review_path": "https://sunnnn2005.github.io/data-quality-agent/",
+      "reviewer_situation": "I only have 5 minutes",
+      "status": "blocked_until_public_evidence",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md"
+    },
+    {
+      "current_count": 0,
+      "evidence_gate": "GitHub public star count and docs/adoption-metrics.json both show at least 5 stars.",
+      "future_resume_line": "Reached 5 organic GitHub stars after publishing a reproducible LLM agent demo and evidence pack.",
+      "metric": "github_stars",
+      "remaining_to_threshold": 5,
+      "required_count": 5,
+      "required_fields": [
+        "public GitHub star count reaches threshold",
+        "docs/adoption-metrics.json records the same public count",
+        "no paid, traded, or fake engagement"
+      ],
+      "review_path": "https://github.com/sunnnn2005/data-quality-agent",
+      "reviewer_situation": "Someone genuinely finds the repo useful enough to star it",
+      "status": "blocked_until_public_evidence",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/stargazers"
+    }
+  ],
+  "accepted_issue_count": 0,
+  "current_public_counts": {
+    "ai_engineer_review_items": 0,
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "github_forks": 1,
+    "github_stars": 0,
+    "reproducible_feedback_items": 0
+  },
+  "generated_by": "scripts/build_evidence_acceptance_checklist.py",
+  "manual_counting_rule": "Do not increase any outcome metric until a non-owner public GitHub issue includes permission, contains no private data, and passes the external reviewer evidence gate.",
+  "not_claimed": [
+    "external users",
+    "external feedback",
+    "real business validation",
+    "external AI Engineer review",
+    "GitHub stars"
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Turn every blocked resume outcome into a concrete acceptance checklist, so stronger claims are added only after public, non-owner, permissioned, redacted evidence exists.",
+  "rejected_issue_count": 14,
+  "resume_safe_summary": "Published an evidence acceptance checklist mapping 6 blocked resume outcome metrics to required public fields, submission URLs, evidence gates, and future resume lines while preserving zero accepted external evidence."
+}

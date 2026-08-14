@@ -11,7 +11,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     markdown = render_markdown(payload)
 
     assert verification["application_evidence_pack_verified"] is True
-    assert len(payload["application_links"]) == 49
+    assert len(payload["application_links"]) == 50
     assert "reviewer_share_kit" in payload["application_links"]
     assert "business_data_replay_packet" in payload["application_links"]
     assert "business_replay_demo" in payload["application_links"]

@@ -51,6 +51,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 - Reviewer Share Kit: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-share-kit.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-share-kit.md)
 - Resume Claim Upgrade Ledger: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-claim-upgrade-ledger.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-claim-upgrade-ledger.md)
 - Resume Outcome Scoreboard: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-outcome-scoreboard.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-outcome-scoreboard.md)
+- Evidence Acceptance Checklist: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/evidence-acceptance-checklist.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/evidence-acceptance-checklist.md)
 - Github Discovery Profile: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-discovery-profile.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-discovery-profile.md)
 - Pilot Evidence Quicklink: [https://sunnnn2005.github.io/data-quality-agent/pilot-evidence-quicklink.html](https://sunnnn2005.github.io/data-quality-agent/pilot-evidence-quicklink.html)
 - Pilot Launch Control Room: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/pilot-launch-control-room.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/pilot-launch-control-room.md)
@@ -135,6 +136,9 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Resume Outcome Scoreboard Claimable Now | 3 |
 | Resume Outcome Scoreboard Blocked | 6 |
 | Resume Outcome Scoreboard Remaining Evidence | 7 |
+| Evidence Acceptance Items | 6 |
+| Evidence Acceptance Accepted Issues | 0 |
+| Evidence Acceptance Rejected Issues | 14 |
 | Github Discovery Topics | 16 |
 | Github Discovery Reviewer Entrypoints | 6 |
 | Pilot Evidence Quicklink Actions | 4 |

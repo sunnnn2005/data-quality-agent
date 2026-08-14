@@ -190,7 +190,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 48 |
+| Application evidence links | 50 |
 | GitHub discovery profile | 1 |
 | GitHub discovery topics | 16 |
 | GitHub discovery reviewer entrypoints | 6 |
@@ -211,6 +211,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Resume outcome scoreboard claimable now | 3 |
 | Resume outcome scoreboard blocked claims | 6 |
 | Resume outcome scoreboard remaining evidence | 7 |
+| Evidence acceptance checklist | 1 |
+| Evidence acceptance items | 6 |
+| Evidence acceptance accepted issues | 0 |
+| Evidence acceptance rejected issues | 14 |
 | AI Engineer review intake | 1 |
 | AI Engineer review paths | 6 |
 | AI Engineer review questions | 6 |
@@ -352,7 +356,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 23 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
-- 48 application evidence links in a recruiter-ready evidence pack
+- 50 application evidence links in a recruiter-ready evidence pack
 - GitHub discovery profile with 16 precise topics, 6 reviewer entrypoints, public homepage metadata, and zero-star baseline
 - Pilot evidence quicklink with 4 short reviewer actions, 17 required evidence fields, 4 target outcome metrics, and zero-count baselines
 - Pilot launch control room with 4 public issue threads, 5 launch gates, 4 target outcome metrics, and 3 reviewer-send paths
