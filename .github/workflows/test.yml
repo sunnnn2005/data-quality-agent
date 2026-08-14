@@ -146,6 +146,8 @@ jobs:
         run: python scripts/build_first_outcome_evidence_request.py
       - name: Verify first reviewer send kit
         run: python scripts/build_first_reviewer_send_kit.py
+      - name: Verify outcome launch day tracker
+        run: python scripts/build_outcome_launch_day_tracker.py
       - name: Verify OpenAPI contract artifact
         run: python scripts/build_openapi_artifact.py
       - name: Verify feedback metrics artifact
