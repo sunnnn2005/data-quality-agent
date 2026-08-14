@@ -1,5 +1,5 @@
 {
-  "check_count": 111,
+  "check_count": 112,
   "checks": [
     {
       "evidence_type": "html",
@@ -839,6 +839,19 @@
     },
     {
       "evidence_type": "json",
+      "id": "real-model-run-request-pack",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/real-model-run-request-pack.json",
+      "verified_fields": [
+        "acceptance_condition_count",
+        "current_real_model_runs",
+        "project",
+        "resume_unlock_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
       "id": "live-project-scorecard",
       "passed": true,
       "status_code": 200,
@@ -1239,6 +1252,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 111,
+  "passed_count": 112,
   "status": "PASS"
 }

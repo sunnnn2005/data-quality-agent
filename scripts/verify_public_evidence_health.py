@@ -877,7 +877,7 @@ PUBLIC_CHECKS = [
     {
         "id": "public-traction-dashboard",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-traction-dashboard.json",
-        "expected_json": {"project": "Data Quality Agent", "traction_surface_count": 4, "growth_channel_count": 20},
+        "expected_json": {"project": "Data Quality Agent", "traction_surface_count": 4, "growth_channel_count": 21},
         "expected_text": "not_claimable_yet",
         "expected_texts": ["public_demo", "feedback_issue_template", "GitHub star growth beyond the current public count"],
         "evidence_type": "json",
