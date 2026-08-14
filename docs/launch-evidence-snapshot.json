@@ -63,7 +63,7 @@
   "public_availability": {
     "available_endpoint_count": 4,
     "endpoint_count": 4,
-    "max_latency_ms": 3984,
+    "max_latency_ms": 250,
     "successful_workflow_count": 3,
     "workflow_count": 3
   },

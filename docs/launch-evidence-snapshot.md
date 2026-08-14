@@ -20,7 +20,7 @@ This generated artifact gives recruiters and technical reviewers one place to ve
 | Endpoint Count | 4 |
 | Successful Workflow Count | 3 |
 | Workflow Count | 3 |
-| Max Latency Ms | 3984 |
+| Max Latency Ms | 250 |
 
 ## GitHub Public Stats
 

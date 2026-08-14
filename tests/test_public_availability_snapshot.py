@@ -50,13 +50,21 @@ def test_public_availability_snapshot_tracks_reachability_without_uptime_claims(
             },
         ],
         workflow_runs=[
-            {"id": "ci", "workflow": "test.yml", "status": "completed", "conclusion": "success", "verified": True},
+            {
+                "id": "ci",
+                "workflow": "test.yml",
+                "status": "completed",
+                "conclusion": "success",
+                "verified": True,
+                "url": "https://github.com/example/actions/runs/1",
+            },
             {
                 "id": "public_evidence_health",
                 "workflow": "public-evidence-health.yml",
                 "status": "completed",
                 "conclusion": "success",
                 "verified": True,
+                "url": "https://github.com/example/actions/runs/2",
             },
             {
                 "id": "container_publish",
@@ -64,6 +72,7 @@ def test_public_availability_snapshot_tracks_reachability_without_uptime_claims(
                 "status": "completed",
                 "conclusion": "success",
                 "verified": True,
+                "url": "https://github.com/example/actions/runs/3",
             },
         ],
     )
@@ -73,11 +82,18 @@ def test_public_availability_snapshot_tracks_reachability_without_uptime_claims(
     assert verification["public_availability_snapshot_verified"] is True
     assert payload["available_endpoint_count"] == 4
     assert payload["successful_workflow_count"] == 3
+    assert payload["public_evidence_ready"] is True
+    assert len(payload["deployment_evidence"]) == 4
+    assert payload["deployment_evidence"][0]["id"] == "public_demo_live"
+    assert payload["deployment_evidence"][0]["status"] == "available"
+    assert payload["deployment_evidence"][1]["url"].endswith("/1")
+    assert "Published a public GitHub Pages demo" in payload["resume_safe_deployment_line"]
     assert payload["max_latency_ms"] == 180
     assert "production uptime SLA" in payload["resume_policy"]
     assert "active users" in payload["resume_policy"]
     assert "Public Availability Snapshot" in markdown
     assert "Available public endpoints | 4 / 4" in markdown
+    assert "Deployment Evidence" in markdown
 
 
 def test_public_availability_snapshot_allows_partial_network_failure():
@@ -125,13 +141,21 @@ def test_public_availability_snapshot_allows_partial_network_failure():
             },
         ],
         workflow_runs=[
-            {"id": "ci", "workflow": "test.yml", "status": "completed", "conclusion": "success", "verified": True},
+            {
+                "id": "ci",
+                "workflow": "test.yml",
+                "status": "completed",
+                "conclusion": "success",
+                "verified": True,
+                "url": "https://github.com/example/actions/runs/1",
+            },
             {
                 "id": "public_evidence_health",
                 "workflow": "public-evidence-health.yml",
                 "status": "completed",
                 "conclusion": "success",
                 "verified": True,
+                "url": "https://github.com/example/actions/runs/2",
             },
             {
                 "id": "container_publish",
@@ -139,6 +163,7 @@ def test_public_availability_snapshot_allows_partial_network_failure():
                 "status": "completed",
                 "conclusion": "failure",
                 "verified": False,
+                "url": "https://github.com/example/actions/runs/3",
             },
         ],
     )
@@ -146,6 +171,9 @@ def test_public_availability_snapshot_allows_partial_network_failure():
 
     assert verification["available_endpoint_count"] == 3
     assert verification["successful_workflow_count"] == 2
+    assert payload["public_evidence_ready"] is False
+    assert "did not pass" in payload["resume_safe_deployment_line"]
+    assert payload["deployment_evidence"][0]["status"] == "unavailable"
     assert payload["not_claimed"] == [
         "production uptime SLA",
         "active users",

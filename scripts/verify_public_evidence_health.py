@@ -947,6 +947,9 @@ PUBLIC_CHECKS = [
         "expected_texts": [
             "available_endpoint_count",
             "successful_workflow_count",
+            "deployment_evidence",
+            "resume_safe_deployment_line",
+            "Published a public GitHub Pages demo",
             "production uptime SLA",
             "active users",
         ],

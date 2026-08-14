@@ -124,6 +124,42 @@ def fetch_latest_workflow_runs() -> list[dict[str, Any]]:
     return runs
 
 
+def build_deployment_evidence(endpoints: list[dict[str, Any]], workflows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    endpoints_by_id = {item["id"]: item for item in endpoints}
+    workflows_by_id = {item["id"]: item for item in workflows}
+    public_demo = endpoints_by_id.get("public_demo", {})
+    return [
+        {
+            "id": "public_demo_live",
+            "label": "Public GitHub Pages demo",
+            "url": public_demo.get("url"),
+            "status": "available" if public_demo.get("available") else "unavailable",
+            "evidence": f"HTTP {public_demo.get('status_code')}, latency {public_demo.get('latency_ms')} ms",
+        },
+        {
+            "id": "ci_verified",
+            "label": "Main-branch CI",
+            "url": workflows_by_id.get("ci", {}).get("url"),
+            "status": workflows_by_id.get("ci", {}).get("conclusion"),
+            "evidence": workflows_by_id.get("ci", {}).get("workflow"),
+        },
+        {
+            "id": "public_health_verified",
+            "label": "Public evidence health",
+            "url": workflows_by_id.get("public_evidence_health", {}).get("url"),
+            "status": workflows_by_id.get("public_evidence_health", {}).get("conclusion"),
+            "evidence": workflows_by_id.get("public_evidence_health", {}).get("workflow"),
+        },
+        {
+            "id": "container_publish_verified",
+            "label": "Container publish workflow",
+            "url": workflows_by_id.get("container_publish", {}).get("url"),
+            "status": workflows_by_id.get("container_publish", {}).get("conclusion"),
+            "evidence": workflows_by_id.get("container_publish", {}).get("workflow"),
+        },
+    ]
+
+
 def build_public_availability_snapshot(
     endpoint_results: list[dict[str, Any]] | None = None,
     workflow_runs: list[dict[str, Any]] | None = None,
@@ -133,6 +169,8 @@ def build_public_availability_snapshot(
     available_count = sum(1 for item in endpoints if item.get("available") is True)
     successful_workflow_count = sum(1 for item in workflows if item.get("verified") is True)
     latency_values = [item["latency_ms"] for item in endpoints if isinstance(item.get("latency_ms"), int)]
+    public_evidence_ready = available_count == len(endpoints) and successful_workflow_count == len(workflows)
+    deployment_evidence = build_deployment_evidence(endpoints, workflows)
     return {
         "project": "Data Quality Agent",
         "generated_by": "scripts/build_public_availability_snapshot.py",
@@ -146,9 +184,17 @@ def build_public_availability_snapshot(
         "max_latency_ms": max(latency_values) if latency_values else None,
         "endpoints": endpoints,
         "workflows": workflows,
+        "public_evidence_ready": public_evidence_ready,
+        "deployment_evidence": deployment_evidence,
         "resume_policy": (
             "This snapshot proves public entrypoint reachability and recent workflow health only. "
             "Do not claim production uptime SLA, active users, customer adoption, or paid availability monitoring from this artifact."
+        ),
+        "resume_safe_deployment_line": (
+            "Published a public GitHub Pages demo with reachable project surfaces and passing CI, public evidence health, "
+            "and container publish workflows at snapshot time."
+            if public_evidence_ready
+            else "Published project surfaces exist, but at least one endpoint or workflow did not pass at snapshot time."
         ),
         "resume_safe_summary": (
             f"Captured {available_count}/{len(endpoints)} reachable public project surfaces and "
@@ -175,6 +221,10 @@ def render_markdown(payload: dict[str, Any]) -> str:
         f"| {item['id']} | {item['workflow']} | {item.get('status')} | {item.get('conclusion')} | {item['verified']} |"
         for item in payload["workflows"]
     )
+    deployment_rows = "\n".join(
+        f"| {item['id']} | {item['label']} | {item.get('status')} | {item.get('evidence')} | {item.get('url') or '-'} |"
+        for item in payload["deployment_evidence"]
+    )
     not_claimed = "\n".join(f"- {item}" for item in payload["not_claimed"])
     return f"""# Public Availability Snapshot
 
@@ -200,9 +250,19 @@ This generated artifact captures whether the public demo and evidence surfaces a
 | --- | --- | --- | --- | --- |
 {workflows}
 
+## Deployment Evidence
+
+| Evidence | Surface | Status | Detail | URL |
+| --- | --- | --- | --- | --- |
+{deployment_rows}
+
 ## Resume Policy
 
 {payload["resume_policy"]}
+
+## Resume-Safe Deployment Line
+
+{payload["resume_safe_deployment_line"]}
 
 ## Resume-Safe Summary
 
@@ -231,6 +291,10 @@ def verify_public_availability_snapshot(payload: dict[str, Any]) -> dict[str, An
     for forbidden in ("production uptime SLA", "active users", "customer adoption"):
         if forbidden not in payload["resume_policy"]:
             raise AssertionError(f"availability policy must not claim {forbidden}")
+    if len(payload["deployment_evidence"]) != 4:
+        raise AssertionError("availability snapshot must include four deployment evidence entries")
+    if payload["public_evidence_ready"] is True and "Published a public GitHub Pages demo" not in payload["resume_safe_deployment_line"]:
+        raise AssertionError("availability snapshot must expose a resume-safe deployment line when ready")
     return {
         "public_availability_snapshot_verified": True,
         "available_endpoint_count": payload["available_endpoint_count"],

@@ -177,6 +177,8 @@ def test_public_evidence_health_requires_core_public_signals():
     assert "git-auto-commit-action" in refresh["expected_texts"]
     availability = next(check for check in PUBLIC_CHECKS if check["id"] == "public-availability-snapshot")
     assert availability["expected_json"]["endpoint_count"] == 4
+    assert "deployment_evidence" in availability["expected_texts"]
+    assert "resume_safe_deployment_line" in availability["expected_texts"]
     assert "production uptime SLA" in availability["expected_texts"]
     runnable = next(check for check in PUBLIC_CHECKS if check["id"] == "runnable-release-packet")
     assert "docker run" in runnable["expected_texts"]
