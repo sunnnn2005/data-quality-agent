@@ -73,6 +73,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "application-evidence-pack",
         "reviewer-funnel-board",
         "reviewer-invitation-kit",
+        "reviewer-outcome-sprint-calendar",
         "reviewer-send-queue",
         "reviewer-landing-page",
         "reviewer-outreach-console",
@@ -343,6 +344,17 @@ def test_public_evidence_health_requires_core_public_signals():
     assert "https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html" in invitation["expected_texts"]
     assert "\"accepted_issue_count\": 0" in invitation["expected_texts"]
     assert "\"claimable_resume_metric_count\": 0" in invitation["expected_texts"]
+    sprint_calendar = next(check for check in PUBLIC_CHECKS if check["id"] == "reviewer-outcome-sprint-calendar")
+    assert sprint_calendar["url"].endswith("/reviewer-outcome-sprint-calendar.json")
+    assert sprint_calendar["expected_json"]["sprint_day_count"] == 7
+    assert sprint_calendar["expected_json"]["send_day_count"] == 5
+    assert sprint_calendar["expected_json"]["target_metric_count"] == 5
+    assert sprint_calendar["expected_json"]["completion_criteria_count"] == 25
+    assert sprint_calendar["expected_json"]["current_sent_count"] == 0
+    assert sprint_calendar["expected_json"]["current_accepted_evidence_count"] == 0
+    assert sprint_calendar["expected_json"]["resume_claim_allowed_now"] is False
+    assert "ai_engineer_review_items" in sprint_calendar["expected_texts"]
+    assert "The calendar itself does not count as users" in sprint_calendar["expected_texts"]
     send_queue = next(check for check in PUBLIC_CHECKS if check["id"] == "reviewer-send-queue")
     assert send_queue["expected_json"]["queue_count"] == 5
     assert send_queue["expected_json"]["sent_count"] == 0

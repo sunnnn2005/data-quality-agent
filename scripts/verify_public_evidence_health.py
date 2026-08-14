@@ -70,7 +70,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "239 passing CI tests",
+            "241 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -192,7 +192,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 239},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 241},
         "evidence_type": "json",
     },
     {
@@ -1254,6 +1254,29 @@ PUBLIC_CHECKS = [
             "ai_engineer_review_items",
             "business_case_feedback_items",
             "explicit zero-feedback baselines",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "reviewer-outcome-sprint-calendar",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-outcome-sprint-calendar.json",
+        "expected_json": {
+            "sprint_day_count": 7,
+            "send_day_count": 5,
+            "target_metric_count": 5,
+            "completion_criteria_count": 25,
+            "current_sent_count": 0,
+            "current_accepted_evidence_count": 0,
+            "resume_claim_allowed_now": False,
+        },
+        "expected_text": "seven-day reviewer outcome sprint calendar",
+        "expected_texts": [
+            "ai_engineer_review_items",
+            "confirmed_external_users",
+            "business_case_feedback_items",
+            "External reviewer evidence gate marks the issue accepted",
+            "The calendar itself does not count as users",
+            "Only non-owner public GitHub issues accepted by the evidence gate can unlock outcome wording.",
         ],
         "evidence_type": "json",
     },

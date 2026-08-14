@@ -1,0 +1,152 @@
+{
+  "completion_criteria_count": 25,
+  "current_accepted_evidence_count": 0,
+  "current_public_issue_submitted_count": 0,
+  "current_sent_count": 0,
+  "day_cards": [
+    {
+      "claimable_now": false,
+      "completion_criteria": [
+        "Message sent through LinkedIn DM or mentor email.",
+        "Reviewer submits their own public GitHub issue or response URL.",
+        "Issue contains no private data, secrets, raw production rows, or customer identifiers.",
+        "Issue includes explicit permission to count the evidence publicly.",
+        "External reviewer evidence gate marks the issue accepted before any resume metric changes."
+      ],
+      "copy_ready_message": "Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/26. The ask is: Inspect the LLM tool-calling loop, guardrails, and evidence trail for AI Engineer credibility. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it. Shortest path if you do not want to read every doc: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html.",
+      "day": 1,
+      "follow_up_message": "Quick follow-up on the Data Quality Agent review request. The public slot is still here: https://github.com/sunnnn2005/data-quality-agent/issues/26. A short observed-result note is enough, and private data should not be included.",
+      "recommended_channel": "LinkedIn DM or mentor email",
+      "remaining_needed": 1,
+      "resume_unlock_after_accepted_evidence": "first public AI Engineer review of tool calling, structured output, guardrails, and evidence quality",
+      "reviewer_profile": "AI engineer, mentor, or ML systems reviewer",
+      "slot_id": "slot_07_ai_engineer_review",
+      "sprint_action": "Ask one AI/ML systems reviewer to inspect the agent loop, guardrails, traces, and AI Engineer readiness evidence.",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+      "target_metric": "ai_engineer_review_items",
+      "tracking_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/26"
+    },
+    {
+      "claimable_now": false,
+      "completion_criteria": [
+        "Message sent through class Discord, friend DM, or club Slack.",
+        "Reviewer submits their own public GitHub issue or response URL.",
+        "Issue contains no private data, secrets, raw production rows, or customer identifiers.",
+        "Issue includes explicit permission to count the evidence publicly.",
+        "External reviewer evidence gate marks the issue accepted before any resume metric changes."
+      ],
+      "copy_ready_message": "Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/23. The ask is: Confirm the exact path used and whether the result was understandable. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.",
+      "day": 2,
+      "follow_up_message": "Quick follow-up on the Data Quality Agent review request. The public slot is still here: https://github.com/sunnnn2005/data-quality-agent/issues/23. A short observed-result note is enough, and private data should not be included.",
+      "recommended_channel": "class Discord, friend DM, or club Slack",
+      "remaining_needed": 1,
+      "resume_unlock_after_accepted_evidence": "first confirmed non-owner external run of the public demo or repo",
+      "reviewer_profile": "reviewer who opened the demo or ran the repo",
+      "slot_id": "slot_04_confirmed_use",
+      "sprint_action": "Ask one peer to open the public demo or local quickstart and submit observed-result evidence.",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_metric": "confirmed_external_users",
+      "tracking_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/23"
+    },
+    {
+      "claimable_now": false,
+      "completion_criteria": [
+        "Message sent through GitHub issue comment, Discord, or DM to a developer comfortable with Docker.",
+        "Reviewer submits their own public GitHub issue or response URL.",
+        "Issue contains no private data, secrets, raw production rows, or customer identifiers.",
+        "Issue includes explicit permission to count the evidence publicly.",
+        "External reviewer evidence gate marks the issue accepted before any resume metric changes."
+      ],
+      "copy_ready_message": "Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/22. The ask is: Run the local replay path and confirm whether the report is reproducible. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.",
+      "day": 3,
+      "follow_up_message": "Quick follow-up on the Data Quality Agent review request. The public slot is still here: https://github.com/sunnnn2005/data-quality-agent/issues/22. A short observed-result note is enough, and private data should not be included.",
+      "recommended_channel": "GitHub issue comment, Discord, or DM to a developer comfortable with Docker",
+      "remaining_needed": 1,
+      "resume_unlock_after_accepted_evidence": "first reproducible local replay from a non-owner reviewer",
+      "reviewer_profile": "engineer comfortable with Docker or local setup",
+      "slot_id": "slot_03_local_replay",
+      "sprint_action": "Ask one developer to run the Docker/local replay path and report whether the result is reproducible.",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md",
+      "target_metric": "reproducible_feedback_items",
+      "tracking_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/22"
+    },
+    {
+      "claimable_now": false,
+      "completion_criteria": [
+        "Message sent through email or in-person ask to someone who has handled messy operational data.",
+        "Reviewer submits their own public GitHub issue or response URL.",
+        "Issue contains no private data, secrets, raw production rows, or customer identifiers.",
+        "Issue includes explicit permission to count the evidence publicly.",
+        "External reviewer evidence gate marks the issue accepted before any resume metric changes."
+      ],
+      "copy_ready_message": "Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/24. The ask is: Submit one anonymized data-quality problem this agent should handle. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.",
+      "day": 4,
+      "follow_up_message": "Quick follow-up on the Data Quality Agent review request. The public slot is still here: https://github.com/sunnnn2005/data-quality-agent/issues/24. A short observed-result note is enough, and private data should not be included.",
+      "recommended_channel": "email or in-person ask to someone who has handled messy operational data",
+      "remaining_needed": 1,
+      "resume_unlock_after_accepted_evidence": "first anonymized business-case validation tied to a real workflow",
+      "reviewer_profile": "data analyst or analytics student",
+      "slot_id": "slot_05_data_analyst_case",
+      "sprint_action": "Ask one data/ops reviewer for an anonymized real data-quality scenario and business impact mapping.",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "target_metric": "business_case_feedback_items",
+      "tracking_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/24"
+    },
+    {
+      "claimable_now": false,
+      "completion_criteria": [
+        "Message sent through LinkedIn DM, class Discord, or project channel.",
+        "Reviewer submits their own public GitHub issue or response URL.",
+        "Issue contains no private data, secrets, raw production rows, or customer identifiers.",
+        "Issue includes explicit permission to count the evidence publicly.",
+        "External reviewer evidence gate marks the issue accepted before any resume metric changes."
+      ],
+      "copy_ready_message": "Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/20. The ask is: Try the public demo and report one confusing or useful workflow detail. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.",
+      "day": 5,
+      "follow_up_message": "Quick follow-up on the Data Quality Agent review request. The public slot is still here: https://github.com/sunnnn2005/data-quality-agent/issues/20. A short observed-result note is enough, and private data should not be included.",
+      "recommended_channel": "LinkedIn DM, class Discord, or project channel",
+      "remaining_needed": 1,
+      "resume_unlock_after_accepted_evidence": "first specific external product feedback item",
+      "reviewer_profile": "UC Davis data science peer",
+      "slot_id": "slot_01_ds_peer_demo",
+      "sprint_action": "Ask one peer to leave product or README feedback after trying the demo.",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_metric": "external_feedback_items",
+      "tracking_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/20"
+    }
+  ],
+  "execution_commands": [
+    "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_07 --status sent --reviewer-contact '<name-or-handle>' --channel-used '<LinkedIn|email|Discord>'",
+    "python scripts/build_external_reviewer_evidence_gate.py",
+    "python scripts/verify_outcome_evidence.py"
+  ],
+  "follow_up_cards": [
+    {
+      "action": "Follow up with any reviewer who was contacted but has not submitted a public issue.",
+      "counts_as_resume_evidence": false,
+      "day": 6,
+      "success_condition": "At least one reviewer submits a public issue URL; still not claimable until the gate accepts it."
+    },
+    {
+      "action": "Run the external reviewer evidence gate and update resume outcome metrics only for accepted public issues.",
+      "counts_as_resume_evidence": false,
+      "day": 7,
+      "success_condition": "Accepted evidence count is greater than zero; otherwise keep all user/feedback/business-impact claims blocked."
+    }
+  ],
+  "follow_up_day_count": 2,
+  "generated_by": "scripts/build_reviewer_outcome_sprint_calendar.py",
+  "not_claimed": [
+    "The calendar itself does not count as users, feedback, business impact, stars, or accepted model runs.",
+    "Sent outreach and private replies are tracked but not resume-countable.",
+    "Only non-owner public GitHub issues accepted by the evidence gate can unlock outcome wording."
+  ],
+  "project": "Data Quality Agent",
+  "public_submission_path_count": 4,
+  "purpose": "Turn the reviewer send queue into a seven-day execution calendar that can produce real public evidence for resume outcomes without counting outreach attempts as users or feedback.",
+  "resume_claim_allowed_now": false,
+  "resume_safe_summary": "Published a seven-day reviewer outcome sprint calendar with 5 prioritized sends, 5 target metrics, 25 completion criteria, 0 sent messages, 0 accepted evidence, and no upgraded resume claims.",
+  "send_day_count": 5,
+  "sprint_day_count": 7,
+  "target_metric_count": 5
+}
