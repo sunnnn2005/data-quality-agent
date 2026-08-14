@@ -1,5 +1,5 @@
 {
-  "check_count": 104,
+  "check_count": 105,
   "checks": [
     {
       "evidence_type": "html",
@@ -14,6 +14,13 @@
       "passed": true,
       "status_code": 200,
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/index.html"
+    },
+    {
+      "evidence_type": "source",
+      "id": "readme-real-reviewer-tasks",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/README.md"
     },
     {
       "evidence_type": "json",
@@ -1167,6 +1174,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 104,
+  "passed_count": 105,
   "status": "PASS"
 }
