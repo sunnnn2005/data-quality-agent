@@ -248,14 +248,48 @@
       </article>
       <article class="card">
         <strong>Public footprint</strong>
-        <h2>13 issues · 1 fork</h2>
-        <p>GitHub issue count increased after opening the public review request.</p>
+        <h2>25 issues · 1 fork</h2>
+        <p>GitHub issue count includes public reviewer slots, feedback templates, and growth tasks.</p>
       </article>
       <article class="card">
         <strong>CI evidence</strong>
-        <h2>148 tests</h2>
+        <h2>192 tests</h2>
         <p>The repo verifies agent behavior, API routes, safety boundaries, and evidence artifacts.</p>
       </article>
+    </section>
+
+    <section class="panel">
+      <h2>Choose your review path</h2>
+      <p>
+        Pick the path closest to what you can honestly inspect. Each path opens a public GitHub issue template with
+        permission and no-private-data checks so the evidence can be counted only when it is real, redacted, and non-owner.
+      </p>
+      <div class="grid" aria-label="Low-friction reviewer paths">
+        <article class="card">
+          <strong>AI Engineer</strong>
+          <h2>Agent architecture</h2>
+          <p>Inspect tool calling, planning trace, guardrails, structured output, and PostgreSQL boundaries.</p>
+          <p><a class="button feedback" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md">Submit AI Engineer review</a></p>
+        </article>
+        <article class="card">
+          <strong>Demo user</strong>
+          <h2>Product feedback</h2>
+          <p>Open the public demo and leave one useful, confusing, or missing workflow detail.</p>
+          <p><a class="button" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md">Submit demo feedback</a></p>
+        </article>
+        <article class="card">
+          <strong>Reproducibility</strong>
+          <h2>Run evidence</h2>
+          <p>Run the local repo, container, CSV route, or PostgreSQL replay and submit observed output.</p>
+          <p><a class="button secondary" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md">Submit external run</a></p>
+        </article>
+        <article class="card">
+          <strong>Business case</strong>
+          <h2>Real workflow fit</h2>
+          <p>Share an anonymized data-quality scenario, expected impact, and whether the agent maps to it.</p>
+          <p><a class="button secondary" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md">Submit business case</a></p>
+        </article>
+      </div>
     </section>
 
     <section class="panel">

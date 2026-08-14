@@ -17,11 +17,16 @@ def verify_reviewer_landing_page() -> dict[str, int | str | bool]:
         "https://github.com/sunnnn2005/data-quality-agent/issues/17",
         "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
         "External feedback starts at zero",
-        "148 tests",
-        "13 issues",
+        "192 tests",
+        "25 issues",
         "1 fork",
         "external_feedback_items",
         "reproducible_feedback_items",
+        "Choose your review path",
+        "template=ai_engineer_review.md",
+        "template=external_run_review.md",
+        "template=business_case_review.md",
+        "permission and no-private-data checks",
         "Please do not post raw customer data",
     ]
     required_index_fragments = [
