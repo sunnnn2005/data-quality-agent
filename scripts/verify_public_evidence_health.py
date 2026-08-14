@@ -1276,15 +1276,16 @@ PUBLIC_CHECKS = [
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-metrics.json",
         "expected_json": {
             "project": "Data Quality Agent",
-            "tracked_outcome_count": 6,
+            "tracked_outcome_count": 7,
             "claimable_outcome_count": 0,
-            "blocked_outcome_count": 6,
+            "blocked_outcome_count": 7,
         },
         "expected_text": "not_claimable_yet",
         "expected_texts": [
             "confirmed_external_users",
             "external_feedback_items",
             "business_case_feedback_items",
+            "accepted_real_model_runs",
             "github_stars",
             "GitHub traffic is treated as repository interest, not as users.",
         ],
