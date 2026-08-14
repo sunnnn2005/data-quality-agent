@@ -6,9 +6,9 @@ Translate public reviewer evidence-gate results into clear resume decisions: wha
 
 | Metric | Value |
 | --- | ---: |
-| Evaluated public issues | 4 |
+| Evaluated public issues | 15 |
 | Accepted public issues | 0 |
-| Rejected public issues | 4 |
+| Rejected public issues | 15 |
 | Outcome categories | 5 |
 | Claimable external categories | 0 |
 | Blocked external categories | 5 |
@@ -31,6 +31,17 @@ Translate public reviewer evidence-gate results into clear resume decisions: wha
 | #17 | 8 | self-authored issue, contains sensitive-data risk terms, missing no-private-data checkbox |
 | #18 | 8 | self-authored issue, contains sensitive-data risk terms, missing no-private-data checkbox |
 | #19 | 8 | self-authored issue, contains sensitive-data risk terms, missing no-private-data checkbox |
+| #20 | 8 | self-authored issue, contains sensitive-data risk terms, missing no-private-data checkbox |
+| #21 | 8 | self-authored issue, contains sensitive-data risk terms, missing no-private-data checkbox |
+| #22 | 8 | self-authored issue, contains sensitive-data risk terms, missing no-private-data checkbox |
+| #23 | 8 | self-authored issue, contains sensitive-data risk terms, missing no-private-data checkbox |
+| #24 | 9 | self-authored issue, contains sensitive-data risk terms, missing business-case counting permission |
+| #25 | 9 | self-authored issue, contains sensitive-data risk terms, missing business-case counting permission |
+| #26 | 8 | self-authored issue, contains sensitive-data risk terms, missing no-private-data AI review checkbox |
+| #27 | 8 | self-authored issue, contains sensitive-data risk terms, missing no-private-data checkbox |
+| #29 | 8 | self-authored issue, contains sensitive-data risk terms, missing no-private-data checkbox |
+| #30 | 8 | self-authored issue, contains sensitive-data risk terms, missing no-private-data checkbox |
+| #31 | 14 | self-authored issue, contains sensitive-data risk terms, missing no-sensitive-data replay checkbox |
 
 ## Launch Control Room Linkage
 

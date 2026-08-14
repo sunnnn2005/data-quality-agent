@@ -211,7 +211,7 @@ def verify_community_growth_baseline(payload: dict[str, Any]) -> dict[str, Any]:
     expected_counts = {
         "stars": 0,
         "forks": 1,
-        "issues_total": 25,
+        "issues_total": 26,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
         "reproducible_feedback_items": 0,

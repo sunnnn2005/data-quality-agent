@@ -75,7 +75,7 @@
     ],
     "uniques": 301
   },
-  "generated_at": "2026-08-14T12:36:03.937099+00:00",
+  "generated_at": "2026-08-14T16:43:30.648891+00:00",
   "generated_by": "scripts/build_github_traffic_snapshot.py",
   "not_claimed": [
     "confirmed users from traffic alone",

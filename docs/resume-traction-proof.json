@@ -22,7 +22,7 @@
     },
     {
       "evidence": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml",
-      "resume_phrase": "Maintained 234 passing CI tests across agent, API, evidence, and safety checks.",
+      "resume_phrase": "Maintained 235 passing CI tests across agent, API, evidence, and safety checks.",
       "signal": "verified engineering quality",
       "status": "claimable"
     },
@@ -93,7 +93,7 @@
     "github_unique_cloners": 301,
     "github_unique_visitors": 3,
     "github_views": 9,
-    "issues_total": 25,
+    "issues_total": 26,
     "reproducible_feedback_items": 0,
     "stars": 0,
     "watchers": 0

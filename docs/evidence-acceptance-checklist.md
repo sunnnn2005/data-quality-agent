@@ -115,6 +115,7 @@ Required fields:
 
 | Metric | Count |
 | --- | ---: |
+| `accepted_real_model_runs` | 0 |
 | `ai_engineer_review_items` | 0 |
 | `available_public_endpoints` | 4 |
 | `business_case_feedback_items` | 0 |

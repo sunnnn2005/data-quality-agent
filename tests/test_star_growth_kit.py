@@ -13,7 +13,7 @@ def test_star_growth_kit_tracks_ethical_growth_without_inflating_stars():
     assert verification["star_growth_kit_verified"] is True
     assert payload["current_public_counts"]["stars"] == 0
     assert payload["current_public_counts"]["forks"] == 1
-    assert payload["current_public_counts"]["issues_total"] == 25
+    assert payload["current_public_counts"]["issues_total"] == 26
     assert payload["topic_readiness"]["ready"] is True
     assert len(payload["topic_readiness"]["required_topics"]) == 20
     assert "llm-agent" in payload["topic_readiness"]["current_topics"]

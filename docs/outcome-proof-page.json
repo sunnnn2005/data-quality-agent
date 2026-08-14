@@ -60,7 +60,7 @@
     {
       "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/actions",
       "label": "CI verification",
-      "resume_line": "Maintained 234 passing tests covering agent behavior, APIs, evidence gates, and resume-safe metrics."
+      "resume_line": "Maintained 235 passing tests covering agent behavior, APIs, evidence gates, and resume-safe metrics."
     },
     {
       "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-readiness.md",
@@ -85,6 +85,7 @@
   ],
   "counting_rule": "A resume outcome is upgraded only after public, non-owner, permissioned, redacted evidence passes the evidence gate. Traffic, self-authored planning issues, and outreach attempts do not count as users, feedback, business validation, or stars.",
   "current_public_counts": {
+    "accepted_real_model_runs": 0,
     "ai_engineer_review_items": 0,
     "available_public_endpoints": 4,
     "business_case_feedback_items": 0,
@@ -115,10 +116,10 @@
   ],
   "project": "Data Quality Agent",
   "proof_page_url": "https://sunnnn2005.github.io/data-quality-agent/outcome-proof-page.html",
-  "public_health_check_count": 111,
+  "public_health_check_count": 112,
   "public_health_status": "PASS",
   "purpose": "Give recruiters and external reviewers one public page that separates verified outcomes from blocked future claims and routes reviewers to the exact evidence actions that can unlock stronger resume metrics.",
-  "resume_safe_summary": "Published an outcome proof page with 6 verified resume-safe proof cards, 6 blocked future outcome cards, 5 reviewer action paths, and public evidence health at 111/111 PASS.",
+  "resume_safe_summary": "Published an outcome proof page with 6 verified resume-safe proof cards, 6 blocked future outcome cards, 5 reviewer action paths, and public evidence health at 112/112 PASS.",
   "reviewer_action_count": 5,
   "reviewer_actions": [
     {

@@ -71,6 +71,7 @@ Give reviewers one short public hub for submitting evidence that can turn zero-c
 | business_case_feedback_items | 0 | `not_claimable_yet` | Needs anonymized business-case issue evidence with explicit permission to count. |
 | ai_engineer_review_items | 0 | `not_claimable_yet` | Needs a non-owner AI Engineer review issue with inspected paths and permission to count. |
 | github_stars | 0 | `not_claimable_yet` | Needs public GitHub stars above zero; never buy, trade, or fake stars. |
+| accepted_real_model_runs | 0 | `not_claimable_yet` | Needs one accepted redacted real-model run issue with tool calls, tokens, latency, cost, and verification evidence. |
 
 ## Resume-Safe Summary
 
@@ -82,4 +83,5 @@ Published a CI-verified reviewer submission hub with 6 public submission paths, 
 - No customer feedback is claimed while external_feedback_items is zero.
 - No real business impact is claimed while business_case_feedback_items is zero.
 - No GitHub star growth is claimed while github_stars is zero.
+- No accepted real-model LLM run is claimed while accepted_real_model_runs is zero.
 - GitHub traffic is treated as repository interest, not as users.

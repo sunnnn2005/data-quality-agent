@@ -5,6 +5,7 @@
     "No customer feedback is claimed while external_feedback_items is zero.",
     "No real business impact is claimed while business_case_feedback_items is zero.",
     "No GitHub star growth is claimed while github_stars is zero.",
+    "No accepted real-model LLM run is claimed while accepted_real_model_runs is zero.",
     "GitHub traffic is treated as repository interest, not as users."
   ],
   "project": "Data Quality Agent",
@@ -101,6 +102,11 @@
   "target_metric_count": 6,
   "total_required_evidence_fields": 24,
   "tracked_outcome_status": {
+    "accepted_real_model_runs": {
+      "blocked_reason": "Needs one accepted redacted real-model run issue with tool calls, tokens, latency, cost, and verification evidence.",
+      "current_count": 0,
+      "resume_status": "not_claimable_yet"
+    },
     "ai_engineer_review_items": {
       "blocked_reason": "Needs a non-owner AI Engineer review issue with inspected paths and permission to count.",
       "current_count": 0,

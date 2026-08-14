@@ -45,7 +45,7 @@
   ],
   "claim_category_count": 5,
   "claimable_category_count": 0,
-  "evaluated_issue_count": 4,
+  "evaluated_issue_count": 15,
   "generated_by": "scripts/build_resume_outcome_adjudication.py",
   "launch_control_room": {
     "public_issue_thread_count": 4,
@@ -61,7 +61,7 @@
   ],
   "project": "Data Quality Agent",
   "purpose": "Translate public reviewer evidence-gate results into clear resume decisions: what can be claimed now, what remains blocked, and what public evidence would unlock each stronger outcome claim.",
-  "rejected_issue_count": 4,
+  "rejected_issue_count": 15,
   "rejected_issue_summary": [
     {
       "issue_number": 16,
@@ -98,8 +98,107 @@
         "contains sensitive-data risk terms",
         "missing no-private-data checkbox"
       ]
+    },
+    {
+      "issue_number": 20,
+      "reason_count": 8,
+      "top_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox"
+      ]
+    },
+    {
+      "issue_number": 21,
+      "reason_count": 8,
+      "top_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox"
+      ]
+    },
+    {
+      "issue_number": 22,
+      "reason_count": 8,
+      "top_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox"
+      ]
+    },
+    {
+      "issue_number": 23,
+      "reason_count": 8,
+      "top_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox"
+      ]
+    },
+    {
+      "issue_number": 24,
+      "reason_count": 9,
+      "top_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing business-case counting permission"
+      ]
+    },
+    {
+      "issue_number": 25,
+      "reason_count": 9,
+      "top_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing business-case counting permission"
+      ]
+    },
+    {
+      "issue_number": 26,
+      "reason_count": 8,
+      "top_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data AI review checkbox"
+      ]
+    },
+    {
+      "issue_number": 27,
+      "reason_count": 8,
+      "top_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox"
+      ]
+    },
+    {
+      "issue_number": 29,
+      "reason_count": 8,
+      "top_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox"
+      ]
+    },
+    {
+      "issue_number": 30,
+      "reason_count": 8,
+      "top_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox"
+      ]
+    },
+    {
+      "issue_number": 31,
+      "reason_count": 14,
+      "top_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-sensitive-data replay checkbox"
+      ]
     }
   ],
-  "rejected_issue_summary_count": 4,
+  "rejected_issue_summary_count": 15,
   "resume_safe_summary": "Published a CI-verified resume outcome adjudication report covering 5 outcome categories, 0 claimable external outcome categories, 5 blocked categories, and the exact public evidence required to unlock user, feedback, reproducible-run, business-validation, and AI-review resume claims."
 }

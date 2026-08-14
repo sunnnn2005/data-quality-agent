@@ -11,7 +11,7 @@ Keep resume outcome claims honest by separating verified accomplishments, active
 | Signal | Resume-Safe Line | Evidence |
 | --- | --- | --- |
 | public_launch | Published a public demo, container image, OpenAPI contract, and CI-verified project evidence pages. | [public_url_and_ci](https://sunnnn2005.github.io/data-quality-agent/) |
-| ci_quality | Maintained 234 passing tests across agent behavior, APIs, evidence gates, and safety checks. | [ci](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml) |
+| ci_quality | Maintained 235 passing tests across agent behavior, APIs, evidence gates, and safety checks. | [ci](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml) |
 | agent_implementation | Built an LLM tool-calling data-quality agent with controlled tools, structured reports, read-only PostgreSQL access, trace persistence, and evidence guardrails. | [source_and_docs](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-readiness.md) |
 | recruiter_evidence_pack | Published 50 recruiter-readable evidence links while separating blocked outcome claims from verified work. | [generated_artifact](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/application-evidence-pack.md) |
 

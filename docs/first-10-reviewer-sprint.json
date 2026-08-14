@@ -127,7 +127,7 @@
       "title": "First 10 reviewer: reviewer who finds the repo useful enough to save (github_stars)"
     },
     {
-      "body": "## Reviewer slot\n\n`slot_10_second_replay` - second technical reviewer for independent reproducibility\n\n## Ask\n\nRun either the public demo or local replay and submit an independent observed result.\n\n## Start here\n\nhttps://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-quickstart.md\n\n## Submit countable evidence here\n\nhttps://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md\n\n## Acceptance evidence\n\n- [ ] independent run path\n- [ ] observed result\n- [ ] permission to count public run evidence\n- [ ] I am not the repository owner.\n- [ ] I give permission for this public, redacted issue to be counted as project feedback/evidence.\n- [ ] I did not include private data, secrets, customer records, or proprietary information.\n\n## Counting rule\n\nA non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.\n",
+      "body": "## Reviewer slot\n\n`slot_10_second_replay` - second technical reviewer for independent reproducibility\n\n## Ask\n\nRun either the public demo or local replay and submit an independent observed result.\n\n## Start here\n\nhttps://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html\n\n## Submit countable evidence here\n\nhttps://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md\n\n## Acceptance evidence\n\n- [ ] independent run path\n- [ ] observed result\n- [ ] permission to count public run evidence\n- [ ] I am not the repository owner.\n- [ ] I give permission for this public, redacted issue to be counted as project feedback/evidence.\n- [ ] I did not include private data, secrets, customer records, or proprietary information.\n\n## Counting rule\n\nA non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.\n",
       "gh_command": "gh issue create --title \"First 10 reviewer: second technical reviewer for independent reproducibility (reproducible_feedback_items)\" --label \"reproducible,first-10-reviewer\" --body-file docs/first-10-issue-drafts/slot_10_second_replay.md",
       "issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/29",
       "labels": [
@@ -298,7 +298,7 @@
       ],
       "ask": "Run either the public demo or local replay and submit an independent observed result.",
       "counts_only_after": "A non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.",
-      "entry_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-quickstart.md",
+      "entry_url": "https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html",
       "id": "slot_10_second_replay",
       "reviewer_profile": "second technical reviewer for independent reproducibility",
       "source_task_id": "confirm_external_run",

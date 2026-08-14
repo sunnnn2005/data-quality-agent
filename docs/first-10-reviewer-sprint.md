@@ -179,7 +179,7 @@ Acceptance evidence:
 - Status: `not_sent`
 - Target metric: `reproducible_feedback_items`
 - Source task: `confirm_external_run`
-- Entry: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-quickstart.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-quickstart.md)
+- Entry: [https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html](https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html)
 - Submit evidence: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md)
 - Ask: Run either the public demo or local replay and submit an independent observed result.
 - Counts only after: A non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.

@@ -8,7 +8,7 @@ Run either the public demo or local replay and submit an independent observed re
 
 ## Start here
 
-https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-quickstart.md
+https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html
 
 ## Submit countable evidence here
 
