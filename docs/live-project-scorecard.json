@@ -35,10 +35,10 @@
     "agent_tools_allowed": 9,
     "implemented_agent_capabilities": 16,
     "openapi_required_endpoints": 6,
-    "passing_tests": 194,
+    "passing_tests": 195,
     "support_ticket_issue_categories": 4,
     "unsafe_postgres_queries_rejected": 3,
-    "verified_resume_claims": 86
+    "verified_resume_claims": 87
   },
   "live_footprint": {
     "confirmed_external_users": 0,
@@ -57,7 +57,7 @@
   "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
   "release": "v0.3.0",
   "repo": "https://github.com/sunnnn2005/data-quality-agent",
-  "resume_safe_summary": "Live project scorecard: public demo, v0.3.0 release, container image, 194 passing CI tests, 86 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
+  "resume_safe_summary": "Live project scorecard: public demo, v0.3.0 release, container image, 195 passing CI tests, 87 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
   "reviewer_paths": [
     {
       "label": "Try the public demo",

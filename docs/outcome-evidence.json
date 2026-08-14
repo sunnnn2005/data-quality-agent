@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 194,
-      "resume_signal": "194 passing CI tests",
+      "metric_value": 195,
+      "resume_signal": "195 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -839,6 +839,16 @@
       "resume_signal": "CI-verified resume outcome evidence ledger",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-evidence-ledger.json"
+    },
+    {
+      "claim": "The project publishes a pilot reviewer CRM that turns outcome evidence collection into 8 reviewer leads, 5 target metrics, and a 3-week evidence collection plan while preserving zero sent outreach, zero accepted public evidence, and zero resume upgrades.",
+      "evidence_type": "generated_artifact",
+      "id": "pilot-reviewer-crm",
+      "metric_name": "pilot_reviewer_crm",
+      "metric_value": 1,
+      "resume_signal": "CI-verified pilot reviewer CRM",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-reviewer-crm.json"
     }
   ],
   "not_claimed": [

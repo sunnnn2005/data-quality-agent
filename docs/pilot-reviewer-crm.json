@@ -1,0 +1,200 @@
+{
+  "accepted_public_evidence_count": 0,
+  "generated_by": "scripts/build_pilot_reviewer_crm.py",
+  "lead_count": 8,
+  "leads": [
+    {
+      "lead_id": "pilot_review_slot_07",
+      "next_action": "Send manually only after choosing a real reviewer.",
+      "priority": 1,
+      "recommended_channel": "LinkedIn DM or mentor email",
+      "record_sent_command": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_07 --status sent --reviewer-contact \"<real reviewer>\" --channel-used LinkedIn, email, or mentor message",
+      "resume_countable_now": false,
+      "review_context_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md",
+      "reviewer_segment": "AI engineer, mentor, or ML systems reviewer",
+      "slot_id": "review_slot_07",
+      "status": "not_sent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+      "target_metric": "ai_engineer_review_items",
+      "tracking_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/26",
+      "upgrade_gate": "Only upgrade after a non-owner public GitHub issue includes permission to count, no private data, and enough evidence for the external reviewer gate.",
+      "weekly_goal": "Get one technical reviewer to inspect the LLM agent loop and submit an AI Engineer review issue."
+    },
+    {
+      "lead_id": "pilot_review_slot_04",
+      "next_action": "Send manually only after choosing a real reviewer.",
+      "priority": 2,
+      "recommended_channel": "class Discord, friend DM, or club Slack",
+      "record_sent_command": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_04 --status sent --reviewer-contact \"<real reviewer>\" --channel-used LinkedIn, email, or mentor message",
+      "resume_countable_now": false,
+      "review_context_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-feedback-packet.md",
+      "reviewer_segment": "reviewer who tried demo or local repo",
+      "slot_id": "review_slot_04",
+      "status": "not_sent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_metric": "confirmed_external_users",
+      "tracking_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/23",
+      "upgrade_gate": "Only upgrade after a non-owner public GitHub issue includes permission to count, no private data, and enough evidence for the external reviewer gate.",
+      "weekly_goal": "Get one non-owner reviewer to open the demo or run the repo and confirm the path publicly."
+    },
+    {
+      "lead_id": "pilot_review_slot_03",
+      "next_action": "Send manually only after choosing a real reviewer.",
+      "priority": 3,
+      "recommended_channel": "GitHub issue comment, Discord, or DM to a developer comfortable with Docker",
+      "record_sent_command": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_03 --status sent --reviewer-contact \"<real reviewer>\" --channel-used LinkedIn, email, or mentor message",
+      "resume_countable_now": false,
+      "review_context_url": "https://github.com/sunnnn2005/data-quality-agent",
+      "reviewer_segment": "engineer comfortable with Docker or local setup",
+      "slot_id": "review_slot_03",
+      "status": "not_sent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md",
+      "target_metric": "reproducible_feedback_items",
+      "tracking_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/22",
+      "upgrade_gate": "Only upgrade after a non-owner public GitHub issue includes permission to count, no private data, and enough evidence for the external reviewer gate.",
+      "weekly_goal": "Get one reviewer to run the Docker/local path and paste command or URL evidence."
+    },
+    {
+      "lead_id": "pilot_review_slot_05",
+      "next_action": "Send manually only after choosing a real reviewer.",
+      "priority": 4,
+      "recommended_channel": "email or in-person ask to someone who has handled messy operational data",
+      "record_sent_command": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_05 --status sent --reviewer-contact \"<real reviewer>\" --channel-used LinkedIn, class Discord, club Slack, or direct message",
+      "resume_countable_now": false,
+      "review_context_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md",
+      "reviewer_segment": "data analyst or analytics student",
+      "slot_id": "review_slot_05",
+      "status": "not_sent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "target_metric": "business_case_feedback_items",
+      "tracking_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/24",
+      "upgrade_gate": "Only upgrade after a non-owner public GitHub issue includes permission to count, no private data, and enough evidence for the external reviewer gate.",
+      "weekly_goal": "Get one data or operations reviewer to map the demo to a real anonymized workflow."
+    },
+    {
+      "lead_id": "pilot_review_slot_06",
+      "next_action": "Send manually only after choosing a real reviewer.",
+      "priority": 4,
+      "recommended_channel": "email or in-person ask to someone who has handled messy operational data",
+      "record_sent_command": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_06 --status sent --reviewer-contact \"<real reviewer>\" --channel-used LinkedIn or email to someone who has seen messy CSV, support, sales, or operations data",
+      "resume_countable_now": false,
+      "review_context_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md",
+      "reviewer_segment": "small-business operator or operations teammate",
+      "slot_id": "review_slot_06",
+      "status": "not_sent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "target_metric": "business_case_feedback_items",
+      "tracking_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/24",
+      "upgrade_gate": "Only upgrade after a non-owner public GitHub issue includes permission to count, no private data, and enough evidence for the external reviewer gate.",
+      "weekly_goal": "Get one data or operations reviewer to map the demo to a real anonymized workflow."
+    },
+    {
+      "lead_id": "pilot_review_slot_01",
+      "next_action": "Send manually only after choosing a real reviewer.",
+      "priority": 5,
+      "recommended_channel": "LinkedIn DM, class Discord, or project channel",
+      "record_sent_command": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_01 --status sent --reviewer-contact \"<real reviewer>\" --channel-used LinkedIn, class Discord, club Slack, or direct message",
+      "resume_countable_now": false,
+      "review_context_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "reviewer_segment": "UC Davis data science peer",
+      "slot_id": "review_slot_01",
+      "status": "not_sent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_metric": "external_feedback_items",
+      "tracking_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/20",
+      "upgrade_gate": "Only upgrade after a non-owner public GitHub issue includes permission to count, no private data, and enough evidence for the external reviewer gate.",
+      "weekly_goal": "Collect concrete product feedback from a peer reviewer without counting private replies."
+    },
+    {
+      "lead_id": "pilot_review_slot_02",
+      "next_action": "Send manually only after choosing a real reviewer.",
+      "priority": 5,
+      "recommended_channel": "LinkedIn DM, class Discord, or project channel",
+      "record_sent_command": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_02 --status sent --reviewer-contact \"<real reviewer>\" --channel-used LinkedIn, class Discord, club Slack, or direct message",
+      "resume_countable_now": false,
+      "review_context_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "reviewer_segment": "student software engineer peer",
+      "slot_id": "review_slot_02",
+      "status": "not_sent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_metric": "external_feedback_items",
+      "tracking_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/20",
+      "upgrade_gate": "Only upgrade after a non-owner public GitHub issue includes permission to count, no private data, and enough evidence for the external reviewer gate.",
+      "weekly_goal": "Collect concrete product feedback from a peer reviewer without counting private replies."
+    },
+    {
+      "lead_id": "pilot_review_slot_08",
+      "next_action": "Send manually only after choosing a real reviewer.",
+      "priority": 5,
+      "recommended_channel": "LinkedIn DM, class Discord, or project channel",
+      "record_sent_command": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_08 --status sent --reviewer-contact \"<real reviewer>\" --channel-used GitHub discussion, maintainer DM, or project community channel",
+      "resume_countable_now": false,
+      "review_context_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "reviewer_segment": "open-source maintainer or GitHub contributor",
+      "slot_id": "review_slot_08",
+      "status": "not_sent",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_metric": "external_feedback_items",
+      "tracking_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/20",
+      "upgrade_gate": "Only upgrade after a non-owner public GitHub issue includes permission to count, no private data, and enough evidence for the external reviewer gate.",
+      "weekly_goal": "Collect concrete product feedback from a peer reviewer without counting private replies."
+    }
+  ],
+  "not_claimed": [
+    "No reviewer has been contacted until a real event is recorded.",
+    "No external user, feedback, business validation, AI review, or star-growth outcome is claimed.",
+    "No enterprise deployment is claimed."
+  ],
+  "operating_rules": [
+    "Do not enter private names into public files unless the reviewer explicitly wants public credit.",
+    "Do not count sent messages, private replies, or self-authored issues as outcome evidence.",
+    "Do not buy, trade, or pressure for GitHub stars.",
+    "Every upgraded resume claim must point to accepted public evidence.",
+    "Keep raw business rows, customer names, emails, phone numbers, tokens, and addresses out of public issues."
+  ],
+  "priority_metric_count": 5,
+  "project": "Data Quality Agent",
+  "purpose": "Turn outcome evidence collection into an executable reviewer CRM without fabricating reviewer names, private replies, users, feedback, or GitHub stars.",
+  "recorded_outreach_event_count": 0,
+  "resume_safe_summary": "Published a pilot reviewer CRM with 8 reviewer leads, 5 target outcome metrics, a 3-week evidence collection plan, 0 recorded sends, and 0 accepted public evidence items.",
+  "resume_upgrade_count": 0,
+  "sprint_plan": [
+    {
+      "goal": "Send the top AI Engineer review ask and one confirmed-user ask.",
+      "lead_ids": [
+        "pilot_review_slot_07",
+        "pilot_review_slot_04"
+      ],
+      "success_metric": "2 real sends recorded, 0 resume outcomes upgraded until public evidence exists.",
+      "week": 1
+    },
+    {
+      "goal": "Follow up on week 1 and send reproducible-run plus business-case asks.",
+      "lead_ids": [
+        "pilot_review_slot_03",
+        "pilot_review_slot_05",
+        "pilot_review_slot_06"
+      ],
+      "success_metric": "At least 1 public issue submitted or clear rejection reason recorded.",
+      "week": 2
+    },
+    {
+      "goal": "Collect remaining peer feedback and route public submissions through the evidence gate.",
+      "lead_ids": [
+        "pilot_review_slot_01",
+        "pilot_review_slot_02",
+        "pilot_review_slot_08"
+      ],
+      "success_metric": "Accepted evidence rollup remains the source of truth for any resume upgrade.",
+      "week": 3
+    }
+  ],
+  "target_counts": {
+    "ai_engineer_review_items": 1,
+    "business_case_feedback_items": 2,
+    "confirmed_external_users": 1,
+    "external_feedback_items": 3,
+    "reproducible_feedback_items": 1
+  },
+  "week_count": 3
+}
