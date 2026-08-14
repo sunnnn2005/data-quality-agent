@@ -523,7 +523,7 @@ PUBLIC_CHECKS = [
             "slot_07_ai_engineer_review",
             "slot_09_public_star_if_useful",
             "github_stars",
-            "draft_not_created",
+            "public_issue_created_not_sent",
             "first-10-issue-drafts",
             "zero sent outreach",
             "zero upgraded outcome claims",

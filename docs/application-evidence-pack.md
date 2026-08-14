@@ -134,6 +134,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Resume Outcome Adjudication Blocked Categories | 5 |
 | Resume Outcome Adjudication Claimable Categories | 0 |
 | First 10 Reviewer Slots | 10 |
+| First 10 Reviewer Public Issue Entrypoints | 10 |
 | First 10 Reviewer Target Metrics | 6 |
 | First 10 Reviewer Not Sent | 10 |
 | First 10 Reviewer Completed | 0 |

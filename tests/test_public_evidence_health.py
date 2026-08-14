@@ -130,7 +130,7 @@ def test_public_evidence_health_requires_core_public_signals():
     assert sprint["expected_json"]["target_metric_count"] == 6
     assert sprint["expected_json"]["completed_count"] == 0
     assert "github_stars" in sprint["expected_texts"]
-    assert "draft_not_created" in sprint["expected_texts"]
+    assert "public_issue_created_not_sent" in sprint["expected_texts"]
     assert "first-10-issue-drafts" in sprint["expected_texts"]
     outreach = next(check for check in PUBLIC_CHECKS if check["id"] == "external-reviewer-outreach-tracker")
     assert outreach["url"].endswith("/external-reviewer-outreach-tracker.json")
