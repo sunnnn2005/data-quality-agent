@@ -1,5 +1,5 @@
 {
-  "check_count": 103,
+  "check_count": 104,
   "checks": [
     {
       "evidence_type": "html",
@@ -33,6 +33,19 @@
       "passed": true,
       "status_code": 200,
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-evidence.json"
+    },
+    {
+      "evidence_type": "json",
+      "id": "real-reviewer-outreach-playbook",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/real-reviewer-outreach-playbook.json",
+      "verified_fields": [
+        "contact_pool_count",
+        "current_baseline",
+        "outreach_step_count",
+        "project"
+      ]
     },
     {
       "evidence_type": "json",
@@ -1154,6 +1167,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 103,
+  "passed_count": 104,
   "status": "PASS"
 }
