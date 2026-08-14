@@ -207,7 +207,7 @@ def render_html(payload: dict[str, Any]) -> str:
       color-scheme: dark;
       --bg: #07090d;
       --panel: #111823;
-      --line: #293243;
+      --line: #293245;
       --text: #f8fafc;
       --muted: #a6b3c3;
       --accent: #38bdf8;

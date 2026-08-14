@@ -17,7 +17,7 @@ def verify_reviewer_landing_page() -> dict[str, int | str | bool]:
         "https://github.com/sunnnn2005/data-quality-agent/issues/17",
         "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
         "External feedback starts at zero",
-        "243 tests",
+        "245 tests",
         "26 issues",
         "1 fork",
         "external_feedback_items",

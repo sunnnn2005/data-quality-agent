@@ -75,6 +75,8 @@ def test_public_evidence_health_requires_core_public_signals():
         "reviewer-invitation-kit",
         "reviewer-outcome-sprint-calendar",
         "reviewer-outcome-ledger",
+        "public-outcome-intake-dashboard",
+        "public-outcome-intake-dashboard-page",
         "reviewer-send-queue",
         "reviewer-landing-page",
         "reviewer-outreach-console",
@@ -149,6 +151,16 @@ def test_public_evidence_health_requires_core_public_signals():
     assert first_ai_reviewer["expected_json"]["current_claimable_ai_reviews"] == 0
     assert "docs/llm-value-comparison.md" in first_ai_reviewer["expected_texts"]
     assert "ready_to_send_not_reviewed" in first_ai_reviewer["expected_texts"]
+    outcome_intake = next(check for check in PUBLIC_CHECKS if check["id"] == "public-outcome-intake-dashboard")
+    assert outcome_intake["url"].endswith("/public-outcome-intake-dashboard.json")
+    assert outcome_intake["expected_json"]["claimable_signal_count"] == 4
+    assert outcome_intake["expected_json"]["blocked_intake_path_count"] == 5
+    assert outcome_intake["expected_json"]["accepted_external_evidence_count"] == 0
+    assert "public, non-owner" in outcome_intake["expected_texts"]
+    outcome_intake_page = next(check for check in PUBLIC_CHECKS if check["id"] == "public-outcome-intake-dashboard-page")
+    assert outcome_intake_page["url"].endswith("/public-outcome-intake-dashboard.html")
+    assert "Submit Evidence For Real Outcomes" in outcome_intake_page["expected_texts"]
+    assert "Submit public evidence" in outcome_intake_page["expected_texts"]
     llm_value = next(check for check in PUBLIC_CHECKS if check["id"] == "llm-value-comparison")
     assert llm_value["url"].endswith("/llm-value-comparison.json")
     assert llm_value["expected_json"]["scenario_count"] == 14

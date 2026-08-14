@@ -70,7 +70,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "243 passing CI tests",
+            "245 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -192,7 +192,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 243},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 245},
         "evidence_type": "json",
     },
     {
@@ -1302,6 +1302,38 @@ PUBLIC_CHECKS = [
             "Private replies and self-authored planning issues are excluded",
         ],
         "evidence_type": "json",
+    },
+    {
+        "id": "public-outcome-intake-dashboard",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-outcome-intake-dashboard.json",
+        "expected_json": {
+            "claimable_signal_count": 4,
+            "blocked_intake_path_count": 5,
+            "accepted_external_evidence_count": 0,
+            "github_stars": 0,
+        },
+        "expected_text": "public evidence submission path",
+        "expected_texts": [
+            "Claimable public proof",
+            "blocked external-outcome intake paths",
+            "public, non-owner",
+            "private replies",
+            "No confirmed external users are claimed.",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "public-outcome-intake-dashboard-page",
+        "url": "https://sunnnn2005.github.io/data-quality-agent/public-outcome-intake-dashboard.html",
+        "expected_text": "Public Outcome Intake Dashboard",
+        "expected_texts": [
+            "Claimable Public Proof",
+            "Submit Evidence For Real Outcomes",
+            "Resume-Safe Bullets Now",
+            "Submit public evidence",
+            "No confirmed external users are claimed.",
+        ],
+        "evidence_type": "html",
     },
     {
         "id": "reviewer-action-queue",

@@ -34,4 +34,4 @@ def test_readme_exposes_countable_reviewer_evidence_path():
     assert "A sent message is distribution evidence, not a resume outcome." in readme
     assert "public, non-owner, permissioned, and redacted" in readme
     assert "32 evidence fields" in readme
-    assert "243 automated tests" in readme
+    assert "245 automated tests" in readme
