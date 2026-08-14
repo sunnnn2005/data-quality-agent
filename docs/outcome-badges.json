@@ -1,0 +1,76 @@
+{
+  "badge_count": 6,
+  "badges": [
+    {
+      "color": "brightgreen",
+      "id": "ci-tests",
+      "label": "tests",
+      "message": "175 passing",
+      "policy": "Engineering-quality signal backed by local and GitHub Actions test output.",
+      "resume_claimable": true,
+      "schemaVersion": 1,
+      "source": "docs/adoption-metrics.json"
+    },
+    {
+      "color": "lightgrey",
+      "id": "github-stars",
+      "label": "stars",
+      "message": "0 public",
+      "policy": "Claim only the current public GitHub star count; never imply users or adoption from stars.",
+      "resume_claimable": false,
+      "schemaVersion": 1,
+      "source": "docs/github-public-stats-snapshot.json"
+    },
+    {
+      "color": "blue",
+      "id": "github-forks",
+      "label": "forks",
+      "message": "1 public",
+      "policy": "Forks are public repository-interest signals, not confirmed users or customer feedback.",
+      "resume_claimable": true,
+      "schemaVersion": 1,
+      "source": "docs/github-public-stats-snapshot.json"
+    },
+    {
+      "color": "lightgrey",
+      "id": "confirmed-users",
+      "label": "confirmed users",
+      "message": "0 accepted",
+      "policy": "Count only non-owner public evidence that passed the external reviewer evidence gate.",
+      "resume_claimable": false,
+      "schemaVersion": 1,
+      "source": "docs/accepted-evidence-rollup.json"
+    },
+    {
+      "color": "lightgrey",
+      "id": "external-feedback",
+      "label": "feedback",
+      "message": "0 accepted",
+      "policy": "Count only public, permissioned, redacted feedback issues accepted by the evidence gate.",
+      "resume_claimable": false,
+      "schemaVersion": 1,
+      "source": "docs/accepted-evidence-rollup.json"
+    },
+    {
+      "color": "lightgrey",
+      "id": "ai-review",
+      "label": "AI review",
+      "message": "0 accepted",
+      "policy": "Count only external AI Engineer review issues that name inspected implementation evidence.",
+      "resume_claimable": false,
+      "schemaVersion": 1,
+      "source": "docs/accepted-evidence-rollup.json"
+    }
+  ],
+  "blocked_badge_ids": [
+    "github-stars",
+    "confirmed-users",
+    "external-feedback",
+    "ai-review"
+  ],
+  "claimable_badge_count": 2,
+  "generated_by": "scripts/build_outcome_badges.py",
+  "project": "Data Quality Agent",
+  "resume_policy": "These badges are display helpers over verified evidence artifacts. They must not turn views, forks, stars, or prepared outreach into confirmed users, feedback, production usage, or business impact.",
+  "resume_safe_summary": "Generated evidence-backed outcome badges for tests, GitHub stats, confirmed users, feedback, and AI review while keeping blocked outcome claims visibly grey until accepted public evidence exists."
+}

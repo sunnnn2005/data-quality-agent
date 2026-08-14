@@ -110,6 +110,8 @@ jobs:
         run: python scripts/build_public_launch_broadcast.py
       - name: Verify outcome pipeline board
         run: python scripts/build_outcome_pipeline_board.py
+      - name: Verify outcome badges
+        run: python scripts/build_outcome_badges.py
       - name: Verify outcome upgrade playbook
         run: python scripts/build_outcome_upgrade_playbook.py
       - name: Verify reviewer feedback packet
@@ -145,7 +147,7 @@ jobs:
           ADOPTION_FORKS: "1"
           ADOPTION_WATCHERS: "0"
           ADOPTION_ISSUES_TOTAL: "12"
-          ADOPTION_TEST_COUNT: "174"
+          ADOPTION_TEST_COUNT: "175"
         run: python scripts/update_adoption_metrics.py
       - name: Verify outcome evidence manifest
         run: python scripts/verify_outcome_evidence.py
