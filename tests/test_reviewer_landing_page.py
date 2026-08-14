@@ -5,6 +5,7 @@ def test_reviewer_landing_page_routes_reviewers_to_public_feedback():
     verification = verify_reviewer_landing_page()
 
     assert verification["reviewer_landing_page_verified"] is True
-    assert verification["required_fragment_count"] == 12
+    assert verification["required_fragment_count"] == 20
+    assert verification["index_conversion_paths"] == 8
     assert verification["public_review_issue"].endswith("/issues/17")
     assert verification["demo_feedback_template"].endswith("template=demo_feedback.md")
