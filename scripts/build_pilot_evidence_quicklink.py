@@ -274,8 +274,8 @@ def verify_pilot_evidence_quicklink(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("pilot evidence quicklink must target 4 outcome metrics")
     if payload["total_evidence_fields"] != 17:
         raise AssertionError("pilot evidence quicklink must collect 17 evidence fields")
-    if payload["source_submission_hub_paths"] != 6:
-        raise AssertionError("pilot evidence quicklink must be grounded in the submission hub")
+    if payload["source_submission_hub_paths"] != 7:
+        raise AssertionError("pilot evidence quicklink must be grounded in the seven-path submission hub")
     if any(value != 0 for value in payload["current_counts"].values() if isinstance(value, int)):
         raise AssertionError("pilot evidence quicklink must preserve zero-count outcome baselines")
     for required in ("external users", "customer feedback", "submitted external business cases"):

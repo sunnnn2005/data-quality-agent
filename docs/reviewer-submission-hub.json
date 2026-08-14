@@ -10,9 +10,9 @@
   ],
   "project": "Data Quality Agent",
   "purpose": "Give reviewers one short public hub for submitting evidence that can turn zero-count resume outcomes into evidence-backed claims after the external evidence gate accepts them.",
-  "resume_safe_summary": "Published a CI-verified reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, 24 required evidence fields, and zero current outcome claims upgraded.",
+  "resume_safe_summary": "Published a CI-verified reviewer submission hub with 7 public submission paths, 7 tracked outcome metrics, 32 required evidence fields, and zero current outcome claims upgraded.",
   "resume_status": "collection_ready_not_claimable",
-  "submission_path_count": 6,
+  "submission_path_count": 7,
   "submission_paths": [
     {
       "counting_rule": "Counts only after a non-owner public issue grants permission and passes the evidence gate.",
@@ -87,6 +87,24 @@
       "target_metric": "ai_engineer_review_items"
     },
     {
+      "counting_rule": "Counts only when a redacted real-model issue includes provider, model, tool calls, token, cost, latency, verification evidence, and permission to count publicly.",
+      "id": "submit_real_model_run",
+      "minimum_minutes": 15,
+      "required_evidence": [
+        "model provider and model name",
+        "trace id and prompt version",
+        "selected tool names or tool-call count",
+        "total tokens",
+        "estimated cost",
+        "latency",
+        "verification status",
+        "permission to count redacted run evidence"
+      ],
+      "review_path": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-run-request-pack.md",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=real_model_run_review.md",
+      "target_metric": "accepted_real_model_runs"
+    },
+    {
       "counting_rule": "Counts only from GitHub public star data; never asks for fake engagement.",
       "id": "star_or_fork_if_useful",
       "minimum_minutes": 1,
@@ -99,8 +117,8 @@
       "target_metric": "github_stars"
     }
   ],
-  "target_metric_count": 6,
-  "total_required_evidence_fields": 24,
+  "target_metric_count": 7,
+  "total_required_evidence_fields": 32,
   "tracked_outcome_status": {
     "accepted_real_model_runs": {
       "blocked_reason": "Needs one accepted redacted real-model run issue with tool calls, tokens, latency, cost, and verification evidence.",

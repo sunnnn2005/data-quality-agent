@@ -1374,9 +1374,9 @@ def verify_manifest() -> dict[str, int]:
                 hub_script = (ROOT / "scripts" / "build_reviewer_submission_hub.py").read_text()
                 hub_tests = (ROOT / "tests" / "test_reviewer_submission_hub.py").read_text()
                 expected = {
-                    "submission_path_count": 6,
-                    "target_metric_count": 6,
-                    "total_required_evidence_fields": 24,
+                    "submission_path_count": 7,
+                    "target_metric_count": 7,
+                    "total_required_evidence_fields": 32,
                 }
                 for key, value in expected.items():
                     if reviewer_submission_hub.get(key) != value:
@@ -1389,6 +1389,7 @@ def verify_manifest() -> dict[str, int]:
                     "reproducible_feedback_items",
                     "business_case_feedback_items",
                     "ai_engineer_review_items",
+                    "accepted_real_model_runs",
                     "github_stars",
                 }
                 actual_metrics = {path.get("target_metric") for path in reviewer_submission_hub.get("submission_paths", [])}
@@ -1399,6 +1400,17 @@ def verify_manifest() -> dict[str, int]:
                         raise AssertionError("reviewer submission hub submissions must use public GitHub URLs")
                     if "Counts only" not in path.get("counting_rule", ""):
                         raise AssertionError("reviewer submission hub must preserve conservative counting rules")
+                real_model_path = next(
+                    path
+                    for path in reviewer_submission_hub.get("submission_paths", [])
+                    if path.get("target_metric") == "accepted_real_model_runs"
+                )
+                if "real_model_run_review.md" not in real_model_path.get("submission_url", ""):
+                    raise AssertionError("reviewer submission hub must route real-model evidence to the real-model issue template")
+                real_model_text = json.dumps(real_model_path, sort_keys=True).lower()
+                for required in ("provider", "model", "trace id", "tokens", "cost", "latency", "verification"):
+                    if required not in real_model_text:
+                        raise AssertionError(f"real-model submission path missing required evidence: {required}")
                 for status in reviewer_submission_hub.get("tracked_outcome_status", {}).values():
                     if status.get("current_count") != 0 or status.get("resume_status") != "not_claimable_yet":
                         raise AssertionError("reviewer submission hub must preserve zero-count blocked outcomes")
@@ -1418,8 +1430,8 @@ def verify_manifest() -> dict[str, int]:
                 expected = {
                     "project": "Data Quality Agent",
                     "tracked_action_count": 6,
-                    "submission_path_count": 6,
-                    "required_evidence_field_count": 24,
+                    "submission_path_count": 7,
+                    "required_evidence_field_count": 32,
                 }
                 for key, value in expected.items():
                     if outcome_collection.get(key) != value:
@@ -1435,8 +1447,8 @@ def verify_manifest() -> dict[str, int]:
                         raise AssertionError(f"outcome collection {key} expected {expected_value!r}")
                 if len(outcome_collection.get("actions", [])) != 6:
                     raise AssertionError("outcome collection must include 6 action cards")
-                if len(outcome_collection.get("submission_paths", [])) != 6:
-                    raise AssertionError("outcome collection must include 6 submission paths")
+                if len(outcome_collection.get("submission_paths", [])) != 7:
+                    raise AssertionError("outcome collection must include 7 submission paths")
                 joined = json.dumps(outcome_collection, sort_keys=True).lower()
                 for required in ("permission", "public", "raw customer data", "github stars"):
                     if required not in joined:
@@ -1454,9 +1466,9 @@ def verify_manifest() -> dict[str, int]:
                 call_tests = (ROOT / "tests" / "test_public_reviewer_call.py").read_text()
                 expected = {
                     "reviewer_segment_count": 3,
-                    "linked_submission_paths": 6,
+                    "linked_submission_paths": 7,
                     "linked_outreach_tasks": 9,
-                    "required_public_evidence_fields": 24,
+                    "required_public_evidence_fields": 32,
                 }
                 for key, value in expected.items():
                     if public_reviewer_call.get(key) != value:
@@ -1493,9 +1505,9 @@ def verify_manifest() -> dict[str, int]:
                 expected = {
                     "share_channel_count": 5,
                     "ready_message_count": 5,
-                    "linked_submission_paths": 6,
+                    "linked_submission_paths": 7,
                     "linked_public_call_segments": 3,
-                    "required_evidence_fields": 24,
+                    "required_evidence_fields": 32,
                     "outreach_tasks_linked": 9,
                 }
                 for key, value in expected.items():

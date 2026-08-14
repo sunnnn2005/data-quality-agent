@@ -100,4 +100,4 @@ Submission: https://github.com/sunnnn2005/data-quality-agent/issues/new?template
 
 ## Resume-Safe Summary
 
-Published a CI-verified reviewer share kit with 5 copy-ready messages, 5 share channels, issue #19, 6 submission paths, and zero sent or completed outreach claimed.
+Published a CI-verified reviewer share kit with 5 copy-ready messages, 5 share channels, issue #19, 7 submission paths, and zero sent or completed outreach claimed.

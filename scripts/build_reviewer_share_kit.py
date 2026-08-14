@@ -134,7 +134,7 @@ def build_reviewer_share_kit() -> dict[str, Any]:
         "resume_status": "share_ready_not_claimable",
         "resume_safe_summary": (
             "Published a CI-verified reviewer share kit with 5 copy-ready messages, 5 share channels, issue #19, "
-            "6 submission paths, and zero sent or completed outreach claimed."
+            "7 submission paths, and zero sent or completed outreach claimed."
         ),
     }
 
@@ -204,9 +204,9 @@ def verify_reviewer_share_kit(payload: dict[str, Any]) -> dict[str, Any]:
     expected_counts = {
         "share_channel_count": 5,
         "ready_message_count": 5,
-        "linked_submission_paths": 6,
+        "linked_submission_paths": 7,
         "linked_public_call_segments": 3,
-        "required_evidence_fields": 24,
+        "required_evidence_fields": 32,
         "outreach_tasks_linked": 9,
     }
     for key, expected in expected_counts.items():

@@ -12,9 +12,9 @@ def test_public_reviewer_call_opens_real_evidence_collection_without_claiming_ou
 
     assert verification["public_reviewer_call_verified"] is True
     assert payload["reviewer_segment_count"] == 3
-    assert payload["linked_submission_paths"] == 6
+    assert payload["linked_submission_paths"] == 7
     assert payload["linked_outreach_tasks"] == 9
-    assert payload["required_public_evidence_fields"] == 24
+    assert payload["required_public_evidence_fields"] == 32
     assert payload["resume_status"] == "public_call_open_not_claimable"
     assert payload["public_call_issue"].endswith("/issues/19")
     assert {segment["id"] for segment in payload["reviewer_segments"]} == {

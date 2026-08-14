@@ -232,8 +232,8 @@ def render_html(payload: dict[str, Any]) -> str:
 def verify_outcome_collection_payload(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
         "tracked_action_count": 6,
-        "submission_path_count": 6,
-        "required_evidence_field_count": 24,
+        "submission_path_count": 7,
+        "required_evidence_field_count": 32,
         "confirmed_external_users": 0,
         "external_feedback_items": 0,
         "github_stars": 0,
@@ -242,9 +242,9 @@ def verify_outcome_collection_payload(payload: dict[str, Any]) -> dict[str, Any]
     if payload["tracked_action_count"] != expected["tracked_action_count"]:
         raise AssertionError("outcome collection page must expose six next actions")
     if payload["submission_path_count"] != expected["submission_path_count"]:
-        raise AssertionError("outcome collection page must expose six submission paths")
+        raise AssertionError("outcome collection page must expose seven submission paths")
     if payload["required_evidence_field_count"] != expected["required_evidence_field_count"]:
-        raise AssertionError("outcome collection page must preserve 24 evidence fields")
+        raise AssertionError("outcome collection page must preserve 32 evidence fields")
     counts = payload["current_counts"]
     for key in ("confirmed_external_users", "external_feedback_items", "github_stars", "passing_tests"):
         if counts[key] != expected[key]:

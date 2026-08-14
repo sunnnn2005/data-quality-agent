@@ -15,6 +15,7 @@ Give reviewers one short public hub for submitting evidence that can turn zero-c
 | submit_reproducible_issue | `reproducible_feedback_items` | 10 | [Review](https://github.com/sunnnn2005/data-quality-agent) | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md) | Counts only when a non-owner submits a sanitized business-data replay issue with run evidence, agent trace summary, and permission to count publicly. |
 | submit_business_case | `business_case_feedback_items` | 12 | [Review](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-case-intake.md) | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md) | Counts only when the business case is anonymized, permissioned, and contains no raw production data. |
 | submit_ai_engineer_review | `ai_engineer_review_items` | 12 | [Review](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md) | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md) | Counts only when an external reviewer inspects implementation evidence and grants permission. |
+| submit_real_model_run | `accepted_real_model_runs` | 15 | [Review](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-run-request-pack.md) | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=real_model_run_review.md) | Counts only when a redacted real-model issue includes provider, model, tool calls, token, cost, latency, verification evidence, and permission to count publicly. |
 | star_or_fork_if_useful | `github_stars` | 1 | [Review](https://github.com/sunnnn2005/data-quality-agent) | [Submit](https://github.com/sunnnn2005/data-quality-agent/stargazers) | Counts only from GitHub public star data; never asks for fake engagement. |
 
 ## Required Evidence Fields
@@ -56,6 +57,17 @@ Give reviewers one short public hub for submitting evidence that can turn zero-c
 - weakest AI-agent gap
 - permission to count public AI Engineer feedback
 
+### submit_real_model_run
+
+- model provider and model name
+- trace id and prompt version
+- selected tool names or tool-call count
+- total tokens
+- estimated cost
+- latency
+- verification status
+- permission to count redacted run evidence
+
 ### star_or_fork_if_useful
 
 - public GitHub star count above zero
@@ -75,7 +87,7 @@ Give reviewers one short public hub for submitting evidence that can turn zero-c
 
 ## Resume-Safe Summary
 
-Published a CI-verified reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, 24 required evidence fields, and zero current outcome claims upgraded.
+Published a CI-verified reviewer submission hub with 7 public submission paths, 7 tracked outcome metrics, 32 required evidence fields, and zero current outcome claims upgraded.
 
 ## Not Claimed
 

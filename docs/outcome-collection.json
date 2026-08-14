@@ -83,9 +83,9 @@
   ],
   "project": "Data Quality Agent",
   "purpose": "Give external reviewers one public page for trying the project, submitting countable evidence, and seeing which outcome claims are still blocked.",
-  "required_evidence_field_count": 24,
-  "resume_safe_summary": "Published a public outcome collection page with 6 next actions, 6 submission paths, 24 required evidence fields, 0 confirmed users, 0 feedback items, and 0 GitHub stars.",
-  "submission_path_count": 6,
+  "required_evidence_field_count": 32,
+  "resume_safe_summary": "Published a public outcome collection page with 6 next actions, 7 submission paths, 32 required evidence fields, 0 confirmed users, 0 feedback items, and 0 GitHub stars.",
+  "submission_path_count": 7,
   "submission_paths": [
     {
       "counting_rule": "Counts only after a non-owner public issue grants permission and passes the evidence gate.",
@@ -126,6 +126,14 @@
       "review_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md",
       "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
       "target_metric": "ai_engineer_review_items"
+    },
+    {
+      "counting_rule": "Counts only when a redacted real-model issue includes provider, model, tool calls, token, cost, latency, verification evidence, and permission to count publicly.",
+      "id": "submit_real_model_run",
+      "minutes": 15,
+      "review_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-run-request-pack.md",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=real_model_run_review.md",
+      "target_metric": "accepted_real_model_runs"
     },
     {
       "counting_rule": "Counts only from GitHub public star data; never asks for fake engagement.",

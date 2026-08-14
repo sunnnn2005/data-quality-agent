@@ -11,9 +11,9 @@ def test_reviewer_submission_hub_maps_every_outcome_to_public_evidence_path():
     markdown = render_markdown(payload)
 
     assert verification["reviewer_submission_hub_verified"] is True
-    assert payload["submission_path_count"] == 6
-    assert payload["target_metric_count"] == 6
-    assert payload["total_required_evidence_fields"] == 24
+    assert payload["submission_path_count"] == 7
+    assert payload["target_metric_count"] == 7
+    assert payload["total_required_evidence_fields"] == 32
     assert payload["resume_status"] == "collection_ready_not_claimable"
 
     metrics = {path["target_metric"] for path in payload["submission_paths"]}
@@ -23,6 +23,7 @@ def test_reviewer_submission_hub_maps_every_outcome_to_public_evidence_path():
         "reproducible_feedback_items",
         "business_case_feedback_items",
         "ai_engineer_review_items",
+        "accepted_real_model_runs",
         "github_stars",
     }
     assert all(path["submission_url"].startswith("https://github.com/") for path in payload["submission_paths"])
@@ -31,6 +32,12 @@ def test_reviewer_submission_hub_maps_every_outcome_to_public_evidence_path():
     assert reproducible_path["submission_url"].endswith("template=business_data_replay.md")
     assert "selected tools shown in the agent trace" in reproducible_path["required_evidence"]
     assert not reproducible_path["submission_url"].endswith("template=bug_report.md")
+    real_model_path = next(path for path in payload["submission_paths"] if path["target_metric"] == "accepted_real_model_runs")
+    assert real_model_path["submission_url"].endswith("template=real_model_run_review.md")
+    assert "total tokens" in real_model_path["required_evidence"]
+    assert "estimated cost" in real_model_path["required_evidence"]
+    assert "latency" in real_model_path["required_evidence"]
+    assert "verification status" in real_model_path["required_evidence"]
     assert all(status["current_count"] == 0 for status in payload["tracked_outcome_status"].values())
     assert all(status["resume_status"] == "not_claimable_yet" for status in payload["tracked_outcome_status"].values())
     assert "never asks for fake engagement" in str(payload).lower()

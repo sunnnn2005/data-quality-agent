@@ -1297,14 +1297,16 @@ PUBLIC_CHECKS = [
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-submission-hub.json",
         "expected_json": {
             "project": "Data Quality Agent",
-            "submission_path_count": 6,
-            "target_metric_count": 6,
-            "total_required_evidence_fields": 24,
+            "submission_path_count": 7,
+            "target_metric_count": 7,
+            "total_required_evidence_fields": 32,
         },
         "expected_text": "collection_ready_not_claimable",
         "expected_texts": [
             "confirmed_external_users",
             "ai_engineer_review_items",
+            "accepted_real_model_runs",
+            "real_model_run_review.md",
             "github_stars",
             "never asks for fake engagement",
         ],
@@ -1316,8 +1318,8 @@ PUBLIC_CHECKS = [
         "expected_json": {
             "project": "Data Quality Agent",
             "reviewer_segment_count": 3,
-            "linked_submission_paths": 6,
-            "required_public_evidence_fields": 24,
+            "linked_submission_paths": 7,
+            "required_public_evidence_fields": 32,
         },
         "expected_text": "public_call_open_not_claimable",
         "expected_texts": [
@@ -1336,7 +1338,7 @@ PUBLIC_CHECKS = [
             "project": "Data Quality Agent",
             "share_channel_count": 5,
             "ready_message_count": 5,
-            "linked_submission_paths": 6,
+            "linked_submission_paths": 7,
         },
         "expected_text": "share_ready_not_claimable",
         "expected_texts": [

@@ -8,7 +8,7 @@
   },
   "generated_by": "scripts/build_reviewer_share_kit.py",
   "linked_public_call_segments": 3,
-  "linked_submission_paths": 6,
+  "linked_submission_paths": 7,
   "manual_execution_rules": [
     "Do not mark a message as sent until it has actually been sent by the maintainer.",
     "Does not count private replies, private DMs, or private email reactions as public outcome evidence.",
@@ -21,8 +21,8 @@
   "public_call_issue": "https://github.com/sunnnn2005/data-quality-agent/issues/19",
   "purpose": "Package the public reviewer call into copy-ready sharing messages so real reviewers can try the project and submit public evidence without upgrading any resume outcome claim prematurely.",
   "ready_message_count": 5,
-  "required_evidence_fields": 24,
-  "resume_safe_summary": "Published a CI-verified reviewer share kit with 5 copy-ready messages, 5 share channels, issue #19, 6 submission paths, and zero sent or completed outreach claimed.",
+  "required_evidence_fields": 32,
+  "resume_safe_summary": "Published a CI-verified reviewer share kit with 5 copy-ready messages, 5 share channels, issue #19, 7 submission paths, and zero sent or completed outreach claimed.",
   "resume_status": "share_ready_not_claimable",
   "send_status_counts": {
     "completed": 0,

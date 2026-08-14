@@ -33,9 +33,11 @@ def build_reviewer_submission_hub() -> dict[str, Any]:
         "github_repo": repo,
         "business_case_intake": f"{repo}/blob/main/docs/business-case-intake.md",
         "ai_engineer_review_intake": f"{repo}/blob/main/docs/ai-engineer-review-intake.md",
+        "real_model_run_request_pack": f"{repo}/blob/main/docs/real-model-run-request-pack.md",
     }
     external_run_url = f"{repo}/issues/new?template=external_run_review.md"
     business_data_replay_url = f"{repo}/issues/new?template=business_data_replay.md"
+    real_model_run_url = f"{repo}/issues/new?template=real_model_run_review.md"
     submission_paths = [
         {
             "id": "try_public_demo",
@@ -113,6 +115,27 @@ def build_reviewer_submission_hub() -> dict[str, Any]:
             "counting_rule": "Counts only when an external reviewer inspects implementation evidence and grants permission.",
         },
         {
+            "id": "submit_real_model_run",
+            "target_metric": "accepted_real_model_runs",
+            "minimum_minutes": 15,
+            "review_path": links["real_model_run_request_pack"],
+            "submission_url": real_model_run_url,
+            "required_evidence": [
+                "model provider and model name",
+                "trace id and prompt version",
+                "selected tool names or tool-call count",
+                "total tokens",
+                "estimated cost",
+                "latency",
+                "verification status",
+                "permission to count redacted run evidence",
+            ],
+            "counting_rule": (
+                "Counts only when a redacted real-model issue includes provider, model, tool calls, token, cost, "
+                "latency, verification evidence, and permission to count publicly."
+            ),
+        },
+        {
             "id": "star_or_fork_if_useful",
             "target_metric": "github_stars",
             "minimum_minutes": 1,
@@ -148,8 +171,8 @@ def build_reviewer_submission_hub() -> dict[str, Any]:
         "resume_status": "collection_ready_not_claimable",
         "not_claimed": outcome_metrics["not_claimed"],
         "resume_safe_summary": (
-            "Published a CI-verified reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, "
-            "24 required evidence fields, and zero current outcome claims upgraded."
+            "Published a CI-verified reviewer submission hub with 7 public submission paths, 7 tracked outcome metrics, "
+            "32 required evidence fields, and zero current outcome claims upgraded."
         ),
     }
 
@@ -206,12 +229,12 @@ This generated hub gives external reviewers one short path to submit public evid
 
 
 def verify_reviewer_submission_hub(payload: dict[str, Any]) -> dict[str, Any]:
-    if payload["submission_path_count"] != 6:
-        raise AssertionError("reviewer submission hub must define six submission paths")
-    if payload["target_metric_count"] != 6:
-        raise AssertionError("reviewer submission hub must cover six outcome metrics")
-    if payload["total_required_evidence_fields"] != 24:
-        raise AssertionError("reviewer submission hub must track 24 required evidence fields")
+    if payload["submission_path_count"] != 7:
+        raise AssertionError("reviewer submission hub must define seven submission paths")
+    if payload["target_metric_count"] != 7:
+        raise AssertionError("reviewer submission hub must cover seven outcome metrics")
+    if payload["total_required_evidence_fields"] != 32:
+        raise AssertionError("reviewer submission hub must track 32 required evidence fields")
     if payload["resume_status"] != "collection_ready_not_claimable":
         raise AssertionError("reviewer submission hub must not upgrade resume outcomes by itself")
     required_metrics = {
@@ -220,6 +243,7 @@ def verify_reviewer_submission_hub(payload: dict[str, Any]) -> dict[str, Any]:
         "reproducible_feedback_items",
         "business_case_feedback_items",
         "ai_engineer_review_items",
+        "accepted_real_model_runs",
         "github_stars",
     }
     actual_metrics = {path["target_metric"] for path in payload["submission_paths"]}
