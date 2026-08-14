@@ -94,7 +94,7 @@
   ],
   "required_issue_templates_present": true,
   "required_labels": [
-    "ai-review",
+    "ai-engineer-review",
     "bug",
     "business-case",
     "business-data-replay",

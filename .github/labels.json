@@ -35,7 +35,7 @@
     "description": "Confirmed anonymized replay on CSV, PostgreSQL, or business-shaped data"
   },
   {
-    "name": "ai-review",
+    "name": "ai-engineer-review",
     "color": "b60205",
     "description": "External review of LLM agent design, tool use, guardrails, and AI Engineer readiness"
   },

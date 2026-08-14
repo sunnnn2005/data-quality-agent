@@ -16,7 +16,7 @@ def test_feedback_metric_labels_are_declared():
         "bug",
         "enhancement",
         "business-case",
-        "ai-review",
+        "ai-engineer-review",
         "community",
         "first-10-reviewer",
     } <= names

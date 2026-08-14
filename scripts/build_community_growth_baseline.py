@@ -34,7 +34,7 @@ def build_community_growth_baseline() -> dict[str, Any]:
         "ai_engineer_review.md",
     }
     required_labels = {
-        "ai-review",
+        "ai-engineer-review",
         "feedback",
         "confirmed-user",
         "reproducible",

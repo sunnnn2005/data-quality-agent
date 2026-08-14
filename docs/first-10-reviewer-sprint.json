@@ -86,9 +86,9 @@
     },
     {
       "body": "## Reviewer slot\n\n`slot_07_ai_engineer_review` - AI engineer, mentor, or ML systems reviewer\n\n## Ask\n\nInspect the LLM tool-calling loop, guardrails, and evidence trail for AI Engineer credibility.\n\n## Start here\n\nhttps://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md\n\n## Submit countable evidence here\n\nhttps://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md\n\n## Acceptance evidence\n\n- [ ] inspected implementation path\n- [ ] AI-agent signal feedback\n- [ ] permission to count publicly\n- [ ] I am not the repository owner.\n- [ ] I give permission for this public, redacted issue to be counted as project feedback/evidence.\n- [ ] I did not include private data, secrets, customer records, or proprietary information.\n\n## Counting rule\n\nA non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.\n",
-      "gh_command": "gh issue create --title \"First 10 reviewer: AI engineer, mentor, or ML systems reviewer (ai_engineer_review_items)\" --label \"ai-review,first-10-reviewer\" --body-file docs/first-10-issue-drafts/slot_07_ai_engineer_review.md",
+      "gh_command": "gh issue create --title \"First 10 reviewer: AI engineer, mentor, or ML systems reviewer (ai_engineer_review_items)\" --label \"ai-engineer-review,first-10-reviewer\" --body-file docs/first-10-issue-drafts/slot_07_ai_engineer_review.md",
       "labels": [
-        "ai-review",
+        "ai-engineer-review",
         "first-10-reviewer"
       ],
       "slot_id": "slot_07_ai_engineer_review",

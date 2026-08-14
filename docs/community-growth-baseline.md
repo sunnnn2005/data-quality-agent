@@ -15,7 +15,7 @@ This generated artifact verifies the public contribution and feedback paths that
 
 ## Required Labels
 
-- `ai-review`
+- `ai-engineer-review`
 - `bug`
 - `business-case`
 - `business-data-replay`

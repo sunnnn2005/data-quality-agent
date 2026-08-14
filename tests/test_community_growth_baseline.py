@@ -18,7 +18,7 @@ def test_community_growth_baseline_verifies_public_contribution_paths_without_ad
     assert "external_run_review.md" in payload["issue_templates"]
     assert "ai_engineer_review.md" in payload["issue_templates"]
     assert "business-data-replay" in payload["required_labels"]
-    assert "ai-review" in payload["required_labels"]
+    assert "ai-engineer-review" in payload["required_labels"]
     assert "community" in payload["required_labels"]
     assert "first-10-reviewer" in payload["required_labels"]
     assert payload["current_public_counts"]["stars"] == 0

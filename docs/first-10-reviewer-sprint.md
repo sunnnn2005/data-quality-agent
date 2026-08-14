@@ -257,10 +257,10 @@ gh issue create --title "First 10 reviewer: small-business operator or operation
 
 - Status: `draft_not_created`
 - Title: First 10 reviewer: AI engineer, mentor, or ML systems reviewer (ai_engineer_review_items)
-- Labels: `ai-review`, `first-10-reviewer`
+- Labels: `ai-engineer-review`, `first-10-reviewer`
 
 ```bash
-gh issue create --title "First 10 reviewer: AI engineer, mentor, or ML systems reviewer (ai_engineer_review_items)" --label "ai-review,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_07_ai_engineer_review.md
+gh issue create --title "First 10 reviewer: AI engineer, mentor, or ML systems reviewer (ai_engineer_review_items)" --label "ai-engineer-review,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_07_ai_engineer_review.md
 ```
 
 ### slot_08_open_source_review

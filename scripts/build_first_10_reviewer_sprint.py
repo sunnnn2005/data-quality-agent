@@ -213,7 +213,7 @@ def _issue_draft(slot: dict[str, Any]) -> dict[str, Any]:
         "confirmed_external_users": ["confirmed-user", "first-10-reviewer"],
         "reproducible_feedback_items": ["reproducible", "first-10-reviewer"],
         "business_case_feedback_items": ["business-case", "first-10-reviewer"],
-        "ai_engineer_review_items": ["ai-review", "first-10-reviewer"],
+        "ai_engineer_review_items": ["ai-engineer-review", "first-10-reviewer"],
         "github_stars": ["community", "first-10-reviewer"],
     }
     labels = label_map[slot["target_metric"]]
