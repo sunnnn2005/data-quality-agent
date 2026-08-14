@@ -1,0 +1,84 @@
+{
+  "accepted_public_issue_count": 0,
+  "actions": [
+    {
+      "completion_check": "One outreach slot has status sent and no resume outcome is claimed yet.",
+      "current_count": 0,
+      "evidence_path": "docs/reviewer-outreach-status-board.md",
+      "id": "send_first_reviewer_request",
+      "owner_action": "Send one message from the reviewer outreach execution pack to a real non-owner reviewer, then update the status board from not_sent to sent.",
+      "remaining_to_claim": 1,
+      "resulting_resume_line": null,
+      "status": "next_action_needed",
+      "target_metric": "external_feedback_items",
+      "threshold": 1,
+      "title": "Send one prepared reviewer request"
+    },
+    {
+      "completion_check": "External reviewer evidence gate accepts one non-owner issue.",
+      "current_count": 0,
+      "evidence_path": "docs/external-reviewer-evidence-gate.md",
+      "id": "collect_first_public_run_issue",
+      "owner_action": "Ask the reviewer to submit a public issue with path tried, command or URL evidence, observed result, main feedback, no-private-data checkbox, and permission to count.",
+      "remaining_to_claim": 1,
+      "resulting_resume_line": null,
+      "status": "next_action_needed",
+      "target_metric": "confirmed_external_users",
+      "threshold": 1,
+      "title": "Collect one accepted public reviewer run issue"
+    },
+    {
+      "completion_check": "One public ai-engineer-review issue passes the evidence gate.",
+      "current_count": 0,
+      "evidence_path": "docs/ai-engineer-review-intake.md",
+      "id": "collect_ai_engineer_review",
+      "owner_action": "Ask an AI/ML systems reviewer to inspect the tool-calling loop, PostgreSQL adapter, guardrails, trace evidence, and AI Engineer readiness document.",
+      "remaining_to_claim": 1,
+      "resulting_resume_line": null,
+      "status": "next_action_needed",
+      "target_metric": "ai_engineer_review_items",
+      "threshold": 1,
+      "title": "Collect one AI Engineer review"
+    },
+    {
+      "completion_check": "One business-case public issue passes the evidence gate without sensitive data.",
+      "current_count": 0,
+      "evidence_path": "docs/business-case-intake.md",
+      "id": "collect_business_case",
+      "owner_action": "Ask a data/ops reviewer for an anonymized data-quality scenario and map it to the agent findings, business impact, fields involved, and useful next action.",
+      "remaining_to_claim": 1,
+      "resulting_resume_line": null,
+      "status": "next_action_needed",
+      "target_metric": "business_case_feedback_items",
+      "threshold": 1,
+      "title": "Collect one anonymized business-case validation"
+    },
+    {
+      "completion_check": "docs/adoption-metrics.json and the public GitHub stargazers page show at least 1 star.",
+      "current_count": 0,
+      "evidence_path": "docs/star-growth-kit.md",
+      "id": "earn_first_star",
+      "owner_action": "Share the public demo, review page, and README with relevant student builders or data engineers; do not buy, trade, or request fake stars.",
+      "remaining_to_claim": 1,
+      "resulting_resume_line": null,
+      "status": "next_action_needed",
+      "target_metric": "github_stars",
+      "threshold": 1,
+      "title": "Earn the first organic GitHub star"
+    }
+  ],
+  "claimable_action_count": 0,
+  "evaluated_public_issue_count": 4,
+  "generated_by": "scripts/build_resume_outcome_action_checklist.py",
+  "next_action_needed_count": 5,
+  "not_claimed": [
+    "The checklist does not claim users, feedback, business impact, or stars.",
+    "A resume line becomes claimable only after the referenced public evidence check passes."
+  ],
+  "not_sent_outreach_count": 8,
+  "outreach_slot_count": 8,
+  "project": "Data Quality Agent",
+  "purpose": "Turn blocked resume outcome claims into the shortest honest next actions with public evidence checks.",
+  "resume_safe_summary": "Published a CI-verified action checklist with 5 concrete next actions, 4 evaluated public GitHub issues, 0 accepted public evidence items, and 8 reviewer outreach slots still not sent.",
+  "tracked_action_count": 5
+}

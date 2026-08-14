@@ -33,6 +33,7 @@ REVIEWER_ACTION_QUEUE_PATH = ROOT / "docs" / "reviewer-action-queue.json"
 REVIEWER_OUTREACH_EXECUTION_PACK_PATH = ROOT / "docs" / "reviewer-outreach-execution-pack.json"
 REVIEWER_OUTREACH_STATUS_BOARD_PATH = ROOT / "docs" / "reviewer-outreach-status-board.json"
 RESUME_OUTCOME_METRICS_PATH = ROOT / "docs" / "resume-outcome-metrics.json"
+RESUME_OUTCOME_ACTION_CHECKLIST_PATH = ROOT / "docs" / "resume-outcome-action-checklist.json"
 REVIEWER_SUBMISSION_HUB_PATH = ROOT / "docs" / "reviewer-submission-hub.json"
 PUBLIC_REVIEWER_CALL_PATH = ROOT / "docs" / "public-reviewer-call.json"
 REVIEWER_SHARE_KIT_PATH = ROOT / "docs" / "reviewer-share-kit.json"
@@ -112,6 +113,7 @@ def verify_manifest() -> dict[str, int]:
     reviewer_outreach_execution = load_payload(REVIEWER_OUTREACH_EXECUTION_PACK_PATH)
     reviewer_outreach_status = load_payload(REVIEWER_OUTREACH_STATUS_BOARD_PATH)
     resume_outcome_metrics = load_payload(RESUME_OUTCOME_METRICS_PATH)
+    resume_outcome_action_checklist = load_payload(RESUME_OUTCOME_ACTION_CHECKLIST_PATH)
     reviewer_submission_hub = load_payload(REVIEWER_SUBMISSION_HUB_PATH)
     public_reviewer_call = load_payload(PUBLIC_REVIEWER_CALL_PATH)
     reviewer_share_kit = load_payload(REVIEWER_SHARE_KIT_PATH)
@@ -819,6 +821,41 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("resume outcome metrics must include a dedicated test")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("resume_outcome_metrics claim must use metric_value=1")
+            elif metric_name == "resume_outcome_action_checklist":
+                checklist_script = (ROOT / "scripts" / "build_resume_outcome_action_checklist.py").read_text()
+                checklist_tests = (ROOT / "tests" / "test_resume_outcome_action_checklist.py").read_text()
+                expected = {
+                    "tracked_action_count": 5,
+                    "next_action_needed_count": 5,
+                    "claimable_action_count": 0,
+                    "accepted_public_issue_count": 0,
+                    "outreach_slot_count": 8,
+                    "not_sent_outreach_count": 8,
+                }
+                for key, value in expected.items():
+                    if resume_outcome_action_checklist.get(key) != value:
+                        raise AssertionError(f"resume outcome action checklist {key} expected {value!r}")
+                required_actions = {
+                    "send_first_reviewer_request",
+                    "collect_first_public_run_issue",
+                    "collect_ai_engineer_review",
+                    "collect_business_case",
+                    "earn_first_star",
+                }
+                actions = {item.get("id"): item for item in resume_outcome_action_checklist.get("actions", [])}
+                if set(actions) != required_actions:
+                    raise AssertionError("resume outcome action checklist must track all next outcome actions")
+                for action in actions.values():
+                    if action.get("status") != "next_action_needed":
+                        raise AssertionError(f"resume outcome action {action.get('id')} must still need proof")
+                    if not action.get("completion_check"):
+                        raise AssertionError(f"resume outcome action {action.get('id')} must include completion check")
+                if "verify_resume_outcome_action_checklist" not in checklist_script:
+                    raise AssertionError("resume outcome action checklist must include a script verifier")
+                if "test_resume_outcome_action_checklist_turns_blocked_outcomes_into_next_actions" not in checklist_tests:
+                    raise AssertionError("resume outcome action checklist must include a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("resume_outcome_action_checklist claim must use metric_value=1")
             elif metric_name == "reviewer_submission_hub":
                 hub_script = (ROOT / "scripts" / "build_reviewer_submission_hub.py").read_text()
                 hub_tests = (ROOT / "tests" / "test_reviewer_submission_hub.py").read_text()
@@ -2030,6 +2067,7 @@ def verify_manifest() -> dict[str, int]:
             "scripts/build_public_metrics_summary.py",
             "scripts/build_reviewer_outreach_execution_pack.py",
             "scripts/build_resume_outcome_metrics.py",
+            "scripts/build_resume_outcome_action_checklist.py",
             "scripts/build_reviewer_submission_hub.py",
             "scripts/build_public_reviewer_call.py",
             "scripts/build_reviewer_share_kit.py",

@@ -30,6 +30,7 @@ def test_refresh_public_metrics_workflow_updates_resume_evidence_sources():
     assert "python scripts/build_reviewer_action_queue.py" in run_commands
     assert "python scripts/build_reviewer_outreach_execution_pack.py" in run_commands
     assert "python scripts/build_resume_outcome_metrics.py" in run_commands
+    assert "python scripts/build_resume_outcome_action_checklist.py" in run_commands
     assert "python scripts/build_reviewer_submission_hub.py" in run_commands
     assert "python scripts/build_public_reviewer_call.py" in run_commands
     assert "python scripts/build_reviewer_share_kit.py" in run_commands
@@ -39,7 +40,7 @@ def test_refresh_public_metrics_workflow_updates_resume_evidence_sources():
         "tests/test_reviewer_evidence_kit.py tests/test_resume_traction_proof.py "
         "tests/test_reviewer_action_queue.py tests/test_reviewer_outreach_execution_pack.py "
         "tests/test_reviewer_outreach_status_board.py "
-        "tests/test_resume_outcome_metrics.py tests/test_reviewer_submission_hub.py "
+        "tests/test_resume_outcome_metrics.py tests/test_resume_outcome_action_checklist.py tests/test_reviewer_submission_hub.py "
         "tests/test_public_reviewer_call.py tests/test_reviewer_share_kit.py"
     ) in run_commands
     assert run_commands.index("python scripts/build_resume_traction_proof.py") < run_commands.index(
@@ -58,6 +59,9 @@ def test_refresh_public_metrics_workflow_updates_resume_evidence_sources():
         "python scripts/build_resume_outcome_metrics.py"
     )
     assert run_commands.index("python scripts/build_resume_outcome_metrics.py") < run_commands.index(
+        "python scripts/build_resume_outcome_action_checklist.py"
+    )
+    assert run_commands.index("python scripts/build_resume_outcome_action_checklist.py") < run_commands.index(
         "python scripts/build_reviewer_submission_hub.py"
     )
     assert run_commands.index("python scripts/build_reviewer_submission_hub.py") < run_commands.index(

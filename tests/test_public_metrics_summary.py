@@ -99,6 +99,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["resume_outcome_metrics_tracked"] == 6
     assert payload["verified_project_outcomes"]["resume_outcome_metrics_claimable"] == 0
     assert payload["verified_project_outcomes"]["resume_outcome_metrics_blocked"] == 6
+    assert payload["verified_project_outcomes"]["resume_outcome_action_checklist"] == 1
+    assert payload["verified_project_outcomes"]["resume_outcome_action_count"] == 5
+    assert payload["verified_project_outcomes"]["resume_outcome_next_actions_needed"] == 5
+    assert payload["verified_project_outcomes"]["resume_outcome_action_accepted_public_evidence"] == 0
     assert payload["verified_project_outcomes"]["reviewer_submission_hub"] == 1
     assert payload["verified_project_outcomes"]["reviewer_submission_paths"] == 6
     assert payload["verified_project_outcomes"]["reviewer_submission_target_metrics"] == 6
@@ -146,7 +150,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["recruiter_pitch_resume_bullets"] == 3
     assert payload["verified_project_outcomes"]["recruiter_pitch_target_roles"] == 4
     assert payload["verified_project_outcomes"]["application_evidence_pack"] == 1
-    assert payload["verified_project_outcomes"]["application_evidence_links"] == 37
+    assert payload["verified_project_outcomes"]["application_evidence_links"] == 38
     assert payload["verified_project_outcomes"]["reviewer_share_channels"] == 5
     assert payload["verified_project_outcomes"]["reviewer_share_ready_messages"] == 5
     assert payload["verified_project_outcomes"]["reviewer_share_not_sent"] == 5
@@ -300,7 +304,12 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         "Public reviewer call linked to 3 reviewer segments, 6 submission paths, 8 outreach tasks, and 23 evidence fields without claiming outcomes"
         in payload["resume_safe_signals"]
     )
-    assert "37 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
+    assert (
+        "Resume outcome action checklist with 5 concrete next actions, 4 evaluated public GitHub issues, "
+        "0 accepted public evidence items, and 8 not-sent reviewer outreach slots"
+        in payload["resume_safe_signals"]
+    )
+    assert "38 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
     assert any("Reviewer share kit with 5 copy-ready messages" in signal for signal in payload["resume_safe_signals"])
     assert any("Business impact ledger with 0 accepted business-impact signals" in signal for signal in payload["resume_safe_signals"])
     assert any("Resume traction proof with 4 claimable launch/quality signals" in signal for signal in payload["resume_safe_signals"])

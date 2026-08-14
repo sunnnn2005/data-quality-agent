@@ -105,6 +105,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Resume outcome metrics tracked | 6 |
 | Resume outcome metrics claimable | 0 |
 | Resume outcome metrics blocked | 6 |
+| Resume outcome action checklist | 1 |
+| Resume outcome action count | 5 |
+| Resume outcome next actions needed | 5 |
+| Resume outcome action accepted public evidence | 0 |
 | Reviewer submission hub | 1 |
 | Reviewer submission paths | 6 |
 | Reviewer submission target metrics | 6 |
@@ -162,7 +166,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 37 |
+| Application evidence links | 38 |
 | AI Engineer review intake | 1 |
 | AI Engineer review paths | 6 |
 | AI Engineer review questions | 6 |
@@ -280,6 +284,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Reviewer outreach execution pack with 8 ready-to-send messages, 8 follow-up rules, 8 not-sent baseline entries, and zero sent outreach claimed
 - Reviewer outreach status board tracking 8 reviewer slots, 5 status stages, and zero sent/replied/accepted outreach claims
 - Resume outcome metrics board tracking 6 outcome metrics, 0 claimable outcome lines, 6 blocked outcome lines, and honest user/feedback/star baselines
+- Resume outcome action checklist with 5 concrete next actions, 4 evaluated public GitHub issues, 0 accepted public evidence items, and 8 not-sent reviewer outreach slots
 - Reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, 23 required evidence fields, and zero current outcome claims upgraded
 - Public reviewer call linked to 3 reviewer segments, 6 submission paths, 8 outreach tasks, and 23 evidence fields without claiming outcomes
 - Reviewer share kit with 5 copy-ready messages, 5 share channels, issue #19, 6 submission paths, and zero sent or completed outreach claimed
@@ -296,7 +301,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 23 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
-- 37 application evidence links in a recruiter-ready evidence pack
+- 38 application evidence links in a recruiter-ready evidence pack
 - AI Engineer review intake with 6 review paths, 6 reviewer questions, 5 countable-evidence conditions, and zero accepted reviews
 - 3 pilot outreach messages and 10 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan

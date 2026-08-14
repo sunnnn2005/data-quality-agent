@@ -508,6 +508,26 @@ PUBLIC_CHECKS = [
         "evidence_type": "json",
     },
     {
+        "id": "resume-outcome-action-checklist",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-action-checklist.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "tracked_action_count": 5,
+            "next_action_needed_count": 5,
+            "claimable_action_count": 0,
+            "accepted_public_issue_count": 0,
+        },
+        "expected_text": "send_first_reviewer_request",
+        "expected_texts": [
+            "collect_first_public_run_issue",
+            "collect_ai_engineer_review",
+            "collect_business_case",
+            "earn_first_star",
+            "The checklist does not claim users, feedback, business impact, or stars.",
+        ],
+        "evidence_type": "json",
+    },
+    {
         "id": "recruiter-pitch",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json",
         "expected_json": {"project": "Data Quality Agent"},

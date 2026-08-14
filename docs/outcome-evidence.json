@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 37 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 38 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 37,
+      "metric_value": 38,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -709,6 +709,16 @@
       "resume_signal": "CI-verified resume outcome metrics board",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-metrics.json"
+    },
+    {
+      "claim": "The project converts blocked user, feedback, AI Engineer review, business-case, and GitHub-star outcome goals into 5 concrete next actions with public evidence paths, completion checks, zero accepted public evidence, and 8 not-sent reviewer outreach slots preserved.",
+      "evidence_type": "generated_json",
+      "id": "resume-outcome-action-checklist",
+      "metric_name": "resume_outcome_action_checklist",
+      "metric_value": 1,
+      "resume_signal": "CI-verified resume outcome action checklist",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-action-checklist.json"
     },
     {
       "claim": "The project publishes a reviewer submission hub with 6 public submission paths, 6 tracked outcome categories, 23 required evidence fields, conservative counting rules, and zero current outcome claims upgraded.",

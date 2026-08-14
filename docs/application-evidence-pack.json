@@ -26,6 +26,7 @@
     "real_model_runbook": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-runbook.md",
     "recruiter_pitch": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/recruiter-pitch.md",
     "resume_evidence": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-evidence.md",
+    "resume_outcome_action_checklist": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-outcome-action-checklist.md",
     "resume_outcome_metrics": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-outcome-metrics.md",
     "resume_outcome_readiness": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-outcome-readiness.md",
     "resume_traction_proof": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-traction-proof.md",
@@ -65,11 +66,11 @@
     "enterprise production usage",
     "GitHub stars beyond the current public count"
   ],
-  "one_line_project_proof": "Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 143 tests, 77 verified resume claims, and honest adoption baselines.",
+  "one_line_project_proof": "Public, containerized LLM data-quality agent with CI-verified evidence artifacts, 143 tests, 78 verified resume claims, and honest adoption baselines.",
   "project": "Data Quality Agent",
   "resume_bullets": [
     "Built an LLM tool-calling data-quality agent for real business CSV and read-only PostgreSQL data, with 7 allowed tools, dynamic strategy selection, memory-informed planning, source-cited business-rule retrieval, 6 verified API integration endpoints, and safe model-key fallback.",
-    "Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 143 passing tests, 77 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
+    "Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 143 passing tests, 78 verified resume claims, and 16 implemented LLM agent-readiness capabilities.",
     "Added enterprise-style guardrails for agent reliability, including read-only PostgreSQL query limits, 3 rejected unsafe SQL queries, sensitive-field redaction, trace observability, incident-pattern memory, evidence-backed root-cause hypotheses, and deterministic report verification."
   ],
   "target_roles": [
@@ -109,12 +110,14 @@
     "real_model_run_commands": 5,
     "recruiter_safe_resume_bullets": 3,
     "rejected_unsafe_postgres_queries": 3,
+    "resume_outcome_action_count": 5,
     "resume_outcome_blocked_stages": 4,
     "resume_outcome_claimable_stages": 2,
     "resume_outcome_metrics_blocked": 6,
     "resume_outcome_metrics_claimable": 0,
     "resume_outcome_metrics_tracked": 6,
     "resume_outcome_missing_evidence_items": 4,
+    "resume_outcome_next_actions_needed": 5,
     "resume_traction_blocked_claims": 5,
     "resume_traction_claimable_now": 4,
     "resume_traction_future_claims": 4,
@@ -140,6 +143,6 @@
     "reviewer_submission_required_fields": 23,
     "support_ticket_issue_categories": 4,
     "target_roles": 4,
-    "verified_resume_claims": 77
+    "verified_resume_claims": 78
   }
 }
