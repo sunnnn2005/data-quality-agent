@@ -82,6 +82,23 @@ class AgentToolCall(BaseModel):
     result_preview: dict[str, Any] = Field(default_factory=dict)
 
 
+class AgentPlanStep(BaseModel):
+    round_index: int
+    goal: str
+    selected_tools: list[str] = Field(default_factory=list)
+    rationale: str
+    evidence_summary: str | None = None
+    remaining_tools: list[str] = Field(default_factory=list)
+    stop_reason: Literal[
+        "continue",
+        "final_answer",
+        "report_attached",
+        "max_rounds",
+        "model_disabled",
+        "tool_error",
+    ] = "continue"
+
+
 class VerificationIssue(BaseModel):
     code: str
     severity: Literal["LOW", "MEDIUM", "HIGH"]
@@ -103,6 +120,7 @@ class AgentRunReport(BaseModel):
     status: Literal["PASS", "WARN", "FAIL", "DISABLED", "ERROR"]
     final_answer: str
     tool_calls: list[AgentToolCall]
+    planning_steps: list[AgentPlanStep] = Field(default_factory=list)
     quality_report: "QualityReport | None" = None
     evaluation: dict[str, Any] = Field(default_factory=dict)
     error: str | None = None

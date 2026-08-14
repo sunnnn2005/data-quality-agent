@@ -1,6 +1,67 @@
 {
   "components": {
     "schemas": {
+      "AgentPlanStep": {
+        "properties": {
+          "evidence_summary": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence Summary"
+          },
+          "goal": {
+            "title": "Goal",
+            "type": "string"
+          },
+          "rationale": {
+            "title": "Rationale",
+            "type": "string"
+          },
+          "remaining_tools": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Remaining Tools",
+            "type": "array"
+          },
+          "round_index": {
+            "title": "Round Index",
+            "type": "integer"
+          },
+          "selected_tools": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Selected Tools",
+            "type": "array"
+          },
+          "stop_reason": {
+            "default": "continue",
+            "enum": [
+              "continue",
+              "final_answer",
+              "report_attached",
+              "max_rounds",
+              "model_disabled",
+              "tool_error"
+            ],
+            "title": "Stop Reason",
+            "type": "string"
+          }
+        },
+        "required": [
+          "round_index",
+          "goal",
+          "rationale"
+        ],
+        "title": "AgentPlanStep",
+        "type": "object"
+      },
       "AgentRunReport": {
         "properties": {
           "dataset": {
@@ -29,6 +90,13 @@
             "format": "date-time",
             "title": "Generated At",
             "type": "string"
+          },
+          "planning_steps": {
+            "items": {
+              "$ref": "#/components/schemas/AgentPlanStep"
+            },
+            "title": "Planning Steps",
+            "type": "array"
           },
           "quality_report": {
             "anyOf": [

@@ -9,7 +9,7 @@ from app.agent import DataQualityAgent
 from app.business_rules import BusinessRuleRetriever
 from app.checks import QualityCheckRunner
 from app.llm import LLMDataQualityAdvisor, LLMSettings
-from app.models import AgentRunReport, AgentToolCall, DatasetSummary, QualityReport
+from app.models import AgentPlanStep, AgentRunReport, AgentToolCall, DatasetSummary, QualityReport
 from app.profiler import DatasetProfiler
 from app.traces import RunTraceStore
 
@@ -423,6 +423,17 @@ class LLMDataQualityAgent:
                 status="DISABLED",
                 final_answer="LLM tool-calling agent is disabled because OPENAI_API_KEY is not configured.",
                 tool_calls=[],
+                planning_steps=[
+                    AgentPlanStep(
+                        round_index=0,
+                        goal=f"Investigate dataset '{dataset.id}' with a bounded LLM tool loop.",
+                        selected_tools=[],
+                        rationale="The model is disabled, so no tool-planning loop can safely run.",
+                        evidence_summary="OPENAI_API_KEY is not configured.",
+                        remaining_tools=[],
+                        stop_reason="model_disabled",
+                    )
+                ],
                 error="OPENAI_API_KEY is not configured",
             )
 
@@ -449,11 +460,12 @@ class LLMDataQualityAgent:
             },
         ]
         tool_calls: list[AgentToolCall] = []
+        planning_steps: list[AgentPlanStep] = []
         model_calls: list[dict[str, Any]] = []
         quality_report: QualityReport | None = None
         started = time.monotonic()
 
-        for _ in range(6):
+        for round_index in range(6):
             response, latency_ms = self.advisor._post_with_retries(
                 {
                     "model": self.settings.model,
@@ -469,19 +481,31 @@ class LLMDataQualityAgent:
             messages.append(message)
             if not requested_tools:
                 final_answer = message.get("content") or ""
+                planning_steps.append(
+                    self._build_plan_step(
+                        dataset=dataset,
+                        round_index=round_index,
+                        selected_tools=[],
+                        tool_calls=tool_calls,
+                        stop_reason="final_answer",
+                    )
+                )
                 return AgentRunReport(
                     dataset=dataset,
                     generated_at=datetime.now(timezone.utc),
                     status=quality_report.status if quality_report else "ERROR",
                     final_answer=final_answer,
                     tool_calls=tool_calls,
+                    planning_steps=planning_steps,
                     quality_report=quality_report,
-                    evaluation=self._evaluate(tool_calls, quality_report, started, model_calls),
+                    evaluation=self._evaluate(tool_calls, quality_report, started, model_calls, planning_steps),
                 )
 
+            selected_tools: list[str] = []
             for call in requested_tools:
                 function = call.get("function", {})
                 name = function.get("name", "")
+                selected_tools.append(name)
                 try:
                     arguments = json.loads(function.get("arguments") or "{}")
                 except json.JSONDecodeError:
@@ -504,17 +528,105 @@ class LLMDataQualityAgent:
                         "content": json.dumps(result, sort_keys=True),
                     }
                 )
+            planning_steps.append(
+                self._build_plan_step(
+                    dataset=dataset,
+                    round_index=round_index,
+                    selected_tools=selected_tools,
+                    tool_calls=tool_calls,
+                    stop_reason="report_attached" if quality_report is not None else "continue",
+                )
+            )
 
+        final_planning_steps = planning_steps + [
+            self._build_plan_step(
+                dataset=dataset,
+                round_index=len(planning_steps),
+                selected_tools=[],
+                tool_calls=tool_calls,
+                stop_reason="max_rounds",
+            )
+        ]
         return AgentRunReport(
             dataset=dataset,
             generated_at=datetime.now(timezone.utc),
             status="ERROR",
             final_answer="Agent stopped after reaching the tool-call limit.",
             tool_calls=tool_calls,
+            planning_steps=final_planning_steps,
             quality_report=quality_report,
-            evaluation=self._evaluate(tool_calls, quality_report, started, model_calls),
+            evaluation=self._evaluate(tool_calls, quality_report, started, model_calls, final_planning_steps),
             error="tool-call limit reached",
         )
+
+    def _build_plan_step(
+        self,
+        dataset: DatasetSummary,
+        round_index: int,
+        selected_tools: list[str],
+        tool_calls: list[AgentToolCall],
+        stop_reason: str,
+    ) -> AgentPlanStep:
+        strategy_preview = next(
+            (
+                call.result_preview
+                for call in reversed(tool_calls)
+                if call.tool_name == "select_quality_strategy"
+            ),
+            {},
+        )
+        recommended_next_tools = [
+            tool
+            for tool in strategy_preview.get("recommended_next_tools", [])
+            if isinstance(tool, str) and tool not in {call.tool_name for call in tool_calls}
+        ]
+        if not recommended_next_tools and stop_reason == "continue":
+            recommended_next_tools = [
+                tool
+                for tool in (
+                    "select_quality_strategy",
+                    "profile_dataset",
+                    "retrieve_dataset_memory",
+                    "inspect_primary_key_integrity",
+                    "analyze_numeric_distribution",
+                    "run_quality_checks",
+                    "retrieve_business_rules",
+                    "build_quality_report",
+                )
+                if tool not in {call.tool_name for call in tool_calls}
+            ][:4]
+
+        if selected_tools:
+            rationale = "The model selected the next evidence-gathering tools from the allowlist."
+        elif stop_reason == "final_answer":
+            rationale = "The model stopped because it returned a final answer after receiving tool evidence."
+        elif stop_reason == "max_rounds":
+            rationale = "The agent stopped because it reached the configured tool-call round budget."
+        else:
+            rationale = "The agent recorded the current planning state."
+        if strategy_preview.get("strategy"):
+            rationale = f"{rationale} Current strategy: {strategy_preview['strategy']}."
+
+        evidence_summary = self._summarize_plan_evidence(tool_calls)
+        return AgentPlanStep(
+            round_index=round_index,
+            goal=f"Investigate dataset '{dataset.id}' and produce an evidence-backed data quality report.",
+            selected_tools=selected_tools,
+            rationale=rationale,
+            evidence_summary=evidence_summary,
+            remaining_tools=recommended_next_tools,
+            stop_reason=stop_reason,
+        )
+
+    def _summarize_plan_evidence(self, tool_calls: list[AgentToolCall]) -> str | None:
+        if not tool_calls:
+            return None
+        recent = tool_calls[-3:]
+        parts = []
+        for call in recent:
+            preview = ", ".join(f"{key}={value}" for key, value in list(call.result_preview.items())[:3])
+            parts.append(f"{call.tool_name}({preview})" if preview else call.tool_name)
+        return "; ".join(parts)
 
     def _build_model_call_telemetry(self, response: dict[str, Any], latency_ms: int) -> dict[str, Any]:
         usage = response.get("usage", {})
@@ -577,10 +689,12 @@ class LLMDataQualityAgent:
         quality_report: QualityReport | None,
         started: float,
         model_calls: list[dict[str, Any]] | None = None,
+        planning_steps: list[AgentPlanStep] | None = None,
     ) -> dict[str, Any]:
         names = [call.tool_name for call in tool_calls]
         duplicate_tools = sorted({name for name in names if names.count(name) > 1})
         calls = model_calls or []
+        steps = planning_steps or []
         token_counts = [call["total_tokens"] for call in calls if isinstance(call.get("total_tokens"), int)]
         costs = [call["estimated_cost_usd"] for call in calls if isinstance(call.get("estimated_cost_usd"), (int, float))]
         return {
@@ -595,6 +709,9 @@ class LLMDataQualityAgent:
             "timeout_seconds": self.settings.timeout_seconds,
             "max_retries": self.settings.max_retries,
             "tool_call_count": len(tool_calls),
+            "plan_step_count": len(steps),
+            "replanning_round_count": len([step for step in steps if step.selected_tools]),
+            "last_stop_reason": steps[-1].stop_reason if steps else None,
             "distinct_tool_count": len(set(names)),
             "duplicate_tools": duplicate_tools,
             "used_strategy_tool": "select_quality_strategy" in names,

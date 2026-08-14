@@ -33,16 +33,15 @@
     },
     {
       "area": "State management",
-      "evidence": "AgentRunReport stores status, final answer, tool calls, attached report, evaluation, and trace_id.",
+      "evidence": "AgentRunReport stores status, final answer, tool calls, planning steps, attached report, evaluation, and trace_id.",
       "resume_signal": "stateful agent reporting",
       "status": "implemented"
     },
     {
       "area": "Planning and replanning",
-      "evidence": "The model can inspect strategy, profile, memory, checks, and report tools iteratively, but there is no explicit editable plan object yet.",
-      "next_step": "Add a compact plan state with current hypothesis, next tool, and stop reason after each loop.",
-      "resume_signal": "agent planning roadmap",
-      "status": "partial"
+      "evidence": "AgentRunReport.planning_steps records each tool-loop round with goal, selected tools, rationale, evidence summary, remaining tools, and stop reason.",
+      "resume_signal": "structured agent planning trace",
+      "status": "implemented"
     },
     {
       "area": "Termination conditions",
@@ -148,7 +147,7 @@
   ],
   "project": "Data Quality Agent",
   "purpose": "Map the project against a practical 20-point LLM agent maturity checklist so resume claims stay evidence-backed and weak areas remain explicit.",
-  "resume_safe_summary": "Published a 20-point LLM agent maturity audit with 14 implemented areas, 5 partial areas, 9 controlled tools, structured output, guardrails, traceability, and an explicit zero accepted-real-model-run boundary.",
+  "resume_safe_summary": "Published a 20-point LLM agent maturity audit with 15 implemented areas, 4 partial areas, 9 controlled tools, structured output, guardrails, traceability, and an explicit zero accepted-real-model-run boundary.",
   "source_artifacts": [
     "docs/agent-capability-matrix.json",
     "docs/agent-readiness.json",
@@ -156,8 +155,8 @@
     "docs/real-model-preflight.json"
   ],
   "status_counts": {
-    "implemented": 14,
+    "implemented": 15,
     "not_claimed": 1,
-    "partial": 5
+    "partial": 4
   }
 }

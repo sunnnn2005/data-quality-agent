@@ -7,8 +7,8 @@ Map the project against a practical 20-point LLM agent maturity checklist so res
 | Metric | Value |
 | --- | ---: |
 | Audit rows | 20 |
-| Implemented areas | 14 |
-| Partial areas | 5 |
+| Implemented areas | 15 |
+| Partial areas | 4 |
 | Not-claimed areas | 1 |
 | Allowed tools | 9 |
 | AI Engineer signals | 8 |
@@ -23,8 +23,8 @@ Map the project against a practical 20-point LLM agent maturity checklist so res
 | Controlled tools | implemented | The toolbox exposes 9 structured allowlisted tools and rejects unknown tool names. | safe tool calling |
 | Agent loop | implemented | Tool results are appended as role=tool messages before the next model step. | multi-step agent execution |
 | Dynamic execution path | implemented | The strategy tool chooses different checks for transaction, support-ticket, customer, and generic tables. | adaptive data-quality investigation |
-| State management | implemented | AgentRunReport stores status, final answer, tool calls, attached report, evaluation, and trace_id. | stateful agent reporting |
-| Planning and replanning | partial | The model can inspect strategy, profile, memory, checks, and report tools iteratively, but there is no explicit editable plan object yet. | agent planning roadmap |
+| State management | implemented | AgentRunReport stores status, final answer, tool calls, planning steps, attached report, evaluation, and trace_id. | stateful agent reporting |
+| Planning and replanning | implemented | AgentRunReport.planning_steps records each tool-loop round with goal, selected tools, rationale, evidence summary, remaining tools, and stop reason. | structured agent planning trace |
 | Termination conditions | implemented | The loop stops on final model answer, attached quality report, disabled model fallback, or max-round budget. | bounded autonomous loop |
 | Permissions and safety | implemented | The agent is read-only, uses a tool allowlist, limits database access, redacts sensitive fields, and verifies final reports. | AI safety boundary |
 | Error handling and fallback | implemented | Missing OPENAI_API_KEY returns a structured DISABLED fallback instead of failing the API. | production-minded fallback |
@@ -41,7 +41,6 @@ Map the project against a practical 20-point LLM agent maturity checklist so res
 
 ## Next Upgrades
 
-- Planning and replanning: Add a compact plan state with current hypothesis, next tool, and stop reason after each loop.
 - Memory: Use accepted and needs-review hypothesis labels to adjust later root-cause ranking.
 - RAG: Add optional embedding-backed retrieval for larger business-rule and incident documents.
 - Observability: Expose aggregate latency, cost, retry, and per-tool success metrics in a dashboard.
@@ -50,7 +49,7 @@ Map the project against a practical 20-point LLM agent maturity checklist so res
 
 ## Resume-Safe Summary
 
-Published a 20-point LLM agent maturity audit with 14 implemented areas, 5 partial areas, 9 controlled tools, structured output, guardrails, traceability, and an explicit zero accepted-real-model-run boundary.
+Published a 20-point LLM agent maturity audit with 15 implemented areas, 4 partial areas, 9 controlled tools, structured output, guardrails, traceability, and an explicit zero accepted-real-model-run boundary.
 
 ## Not Claimed
 

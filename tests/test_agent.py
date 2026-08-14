@@ -198,6 +198,9 @@ def test_llm_tool_calling_agent_default_disabled():
 
     assert report.status == "DISABLED"
     assert report.tool_calls == []
+    assert len(report.planning_steps) == 1
+    assert report.planning_steps[0].stop_reason == "model_disabled"
+    assert "OPENAI_API_KEY" in (report.planning_steps[0].evidence_summary or "")
     assert report.error == "OPENAI_API_KEY is not configured"
 
 
@@ -278,6 +281,19 @@ def test_llm_tool_calling_agent_runs_tool_loop():
     assert report.evaluation["used_required_report_tool"] is True
     assert report.evaluation["used_primary_key_integrity_tool"] is True
     assert report.evaluation["used_numeric_distribution_tool"] is True
+    assert report.evaluation["plan_step_count"] == len(report.planning_steps)
+    assert report.evaluation["replanning_round_count"] == 1
+    assert report.evaluation["last_stop_reason"] == "final_answer"
+    assert report.planning_steps[0].selected_tools == [
+        "profile_dataset",
+        "inspect_primary_key_integrity",
+        "analyze_numeric_distribution",
+        "run_quality_checks",
+        "build_quality_report",
+    ]
+    assert report.planning_steps[0].stop_reason == "report_attached"
+    assert report.planning_steps[-1].stop_reason == "final_answer"
+    assert "build_quality_report" in (report.planning_steps[0].evidence_summary or "")
 
 
 def test_llm_tool_calling_agent_records_model_telemetry_without_raw_prompt():
@@ -444,7 +460,15 @@ def test_llm_tool_calling_agent_replans_across_tool_feedback():
     assert report.status == "FAIL"
     assert report.evaluation["used_strategy_tool"] is True
     assert report.evaluation["distinct_tool_count"] == 4
+    assert report.evaluation["plan_step_count"] == 4
+    assert report.evaluation["replanning_round_count"] == 3
     assert "negative_amount" in report.tool_calls[0].result_preview.get("recommended_checks", [])
+    assert [step.selected_tools for step in report.planning_steps[:3]] == [
+        ["select_quality_strategy"],
+        ["profile_dataset", "run_quality_checks"],
+        ["build_quality_report"],
+    ]
+    assert report.planning_steps[-1].stop_reason == "final_answer"
 
 
 def test_llm_tool_calling_agent_can_use_memory_to_inform_planning():
@@ -531,7 +555,10 @@ def test_llm_tool_calling_agent_can_use_memory_to_inform_planning():
         "build_quality_report",
     ]
     assert report.evaluation["used_memory_tool"] is True
+    assert report.evaluation["replanning_round_count"] == 2
     assert report.tool_calls[0].result_preview["trace_count"] == 2
+    assert report.planning_steps[0].selected_tools == ["retrieve_dataset_memory"]
+    assert report.planning_steps[1].remaining_tools
 
 
 def test_llm_tool_calling_agent_can_retrieve_business_rules_after_checks():

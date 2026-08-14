@@ -50,15 +50,14 @@ AUDIT_ROWS = [
     {
         "area": "State management",
         "status": "implemented",
-        "evidence": "AgentRunReport stores status, final answer, tool calls, attached report, evaluation, and trace_id.",
+        "evidence": "AgentRunReport stores status, final answer, tool calls, planning steps, attached report, evaluation, and trace_id.",
         "resume_signal": "stateful agent reporting",
     },
     {
         "area": "Planning and replanning",
-        "status": "partial",
-        "evidence": "The model can inspect strategy, profile, memory, checks, and report tools iteratively, but there is no explicit editable plan object yet.",
-        "next_step": "Add a compact plan state with current hypothesis, next tool, and stop reason after each loop.",
-        "resume_signal": "agent planning roadmap",
+        "status": "implemented",
+        "evidence": "AgentRunReport.planning_steps records each tool-loop round with goal, selected tools, rationale, evidence summary, remaining tools, and stop reason.",
+        "resume_signal": "structured agent planning trace",
     },
     {
         "area": "Termination conditions",

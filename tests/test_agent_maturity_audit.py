@@ -12,8 +12,8 @@ def test_agent_maturity_audit_maps_agent_claims_to_evidence():
 
     assert verification["agent_maturity_audit_verified"] is True
     assert payload["audit_row_count"] == 20
-    assert payload["status_counts"]["implemented"] == 14
-    assert payload["status_counts"]["partial"] == 5
+    assert payload["status_counts"]["implemented"] == 15
+    assert payload["status_counts"]["partial"] == 4
     assert payload["status_counts"]["not_claimed"] == 1
     assert payload["cross_checks"]["allowed_tools"] == 9
     assert payload["cross_checks"]["capability_matrix_implemented"] == 13
@@ -24,9 +24,14 @@ def test_agent_maturity_audit_maps_agent_claims_to_evidence():
         "LLM decision-making",
         "Controlled tools",
         "Agent loop",
+        "Planning and replanning",
         "RAG",
         "Real-model production evidence",
     }
+    assert any(
+        row["status"] == "implemented" and row["area"] == "Planning and replanning"
+        for row in payload["audit_rows"]
+    )
     assert any(row["status"] == "partial" and row["area"] == "RAG" for row in payload["audit_rows"])
     assert any(row["status"] == "not_claimed" and row["area"] == "Real-model production evidence" for row in payload["audit_rows"])
     assert "20-point LLM agent maturity audit" in payload["resume_safe_summary"]
