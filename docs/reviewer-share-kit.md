@@ -17,7 +17,7 @@ Package the public reviewer call into copy-ready sharing messages so real review
 | linkedin_dm | AI Engineer, SWE, or data engineer peer | `ai_engineer_review_items` | [Call](https://github.com/sunnnn2005/data-quality-agent/issues/19) | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md) |
 | email_or_mentor | mentor, TA, professor, or technical reviewer | `external_feedback_items` | [Call](https://github.com/sunnnn2005/data-quality-agent/issues/19) | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md) |
 | class_discord_or_slack | student developer or data science club channel | `confirmed_external_users` | [Call](https://github.com/sunnnn2005/data-quality-agent/issues/19) | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md) |
-| github_discussion_or_issue_comment | open-source reviewer or first-time contributor | `reproducible_feedback_items` | [Call](https://github.com/sunnnn2005/data-quality-agent/issues/19) | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md) |
+| github_discussion_or_issue_comment | open-source reviewer or first-time contributor | `reproducible_feedback_items` | [Call](https://github.com/sunnnn2005/data-quality-agent/issues/19) | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md) |
 | resume_portfolio_link | recruiter or hiring manager opening the resume | `business_case_feedback_items` | [Call](https://github.com/sunnnn2005/data-quality-agent/issues/19) | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md) |
 
 ## Copy-Ready Messages
@@ -60,7 +60,7 @@ Audience: open-source reviewer or first-time contributor
 Review request: https://github.com/sunnnn2005/data-quality-agent/issues/19. I am looking for public feedback on whether the repo is runnable, whether the LLM-agent evidence is clear, and where the contributor path is confusing. Please keep private data out of the issue and include permission if the public review can be counted.
 ```
 
-Submission: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md
+Submission: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md
 
 ### resume_portfolio_link
 

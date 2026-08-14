@@ -11,8 +11,8 @@ Give reviewers one short public hub for submitting evidence that can turn zero-c
 | Path | Target Metric | Minutes | Review Path | Submit Evidence | Counting Rule |
 | --- | --- | ---: | --- | --- | --- |
 | try_public_demo | `external_feedback_items` | 5 | [Review](https://sunnnn2005.github.io/data-quality-agent/) | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md) | Counts only after a non-owner public issue grants permission and passes the evidence gate. |
-| confirm_external_run | `confirmed_external_users` | 8 | [Review](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-quickstart.md) | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md) | Counts only when the reviewer ran or opened a runnable path and submitted observed-result evidence. |
-| submit_reproducible_issue | `reproducible_feedback_items` | 10 | [Review](https://github.com/sunnnn2005/data-quality-agent) | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md) | Counts only when reproduction steps are specific enough for the maintainer to retry. |
+| confirm_external_run | `confirmed_external_users` | 8 | [Review](https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html) | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md) | Counts only when the reviewer ran or opened a runnable path and submitted observed-result evidence. |
+| submit_reproducible_issue | `reproducible_feedback_items` | 10 | [Review](https://github.com/sunnnn2005/data-quality-agent) | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md) | Counts only when a non-owner submits a sanitized business-data replay issue with run evidence, agent trace summary, and permission to count publicly. |
 | submit_business_case | `business_case_feedback_items` | 12 | [Review](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-case-intake.md) | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md) | Counts only when the business case is anonymized, permissioned, and contains no raw production data. |
 | submit_ai_engineer_review | `ai_engineer_review_items` | 12 | [Review](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md) | [Submit](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md) | Counts only when an external reviewer inspects implementation evidence and grants permission. |
 | star_or_fork_if_useful | `github_stars` | 1 | [Review](https://github.com/sunnnn2005/data-quality-agent) | [Submit](https://github.com/sunnnn2005/data-quality-agent/stargazers) | Counts only from GitHub public star data; never asks for fake engagement. |
@@ -35,10 +35,11 @@ Give reviewers one short public hub for submitting evidence that can turn zero-c
 
 ### submit_reproducible_issue
 
-- expected behavior
-- actual behavior
-- reproduction steps
-- safe logs or screenshots
+- command or endpoint used
+- dataset shape
+- report status and finding count
+- selected tools shown in the agent trace
+- what the agent caught or missed
 
 ### submit_business_case
 
@@ -73,7 +74,7 @@ Give reviewers one short public hub for submitting evidence that can turn zero-c
 
 ## Resume-Safe Summary
 
-Published a CI-verified reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, 23 required evidence fields, and zero current outcome claims upgraded.
+Published a CI-verified reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, 24 required evidence fields, and zero current outcome claims upgraded.
 
 ## Not Claimed
 

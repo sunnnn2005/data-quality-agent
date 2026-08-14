@@ -916,7 +916,7 @@ def verify_manifest() -> dict[str, int]:
                 expected = {
                     "submission_path_count": 6,
                     "target_metric_count": 6,
-                    "total_required_evidence_fields": 23,
+                    "total_required_evidence_fields": 24,
                 }
                 for key, value in expected.items():
                     if reviewer_submission_hub.get(key) != value:
@@ -959,7 +959,7 @@ def verify_manifest() -> dict[str, int]:
                     "project": "Data Quality Agent",
                     "tracked_action_count": 5,
                     "submission_path_count": 6,
-                    "required_evidence_field_count": 23,
+                    "required_evidence_field_count": 24,
                 }
                 for key, value in expected.items():
                     if outcome_collection.get(key) != value:
@@ -996,7 +996,7 @@ def verify_manifest() -> dict[str, int]:
                     "reviewer_segment_count": 3,
                     "linked_submission_paths": 6,
                     "linked_outreach_tasks": 8,
-                    "required_public_evidence_fields": 23,
+                    "required_public_evidence_fields": 24,
                 }
                 for key, value in expected.items():
                     if public_reviewer_call.get(key) != value:
@@ -1035,7 +1035,7 @@ def verify_manifest() -> dict[str, int]:
                     "ready_message_count": 5,
                     "linked_submission_paths": 6,
                     "linked_public_call_segments": 3,
-                    "required_evidence_fields": 23,
+                    "required_evidence_fields": 24,
                     "outreach_tasks_linked": 8,
                 }
                 for key, value in expected.items():

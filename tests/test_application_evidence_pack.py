@@ -46,7 +46,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert payload["verified_outcome_numbers"]["verified_resume_claims"] == 84
     assert payload["verified_outcome_numbers"]["outcome_collection_actions"] == 5
     assert payload["verified_outcome_numbers"]["outcome_collection_submission_paths"] == 6
-    assert payload["verified_outcome_numbers"]["outcome_collection_evidence_fields"] == 23
+    assert payload["verified_outcome_numbers"]["outcome_collection_evidence_fields"] == 24
     assert payload["verified_outcome_numbers"]["reviewer_share_channels"] == 5
     assert payload["verified_outcome_numbers"]["reviewer_share_ready_messages"] == 5
     assert payload["verified_outcome_numbers"]["reviewer_share_not_sent"] == 5
@@ -95,7 +95,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert payload["verified_outcome_numbers"]["resume_outcome_action_count"] == 5
     assert payload["verified_outcome_numbers"]["resume_outcome_next_actions_needed"] == 5
     assert payload["verified_outcome_numbers"]["reviewer_submission_paths"] == 6
-    assert payload["verified_outcome_numbers"]["reviewer_submission_required_fields"] == 23
+    assert payload["verified_outcome_numbers"]["reviewer_submission_required_fields"] == 24
     assert payload["verified_outcome_numbers"]["first_10_reviewer_slots"] == 10
     assert payload["verified_outcome_numbers"]["first_10_reviewer_public_issue_entrypoints"] == 10
     assert payload["verified_outcome_numbers"]["first_10_reviewer_target_metrics"] == 6
@@ -107,7 +107,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert payload["verified_outcome_numbers"]["first_10_outreach_accepted_evidence"] == 0
     assert payload["verified_outcome_numbers"]["public_reviewer_call_segments"] == 3
     assert payload["verified_outcome_numbers"]["public_reviewer_call_outreach_tasks"] == 8
-    assert payload["verified_outcome_numbers"]["public_reviewer_call_evidence_fields"] == 23
+    assert payload["verified_outcome_numbers"]["public_reviewer_call_evidence_fields"] == 24
     assert payload["verified_outcome_numbers"]["resume_claim_upgrade_rows"] == 6
     assert payload["verified_outcome_numbers"]["resume_claim_upgrade_blocked_rows"] == 6
     assert payload["verified_outcome_numbers"]["resume_claim_upgrade_claimable_rows"] == 0

@@ -15,7 +15,7 @@ def test_reviewer_share_kit_packages_public_call_without_claiming_outcomes():
     assert payload["ready_message_count"] == 5
     assert payload["linked_submission_paths"] == 6
     assert payload["linked_public_call_segments"] == 3
-    assert payload["required_evidence_fields"] == 23
+    assert payload["required_evidence_fields"] == 24
     assert payload["outreach_tasks_linked"] == 8
     assert payload["public_call_issue"] == "https://github.com/sunnnn2005/data-quality-agent/issues/19"
     assert payload["send_status_counts"] == {"not_sent": 5, "sent": 0, "completed": 0}

@@ -116,17 +116,17 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Resume Outcome Action Count | 5 |
 | Resume Outcome Next Actions Needed | 5 |
 | Reviewer Submission Paths | 6 |
-| Reviewer Submission Required Fields | 23 |
+| Reviewer Submission Required Fields | 24 |
 | Outcome Collection Actions | 5 |
 | Outcome Collection Submission Paths | 6 |
-| Outcome Collection Evidence Fields | 23 |
+| Outcome Collection Evidence Fields | 24 |
 | Public Reviewer Call Segments | 3 |
 | Public Reviewer Call Outreach Tasks | 8 |
-| Public Reviewer Call Evidence Fields | 23 |
+| Public Reviewer Call Evidence Fields | 24 |
 | Reviewer Share Channels | 5 |
 | Reviewer Share Ready Messages | 5 |
 | Reviewer Share Linked Submission Paths | 6 |
-| Reviewer Share Required Fields | 23 |
+| Reviewer Share Required Fields | 24 |
 | Reviewer Share Not Sent | 5 |
 | Resume Claim Upgrade Rows | 6 |
 | Resume Claim Upgrade Blocked Rows | 6 |

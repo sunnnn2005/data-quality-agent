@@ -233,7 +233,7 @@ def verify_outcome_collection_payload(payload: dict[str, Any]) -> dict[str, Any]
     expected = {
         "tracked_action_count": 5,
         "submission_path_count": 6,
-        "required_evidence_field_count": 23,
+        "required_evidence_field_count": 24,
         "confirmed_external_users": 0,
         "external_feedback_items": 0,
         "github_stars": 0,
@@ -244,7 +244,7 @@ def verify_outcome_collection_payload(payload: dict[str, Any]) -> dict[str, Any]
     if payload["submission_path_count"] != expected["submission_path_count"]:
         raise AssertionError("outcome collection page must expose six submission paths")
     if payload["required_evidence_field_count"] != expected["required_evidence_field_count"]:
-        raise AssertionError("outcome collection page must preserve 23 evidence fields")
+        raise AssertionError("outcome collection page must preserve 24 evidence fields")
     counts = payload["current_counts"]
     for key in ("confirmed_external_users", "external_feedback_items", "github_stars", "passing_tests"):
         if counts[key] != expected[key]:

@@ -772,7 +772,7 @@ PUBLIC_CHECKS = [
             "project": "Data Quality Agent",
             "submission_path_count": 6,
             "target_metric_count": 6,
-            "total_required_evidence_fields": 23,
+            "total_required_evidence_fields": 24,
         },
         "expected_text": "collection_ready_not_claimable",
         "expected_texts": [
@@ -790,7 +790,7 @@ PUBLIC_CHECKS = [
             "project": "Data Quality Agent",
             "reviewer_segment_count": 3,
             "linked_submission_paths": 6,
-            "required_public_evidence_fields": 23,
+            "required_public_evidence_fields": 24,
         },
         "expected_text": "public_call_open_not_claimable",
         "expected_texts": [

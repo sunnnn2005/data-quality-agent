@@ -21,7 +21,7 @@
   "public_call_issue": "https://github.com/sunnnn2005/data-quality-agent/issues/19",
   "purpose": "Package the public reviewer call into copy-ready sharing messages so real reviewers can try the project and submit public evidence without upgrading any resume outcome claim prematurely.",
   "ready_message_count": 5,
-  "required_evidence_fields": 23,
+  "required_evidence_fields": 24,
   "resume_safe_summary": "Published a CI-verified reviewer share kit with 5 copy-ready messages, 5 share channels, issue #19, 6 submission paths, and zero sent or completed outreach claimed.",
   "resume_status": "share_ready_not_claimable",
   "send_status_counts": {
@@ -60,7 +60,7 @@
       "call_to_action_url": "https://github.com/sunnnn2005/data-quality-agent/issues/19",
       "channel": "github_discussion_or_issue_comment",
       "counts_toward": "reproducible_feedback_items",
-      "evidence_submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md",
+      "evidence_submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md",
       "message": "Review request: https://github.com/sunnnn2005/data-quality-agent/issues/19. I am looking for public feedback on whether the repo is runnable, whether the LLM-agent evidence is clear, and where the contributor path is confusing. Please keep private data out of the issue and include permission if the public review can be counted."
     },
     {

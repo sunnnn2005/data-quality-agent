@@ -9,7 +9,7 @@
   ],
   "project": "Data Quality Agent",
   "purpose": "Give reviewers one short public hub for submitting evidence that can turn zero-count resume outcomes into evidence-backed claims after the external evidence gate accepts them.",
-  "resume_safe_summary": "Published a CI-verified reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, 23 required evidence fields, and zero current outcome claims upgraded.",
+  "resume_safe_summary": "Published a CI-verified reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, 24 required evidence fields, and zero current outcome claims upgraded.",
   "resume_status": "collection_ready_not_claimable",
   "submission_path_count": 6,
   "submission_paths": [
@@ -37,22 +37,23 @@
         "environment",
         "permission to count public run evidence"
       ],
-      "review_path": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-quickstart.md",
+      "review_path": "https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html",
       "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md",
       "target_metric": "confirmed_external_users"
     },
     {
-      "counting_rule": "Counts only when reproduction steps are specific enough for the maintainer to retry.",
+      "counting_rule": "Counts only when a non-owner submits a sanitized business-data replay issue with run evidence, agent trace summary, and permission to count publicly.",
       "id": "submit_reproducible_issue",
       "minimum_minutes": 10,
       "required_evidence": [
-        "expected behavior",
-        "actual behavior",
-        "reproduction steps",
-        "safe logs or screenshots"
+        "command or endpoint used",
+        "dataset shape",
+        "report status and finding count",
+        "selected tools shown in the agent trace",
+        "what the agent caught or missed"
       ],
       "review_path": "https://github.com/sunnnn2005/data-quality-agent",
-      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md",
       "target_metric": "reproducible_feedback_items"
     },
     {
@@ -98,7 +99,7 @@
     }
   ],
   "target_metric_count": 6,
-  "total_required_evidence_fields": 23,
+  "total_required_evidence_fields": 24,
   "tracked_outcome_status": {
     "ai_engineer_review_items": {
       "blocked_reason": "Needs a non-owner AI Engineer review issue with inspected paths and permission to count.",

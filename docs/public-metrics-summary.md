@@ -112,7 +112,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Reviewer submission hub | 1 |
 | Reviewer submission paths | 6 |
 | Reviewer submission target metrics | 6 |
-| Reviewer submission required fields | 23 |
+| Reviewer submission required fields | 24 |
 | First 10 reviewer sprint | 1 |
 | First 10 reviewer slots | 10 |
 | First 10 reviewer issue launch drafts | 10 |
@@ -128,17 +128,17 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Outcome collection page | 1 |
 | Outcome collection actions | 5 |
 | Outcome collection submission paths | 6 |
-| Outcome collection evidence fields | 23 |
+| Outcome collection evidence fields | 24 |
 | Public reviewer call | 1 |
 | Public reviewer call segments | 3 |
 | Public reviewer call submission paths | 6 |
 | Public reviewer call outreach tasks | 8 |
-| Public reviewer call evidence fields | 23 |
+| Public reviewer call evidence fields | 24 |
 | Reviewer share kit | 1 |
 | Reviewer share channels | 5 |
 | Reviewer share ready messages | 5 |
 | Reviewer share linked submission paths | 6 |
-| Reviewer share required fields | 23 |
+| Reviewer share required fields | 24 |
 | Reviewer share not sent | 5 |
 | API smoke report | 1 |
 | API smoke checks | 6 |
@@ -327,10 +327,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - First-10 outreach execution log with 10 copy-ready reviewer messages, 10 public issue entrypoints, 10 not-sent entries, and zero claimable external outcomes
 - Resume outcome metrics board tracking 6 outcome metrics, 0 claimable outcome lines, 6 blocked outcome lines, and honest user/feedback/star baselines
 - Resume outcome action checklist with 5 concrete next actions, 4 evaluated public GitHub issues, 0 accepted public evidence items, and 8 not-sent reviewer outreach slots
-- Reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, 23 required evidence fields, and zero current outcome claims upgraded
+- Reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, 24 required evidence fields, and zero current outcome claims upgraded
 - First-10 reviewer sprint with 10 public evidence slots, 10 issue launch drafts, 6 target metrics, 10 not-sent outreach slots, and zero upgraded outcome claims
-- Outcome collection page with 5 next actions, 6 submission paths, 23 required evidence fields, 0 confirmed users, 0 feedback items, and 0 GitHub stars
-- Public reviewer call linked to 3 reviewer segments, 6 submission paths, 8 outreach tasks, and 23 evidence fields without claiming outcomes
+- Outcome collection page with 5 next actions, 6 submission paths, 24 required evidence fields, 0 confirmed users, 0 feedback items, and 0 GitHub stars
+- Public reviewer call linked to 3 reviewer segments, 6 submission paths, 8 outreach tasks, and 24 evidence fields without claiming outcomes
 - Reviewer share kit with 5 copy-ready messages, 5 share channels, issue #19, 6 submission paths, and zero sent or completed outreach claimed
 - CI-verified API smoke report covering 6 passing FastAPI route checks
 - CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls

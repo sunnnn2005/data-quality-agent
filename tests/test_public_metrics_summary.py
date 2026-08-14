@@ -106,7 +106,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["reviewer_submission_hub"] == 1
     assert payload["verified_project_outcomes"]["reviewer_submission_paths"] == 6
     assert payload["verified_project_outcomes"]["reviewer_submission_target_metrics"] == 6
-    assert payload["verified_project_outcomes"]["reviewer_submission_required_fields"] == 23
+    assert payload["verified_project_outcomes"]["reviewer_submission_required_fields"] == 24
     assert payload["verified_project_outcomes"]["first_10_reviewer_sprint"] == 1
     assert payload["verified_project_outcomes"]["first_10_reviewer_slots"] == 10
     assert payload["verified_project_outcomes"]["first_10_reviewer_issue_launch_drafts"] == 10
@@ -122,12 +122,12 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["outcome_collection_page"] == 1
     assert payload["verified_project_outcomes"]["outcome_collection_actions"] == 5
     assert payload["verified_project_outcomes"]["outcome_collection_submission_paths"] == 6
-    assert payload["verified_project_outcomes"]["outcome_collection_evidence_fields"] == 23
+    assert payload["verified_project_outcomes"]["outcome_collection_evidence_fields"] == 24
     assert payload["verified_project_outcomes"]["public_reviewer_call"] == 1
     assert payload["verified_project_outcomes"]["public_reviewer_call_segments"] == 3
     assert payload["verified_project_outcomes"]["public_reviewer_call_submission_paths"] == 6
     assert payload["verified_project_outcomes"]["public_reviewer_call_outreach_tasks"] == 8
-    assert payload["verified_project_outcomes"]["public_reviewer_call_evidence_fields"] == 23
+    assert payload["verified_project_outcomes"]["public_reviewer_call_evidence_fields"] == 24
     assert payload["verified_project_outcomes"]["api_smoke_report"] == 1
     assert payload["verified_project_outcomes"]["api_smoke_checks"] == 6
     assert payload["verified_project_outcomes"]["api_smoke_passed_checks"] == 6
@@ -342,11 +342,11 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-        "Reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, 23 required evidence fields, and zero current outcome claims upgraded"
+        "Reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, 24 required evidence fields, and zero current outcome claims upgraded"
         in payload["resume_safe_signals"]
     )
     assert (
-        "Public reviewer call linked to 3 reviewer segments, 6 submission paths, 8 outreach tasks, and 23 evidence fields without claiming outcomes"
+        "Public reviewer call linked to 3 reviewer segments, 6 submission paths, 8 outreach tasks, and 24 evidence fields without claiming outcomes"
         in payload["resume_safe_signals"]
     )
     assert (
@@ -355,7 +355,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-        "Outcome collection page with 5 next actions, 6 submission paths, 23 required evidence fields, 0 confirmed users, 0 feedback items, and 0 GitHub stars"
+        "Outcome collection page with 5 next actions, 6 submission paths, 24 required evidence fields, 0 confirmed users, 0 feedback items, and 0 GitHub stars"
         in payload["resume_safe_signals"]
     )
     assert (

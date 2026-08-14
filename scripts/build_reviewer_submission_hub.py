@@ -29,13 +29,13 @@ def build_reviewer_submission_hub() -> dict[str, Any]:
     repo = adoption["repo"]
     links = {
         "demo": adoption["public_demo"],
-        "external_run_quickstart": f"{repo}/blob/main/docs/external-run-quickstart.md",
+        "external_run_quickstart": "https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html",
         "github_repo": repo,
         "business_case_intake": f"{repo}/blob/main/docs/business-case-intake.md",
         "ai_engineer_review_intake": f"{repo}/blob/main/docs/ai-engineer-review-intake.md",
     }
     external_run_url = f"{repo}/issues/new?template=external_run_review.md"
-    bug_url = f"{repo}/issues/new?template=bug_report.md"
+    business_data_replay_url = f"{repo}/issues/new?template=business_data_replay.md"
     submission_paths = [
         {
             "id": "try_public_demo",
@@ -70,14 +70,18 @@ def build_reviewer_submission_hub() -> dict[str, Any]:
             "target_metric": "reproducible_feedback_items",
             "minimum_minutes": 10,
             "review_path": links["github_repo"],
-            "submission_url": bug_url,
+            "submission_url": business_data_replay_url,
             "required_evidence": [
-                "expected behavior",
-                "actual behavior",
-                "reproduction steps",
-                "safe logs or screenshots",
+                "command or endpoint used",
+                "dataset shape",
+                "report status and finding count",
+                "selected tools shown in the agent trace",
+                "what the agent caught or missed",
             ],
-            "counting_rule": "Counts only when reproduction steps are specific enough for the maintainer to retry.",
+            "counting_rule": (
+                "Counts only when a non-owner submits a sanitized business-data replay issue with run evidence, "
+                "agent trace summary, and permission to count publicly."
+            ),
         },
         {
             "id": "submit_business_case",
@@ -145,7 +149,7 @@ def build_reviewer_submission_hub() -> dict[str, Any]:
         "not_claimed": outcome_metrics["not_claimed"],
         "resume_safe_summary": (
             "Published a CI-verified reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, "
-            "23 required evidence fields, and zero current outcome claims upgraded."
+            "24 required evidence fields, and zero current outcome claims upgraded."
         ),
     }
 
@@ -206,8 +210,8 @@ def verify_reviewer_submission_hub(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("reviewer submission hub must define six submission paths")
     if payload["target_metric_count"] != 6:
         raise AssertionError("reviewer submission hub must cover six outcome metrics")
-    if payload["total_required_evidence_fields"] != 23:
-        raise AssertionError("reviewer submission hub must track 23 required evidence fields")
+    if payload["total_required_evidence_fields"] != 24:
+        raise AssertionError("reviewer submission hub must track 24 required evidence fields")
     if payload["resume_status"] != "collection_ready_not_claimable":
         raise AssertionError("reviewer submission hub must not upgrade resume outcomes by itself")
     required_metrics = {
@@ -237,7 +241,14 @@ def verify_reviewer_submission_hub(payload: dict[str, Any]) -> dict[str, Any]:
             if status["resume_status"] != "not_claimable_yet":
                 raise AssertionError(f"{metric} must stay blocked at zero")
     joined = json.dumps(payload, sort_keys=True).lower()
-    for required in ("permission", "evidence gate", "no raw production data", "never asks for fake engagement"):
+    for required in (
+        "business_data_replay.md",
+        "selected tools shown in the agent trace",
+        "permission",
+        "evidence gate",
+        "no raw production data",
+        "never asks for fake engagement",
+    ):
         if required not in joined:
             raise AssertionError(f"reviewer submission hub missing safety phrase: {required}")
     return {

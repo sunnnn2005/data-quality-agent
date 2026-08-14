@@ -13,7 +13,7 @@ def test_outcome_collection_page_routes_reviewers_to_countable_evidence():
     assert verification["outcome_collection_page_verified"] is True
     assert payload["tracked_action_count"] == 5
     assert payload["submission_path_count"] == 6
-    assert payload["required_evidence_field_count"] == 23
+    assert payload["required_evidence_field_count"] == 24
     assert payload["current_counts"]["confirmed_external_users"] == 0
     assert payload["current_counts"]["external_feedback_items"] == 0
     assert payload["current_counts"]["github_stars"] == 0
