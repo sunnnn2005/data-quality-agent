@@ -15,7 +15,7 @@ def test_resume_live_proof_snapshot_is_concise_and_honest():
     assert payload["verified_now"]["passing_test_baseline"] == 224
     assert payload["verified_now"]["verified_resume_claims"] == 94
     assert payload["verified_now"]["implemented_agent_capabilities"] == 16
-    assert payload["verified_now"]["public_evidence_health"] == "102/102 public evidence checks passing"
+    assert payload["verified_now"]["public_evidence_health"] == "103/103 public evidence checks passing"
     assert payload["evidence_links"]["business_pilot_issue"].endswith("/issues/31")
     assert "GHCR image" in payload["resume_safe_bullets"][0]
     assert "without claiming completed pilots or enterprise adoption" in payload["resume_safe_bullets"][3]

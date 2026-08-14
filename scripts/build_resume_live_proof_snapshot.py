@@ -157,8 +157,10 @@ def verify_resume_live_proof_snapshot(payload: dict[str, Any]) -> dict[str, Any]
         raise AssertionError("snapshot must preserve 16 implemented agent capabilities")
     if verified["github_stars"] < 0 or verified["github_forks"] < 0:
         raise AssertionError("public GitHub stats cannot be negative")
-    if not verified["public_evidence_health"].startswith("102/102"):
-        raise AssertionError("snapshot must include current 102/102 public evidence health")
+    health_count = verified["public_evidence_health"].split(" ", maxsplit=1)[0]
+    passed_count, check_count = (int(value) for value in health_count.split("/", maxsplit=1))
+    if passed_count != check_count or check_count < 102:
+        raise AssertionError("snapshot must include all public evidence checks passing")
     if links["business_pilot_issue"] != "https://github.com/sunnnn2005/data-quality-agent/issues/31":
         raise AssertionError("snapshot must link the public business pilot issue")
     verified_claims = json.dumps(verified, sort_keys=True).lower()
