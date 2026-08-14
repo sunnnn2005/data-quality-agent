@@ -2292,6 +2292,24 @@ def verify_manifest() -> dict[str, int]:
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 
+    resume_metric_phrases = (
+        "github issues | 24",
+        "automated tests | 152",
+        "github views | 9",
+        "github unique visitors | 3",
+        "github clones | 79",
+        "github unique cloners | 50",
+        "5 currently claimable launch, quality, and traffic signals",
+        "5 claimable launch/quality/traffic signals",
+    )
+    for phrase in resume_metric_phrases:
+        if phrase not in resume_page:
+            raise AssertionError(f"resume evidence page missing current public metric phrase: {phrase}")
+
+    index_page = (ROOT / "docs" / "index.html").read_text().lower()
+    if "<strong>152</strong><span>automated tests passing locally and in ci</span>" not in index_page:
+        raise AssertionError("public homepage must display the current passing test count")
+
     if "community-growth-baseline" in claim_ids:
         if "8 issue templates" not in resume_page or "9 public contribution or feedback channels" not in resume_page:
             raise AssertionError("resume evidence page must reflect the current community growth counts")

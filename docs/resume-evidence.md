@@ -61,7 +61,7 @@ This page maps resume-ready claims for Data Quality Agent to public evidence. It
 | `outcome-upgrade-playbook` | CI-verified outcome upgrade playbook | [Outcome upgrade playbook](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-upgrade-playbook.json) | The project defines 5 metric thresholds for feedback, confirmed runs, reproducible reports, business-case reviews, and repository interest before resume wording can be upgraded. |
 | `business-impact-ledger` | CI-verified business-impact ledger | [Business impact ledger](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-impact-ledger.json) | The project converts accepted anonymized business-case review issues into resume-safe workflow, impact, and evidence-mapping fields while preserving zero accepted business-impact signals until public evidence exists. |
 | `reviewer-evidence-kit` | CI-verified reviewer evidence kit | [Reviewer evidence kit](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-evidence-kit.json) | The project gives real reviewers 5 public issue templates, copy-ready prompts, privacy and permission steps, and zero-count baselines before any external outcome claim can increase. |
-| `resume-traction-proof` | CI-verified resume traction proof | [Resume traction proof](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-traction-proof.json) | The project separates 4 currently claimable launch and quality signals from 4 future outcome claims and 5 blocked overclaiming rules for users, feedback, production adoption, and GitHub stars. |
+| `resume-traction-proof` | CI-verified resume traction proof | [Resume traction proof](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-traction-proof.json) | The project separates 5 currently claimable launch, quality, and traffic signals from 4 future outcome claims and 5 blocked overclaiming rules for users, feedback, production adoption, and GitHub stars. |
 | `reviewer-feedback-packet` | CI-verified reviewer feedback packet | [Reviewer feedback packet](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-feedback-packet.json) | The project gives reviewers 4 public task paths, 6 evidence questions, and 5 metric conversion paths for collecting public feedback and AI Engineer review evidence without claiming results before evidence exists. |
 | `reviewer-funnel-board` | CI-verified reviewer funnel board | [Reviewer funnel board](https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-funnel-board.json) | The project maps 4 public evidence paths to demo feedback, confirmed-user notes, reproducible replays, and business-case reviews with 7 remaining evidence items before stronger outcome claims are allowed. |
 | `root-cause-ranking` | Evidence-ranked root-cause hypotheses | [Agent tests](https://github.com/sunnnn2005/data-quality-agent/blob/main/tests/test_agent.py) | Reports rank likely causes by confidence and include supporting checks, evidence, and recommended actions. |
@@ -100,8 +100,12 @@ These are the current verified public metrics from `docs/adoption-metrics.json`:
 | GitHub stars | 0 |
 | Forks | 1 |
 | Watchers | 0 |
-| GitHub issues | 14 |
-| Automated tests | 146 |
+| GitHub issues | 24 |
+| Automated tests | 152 |
+| GitHub views | 9 |
+| GitHub unique visitors | 3 |
+| GitHub clones | 79 |
+| GitHub unique cloners | 50 |
 | Support-ticket issue categories | 4 |
 | Affected support-ticket columns | 4 |
 | Recommended support-ticket actions | 5 |
@@ -280,7 +284,7 @@ Use wording that is true today:
 - Added a CI-verified external reviewer evidence gate with 5 validation rules for public issue fields, explicit permission, non-owner authorship, runnable-path evidence, and sensitive-data guardrails.
 - Added a CI-verified business-impact ledger with 0 accepted business-impact signals, anonymized workflow fields, and blocked resume claims until public evidence exists.
 - Added a CI-verified reviewer evidence kit with 5 public issue templates, 5 copy-ready reviewer prompts, 5 privacy/permission steps, and zero current external outcome counts.
-- Added a CI-verified resume traction proof with 4 claimable launch/quality signals, 4 threshold-based future outcome claims, and 5 blocked overclaiming rules.
+- Added a CI-verified resume traction proof with 5 claimable launch/quality/traffic signals, 4 threshold-based future outcome claims, and 5 blocked overclaiming rules.
 - Added a CI-verified business replay demo with 8 anonymized support-ticket rows, 5 findings, 4 failed check types, 4 business-rule references, 3 root-cause hypotheses, and deterministic report verification.
 - Added a CI-verified real-model runbook with 5 run commands, 15 evidence fields, 8 acceptance criteria, and 5 safety gates without claiming a paid model run yet.
 - Added evidence-ranked root-cause hypotheses with confidence, supporting checks, and recommended actions.
