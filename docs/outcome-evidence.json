@@ -671,7 +671,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-evidence-kit.json"
     },
     {
-      "claim": "The project publishes a resume traction proof that separates 4 currently claimable launch and quality signals from 4 future outcome claims and 5 blocked overclaiming rules for adoption, feedback, production use, and GitHub stars.",
+      "claim": "The project publishes a resume traction proof that separates 6 currently claimable launch, quality, traffic, and availability signals from 4 future outcome claims and 5 blocked overclaiming rules for adoption, feedback, production use, and GitHub stars.",
       "evidence_type": "generated_artifact",
       "id": "resume-traction-proof",
       "metric_name": "resume_traction_proof",

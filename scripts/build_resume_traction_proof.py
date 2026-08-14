@@ -8,6 +8,7 @@ ADOPTION_METRICS_PATH = ROOT / "docs" / "adoption-metrics.json"
 FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
 PUBLIC_TRACTION_DASHBOARD_PATH = ROOT / "docs" / "public-traction-dashboard.json"
 PUBLIC_METRICS_SUMMARY_PATH = ROOT / "docs" / "public-metrics-summary.json"
+PUBLIC_AVAILABILITY_SNAPSHOT_PATH = ROOT / "docs" / "public-availability-snapshot.json"
 REVIEWER_EVIDENCE_KIT_PATH = ROOT / "docs" / "reviewer-evidence-kit.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "resume-traction-proof.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "resume-traction-proof.md"
@@ -26,6 +27,7 @@ def build_resume_traction_proof() -> dict[str, Any]:
     feedback = load_json(FEEDBACK_METRICS_PATH)
     traction = load_json(PUBLIC_TRACTION_DASHBOARD_PATH)
     metrics_summary = load_json(PUBLIC_METRICS_SUMMARY_PATH)
+    availability = load_json(PUBLIC_AVAILABILITY_SNAPSHOT_PATH)
     reviewer_kit = load_json(REVIEWER_EVIDENCE_KIT_PATH)
 
     public_counts = {
@@ -77,6 +79,16 @@ def build_resume_traction_proof() -> dict[str, Any]:
                 f"and {public_counts['github_unique_cloners']} unique cloners without counting traffic as users."
             ),
             "evidence": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md",
+            "status": "claimable",
+        },
+        {
+            "signal": "public availability evidence",
+            "resume_phrase": (
+                f"Verified {availability['available_endpoint_count']}/{availability['endpoint_count']} public project surfaces "
+                f"and {availability['successful_workflow_count']}/{availability['workflow_count']} main-branch workflows "
+                "in a generated availability snapshot."
+            ),
+            "evidence": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-availability-snapshot.md",
             "status": "claimable",
         },
     ]
@@ -135,7 +147,7 @@ def build_resume_traction_proof() -> dict[str, Any]:
         "linked_growth_channels": traction["growth_channel_count"],
         "resume_status": "baseline_claimable_growth_not_yet_claimable",
         "resume_safe_summary": (
-            f"Published a CI-verified resume traction proof with {len(claimable_now)} claimable launch/quality/traffic signals, "
+            f"Published a CI-verified resume traction proof with {len(claimable_now)} claimable launch/quality/traffic/availability signals, "
             f"{len(future_claims)} threshold-based future outcome claims, and {len(blocked_claims)} blocked claims "
             "to prevent overstating users, feedback, production adoption, or stars."
         ),
@@ -199,8 +211,8 @@ def verify_resume_traction_proof(payload: dict[str, Any]) -> dict[str, Any]:
     for key, expected in expected_counts.items():
         if payload["public_counts"].get(key) != expected:
             raise AssertionError(f"resume traction proof {key} expected {expected!r}")
-    if payload["claimable_now_count"] != 5:
-        raise AssertionError("resume traction proof must include 5 claimable baseline signals")
+    if payload["claimable_now_count"] != 6:
+        raise AssertionError("resume traction proof must include 6 claimable baseline signals")
     if payload["future_claim_count"] != 4:
         raise AssertionError("resume traction proof must include 4 future threshold claims")
     if payload["blocked_claim_count"] != 5:

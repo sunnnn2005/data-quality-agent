@@ -11,7 +11,7 @@ def test_resume_traction_proof_separates_claimable_launch_from_unproven_growth()
     markdown = render_markdown(payload)
 
     assert verification["resume_traction_proof_verified"] is True
-    assert payload["claimable_now_count"] == 5
+    assert payload["claimable_now_count"] == 6
     assert payload["future_claim_count"] == 4
     assert payload["blocked_claim_count"] == 5
     assert payload["public_counts"]["stars"] == 0
@@ -24,5 +24,7 @@ def test_resume_traction_proof_separates_claimable_launch_from_unproven_growth()
     assert "Launched a public GitHub Pages demo" in markdown
     assert "early repository interest" in markdown
     assert "50 unique cloners without counting traffic as users" in markdown
+    assert "public availability evidence" in markdown
+    assert "Verified 4/4 public project surfaces and 3/3 main-branch workflows" in markdown
     assert "Do not claim active users" in markdown
     assert "Do not convert GitHub traffic views into user counts" in markdown

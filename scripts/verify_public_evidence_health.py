@@ -295,7 +295,7 @@ PUBLIC_CHECKS = [
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-traction-proof.json",
         "expected_json": {
             "project": "Data Quality Agent",
-            "claimable_now_count": 5,
+            "claimable_now_count": 6,
             "future_claim_count": 4,
             "blocked_claim_count": 5,
         },

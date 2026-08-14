@@ -27,6 +27,7 @@ This generated artifact turns public project evidence into resume-safe traction 
 | verified engineering quality | Maintained 152 passing CI tests across agent, API, evidence, and safety checks. | [https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml) | `claimable` |
 | evidence collection system | Built a reviewer evidence system with 5 public issue templates and 5 privacy/permission steps. | [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-evidence-kit.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-evidence-kit.md) | `claimable` |
 | early repository interest | Captured GitHub's rolling 14-day traffic snapshot with 9 views, 3 unique visitors, 79 clones, and 50 unique cloners without counting traffic as users. | [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md) | `claimable` |
+| public availability evidence | Verified 4/4 public project surfaces and 3/3 main-branch workflows in a generated availability snapshot. | [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-availability-snapshot.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-availability-snapshot.md) | `claimable` |
 
 ## Future Outcome Claims
 
@@ -47,4 +48,4 @@ This generated artifact turns public project evidence into resume-safe traction 
 
 ## Resume-Safe Summary
 
-Published a CI-verified resume traction proof with 5 claimable launch/quality/traffic signals, 4 threshold-based future outcome claims, and 5 blocked claims to prevent overstating users, feedback, production adoption, or stars.
+Published a CI-verified resume traction proof with 6 claimable launch/quality/traffic/availability signals, 4 threshold-based future outcome claims, and 5 blocked claims to prevent overstating users, feedback, production adoption, or stars.

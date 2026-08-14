@@ -606,8 +606,8 @@ def verify_manifest() -> dict[str, int]:
                 for key, expected in expected_counts.items():
                     if resume_traction_proof.get("public_counts", {}).get(key) != expected:
                         raise AssertionError(f"resume traction proof {key} expected {expected!r}")
-                if resume_traction_proof.get("claimable_now_count") != 5:
-                    raise AssertionError("resume traction proof must include 5 claimable current signals")
+                if resume_traction_proof.get("claimable_now_count") != 6:
+                    raise AssertionError("resume traction proof must include 6 claimable current signals")
                 if resume_traction_proof.get("future_claim_count") != 4:
                     raise AssertionError("resume traction proof must include 4 future outcome claims")
                 if resume_traction_proof.get("blocked_claim_count") != 5:
@@ -2299,8 +2299,8 @@ def verify_manifest() -> dict[str, int]:
         "github unique visitors | 3",
         "github clones | 79",
         "github unique cloners | 50",
-        "5 currently claimable launch, quality, and traffic signals",
-        "5 claimable launch/quality/traffic signals",
+        "6 currently claimable launch, quality, traffic, and availability signals",
+        "6 claimable launch/quality/traffic/availability signals",
     )
     for phrase in resume_metric_phrases:
         if phrase not in resume_page:

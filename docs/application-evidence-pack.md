@@ -89,7 +89,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Business Impact Ledger Accepted Signals | 0 |
 | Reviewer Evidence Forms | 5 |
 | Reviewer Evidence Script Steps | 5 |
-| Resume Traction Claimable Now | 5 |
+| Resume Traction Claimable Now | 6 |
 | Resume Traction Future Claims | 4 |
 | Resume Traction Blocked Claims | 5 |
 | Reviewer Action Tasks | 8 |
