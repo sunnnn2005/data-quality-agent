@@ -25,7 +25,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | 8-minute review page | [`docs/review.html`](docs/review.html) gives reviewers the shortest public path from demo inspection to GitHub feedback |
 | Public release | [`v0.3.0`](docs/releases/v0.3.0.md) release notes and GitHub Release |
 | Container image | `ghcr.io/sunnnn2005/data-quality-agent:latest` published from `main` |
-| Test suite | 143 automated tests passing locally and in GitHub Actions |
+| Test suite | 144 automated tests passing locally and in GitHub Actions |
 | Live project scorecard | [`docs/live-project-scorecard.md`](docs/live-project-scorecard.md) gives reviewers one page for the demo, release, container, CI, claims, agent capabilities, and honest adoption baselines |
 | AI Engineer readiness | [`docs/ai-engineer-readiness.md`](docs/ai-engineer-readiness.md) maps the project to 8 implemented AI skill signals, 1 partial signal, and 1 not-claimed signal for AI Engineer Intern applications |
 | AI Engineer review intake | [`docs/ai-engineer-review-intake.md`](docs/ai-engineer-review-intake.md) gives external reviewers 6 review paths, 6 questions, and 5 countable-evidence conditions for permissioned AI Engineer feedback |

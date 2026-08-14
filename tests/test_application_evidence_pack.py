@@ -35,7 +35,7 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert "reviewer_submission_hub" in payload["application_links"]
     assert "public_reviewer_call" in payload["application_links"]
     assert len(payload["resume_bullets"]) == 3
-    assert payload["verified_outcome_numbers"]["passing_tests"] == 143
+    assert payload["verified_outcome_numbers"]["passing_tests"] == 144
     assert payload["verified_outcome_numbers"]["verified_resume_claims"] == 78
     assert payload["verified_outcome_numbers"]["reviewer_share_channels"] == 5
     assert payload["verified_outcome_numbers"]["reviewer_share_ready_messages"] == 5
