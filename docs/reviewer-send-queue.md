@@ -44,7 +44,7 @@ Only change an item from not_sent to sent after the maintainer sends it to a rea
 Copy-ready message:
 
 ```text
-Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes on this reviewer slot: https://github.com/sunnnn2005/data-quality-agent/issues/26? The ask is: Inspect the LLM tool-calling loop, guardrails, and evidence trail for AI Engineer credibility. Please only share public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.
+Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/26. The ask is: Inspect the LLM tool-calling loop, guardrails, and evidence trail for AI Engineer credibility. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.
 ```
 
 Follow-up:
@@ -77,7 +77,7 @@ Counting rule: A non-owner public GitHub issue passes the external reviewer evid
 Copy-ready message:
 
 ```text
-Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes on this reviewer slot: https://github.com/sunnnn2005/data-quality-agent/issues/23? The ask is: Confirm the exact path used and whether the result was understandable. Please only share public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.
+Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/23. The ask is: Confirm the exact path used and whether the result was understandable. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.
 ```
 
 Follow-up:
@@ -110,7 +110,7 @@ Counting rule: A non-owner public GitHub issue passes the external reviewer evid
 Copy-ready message:
 
 ```text
-Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes on this reviewer slot: https://github.com/sunnnn2005/data-quality-agent/issues/22? The ask is: Run the local replay path and confirm whether the report is reproducible. Please only share public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.
+Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/22. The ask is: Run the local replay path and confirm whether the report is reproducible. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.
 ```
 
 Follow-up:
@@ -143,7 +143,7 @@ Counting rule: A non-owner public GitHub issue passes the external reviewer evid
 Copy-ready message:
 
 ```text
-Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes on this reviewer slot: https://github.com/sunnnn2005/data-quality-agent/issues/24? The ask is: Submit one anonymized data-quality problem this agent should handle. Please only share public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.
+Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/24. The ask is: Submit one anonymized data-quality problem this agent should handle. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.
 ```
 
 Follow-up:
@@ -176,7 +176,7 @@ Counting rule: A non-owner public GitHub issue passes the external reviewer evid
 Copy-ready message:
 
 ```text
-Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes on this reviewer slot: https://github.com/sunnnn2005/data-quality-agent/issues/20? The ask is: Try the public demo and report one confusing or useful workflow detail. Please only share public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.
+Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes submitting this review form: https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md. The public tracking slot is https://github.com/sunnnn2005/data-quality-agent/issues/20. The ask is: Try the public demo and report one confusing or useful workflow detail. Please create/submit your own public review issue, share only public, non-private details, and include the permission sentence in the issue if you are comfortable letting me count it.
 ```
 
 Follow-up:

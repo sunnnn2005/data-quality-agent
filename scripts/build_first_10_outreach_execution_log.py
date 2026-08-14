@@ -13,12 +13,13 @@ def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text())
 
 
-def _message_for_slot(slot: dict[str, Any], issue_url: str) -> str:
+def _message_for_slot(slot: dict[str, Any], issue_url: str, submission_url: str) -> str:
     return (
         "Hi {name}, I am collecting public review evidence for my Data Quality Agent project so I can make "
         "resume claims only when they are backed by real, redacted GitHub evidence. Could you spend 8-15 minutes "
-        f"on this reviewer slot: {issue_url}? The ask is: {slot['ask']} Please only share public, non-private "
-        "details, and include the permission sentence in the issue if you are comfortable letting me count it."
+        f"submitting this review form: {submission_url}. The public tracking slot is {issue_url}. "
+        f"The ask is: {slot['ask']} Please create/submit your own public review issue, share only public, "
+        "non-private details, and include the permission sentence in the issue if you are comfortable letting me count it."
     )
 
 
@@ -51,7 +52,7 @@ def build_first_10_outreach_execution_log() -> dict[str, Any]:
                 "sent_at": None,
                 "reply_status": "none",
                 "accepted_evidence_url": None,
-                "copy_ready_message": _message_for_slot(slot, issue_url),
+                "copy_ready_message": _message_for_slot(slot, issue_url, slot["submission_url"]),
                 "follow_up_after_days": 4,
                 "copy_ready_follow_up": _follow_up_for_slot(issue_url),
                 "acceptance_evidence": slot["acceptance_evidence"],
@@ -196,6 +197,10 @@ def verify_first_10_outreach_execution_log(payload: dict[str, Any]) -> dict[str,
             raise AssertionError("copy-ready message must keep reviewer name as a placeholder")
         if entry["public_issue_url"] not in entry["copy_ready_message"]:
             raise AssertionError("copy-ready message must point reviewers to the public issue")
+        if entry["submission_url"] not in entry["copy_ready_message"]:
+            raise AssertionError("copy-ready message must point reviewers to the direct submission form")
+        if "create/submit your own public review issue" not in entry["copy_ready_message"]:
+            raise AssertionError("copy-ready message must ask reviewers to submit their own public issue")
     joined = json.dumps(payload, sort_keys=True).lower()
     for required in (
         "non-owner public github issue",

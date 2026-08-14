@@ -229,6 +229,10 @@ def verify_reviewer_send_queue(payload: dict[str, Any]) -> dict[str, Any]:
             raise AssertionError("send queue messages must keep the recipient placeholder")
         if item["public_issue_url"] not in item["copy_ready_message"]:
             raise AssertionError("send queue message must include the public issue URL")
+        if item["submission_url"] not in item["copy_ready_message"]:
+            raise AssertionError("send queue message must include the direct submission URL")
+        if "create/submit your own public review issue" not in item["copy_ready_message"]:
+            raise AssertionError("send queue message must ask reviewers to submit their own public issue")
         if len(item["completion_fields"]) != 6:
             raise AssertionError("send queue must define six completion fields")
     joined = json.dumps(payload, sort_keys=True).lower()
