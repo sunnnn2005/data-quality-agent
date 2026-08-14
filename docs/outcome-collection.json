@@ -61,7 +61,7 @@
     "external_feedback_items": 0,
     "github_forks": 1,
     "github_stars": 0,
-    "passing_tests": 231
+    "passing_tests": 233
   },
   "generated_by": "scripts/build_outcome_collection_page.py",
   "not_claimed": [

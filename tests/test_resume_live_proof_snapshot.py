@@ -14,7 +14,7 @@ def test_resume_live_proof_snapshot_is_concise_and_honest():
 
     assert verification["resume_live_proof_snapshot_verified"] is True
     assert verification["resume_safe_bullet_count"] == 4
-    assert payload["verified_now"]["passing_test_baseline"] == 231
+    assert payload["verified_now"]["passing_test_baseline"] == 233
     assert payload["verified_now"]["verified_resume_claims"] == len(load_json(OUTCOME_EVIDENCE_PATH)["claims"])
     assert payload["verified_now"]["implemented_agent_capabilities"] == 16
     health_count = payload["verified_now"]["public_evidence_health"].split(" ", maxsplit=1)[0]
