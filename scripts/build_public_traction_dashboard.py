@@ -187,8 +187,8 @@ def verify_public_traction_dashboard(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("public traction dashboard must include 19 growth or review channels")
     if payload["tracked_funnel_steps"] != 5:
         raise AssertionError("public traction dashboard must include 5 tracked funnel steps")
-    if payload["demo_entrypoints_verified"] != 6:
-        raise AssertionError("public traction dashboard must verify 6 demo entrypoints")
+    if payload["demo_entrypoints_verified"] != 7:
+        raise AssertionError("public traction dashboard must verify 7 demo entrypoints")
     if len(payload["resume_upgrade_rules"]) != 3:
         raise AssertionError("public traction dashboard must include 3 resume upgrade rules")
     if not all(rule["resume_status"] == "not_claimable_yet" for rule in payload["resume_upgrade_rules"]):

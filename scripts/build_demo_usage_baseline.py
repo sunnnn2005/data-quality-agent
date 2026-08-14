@@ -27,6 +27,7 @@ def build_demo_usage_baseline_payload() -> dict[str, Any]:
         "resume_evidence": f"{adoption['public_demo']}resume-evidence.md",
         "reviewer_feedback_packet": f"{adoption['public_demo']}reviewer-feedback-packet.md",
         "reviewer_funnel_board": f"{adoption['public_demo']}reviewer-funnel-board.md",
+        "one_click_evidence_links": f"{adoption['public_demo']}one-click-evidence-links.html",
     }
     funnel = [
         {
@@ -74,6 +75,7 @@ def build_demo_usage_baseline_payload() -> dict[str, Any]:
             "resume_evidence_link": "resume-evidence.md" in index_html,
             "reviewer_feedback_packet_link": "reviewer-feedback-packet.md" in index_html,
             "reviewer_funnel_board_link": "reviewer-funnel-board.md" in index_html,
+            "one_click_evidence_links_link": "one-click-evidence-links.html" in index_html,
         },
         "tracked_usage_funnel": funnel,
         "tracked_counts": {

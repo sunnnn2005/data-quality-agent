@@ -31,6 +31,7 @@ PUBLIC_CHECKS = [
             "feature_request.md",
             "review.html",
             "reviewer-outreach-console.html",
+            "one-click-evidence-links.html",
             "reviewer-feedback-packet.md",
             "reviewer-funnel-board.md",
             "reviewer-invitation-kit.md",

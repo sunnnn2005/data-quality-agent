@@ -2,6 +2,7 @@
   "demo_entrypoints_verified": {
     "adoption_metrics_link": true,
     "feedback_metrics_link": true,
+    "one_click_evidence_links_link": true,
     "resume_evidence_link": true,
     "reviewer_feedback_packet_link": true,
     "reviewer_funnel_board_link": true,
@@ -11,6 +12,7 @@
     "adoption_metrics": "https://sunnnn2005.github.io/data-quality-agent/adoption-metrics.json",
     "feedback_issue": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
     "feedback_metrics": "https://sunnnn2005.github.io/data-quality-agent/feedback-metrics.json",
+    "one_click_evidence_links": "https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html",
     "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
     "resume_evidence": "https://sunnnn2005.github.io/data-quality-agent/resume-evidence.md",
     "reviewer_feedback_packet": "https://sunnnn2005.github.io/data-quality-agent/reviewer-feedback-packet.md",

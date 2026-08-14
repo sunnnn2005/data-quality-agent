@@ -36,6 +36,7 @@ def verify_reviewer_landing_page() -> dict[str, int | str | bool]:
         "template=demo_feedback.md",
         "template=business_case_review.md",
         "template=ai_engineer_review.md",
+        "one-click-evidence-links.html",
         "Star or fork only if the project is genuinely useful",
         "public, non-owner, permissioned, and redacted evidence",
     ]

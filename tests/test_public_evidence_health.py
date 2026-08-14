@@ -70,6 +70,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "feature_request.md",
         "review.html",
         "reviewer-outreach-console.html",
+        "one-click-evidence-links.html",
         "reviewer-feedback-packet.md",
         "reviewer-funnel-board.md",
         "reviewer-invitation-kit.md",
