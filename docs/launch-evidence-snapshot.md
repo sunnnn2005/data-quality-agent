@@ -53,7 +53,7 @@ This generated artifact gives recruiters and technical reviewers one place to ve
 ## Claimable Now
 
 - 4/4 public launch surfaces reachable
-- 3/3 main-branch workflows successful
+- 3/3 main-branch workflows successful at snapshot time
 - 182 passing CI test status
 - 1 public fork and 0 public stars as the current GitHub baseline
 - 6 AI-agent inspection targets available for external review

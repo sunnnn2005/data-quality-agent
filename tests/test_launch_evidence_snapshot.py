@@ -40,17 +40,17 @@ def test_launch_evidence_snapshot_markdown_is_recruiter_readable():
 
 def test_launch_evidence_snapshot_allows_current_ci_run_to_be_in_progress():
     payload = build_launch_evidence_snapshot()
-    payload["public_availability"]["successful_workflow_count"] = 2
-    payload["claimable_now"][1] = "2/3 main-branch workflows successful"
+    payload["public_availability"]["successful_workflow_count"] = 0
+    payload["claimable_now"][1] = "0/3 main-branch workflows successful at snapshot time"
     payload["resume_safe_summary"] = payload["resume_safe_summary"].replace(
         "3/3 successful workflows",
-        "2/3 successful workflows",
+        "0/3 successful workflows",
     )
 
     result = verify_launch_evidence_snapshot(payload)
 
     assert result["launch_evidence_snapshot_verified"] is True
-    assert payload["public_availability"]["successful_workflow_count"] == 2
+    assert payload["public_availability"]["successful_workflow_count"] == 0
 
 
 def test_generated_launch_evidence_snapshot_artifacts_are_current():

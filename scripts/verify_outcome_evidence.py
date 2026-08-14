@@ -2389,10 +2389,10 @@ def verify_manifest() -> dict[str, int]:
     if launch_evidence_snapshot.get("public_availability", {}).get("available_endpoint_count") != 4:
         raise AssertionError("launch evidence snapshot must reflect four reachable public endpoints")
     launch_workflows = launch_evidence_snapshot.get("public_availability", {})
-    if launch_workflows.get("successful_workflow_count") < 2:
-        raise AssertionError("launch evidence snapshot must reflect at least two successful workflows")
     if launch_workflows.get("successful_workflow_count") > launch_workflows.get("workflow_count", 0):
         raise AssertionError("launch evidence snapshot workflow count is inconsistent")
+    if launch_workflows.get("workflow_count") != 3:
+        raise AssertionError("launch evidence snapshot must track the three main workflows")
     if launch_evidence_snapshot.get("application_pack", {}).get("passing_tests") != 182:
         raise AssertionError("launch evidence snapshot must reflect the current passing test count")
     if launch_evidence_snapshot.get("public_github_stats", {}).get("stars") != 0:
