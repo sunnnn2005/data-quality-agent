@@ -1,5 +1,5 @@
 {
-  "check_count": 66,
+  "check_count": 71,
   "checks": [
     {
       "evidence_type": "html",
@@ -45,6 +45,13 @@
         "stars",
         "test_count"
       ]
+    },
+    {
+      "evidence_type": "html",
+      "id": "outcome-collection-page",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-collection.html"
     },
     {
       "evidence_type": "json",
@@ -396,6 +403,48 @@
     },
     {
       "evidence_type": "json",
+      "id": "pilot-evidence-quicklink",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-evidence-quicklink.json",
+      "verified_fields": [
+        "action_count",
+        "project",
+        "target_metric_count",
+        "total_evidence_fields"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "pilot-launch-control-room",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-launch-control-room.json",
+      "verified_fields": [
+        "current_claimable_external_outcomes",
+        "launch_gate_count",
+        "project",
+        "public_issue_thread_count",
+        "reviewer_send_plan_count",
+        "target_outcome_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "resume-outcome-adjudication",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-adjudication.json",
+      "verified_fields": [
+        "accepted_issue_count",
+        "blocked_category_count",
+        "claim_category_count",
+        "claimable_category_count",
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
       "id": "feedback-intake-quality",
       "passed": true,
       "status_code": 200,
@@ -461,6 +510,20 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/live-project-scorecard.json",
       "verified_fields": [
         "release"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "resume-outcome-action-checklist",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-action-checklist.json",
+      "verified_fields": [
+        "accepted_public_issue_count",
+        "claimable_action_count",
+        "next_action_needed_count",
+        "project",
+        "tracked_action_count"
       ]
     },
     {
@@ -722,6 +785,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 66,
+  "passed_count": 71,
   "status": "PASS"
 }

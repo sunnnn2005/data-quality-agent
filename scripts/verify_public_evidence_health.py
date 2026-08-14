@@ -501,7 +501,7 @@ PUBLIC_CHECKS = [
             "external users",
             "customer feedback",
             "business validation",
-            "Unlock Condition",
+            "unlock_condition",
             "exact public evidence required",
         ],
         "evidence_type": "json",
