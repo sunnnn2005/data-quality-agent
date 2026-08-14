@@ -451,6 +451,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/first-10-reviewer-sprint.json",
       "verified_fields": [
         "completed_count",
+        "issue_launch_count",
         "not_sent_count",
         "project",
         "slot_count",
