@@ -2334,6 +2334,8 @@ def verify_manifest() -> dict[str, int]:
     index_page = (ROOT / "docs" / "index.html").read_text().lower()
     if "<strong>170</strong><span>automated tests passing locally and in ci</span>" not in index_page:
         raise AssertionError("public homepage must display the current passing test count")
+    if "outcome-pipeline-board.md" not in index_page or "outcome pipeline" not in index_page:
+        raise AssertionError("public homepage must link reviewers to the outcome pipeline board")
 
     if "community-growth-baseline" in claim_ids:
         if "8 issue templates" not in resume_page or "9 public contribution or feedback channels" not in resume_page:
