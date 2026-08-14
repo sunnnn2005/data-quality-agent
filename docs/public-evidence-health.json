@@ -1,5 +1,5 @@
 {
-  "check_count": 71,
+  "check_count": 72,
   "checks": [
     {
       "evidence_type": "html",
@@ -445,6 +445,21 @@
     },
     {
       "evidence_type": "json",
+      "id": "first-10-reviewer-sprint",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/first-10-reviewer-sprint.json",
+      "verified_fields": [
+        "completed_count",
+        "not_sent_count",
+        "project",
+        "slot_count",
+        "sprint_name",
+        "target_metric_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
       "id": "feedback-intake-quality",
       "passed": true,
       "status_code": 200,
@@ -785,6 +800,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 71,
+  "passed_count": 72,
   "status": "PASS"
 }
