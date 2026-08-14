@@ -1,5 +1,5 @@
 {
-  "check_count": 81,
+  "check_count": 82,
   "checks": [
     {
       "evidence_type": "html",
@@ -46,6 +46,18 @@
         "materialized_claim_count",
         "project",
         "safe_current_bullet_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "evidence-gap-diagnostics",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/evidence-gap-diagnostics.json",
+      "verified_fields": [
+        "accepted_counts",
+        "accepted_issue_count",
+        "project"
       ]
     },
     {
@@ -903,6 +915,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 81,
+  "passed_count": 82,
   "status": "PASS"
 }
