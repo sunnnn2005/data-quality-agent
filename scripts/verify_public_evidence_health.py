@@ -1314,7 +1314,7 @@ PUBLIC_CHECKS = [
         },
         "expected_text": "public evidence submission path",
         "expected_texts": [
-            "Claimable public proof",
+            "claimable public proof",
             "blocked external-outcome intake paths",
             "public, non-owner",
             "private replies",

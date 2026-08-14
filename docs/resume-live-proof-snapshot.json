@@ -18,7 +18,7 @@
     "public_evidence_health": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-evidence-health.json",
     "public_github_stats": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-public-stats-snapshot.md"
   },
-  "generated_at": "2026-08-14T18:35:49.827455+00:00",
+  "generated_at": "2026-08-14T18:38:00.599407+00:00",
   "generated_by": "scripts/build_resume_live_proof_snapshot.py",
   "next_resume_unlocks": [
     "1 non-owner public GitHub issue confirming a reproducible run",
@@ -32,7 +32,7 @@
   "resume_safe_bullets": [
     "Built and released a public, containerized LLM data-quality agent with a GitHub Pages demo, OpenAPI contract, GHCR image, and CI-verified evidence artifacts.",
     "Implemented 16 agent-readiness capabilities including tool selection, read-only data checks, guardrails, structured reports, observability artifacts, and deterministic fallback paths.",
-    "Maintained a resume-safe proof system with 245 passing test baseline, 96 verified claim entries, and 116/116 public evidence checks passing.",
+    "Maintained a resume-safe proof system with 245 passing test baseline, 96 verified claim entries, and 118/118 public evidence checks passing.",
     "Published a redacted business-data pilot offer and public GitHub issue to collect external business replay evidence without claiming completed pilots or enterprise adoption."
   ],
   "verified_now": {
@@ -44,7 +44,7 @@
     "implemented_agent_capabilities": 16,
     "passing_test_baseline": 245,
     "public_availability": "4/4 public endpoints reachable; 3/3 main-branch workflows passing",
-    "public_evidence_health": "116/116 public evidence checks passing",
+    "public_evidence_health": "118/118 public evidence checks passing",
     "public_pilot_issue_status": "open_self_authored_entrypoint_not_outcome_evidence",
     "public_release": "v0.3.0",
     "rejected_unsafe_postgres_queries": 3,

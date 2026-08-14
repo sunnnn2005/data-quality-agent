@@ -1,5 +1,5 @@
 {
-  "check_count": 116,
+  "check_count": 118,
   "checks": [
     {
       "evidence_type": "html",
@@ -978,6 +978,26 @@
     },
     {
       "evidence_type": "json",
+      "id": "public-outcome-intake-dashboard",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/public-outcome-intake-dashboard.json",
+      "verified_fields": [
+        "accepted_external_evidence_count",
+        "blocked_intake_path_count",
+        "claimable_signal_count",
+        "github_stars"
+      ]
+    },
+    {
+      "evidence_type": "html",
+      "id": "public-outcome-intake-dashboard-page",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://sunnnn2005.github.io/data-quality-agent/public-outcome-intake-dashboard.html"
+    },
+    {
+      "evidence_type": "json",
       "id": "reviewer-action-queue",
       "passed": true,
       "status_code": 200,
@@ -1309,6 +1329,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 116,
+  "passed_count": 118,
   "status": "PASS"
 }

@@ -14,7 +14,7 @@ Public page: [https://sunnnn2005.github.io/data-quality-agent/public-outcome-int
 | GitHub stars | 0 |
 | GitHub forks | 1 |
 | Public evidence health | PASS |
-| Public evidence checks | 116 |
+| Public evidence checks | 118 |
 
 ## Claimable Public Proof
 
@@ -22,7 +22,7 @@ Public page: [https://sunnnn2005.github.io/data-quality-agent/public-outcome-int
 | --- | --- | --- | --- |
 | Public release | v0.3.0 | Can describe the project as publicly released. | [evidence](https://github.com/sunnnn2005/data-quality-agent) |
 | Containerized runnable artifact | published | Can mention GHCR image and reproducible container setup. | [evidence](https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent) |
-| CI and public evidence health | 116/116 public evidence checks passing | Can mention CI-verified public proof system. | [evidence](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-evidence-health.json) |
+| CI and public evidence health | 118/118 public evidence checks passing | Can mention CI-verified public proof system. | [evidence](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-evidence-health.json) |
 | GitHub repository interest | 0 stars, 1 forks | Can mention forks only as a public repo signal; stars remain zero. | [evidence](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-public-stats-snapshot.md) |
 
 ## Intake Paths For Real Outcomes
@@ -39,7 +39,7 @@ Public page: [https://sunnnn2005.github.io/data-quality-agent/public-outcome-int
 
 - Built and released a public, containerized LLM data-quality agent with a GitHub Pages demo, OpenAPI contract, GHCR image, and CI-verified evidence artifacts.
 - Implemented 16 agent-readiness capabilities including tool selection, read-only data checks, guardrails, structured reports, observability artifacts, and deterministic fallback paths.
-- Maintained a resume-safe proof system with 245 passing test baseline, 96 verified claim entries, and 116/116 public evidence checks passing.
+- Maintained a resume-safe proof system with 245 passing test baseline, 96 verified claim entries, and 118/118 public evidence checks passing.
 - Published a redacted business-data pilot offer and public GitHub issue to collect external business replay evidence without claiming completed pilots or enterprise adoption.
 
 ## Next Resume Unlocks
@@ -55,7 +55,7 @@ Only public, non-owner, permissioned, redacted GitHub evidence can unlock extern
 
 ## Resume-Safe Summary
 
-Published a public outcome intake dashboard with 4 claimable proof signals, 5 blocked external-outcome intake paths, 0 accepted external evidence items, 0 GitHub stars, and public evidence health at 116/116 PASS.
+Published a public outcome intake dashboard with 4 claimable proof signals, 5 blocked external-outcome intake paths, 0 accepted external evidence items, 0 GitHub stars, and public evidence health at 118/118 PASS.
 
 ## Not Claimed
 
