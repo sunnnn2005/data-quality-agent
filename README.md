@@ -40,7 +40,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | First 10 outreach execution log | [`docs/first-10-outreach-execution-log.md`](docs/first-10-outreach-execution-log.md) turns the 10 public reviewer issue entrypoints into 10 copy-ready manual outreach messages with follow-up timing, evidence fields, and zero claimable outcomes |
 | Public release | [`v0.3.0`](docs/releases/v0.3.0.md) release notes and GitHub Release |
 | Container image | `ghcr.io/sunnnn2005/data-quality-agent:latest` published from `main` |
-| Test suite | 164 automated tests passing locally and in GitHub Actions |
+| Test suite | 165 automated tests passing locally and in GitHub Actions |
 | Live project scorecard | [`docs/live-project-scorecard.md`](docs/live-project-scorecard.md) gives reviewers one page for the demo, release, container, CI, claims, agent capabilities, and honest adoption baselines |
 | AI Engineer readiness | [`docs/ai-engineer-readiness.md`](docs/ai-engineer-readiness.md) maps the project to 8 implemented AI skill signals, 1 partial signal, and 1 not-claimed signal for AI Engineer Intern applications |
 | AI Engineer review intake | [`docs/ai-engineer-review-intake.md`](docs/ai-engineer-review-intake.md) gives external reviewers 6 review paths, 6 questions, and 5 countable-evidence conditions for permissioned AI Engineer feedback |
@@ -72,6 +72,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Reviewer outreach execution pack | [`docs/reviewer-outreach-execution-pack.md`](docs/reviewer-outreach-execution-pack.md) turns the action queue into 8 ready-to-send messages, 8 follow-up rules, 5 evidence goals, and a zero sent/completed baseline |
 | Reviewer outreach status board | [`docs/reviewer-outreach-status-board.md`](docs/reviewer-outreach-status-board.md) tracks 8 reviewer slots across 5 status stages with zero sent, replied, accepted-evidence, or resume-upgrade claims |
 | Reviewer send queue | [`docs/reviewer-send-queue.md`](docs/reviewer-send-queue.md) prioritizes 5 concrete next sends across AI-review, confirmed-use, reproducible-run, business-case, and feedback evidence without claiming sent outreach |
+| First reviewer handoff | [`docs/first-reviewer-handoff.md`](docs/first-reviewer-handoff.md) turns the top AI Engineer review send into one copy-ready handoff with evidence fields, acceptance gate, and locked future resume wording |
 | Reviewer quickstart router | [`docs/reviewer-quickstart-router.md`](docs/reviewer-quickstart-router.md) routes reviewers to 5 short evidence paths across feedback, confirmed-use, reproducible-run, AI-review, and business-case metrics while preserving zero current outcome claims |
 | Evidence acceptance checklist | [`docs/evidence-acceptance-checklist.md`](docs/evidence-acceptance-checklist.md) maps 6 blocked resume outcome metrics to required public fields, submission URLs, evidence gates, and future resume lines while preserving zero accepted external evidence |
 | Resume outcome metrics | [`docs/resume-outcome-metrics.md`](docs/resume-outcome-metrics.md) tracks 6 user, feedback, business-case, AI-review, reproducible-run, and GitHub-star outcome metrics with 0 claimable lines and 6 blocked lines until public evidence exists |
