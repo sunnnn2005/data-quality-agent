@@ -51,7 +51,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "200 passing CI tests",
+            "202 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -109,7 +109,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 200},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 202},
         "evidence_type": "json",
     },
     {
@@ -994,6 +994,25 @@ PUBLIC_CHECKS = [
         "evidence_type": "json",
     },
     {
+        "id": "private-reviewer-lead-summary",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/private-reviewer-lead-summary.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "private_source_path": "private/reviewer-leads.csv",
+            "resume_outcome_upgraded": False,
+            "public_evidence_url_count": 0,
+            "accepted_ready_count": 0,
+        },
+        "expected_text": "Private lead rows are not public evidence",
+        "expected_texts": [
+            "private reviewer names",
+            "sensitive_columns_excluded",
+            "validation_error_count",
+            "zero resume outcome upgrades",
+        ],
+        "evidence_type": "json",
+    },
+    {
         "id": "pilot-outreach-kit",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-outreach-kit.json",
         "expected_json": {"project": "Data Quality Agent"},
@@ -1149,7 +1168,7 @@ def _verify_check(check: dict[str, Any]) -> dict[str, Any]:
         "passed": status_code == 200,
     }
 
-    if status_code != 200:
+    if status_code != 202:
         result["error"] = f"expected 200, got {status_code}"
         return result
 

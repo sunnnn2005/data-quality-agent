@@ -162,8 +162,8 @@ def verify_live_project_scorecard(payload: dict[str, Any]) -> dict[str, Any]:
     headline = payload["headline_metrics"]
     footprint = payload["live_footprint"]
     expected = {
-        "passing_tests": 200,
-        "verified_resume_claims": 90,
+        "passing_tests": 202,
+        "verified_resume_claims": 91,
         "implemented_agent_capabilities": 16,
         "agent_tools_allowed": 9,
         "agent_matrix_implemented_capabilities": 13,

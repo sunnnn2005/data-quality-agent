@@ -15,7 +15,7 @@ Convert accepted public outcome evidence into exact resume bullets while keeping
 ## Current Claimable Bullets
 
 - Published a public demo, container image, OpenAPI contract, and CI-verified project evidence pages. ([evidence](https://sunnnn2005.github.io/data-quality-agent/))
-- Maintained 200 passing tests across agent behavior, APIs, evidence gates, and safety checks. ([evidence](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml))
+- Maintained 202 passing tests across agent behavior, APIs, evidence gates, and safety checks. ([evidence](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml))
 - Built an LLM tool-calling data-quality agent with controlled tools, structured reports, read-only PostgreSQL access, trace persistence, and evidence guardrails. ([evidence](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-readiness.md))
 - Published 50 recruiter-readable evidence links while separating blocked outcome claims from verified work. ([evidence](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/application-evidence-pack.md))
 
