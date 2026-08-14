@@ -161,6 +161,26 @@ PUBLIC_CHECKS = [
         "evidence_type": "json",
     },
     {
+        "id": "llm-agent-checklist-verdict",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/llm-agent-checklist-verdict.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "status_counts": {
+                "yes": 10,
+                "partial": 4,
+                "not_yet": 2,
+            },
+        },
+        "expected_text": "LLM-powered data quality agent",
+        "expected_texts": [
+            "real LLM-agent foundation",
+            "not a production enterprise AI agent",
+            "Business Data Quality Copilot",
+            "accepted_real_model_runs",
+        ],
+        "evidence_type": "json",
+    },
+    {
         "id": "openapi-contract",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/openapi.json",
         "expected_text": "/business-data/agent-report",

@@ -76,6 +76,7 @@ jobs:
           python scripts/build_reviewer_quickstart_router.py
           python scripts/build_ai_engineer_reviewer_card.py
           python scripts/build_agent_maturity_audit.py
+          python scripts/build_llm_agent_checklist_verdict.py
           python scripts/build_evidence_acceptance_checklist.py
           python scripts/build_first_reviewer_handoff.py
           python scripts/build_public_metrics_provenance.py
