@@ -1,5 +1,5 @@
 {
-  "check_count": 77,
+  "check_count": 78,
   "checks": [
     {
       "evidence_type": "html",
@@ -734,6 +734,13 @@
       "url": "https://sunnnn2005.github.io/data-quality-agent/review.html"
     },
     {
+      "evidence_type": "html",
+      "id": "reviewer-outreach-console",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-outreach-console.html"
+    },
+    {
       "evidence_type": "json",
       "id": "pilot-outreach-kit",
       "passed": true,
@@ -854,6 +861,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 77,
+  "passed_count": 78,
   "status": "PASS"
 }
