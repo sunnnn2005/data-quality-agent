@@ -192,7 +192,7 @@ def test_public_evidence_health_requires_core_public_signals():
     assert triage_board["expected_json"]["waiting_reviewer_issue_count"] == 5
     assert triage_board["expected_json"]["claimable_resume_outcome_count"] == 0
     assert "waiting_for_public_issue" in triage_board["expected_texts"]
-    assert "self-authored issues do not count" in triage_board["expected_texts"]
+    assert "Self-authored issues do not count" in triage_board["expected_texts"]
     llm_value = next(check for check in PUBLIC_CHECKS if check["id"] == "llm-value-comparison")
     assert llm_value["url"].endswith("/llm-value-comparison.json")
     assert llm_value["expected_json"]["scenario_count"] == 14

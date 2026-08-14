@@ -1444,8 +1444,8 @@ PUBLIC_CHECKS = [
         },
         "expected_text": "resume-claim decision board",
         "expected_texts": [
-            "self-authored issues do not count",
-            "private replies do not count",
+            "Self-authored issues do not count",
+            "Private replies do not count",
             "waiting_for_public_issue",
             "No external users, feedback, business impact, production deployment, or GitHub stars are claimed.",
         ],

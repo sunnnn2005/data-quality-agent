@@ -1,5 +1,5 @@
 {
-  "check_count": 121,
+  "check_count": 122,
   "checks": [
     {
       "evidence_type": "html",
@@ -1057,6 +1057,22 @@
     },
     {
       "evidence_type": "json",
+      "id": "external-evidence-triage-board",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-evidence-triage-board.json",
+      "verified_fields": [
+        "accepted_issue_count",
+        "blocked_outcome_claim_count",
+        "claimable_resume_outcome_count",
+        "evaluated_issue_count",
+        "project",
+        "rejected_issue_count",
+        "waiting_reviewer_issue_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
       "id": "reviewer-outreach-execution-pack",
       "passed": true,
       "status_code": 200,
@@ -1361,6 +1377,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 121,
+  "passed_count": 122,
   "status": "PASS"
 }
