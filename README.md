@@ -26,7 +26,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Outcome collection page | [`docs/outcome-collection.html`](docs/outcome-collection.html) gives reviewers one public page for 5 next actions, 6 submission paths, 23 evidence fields, and current zero-count outcome baselines |
 | Pilot evidence quicklink | [`docs/pilot-evidence-quicklink.html`](docs/pilot-evidence-quicklink.html) gives reviewers 3 short evidence actions, 12 required evidence fields, public submission links, and zero-count baselines before outcome claims are upgraded |
 | Pilot launch control room | [`docs/pilot-launch-control-room.md`](docs/pilot-launch-control-room.md) tracks 4 public issue threads, 5 launch gates, 4 target outcome metrics, and 3 reviewer-send paths while keeping external outcome claims blocked at zero |
-| First 10 reviewer sprint | [`docs/first-10-reviewer-sprint.md`](docs/first-10-reviewer-sprint.md) turns the outcome goal into 10 concrete external-review slots across 6 target metrics with zero sent outreach and zero upgraded claims |
+| First 10 reviewer sprint | [`docs/first-10-reviewer-sprint.md`](docs/first-10-reviewer-sprint.md) turns the outcome goal into 10 concrete external-review slots, 10 GitHub issue launch drafts, and 6 target metrics with zero sent outreach and zero upgraded claims |
 | Public release | [`v0.3.0`](docs/releases/v0.3.0.md) release notes and GitHub Release |
 | Container image | `ghcr.io/sunnnn2005/data-quality-agent:latest` published from `main` |
 | Test suite | 151 automated tests passing locally and in GitHub Actions |
@@ -89,7 +89,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Performance baseline | [`docs/performance-baseline.md`](docs/performance-baseline.md) verifies 2 local FastAPI route benchmarks and 24 measured endpoint calls without claiming production latency |
 | Demo usage baseline | [`docs/demo-usage-baseline.md`](docs/demo-usage-baseline.md) verifies public demo entrypoints and tracks feedback, confirmed users, stars, and forks without claiming visitor analytics |
 | Business data intake baseline | [`docs/business-data-intake-baseline.md`](docs/business-data-intake-baseline.md) verifies bounded CSV uploads, read-only PostgreSQL context, 4 integration endpoints, 3 upload limits, and 6 API tests without claiming production data usage |
-| Community growth baseline | [`docs/community-growth-baseline.md`](docs/community-growth-baseline.md) verifies 8 issue templates, 7 labels, 9 public contribution or feedback channels, and honest current public counts |
+| Community growth baseline | [`docs/community-growth-baseline.md`](docs/community-growth-baseline.md) verifies 8 issue templates, 10 labels, 9 public contribution or feedback channels, and honest current public counts |
 | Hypothesis feedback | [`docs/hypothesis-feedback.md`](docs/hypothesis-feedback.md) records accepted / needs-review labels for generated root-cause hypotheses |
 | Public evidence health | [`Public Evidence Health`](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/public-evidence-health.yml) checks the demo, release, business-impact artifact, outcome evidence, and adoption metrics on a schedule |
 | Public metrics refresh | [`Refresh Public Metrics`](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/refresh-public-metrics.yml) refreshes feedback, adoption, GitHub traffic, GitHub discovery, star-growth, scorecard, and application evidence artifacts on a schedule |

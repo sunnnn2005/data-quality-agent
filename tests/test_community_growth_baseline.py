@@ -12,12 +12,15 @@ def test_community_growth_baseline_verifies_public_contribution_paths_without_ad
 
     assert verification["community_growth_baseline_verified"] is True
     assert payload["issue_template_count"] == 8
-    assert payload["label_count"] == 7
+    assert payload["label_count"] == 10
     assert len(payload["public_growth_channels"]) == 9
     assert "business_data_replay.md" in payload["issue_templates"]
     assert "external_run_review.md" in payload["issue_templates"]
     assert "ai_engineer_review.md" in payload["issue_templates"]
     assert "business-data-replay" in payload["required_labels"]
+    assert "ai-review" in payload["required_labels"]
+    assert "community" in payload["required_labels"]
+    assert "first-10-reviewer" in payload["required_labels"]
     assert payload["current_public_counts"]["stars"] == 0
     assert payload["current_public_counts"]["forks"] == 1
     assert payload["current_public_counts"]["external_feedback_items"] == 0

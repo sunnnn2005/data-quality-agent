@@ -9,6 +9,16 @@ def test_feedback_metric_labels_are_declared():
     labels = json.loads((ROOT / ".github" / "labels.json").read_text())
     names = {label["name"] for label in labels}
 
-    assert {"feedback", "confirmed-user", "reproducible", "bug", "enhancement", "business-case"} <= names
+    assert {
+        "feedback",
+        "confirmed-user",
+        "reproducible",
+        "bug",
+        "enhancement",
+        "business-case",
+        "ai-review",
+        "community",
+        "first-10-reviewer",
+    } <= names
     assert all(label.get("color") for label in labels)
     assert all(label.get("description") for label in labels)

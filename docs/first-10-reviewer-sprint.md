@@ -189,6 +189,110 @@ Acceptance evidence:
 - observed result
 - permission to count public run evidence
 
+## Issue Launch Plan
+
+These are draft GitHub issues that can be created when outreach is actually sent. Drafts do not count as sent outreach.
+
+### slot_01_ds_peer_demo
+
+- Status: `draft_not_created`
+- Title: First 10 reviewer: UC Davis data science peer (external_feedback_items)
+- Labels: `feedback`, `first-10-reviewer`
+
+```bash
+gh issue create --title "First 10 reviewer: UC Davis data science peer (external_feedback_items)" --label "feedback,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_01_ds_peer_demo.md
+```
+
+### slot_02_swe_peer_demo
+
+- Status: `draft_not_created`
+- Title: First 10 reviewer: student software engineer peer (external_feedback_items)
+- Labels: `feedback`, `first-10-reviewer`
+
+```bash
+gh issue create --title "First 10 reviewer: student software engineer peer (external_feedback_items)" --label "feedback,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_02_swe_peer_demo.md
+```
+
+### slot_03_local_replay
+
+- Status: `draft_not_created`
+- Title: First 10 reviewer: engineer comfortable with Docker or local setup (reproducible_feedback_items)
+- Labels: `reproducible`, `first-10-reviewer`
+
+```bash
+gh issue create --title "First 10 reviewer: engineer comfortable with Docker or local setup (reproducible_feedback_items)" --label "reproducible,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_03_local_replay.md
+```
+
+### slot_04_confirmed_use
+
+- Status: `draft_not_created`
+- Title: First 10 reviewer: reviewer who opened the demo or ran the repo (confirmed_external_users)
+- Labels: `confirmed-user`, `first-10-reviewer`
+
+```bash
+gh issue create --title "First 10 reviewer: reviewer who opened the demo or ran the repo (confirmed_external_users)" --label "confirmed-user,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_04_confirmed_use.md
+```
+
+### slot_05_data_analyst_case
+
+- Status: `draft_not_created`
+- Title: First 10 reviewer: data analyst or analytics student (business_case_feedback_items)
+- Labels: `business-case`, `first-10-reviewer`
+
+```bash
+gh issue create --title "First 10 reviewer: data analyst or analytics student (business_case_feedback_items)" --label "business-case,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_05_data_analyst_case.md
+```
+
+### slot_06_operator_case
+
+- Status: `draft_not_created`
+- Title: First 10 reviewer: small-business operator or operations teammate (business_case_feedback_items)
+- Labels: `business-case`, `first-10-reviewer`
+
+```bash
+gh issue create --title "First 10 reviewer: small-business operator or operations teammate (business_case_feedback_items)" --label "business-case,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_06_operator_case.md
+```
+
+### slot_07_ai_engineer_review
+
+- Status: `draft_not_created`
+- Title: First 10 reviewer: AI engineer, mentor, or ML systems reviewer (ai_engineer_review_items)
+- Labels: `ai-review`, `first-10-reviewer`
+
+```bash
+gh issue create --title "First 10 reviewer: AI engineer, mentor, or ML systems reviewer (ai_engineer_review_items)" --label "ai-review,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_07_ai_engineer_review.md
+```
+
+### slot_08_open_source_review
+
+- Status: `draft_not_created`
+- Title: First 10 reviewer: open-source maintainer or GitHub contributor (external_feedback_items)
+- Labels: `feedback`, `first-10-reviewer`
+
+```bash
+gh issue create --title "First 10 reviewer: open-source maintainer or GitHub contributor (external_feedback_items)" --label "feedback,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_08_open_source_review.md
+```
+
+### slot_09_public_star_if_useful
+
+- Status: `draft_not_created`
+- Title: First 10 reviewer: reviewer who finds the repo useful enough to save (github_stars)
+- Labels: `community`, `first-10-reviewer`
+
+```bash
+gh issue create --title "First 10 reviewer: reviewer who finds the repo useful enough to save (github_stars)" --label "community,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_09_public_star_if_useful.md
+```
+
+### slot_10_second_replay
+
+- Status: `draft_not_created`
+- Title: First 10 reviewer: second technical reviewer for independent reproducibility (reproducible_feedback_items)
+- Labels: `reproducible`, `first-10-reviewer`
+
+```bash
+gh issue create --title "First 10 reviewer: second technical reviewer for independent reproducibility (reproducible_feedback_items)" --label "reproducible,first-10-reviewer" --body-file docs/first-10-issue-drafts/slot_10_second_replay.md
+```
+
 ## Success Thresholds
 
 - 1 accepted confirmed external user issue

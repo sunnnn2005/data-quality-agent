@@ -34,13 +34,16 @@ def build_community_growth_baseline() -> dict[str, Any]:
         "ai_engineer_review.md",
     }
     required_labels = {
+        "ai-review",
         "feedback",
         "confirmed-user",
         "reproducible",
         "bug",
         "business-case",
         "business-data-replay",
+        "community",
         "enhancement",
+        "first-10-reviewer",
     }
     contribution_paths = {
         "readme_contributing_section": "## Contributing" in readme,
@@ -116,7 +119,7 @@ def build_community_growth_baseline() -> dict[str, Any]:
             "reproducible_feedback_items": feedback["reproducible_feedback_items"],
         },
         "resume_safe_signal": (
-            "Published a CI-verified community growth baseline with 8 issue templates, 7 configured labels, "
+            "Published a CI-verified community growth baseline with 8 issue templates, 10 configured labels, "
             "9 public growth channels, contribution guidance, and honest current public counts."
         ),
         "not_claimed": [
@@ -177,8 +180,8 @@ This generated artifact verifies the public contribution and feedback paths that
 def verify_community_growth_baseline(payload: dict[str, Any]) -> dict[str, Any]:
     if payload["issue_template_count"] != 8:
         raise AssertionError("community growth baseline must verify 8 issue templates")
-    if payload["label_count"] != 7:
-        raise AssertionError("community growth baseline must verify 7 labels")
+    if payload["label_count"] != 10:
+        raise AssertionError("community growth baseline must verify 10 labels")
     if payload["required_issue_templates_present"] is not True:
         raise AssertionError("community growth baseline must verify required issue templates")
     if payload["required_labels_present"] is not True:

@@ -9,6 +9,7 @@ REVIEWER_ACTION_QUEUE_PATH = ROOT / "docs" / "reviewer-action-queue.json"
 REVIEWER_SUBMISSION_HUB_PATH = ROOT / "docs" / "reviewer-submission-hub.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "first-10-reviewer-sprint.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "first-10-reviewer-sprint.md"
+OUTPUT_ISSUE_DRAFTS_DIR = ROOT / "docs" / "first-10-issue-drafts"
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -157,6 +158,8 @@ def build_first_10_reviewer_sprint() -> dict[str, Any]:
     for slot in slots:
         target_counts[slot["target_metric"]] = target_counts.get(slot["target_metric"], 0) + 1
 
+    issue_launch_plan = [_issue_draft(slot) for slot in slots]
+
     return {
         "project": "Data Quality Agent",
         "generated_by": "scripts/build_first_10_reviewer_sprint.py",
@@ -179,6 +182,8 @@ def build_first_10_reviewer_sprint() -> dict[str, Any]:
             "github_stars": 0,
         },
         "slots": slots,
+        "issue_launch_count": len(issue_launch_plan),
+        "issue_launch_plan": issue_launch_plan,
         "success_thresholds": [
             "1 accepted confirmed external user issue",
             "3 accepted external feedback issues",
@@ -199,6 +204,61 @@ def build_first_10_reviewer_sprint() -> dict[str, Any]:
             f"Published a CI-verified first-10 reviewer sprint with {len(slots)} public evidence slots, "
             f"{len(target_counts)} target metrics, zero sent outreach, and zero upgraded outcome claims."
         ),
+    }
+
+
+def _issue_draft(slot: dict[str, Any]) -> dict[str, Any]:
+    label_map = {
+        "external_feedback_items": ["feedback", "first-10-reviewer"],
+        "confirmed_external_users": ["confirmed-user", "first-10-reviewer"],
+        "reproducible_feedback_items": ["reproducible", "first-10-reviewer"],
+        "business_case_feedback_items": ["business-case", "first-10-reviewer"],
+        "ai_engineer_review_items": ["ai-review", "first-10-reviewer"],
+        "github_stars": ["community", "first-10-reviewer"],
+    }
+    labels = label_map[slot["target_metric"]]
+    evidence_checklist = "\n".join(f"- [ ] {item}" for item in slot["acceptance_evidence"])
+    body = f"""## Reviewer slot
+
+`{slot["id"]}` - {slot["reviewer_profile"]}
+
+## Ask
+
+{slot["ask"]}
+
+## Start here
+
+{slot["entry_url"]}
+
+## Submit countable evidence here
+
+{slot["submission_url"]}
+
+## Acceptance evidence
+
+{evidence_checklist}
+- [ ] I am not the repository owner.
+- [ ] I give permission for this public, redacted issue to be counted as project feedback/evidence.
+- [ ] I did not include private data, secrets, customer records, or proprietary information.
+
+## Counting rule
+
+{slot["counts_only_after"]}
+"""
+    title = f"First 10 reviewer: {slot['reviewer_profile']} ({slot['target_metric']})"
+    label_args = ",".join(labels)
+    return {
+        "slot_id": slot["id"],
+        "title": title,
+        "labels": labels,
+        "body": body,
+        "gh_command": (
+            "gh issue create "
+            f"--title {json.dumps(title)} "
+            f"--label {json.dumps(label_args)} "
+            f"--body-file docs/first-10-issue-drafts/{slot['id']}.md"
+        ),
+        "status": "draft_not_created",
     }
 
 
@@ -229,6 +289,22 @@ def render_markdown(payload: dict[str, Any]) -> str:
         )
         for slot in payload["slots"]
     )
+    issue_plan = "\n\n".join(
+        "\n".join(
+            [
+                f"### {issue['slot_id']}",
+                "",
+                f"- Status: `{issue['status']}`",
+                f"- Title: {issue['title']}",
+                f"- Labels: {', '.join(f'`{label}`' for label in issue['labels'])}",
+                "",
+                "```bash",
+                issue["gh_command"],
+                "```",
+            ]
+        )
+        for issue in payload["issue_launch_plan"]
+    )
     thresholds = "\n".join(f"- {item}" for item in payload["success_thresholds"])
     blocked = "\n".join(f"- {item}" for item in payload["blocked_resume_claims"])
     return f"""# First 10 Reviewer Sprint
@@ -254,6 +330,12 @@ This generated sprint converts the project traction goal into 10 concrete extern
 ## Reviewer Slots
 
 {slots}
+
+## Issue Launch Plan
+
+These are draft GitHub issues that can be created when outreach is actually sent. Drafts do not count as sent outreach.
+
+{issue_plan}
 
 ## Success Thresholds
 
@@ -282,6 +364,8 @@ def verify_first_10_reviewer_sprint(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("first reviewer sprint must keep resume outcomes not claimable")
     if any(value != 0 for value in payload["current_counts"].values()):
         raise AssertionError("first reviewer sprint must not claim existing outcomes")
+    if payload["issue_launch_count"] != payload["slot_count"]:
+        raise AssertionError("first reviewer sprint must define one issue draft per slot")
 
     expected_metrics = {
         "external_feedback_items",
@@ -306,6 +390,20 @@ def verify_first_10_reviewer_sprint(payload: dict[str, Any]) -> dict[str, Any]:
             raise AssertionError("first reviewer sprint must submit evidence to public GitHub surfaces")
         if len(slot["acceptance_evidence"]) < 2:
             raise AssertionError("first reviewer sprint slots must define acceptance evidence")
+    issue_slot_ids = {issue["slot_id"] for issue in payload["issue_launch_plan"]}
+    if issue_slot_ids != slot_ids:
+        raise AssertionError("first reviewer sprint issue drafts must map to every slot")
+    for issue in payload["issue_launch_plan"]:
+        if issue["status"] != "draft_not_created":
+            raise AssertionError("first reviewer sprint issue drafts must not claim created issues")
+        if "first-10-reviewer" not in issue["labels"]:
+            raise AssertionError("first reviewer sprint issues must include the first-10 label")
+        if "--body-file docs/first-10-issue-drafts/" not in issue["gh_command"]:
+            raise AssertionError("first reviewer sprint must provide reproducible issue-create commands")
+        body = issue["body"].lower()
+        for required in ("not the repository owner", "permission", "private data"):
+            if required not in body:
+                raise AssertionError(f"first reviewer sprint issue body missing {required}")
 
     joined = json.dumps(payload, sort_keys=True).lower()
     for forbidden in ("active users", "production users", "customer traction", "completed_count: 1"):
@@ -324,6 +422,9 @@ def main() -> None:
     verify_first_10_reviewer_sprint(payload)
     OUTPUT_JSON_PATH.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
     OUTPUT_MD_PATH.write_text(render_markdown(payload))
+    OUTPUT_ISSUE_DRAFTS_DIR.mkdir(exist_ok=True)
+    for issue in payload["issue_launch_plan"]:
+        (OUTPUT_ISSUE_DRAFTS_DIR / f"{issue['slot_id']}.md").write_text(issue["body"])
 
 
 if __name__ == "__main__":

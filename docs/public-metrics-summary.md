@@ -115,6 +115,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Reviewer submission required fields | 23 |
 | First 10 reviewer sprint | 1 |
 | First 10 reviewer slots | 10 |
+| First 10 reviewer issue launch drafts | 10 |
 | First 10 reviewer target metrics | 6 |
 | First 10 reviewer not-sent entries | 10 |
 | First 10 reviewer completed entries | 0 |
@@ -149,7 +150,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Business-data intake max columns | 80 |
 | Community growth baseline | 1 |
 | Community issue templates | 8 |
-| Community labels | 7 |
+| Community labels | 10 |
 | Community public growth channels | 9 |
 | Impact review packet | 1 |
 | Impact review business metrics | 12 |
@@ -312,7 +313,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Resume outcome metrics board tracking 6 outcome metrics, 0 claimable outcome lines, 6 blocked outcome lines, and honest user/feedback/star baselines
 - Resume outcome action checklist with 5 concrete next actions, 4 evaluated public GitHub issues, 0 accepted public evidence items, and 8 not-sent reviewer outreach slots
 - Reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, 23 required evidence fields, and zero current outcome claims upgraded
-- First-10 reviewer sprint with 10 public evidence slots, 6 target metrics, 10 not-sent outreach slots, and zero upgraded outcome claims
+- First-10 reviewer sprint with 10 public evidence slots, 10 issue launch drafts, 6 target metrics, 10 not-sent outreach slots, and zero upgraded outcome claims
 - Outcome collection page with 5 next actions, 6 submission paths, 23 required evidence fields, 0 confirmed users, 0 feedback items, and 0 GitHub stars
 - Public reviewer call linked to 3 reviewer segments, 6 submission paths, 8 outreach tasks, and 23 evidence fields without claiming outcomes
 - Reviewer share kit with 5 copy-ready messages, 5 share channels, issue #19, 6 submission paths, and zero sent or completed outreach claimed
@@ -320,7 +321,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - CI-verified local performance baseline covering 2 route benchmarks and 24 measured endpoint calls
 - Public demo usage baseline with 5 tracked funnel steps and 6 verified entrypoints
 - Business-data intake baseline covering 4 integration endpoints, 6 API tests, and bounded CSV uploads up to 10000 rows / 80 columns
-- Community growth baseline with 8 issue templates, 7 configured labels, and 9 public contribution or feedback channels
+- Community growth baseline with 8 issue templates, 10 configured labels, and 9 public contribution or feedback channels
 - Impact review packet with 12 verified business metrics, 8 evidence links, 5 remediation actions, and 4 owner handoffs
 - Business problem casebook with 1 verified case, 4 detected business risks, and 4 owner handoffs
 - Public traction dashboard with 4 live project surfaces, 19 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules

@@ -424,8 +424,8 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("community growth baseline must verify 8 issue templates")
                 if "external_run_review.md" not in community_growth.get("issue_templates", []):
                     raise AssertionError("community growth baseline must include the external run review template")
-                if community_growth.get("label_count") != 7:
-                    raise AssertionError("community growth baseline must verify 7 labels")
+                if community_growth.get("label_count") != 10:
+                    raise AssertionError("community growth baseline must verify 10 labels")
                 if len(community_growth.get("public_growth_channels", [])) != 9:
                     raise AssertionError("community growth baseline must verify 9 public growth channels")
                 if not all(community_growth.get("contribution_paths", {}).values()):

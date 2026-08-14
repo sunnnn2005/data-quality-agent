@@ -15,12 +15,15 @@ This generated artifact verifies the public contribution and feedback paths that
 
 ## Required Labels
 
+- `ai-review`
 - `bug`
 - `business-case`
 - `business-data-replay`
+- `community`
 - `confirmed-user`
 - `enhancement`
 - `feedback`
+- `first-10-reviewer`
 - `reproducible`
 
 ## Contribution Paths
@@ -58,7 +61,7 @@ This generated artifact verifies the public contribution and feedback paths that
 
 ## Resume-Safe Signal
 
-Published a CI-verified community growth baseline with 8 issue templates, 7 configured labels, 9 public growth channels, contribution guidance, and honest current public counts.
+Published a CI-verified community growth baseline with 8 issue templates, 10 configured labels, 9 public growth channels, contribution guidance, and honest current public counts.
 
 ## Not Claimed
 

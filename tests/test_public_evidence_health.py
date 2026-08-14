@@ -126,9 +126,12 @@ def test_public_evidence_health_requires_core_public_signals():
     sprint = next(check for check in PUBLIC_CHECKS if check["id"] == "first-10-reviewer-sprint")
     assert sprint["url"].endswith("/first-10-reviewer-sprint.json")
     assert sprint["expected_json"]["slot_count"] == 10
+    assert sprint["expected_json"]["issue_launch_count"] == 10
     assert sprint["expected_json"]["target_metric_count"] == 6
     assert sprint["expected_json"]["completed_count"] == 0
     assert "github_stars" in sprint["expected_texts"]
+    assert "draft_not_created" in sprint["expected_texts"]
+    assert "first-10-issue-drafts" in sprint["expected_texts"]
     outreach = next(check for check in PUBLIC_CHECKS if check["id"] == "external-reviewer-outreach-tracker")
     assert outreach["url"].endswith("/external-reviewer-outreach-tracker.json")
     assert outreach["expected_json"]["queue_count"] == 3

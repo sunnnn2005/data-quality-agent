@@ -16,6 +16,119 @@
     "reproducible_feedback_items": 0
   },
   "generated_by": "scripts/build_first_10_reviewer_sprint.py",
+  "issue_launch_count": 10,
+  "issue_launch_plan": [
+    {
+      "body": "## Reviewer slot\n\n`slot_01_ds_peer_demo` - UC Davis data science peer\n\n## Ask\n\nTry the public demo and report one confusing or useful workflow detail.\n\n## Start here\n\nhttps://sunnnn2005.github.io/data-quality-agent/\n\n## Submit countable evidence here\n\nhttps://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md\n\n## Acceptance evidence\n\n- [ ] demo path tried\n- [ ] specific feedback\n- [ ] permission to count publicly\n- [ ] I am not the repository owner.\n- [ ] I give permission for this public, redacted issue to be counted as project feedback/evidence.\n- [ ] I did not include private data, secrets, customer records, or proprietary information.\n\n## Counting rule\n\nA non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.\n",
+      "gh_command": "gh issue create --title \"First 10 reviewer: UC Davis data science peer (external_feedback_items)\" --label \"feedback,first-10-reviewer\" --body-file docs/first-10-issue-drafts/slot_01_ds_peer_demo.md",
+      "labels": [
+        "feedback",
+        "first-10-reviewer"
+      ],
+      "slot_id": "slot_01_ds_peer_demo",
+      "status": "draft_not_created",
+      "title": "First 10 reviewer: UC Davis data science peer (external_feedback_items)"
+    },
+    {
+      "body": "## Reviewer slot\n\n`slot_02_swe_peer_demo` - student software engineer peer\n\n## Ask\n\nReview setup clarity, README flow, and whether the project looks runnable.\n\n## Start here\n\nhttps://sunnnn2005.github.io/data-quality-agent/\n\n## Submit countable evidence here\n\nhttps://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md\n\n## Acceptance evidence\n\n- [ ] reviewed URL\n- [ ] engineering feedback\n- [ ] permission to count publicly\n- [ ] I am not the repository owner.\n- [ ] I give permission for this public, redacted issue to be counted as project feedback/evidence.\n- [ ] I did not include private data, secrets, customer records, or proprietary information.\n\n## Counting rule\n\nA non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.\n",
+      "gh_command": "gh issue create --title \"First 10 reviewer: student software engineer peer (external_feedback_items)\" --label \"feedback,first-10-reviewer\" --body-file docs/first-10-issue-drafts/slot_02_swe_peer_demo.md",
+      "labels": [
+        "feedback",
+        "first-10-reviewer"
+      ],
+      "slot_id": "slot_02_swe_peer_demo",
+      "status": "draft_not_created",
+      "title": "First 10 reviewer: student software engineer peer (external_feedback_items)"
+    },
+    {
+      "body": "## Reviewer slot\n\n`slot_03_local_replay` - engineer comfortable with Docker or local setup\n\n## Ask\n\nRun the local replay path and confirm whether the report is reproducible.\n\n## Start here\n\nhttps://github.com/sunnnn2005/data-quality-agent\n\n## Submit countable evidence here\n\nhttps://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md\n\n## Acceptance evidence\n\n- [ ] command or URL used\n- [ ] observed result\n- [ ] environment summary\n- [ ] I am not the repository owner.\n- [ ] I give permission for this public, redacted issue to be counted as project feedback/evidence.\n- [ ] I did not include private data, secrets, customer records, or proprietary information.\n\n## Counting rule\n\nA non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.\n",
+      "gh_command": "gh issue create --title \"First 10 reviewer: engineer comfortable with Docker or local setup (reproducible_feedback_items)\" --label \"reproducible,first-10-reviewer\" --body-file docs/first-10-issue-drafts/slot_03_local_replay.md",
+      "labels": [
+        "reproducible",
+        "first-10-reviewer"
+      ],
+      "slot_id": "slot_03_local_replay",
+      "status": "draft_not_created",
+      "title": "First 10 reviewer: engineer comfortable with Docker or local setup (reproducible_feedback_items)"
+    },
+    {
+      "body": "## Reviewer slot\n\n`slot_04_confirmed_use` - reviewer who opened the demo or ran the repo\n\n## Ask\n\nConfirm the exact path used and whether the result was understandable.\n\n## Start here\n\nhttps://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-feedback-packet.md\n\n## Submit countable evidence here\n\nhttps://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md\n\n## Acceptance evidence\n\n- [ ] path used\n- [ ] observed result\n- [ ] permission to count as external use\n- [ ] I am not the repository owner.\n- [ ] I give permission for this public, redacted issue to be counted as project feedback/evidence.\n- [ ] I did not include private data, secrets, customer records, or proprietary information.\n\n## Counting rule\n\nA non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.\n",
+      "gh_command": "gh issue create --title \"First 10 reviewer: reviewer who opened the demo or ran the repo (confirmed_external_users)\" --label \"confirmed-user,first-10-reviewer\" --body-file docs/first-10-issue-drafts/slot_04_confirmed_use.md",
+      "labels": [
+        "confirmed-user",
+        "first-10-reviewer"
+      ],
+      "slot_id": "slot_04_confirmed_use",
+      "status": "draft_not_created",
+      "title": "First 10 reviewer: reviewer who opened the demo or ran the repo (confirmed_external_users)"
+    },
+    {
+      "body": "## Reviewer slot\n\n`slot_05_data_analyst_case` - data analyst or analytics student\n\n## Ask\n\nSubmit one anonymized data-quality problem this agent should handle.\n\n## Start here\n\nhttps://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md\n\n## Submit countable evidence here\n\nhttps://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md\n\n## Acceptance evidence\n\n- [ ] anonymized workflow\n- [ ] data-quality problem\n- [ ] business impact\n- [ ] I am not the repository owner.\n- [ ] I give permission for this public, redacted issue to be counted as project feedback/evidence.\n- [ ] I did not include private data, secrets, customer records, or proprietary information.\n\n## Counting rule\n\nA non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.\n",
+      "gh_command": "gh issue create --title \"First 10 reviewer: data analyst or analytics student (business_case_feedback_items)\" --label \"business-case,first-10-reviewer\" --body-file docs/first-10-issue-drafts/slot_05_data_analyst_case.md",
+      "labels": [
+        "business-case",
+        "first-10-reviewer"
+      ],
+      "slot_id": "slot_05_data_analyst_case",
+      "status": "draft_not_created",
+      "title": "First 10 reviewer: data analyst or analytics student (business_case_feedback_items)"
+    },
+    {
+      "body": "## Reviewer slot\n\n`slot_06_operator_case` - small-business operator or operations teammate\n\n## Ask\n\nDescribe one workflow where bad data would cause a wrong operational decision.\n\n## Start here\n\nhttps://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md\n\n## Submit countable evidence here\n\nhttps://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md\n\n## Acceptance evidence\n\n- [ ] workflow affected\n- [ ] decision risk\n- [ ] permission to count anonymized case\n- [ ] I am not the repository owner.\n- [ ] I give permission for this public, redacted issue to be counted as project feedback/evidence.\n- [ ] I did not include private data, secrets, customer records, or proprietary information.\n\n## Counting rule\n\nA non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.\n",
+      "gh_command": "gh issue create --title \"First 10 reviewer: small-business operator or operations teammate (business_case_feedback_items)\" --label \"business-case,first-10-reviewer\" --body-file docs/first-10-issue-drafts/slot_06_operator_case.md",
+      "labels": [
+        "business-case",
+        "first-10-reviewer"
+      ],
+      "slot_id": "slot_06_operator_case",
+      "status": "draft_not_created",
+      "title": "First 10 reviewer: small-business operator or operations teammate (business_case_feedback_items)"
+    },
+    {
+      "body": "## Reviewer slot\n\n`slot_07_ai_engineer_review` - AI engineer, mentor, or ML systems reviewer\n\n## Ask\n\nInspect the LLM tool-calling loop, guardrails, and evidence trail for AI Engineer credibility.\n\n## Start here\n\nhttps://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md\n\n## Submit countable evidence here\n\nhttps://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md\n\n## Acceptance evidence\n\n- [ ] inspected implementation path\n- [ ] AI-agent signal feedback\n- [ ] permission to count publicly\n- [ ] I am not the repository owner.\n- [ ] I give permission for this public, redacted issue to be counted as project feedback/evidence.\n- [ ] I did not include private data, secrets, customer records, or proprietary information.\n\n## Counting rule\n\nA non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.\n",
+      "gh_command": "gh issue create --title \"First 10 reviewer: AI engineer, mentor, or ML systems reviewer (ai_engineer_review_items)\" --label \"ai-review,first-10-reviewer\" --body-file docs/first-10-issue-drafts/slot_07_ai_engineer_review.md",
+      "labels": [
+        "ai-review",
+        "first-10-reviewer"
+      ],
+      "slot_id": "slot_07_ai_engineer_review",
+      "status": "draft_not_created",
+      "title": "First 10 reviewer: AI engineer, mentor, or ML systems reviewer (ai_engineer_review_items)"
+    },
+    {
+      "body": "## Reviewer slot\n\n`slot_08_open_source_review` - open-source maintainer or GitHub contributor\n\n## Ask\n\nReview whether a first-time contributor can understand and run the project.\n\n## Start here\n\nhttps://sunnnn2005.github.io/data-quality-agent/\n\n## Submit countable evidence here\n\nhttps://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md\n\n## Acceptance evidence\n\n- [ ] contributor-readiness feedback\n- [ ] suggested improvement\n- [ ] permission to count publicly\n- [ ] I am not the repository owner.\n- [ ] I give permission for this public, redacted issue to be counted as project feedback/evidence.\n- [ ] I did not include private data, secrets, customer records, or proprietary information.\n\n## Counting rule\n\nA non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.\n",
+      "gh_command": "gh issue create --title \"First 10 reviewer: open-source maintainer or GitHub contributor (external_feedback_items)\" --label \"feedback,first-10-reviewer\" --body-file docs/first-10-issue-drafts/slot_08_open_source_review.md",
+      "labels": [
+        "feedback",
+        "first-10-reviewer"
+      ],
+      "slot_id": "slot_08_open_source_review",
+      "status": "draft_not_created",
+      "title": "First 10 reviewer: open-source maintainer or GitHub contributor (external_feedback_items)"
+    },
+    {
+      "body": "## Reviewer slot\n\n`slot_09_public_star_if_useful` - reviewer who finds the repo useful enough to save\n\n## Ask\n\nStar or fork only if the project is genuinely useful; no traded or fake engagement.\n\n## Start here\n\nhttps://github.com/sunnnn2005/data-quality-agent\n\n## Submit countable evidence here\n\nhttps://github.com/sunnnn2005/data-quality-agent/stargazers\n\n## Acceptance evidence\n\n- [ ] public GitHub star count above zero\n- [ ] no paid or traded engagement\n- [ ] I am not the repository owner.\n- [ ] I give permission for this public, redacted issue to be counted as project feedback/evidence.\n- [ ] I did not include private data, secrets, customer records, or proprietary information.\n\n## Counting rule\n\nA non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.\n",
+      "gh_command": "gh issue create --title \"First 10 reviewer: reviewer who finds the repo useful enough to save (github_stars)\" --label \"community,first-10-reviewer\" --body-file docs/first-10-issue-drafts/slot_09_public_star_if_useful.md",
+      "labels": [
+        "community",
+        "first-10-reviewer"
+      ],
+      "slot_id": "slot_09_public_star_if_useful",
+      "status": "draft_not_created",
+      "title": "First 10 reviewer: reviewer who finds the repo useful enough to save (github_stars)"
+    },
+    {
+      "body": "## Reviewer slot\n\n`slot_10_second_replay` - second technical reviewer for independent reproducibility\n\n## Ask\n\nRun either the public demo or local replay and submit an independent observed result.\n\n## Start here\n\nhttps://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-quickstart.md\n\n## Submit countable evidence here\n\nhttps://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md\n\n## Acceptance evidence\n\n- [ ] independent run path\n- [ ] observed result\n- [ ] permission to count public run evidence\n- [ ] I am not the repository owner.\n- [ ] I give permission for this public, redacted issue to be counted as project feedback/evidence.\n- [ ] I did not include private data, secrets, customer records, or proprietary information.\n\n## Counting rule\n\nA non-owner public GitHub issue passes the external reviewer evidence gate, includes explicit permission to count the evidence, and contains no private data.\n",
+      "gh_command": "gh issue create --title \"First 10 reviewer: second technical reviewer for independent reproducibility (reproducible_feedback_items)\" --label \"reproducible,first-10-reviewer\" --body-file docs/first-10-issue-drafts/slot_10_second_replay.md",
+      "labels": [
+        "reproducible",
+        "first-10-reviewer"
+      ],
+      "slot_id": "slot_10_second_replay",
+      "status": "draft_not_created",
+      "title": "First 10 reviewer: second technical reviewer for independent reproducibility (reproducible_feedback_items)"
+    }
+  ],
   "not_sent_count": 10,
   "project": "Data Quality Agent",
   "purpose": "Turn the zero-user and zero-feedback baseline into a 10-slot reviewer sprint that can produce resume-safe public evidence without inflating current outcomes.",

@@ -275,6 +275,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "reviewer_submission_required_fields": reviewer_submission_hub["total_required_evidence_fields"],
             "first_10_reviewer_sprint": 1,
             "first_10_reviewer_slots": first_10_sprint["slot_count"],
+            "first_10_reviewer_issue_launch_drafts": first_10_sprint["issue_launch_count"],
             "first_10_reviewer_target_metrics": first_10_sprint["target_metric_count"],
             "first_10_reviewer_not_sent": first_10_sprint["not_sent_count"],
             "first_10_reviewer_completed": first_10_sprint["completed_count"],
@@ -593,6 +594,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
             ),
             (
                 f"First-10 reviewer sprint with {first_10_sprint['slot_count']} public evidence slots, "
+                f"{first_10_sprint['issue_launch_count']} issue launch drafts, "
                 f"{first_10_sprint['target_metric_count']} target metrics, "
                 f"{first_10_sprint['not_sent_count']} not-sent outreach slots, and zero upgraded outcome claims"
             ),
@@ -877,6 +879,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Reviewer submission required fields | {outcomes["reviewer_submission_required_fields"]} |
 | First 10 reviewer sprint | {outcomes["first_10_reviewer_sprint"]} |
 | First 10 reviewer slots | {outcomes["first_10_reviewer_slots"]} |
+| First 10 reviewer issue launch drafts | {outcomes["first_10_reviewer_issue_launch_drafts"]} |
 | First 10 reviewer target metrics | {outcomes["first_10_reviewer_target_metrics"]} |
 | First 10 reviewer not-sent entries | {outcomes["first_10_reviewer_not_sent"]} |
 | First 10 reviewer completed entries | {outcomes["first_10_reviewer_completed"]} |
@@ -1161,6 +1164,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "reviewer_submission_required_fields": 23,
         "first_10_reviewer_sprint": 1,
         "first_10_reviewer_slots": 10,
+        "first_10_reviewer_issue_launch_drafts": 10,
         "first_10_reviewer_target_metrics": 6,
         "first_10_reviewer_not_sent": 10,
         "first_10_reviewer_completed": 0,
@@ -1195,7 +1199,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "business_data_intake_max_columns": 80,
         "community_growth_baseline": 1,
         "community_issue_templates": 8,
-        "community_labels": 7,
+        "community_labels": 10,
         "community_public_growth_channels": 9,
         "impact_review_packet": 1,
         "impact_review_business_metrics": 12,

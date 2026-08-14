@@ -26,7 +26,7 @@
     "feature_request.md",
     "good_first_issue.md"
   ],
-  "label_count": 7,
+  "label_count": 10,
   "not_claimed": [
     "external contributors",
     "community adoption",
@@ -94,14 +94,17 @@
   ],
   "required_issue_templates_present": true,
   "required_labels": [
+    "ai-review",
     "bug",
     "business-case",
     "business-data-replay",
+    "community",
     "confirmed-user",
     "enhancement",
     "feedback",
+    "first-10-reviewer",
     "reproducible"
   ],
   "required_labels_present": true,
-  "resume_safe_signal": "Published a CI-verified community growth baseline with 8 issue templates, 7 configured labels, 9 public growth channels, contribution guidance, and honest current public counts."
+  "resume_safe_signal": "Published a CI-verified community growth baseline with 8 issue templates, 10 configured labels, 9 public growth channels, contribution guidance, and honest current public counts."
 }

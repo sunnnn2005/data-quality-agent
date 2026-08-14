@@ -33,5 +33,20 @@
     "name": "business-data-replay",
     "color": "0052cc",
     "description": "Confirmed anonymized replay on CSV, PostgreSQL, or business-shaped data"
+  },
+  {
+    "name": "ai-review",
+    "color": "b60205",
+    "description": "External review of LLM agent design, tool use, guardrails, and AI Engineer readiness"
+  },
+  {
+    "name": "community",
+    "color": "bfdadc",
+    "description": "Organic repository interest, stars, forks, or contributor-readiness discussion"
+  },
+  {
+    "name": "first-10-reviewer",
+    "color": "c5def5",
+    "description": "Issue connected to the first 10 external reviewer sprint"
   }
 ]

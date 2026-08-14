@@ -109,6 +109,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["reviewer_submission_required_fields"] == 23
     assert payload["verified_project_outcomes"]["first_10_reviewer_sprint"] == 1
     assert payload["verified_project_outcomes"]["first_10_reviewer_slots"] == 10
+    assert payload["verified_project_outcomes"]["first_10_reviewer_issue_launch_drafts"] == 10
     assert payload["verified_project_outcomes"]["first_10_reviewer_target_metrics"] == 6
     assert payload["verified_project_outcomes"]["first_10_reviewer_not_sent"] == 10
     assert payload["verified_project_outcomes"]["first_10_reviewer_completed"] == 0
@@ -137,7 +138,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["business_data_intake_max_columns"] == 80
     assert payload["verified_project_outcomes"]["community_growth_baseline"] == 1
     assert payload["verified_project_outcomes"]["community_issue_templates"] == 8
-    assert payload["verified_project_outcomes"]["community_labels"] == 7
+    assert payload["verified_project_outcomes"]["community_labels"] == 10
     assert payload["verified_project_outcomes"]["community_public_growth_channels"] == 9
     assert payload["verified_project_outcomes"]["impact_review_packet"] == 1
     assert payload["verified_project_outcomes"]["impact_review_business_metrics"] == 12
@@ -297,7 +298,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-        "Community growth baseline with 8 issue templates, 7 configured labels, and 9 public contribution or feedback channels"
+        "Community growth baseline with 8 issue templates, 10 configured labels, and 9 public contribution or feedback channels"
         in payload["resume_safe_signals"]
     )
     assert (
