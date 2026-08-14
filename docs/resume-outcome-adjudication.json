@@ -1,0 +1,105 @@
+{
+  "accepted_issue_count": 0,
+  "blocked_category_count": 5,
+  "categories": [
+    {
+      "claim_category": "external users",
+      "claimable": false,
+      "current_count": 0,
+      "metric": "confirmed_external_users",
+      "safe_current_wording": "No verified external users yet; project is public and runnable.",
+      "unlock_condition": "one accepted non-owner external-run issue with runnable-path evidence and permission to count"
+    },
+    {
+      "claim_category": "customer feedback",
+      "claimable": false,
+      "current_count": 0,
+      "metric": "external_feedback_items",
+      "safe_current_wording": "Feedback intake is public; no accepted external feedback has arrived yet.",
+      "unlock_condition": "three accepted non-owner feedback issues with concrete observations and permission to count"
+    },
+    {
+      "claim_category": "reproducible external run",
+      "claimable": false,
+      "current_count": 0,
+      "metric": "reproducible_feedback_items",
+      "safe_current_wording": "CI and local tests verify reproducibility; no non-owner external run is counted yet.",
+      "unlock_condition": "one accepted reviewer issue containing command or URL evidence and observed result"
+    },
+    {
+      "claim_category": "business validation",
+      "claimable": false,
+      "current_count": 0,
+      "metric": "business_case_feedback_items",
+      "safe_current_wording": "Business-case intake is ready; no accepted external business case exists yet.",
+      "unlock_condition": "one accepted anonymized business-case issue with workflow, impact, fields, and permission to count"
+    },
+    {
+      "claim_category": "AI Engineer review",
+      "claimable": false,
+      "current_count": 0,
+      "metric": "ai_engineer_review_items",
+      "safe_current_wording": "AI Engineer review intake is public; no accepted external AI review is counted yet.",
+      "unlock_condition": "one accepted AI Engineer review issue with inspected implementation paths and permission to count"
+    }
+  ],
+  "claim_category_count": 5,
+  "claimable_category_count": 0,
+  "evaluated_issue_count": 4,
+  "generated_by": "scripts/build_resume_outcome_adjudication.py",
+  "launch_control_room": {
+    "public_issue_thread_count": 4,
+    "reviewer_send_plan_count": 3,
+    "target_outcome_count": 4
+  },
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "reproducible external usage",
+    "business validation",
+    "external AI Engineer review feedback"
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Translate public reviewer evidence-gate results into clear resume decisions: what can be claimed now, what remains blocked, and what public evidence would unlock each stronger outcome claim.",
+  "rejected_issue_count": 4,
+  "rejected_issue_summary": [
+    {
+      "issue_number": 16,
+      "reason_count": 7,
+      "top_reasons": [
+        "self-authored issue",
+        "missing no-private-data checkbox",
+        "missing public external run permission"
+      ]
+    },
+    {
+      "issue_number": 17,
+      "reason_count": 8,
+      "top_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox"
+      ]
+    },
+    {
+      "issue_number": 18,
+      "reason_count": 8,
+      "top_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox"
+      ]
+    },
+    {
+      "issue_number": 19,
+      "reason_count": 8,
+      "top_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox"
+      ]
+    }
+  ],
+  "rejected_issue_summary_count": 4,
+  "resume_safe_summary": "Published a CI-verified resume outcome adjudication report covering 5 outcome categories, 0 claimable external outcome categories, 5 blocked categories, and the exact public evidence required to unlock user, feedback, reproducible-run, business-validation, and AI-review resume claims."
+}

@@ -49,7 +49,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "149 passing CI tests",
+            "150 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -62,7 +62,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 149},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 150},
         "evidence_type": "json",
     },
     {
@@ -483,6 +483,26 @@ PUBLIC_CHECKS = [
             "business validation",
             "public issue threads",
             "target outcome metrics",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "resume-outcome-adjudication",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-adjudication.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "claim_category_count": 5,
+            "claimable_category_count": 0,
+            "blocked_category_count": 5,
+            "accepted_issue_count": 0,
+        },
+        "expected_text": "CI-verified resume outcome adjudication",
+        "expected_texts": [
+            "external users",
+            "customer feedback",
+            "business validation",
+            "Unlock Condition",
+            "exact public evidence required",
         ],
         "evidence_type": "json",
     },

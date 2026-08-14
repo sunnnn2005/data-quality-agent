@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 149,
-      "resume_signal": "149 passing CI tests",
+      "metric_value": 150,
+      "resume_signal": "150 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,12 +299,12 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 43 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 44 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 43,
-      "resume_signal": "43 recruiter application evidence links",
+      "metric_value": 44,
+      "resume_signal": "44 recruiter application evidence links",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
     },
@@ -809,6 +809,16 @@
       "resume_signal": "CI-verified pilot launch control room",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-launch-control-room.json"
+    },
+    {
+      "claim": "The project publishes a resume outcome adjudication report covering 5 outcome categories, 0 claimable external outcome categories, 5 blocked categories, and exact public evidence requirements for unlocking user, feedback, reproducible-run, business-validation, and AI-review resume claims.",
+      "evidence_type": "artifact",
+      "id": "resume-outcome-adjudication",
+      "metric_name": "resume_outcome_adjudication",
+      "metric_value": 1,
+      "resume_signal": "CI-verified resume outcome adjudication",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-adjudication.json"
     }
   ],
   "not_claimed": [

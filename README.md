@@ -28,7 +28,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Pilot launch control room | [`docs/pilot-launch-control-room.md`](docs/pilot-launch-control-room.md) tracks 4 public issue threads, 5 launch gates, 4 target outcome metrics, and 3 reviewer-send paths while keeping external outcome claims blocked at zero |
 | Public release | [`v0.3.0`](docs/releases/v0.3.0.md) release notes and GitHub Release |
 | Container image | `ghcr.io/sunnnn2005/data-quality-agent:latest` published from `main` |
-| Test suite | 149 automated tests passing locally and in GitHub Actions |
+| Test suite | 150 automated tests passing locally and in GitHub Actions |
 | Live project scorecard | [`docs/live-project-scorecard.md`](docs/live-project-scorecard.md) gives reviewers one page for the demo, release, container, CI, claims, agent capabilities, and honest adoption baselines |
 | AI Engineer readiness | [`docs/ai-engineer-readiness.md`](docs/ai-engineer-readiness.md) maps the project to 8 implemented AI skill signals, 1 partial signal, and 1 not-claimed signal for AI Engineer Intern applications |
 | AI Engineer review intake | [`docs/ai-engineer-review-intake.md`](docs/ai-engineer-review-intake.md) gives external reviewers 6 review paths, 6 questions, and 5 countable-evidence conditions for permissioned AI Engineer feedback |
@@ -43,7 +43,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Business case intake | [`docs/business-case-intake.md`](docs/business-case-intake.md) verifies 6 business-case sections, 5 tried paths, 5 outcome signals, and permission boundaries for future real-world data-quality problem feedback |
 | Business data replay packet | [`docs/business-data-replay-packet.md`](docs/business-data-replay-packet.md) gives reviewers 3 safe replay paths, 8 evidence fields, 5 safety requirements, and a dedicated replay issue template for collecting confirmed run evidence without claiming external replay yet |
 | Business replay demo | [`docs/business-replay-demo.md`](docs/business-replay-demo.md) verifies an anonymized 8-row support-ticket CSV replay with 5 findings, 4 failed check types, 4 business-rule references, 3 root-cause hypotheses, and deterministic report verification |
-| Application evidence pack | [`docs/application-evidence-pack.md`](docs/application-evidence-pack.md) gives recruiters 43 review links, verified outcome numbers, resume bullets, an email note, and an interview opening |
+| Application evidence pack | [`docs/application-evidence-pack.md`](docs/application-evidence-pack.md) gives recruiters 44 review links, verified outcome numbers, resume bullets, an email note, and an interview opening |
 | Reviewer submission hub | [`docs/reviewer-submission-hub.md`](docs/reviewer-submission-hub.md) maps 6 outcome metrics to public submission paths, 23 required evidence fields, and conservative counting rules for future reviewer evidence |
 | Public reviewer call | [`docs/public-reviewer-call.md`](docs/public-reviewer-call.md) opens a public call for 3 reviewer segments, 6 submission paths, and 23 evidence fields without claiming outcomes yet |
 | Reviewer share kit | [`docs/reviewer-share-kit.md`](docs/reviewer-share-kit.md) gives 5 copy-ready messages across 5 share channels linked to issue #19 and public evidence forms without claiming sent outreach |

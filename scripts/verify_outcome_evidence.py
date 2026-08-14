@@ -70,6 +70,7 @@ REAL_MODEL_RUNBOOK_PATH = ROOT / "docs" / "real-model-runbook.json"
 REAL_MODEL_EVIDENCE_CAPTURE_PATH = ROOT / "docs" / "real-model-evidence-capture.json"
 BUSINESS_REPLAY_DEMO_PATH = ROOT / "docs" / "business-replay-demo.json"
 RESUME_CLAIM_UPGRADE_LEDGER_PATH = ROOT / "docs" / "resume-claim-upgrade-ledger.json"
+RESUME_OUTCOME_ADJUDICATION_PATH = ROOT / "docs" / "resume-outcome-adjudication.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
 PUBLIC_METRICS_REFRESH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "refresh-public-metrics.yml"
 PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
@@ -155,6 +156,7 @@ def verify_manifest() -> dict[str, int]:
     real_model_evidence_capture = load_payload(REAL_MODEL_EVIDENCE_CAPTURE_PATH)
     replay_demo = load_payload(BUSINESS_REPLAY_DEMO_PATH)
     claim_upgrade = load_payload(RESUME_CLAIM_UPGRADE_LEDGER_PATH)
+    adjudication = load_payload(RESUME_OUTCOME_ADJUDICATION_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
     feedback_log = FEEDBACK_LOG_PATH.read_text().lower()
@@ -586,7 +588,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 149:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 150:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -965,7 +967,7 @@ def verify_manifest() -> dict[str, int]:
                     ("confirmed_external_users", 0),
                     ("external_feedback_items", 0),
                     ("github_stars", 0),
-                    ("passing_tests", 149),
+                    ("passing_tests", 150),
                 ):
                     if counts.get(key) != expected_value:
                         raise AssertionError(f"outcome collection {key} expected {expected_value!r}")
@@ -1351,7 +1353,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 149:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 150:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1428,6 +1430,26 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("pilot launch control room must include a dedicated test")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("pilot_launch_control_room claim must use metric_value=1")
+            elif metric_name == "resume_outcome_adjudication":
+                adjudication_script = (ROOT / "scripts" / "build_resume_outcome_adjudication.py").read_text()
+                adjudication_tests = (ROOT / "tests" / "test_resume_outcome_adjudication.py").read_text()
+                if adjudication.get("claim_category_count") != 5:
+                    raise AssertionError("resume outcome adjudication must verify 5 outcome categories")
+                if adjudication.get("claimable_category_count") != 0:
+                    raise AssertionError("resume outcome adjudication must keep claimable external outcomes at zero")
+                if adjudication.get("blocked_category_count") != 5:
+                    raise AssertionError("resume outcome adjudication must verify 5 blocked categories")
+                if adjudication.get("accepted_issue_count") != 0:
+                    raise AssertionError("resume outcome adjudication must preserve zero accepted issue count")
+                for required in ("external users", "customer feedback", "business validation"):
+                    if required not in adjudication.get("not_claimed", []):
+                        raise AssertionError(f"resume outcome adjudication must not claim {required}")
+                if "verify_resume_outcome_adjudication" not in adjudication_script:
+                    raise AssertionError("resume outcome adjudication must include a script verifier")
+                if "test_resume_outcome_adjudication_keeps_strong_resume_claims_evidence_gated" not in adjudication_tests:
+                    raise AssertionError("resume outcome adjudication must include a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("resume_outcome_adjudication claim must use metric_value=1")
             elif metric_name == "pilot_outreach_message_count":
                 pilot_tests = (ROOT / "tests" / "test_pilot_outreach_kit.py").read_text()
                 pilot_script = (ROOT / "scripts" / "build_pilot_outreach_kit.py").read_text()
@@ -2266,7 +2288,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 149", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 150", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

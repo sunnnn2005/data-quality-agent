@@ -31,6 +31,7 @@ def test_refresh_public_metrics_workflow_updates_resume_evidence_sources():
     assert "python scripts/build_reviewer_action_queue.py" in run_commands
     assert "python scripts/build_reviewer_outreach_execution_pack.py" in run_commands
     assert "python scripts/build_resume_outcome_metrics.py" in run_commands
+    assert "python scripts/build_resume_outcome_adjudication.py" in run_commands
     assert "python scripts/build_resume_outcome_action_checklist.py" in run_commands
     assert "python scripts/build_reviewer_submission_hub.py" in run_commands
     assert "python scripts/build_pilot_evidence_quicklink.py" in run_commands
@@ -41,7 +42,7 @@ def test_refresh_public_metrics_workflow_updates_resume_evidence_sources():
     assert "python scripts/build_outcome_collection_page.py" in run_commands
     assert "python scripts/verify_outcome_evidence.py" in run_commands
     assert (
-        "tests/test_github_discovery_profile.py tests/test_pilot_evidence_quicklink.py tests/test_pilot_launch_control_room.py "
+        "tests/test_github_discovery_profile.py tests/test_pilot_evidence_quicklink.py tests/test_pilot_launch_control_room.py tests/test_resume_outcome_adjudication.py "
         "tests/test_star_growth_kit.py tests/test_public_metrics_summary.py "
         "tests/test_business_impact_ledger.py tests/test_reviewer_evidence_kit.py tests/test_resume_traction_proof.py "
         "tests/test_reviewer_action_queue.py tests/test_reviewer_outreach_execution_pack.py "
@@ -69,6 +70,12 @@ def test_refresh_public_metrics_workflow_updates_resume_evidence_sources():
     )
     assert run_commands.index("python scripts/build_reviewer_outreach_execution_pack.py") < run_commands.index(
         "python scripts/build_resume_outcome_metrics.py"
+    )
+    assert run_commands.index("python scripts/build_accepted_evidence_rollup.py") < run_commands.index(
+        "python scripts/build_resume_outcome_adjudication.py"
+    )
+    assert run_commands.index("python scripts/build_resume_outcome_adjudication.py") < run_commands.index(
+        "python scripts/build_public_metrics_summary.py"
     )
     assert run_commands.index("python scripts/build_resume_outcome_metrics.py") < run_commands.index(
         "python scripts/build_resume_outcome_action_checklist.py"

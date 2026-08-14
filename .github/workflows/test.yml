@@ -88,6 +88,8 @@ jobs:
         run: python scripts/build_pilot_conversion_board.py
       - name: Verify resume outcome readiness
         run: python scripts/evaluate_resume_outcomes.py
+      - name: Verify resume outcome adjudication
+        run: python scripts/build_resume_outcome_adjudication.py
       - name: Verify external review evidence ledger
         run: python scripts/build_external_review_evidence_ledger.py
       - name: Verify GitHub traffic snapshot

@@ -34,6 +34,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "public-availability-snapshot",
         "pilot-evidence-quicklink",
         "pilot-launch-control-room",
+        "resume-outcome-adjudication",
         "feedback-intake-quality",
         "business-data-replay-packet",
         "business-replay-demo",
@@ -115,6 +116,12 @@ def test_public_evidence_health_requires_core_public_signals():
     assert control_room["expected_json"]["target_outcome_count"] == 4
     assert control_room["expected_json"]["current_claimable_external_outcomes"] == 0
     assert "business validation" in control_room["expected_texts"]
+    adjudication = next(check for check in PUBLIC_CHECKS if check["id"] == "resume-outcome-adjudication")
+    assert adjudication["url"].endswith("/resume-outcome-adjudication.json")
+    assert adjudication["expected_json"]["claim_category_count"] == 5
+    assert adjudication["expected_json"]["claimable_category_count"] == 0
+    assert adjudication["expected_json"]["blocked_category_count"] == 5
+    assert "exact public evidence required" in adjudication["expected_texts"]
     outreach = next(check for check in PUBLIC_CHECKS if check["id"] == "external-reviewer-outreach-tracker")
     assert outreach["url"].endswith("/external-reviewer-outreach-tracker.json")
     assert outreach["expected_json"]["queue_count"] == 3
