@@ -43,7 +43,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | First 10 outreach execution log | [`docs/first-10-outreach-execution-log.md`](docs/first-10-outreach-execution-log.md) turns the 10 public reviewer issue entrypoints into 10 copy-ready manual outreach messages with follow-up timing, evidence fields, and zero claimable outcomes |
 | Public release | [`v0.3.0`](docs/releases/v0.3.0.md) release notes and GitHub Release |
 | Container image | `ghcr.io/sunnnn2005/data-quality-agent:latest` published from `main` |
-| Test suite | 209 automated tests passing locally and in GitHub Actions |
+| Test suite | 210 automated tests passing locally and in GitHub Actions |
 | Live project scorecard | [`docs/live-project-scorecard.md`](docs/live-project-scorecard.md) gives reviewers one page for the demo, release, container, CI, claims, agent capabilities, and honest adoption baselines |
 | Launch evidence snapshot | [`docs/launch-evidence-snapshot.md`](docs/launch-evidence-snapshot.md) gives recruiters 5 public project surfaces, availability/workflow health, GitHub stats, AI review path, and blocked adoption claims in one artifact |
 | AI Engineer readiness | [`docs/ai-engineer-readiness.md`](docs/ai-engineer-readiness.md) maps the project to 8 implemented AI skill signals, 1 partial signal, and 1 not-claimed signal for AI Engineer Intern applications |
@@ -57,6 +57,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | GitHub public stats snapshot | [`docs/github-public-stats-snapshot.md`](docs/github-public-stats-snapshot.md) captures live public stars, forks, watchers, subscribers, and open issues from the GitHub API without claiming users or feedback |
 | Public availability snapshot | [`docs/public-availability-snapshot.md`](docs/public-availability-snapshot.md) captures reachable public endpoints and recent main-branch workflow health without claiming production uptime or users |
 | Star growth kit | [`docs/star-growth-kit.md`](docs/star-growth-kit.md) verifies 20 repo topics, 4 ethical growth actions, 4 resume-upgrade rules, GitHub traffic context, and the current 0-star baseline |
+| Contributor conversion kit | [`docs/contributor-conversion-kit.md`](docs/contributor-conversion-kit.md) routes reviewers through 5 public contributor paths, 5 evidence gates, and 0 contributor-claimable outcomes until public evidence exists |
 | GitHub discovery profile | [`docs/github-discovery-profile.md`](docs/github-discovery-profile.md) verifies 20 precise repository topics, public homepage metadata, 6 reviewer entrypoints, and the current zero-star baseline |
 | Feedback intake quality | [`docs/feedback-intake-quality.md`](docs/feedback-intake-quality.md) verifies 5 required feedback sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups without claiming users |
 | Business case intake | [`docs/business-case-intake.md`](docs/business-case-intake.md) verifies 6 business-case sections, 5 tried paths, 5 outcome signals, and permission boundaries for future real-world data-quality problem feedback |

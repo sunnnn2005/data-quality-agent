@@ -4,7 +4,7 @@
   "commands": [
     {
       "command": ".venv/bin/python -m pytest",
-      "expected": "209 passing tests before this card is regenerated",
+      "expected": "210 passing tests before this card is regenerated",
       "label": "Run tests"
     },
     {
@@ -60,7 +60,7 @@
   ],
   "outcome_badge_snapshot": {
     "ai_review": "0 accepted",
-    "ci_tests": "209 passing",
+    "ci_tests": "210 passing",
     "confirmed_users": "0 accepted",
     "external_feedback": "0 accepted"
   },

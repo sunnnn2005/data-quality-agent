@@ -1,0 +1,146 @@
+{
+  "contributor_claimable_count": 0,
+  "conversion_path_count": 5,
+  "conversion_paths": [
+    {
+      "action": "Run the public demo and submit structured feedback with permission to count publicly.",
+      "best_reviewer": "classmate, club member, or engineer who can try the public demo",
+      "copy_ready_message": "I published a local-first LLM data-quality agent with a public demo and evidence-backed reports. Could you spend 8-10 minutes running the demo and leave feedback through this issue form? Please only grant permission to count the review publicly if you are comfortable with that.",
+      "counts_only_after": "The accepted evidence gate increments external_feedback_items.",
+      "entrypoint_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "evidence_gate": "public non-owner issue using demo_feedback.md and explicit permission to count",
+      "id": "demo_feedback_review",
+      "target_signal": "external_feedback_items"
+    },
+    {
+      "action": "Replay an anonymized business-shaped CSV or read-only PostgreSQL table through the agent.",
+      "best_reviewer": "data analyst, data engineer, or operations teammate with an anonymized CSV workflow",
+      "copy_ready_message": "I am validating whether this agent is useful on realistic business data. If you have a small anonymized CSV shape, could you run the replay path and submit what failed, what was useful, and whether the evidence-backed report matched the workflow?",
+      "counts_only_after": "The accepted evidence gate confirms a reproducible replay without sensitive data.",
+      "entrypoint_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md",
+      "evidence_gate": "public non-owner issue using business_data_replay.md with no raw private data",
+      "id": "business_data_replay",
+      "target_signal": "reproducible_feedback_items"
+    },
+    {
+      "action": "Review tool calling, state loop, guardrails, structured output, traces, and eval evidence.",
+      "best_reviewer": "AI engineer, ML engineer, or senior CS student familiar with LLM agents",
+      "copy_ready_message": "I am trying to make this project strong enough for AI Engineer internship interviews. Could you review the LLM tool-calling loop, guardrails, structured output, and eval artifacts, then leave specific technical feedback through the AI Engineer review issue?",
+      "counts_only_after": "The accepted evidence gate confirms an external AI-engineering review.",
+      "entrypoint_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+      "evidence_gate": "public non-owner issue using ai_engineer_review.md with permission to count",
+      "id": "ai_engineer_review",
+      "target_signal": "ai_engineer_review_items"
+    },
+    {
+      "action": "Judge whether the detected quality failures and owner handoffs match a realistic business problem.",
+      "best_reviewer": "someone who has worked with support, billing, ecommerce, or operations data",
+      "copy_ready_message": "Could you review the support-operations case study and tell me whether the data-quality failures, root-cause hypotheses, and owner handoffs feel realistic for an actual business workflow?",
+      "counts_only_after": "The accepted evidence gate increments business_case_feedback_items.",
+      "entrypoint_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "evidence_gate": "public non-owner issue using business_case_review.md and explicit business-case feedback",
+      "id": "business_case_review",
+      "target_signal": "business_case_feedback_items"
+    },
+    {
+      "action": "Star or fork only if the project is useful, credible, or worth revisiting.",
+      "best_reviewer": "developer who inspected the repo, demo, tests, or Docker run and genuinely wants to follow it",
+      "copy_ready_message": "If you inspect the repo or demo and genuinely find the project useful, a GitHub star would help signal public interest. No pressure, and please do not star it unless it is actually useful to you.",
+      "counts_only_after": "The public GitHub count changes organically.",
+      "entrypoint_url": "https://github.com/sunnnn2005/data-quality-agent",
+      "evidence_gate": "public GitHub stargazer or fork count; no paid, traded, or fake engagement",
+      "id": "ethical_star_or_fork",
+      "target_signal": "github_stars"
+    }
+  ],
+  "counts_only_after": [
+    "public non-owner issue",
+    "explicit permission to count publicly",
+    "accepted evidence gate",
+    "public GitHub star or fork count",
+    "no private business data or secrets"
+  ],
+  "current_public_counts": {
+    "ai_engineer_review_items": 0,
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "feature_feedback_items_excluded_from_external_claims": 8,
+    "forks": 1,
+    "reproducible_feedback_items": 0,
+    "stars": 0
+  },
+  "evidence_gate_count": 5,
+  "generated_by": "scripts/build_contributor_conversion_kit.py",
+  "linked_public_assets": {
+    "community_growth_baseline": "docs/community-growth-baseline.md",
+    "open_feedback_loop": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+    "public_demo": "https://sunnnn2005.github.io/data-quality-agent/",
+    "repo": "https://github.com/sunnnn2005/data-quality-agent",
+    "star_growth_kit": "docs/star-growth-kit.md"
+  },
+  "not_claimed": [
+    "external contributors",
+    "external users",
+    "customer feedback",
+    "production adoption",
+    "GitHub stars beyond the current public count",
+    "business impact validated by a company"
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Convert public repo visibility into real, resume-safe outcome evidence by routing reviewers through specific contribution, replay, review, and ethical star paths.",
+  "resume_safe_summary": "Published a contributor conversion kit with 5 public contributor paths, 5 evidence gates, 0 contributor-claimable outcomes, and explicit rules for turning reviews, replays, AI-engineering feedback, and organic GitHub stars into future resume-safe metrics.",
+  "source_cross_checks": {
+    "issue_template_count": 8,
+    "public_growth_channel_count": 9,
+    "self_authored_planning_excluded": true,
+    "topic_readiness": {
+      "current_topics": [
+        "agentic-ai",
+        "ai-agent",
+        "ai-engineering",
+        "data-engineering",
+        "data-quality",
+        "data-reliability",
+        "docker",
+        "evaluation",
+        "fastapi",
+        "github-actions",
+        "llm",
+        "llm-agent",
+        "observability",
+        "openai",
+        "pandas",
+        "postgres",
+        "pydantic",
+        "python",
+        "quality-monitoring",
+        "tool-calling"
+      ],
+      "missing_topics": [],
+      "ready": true,
+      "required_topics": [
+        "agentic-ai",
+        "ai-agent",
+        "ai-engineering",
+        "data-engineering",
+        "data-quality",
+        "data-reliability",
+        "docker",
+        "evaluation",
+        "fastapi",
+        "github-actions",
+        "llm",
+        "llm-agent",
+        "observability",
+        "openai",
+        "pandas",
+        "postgres",
+        "pydantic",
+        "python",
+        "quality-monitoring",
+        "tool-calling"
+      ]
+    }
+  }
+}

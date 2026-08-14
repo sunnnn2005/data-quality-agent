@@ -52,7 +52,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "209 passing CI tests",
+            "210 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -111,7 +111,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 209},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 210},
         "evidence_type": "json",
     },
     {
@@ -437,6 +437,27 @@ PUBLIC_CHECKS = [
         "expected_json": {"project": "Data Quality Agent", "issue_template_count": 8, "label_count": 10},
         "expected_text": "external contributors",
         "expected_texts": ["public_growth_channels", "good%20first%20issue", "business_data_replay.md", "external_run_review.md"],
+        "evidence_type": "json",
+    },
+    {
+        "id": "contributor-conversion-kit",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/contributor-conversion-kit.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "conversion_path_count": 5,
+            "evidence_gate_count": 5,
+            "contributor_claimable_count": 0,
+        },
+        "expected_text": "0 contributor-claimable outcomes",
+        "expected_texts": [
+            "demo_feedback.md",
+            "business_data_replay.md",
+            "ai_engineer_review.md",
+            "business_case_review.md",
+            "ethical_star_or_fork",
+            "public non-owner issue",
+            "organic GitHub stars",
+        ],
         "evidence_type": "json",
     },
     {

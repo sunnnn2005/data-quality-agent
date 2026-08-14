@@ -28,6 +28,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "api-smoke-report",
         "performance-baseline",
         "demo-usage-baseline",
+        "contributor-conversion-kit",
         "impact-review-packet",
         "business-problem-casebook",
         "business-resolution-brief",
@@ -195,6 +196,13 @@ def test_public_evidence_health_requires_core_public_signals():
     assert conversion["expected_json"]["blocked_outcome_count"] == 6
     assert "one-click-evidence-links.html" in conversion["expected_texts"]
     assert "Outreach attempts alone do not count" in conversion["expected_texts"]
+    contributor = next(check for check in PUBLIC_CHECKS if check["id"] == "contributor-conversion-kit")
+    assert contributor["url"].endswith("/contributor-conversion-kit.json")
+    assert contributor["expected_json"]["conversion_path_count"] == 5
+    assert contributor["expected_json"]["contributor_claimable_count"] == 0
+    assert "business_data_replay.md" in contributor["expected_texts"]
+    assert "ai_engineer_review.md" in contributor["expected_texts"]
+    assert "organic GitHub stars" in contributor["expected_texts"]
 
 
 def test_public_evidence_health_verifier_rejects_failed_checks():
