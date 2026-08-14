@@ -19,10 +19,15 @@ EXTERNAL_RUN_LABELS = {"feedback", "pilot", "reproducible", "confirmed-user"}
 BUSINESS_CASE_LABELS = {"business-case"}
 AI_ENGINEER_REVIEW_LABELS = {"ai-engineer-review"}
 BUSINESS_DATA_REPLAY_LABELS = {"business-data-replay"}
+REAL_MODEL_RUN_LABELS = {"real-model-run"}
 REPO = "sunnnn2005/data-quality-agent"
 PUBLIC_ISSUES_API = f"https://api.github.com/repos/{REPO}/issues"
 TRACKED_LABELS = sorted(
-    EXTERNAL_RUN_LABELS | BUSINESS_CASE_LABELS | AI_ENGINEER_REVIEW_LABELS | BUSINESS_DATA_REPLAY_LABELS
+    EXTERNAL_RUN_LABELS
+    | BUSINESS_CASE_LABELS
+    | AI_ENGINEER_REVIEW_LABELS
+    | BUSINESS_DATA_REPLAY_LABELS
+    | REAL_MODEL_RUN_LABELS
 )
 
 
@@ -78,13 +83,96 @@ def evaluate_issue(issue: dict[str, Any]) -> dict[str, Any]:
         if "This issue contains no private business data, secrets, customer names, emails, addresses, or raw production rows."
         not in line
         and "This issue contains no customer names, emails, addresses, tokens, secrets, or raw production rows." not in line
+        and "This issue contains no provider credentials, raw prompts, customer names, emails, addresses, secrets, tokens, or raw production rows."
+        not in line
     )
     lower_body = scan_body.lower()
+    lower_body = lower_body.replace("total tokens:", "usage count:")
+    lower_body = lower_body.replace("token, cost, and latency telemetry", "usage, cost, and latency telemetry")
     sensitive_hits = sorted(term for term in SENSITIVE_TERMS if term in lower_body)
     if sensitive_hits:
         failure_reasons.append("contains sensitive-data risk terms")
 
-    if labels & BUSINESS_DATA_REPLAY_LABELS:
+    if labels & REAL_MODEL_RUN_LABELS:
+        evidence_type = "real_model_run_review"
+        if not _checked(
+            body,
+            "This issue contains no provider credentials, raw prompts, customer names, emails, addresses, secrets, tokens, or raw production rows.",
+        ):
+            failure_reasons.append("missing no-sensitive-data real-model checkbox")
+        if not _checked(
+            body,
+            "You may count this public issue as accepted real-model run evidence if it passes the repository evidence gate.",
+        ):
+            failure_reasons.append("missing real-model run counting permission")
+        if _checked(body, "Do not count this issue publicly."):
+            failure_reasons.append("reviewer opted out of public counting")
+        if _checked(body, "I reviewed the runbook but did not execute a model call"):
+            failure_reasons.append("runbook-only review is not a real model run")
+        if not (
+            _checked(body, 'Built-in dataset: `python scripts/capture_real_model_run.py --dataset-id orders_daily --write`')
+            or _checked(
+                body,
+                'Business CSV replay: `python scripts/capture_real_model_run.py --csv-path sample.csv --dataset-name "Replay Dataset" --owner reviewer --primary-key id --expected-columns "id,status,amount" --description "Anonymized business replay dataset" --write`',
+            )
+        ):
+            failure_reasons.append("missing executed real-model capture path")
+        for heading in ("Environment", "Redacted telemetry", "Tool evidence", "Outcome", "Notes"):
+            if not _non_placeholder(_section_text(body, heading)):
+                failure_reasons.append(f"missing {heading.lower()} evidence")
+        for required_phrase in (
+            "Model provider:",
+            "Model name:",
+            "API route used:",
+            "Dataset id or anonymized dataset name:",
+        ):
+            if required_phrase not in _section_text(body, "Environment"):
+                failure_reasons.append(f"missing real-model environment field: {required_phrase}")
+        telemetry = _section_text(body, "Redacted telemetry")
+        for required_phrase in (
+            "Trace id:",
+            "Prompt version:",
+            "Model call count:",
+            "Tool call count:",
+            "Distinct tool count:",
+            "Used strategy tool:",
+            "Used required report tool:",
+            "Final report attached:",
+            "Verification passed:",
+            "Total tokens:",
+            "Estimated cost USD:",
+            "Latency ms:",
+        ):
+            if required_phrase not in telemetry:
+                failure_reasons.append(f"missing real-model telemetry field: {required_phrase}")
+        selected_tools = [
+            tool
+            for tool in (
+                "get_dataset_contract",
+                "profile_dataset",
+                "select_quality_strategy",
+                "retrieve_dataset_memory",
+                "inspect_primary_key_integrity",
+                "analyze_numeric_distribution",
+                "run_quality_checks",
+                "retrieve_business_rules",
+                "build_quality_report",
+            )
+            if _checked(body, f"`{tool}`")
+        ]
+        if len(selected_tools) < 2:
+            failure_reasons.append("real-model run must show at least two selected whitelisted tools")
+        for required_checkbox in (
+            "The model selected more than one whitelisted tool.",
+            "Tool results changed or informed the final report.",
+            "The final answer attached a verified structured quality report.",
+            "Token, cost, and latency telemetry were captured.",
+            "The run is useful evidence for AI Engineer Intern readiness.",
+        ):
+            if not _checked(body, required_checkbox):
+                failure_reasons.append(f"missing real-model outcome checkbox: {required_checkbox}")
+        counts_toward.append("accepted_real_model_runs")
+    elif labels & BUSINESS_DATA_REPLAY_LABELS:
         evidence_type = "business_data_replay"
         if not _checked(body, "This issue contains no customer names, emails, addresses, tokens, secrets, or raw production rows."):
             failure_reasons.append("missing no-sensitive-data replay checkbox")
@@ -205,6 +293,7 @@ def evaluate_issues(issues: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 def count_accepted(evaluations: list[dict[str, Any]]) -> dict[str, int]:
     counts = {
+        "accepted_real_model_runs": 0,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
         "reproducible_feedback_items": 0,
@@ -332,6 +421,7 @@ def build_external_reviewer_evidence_gate(issues: list[dict[str, Any]] | None = 
             "reproducible_feedback_items": feedback["reproducible_feedback_items"],
             "business_case_feedback_items": feedback["business_case_feedback_items"],
             "ai_engineer_review_items": feedback.get("ai_engineer_review_items", 0),
+            "accepted_real_model_runs": 0,
         },
         "linked_outreach_queue_count": outreach["queue_count"],
         "gate_rules": [
@@ -340,6 +430,7 @@ def build_external_reviewer_evidence_gate(issues: list[dict[str, Any]] | None = 
             "A docs-only review does not count as a confirmed run.",
             "Commands or URLs used, observed result, and main feedback must be non-placeholder text.",
             "AI Engineer review issues require no-private-data confirmation, explicit permission, inspected paths, LLM value-comparison inspection, and concrete signal feedback.",
+            "Real-model run issues require redacted provider/model/prompt/tool/token/cost/latency telemetry, verified final report evidence, explicit permission, and multiple selected whitelisted tools.",
             "Business-data replay issues require a sanitized data source type, dataset shape, agent run summary, and catch-or-miss feedback.",
             "Issues containing sensitive-data risk terms are rejected until redacted.",
             "The default artifact collects tracked public GitHub issues before applying the evidence gate.",
@@ -353,6 +444,7 @@ def build_external_reviewer_evidence_gate(issues: list[dict[str, Any]] | None = 
         "not_claimed": [
             "No accepted external reviewer issue exists yet.",
             "No user, feedback, reproducible-run, business-case, or AI Engineer review count is increased by planning issues.",
+            "No accepted real-model run count is increased by runbook-only or self-authored issues.",
             "No private business data is accepted as evidence.",
         ],
     }
@@ -425,17 +517,19 @@ def verify_external_reviewer_evidence_gate(payload: dict[str, Any]) -> dict[str,
         "reproducible_feedback_items": 0,
         "business_case_feedback_items": 0,
         "ai_engineer_review_items": 0,
+        "accepted_real_model_runs": 0,
     }
     if payload["linked_outreach_queue_count"] != 3:
         raise AssertionError("external reviewer evidence gate must link the 3 queued reviewer segments")
     if payload["accepted_counts"] != expected_zero:
         raise AssertionError("external reviewer evidence gate must not count evidence before accepted public issues")
-    if len(payload["gate_rules"]) != 9:
-        raise AssertionError("external reviewer evidence gate must document nine counting rules")
+    if len(payload["gate_rules"]) != 10:
+        raise AssertionError("external reviewer evidence gate must document ten counting rules")
     for required in (
         "Self-authored issues do not count as external evidence.",
         "Reviewer must grant explicit permission before a run or feedback is counted.",
         "AI Engineer review issues require no-private-data confirmation, explicit permission, inspected paths, LLM value-comparison inspection, and concrete signal feedback.",
+        "Real-model run issues require redacted provider/model/prompt/tool/token/cost/latency telemetry, verified final report evidence, explicit permission, and multiple selected whitelisted tools.",
         "Business-data replay issues require a sanitized data source type, dataset shape, agent run summary, and catch-or-miss feedback.",
         "Issues containing sensitive-data risk terms are rejected until redacted.",
         "The default artifact collects tracked public GitHub issues before applying the evidence gate.",
@@ -447,6 +541,7 @@ def verify_external_reviewer_evidence_gate(payload: dict[str, Any]) -> dict[str,
         raise AssertionError("external reviewer evidence gate must document issue collection source")
     for required in (
         "No accepted external reviewer issue exists yet.",
+        "No accepted real-model run count is increased by runbook-only or self-authored issues.",
         "No private business data is accepted as evidence.",
     ):
         if required not in payload["not_claimed"]:

@@ -17,6 +17,7 @@ This generated gate validates public reviewer issues before they can become resu
 
 | Metric | Accepted count |
 | --- | ---: |
+| Accepted Real Model Runs | 0 |
 | External Feedback Items | 0 |
 | Confirmed External Users | 0 |
 | Reproducible Feedback Items | 0 |
@@ -50,6 +51,7 @@ This generated gate validates public reviewer issues before they can become resu
 - A docs-only review does not count as a confirmed run.
 - Commands or URLs used, observed result, and main feedback must be non-placeholder text.
 - AI Engineer review issues require no-private-data confirmation, explicit permission, inspected paths, LLM value-comparison inspection, and concrete signal feedback.
+- Real-model run issues require redacted provider/model/prompt/tool/token/cost/latency telemetry, verified final report evidence, explicit permission, and multiple selected whitelisted tools.
 - Business-data replay issues require a sanitized data source type, dataset shape, agent run summary, and catch-or-miss feedback.
 - Issues containing sensitive-data risk terms are rejected until redacted.
 - The default artifact collects tracked public GitHub issues before applying the evidence gate.
@@ -63,4 +65,5 @@ Published a CI-verified external reviewer evidence gate that validates issue bod
 
 - No accepted external reviewer issue exists yet.
 - No user, feedback, reproducible-run, business-case, or AI Engineer review count is increased by planning issues.
+- No accepted real-model run count is increased by runbook-only or self-authored issues.
 - No private business data is accepted as evidence.

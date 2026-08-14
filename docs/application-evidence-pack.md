@@ -138,7 +138,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Resume Outcome Scoreboard Remaining Evidence | 7 |
 | Evidence Acceptance Items | 6 |
 | Evidence Acceptance Accepted Issues | 0 |
-| Evidence Acceptance Rejected Issues | 14 |
+| Evidence Acceptance Rejected Issues | 15 |
 | Github Discovery Topics | 20 |
 | Github Discovery Reviewer Entrypoints | 6 |
 | Pilot Evidence Quicklink Actions | 4 |

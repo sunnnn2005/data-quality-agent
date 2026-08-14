@@ -1140,6 +1140,7 @@ def verify_manifest() -> dict[str, int]:
                 diagnostics_tests = (ROOT / "tests" / "test_evidence_gap_diagnostics.py").read_text()
                 diagnostics_page = (ROOT / "docs" / "evidence-gap-diagnostics.md").read_text()
                 expected_zero_counts = {
+                    "accepted_real_model_runs": 0,
                     "ai_engineer_review_items": 0,
                     "business_case_feedback_items": 0,
                     "confirmed_external_users": 0,
@@ -2637,10 +2638,12 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("external reviewer evidence gate must link 3 outreach queue entries")
                 if external_reviewer_gate.get("accepted_issue_count") != 0:
                     raise AssertionError("external reviewer evidence gate must preserve zero accepted issue baseline")
-                if len(external_reviewer_gate.get("gate_rules", [])) != 9:
-                    raise AssertionError("external reviewer evidence gate must document 9 validation rules")
+                if len(external_reviewer_gate.get("gate_rules", [])) != 10:
+                    raise AssertionError("external reviewer evidence gate must document 10 validation rules")
                 if not any("Business-data replay issues require" in rule for rule in external_reviewer_gate.get("gate_rules", [])):
                     raise AssertionError("external reviewer evidence gate must document business-data replay evidence rules")
+                if not any("Real-model run issues require" in rule for rule in external_reviewer_gate.get("gate_rules", [])):
+                    raise AssertionError("external reviewer evidence gate must document real-model run evidence rules")
                 if external_reviewer_gate.get("issue_collection", {}).get("source") not in {
                     "github_issues",
                     "github_public_api",
@@ -2652,12 +2655,14 @@ def verify_manifest() -> dict[str, int]:
                     "reproducible_feedback_items",
                     "business_case_feedback_items",
                     "ai_engineer_review_items",
+                    "accepted_real_model_runs",
                 ):
                     if external_reviewer_gate.get("accepted_counts", {}).get(key) != 0:
                         raise AssertionError(f"external reviewer evidence gate must preserve zero {key}")
                 for required in (
                     "Self-authored issues do not count as external evidence.",
                     "Reviewer must grant explicit permission before a run or feedback is counted.",
+                    "Real-model run issues require redacted provider/model/prompt/tool/token/cost/latency telemetry, verified final report evidence, explicit permission, and multiple selected whitelisted tools.",
                     "Issues containing sensitive-data risk terms are rejected until redacted.",
                     "The default artifact collects tracked public GitHub issues before applying the evidence gate.",
                 ):

@@ -72,7 +72,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | External reviewer outreach not contacted | 3 |
 | External reviewer outreach source messages | 3 |
 | External reviewer evidence gate | 1 |
-| External reviewer evidence gate rules | 9 |
+| External reviewer evidence gate rules | 10 |
 | External reviewer evidence gate collected public issues | 15 |
 | External reviewer evidence gate accepted issues | 0 |
 | External reviewer evidence gate linked queue entries | 3 |
@@ -220,7 +220,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Evidence acceptance checklist | 1 |
 | Evidence acceptance items | 6 |
 | Evidence acceptance accepted issues | 0 |
-| Evidence acceptance rejected issues | 14 |
+| Evidence acceptance rejected issues | 15 |
 | AI Engineer review intake | 1 |
 | AI Engineer review paths | 7 |
 | AI Engineer review questions | 6 |
@@ -336,7 +336,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - External reviewer request pack linked to issue #18 with 3 copy-ready messages, 3 run paths, 8 evidence fields, and zero-count baseline
 - External-run quickstart page with 3 reviewer run paths, 8 evidence fields, public issue #18, and privacy boundaries
 - External reviewer outreach tracker with 3 queued reviewer segments, 3 source messages, 3 not-contacted baseline entries, and public-evidence rules
-- External reviewer evidence gate with 9 validation rules, 15 collected public GitHub issues, 3 linked outreach queue entries, 0 accepted public reviewer issues, and sensitive-data safeguards
+- External reviewer evidence gate with 10 validation rules, 15 collected public GitHub issues, 3 linked outreach queue entries, 0 accepted public reviewer issues, and sensitive-data safeguards
 - Accepted evidence rollup with 6 tracked outcome metrics, 0 accepted reviewer issues, and 6 blocked claims until public evidence exists
 - Business impact ledger with 0 accepted business-impact signals, anonymized workflow fields, and blocked resume claims until public evidence exists
 - Reviewer evidence kit with 5 public issue templates, 5 copy-ready privacy and permission steps, and zero current external outcome counts

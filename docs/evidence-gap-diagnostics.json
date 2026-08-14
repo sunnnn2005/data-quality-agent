@@ -1,5 +1,6 @@
 {
   "accepted_counts": {
+    "accepted_real_model_runs": 0,
     "ai_engineer_review_items": 0,
     "business_case_feedback_items": 0,
     "confirmed_external_users": 0,
@@ -7,7 +8,7 @@
     "reproducible_feedback_items": 0
   },
   "accepted_issue_count": 0,
-  "evaluated_issue_count": 14,
+  "evaluated_issue_count": 15,
   "evidence_type_gaps": [
     {
       "accepted_issue_count": 0,
@@ -80,6 +81,41 @@
     },
     {
       "accepted_issue_count": 0,
+      "evaluated_issue_count": 1,
+      "evidence_type": "business_data_replay",
+      "next_reviewer_checklist": [
+        "Use a non-owner GitHub account.",
+        "Confirm no customer names, emails, addresses, tokens, secrets, or raw production rows.",
+        "Grant permission to count the anonymized replay and external feedback.",
+        "Select CSV upload, read-only PostgreSQL, or Docker Compose replay path.",
+        "Include data source type, dataset shape, agent run summary, and catch-or-miss notes."
+      ],
+      "rejected_issue_count": 1,
+      "top_failure_reasons": [
+        {
+          "count": 1,
+          "reason": "self-authored issue"
+        },
+        {
+          "count": 1,
+          "reason": "contains sensitive-data risk terms"
+        },
+        {
+          "count": 1,
+          "reason": "missing no-sensitive-data replay checkbox"
+        },
+        {
+          "count": 1,
+          "reason": "missing confirmed anonymized replay permission"
+        },
+        {
+          "count": 1,
+          "reason": "missing external feedback permission"
+        }
+      ]
+    },
+    {
+      "accepted_issue_count": 0,
       "evaluated_issue_count": 11,
       "evidence_type": "external_run_review",
       "next_reviewer_checklist": [
@@ -115,7 +151,7 @@
       ]
     }
   ],
-  "failure_reason_count": 20,
+  "failure_reason_count": 33,
   "generated_by": "scripts/build_evidence_gap_diagnostics.py",
   "nearest_unlock_paths": [
     {
@@ -144,17 +180,17 @@
   ],
   "project": "Data Quality Agent",
   "purpose": "Diagnose why current public reviewer issues do not yet unlock resume outcome claims and give the next reviewer the shortest path to countable evidence.",
-  "rejected_issue_count": 14,
-  "resume_safe_summary": "Published evidence-gap diagnostics for 14 evaluated public issues, 0 accepted issues, 14 rejected issues, 14 self-authored rejections, and 3 nearest unlock paths for future resume-safe outcome evidence.",
-  "self_authored_rejection_count": 14,
-  "sensitive_risk_rejection_count": 13,
+  "rejected_issue_count": 15,
+  "resume_safe_summary": "Published evidence-gap diagnostics for 15 evaluated public issues, 0 accepted issues, 15 rejected issues, 15 self-authored rejections, and 3 nearest unlock paths for future resume-safe outcome evidence.",
+  "self_authored_rejection_count": 15,
+  "sensitive_risk_rejection_count": 14,
   "top_failure_reasons": [
     {
-      "count": 14,
+      "count": 15,
       "reason": "self-authored issue"
     },
     {
-      "count": 13,
+      "count": 14,
       "reason": "contains sensitive-data risk terms"
     },
     {

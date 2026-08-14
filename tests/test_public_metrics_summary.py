@@ -67,7 +67,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["external_reviewer_outreach_not_contacted"] == 3
     assert payload["verified_project_outcomes"]["external_reviewer_outreach_source_messages"] == 3
     assert payload["verified_project_outcomes"]["external_reviewer_evidence_gate"] == 1
-    assert payload["verified_project_outcomes"]["external_reviewer_gate_rules"] == 9
+    assert payload["verified_project_outcomes"]["external_reviewer_gate_rules"] == 10
     assert payload["verified_project_outcomes"]["external_reviewer_gate_collected_issues"] >= 0
     assert payload["verified_project_outcomes"]["external_reviewer_gate_accepted_issues"] == 0
     assert payload["verified_project_outcomes"]["external_reviewer_gate_linked_queue"] == 3
@@ -391,7 +391,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         )
     assert any("External reviewer outreach tracker with 3 queued reviewer segments" in signal for signal in payload["resume_safe_signals"])
     assert any(
-        "External reviewer evidence gate with 9 validation rules" in signal
+        "External reviewer evidence gate with 10 validation rules" in signal
         and "collected public GitHub issues" in signal
         for signal in payload["resume_safe_signals"]
     )

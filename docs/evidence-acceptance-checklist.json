@@ -141,6 +141,6 @@
   ],
   "project": "Data Quality Agent",
   "purpose": "Turn every blocked resume outcome into a concrete acceptance checklist, so stronger claims are added only after public, non-owner, permissioned, redacted evidence exists.",
-  "rejected_issue_count": 14,
+  "rejected_issue_count": 15,
   "resume_safe_summary": "Published an evidence acceptance checklist mapping 6 blocked resume outcome metrics to required public fields, submission URLs, evidence gates, and future resume lines while preserving zero accepted external evidence."
 }

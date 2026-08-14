@@ -202,6 +202,73 @@ Status FAIL, quality score 61, checks duplicate_primary_key and missing_values.
 """
 
 
+VALID_REAL_MODEL_RUN_BODY = """## Run path
+
+- [x] Built-in dataset: `python scripts/capture_real_model_run.py --dataset-id orders_daily --write`
+- [ ] Business CSV replay: `python scripts/capture_real_model_run.py --csv-path sample.csv --dataset-name "Replay Dataset" --owner reviewer --primary-key id --expected-columns "id,status,amount" --description "Anonymized business replay dataset" --write`
+- [ ] Read-only PostgreSQL route inspected before capture
+- [ ] I reviewed the runbook but did not execute a model call
+
+## Environment
+
+- Model provider: OpenAI-compatible
+- Model name: gpt-4o-mini
+- API route used: /datasets/orders_daily/agent-report
+- Dataset id or anonymized dataset name: orders_daily
+- Operating system: macOS
+- Python version: 3.12
+
+## Redacted telemetry
+
+Paste only safe values from `docs/real-model-evidence-capture.json`.
+
+- Trace id: run_abc123
+- Prompt version: tool-agent-v3
+- Model call count: 3
+- Tool call count: 5
+- Distinct tool count: 4
+- Used strategy tool: true
+- Used required report tool: true
+- Final report attached: true
+- Verification passed: true
+- Total tokens: 1842
+- Estimated cost USD: 0.0011
+- Latency ms: 2410
+
+## Tool evidence
+
+Which tools did the model select before the final report?
+
+- [ ] `get_dataset_contract`
+- [x] `profile_dataset`
+- [x] `select_quality_strategy`
+- [ ] `retrieve_dataset_memory`
+- [ ] `inspect_primary_key_integrity`
+- [ ] `analyze_numeric_distribution`
+- [x] `run_quality_checks`
+- [ ] `retrieve_business_rules`
+- [x] `build_quality_report`
+
+## Outcome
+
+- [x] The model selected more than one whitelisted tool.
+- [x] Tool results changed or informed the final report.
+- [x] The final answer attached a verified structured quality report.
+- [x] Token, cost, and latency telemetry were captured.
+- [x] The run is useful evidence for AI Engineer Intern readiness.
+
+## Permission and privacy
+
+- [x] This issue contains no provider credentials, raw prompts, customer names, emails, addresses, secrets, tokens, or raw production rows.
+- [x] You may count this public issue as accepted real-model run evidence if it passes the repository evidence gate.
+- [ ] Do not count this issue publicly.
+
+## Notes
+
+The trace showed the model selecting strategy, profiling data, running checks, and attaching the verified final report.
+"""
+
+
 def test_external_reviewer_evidence_gate_starts_from_zero_without_fake_claims():
     payload = build_external_reviewer_evidence_gate()
     verification = verify_external_reviewer_evidence_gate(payload)
@@ -214,8 +281,10 @@ def test_external_reviewer_evidence_gate_starts_from_zero_without_fake_claims():
     assert payload["accepted_counts"]["external_feedback_items"] == 0
     assert payload["accepted_counts"]["confirmed_external_users"] == 0
     assert payload["accepted_counts"]["ai_engineer_review_items"] == 0
+    assert payload["accepted_counts"]["accepted_real_model_runs"] == 0
     assert payload["linked_outreach_queue_count"] == 3
     assert "No accepted external reviewer issue exists yet." in payload["not_claimed"]
+    assert "No accepted real-model run count is increased by runbook-only or self-authored issues." in payload["not_claimed"]
     assert "External Reviewer Evidence Gate" in markdown
 
 
@@ -276,6 +345,18 @@ def test_external_reviewer_evidence_gate_accepts_business_data_replay_issue():
     assert payload["accepted_counts"]["external_feedback_items"] == 1
 
 
+def test_external_reviewer_evidence_gate_accepts_real_model_run_issue():
+    payload = build_external_reviewer_evidence_gate(
+        issues=[issue(VALID_REAL_MODEL_RUN_BODY, labels=["real-model-run", "ai-engineer-review"])]
+    )
+    evaluation = payload["evaluations"][0]
+
+    assert evaluation["accepted"] is True
+    assert evaluation["evidence_type"] == "real_model_run_review"
+    assert evaluation["counts_toward"] == ["accepted_real_model_runs"]
+    assert payload["accepted_counts"]["accepted_real_model_runs"] == 1
+
+
 def test_external_reviewer_evidence_gate_rejects_self_authored_missing_permission_or_sensitive_issue():
     missing_permission_body = VALID_EXTERNAL_RUN_BODY.replace(
         "- [x] This can be counted as public external run evidence.",
@@ -326,6 +407,29 @@ def test_external_reviewer_evidence_gate_rejects_self_authored_missing_permissio
             labels=["feedback", "confirmed-user", "business-data-replay"],
         )
     )
+    real_model_missing_telemetry = evaluate_issue(
+        issue(
+            VALID_REAL_MODEL_RUN_BODY.replace("- Total tokens: 1842\n", ""),
+            labels=["real-model-run", "ai-engineer-review"],
+        )
+    )
+    real_model_docs_only = evaluate_issue(
+        issue(
+            VALID_REAL_MODEL_RUN_BODY.replace(
+                "- [ ] I reviewed the runbook but did not execute a model call",
+                "- [x] I reviewed the runbook but did not execute a model call",
+            ),
+            labels=["real-model-run", "ai-engineer-review"],
+        )
+    )
+    real_model_missing_tool_evidence = evaluate_issue(
+        issue(
+            VALID_REAL_MODEL_RUN_BODY.replace("- [x] `run_quality_checks`", "- [ ] `run_quality_checks`")
+            .replace("- [x] `build_quality_report`", "- [ ] `build_quality_report`")
+            .replace("- [x] `profile_dataset`", "- [ ] `profile_dataset`"),
+            labels=["real-model-run", "ai-engineer-review"],
+        )
+    )
 
     assert self_authored["accepted"] is False
     assert "self-authored issue" in self_authored["failure_reasons"]
@@ -343,6 +447,12 @@ def test_external_reviewer_evidence_gate_rejects_self_authored_missing_permissio
     assert "docs-only review is not a confirmed business-data replay" in docs_only_replay["failure_reasons"]
     assert replay_missing_permission["accepted"] is False
     assert "missing confirmed anonymized replay permission" in replay_missing_permission["failure_reasons"]
+    assert real_model_missing_telemetry["accepted"] is False
+    assert "missing real-model telemetry field: Total tokens:" in real_model_missing_telemetry["failure_reasons"]
+    assert real_model_docs_only["accepted"] is False
+    assert "runbook-only review is not a real model run" in real_model_docs_only["failure_reasons"]
+    assert real_model_missing_tool_evidence["accepted"] is False
+    assert "real-model run must show at least two selected whitelisted tools" in real_model_missing_tool_evidence["failure_reasons"]
 
 
 def test_external_reviewer_evidence_gate_falls_back_to_public_api_when_gh_auth_fails(monkeypatch):

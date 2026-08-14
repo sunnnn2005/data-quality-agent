@@ -11,7 +11,7 @@ Turn every blocked resume outcome into a concrete acceptance checklist, so stron
 | Metric | Value |
 | --- | ---: |
 | Accepted public reviewer issues | 0 |
-| Rejected/planning issues | 14 |
+| Rejected/planning issues | 15 |
 | Acceptance checklist items | 6 |
 
 No accepted external reviewer issue exists yet.

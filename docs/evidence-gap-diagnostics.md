@@ -6,19 +6,19 @@ This generated artifact explains why current public reviewer issues are not yet 
 
 | Metric | Value |
 | --- | ---: |
-| Evaluated issues | 14 |
+| Evaluated issues | 15 |
 | Accepted issues | 0 |
-| Rejected issues | 14 |
-| Self-authored rejections | 14 |
-| Sensitive-risk rejections | 13 |
-| Failure reason types | 20 |
+| Rejected issues | 15 |
+| Self-authored rejections | 15 |
+| Sensitive-risk rejections | 14 |
+| Failure reason types | 33 |
 
 ## Top Failure Reasons
 
 | Reason | Count |
 | --- | ---: |
-| self-authored issue | 14 |
-| contains sensitive-data risk terms | 13 |
+| self-authored issue | 15 |
+| contains sensitive-data risk terms | 14 |
 | missing no-private-data checkbox | 11 |
 | missing public external run permission | 11 |
 | missing runnable path tried | 11 |
@@ -34,6 +34,7 @@ This generated artifact explains why current public reviewer issues are not yet 
 | --- | ---: | ---: | ---: | --- |
 | ai_engineer_review | 1 | 0 | 1 | Use a non-owner GitHub account.<br>Confirm no private business data, secrets, customer names, emails, addresses, or raw production rows.<br>Grant permission to count the issue as external AI Engineer project feedback.<br>Include inspected paths or commands.<br>Include strongest AI Engineer signals and missing or weak signals. |
 | business_case_review | 2 | 0 | 2 | Use a non-owner GitHub account.<br>Grant anonymized business-case and business-impact counting permission.<br>Describe business context, data-quality problem, business impact, fields involved, and project evidence mapping.<br>Keep organization names, customer names, raw rows, and sensitive identifiers out of the issue. |
+| business_data_replay | 1 | 0 | 1 | Use a non-owner GitHub account.<br>Confirm no customer names, emails, addresses, tokens, secrets, or raw production rows.<br>Grant permission to count the anonymized replay and external feedback.<br>Select CSV upload, read-only PostgreSQL, or Docker Compose replay path.<br>Include data source type, dataset shape, agent run summary, and catch-or-miss notes. |
 | external_run_review | 11 | 0 | 11 | Use a non-owner GitHub account.<br>Check the no-private-data permission box.<br>Check the public external run permission box.<br>Select a runnable path such as public demo, GHCR container, or Docker Compose replay.<br>Include non-placeholder commands or URLs used.<br>Include observed result and main feedback. |
 
 ## Nearest Unlock Paths
@@ -52,4 +53,4 @@ This generated artifact explains why current public reviewer issues are not yet 
 
 ## Resume-Safe Summary
 
-Published evidence-gap diagnostics for 14 evaluated public issues, 0 accepted issues, 14 rejected issues, 14 self-authored rejections, and 3 nearest unlock paths for future resume-safe outcome evidence.
+Published evidence-gap diagnostics for 15 evaluated public issues, 0 accepted issues, 15 rejected issues, 15 self-authored rejections, and 3 nearest unlock paths for future resume-safe outcome evidence.
