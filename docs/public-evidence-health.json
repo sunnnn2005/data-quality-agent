@@ -1,5 +1,5 @@
 {
-  "check_count": 90,
+  "check_count": 92,
   "checks": [
     {
       "evidence_type": "html",
@@ -78,6 +78,26 @@
       "passed": true,
       "status_code": 200,
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-collection.html"
+    },
+    {
+      "evidence_type": "html",
+      "id": "outcome-proof-page",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-proof-page.html"
+    },
+    {
+      "evidence_type": "json",
+      "id": "outcome-proof-page-artifact",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-proof-page.json",
+      "verified_fields": [
+        "blocked_card_count",
+        "claimable_card_count",
+        "project",
+        "reviewer_action_count"
+      ]
     },
     {
       "evidence_type": "json",
@@ -1025,6 +1045,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 90,
+  "passed_count": 92,
   "status": "PASS"
 }

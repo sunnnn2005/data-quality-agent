@@ -179,7 +179,7 @@ def test_public_evidence_health_requires_core_public_signals():
     assert "Submit Evidence" in outcome_collection["expected_texts"]
     assert "Do not post raw customer data" in outcome_collection["expected_texts"]
     proof_page = next(check for check in PUBLIC_CHECKS if check["id"] == "outcome-proof-page")
-    assert proof_page["url"].endswith("/outcome-proof-page.html")
+    assert proof_page["url"].endswith("/docs/outcome-proof-page.html")
     assert proof_page["expected_text"] == "Outcome Proof Page"
     assert "Help Unlock Real Outcomes" in proof_page["expected_texts"]
     proof_artifact = next(check for check in PUBLIC_CHECKS if check["id"] == "outcome-proof-page-artifact")

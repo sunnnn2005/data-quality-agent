@@ -130,7 +130,7 @@ PUBLIC_CHECKS = [
     },
     {
         "id": "outcome-proof-page",
-        "url": "https://sunnnn2005.github.io/data-quality-agent/outcome-proof-page.html",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-proof-page.html",
         "expected_text": "Outcome Proof Page",
         "expected_texts": [
             "Verified Now",
