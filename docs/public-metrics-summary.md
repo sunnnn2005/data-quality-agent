@@ -16,10 +16,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
-| GitHub views | 9 |
-| GitHub unique visitors | 3 |
-| GitHub clones | 1240 |
-| GitHub unique cloners | 301 |
+| GitHub views | 0 |
+| GitHub unique visitors | 0 |
+| GitHub clones | 0 |
+| GitHub unique cloners | 0 |
 | Available public endpoints | 4 / 4 |
 | Successful main-branch workflows | 3 / 3 |
 
@@ -184,7 +184,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Public traction growth channels | 21 |
 | Public traction resume upgrade rules | 3 |
 | GitHub traffic snapshot | 1 |
-| GitHub traffic available | 1 |
+| GitHub traffic available | 0 |
 | Public availability snapshot | 1 |
 | Public availability endpoints | 4 |
 | Public availability reachable endpoints | 4 |
@@ -363,7 +363,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Business resolution brief with 5 findings, 4 business risk areas, 3 high-priority actions, and 4 owner handoffs without claiming customer adoption
 - Public business-resolution review request with 5 focused questions and explicit evidence gates before any external feedback or business validation can count
 - Public traction dashboard with 4 live project surfaces, 21 growth or review channels, 5 tracked funnel steps, and 3 resume upgrade rules
-- GitHub traffic snapshot with 9 views, 3 unique visitors, 1240 clones, and 301 unique cloners in GitHub's rolling 14-day window
+- GitHub traffic snapshot with 0 views, 0 unique visitors, 0 clones, and 0 unique cloners in GitHub's rolling 14-day window
 - Public availability snapshot with 4/4 reachable public endpoints and 3/3 successful main-branch workflows
 - 23 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints

@@ -5,10 +5,10 @@
     "confirmed_external_users": 0,
     "external_feedback_items": 0,
     "forks": 1,
-    "github_clones_14d": 1240,
-    "github_unique_cloners_14d": 301,
-    "github_unique_visitors_14d": 3,
-    "github_views_14d": 9,
+    "github_clones_14d": 0,
+    "github_unique_cloners_14d": 0,
+    "github_unique_visitors_14d": 0,
+    "github_views_14d": 0,
     "issues_total": 26,
     "stars": 0,
     "watchers": 0
@@ -77,7 +77,7 @@
       "signal": "public pilot feedback"
     },
     {
-      "current_value": 3,
+      "current_value": 0,
       "evidence_required": "GitHub traffic snapshot showing unique visitors in the rolling 14-day window",
       "minimum_before_claim": 25,
       "resume_status": "not_claimable_yet",
@@ -136,6 +136,6 @@
     "resume_policy": "Traffic, views, and clones are repository-interest signals only. Do not claim these as confirmed users, customer feedback, production adoption, or successful business outcomes.",
     "snapshot_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md",
     "source": "GitHub traffic API rolling 14-day window",
-    "traffic_available": true
+    "traffic_available": false
   }
 }

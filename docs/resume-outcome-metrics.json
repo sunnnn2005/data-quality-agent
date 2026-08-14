@@ -52,12 +52,12 @@
   "public_interest_signals": {
     "accepted_real_model_runs": 0,
     "feature_feedback_items": 8,
-    "github_clones_14_day": 1240,
+    "github_clones_14_day": 0,
     "github_forks": 1,
     "github_stars": 0,
-    "github_unique_cloners_14_day": 301,
-    "github_unique_visitors_14_day": 3,
-    "github_views_14_day": 9,
+    "github_unique_cloners_14_day": 0,
+    "github_unique_visitors_14_day": 0,
+    "github_views_14_day": 0,
     "issue_count": 26
   },
   "purpose": "Convert public metrics, accepted evidence, and outreach readiness into resume-safe outcome wording without claiming users, feedback, business impact, or GitHub stars before evidence exists.",

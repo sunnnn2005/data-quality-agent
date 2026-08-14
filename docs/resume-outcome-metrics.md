@@ -28,10 +28,10 @@ This generated board keeps real outcome claims separate from readiness signals.
 | --- | ---: |
 | Github Stars | 0 |
 | Github Forks | 1 |
-| Github Views 14 Day | 9 |
-| Github Unique Visitors 14 Day | 3 |
-| Github Clones 14 Day | 1240 |
-| Github Unique Cloners 14 Day | 301 |
+| Github Views 14 Day | 0 |
+| Github Unique Visitors 14 Day | 0 |
+| Github Clones 14 Day | 0 |
+| Github Unique Cloners 14 Day | 0 |
 | Issue Count | 26 |
 | Feature Feedback Items | 8 |
 | Accepted Real Model Runs | 0 |

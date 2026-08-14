@@ -12,10 +12,10 @@ This generated kit documents ethical ways to improve public GitHub traction with
 | Issues Total | 26 |
 | External Feedback Items | 0 |
 | Confirmed External Users | 0 |
-| Github Views 14D | 9 |
-| Github Unique Visitors 14D | 3 |
-| Github Clones 14D | 1240 |
-| Github Unique Cloners 14D | 301 |
+| Github Views 14D | 0 |
+| Github Unique Visitors 14D | 0 |
+| Github Clones 14D | 0 |
+| Github Unique Cloners 14D | 0 |
 
 ## Topic Readiness
 
@@ -64,7 +64,7 @@ Topic readiness: `True`
 ## Traffic Snapshot
 
 - Source: GitHub traffic API rolling 14-day window
-- Traffic available: `True`
+- Traffic available: `False`
 - Snapshot: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md)
 - Policy: Traffic, views, and clones are repository-interest signals only. Do not claim these as confirmed users, customer feedback, production adoption, or successful business outcomes.
 
@@ -75,7 +75,7 @@ Topic readiness: `True`
 | github stars | 0 | 5 | GitHub stargazer count from the public repository | `not_claimable_yet` |
 | external contributors | 0 | 1 | merged pull request or public issue from a non-owner contributor | `not_claimable_yet` |
 | public pilot feedback | 0 | 3 | public feedback issues linked from the pilot tracker | `not_claimable_yet` |
-| repository interest | 3 | 25 | GitHub traffic snapshot showing unique visitors in the rolling 14-day window | `not_claimable_yet` |
+| repository interest | 0 | 25 | GitHub traffic snapshot showing unique visitors in the rolling 14-day window | `not_claimable_yet` |
 
 ## Resume-Safe Summary
 

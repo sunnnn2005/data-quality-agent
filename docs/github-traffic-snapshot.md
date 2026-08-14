@@ -6,11 +6,11 @@ This generated artifact captures GitHub's rolling traffic window as a public-int
 
 | Metric | Value |
 | --- | ---: |
-| Traffic available | True |
-| View count | 9 |
-| Unique visitors | 3 |
-| Clone count | 1240 |
-| Unique cloners | 301 |
+| Traffic available | False |
+| View count | 0 |
+| Unique visitors | 0 |
+| Clone count | 0 |
+| Unique cloners | 0 |
 
 Traffic window: GitHub traffic API rolling 14-day window
 
@@ -18,17 +18,13 @@ Traffic window: GitHub traffic API rolling 14-day window
 
 | Referrer | Count | Unique visitors |
 | --- | ---: | ---: |
-| github.com | 6 | 3 |
+| - | 0 | 0 |
 
 ## Top Paths
 
 | Path | Title | Count | Unique visitors |
 | --- | --- | ---: | ---: |
-| /sunnnn2005/data-quality-agent | Overview | 3 | 3 |
-| /sunnnn2005/data-quality-agent/pull/11 | /pull/11 | 3 | 1 |
-| /sunnnn2005/data-quality-agent/blob/main/CONTRIBUTING.md | /blob/main/CONTRIBUTING.md | 1 | 1 |
-| /sunnnn2005/data-quality-agent/fork | /fork | 1 | 1 |
-| /sunnnn2005/data-quality-agent/issues/8 | /issues/8 | 1 | 1 |
+| - | - | 0 | 0 |
 
 ## Resume Policy
 

@@ -125,12 +125,12 @@ Required fields:
 | `business_problem_cases` | 1 |
 | `confirmed_external_users` | 0 |
 | `external_feedback_items` | 0 |
-| `github_clones` | 1240 |
+| `github_clones` | 0 |
 | `github_forks` | 1 |
 | `github_stars` | 0 |
-| `github_unique_cloners` | 301 |
-| `github_unique_visitors` | 3 |
-| `github_views` | 9 |
+| `github_unique_cloners` | 0 |
+| `github_unique_visitors` | 0 |
+| `github_views` | 0 |
 | `main_branch_workflow_count` | 3 |
 | `public_endpoint_count` | 4 |
 | `reproducible_feedback_items` | 0 |
