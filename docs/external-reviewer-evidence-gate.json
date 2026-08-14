@@ -14,7 +14,7 @@
     "external_feedback_items": 0,
     "reproducible_feedback_items": 0
   },
-  "evaluated_issue_count": 4,
+  "evaluated_issue_count": 14,
   "evaluations": [
     {
       "accepted": false,
@@ -137,6 +137,318 @@
       ],
       "title": "Public reviewer call: collect external review and pilot evidence",
       "url": "https://github.com/sunnnn2005/data-quality-agent/issues/19"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "external_run_review",
+      "extracted_business_impact": {},
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 20,
+      "labels": [
+        "feedback",
+        "first-10-reviewer"
+      ],
+      "rejected_counts_toward": [
+        "external_feedback_items"
+      ],
+      "sensitive_hits": [
+        "secret"
+      ],
+      "title": "First 10 reviewer: UC Davis data science peer (external_feedback_items)",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/20"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "external_run_review",
+      "extracted_business_impact": {},
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 21,
+      "labels": [
+        "feedback",
+        "first-10-reviewer"
+      ],
+      "rejected_counts_toward": [
+        "external_feedback_items"
+      ],
+      "sensitive_hits": [
+        "secret"
+      ],
+      "title": "First 10 reviewer: student software engineer peer (external_feedback_items)",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/21"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "external_run_review",
+      "extracted_business_impact": {},
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 22,
+      "labels": [
+        "first-10-reviewer",
+        "reproducible"
+      ],
+      "rejected_counts_toward": [
+        "reproducible_feedback_items"
+      ],
+      "sensitive_hits": [
+        "secret"
+      ],
+      "title": "First 10 reviewer: engineer comfortable with Docker or local setup (reproducible_feedback_items)",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/22"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "external_run_review",
+      "extracted_business_impact": {},
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 23,
+      "labels": [
+        "confirmed-user",
+        "first-10-reviewer"
+      ],
+      "rejected_counts_toward": [],
+      "sensitive_hits": [
+        "secret"
+      ],
+      "title": "First 10 reviewer: reviewer who opened the demo or ran the repo (confirmed_external_users)",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/23"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "business_case_review",
+      "extracted_business_impact": {
+        "business_context": "",
+        "business_impact": "",
+        "data_quality_problem": "",
+        "fields_involved": "",
+        "project_evidence_mapping": ""
+      },
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing business-case counting permission",
+        "missing business-impact counting permission",
+        "missing business context evidence",
+        "missing data-quality problem evidence",
+        "missing business impact evidence",
+        "missing fields involved evidence",
+        "missing evidence from this project evidence"
+      ],
+      "issue_number": 24,
+      "labels": [
+        "business-case",
+        "first-10-reviewer"
+      ],
+      "rejected_counts_toward": [
+        "business_case_feedback_items"
+      ],
+      "sensitive_hits": [
+        "secret"
+      ],
+      "title": "First 10 reviewer: data analyst or analytics student (business_case_feedback_items)",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/24"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "business_case_review",
+      "extracted_business_impact": {
+        "business_context": "",
+        "business_impact": "",
+        "data_quality_problem": "",
+        "fields_involved": "",
+        "project_evidence_mapping": ""
+      },
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing business-case counting permission",
+        "missing business-impact counting permission",
+        "missing business context evidence",
+        "missing data-quality problem evidence",
+        "missing business impact evidence",
+        "missing fields involved evidence",
+        "missing evidence from this project evidence"
+      ],
+      "issue_number": 25,
+      "labels": [
+        "business-case",
+        "first-10-reviewer"
+      ],
+      "rejected_counts_toward": [
+        "business_case_feedback_items"
+      ],
+      "sensitive_hits": [
+        "secret"
+      ],
+      "title": "First 10 reviewer: small-business operator or operations teammate (business_case_feedback_items)",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/25"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "ai_engineer_review",
+      "extracted_business_impact": {},
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing AI Engineer review counting permission",
+        "missing inspected path or command evidence",
+        "missing strongest ai engineer signals evidence",
+        "missing missing or weak ai engineer signals evidence"
+      ],
+      "issue_number": 26,
+      "labels": [
+        "ai-engineer-review",
+        "first-10-reviewer"
+      ],
+      "rejected_counts_toward": [
+        "ai_engineer_review_items"
+      ],
+      "sensitive_hits": [
+        "secret"
+      ],
+      "title": "First 10 reviewer: AI engineer, mentor, or ML systems reviewer (ai_engineer_review_items)",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/26"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "external_run_review",
+      "extracted_business_impact": {},
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 27,
+      "labels": [
+        "feedback",
+        "first-10-reviewer"
+      ],
+      "rejected_counts_toward": [
+        "external_feedback_items"
+      ],
+      "sensitive_hits": [
+        "secret"
+      ],
+      "title": "First 10 reviewer: open-source maintainer or GitHub contributor (external_feedback_items)",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/27"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "external_run_review",
+      "extracted_business_impact": {},
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 29,
+      "labels": [
+        "first-10-reviewer",
+        "reproducible"
+      ],
+      "rejected_counts_toward": [
+        "reproducible_feedback_items"
+      ],
+      "sensitive_hits": [
+        "secret"
+      ],
+      "title": "First 10 reviewer: second technical reviewer for independent reproducibility (reproducible_feedback_items)",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/29"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "external_run_review",
+      "extracted_business_impact": {},
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 30,
+      "labels": [
+        "business-case",
+        "feedback",
+        "pilot"
+      ],
+      "rejected_counts_toward": [
+        "external_feedback_items"
+      ],
+      "sensitive_hits": [
+        "raw production rows",
+        "secret"
+      ],
+      "title": "Business resolution review: validate support-operations remediation brief",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/30"
     }
   ],
   "gate_rules": [
@@ -145,12 +457,13 @@
     "A docs-only review does not count as a confirmed run.",
     "Commands or URLs used, observed result, and main feedback must be non-placeholder text.",
     "AI Engineer review issues require explicit permission plus inspected paths and concrete signal feedback.",
+    "Business-data replay issues require a sanitized data source type, dataset shape, agent run summary, and catch-or-miss feedback.",
     "Issues containing sensitive-data risk terms are rejected until redacted.",
     "The default artifact collects tracked public GitHub issues before applying the evidence gate."
   ],
   "generated_by": "scripts/build_external_reviewer_evidence_gate.py",
   "issue_collection": {
-    "collected_issue_count": 4,
+    "collected_issue_count": 14,
     "error_count": 0,
     "errors": [],
     "repo": "sunnnn2005/data-quality-agent",
@@ -158,6 +471,8 @@
     "tracked_labels": [
       "ai-engineer-review",
       "business-case",
+      "business-data-replay",
+      "confirmed-user",
       "feedback",
       "pilot",
       "reproducible"
@@ -171,6 +486,6 @@
   ],
   "project": "Data Quality Agent",
   "purpose": "Validate public reviewer issues before they can increase resume-safe user, feedback, reproducible-run, business-case, or AI Engineer review metrics.",
-  "rejected_issue_count": 4,
+  "rejected_issue_count": 14,
   "resume_safe_summary": "Published a CI-verified external reviewer evidence gate that validates issue body fields, explicit permission, non-owner authorship, runnable-path evidence, and sensitive-data guardrails before any reviewer issue can increase resume-safe usage, feedback, or AI Engineer review metrics."
 }

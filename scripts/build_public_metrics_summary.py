@@ -1171,7 +1171,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "external_reviewer_outreach_not_contacted": 3,
         "external_reviewer_outreach_source_messages": 3,
         "external_reviewer_evidence_gate": 1,
-        "external_reviewer_gate_rules": 7,
+        "external_reviewer_gate_rules": 8,
         "external_reviewer_gate_accepted_issues": 0,
         "external_reviewer_gate_linked_queue": 3,
         "accepted_evidence_rollup": 1,

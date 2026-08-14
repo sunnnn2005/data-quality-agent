@@ -147,6 +147,57 @@ ticket_id, routing_team, amount
 """
 
 
+VALID_BUSINESS_DATA_REPLAY_BODY = """## Replay path
+
+- [x] Sanitized CSV upload: `POST /business-data/agent-report`
+- [ ] Read-only PostgreSQL table: `POST /postgres/support-tickets/agent-report`
+- [ ] Local Docker Compose support-ticket replay
+- [ ] Repository/docs review before trying my own data
+
+## Data source type
+
+- [x] Anonymized business CSV export
+- [ ] Synthetic-but-business-shaped CSV
+- [ ] Read-only PostgreSQL table
+- [ ] Local seeded PostgreSQL demo table
+- [ ] Other:
+
+## Dataset shape
+
+- Row count or table size: 1,240
+- Column count: 8
+- Primary key used: ticket_id
+- Non-sensitive field names involved: ticket_id, status, priority, routing_team
+
+## Agent run summary
+
+- Command or endpoint used: POST /business-data/agent-report
+- Report status: FAIL
+- Finding count: 4
+- Selected tools shown in the agent trace: select_quality_strategy, run_quality_checks, build_quality_report
+- Did the agent call `build_quality_report`? yes
+
+## Usefulness rating
+
+- [x] 4 - useful with small changes
+
+## What did it catch or miss?
+
+It caught duplicate ticket IDs and missing routing fields that matched an anonymized support-operations export.
+
+## Permission boundary
+
+- [x] This issue contains no customer names, emails, addresses, tokens, secrets, or raw production rows.
+- [x] This can be counted as a confirmed anonymized replay.
+- [x] This can be counted as external feedback.
+- [ ] Do not quote my organization, name, or raw data.
+
+## Optional redacted output summary
+
+Status FAIL, quality score 61, checks duplicate_primary_key and missing_values.
+"""
+
+
 def test_external_reviewer_evidence_gate_starts_from_zero_without_fake_claims():
     payload = build_external_reviewer_evidence_gate()
     verification = verify_external_reviewer_evidence_gate(payload)
@@ -208,6 +259,19 @@ def test_external_reviewer_evidence_gate_accepts_business_case_with_impact_summa
     assert "duplicate ticket IDs" in evaluation["extracted_business_impact"]["project_evidence_mapping"]
 
 
+def test_external_reviewer_evidence_gate_accepts_business_data_replay_issue():
+    payload = build_external_reviewer_evidence_gate(
+        issues=[issue(VALID_BUSINESS_DATA_REPLAY_BODY, labels=["feedback", "confirmed-user", "business-data-replay"])]
+    )
+    evaluation = payload["evaluations"][0]
+
+    assert evaluation["accepted"] is True
+    assert evaluation["evidence_type"] == "business_data_replay"
+    assert evaluation["counts_toward"] == ["confirmed_external_users", "external_feedback_items"]
+    assert payload["accepted_counts"]["confirmed_external_users"] == 1
+    assert payload["accepted_counts"]["external_feedback_items"] == 1
+
+
 def test_external_reviewer_evidence_gate_rejects_self_authored_missing_permission_or_sensitive_issue():
     missing_permission_body = VALID_EXTERNAL_RUN_BODY.replace(
         "- [x] This can be counted as public external run evidence.",
@@ -231,6 +295,24 @@ def test_external_reviewer_evidence_gate_rejects_self_authored_missing_permissio
             labels=["business-case"],
         )
     )
+    docs_only_replay = evaluate_issue(
+        issue(
+            VALID_BUSINESS_DATA_REPLAY_BODY.replace(
+                "- [ ] Repository/docs review before trying my own data",
+                "- [x] Repository/docs review before trying my own data",
+            ),
+            labels=["feedback", "confirmed-user", "business-data-replay"],
+        )
+    )
+    replay_missing_permission = evaluate_issue(
+        issue(
+            VALID_BUSINESS_DATA_REPLAY_BODY.replace(
+                "- [x] This can be counted as a confirmed anonymized replay.",
+                "- [ ] This can be counted as a confirmed anonymized replay.",
+            ),
+            labels=["feedback", "confirmed-user", "business-data-replay"],
+        )
+    )
 
     assert self_authored["accepted"] is False
     assert "self-authored issue" in self_authored["failure_reasons"]
@@ -242,3 +324,7 @@ def test_external_reviewer_evidence_gate_rejects_self_authored_missing_permissio
     assert "reviewer opted out of public counting" in opted_out["failure_reasons"]
     assert business_case_missing_impact_permission["accepted"] is False
     assert "missing business-impact counting permission" in business_case_missing_impact_permission["failure_reasons"]
+    assert docs_only_replay["accepted"] is False
+    assert "docs-only review is not a confirmed business-data replay" in docs_only_replay["failure_reasons"]
+    assert replay_missing_permission["accepted"] is False
+    assert "missing confirmed anonymized replay permission" in replay_missing_permission["failure_reasons"]

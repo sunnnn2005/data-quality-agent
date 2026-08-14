@@ -12,11 +12,14 @@ OUTPUT_JSON_PATH = ROOT / "docs" / "external-reviewer-evidence-gate.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "external-reviewer-evidence-gate.md"
 OWNER_LOGINS = {"sunnnn2005"}
 SENSITIVE_TERMS = ("ssn", "api_key", "secret", "token", "password", "customer email", "raw production rows")
-EXTERNAL_RUN_LABELS = {"feedback", "pilot", "reproducible"}
+EXTERNAL_RUN_LABELS = {"feedback", "pilot", "reproducible", "confirmed-user"}
 BUSINESS_CASE_LABELS = {"business-case"}
 AI_ENGINEER_REVIEW_LABELS = {"ai-engineer-review"}
+BUSINESS_DATA_REPLAY_LABELS = {"business-data-replay"}
 REPO = "sunnnn2005/data-quality-agent"
-TRACKED_LABELS = sorted(EXTERNAL_RUN_LABELS | BUSINESS_CASE_LABELS | AI_ENGINEER_REVIEW_LABELS)
+TRACKED_LABELS = sorted(
+    EXTERNAL_RUN_LABELS | BUSINESS_CASE_LABELS | AI_ENGINEER_REVIEW_LABELS | BUSINESS_DATA_REPLAY_LABELS
+)
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -70,13 +73,40 @@ def evaluate_issue(issue: dict[str, Any]) -> dict[str, Any]:
         for line in body.splitlines()
         if "This issue contains no private business data, secrets, customer names, emails, addresses, or raw production rows."
         not in line
+        and "This issue contains no customer names, emails, addresses, tokens, secrets, or raw production rows." not in line
     )
     lower_body = scan_body.lower()
     sensitive_hits = sorted(term for term in SENSITIVE_TERMS if term in lower_body)
     if sensitive_hits:
         failure_reasons.append("contains sensitive-data risk terms")
 
-    if labels & EXTERNAL_RUN_LABELS:
+    if labels & BUSINESS_DATA_REPLAY_LABELS:
+        evidence_type = "business_data_replay"
+        if not _checked(body, "This issue contains no customer names, emails, addresses, tokens, secrets, or raw production rows."):
+            failure_reasons.append("missing no-sensitive-data replay checkbox")
+        if not _checked(body, "This can be counted as a confirmed anonymized replay."):
+            failure_reasons.append("missing confirmed anonymized replay permission")
+        if not _checked(body, "This can be counted as external feedback."):
+            failure_reasons.append("missing external feedback permission")
+        if _checked(body, "Repository/docs review before trying my own data"):
+            failure_reasons.append("docs-only review is not a confirmed business-data replay")
+        if not (
+            _checked(body, "Sanitized CSV upload: `POST /business-data/agent-report`")
+            or _checked(body, "Read-only PostgreSQL table: `POST /postgres/support-tickets/agent-report`")
+            or _checked(body, "Local Docker Compose support-ticket replay")
+        ):
+            failure_reasons.append("missing business-data replay path tried")
+        for heading in ("Data source type", "Dataset shape", "Agent run summary", "What did it catch or miss?"):
+            if not _non_placeholder(_section_text(body, heading)):
+                failure_reasons.append(f"missing {heading.lower()} evidence")
+        run_summary = _section_text(body, "Agent run summary")
+        for required_phrase in ("Command or endpoint used:", "Report status:", "Finding count:", "Selected tools shown in the agent trace:"):
+            if required_phrase not in run_summary:
+                failure_reasons.append(f"missing replay run summary field: {required_phrase}")
+        counts_toward.extend(["confirmed_external_users", "external_feedback_items"])
+        if _checked(body, "Local Docker Compose support-ticket replay"):
+            counts_toward.append("reproducible_feedback_items")
+    elif labels & EXTERNAL_RUN_LABELS:
         evidence_type = "external_run_review"
         if not _checked(body, "This issue contains no private business data, secrets, customer names, emails, addresses, or raw production rows."):
             failure_reasons.append("missing no-private-data checkbox")
@@ -265,6 +295,7 @@ def build_external_reviewer_evidence_gate(issues: list[dict[str, Any]] | None = 
             "A docs-only review does not count as a confirmed run.",
             "Commands or URLs used, observed result, and main feedback must be non-placeholder text.",
             "AI Engineer review issues require explicit permission plus inspected paths and concrete signal feedback.",
+            "Business-data replay issues require a sanitized data source type, dataset shape, agent run summary, and catch-or-miss feedback.",
             "Issues containing sensitive-data risk terms are rejected until redacted.",
             "The default artifact collects tracked public GitHub issues before applying the evidence gate.",
         ],
@@ -353,12 +384,13 @@ def verify_external_reviewer_evidence_gate(payload: dict[str, Any]) -> dict[str,
         raise AssertionError("external reviewer evidence gate must link the 3 queued reviewer segments")
     if payload["accepted_counts"] != expected_zero:
         raise AssertionError("external reviewer evidence gate must not count evidence before accepted public issues")
-    if len(payload["gate_rules"]) != 7:
-        raise AssertionError("external reviewer evidence gate must document seven counting rules")
+    if len(payload["gate_rules"]) != 8:
+        raise AssertionError("external reviewer evidence gate must document eight counting rules")
     for required in (
         "Self-authored issues do not count as external evidence.",
         "Reviewer must grant explicit permission before a run or feedback is counted.",
         "AI Engineer review issues require explicit permission plus inspected paths and concrete signal feedback.",
+        "Business-data replay issues require a sanitized data source type, dataset shape, agent run summary, and catch-or-miss feedback.",
         "Issues containing sensitive-data risk terms are rejected until redacted.",
         "The default artifact collects tracked public GitHub issues before applying the evidence gate.",
     ):
