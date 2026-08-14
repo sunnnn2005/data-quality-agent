@@ -1,5 +1,5 @@
 {
-  "check_count": 95,
+  "check_count": 96,
   "checks": [
     {
       "evidence_type": "html",
@@ -117,6 +117,17 @@
         "blocked_outcome_count",
         "fastest_path_minutes",
         "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "first-feedback-conversion-runbook",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/first-feedback-conversion-runbook.json",
+      "verified_fields": [
+        "project",
+        "sprint_step_count"
       ]
     },
     {
@@ -1076,6 +1087,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 95,
+  "passed_count": 96,
   "status": "PASS"
 }
