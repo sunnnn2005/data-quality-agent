@@ -63,6 +63,7 @@ FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 GITHUB_DISCOVERY_PROFILE_PATH = ROOT / "docs" / "github-discovery-profile.json"
 PILOT_EVIDENCE_QUICKLINK_PATH = ROOT / "docs" / "pilot-evidence-quicklink.json"
+PILOT_LAUNCH_CONTROL_ROOM_PATH = ROOT / "docs" / "pilot-launch-control-room.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
 BUSINESS_DATA_REPLAY_PACKET_PATH = ROOT / "docs" / "business-data-replay-packet.json"
 REAL_MODEL_RUNBOOK_PATH = ROOT / "docs" / "real-model-runbook.json"
@@ -147,6 +148,7 @@ def verify_manifest() -> dict[str, int]:
     star_growth = load_payload(STAR_GROWTH_KIT_PATH)
     github_discovery = load_payload(GITHUB_DISCOVERY_PROFILE_PATH)
     pilot_evidence_quicklink = load_payload(PILOT_EVIDENCE_QUICKLINK_PATH)
+    pilot_launch_control_room = load_payload(PILOT_LAUNCH_CONTROL_ROOM_PATH)
     business_case_intake = load_payload(BUSINESS_CASE_INTAKE_PATH)
     replay_packet = load_payload(BUSINESS_DATA_REPLAY_PACKET_PATH)
     real_model_runbook = load_payload(REAL_MODEL_RUNBOOK_PATH)
@@ -584,7 +586,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 148:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 149:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -963,7 +965,7 @@ def verify_manifest() -> dict[str, int]:
                     ("confirmed_external_users", 0),
                     ("external_feedback_items", 0),
                     ("github_stars", 0),
-                    ("passing_tests", 148),
+                    ("passing_tests", 149),
                 ):
                     if counts.get(key) != expected_value:
                         raise AssertionError(f"outcome collection {key} expected {expected_value!r}")
@@ -1349,7 +1351,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 148:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 149:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -1404,6 +1406,28 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("pilot evidence quicklink must include a dedicated test")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("pilot_evidence_quicklink claim must use metric_value=1")
+            elif metric_name == "pilot_launch_control_room":
+                control_room_script = (ROOT / "scripts" / "build_pilot_launch_control_room.py").read_text()
+                control_room_tests = (ROOT / "tests" / "test_pilot_launch_control_room.py").read_text()
+                if pilot_launch_control_room.get("public_issue_thread_count") != 4:
+                    raise AssertionError("pilot launch control room must verify 4 public issue threads")
+                if pilot_launch_control_room.get("launch_gate_count") != 5:
+                    raise AssertionError("pilot launch control room must verify 5 launch gates")
+                if pilot_launch_control_room.get("target_outcome_count") != 4:
+                    raise AssertionError("pilot launch control room must verify 4 target outcome metrics")
+                if pilot_launch_control_room.get("reviewer_send_plan_count") != 3:
+                    raise AssertionError("pilot launch control room must verify 3 reviewer-send paths")
+                if pilot_launch_control_room.get("current_claimable_external_outcomes") != 0:
+                    raise AssertionError("pilot launch control room must keep external outcomes unclaimed")
+                for required in ("external users", "customer feedback", "business validation"):
+                    if required not in pilot_launch_control_room.get("not_claimed", []):
+                        raise AssertionError(f"pilot launch control room must not claim {required}")
+                if "verify_pilot_launch_control_room" not in control_room_script:
+                    raise AssertionError("pilot launch control room must include a script verifier")
+                if "test_pilot_launch_control_room_tracks_real_outcome_path_without_claiming_it" not in control_room_tests:
+                    raise AssertionError("pilot launch control room must include a dedicated test")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("pilot_launch_control_room claim must use metric_value=1")
             elif metric_name == "pilot_outreach_message_count":
                 pilot_tests = (ROOT / "tests" / "test_pilot_outreach_kit.py").read_text()
                 pilot_script = (ROOT / "scripts" / "build_pilot_outreach_kit.py").read_text()
@@ -2242,7 +2266,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 148", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 149", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 

@@ -33,6 +33,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "public-metrics-refresh-workflow",
         "public-availability-snapshot",
         "pilot-evidence-quicklink",
+        "pilot-launch-control-room",
         "feedback-intake-quality",
         "business-data-replay-packet",
         "business-replay-demo",
@@ -107,6 +108,13 @@ def test_public_evidence_health_requires_core_public_signals():
     assert quicklink["expected_json"]["action_count"] == 3
     assert quicklink["expected_json"]["total_evidence_fields"] == 12
     assert "zero-count baselines" in quicklink["expected_texts"]
+    control_room = next(check for check in PUBLIC_CHECKS if check["id"] == "pilot-launch-control-room")
+    assert control_room["url"].endswith("/pilot-launch-control-room.json")
+    assert control_room["expected_json"]["public_issue_thread_count"] == 4
+    assert control_room["expected_json"]["launch_gate_count"] == 5
+    assert control_room["expected_json"]["target_outcome_count"] == 4
+    assert control_room["expected_json"]["current_claimable_external_outcomes"] == 0
+    assert "business validation" in control_room["expected_texts"]
     outreach = next(check for check in PUBLIC_CHECKS if check["id"] == "external-reviewer-outreach-tracker")
     assert outreach["url"].endswith("/external-reviewer-outreach-tracker.json")
     assert outreach["expected_json"]["queue_count"] == 3

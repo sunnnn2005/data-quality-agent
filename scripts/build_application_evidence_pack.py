@@ -75,6 +75,7 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "resume_claim_upgrade_ledger": f"{scorecard['repo']}/blob/main/docs/resume-claim-upgrade-ledger.md",
             "github_discovery_profile": f"{scorecard['repo']}/blob/main/docs/github-discovery-profile.md",
             "pilot_evidence_quicklink": "https://sunnnn2005.github.io/data-quality-agent/pilot-evidence-quicklink.html",
+            "pilot_launch_control_room": f"{scorecard['repo']}/blob/main/docs/pilot-launch-control-room.md",
         },
         "verified_outcome_numbers": {
             "passing_tests": headline["passing_tests"],
@@ -145,6 +146,10 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "pilot_evidence_quicklink_actions": outcomes["pilot_evidence_quicklink_actions"],
             "pilot_evidence_quicklink_fields": outcomes["pilot_evidence_quicklink_fields"],
             "pilot_evidence_quicklink_target_metrics": outcomes["pilot_evidence_quicklink_target_metrics"],
+            "pilot_launch_public_issue_threads": outcomes["pilot_launch_public_issue_threads"],
+            "pilot_launch_gates": outcomes["pilot_launch_gates"],
+            "pilot_launch_target_outcomes": outcomes["pilot_launch_target_outcomes"],
+            "pilot_launch_reviewer_send_paths": outcomes["pilot_launch_reviewer_send_paths"],
             "real_model_run_commands": outcomes["real_model_run_commands"],
             "real_model_evidence_fields": outcomes["real_model_evidence_fields"],
             "real_model_capture_required_fields": outcomes["real_model_capture_required_fields"],
@@ -230,14 +235,14 @@ This generated pack gives recruiters and interviewers a compact review path for 
 
 def verify_application_evidence_pack(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
-        "application_link_count": 42,
+        "application_link_count": 43,
         "resume_bullet_count": 3,
         "target_role_count": 4,
-        "passing_tests": 148,
-        "verified_resume_claims": 82,
+        "passing_tests": 149,
+        "verified_resume_claims": 83,
     }
     if len(payload["application_links"]) != expected["application_link_count"]:
-            raise AssertionError("application evidence pack must include 42 application links")
+            raise AssertionError("application evidence pack must include 43 application links")
     if len(payload["resume_bullets"]) != expected["resume_bullet_count"]:
         raise AssertionError("application evidence pack must include 3 resume bullets")
     if len(payload["target_roles"]) != expected["target_role_count"]:

@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 14 |
-| Passing CI tests | 148 |
+| Passing CI tests | 149 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -170,7 +170,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 42 |
+| Application evidence links | 43 |
 | GitHub discovery profile | 1 |
 | GitHub discovery topics | 16 |
 | GitHub discovery reviewer entrypoints | 6 |
@@ -178,6 +178,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Pilot evidence quicklink actions | 3 |
 | Pilot evidence quicklink fields | 12 |
 | Pilot evidence quicklink target metrics | 3 |
+| Pilot launch control room | 1 |
+| Pilot launch public issue threads | 4 |
+| Pilot launch gates | 5 |
+| Pilot launch target outcomes | 4 |
+| Pilot launch reviewer-send paths | 3 |
 | AI Engineer review intake | 1 |
 | AI Engineer review paths | 6 |
 | AI Engineer review questions | 6 |
@@ -261,7 +266,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 148 passing CI tests
+- 149 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -314,9 +319,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 23 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
-- 42 application evidence links in a recruiter-ready evidence pack
+- 43 application evidence links in a recruiter-ready evidence pack
 - GitHub discovery profile with 16 precise topics, 6 reviewer entrypoints, public homepage metadata, and zero-star baseline
 - Pilot evidence quicklink with 3 short reviewer actions, 12 required evidence fields, 3 target outcome metrics, and zero-count baselines
+- Pilot launch control room with 4 public issue threads, 5 launch gates, 4 target outcome metrics, and 3 reviewer-send paths
 - AI Engineer review intake with 6 review paths, 6 reviewer questions, 5 countable-evidence conditions, and zero accepted reviews
 - 3 pilot outreach messages and 10 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan

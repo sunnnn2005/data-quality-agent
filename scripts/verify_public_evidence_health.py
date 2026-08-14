@@ -49,7 +49,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "148 passing CI tests",
+            "149 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -62,7 +62,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 148},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 149},
         "evidence_type": "json",
     },
     {
@@ -462,6 +462,27 @@ PUBLIC_CHECKS = [
             "external users",
             "customer feedback",
             "submitted external business cases",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "pilot-launch-control-room",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-launch-control-room.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "public_issue_thread_count": 4,
+            "launch_gate_count": 5,
+            "target_outcome_count": 4,
+            "reviewer_send_plan_count": 3,
+            "current_claimable_external_outcomes": 0,
+        },
+        "expected_text": "CI-verified pilot launch control room",
+        "expected_texts": [
+            "external users",
+            "customer feedback",
+            "business validation",
+            "public issue threads",
+            "target outcome metrics",
         ],
         "evidence_type": "json",
     },

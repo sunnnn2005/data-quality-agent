@@ -1,0 +1,116 @@
+{
+  "blocked_gate_count": 2,
+  "current_claimable_external_outcomes": 0,
+  "generated_by": "scripts/build_pilot_launch_control_room.py",
+  "launch_gate_count": 5,
+  "launch_gates": [
+    {
+      "evidence": "https://sunnnn2005.github.io/data-quality-agent/",
+      "id": "public_demo_available",
+      "status": "ready"
+    },
+    {
+      "evidence": {
+        "image": "ghcr.io/sunnnn2005/data-quality-agent:latest",
+        "package_url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent"
+      },
+      "id": "container_available",
+      "status": "ready"
+    },
+    {
+      "evidence": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "id": "feedback_intake_available",
+      "status": "ready"
+    },
+    {
+      "evidence": "0 accepted non-owner public feedback issues",
+      "id": "external_feedback_received",
+      "status": "blocked"
+    },
+    {
+      "evidence": "0 accepted anonymized business-case issues",
+      "id": "business_case_received",
+      "status": "blocked"
+    }
+  ],
+  "not_claimed": [
+    "external users",
+    "customer feedback",
+    "business validation",
+    "GitHub traction beyond the current public count"
+  ],
+  "project": "Data Quality Agent",
+  "public_issue_thread_count": 4,
+  "public_issue_threads": [
+    {
+      "id": "pilot_feedback_tracker",
+      "purpose": "track pilot outreach and evidence status",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/16"
+    },
+    {
+      "id": "first_public_feedback_request",
+      "purpose": "collect first external feedback",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/17"
+    },
+    {
+      "id": "external_run_evidence",
+      "purpose": "collect reviewer run evidence",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/18"
+    },
+    {
+      "id": "public_reviewer_call",
+      "purpose": "route external reviewers into countable evidence paths",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/19"
+    }
+  ],
+  "purpose": "Centralize the public launch, pilot evidence links, issue threads, target metrics, and blocked resume claims so future outcome numbers can be earned from external evidence instead of self-authored notes.",
+  "quicklink_action_count": 3,
+  "quicklink_public_url": "https://sunnnn2005.github.io/data-quality-agent/pilot-evidence-quicklink.html",
+  "ready_gate_count": 3,
+  "resume_safe_summary": "Published a CI-verified pilot launch control room with 4 public issue threads, 5 launch gates, 4 target outcome metrics, and 3 reviewer-send paths while keeping external usage and feedback claims blocked at zero until public evidence arrives.",
+  "reviewer_send_plan": [
+    {
+      "action": "send the pilot evidence quicklink and ask for one useful/confusing/broken observation",
+      "proof_required": "public issue with permission to count",
+      "slot": "classmate_or_student_developer"
+    },
+    {
+      "action": "ask for one anonymized data-quality problem the agent should handle",
+      "proof_required": "business-case issue with no raw private data",
+      "slot": "data_or_operations_reviewer"
+    },
+    {
+      "action": "ask whether the tool-calling loop, evidence trail, and guardrails look interview-credible",
+      "proof_required": "AI Engineer review issue with implementation path inspected",
+      "slot": "ai_engineer_or_ml_reviewer"
+    }
+  ],
+  "reviewer_send_plan_count": 3,
+  "target_outcome_count": 4,
+  "target_outcomes": [
+    {
+      "current": 0,
+      "metric": "external_feedback_items",
+      "resume_upgrade": "Can claim external product feedback only after 3 accepted public issues.",
+      "target": 3
+    },
+    {
+      "current": 0,
+      "metric": "confirmed_external_users",
+      "resume_upgrade": "Can claim an external run only after one non-owner reviewer submits reproducible evidence.",
+      "target": 1
+    },
+    {
+      "current": 0,
+      "metric": "business_case_feedback_items",
+      "resume_upgrade": "Can claim business-problem validation only after one anonymized public case is accepted.",
+      "target": 1
+    },
+    {
+      "current": 0,
+      "metric": "github_stars",
+      "resume_upgrade": "Can claim early GitHub traction only after the public star count reaches 5.",
+      "target": 5
+    }
+  ]
+}

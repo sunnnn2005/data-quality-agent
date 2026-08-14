@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 148,
-      "resume_signal": "148 passing CI tests",
+      "metric_value": 149,
+      "resume_signal": "149 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,12 +299,12 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 42 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 43 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 42,
-      "resume_signal": "42 recruiter application evidence links",
+      "metric_value": 43,
+      "resume_signal": "43 recruiter application evidence links",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
     },
@@ -799,6 +799,16 @@
       "resume_signal": "CI-verified pilot evidence quicklink",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-evidence-quicklink.json"
+    },
+    {
+      "claim": "The project publishes a pilot launch control room that centralizes 4 public issue threads, 5 launch gates, 4 target outcome metrics, and 3 reviewer-send paths while keeping external outcome claims blocked at zero until public evidence arrives.",
+      "evidence_type": "artifact",
+      "id": "pilot-launch-control-room",
+      "metric_name": "pilot_launch_control_room",
+      "metric_value": 1,
+      "resume_signal": "CI-verified pilot launch control room",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-launch-control-room.json"
     }
   ],
   "not_claimed": [
