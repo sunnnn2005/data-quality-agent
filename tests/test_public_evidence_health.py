@@ -11,6 +11,8 @@ def test_public_evidence_health_requires_core_public_signals():
         "business-impact-artifact",
         "outcome-evidence-manifest",
         "adoption-metrics",
+        "first-ai-reviewer-ask-page",
+        "first-ai-reviewer-ask",
         "outcome-collection-page",
         "outcome-proof-page",
         "outcome-proof-page-artifact",
@@ -108,6 +110,22 @@ def test_public_evidence_health_requires_core_public_signals():
         "review_slot_07",
         "A sent message is distribution evidence, not a resume outcome.",
     } <= set(readme_reviewer_tasks["expected_texts"])
+    first_ai_reviewer_page = next(check for check in PUBLIC_CHECKS if check["id"] == "first-ai-reviewer-ask-page")
+    assert first_ai_reviewer_page["url"].endswith("/first-ai-reviewer-ask.html")
+    assert first_ai_reviewer_page["expected_text"] == "Review the LLM agent design in 8-15 minutes"
+    assert {
+        "Submit AI review",
+        "app/agent.py",
+        "docs/agent-safety-boundaries.md",
+        "Required public evidence",
+        "page view does not count",
+    } <= set(first_ai_reviewer_page["expected_texts"])
+    first_ai_reviewer = next(check for check in PUBLIC_CHECKS if check["id"] == "first-ai-reviewer-ask")
+    assert first_ai_reviewer["url"].endswith("/first-ai-reviewer-ask.json")
+    assert first_ai_reviewer["expected_json"]["target_metric"] == "ai_engineer_review_items"
+    assert first_ai_reviewer["expected_json"]["status_board_slot_id"] == "review_slot_07"
+    assert first_ai_reviewer["expected_json"]["current_claimable_ai_reviews"] == 0
+    assert "ready_to_send_not_reviewed" in first_ai_reviewer["expected_texts"]
     external_ledger = next(check for check in PUBLIC_CHECKS if check["id"] == "external-review-evidence-ledger")
     assert external_ledger["expected_json"]["self_authored_planning_excluded"] is True
     assert "evidence_counts" in external_ledger["expected_texts"]

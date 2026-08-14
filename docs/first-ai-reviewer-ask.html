@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>First AI Reviewer Ask</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07111f;
+      --panel: #101826;
+      --line: #2a3a52;
+      --text: #f8fafc;
+      --muted: #a8b3c5;
+      --accent: #7dd3fc;
+      --accent2: #f472b6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #07111f 0%, #121827 54%, #1b1530 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    main {
+      width: min(1080px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 54px 0;
+    }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 900px;
+      margin: 10px 0 18px;
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+    .lede {
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 20px;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 30px 0;
+    }
+    a.button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      padding: 0 18px;
+      background: var(--accent);
+      color: #07111f;
+      font-weight: 850;
+      text-decoration: none;
+    }
+    a.secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 34px 0;
+    }
+    article, .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(16, 24, 38, .88);
+      padding: 20px;
+    }
+    article span {
+      color: var(--accent2);
+      font-size: 13px;
+      font-weight: 800;
+    }
+    h2 {
+      margin: 6px 0 8px;
+      font-size: 21px;
+    }
+    ul {
+      margin: 12px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+    code {
+      color: var(--accent);
+      overflow-wrap: anywhere;
+    }
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: 1fr; }
+      main { padding: 34px 0; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Data Quality Agent · First external AI review</div>
+    <h1>Review the LLM agent design in 8-15 minutes</h1>
+    <p class="lede">Give the first AI/ML systems reviewer one focused public page for inspecting the agent design and submitting countable review evidence without exposing private data.</p>
+    <div class="actions">
+      <a class="button" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md">Submit AI review</a>
+      <a class="button secondary" href="https://github.com/sunnnn2005/data-quality-agent/issues/26">Open tracking issue</a>
+    </div>
+    <section class="panel">
+      <h2>Copy-ready ask</h2>
+      <p>Could you review my Data Quality Agent as an AI Engineer project? This page has the shortest inspection path and public review form: https://sunnnn2005.github.io/data-quality-agent/first-ai-reviewer-ask.html</p>
+      <p><strong>Slot:</strong> <code>review_slot_07</code> · <strong>Status:</strong> <code>not_sent</code></p>
+    </section>
+    <section class="grid">
+        <article>
+          <span>app/agent.py</span>
+          <h2>Agent loop and tool routing</h2>
+          <p>Does the LLM choose tools based on evidence instead of following a fixed script?</p>
+        </article>
+        
+
+        <article>
+          <span>docs/agent-safety-boundaries.md</span>
+          <h2>Safety boundaries</h2>
+          <p>Are read-only data access, query limits, and redaction rules clear enough?</p>
+        </article>
+        
+
+        <article>
+          <span>docs/llm-agent-checklist-verdict.md</span>
+          <h2>Evidence-backed reporting</h2>
+          <p>Are facts, inferences, limitations, and resume-safe claims separated?</p>
+        </article>
+        
+
+        <article>
+          <span>docs/real-model-evidence-capture.md</span>
+          <h2>Real model evidence gate</h2>
+          <p>Would the telemetry be enough to verify a real OpenAI-compatible run later?</p>
+        </article>
+        </section>
+    <section class="grid">
+      <div class="panel">
+        <h2>Review questions</h2>
+        <ul><li>What is the strongest AI Engineer signal in this project?</li><li>What is the least credible or most missing part of the agent design?</li><li>Which file or behavior should be improved before this is resume-strong?</li><li>Would you count this as an LLM agent project, and why?</li></ul>
+      </div>
+      <div class="panel">
+        <h2>Required public evidence</h2>
+        <ul><li>reviewer is not the repository owner</li><li>at least one inspected file, page, command, or behavior is named</li><li>one concrete AI-agent strength or gap is described</li><li>I give permission for this public issue to be counted as project review evidence.</li><li>no private data, secrets, customer records, private emails, addresses, API keys, or production rows</li></ul>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>Counting boundary</h2>
+      <p>This page can support the first AI Engineer review only after a real non-owner reviewer submits a public, redacted GitHub issue with permission to count. A sent message or page view does not count.</p>
+      <p><code>I give permission for this public issue to be counted as project review evidence.</code></p>
+    </section>
+  </main>
+</body>
+</html>

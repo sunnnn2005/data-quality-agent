@@ -1,0 +1,57 @@
+{
+  "copy_ready_message": "Could you review my Data Quality Agent as an AI Engineer project? This page has the shortest inspection path and public review form: https://sunnnn2005.github.io/data-quality-agent/first-ai-reviewer-ask.html",
+  "counting_boundary": "This page can support the first AI Engineer review only after a real non-owner reviewer submits a public, redacted GitHub issue with permission to count. A sent message or page view does not count.",
+  "current_claimable_ai_reviews": 0,
+  "generated_by": "scripts/build_first_ai_reviewer_ask.py",
+  "inspection_target_count": 4,
+  "inspection_targets": [
+    {
+      "label": "Agent loop and tool routing",
+      "path": "app/agent.py",
+      "question": "Does the LLM choose tools based on evidence instead of following a fixed script?"
+    },
+    {
+      "label": "Safety boundaries",
+      "path": "docs/agent-safety-boundaries.md",
+      "question": "Are read-only data access, query limits, and redaction rules clear enough?"
+    },
+    {
+      "label": "Evidence-backed reporting",
+      "path": "docs/llm-agent-checklist-verdict.md",
+      "question": "Are facts, inferences, limitations, and resume-safe claims separated?"
+    },
+    {
+      "label": "Real model evidence gate",
+      "path": "docs/real-model-evidence-capture.md",
+      "question": "Would the telemetry be enough to verify a real OpenAI-compatible run later?"
+    }
+  ],
+  "permission_sentence": "I give permission for this public issue to be counted as project review evidence.",
+  "project": "Data Quality Agent",
+  "public_issue_url": "https://github.com/sunnnn2005/data-quality-agent/issues/26",
+  "public_url": "https://sunnnn2005.github.io/data-quality-agent/first-ai-reviewer-ask.html",
+  "purpose": "Give the first AI/ML systems reviewer one focused public page for inspecting the agent design and submitting countable review evidence without exposing private data.",
+  "recommended_channel": "LinkedIn DM or mentor email",
+  "recommended_reviewer": "AI engineer, mentor, or ML systems reviewer",
+  "record_sent_command": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_07 --status sent --reviewer-contact \"<reviewer name or handle>\" --channel-used \"LinkedIn DM or mentor email\" --note \"Sent first AI Engineer reviewer request\"",
+  "required_public_evidence": [
+    "reviewer is not the repository owner",
+    "at least one inspected file, page, command, or behavior is named",
+    "one concrete AI-agent strength or gap is described",
+    "I give permission for this public issue to be counted as project review evidence.",
+    "no private data, secrets, customer records, private emails, addresses, API keys, or production rows"
+  ],
+  "resume_safe_summary": "Published a focused first AI reviewer ask page with 4 inspection targets, 4 review questions, permission language, and recording guidance while keeping accepted AI reviews at zero.",
+  "resume_status": "ready_to_send_not_reviewed",
+  "review_question_count": 4,
+  "review_questions": [
+    "What is the strongest AI Engineer signal in this project?",
+    "What is the least credible or most missing part of the agent design?",
+    "Which file or behavior should be improved before this is resume-strong?",
+    "Would you count this as an LLM agent project, and why?"
+  ],
+  "source_outreach_status": "not_sent",
+  "status_board_slot_id": "review_slot_07",
+  "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+  "target_metric": "ai_engineer_review_items"
+}

@@ -111,6 +111,38 @@ PUBLIC_CHECKS = [
         "evidence_type": "json",
     },
     {
+        "id": "first-ai-reviewer-ask-page",
+        "url": "https://sunnnn2005.github.io/data-quality-agent/first-ai-reviewer-ask.html",
+        "expected_text": "Review the LLM agent design in 8-15 minutes",
+        "expected_texts": [
+            "Submit AI review",
+            "app/agent.py",
+            "docs/agent-safety-boundaries.md",
+            "Required public evidence",
+            "page view does not count",
+        ],
+        "evidence_type": "html",
+    },
+    {
+        "id": "first-ai-reviewer-ask",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/first-ai-reviewer-ask.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "target_metric": "ai_engineer_review_items",
+            "status_board_slot_id": "review_slot_07",
+            "inspection_target_count": 4,
+            "review_question_count": 4,
+            "current_claimable_ai_reviews": 0,
+        },
+        "expected_texts": [
+            "first-ai-reviewer-ask.html",
+            "permission to count",
+            "page view does not count",
+            "ready_to_send_not_reviewed",
+        ],
+        "evidence_type": "json",
+    },
+    {
         "id": "resume-claim-materializer",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-claim-materializer.json",
         "expected_json": {

@@ -20,6 +20,8 @@ def test_readme_exposes_countable_reviewer_evidence_path():
     assert "reviewer outreach console" in readme.lower()
     assert "first reviewer send kit" in readme.lower()
     assert "### 5 Real Reviewer Tasks" in readme
+    assert "First AI reviewer ask" in readme
+    assert "https://sunnnn2005.github.io/data-quality-agent/first-ai-reviewer-ask.html" in readme
     assert "AI Engineer review" in readme
     assert "Confirmed external run" in readme
     assert "Reproducible local replay" in readme
