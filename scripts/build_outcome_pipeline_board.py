@@ -194,8 +194,9 @@ def verify_outcome_pipeline_board(payload: dict[str, Any]) -> dict[str, Any]:
     baseline = payload["current_baseline"]
     if baseline["published_public_broadcasts"] != 1:
         raise AssertionError("outcome pipeline board must include the one published public broadcast")
+    if baseline["sent_reviewer_messages"] < 0:
+        raise AssertionError("outcome pipeline board sent reviewer messages cannot be negative")
     for key in (
-        "sent_reviewer_messages",
         "public_reviewer_issues_submitted",
         "accepted_external_evidence_items",
         "github_stars",

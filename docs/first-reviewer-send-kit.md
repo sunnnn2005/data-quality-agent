@@ -48,4 +48,4 @@ Recording a sent outreach event proves distribution execution only. It does not 
 
 ## Resume-Safe Summary
 
-Prepared one first AI Engineer reviewer send with a copy-ready message, public issue URL, and exact recording command while preserving zero claimable resume outcomes.
+Prepared one first AI Engineer reviewer send with a copy-ready message, public issue URL, and state-aware recording guidance while preserving zero claimable resume outcomes.

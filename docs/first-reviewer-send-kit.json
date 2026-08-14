@@ -19,7 +19,7 @@
   "purpose": "Give the maintainer one concrete first send that can move the outcome pipeline from public launch toward real reviewer outreach without inflating resume outcomes.",
   "recommended_channel": "LinkedIn DM or mentor email",
   "record_sent_command": "python scripts/record_reviewer_outreach_event.py --slot-id review_slot_07 --status sent --reviewer-contact \"<reviewer name or handle>\" --channel-used \"LinkedIn DM or mentor email\" --note \"Sent first AI Engineer reviewer request\"",
-  "resume_safe_summary": "Prepared one first AI Engineer reviewer send with a copy-ready message, public issue URL, and exact recording command while preserving zero claimable resume outcomes.",
+  "resume_safe_summary": "Prepared one first AI Engineer reviewer send with a copy-ready message, public issue URL, and state-aware recording guidance while preserving zero claimable resume outcomes.",
   "resume_status": "first_send_ready_not_outcome_evidence",
   "selected_metric": "ai_engineer_review_items",
   "selected_rank": 1,

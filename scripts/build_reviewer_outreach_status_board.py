@@ -16,7 +16,8 @@ def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text())
 
 
-def load_outreach_events(path: Path = OUTREACH_EVENTS_PATH) -> list[dict[str, Any]]:
+def load_outreach_events(path: Path | None = None) -> list[dict[str, Any]]:
+    path = OUTREACH_EVENTS_PATH if path is None else path
     if not path.exists():
         return []
     payload = load_json(path)

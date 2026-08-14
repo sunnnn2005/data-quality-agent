@@ -39,14 +39,22 @@ def build_first_reviewer_send_kit() -> dict[str, Any]:
 
     first_send = queue["next_sends"][0]
     status_slot = _matching_status_slot(first_send, status_board)
+    already_sent = status_slot["status"] != "not_sent"
     recorder_command = (
-        "python scripts/record_reviewer_outreach_event.py "
-        f"--slot-id {status_slot['slot_id']} "
-        "--status sent "
-        "--reviewer-contact \"<reviewer name or handle>\" "
-        f"--channel-used \"{first_send['recommended_channel']}\" "
-        "--note \"Sent first AI Engineer reviewer request\""
+        f"Already recorded as {status_slot['status']}; do not run a duplicate recorder command for "
+        f"{status_slot['slot_id']}."
+        if already_sent
+        else (
+            "python scripts/record_reviewer_outreach_event.py "
+            f"--slot-id {status_slot['slot_id']} "
+            "--status sent "
+            "--reviewer-contact \"<reviewer name or handle>\" "
+            f"--channel-used \"{first_send['recommended_channel']}\" "
+            "--note \"Sent first AI Engineer reviewer request\""
+        )
     )
+    sent_before = pipeline["current_baseline"]["sent_reviewer_messages"]
+    sent_after = sent_before if already_sent else sent_before + 1
     return {
         "project": "Data Quality Agent",
         "generated_by": "scripts/build_first_reviewer_send_kit.py",
@@ -68,8 +76,8 @@ def build_first_reviewer_send_kit() -> dict[str, Any]:
         "record_sent_command": recorder_command,
         "after_send_expected_pipeline_change": {
             "sent_reviewer_messages": {
-                "before": pipeline["current_baseline"]["sent_reviewer_messages"],
-                "after_recording_one_real_send": pipeline["current_baseline"]["sent_reviewer_messages"] + 1,
+                "before": sent_before,
+                "after_recording_one_real_send": sent_after,
             },
             "claimable_resume_metric_count": {
                 "before": pipeline["claimable_resume_metric_count"],
@@ -82,8 +90,8 @@ def build_first_reviewer_send_kit() -> dict[str, Any]:
         ),
         "resume_status": "first_send_ready_not_outcome_evidence",
         "resume_safe_summary": (
-            "Prepared one first AI Engineer reviewer send with a copy-ready message, public issue URL, and exact "
-            "recording command while preserving zero claimable resume outcomes."
+            "Prepared one first AI Engineer reviewer send with a copy-ready message, public issue URL, and "
+            "state-aware recording guidance while preserving zero claimable resume outcomes."
         ),
     }
 
@@ -151,15 +159,19 @@ def verify_first_reviewer_send_kit(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("first reviewer send kit must target AI Engineer review first")
     if payload["status_board_slot_id"] != "review_slot_07":
         raise AssertionError("first reviewer send kit must map the AI Engineer send to review_slot_07")
-    if "--slot-id review_slot_07" not in payload["record_sent_command"]:
-        raise AssertionError("first reviewer send kit must include the correct recorder slot id")
-    if "--status sent" not in payload["record_sent_command"]:
-        raise AssertionError("first reviewer send kit must record the first action as sent")
     expected = payload["after_send_expected_pipeline_change"]
-    if expected["sent_reviewer_messages"]["before"] != 0:
-        raise AssertionError("first reviewer send kit must preserve current zero-sent baseline")
-    if expected["sent_reviewer_messages"]["after_recording_one_real_send"] != 1:
-        raise AssertionError("first reviewer send kit must show that one real send moves the pipeline to one")
+    if payload["source_outreach_status"] == "not_sent":
+        if "--slot-id review_slot_07" not in payload["record_sent_command"]:
+            raise AssertionError("first reviewer send kit must include the correct recorder slot id")
+        if "--status sent" not in payload["record_sent_command"]:
+            raise AssertionError("first reviewer send kit must record the first action as sent")
+        if expected["sent_reviewer_messages"]["after_recording_one_real_send"] != expected["sent_reviewer_messages"]["before"] + 1:
+            raise AssertionError("first reviewer send kit must show that one real send increments sent outreach")
+    else:
+        if "do not run a duplicate recorder command" not in payload["record_sent_command"]:
+            raise AssertionError("first reviewer send kit must prevent duplicate sent outreach records")
+        if expected["sent_reviewer_messages"]["after_recording_one_real_send"] != expected["sent_reviewer_messages"]["before"]:
+            raise AssertionError("already-sent first reviewer kit must keep sent outreach stable")
     if expected["claimable_resume_metric_count"]["after_recording_one_real_send"] != 0:
         raise AssertionError("sent outreach must not become a claimable resume outcome")
     joined = json.dumps(payload, sort_keys=True).lower()
