@@ -1,5 +1,5 @@
 {
-  "check_count": 110,
+  "check_count": 111,
   "checks": [
     {
       "evidence_type": "html",
@@ -188,6 +188,20 @@
         "pilot_status",
         "project",
         "public_issue_status"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "business-pilot-evidence-checklist",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-pilot-evidence-checklist.json",
+      "verified_fields": [
+        "claimable_now",
+        "outcome_track_count",
+        "passed_template_check_count",
+        "project",
+        "template_check_count"
       ]
     },
     {
@@ -1225,6 +1239,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 110,
+  "passed_count": 111,
   "status": "PASS"
 }
