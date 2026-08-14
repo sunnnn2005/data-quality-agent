@@ -1,5 +1,5 @@
 {
-  "check_count": 118,
+  "check_count": 120,
   "checks": [
     {
       "evidence_type": "html",
@@ -998,6 +998,27 @@
     },
     {
       "evidence_type": "json",
+      "id": "first-outcome-evidence-request",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/first-outcome-evidence-request.json",
+      "verified_fields": [
+        "accepted_external_evidence_count",
+        "current_count",
+        "required_count",
+        "resume_status",
+        "target_metric"
+      ]
+    },
+    {
+      "evidence_type": "html",
+      "id": "first-outcome-evidence-request-page",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://sunnnn2005.github.io/data-quality-agent/first-outcome-evidence-request.html"
+    },
+    {
+      "evidence_type": "json",
       "id": "reviewer-action-queue",
       "passed": true,
       "status_code": 200,
@@ -1329,6 +1350,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 118,
+  "passed_count": 120,
   "status": "PASS"
 }
