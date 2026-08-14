@@ -60,7 +60,7 @@ def build_ai_engineer_reviewer_card() -> dict[str, Any]:
         {
             "label": "Run tests",
             "command": ".venv/bin/python -m pytest",
-            "expected": "248 passing tests before this card is regenerated",
+            "expected": "250 passing tests before this card is regenerated",
         },
         {
             "label": "Run evidence verifier",

@@ -56,6 +56,8 @@ jobs:
         run: python scripts/build_first_accepted_evidence_examples.py
       - name: Verify accepted evidence rollup
         run: python scripts/build_accepted_evidence_rollup.py
+      - name: Verify external evidence triage board
+        run: python scripts/build_external_evidence_triage_board.py
       - name: Verify API smoke report artifact
         run: python scripts/build_api_smoke_report.py
 

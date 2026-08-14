@@ -60,7 +60,7 @@
     {
       "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/actions",
       "label": "CI verification",
-      "resume_line": "Maintained 248 passing tests covering agent behavior, APIs, evidence gates, and resume-safe metrics."
+      "resume_line": "Maintained 250 passing tests covering agent behavior, APIs, evidence gates, and resume-safe metrics."
     },
     {
       "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-readiness.md",

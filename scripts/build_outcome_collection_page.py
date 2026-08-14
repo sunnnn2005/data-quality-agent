@@ -237,7 +237,7 @@ def verify_outcome_collection_payload(payload: dict[str, Any]) -> dict[str, Any]
         "confirmed_external_users": 0,
         "external_feedback_items": 0,
         "github_stars": 0,
-            "passing_tests": 248,
+            "passing_tests": 250,
     }
     if payload["tracked_action_count"] != expected["tracked_action_count"]:
         raise AssertionError("outcome collection page must expose six next actions")

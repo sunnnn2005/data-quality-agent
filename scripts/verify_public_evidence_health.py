@@ -70,7 +70,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "248 passing CI tests",
+            "250 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -192,7 +192,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 248},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 250},
         "evidence_type": "json",
     },
     {
@@ -1427,6 +1427,27 @@ PUBLIC_CHECKS = [
             "No external users, feedback, business impact, production deployment, or GitHub stars are claimed.",
             "review_slot_07",
             "outreach_execution_only",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "external-evidence-triage-board",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/external-evidence-triage-board.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "evaluated_issue_count": 15,
+            "accepted_issue_count": 0,
+            "rejected_issue_count": 15,
+            "waiting_reviewer_issue_count": 5,
+            "claimable_resume_outcome_count": 0,
+            "blocked_outcome_claim_count": 6,
+        },
+        "expected_text": "resume-claim decision board",
+        "expected_texts": [
+            "self-authored issues do not count",
+            "private replies do not count",
+            "waiting_for_public_issue",
+            "No external users, feedback, business impact, production deployment, or GitHub stars are claimed.",
         ],
         "evidence_type": "json",
     },

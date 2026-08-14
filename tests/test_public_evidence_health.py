@@ -81,6 +81,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "first-outcome-evidence-request-page",
         "reviewer-send-queue",
         "outcome-launch-day-tracker",
+        "external-evidence-triage-board",
         "reviewer-landing-page",
         "reviewer-outreach-console",
         "pilot-outreach-kit",
@@ -184,6 +185,14 @@ def test_public_evidence_health_requires_core_public_signals():
     assert launch_day["expected_json"]["baseline"]["resume_outcome_claimable_now"] is False
     assert "review_slot_07" in launch_day["expected_texts"]
     assert "outreach_execution_only" in launch_day["expected_texts"]
+    triage_board = next(check for check in PUBLIC_CHECKS if check["id"] == "external-evidence-triage-board")
+    assert triage_board["url"].endswith("/external-evidence-triage-board.json")
+    assert triage_board["expected_json"]["evaluated_issue_count"] == 15
+    assert triage_board["expected_json"]["accepted_issue_count"] == 0
+    assert triage_board["expected_json"]["waiting_reviewer_issue_count"] == 5
+    assert triage_board["expected_json"]["claimable_resume_outcome_count"] == 0
+    assert "waiting_for_public_issue" in triage_board["expected_texts"]
+    assert "self-authored issues do not count" in triage_board["expected_texts"]
     llm_value = next(check for check in PUBLIC_CHECKS if check["id"] == "llm-value-comparison")
     assert llm_value["url"].endswith("/llm-value-comparison.json")
     assert llm_value["expected_json"]["scenario_count"] == 14

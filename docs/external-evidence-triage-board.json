@@ -1,0 +1,616 @@
+{
+  "accepted_counts": {
+    "accepted_real_model_runs": 0,
+    "ai_engineer_review_items": 0,
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
+  "accepted_issue_count": 0,
+  "blocked_outcome_claim_count": 6,
+  "claimable_resume_lines": [],
+  "claimable_resume_outcome_count": 0,
+  "evaluated_issue_count": 15,
+  "generated_by": "scripts/build_external_evidence_triage_board.py",
+  "not_claimed": [
+    "No external users, feedback, business impact, production deployment, or GitHub stars are claimed.",
+    "Self-authored issues do not count as external evidence.",
+    "Private replies do not count until a public redacted GitHub issue passes the evidence gate.",
+    "Outreach and waiting reviewer slots are not counted as usage or feedback."
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Turn public reviewer issues and launch-day reviewer slots into a resume-claim decision board that separates accepted outcome evidence from blocked, self-authored, incomplete, or waiting evidence.",
+  "rejected_issue_count": 15,
+  "resume_safe_summary": "Published an external evidence triage board across 15 evaluated public issues, 0 accepted evidence items, 15 rejected issue checks, 5 waiting reviewer sends, and 0 claimable external-outcome resume lines.",
+  "safe_current_bullet_count": 4,
+  "top_failure_reasons": [
+    {
+      "count": 15,
+      "reason": "self-authored issue"
+    },
+    {
+      "count": 14,
+      "reason": "contains sensitive-data risk terms"
+    },
+    {
+      "count": 11,
+      "reason": "missing no-private-data checkbox"
+    },
+    {
+      "count": 11,
+      "reason": "missing public external run permission"
+    },
+    {
+      "count": 11,
+      "reason": "missing runnable path tried"
+    },
+    {
+      "count": 11,
+      "reason": "missing command or URL evidence"
+    },
+    {
+      "count": 11,
+      "reason": "missing observed result evidence"
+    },
+    {
+      "count": 11,
+      "reason": "missing main feedback"
+    }
+  ],
+  "triage_items": [
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "external_run_review",
+      "failure_reasons": [
+        "self-authored issue",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 16,
+      "next_actions": [
+        "Ask a non-owner reviewer to submit their own public GitHub issue.",
+        "Ask the reviewer to check the no-private-data confirmation.",
+        "Ask the reviewer to add explicit permission to count the public evidence.",
+        "Ask the reviewer to name the exact demo path, command, endpoint, or page they tried.",
+        "Ask the reviewer to include the command, URL, API route, or public page used.",
+        "Ask the reviewer to include the observed result, finding, or report status.",
+        "Ask the reviewer to add one concrete sentence of feedback."
+      ],
+      "rejected_counts_toward": [],
+      "resume_countable_now": false,
+      "title": "Pilot feedback tracker: collect external reviewer evidence",
+      "triage_state": "rejected_needs_external_reviewer",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/16"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "external_run_review",
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 17,
+      "next_actions": [
+        "Ask a non-owner reviewer to submit their own public GitHub issue.",
+        "Remove private values and ask the reviewer to confirm the issue is redacted.",
+        "Ask the reviewer to check the no-private-data confirmation.",
+        "Ask the reviewer to add explicit permission to count the public evidence.",
+        "Ask the reviewer to name the exact demo path, command, endpoint, or page they tried.",
+        "Ask the reviewer to include the command, URL, API route, or public page used.",
+        "Ask the reviewer to include the observed result, finding, or report status.",
+        "Ask the reviewer to add one concrete sentence of feedback."
+      ],
+      "rejected_counts_toward": [
+        "external_feedback_items"
+      ],
+      "resume_countable_now": false,
+      "title": "Review request: collect first public external feedback",
+      "triage_state": "rejected_needs_external_reviewer",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/17"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "external_run_review",
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 18,
+      "next_actions": [
+        "Ask a non-owner reviewer to submit their own public GitHub issue.",
+        "Remove private values and ask the reviewer to confirm the issue is redacted.",
+        "Ask the reviewer to check the no-private-data confirmation.",
+        "Ask the reviewer to add explicit permission to count the public evidence.",
+        "Ask the reviewer to name the exact demo path, command, endpoint, or page they tried.",
+        "Ask the reviewer to include the command, URL, API route, or public page used.",
+        "Ask the reviewer to include the observed result, finding, or report status.",
+        "Ask the reviewer to add one concrete sentence of feedback."
+      ],
+      "rejected_counts_toward": [
+        "external_feedback_items",
+        "reproducible_feedback_items"
+      ],
+      "resume_countable_now": false,
+      "title": "External run evidence: reviewer run collection point",
+      "triage_state": "rejected_needs_external_reviewer",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/18"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "external_run_review",
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 19,
+      "next_actions": [
+        "Ask a non-owner reviewer to submit their own public GitHub issue.",
+        "Remove private values and ask the reviewer to confirm the issue is redacted.",
+        "Ask the reviewer to check the no-private-data confirmation.",
+        "Ask the reviewer to add explicit permission to count the public evidence.",
+        "Ask the reviewer to name the exact demo path, command, endpoint, or page they tried.",
+        "Ask the reviewer to include the command, URL, API route, or public page used.",
+        "Ask the reviewer to include the observed result, finding, or report status.",
+        "Ask the reviewer to add one concrete sentence of feedback."
+      ],
+      "rejected_counts_toward": [
+        "external_feedback_items"
+      ],
+      "resume_countable_now": false,
+      "title": "Public reviewer call: collect external review and pilot evidence",
+      "triage_state": "rejected_needs_external_reviewer",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/19"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "external_run_review",
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 20,
+      "next_actions": [
+        "Ask a non-owner reviewer to submit their own public GitHub issue.",
+        "Remove private values and ask the reviewer to confirm the issue is redacted.",
+        "Ask the reviewer to check the no-private-data confirmation.",
+        "Ask the reviewer to add explicit permission to count the public evidence.",
+        "Ask the reviewer to name the exact demo path, command, endpoint, or page they tried.",
+        "Ask the reviewer to include the command, URL, API route, or public page used.",
+        "Ask the reviewer to include the observed result, finding, or report status.",
+        "Ask the reviewer to add one concrete sentence of feedback."
+      ],
+      "rejected_counts_toward": [
+        "external_feedback_items"
+      ],
+      "resume_countable_now": false,
+      "title": "First 10 reviewer: UC Davis data science peer (external_feedback_items)",
+      "triage_state": "rejected_needs_external_reviewer",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/20"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "external_run_review",
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 21,
+      "next_actions": [
+        "Ask a non-owner reviewer to submit their own public GitHub issue.",
+        "Remove private values and ask the reviewer to confirm the issue is redacted.",
+        "Ask the reviewer to check the no-private-data confirmation.",
+        "Ask the reviewer to add explicit permission to count the public evidence.",
+        "Ask the reviewer to name the exact demo path, command, endpoint, or page they tried.",
+        "Ask the reviewer to include the command, URL, API route, or public page used.",
+        "Ask the reviewer to include the observed result, finding, or report status.",
+        "Ask the reviewer to add one concrete sentence of feedback."
+      ],
+      "rejected_counts_toward": [
+        "external_feedback_items"
+      ],
+      "resume_countable_now": false,
+      "title": "First 10 reviewer: student software engineer peer (external_feedback_items)",
+      "triage_state": "rejected_needs_external_reviewer",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/21"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "external_run_review",
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 22,
+      "next_actions": [
+        "Ask a non-owner reviewer to submit their own public GitHub issue.",
+        "Remove private values and ask the reviewer to confirm the issue is redacted.",
+        "Ask the reviewer to check the no-private-data confirmation.",
+        "Ask the reviewer to add explicit permission to count the public evidence.",
+        "Ask the reviewer to name the exact demo path, command, endpoint, or page they tried.",
+        "Ask the reviewer to include the command, URL, API route, or public page used.",
+        "Ask the reviewer to include the observed result, finding, or report status.",
+        "Ask the reviewer to add one concrete sentence of feedback."
+      ],
+      "rejected_counts_toward": [
+        "reproducible_feedback_items"
+      ],
+      "resume_countable_now": false,
+      "title": "First 10 reviewer: engineer comfortable with Docker or local setup (reproducible_feedback_items)",
+      "triage_state": "rejected_needs_external_reviewer",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/22"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "external_run_review",
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 23,
+      "next_actions": [
+        "Ask a non-owner reviewer to submit their own public GitHub issue.",
+        "Remove private values and ask the reviewer to confirm the issue is redacted.",
+        "Ask the reviewer to check the no-private-data confirmation.",
+        "Ask the reviewer to add explicit permission to count the public evidence.",
+        "Ask the reviewer to name the exact demo path, command, endpoint, or page they tried.",
+        "Ask the reviewer to include the command, URL, API route, or public page used.",
+        "Ask the reviewer to include the observed result, finding, or report status.",
+        "Ask the reviewer to add one concrete sentence of feedback."
+      ],
+      "rejected_counts_toward": [],
+      "resume_countable_now": false,
+      "title": "First 10 reviewer: reviewer who opened the demo or ran the repo (confirmed_external_users)",
+      "triage_state": "rejected_needs_external_reviewer",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/23"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "business_case_review",
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing business-case counting permission",
+        "missing business-impact counting permission",
+        "missing business context evidence",
+        "missing data-quality problem evidence",
+        "missing business impact evidence",
+        "missing fields involved evidence",
+        "missing evidence from this project evidence"
+      ],
+      "issue_number": 24,
+      "next_actions": [
+        "Ask a non-owner reviewer to submit their own public GitHub issue.",
+        "Remove private values and ask the reviewer to confirm the issue is redacted."
+      ],
+      "rejected_counts_toward": [
+        "business_case_feedback_items"
+      ],
+      "resume_countable_now": false,
+      "title": "First 10 reviewer: data analyst or analytics student (business_case_feedback_items)",
+      "triage_state": "rejected_needs_external_reviewer",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/24"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "business_case_review",
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing business-case counting permission",
+        "missing business-impact counting permission",
+        "missing business context evidence",
+        "missing data-quality problem evidence",
+        "missing business impact evidence",
+        "missing fields involved evidence",
+        "missing evidence from this project evidence"
+      ],
+      "issue_number": 25,
+      "next_actions": [
+        "Ask a non-owner reviewer to submit their own public GitHub issue.",
+        "Remove private values and ask the reviewer to confirm the issue is redacted."
+      ],
+      "rejected_counts_toward": [
+        "business_case_feedback_items"
+      ],
+      "resume_countable_now": false,
+      "title": "First 10 reviewer: small-business operator or operations teammate (business_case_feedback_items)",
+      "triage_state": "rejected_needs_external_reviewer",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/25"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "ai_engineer_review",
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data AI review checkbox",
+        "missing AI Engineer review counting permission",
+        "missing inspected path or command evidence",
+        "missing LLM value comparison inspection",
+        "missing strongest ai engineer signals evidence",
+        "missing missing or weak ai engineer signals evidence"
+      ],
+      "issue_number": 26,
+      "next_actions": [
+        "Ask a non-owner reviewer to submit their own public GitHub issue.",
+        "Remove private values and ask the reviewer to confirm the issue is redacted.",
+        "Ask the reviewer to inspect the LLM value comparison artifact."
+      ],
+      "rejected_counts_toward": [
+        "ai_engineer_review_items"
+      ],
+      "resume_countable_now": false,
+      "title": "First 10 reviewer: AI engineer, mentor, or ML systems reviewer (ai_engineer_review_items)",
+      "triage_state": "rejected_needs_external_reviewer",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/26"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "external_run_review",
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 27,
+      "next_actions": [
+        "Ask a non-owner reviewer to submit their own public GitHub issue.",
+        "Remove private values and ask the reviewer to confirm the issue is redacted.",
+        "Ask the reviewer to check the no-private-data confirmation.",
+        "Ask the reviewer to add explicit permission to count the public evidence.",
+        "Ask the reviewer to name the exact demo path, command, endpoint, or page they tried.",
+        "Ask the reviewer to include the command, URL, API route, or public page used.",
+        "Ask the reviewer to include the observed result, finding, or report status.",
+        "Ask the reviewer to add one concrete sentence of feedback."
+      ],
+      "rejected_counts_toward": [
+        "external_feedback_items"
+      ],
+      "resume_countable_now": false,
+      "title": "First 10 reviewer: open-source maintainer or GitHub contributor (external_feedback_items)",
+      "triage_state": "rejected_needs_external_reviewer",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/27"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "external_run_review",
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 29,
+      "next_actions": [
+        "Ask a non-owner reviewer to submit their own public GitHub issue.",
+        "Remove private values and ask the reviewer to confirm the issue is redacted.",
+        "Ask the reviewer to check the no-private-data confirmation.",
+        "Ask the reviewer to add explicit permission to count the public evidence.",
+        "Ask the reviewer to name the exact demo path, command, endpoint, or page they tried.",
+        "Ask the reviewer to include the command, URL, API route, or public page used.",
+        "Ask the reviewer to include the observed result, finding, or report status.",
+        "Ask the reviewer to add one concrete sentence of feedback."
+      ],
+      "rejected_counts_toward": [
+        "reproducible_feedback_items"
+      ],
+      "resume_countable_now": false,
+      "title": "First 10 reviewer: second technical reviewer for independent reproducibility (reproducible_feedback_items)",
+      "triage_state": "rejected_needs_external_reviewer",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/29"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "external_run_review",
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-private-data checkbox",
+        "missing public external run permission",
+        "missing runnable path tried",
+        "missing command or URL evidence",
+        "missing observed result evidence",
+        "missing main feedback"
+      ],
+      "issue_number": 30,
+      "next_actions": [
+        "Ask a non-owner reviewer to submit their own public GitHub issue.",
+        "Remove private values and ask the reviewer to confirm the issue is redacted.",
+        "Ask the reviewer to check the no-private-data confirmation.",
+        "Ask the reviewer to add explicit permission to count the public evidence.",
+        "Ask the reviewer to name the exact demo path, command, endpoint, or page they tried.",
+        "Ask the reviewer to include the command, URL, API route, or public page used.",
+        "Ask the reviewer to include the observed result, finding, or report status.",
+        "Ask the reviewer to add one concrete sentence of feedback."
+      ],
+      "rejected_counts_toward": [
+        "external_feedback_items"
+      ],
+      "resume_countable_now": false,
+      "title": "Business resolution review: validate support-operations remediation brief",
+      "triage_state": "rejected_needs_external_reviewer",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/30"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "business_data_replay",
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-sensitive-data replay checkbox",
+        "missing confirmed anonymized replay permission",
+        "missing external feedback permission",
+        "missing business-data replay path tried",
+        "missing data source type evidence",
+        "missing dataset shape evidence",
+        "missing agent run summary evidence",
+        "missing what did it catch or miss? evidence",
+        "missing replay run summary field: Command or endpoint used:",
+        "missing replay run summary field: Report status:",
+        "missing replay run summary field: Finding count:",
+        "missing replay run summary field: Selected tools shown in the agent trace:"
+      ],
+      "issue_number": 31,
+      "next_actions": [
+        "Ask a non-owner reviewer to submit their own public GitHub issue.",
+        "Remove private values and ask the reviewer to confirm the issue is redacted."
+      ],
+      "rejected_counts_toward": [
+        "confirmed_external_users",
+        "external_feedback_items"
+      ],
+      "resume_countable_now": false,
+      "title": "Business pilot offer: collect redacted data-quality replay evidence",
+      "triage_state": "rejected_needs_external_reviewer",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/31"
+    }
+  ],
+  "triage_state_counts": {
+    "rejected_needs_external_reviewer": 15
+  },
+  "verification": {
+    "claimable_resume_outcome_count": 0,
+    "evaluated_issue_count": 15,
+    "external_evidence_triage_board_verified": true,
+    "waiting_reviewer_issue_count": 5
+  },
+  "waiting_reviewer_issue_count": 5,
+  "waiting_reviewer_items": [
+    {
+      "next_action": "Send the reviewer request, then wait for a non-owner public issue to pass the gate.",
+      "queue_slot_id": "slot_07_ai_engineer_review",
+      "resume_countable_now": false,
+      "reviewer_profile": "AI engineer, mentor, or ML systems reviewer",
+      "status_board_slot_id": "review_slot_07",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+      "target_metric": "ai_engineer_review_items",
+      "triage_state": "waiting_for_public_issue"
+    },
+    {
+      "next_action": "Send the reviewer request, then wait for a non-owner public issue to pass the gate.",
+      "queue_slot_id": "slot_04_confirmed_use",
+      "resume_countable_now": false,
+      "reviewer_profile": "reviewer who opened the demo or ran the repo",
+      "status_board_slot_id": "review_slot_04",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_metric": "confirmed_external_users",
+      "triage_state": "waiting_for_public_issue"
+    },
+    {
+      "next_action": "Send the reviewer request, then wait for a non-owner public issue to pass the gate.",
+      "queue_slot_id": "slot_03_local_replay",
+      "resume_countable_now": false,
+      "reviewer_profile": "engineer comfortable with Docker or local setup",
+      "status_board_slot_id": "review_slot_03",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md",
+      "target_metric": "reproducible_feedback_items",
+      "triage_state": "waiting_for_public_issue"
+    },
+    {
+      "next_action": "Send the reviewer request, then wait for a non-owner public issue to pass the gate.",
+      "queue_slot_id": "slot_05_data_analyst_case",
+      "resume_countable_now": false,
+      "reviewer_profile": "data analyst or analytics student",
+      "status_board_slot_id": "review_slot_05",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "target_metric": "business_case_feedback_items",
+      "triage_state": "waiting_for_public_issue"
+    },
+    {
+      "next_action": "Send the reviewer request, then wait for a non-owner public issue to pass the gate.",
+      "queue_slot_id": "slot_01_ds_peer_demo",
+      "resume_countable_now": false,
+      "reviewer_profile": "UC Davis data science peer",
+      "status_board_slot_id": "review_slot_01",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_metric": "external_feedback_items",
+      "triage_state": "waiting_for_public_issue"
+    }
+  ]
+}

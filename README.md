@@ -67,7 +67,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | First 10 outreach execution log | [`docs/first-10-outreach-execution-log.md`](docs/first-10-outreach-execution-log.md) turns the 10 public reviewer issue entrypoints into 10 copy-ready manual outreach messages with follow-up timing, evidence fields, and zero claimable outcomes |
 | Public release | [`v0.3.0`](docs/releases/v0.3.0.md) release notes and GitHub Release |
 | Container image | `ghcr.io/sunnnn2005/data-quality-agent:latest` published from `main` |
-| Test suite | 248 automated tests passing locally and in GitHub Actions |
+| Test suite | 250 automated tests passing locally and in GitHub Actions |
 | Live project scorecard | [`docs/live-project-scorecard.md`](docs/live-project-scorecard.md) gives reviewers one page for the demo, release, container, CI, claims, agent capabilities, and honest adoption baselines |
 | Launch evidence snapshot | [`docs/launch-evidence-snapshot.md`](docs/launch-evidence-snapshot.md) gives recruiters 5 public project surfaces, availability/workflow health, GitHub stats, AI review path, and blocked adoption claims in one artifact |
 | AI Engineer readiness | [`docs/ai-engineer-readiness.md`](docs/ai-engineer-readiness.md) maps the project to 8 implemented AI skill signals, 1 partial signal, and 1 not-claimed signal for AI Engineer Intern applications |
@@ -120,6 +120,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | Pilot reviewer CRM | [`docs/pilot-reviewer-crm.md`](docs/pilot-reviewer-crm.md) turns the outcome goal into 8 reviewer leads, 5 target metrics, and a 3-week evidence collection plan without claiming sends or feedback |
 | Evidence gap diagnostics | [`docs/evidence-gap-diagnostics.md`](docs/evidence-gap-diagnostics.md) diagnoses why current public reviewer issues do not unlock resume outcomes and gives the next reviewer three countable evidence paths |
 | Resume claim materializer | [`docs/resume-claim-materializer.md`](docs/resume-claim-materializer.md) turns accepted public evidence into exact resume bullets while preserving 0 external outcome bullets until evidence passes the gate |
+| External evidence triage board | [`docs/external-evidence-triage-board.md`](docs/external-evidence-triage-board.md) turns 15 evaluated public issues and 5 waiting reviewer slots into accepted, rejected, blocked, or waiting resume-claim decisions without inflating outcomes |
 | Resume outcome evidence ledger | [`docs/resume-outcome-evidence-ledger.md`](docs/resume-outcome-evidence-ledger.md) separates claimable resume signals from active but non-claimable outreach pipeline stages and blocked outcome claims |
 | Resume outcome conversion plan | [`docs/resume-outcome-conversion-plan.md`](docs/resume-outcome-conversion-plan.md) turns 6 blocked resume outcomes into one next reviewer action, evidence gate, and copy-ready ask per future claim |
 | First reviewer send kit | [`docs/first-reviewer-send-kit.md`](docs/first-reviewer-send-kit.md) gives the first AI Engineer reviewer message, correct `review_slot_07` recorder command, and expected pipeline change from 0 to 1 sent outreach after a real send |
