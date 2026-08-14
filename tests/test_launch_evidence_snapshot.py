@@ -18,7 +18,7 @@ def test_launch_evidence_snapshot_summarizes_public_launch_without_adoption_clai
     assert payload["launch_surface_count"] == 5
     assert payload["public_availability"]["available_endpoint_count"] == 4
     assert payload["public_availability"]["successful_workflow_count"] == 3
-    assert payload["application_pack"]["passing_tests"] == 181
+    assert payload["application_pack"]["passing_tests"] == 182
     assert payload["public_github_stats"]["stars"] == 0
     assert payload["public_github_stats"]["forks"] == 1
     assert payload["review_path"]["current_count"] == 0
@@ -36,6 +36,21 @@ def test_launch_evidence_snapshot_markdown_is_recruiter_readable():
     assert "Claimable Now" in markdown
     assert "Blocked Claims" in markdown
     assert "does not prove users" in markdown
+
+
+def test_launch_evidence_snapshot_allows_current_ci_run_to_be_in_progress():
+    payload = build_launch_evidence_snapshot()
+    payload["public_availability"]["successful_workflow_count"] = 2
+    payload["claimable_now"][1] = "2/3 main-branch workflows successful"
+    payload["resume_safe_summary"] = payload["resume_safe_summary"].replace(
+        "3/3 successful workflows",
+        "2/3 successful workflows",
+    )
+
+    result = verify_launch_evidence_snapshot(payload)
+
+    assert result["launch_evidence_snapshot_verified"] is True
+    assert payload["public_availability"]["successful_workflow_count"] == 2
 
 
 def test_generated_launch_evidence_snapshot_artifacts_are_current():
