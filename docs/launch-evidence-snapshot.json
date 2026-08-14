@@ -1,0 +1,87 @@
+{
+  "application_pack": {
+    "passing_tests": 181,
+    "target_roles": [
+      "AI Engineer Intern",
+      "Software Engineer Intern",
+      "Data Engineering Intern",
+      "Data Science Intern"
+    ],
+    "verified_resume_claims": 84
+  },
+  "blocked_claim_count": 5,
+  "blocked_claims": [
+    "Do not claim active users while confirmed users are 0.",
+    "Do not claim external feedback while accepted feedback is 0.",
+    "Do not claim AI Engineer review while accepted AI reviews are 0.",
+    "Do not claim production business adoption from public demo reachability.",
+    "Do not claim GitHub star growth beyond the live public star count."
+  ],
+  "claimable_now": [
+    "4/4 public launch surfaces reachable",
+    "3/3 main-branch workflows successful",
+    "181 passing CI test status",
+    "1 public fork and 0 public stars as the current GitHub baseline",
+    "6 AI-agent inspection targets available for external review"
+  ],
+  "claimable_now_count": 5,
+  "generated_by": "scripts/build_launch_evidence_snapshot.py",
+  "launch_surface_count": 5,
+  "launch_surfaces": [
+    {
+      "evidence": "GitHub Pages endpoint is reachable in the availability snapshot.",
+      "id": "public_demo",
+      "label": "Public demo",
+      "url": "https://sunnnn2005.github.io/data-quality-agent/"
+    },
+    {
+      "evidence": "Repository is public and exposes source, tests, docs, issues, release, and package links.",
+      "id": "source_repo",
+      "label": "Open-source repository",
+      "url": "https://github.com/sunnnn2005/data-quality-agent"
+    },
+    {
+      "evidence": "Container publish workflow is successful in the availability snapshot.",
+      "id": "container_image",
+      "label": "Container image",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/pkgs/container/data-quality-agent"
+    },
+    {
+      "evidence": "Reviewer card gives technical reviewers exact files, commands, prompts, and submission link.",
+      "id": "reviewer_card",
+      "label": "AI Engineer reviewer card",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-reviewer-card.md"
+    },
+    {
+      "evidence": "Application pack summarizes verified proof, honest baselines, and recruiter-safe bullets.",
+      "id": "application_pack",
+      "label": "Recruiter evidence pack",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/application-evidence-pack.md"
+    }
+  ],
+  "project": "Data Quality Agent",
+  "public_availability": {
+    "available_endpoint_count": 4,
+    "endpoint_count": 4,
+    "max_latency_ms": 3984,
+    "successful_workflow_count": 3,
+    "workflow_count": 3
+  },
+  "public_github_stats": {
+    "forks": 1,
+    "open_issues": 26,
+    "stars": 0,
+    "subscribers": 0,
+    "watchers": 0
+  },
+  "purpose": "Summarize public launch readiness, reachability, review paths, and honest traction baselines in one recruiter-readable artifact.",
+  "resume_policy": "Use this as public launch and review-readiness evidence only. It does not prove users, customer feedback, business adoption, or external AI Engineer review until the corresponding public counts are above zero.",
+  "resume_safe_summary": "Published a recruiter-readable launch evidence snapshot covering 5 public project surfaces, 4/4 reachable endpoints, 3/3 successful workflows, 181 passing tests, and honest GitHub/reviewer baselines.",
+  "review_path": {
+    "current_count": 0,
+    "inspection_target_count": 6,
+    "public_slot_url": "https://github.com/sunnnn2005/data-quality-agent/issues/26",
+    "submit_review_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+    "target_metric": "ai_engineer_review_items"
+  }
+}
