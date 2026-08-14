@@ -4,6 +4,8 @@ Turn the project from a portfolio demo into a safe pilot-ready offer for people 
 
 Public page: [https://sunnnn2005.github.io/data-quality-agent/business-pilot-offer.html](https://sunnnn2005.github.io/data-quality-agent/business-pilot-offer.html)
 
+Public pilot issue: [https://github.com/sunnnn2005/data-quality-agent/issues/31](https://github.com/sunnnn2005/data-quality-agent/issues/31)
+
 ## Pilot Scope
 
 | Step | Name | Owner | Output |
@@ -61,7 +63,7 @@ Public page: [https://sunnnn2005.github.io/data-quality-agent/business-pilot-off
 
 ## Resume-Safe Summary
 
-Published a pilot-ready business data offer with 4 pilot steps, 4 eligible data-source types, 6 evidence gates, and zero current external pilot claims.
+Published a pilot-ready business data offer with 4 pilot steps, 4 eligible data-source types, 6 evidence gates, a public pilot issue, and zero current external pilot claims.
 
 ## Not Claimed
 

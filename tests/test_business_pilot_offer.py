@@ -20,6 +20,8 @@ def test_business_pilot_offer_defines_safe_path_to_real_outcomes_without_claimin
     assert payload["eligible_data_source_count"] == 4
     assert payload["evidence_gate_count"] == 6
     assert payload["pilot_status"] == "ready_to_invite_not_validated"
+    assert payload["public_issue_status"] == "open_self_authored_entrypoint_not_outcome_evidence"
+    assert payload["public_pilot_issue"].endswith("/issues/31")
     assert all(count == 0 for count in payload["current_public_counts"].values())
     assert "completed pilot" in payload["not_claimed"]
     assert "production deployment" in payload["not_claimed"]
@@ -38,6 +40,7 @@ def test_business_pilot_offer_outputs_public_markdown_and_html():
     assert "<title>Business Pilot Offer</title>" in html
     assert "Business Data Pilot Offer" in html
     assert "Pilot-ready, not pilot-validated yet" in html
+    assert "Open public pilot issue" in html
 
 
 def test_generated_business_pilot_offer_artifacts_are_current():
@@ -50,5 +53,6 @@ def test_generated_business_pilot_offer_artifacts_are_current():
 
     assert '"pilot_scope_count": 4' in generated_json
     assert '"evidence_gate_count": 6' in generated_json
+    assert '"public_issue_status": "open_self_authored_entrypoint_not_outcome_evidence"' in generated_json
     assert "# Business Pilot Offer" in generated_md
     assert "<title>Business Pilot Offer</title>" in generated_html

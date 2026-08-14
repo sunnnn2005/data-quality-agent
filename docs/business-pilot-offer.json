@@ -65,9 +65,11 @@
   "pilot_scope_count": 4,
   "pilot_status": "ready_to_invite_not_validated",
   "project": "Data Quality Agent",
+  "public_issue_status": "open_self_authored_entrypoint_not_outcome_evidence",
+  "public_pilot_issue": "https://github.com/sunnnn2005/data-quality-agent/issues/31",
   "public_url": "https://sunnnn2005.github.io/data-quality-agent/business-pilot-offer.html",
   "purpose": "Turn the project from a portfolio demo into a safe pilot-ready offer for people who can bring anonymized business-shaped data or a real data-quality workflow problem.",
-  "resume_safe_summary": "Published a pilot-ready business data offer with 4 pilot steps, 4 eligible data-source types, 6 evidence gates, and zero current external pilot claims.",
+  "resume_safe_summary": "Published a pilot-ready business data offer with 4 pilot steps, 4 eligible data-source types, 6 evidence gates, a public pilot issue, and zero current external pilot claims.",
   "resume_upgrade_rules": [
     {
       "current_value": 0,

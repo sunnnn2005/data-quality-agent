@@ -17,6 +17,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "two-minute-review-card",
         "business-pilot-offer-page",
         "business-pilot-offer",
+        "business-pilot-offer-issue",
         "first-external-review-card-page",
         "first-external-review-card",
         "first-feedback-conversion-runbook",
@@ -220,7 +221,13 @@ def test_public_evidence_health_requires_core_public_signals():
     assert pilot_offer["expected_json"]["pilot_scope_count"] == 4
     assert pilot_offer["expected_json"]["evidence_gate_count"] == 6
     assert pilot_offer["expected_json"]["pilot_status"] == "ready_to_invite_not_validated"
+    assert pilot_offer["expected_json"]["public_issue_status"] == "open_self_authored_entrypoint_not_outcome_evidence"
     assert "production deployment" in pilot_offer["expected_texts"]
+    assert "https://github.com/sunnnn2005/data-quality-agent/issues/31" in pilot_offer["expected_texts"]
+    pilot_offer_issue = next(check for check in PUBLIC_CHECKS if check["id"] == "business-pilot-offer-issue")
+    assert pilot_offer_issue["url"].endswith("/issues/31")
+    assert pilot_offer_issue["expected_text"] == "Business pilot offer: collect redacted data-quality replay evidence"
+    assert "does not claim completed pilots" in pilot_offer_issue["expected_texts"]
     review_card = next(check for check in PUBLIC_CHECKS if check["id"] == "first-external-review-card")
     assert review_card["url"].endswith("/first-external-review-card.json")
     assert review_card["expected_json"]["blocked_outcome_count"] == 6

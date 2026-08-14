@@ -224,6 +224,7 @@ PUBLIC_CHECKS = [
             "eligible_data_source_count": 4,
             "evidence_gate_count": 6,
             "pilot_status": "ready_to_invite_not_validated",
+            "public_issue_status": "open_self_authored_entrypoint_not_outcome_evidence",
         },
         "expected_text": "zero current external pilot claims",
         "expected_texts": [
@@ -232,8 +233,21 @@ PUBLIC_CHECKS = [
             "production deployment",
             "business_data_replay",
             "business_case_review",
+            "https://github.com/sunnnn2005/data-quality-agent/issues/31",
         ],
         "evidence_type": "json",
+    },
+    {
+        "id": "business-pilot-offer-issue",
+        "url": "https://github.com/sunnnn2005/data-quality-agent/issues/31",
+        "expected_text": "Business pilot offer: collect redacted data-quality replay evidence",
+        "expected_texts": [
+            "Public pilot page",
+            "safe, redacted business-shaped workflow",
+            "does not claim completed pilots",
+            "confirmation that no private data was posted",
+        ],
+        "evidence_type": "html",
     },
     {
         "id": "first-external-review-card",

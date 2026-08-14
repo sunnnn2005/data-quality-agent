@@ -11,6 +11,7 @@ BUSINESS_CASE_PATH = ROOT / "docs" / "business-case-intake.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "business-pilot-offer.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "business-pilot-offer.md"
 OUTPUT_HTML_PATH = ROOT / "docs" / "business-pilot-offer.html"
+PILOT_ISSUE_URL = "https://github.com/sunnnn2005/data-quality-agent/issues/31"
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -97,6 +98,7 @@ def build_business_pilot_offer() -> dict[str, Any]:
         "project": "Data Quality Agent",
         "generated_by": "scripts/build_business_pilot_offer.py",
         "public_url": "https://sunnnn2005.github.io/data-quality-agent/business-pilot-offer.html",
+        "public_pilot_issue": PILOT_ISSUE_URL,
         "purpose": (
             "Turn the project from a portfolio demo into a safe pilot-ready offer for people who can bring "
             "anonymized business-shaped data or a real data-quality workflow problem."
@@ -117,9 +119,10 @@ def build_business_pilot_offer() -> dict[str, Any]:
         },
         "resume_upgrade_rules": resume_upgrade_rules,
         "pilot_status": "ready_to_invite_not_validated",
+        "public_issue_status": "open_self_authored_entrypoint_not_outcome_evidence",
         "resume_safe_summary": (
             "Published a pilot-ready business data offer with 4 pilot steps, 4 eligible data-source types, "
-            "6 evidence gates, and zero current external pilot claims."
+            "6 evidence gates, a public pilot issue, and zero current external pilot claims."
         ),
         "not_claimed": [
             "completed pilot",
@@ -153,6 +156,8 @@ def render_markdown(payload: dict[str, Any]) -> str:
 {payload["purpose"]}
 
 Public page: [{payload["public_url"]}]({payload["public_url"]})
+
+Public pilot issue: [{payload["public_pilot_issue"]}]({payload["public_pilot_issue"]})
 
 ## Pilot Scope
 
@@ -281,6 +286,7 @@ def render_html(payload: dict[str, Any]) -> str:
       <h2>Submission paths</h2>
       <p>{html.escape(payload["resume_safe_summary"])}</p>
       <div class="links">{submissions}</div>
+      <div class="links"><a href="{html.escape(payload["public_pilot_issue"])}">Open public pilot issue</a></div>
     </section>
   </main>
 </body>
@@ -300,6 +306,10 @@ def verify_business_pilot_offer(payload: dict[str, Any]) -> dict[str, Any]:
             raise AssertionError(f"{key} expected {value}, got {payload.get(key)}")
     if payload["pilot_status"] != "ready_to_invite_not_validated":
         raise AssertionError("business pilot offer must not claim validation")
+    if payload["public_issue_status"] != "open_self_authored_entrypoint_not_outcome_evidence":
+        raise AssertionError("business pilot issue must stay classified as an entrypoint, not outcome evidence")
+    if not payload["public_pilot_issue"].endswith("/issues/31"):
+        raise AssertionError("business pilot offer must point to the public pilot issue")
     if any(count != 0 for count in payload["current_public_counts"].values()):
         raise AssertionError("business pilot offer must preserve zero external pilot counts")
     joined = json.dumps(payload, sort_keys=True).lower()
