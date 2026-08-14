@@ -1,5 +1,5 @@
 {
-  "check_count": 84,
+  "check_count": 85,
   "checks": [
     {
       "evidence_type": "html",
@@ -824,6 +824,20 @@
     },
     {
       "evidence_type": "json",
+      "id": "outcome-witness-packet",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-witness-packet.json",
+      "verified_fields": [
+        "project",
+        "resume_outcome_upgraded",
+        "target_metric_count",
+        "total_required_evidence_fields",
+        "witness_card_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
       "id": "pilot-outreach-kit",
       "passed": true,
       "status_code": 200,
@@ -943,6 +957,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 84,
+  "passed_count": 85,
   "status": "PASS"
 }
