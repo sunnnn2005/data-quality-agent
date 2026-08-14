@@ -1,5 +1,5 @@
 {
-  "check_count": 96,
+  "check_count": 97,
   "checks": [
     {
       "evidence_type": "html",
@@ -438,6 +438,13 @@
         "label_count",
         "project"
       ]
+    },
+    {
+      "evidence_type": "markdown",
+      "id": "code-of-conduct",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/CODE_OF_CONDUCT.md"
     },
     {
       "evidence_type": "json",
@@ -1087,6 +1094,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 96,
+  "passed_count": 97,
   "status": "PASS"
 }
