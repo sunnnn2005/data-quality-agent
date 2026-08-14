@@ -130,6 +130,8 @@ jobs:
         run: python scripts/build_reviewer_invitation_kit.py
       - name: Verify reviewer outcome sprint calendar
         run: python scripts/build_reviewer_outcome_sprint_calendar.py
+      - name: Verify reviewer outcome ledger
+        run: python scripts/build_reviewer_outcome_ledger.py
       - name: Verify reviewer landing page
         run: python scripts/verify_reviewer_landing_page.py
       - name: Verify feedback intake quality

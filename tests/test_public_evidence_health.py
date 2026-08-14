@@ -74,6 +74,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "reviewer-funnel-board",
         "reviewer-invitation-kit",
         "reviewer-outcome-sprint-calendar",
+        "reviewer-outcome-ledger",
         "reviewer-send-queue",
         "reviewer-landing-page",
         "reviewer-outreach-console",
@@ -355,6 +356,15 @@ def test_public_evidence_health_requires_core_public_signals():
     assert sprint_calendar["expected_json"]["resume_claim_allowed_now"] is False
     assert "ai_engineer_review_items" in sprint_calendar["expected_texts"]
     assert "The calendar itself does not count as users" in sprint_calendar["expected_texts"]
+    outcome_ledger = next(check for check in PUBLIC_CHECKS if check["id"] == "reviewer-outcome-ledger")
+    assert outcome_ledger["url"].endswith("/reviewer-outcome-ledger.json")
+    assert outcome_ledger["expected_json"]["outcome_row_count"] == 5
+    assert outcome_ledger["expected_json"]["claimable_row_count"] == 0
+    assert outcome_ledger["expected_json"]["blocked_row_count"] == 5
+    assert outcome_ledger["expected_json"]["current_accepted_evidence_count"] == 0
+    assert outcome_ledger["expected_json"]["resume_status"] == "outcome_ledger_ready_not_claimable"
+    assert "exact future resume wording" in outcome_ledger["expected_texts"]
+    assert "Private replies and self-authored planning issues are excluded" in outcome_ledger["expected_texts"]
     send_queue = next(check for check in PUBLIC_CHECKS if check["id"] == "reviewer-send-queue")
     assert send_queue["expected_json"]["queue_count"] == 5
     assert send_queue["expected_json"]["sent_count"] == 0

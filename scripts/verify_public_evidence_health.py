@@ -70,7 +70,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "241 passing CI tests",
+            "243 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -192,7 +192,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 241},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 243},
         "evidence_type": "json",
     },
     {
@@ -1277,6 +1277,29 @@ PUBLIC_CHECKS = [
             "External reviewer evidence gate marks the issue accepted",
             "The calendar itself does not count as users",
             "Only non-owner public GitHub issues accepted by the evidence gate can unlock outcome wording.",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "reviewer-outcome-ledger",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-outcome-ledger.json",
+        "expected_json": {
+            "outcome_row_count": 5,
+            "claimable_row_count": 0,
+            "blocked_row_count": 5,
+            "current_sent_count": 0,
+            "current_public_issue_submitted_count": 0,
+            "current_accepted_evidence_count": 0,
+            "resume_status": "outcome_ledger_ready_not_claimable",
+        },
+        "expected_text": "public issue gates",
+        "expected_texts": [
+            "ai_engineer_review_items",
+            "confirmed_external_users",
+            "accepted-evidence thresholds",
+            "exact future resume wording",
+            "A resume outcome row becomes claimable only after accepted public",
+            "Private replies and self-authored planning issues are excluded",
         ],
         "evidence_type": "json",
     },

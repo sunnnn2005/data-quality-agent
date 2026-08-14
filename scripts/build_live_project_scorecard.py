@@ -163,7 +163,7 @@ def verify_live_project_scorecard(payload: dict[str, Any]) -> dict[str, Any]:
     footprint = payload["live_footprint"]
     evidence = load_json(OUTCOME_EVIDENCE_PATH)
     expected = {
-        "passing_tests": 241,
+        "passing_tests": 243,
         "verified_resume_claims": len(evidence["claims"]),
         "implemented_agent_capabilities": 16,
         "agent_tools_allowed": 9,

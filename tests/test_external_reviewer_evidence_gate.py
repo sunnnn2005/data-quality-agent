@@ -233,7 +233,7 @@ Paste only safe values from `docs/real-model-evidence-capture.json`.
 - Verification passed: true
 - Total tokens: 1842
 - Estimated cost USD: 0.0011
-- Latency ms: 2410
+- Latency ms: 2430
 
 ## Tool evidence
 
