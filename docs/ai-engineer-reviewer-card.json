@@ -1,0 +1,83 @@
+{
+  "acceptance_gate": "Counts only after a non-owner public GitHub issue lists inspected paths, includes permission to count, contains no private data, and passes the external reviewer evidence gate.",
+  "command_count": 3,
+  "commands": [
+    {
+      "command": ".venv/bin/python -m pytest",
+      "expected": "178 passing tests before this card is regenerated",
+      "label": "Run tests"
+    },
+    {
+      "command": ".venv/bin/python scripts/verify_outcome_evidence.py",
+      "expected": "all resume outcome gates pass without upgrading zero-count claims",
+      "label": "Run evidence verifier"
+    },
+    {
+      "command": "docker compose up --build",
+      "expected": "FastAPI, dashboard, and seeded PostgreSQL replay are available locally",
+      "label": "Run local demo"
+    }
+  ],
+  "current_count": 0,
+  "generated_by": "scripts/build_ai_engineer_reviewer_card.py",
+  "inspection_target_count": 6,
+  "inspection_targets": [
+    {
+      "label": "Agent loop",
+      "path": "app/tool_agent.py",
+      "reason": "shows LLM-driven tool choice, loop state, and tool-result feedback"
+    },
+    {
+      "label": "LLM boundary",
+      "path": "app/llm.py",
+      "reason": "shows structured model calls, fallback handling, and output validation boundaries"
+    },
+    {
+      "label": "Tool contracts",
+      "path": "app/models.py",
+      "reason": "shows structured request and response schemas used by the API and agent"
+    },
+    {
+      "label": "Business data adapter",
+      "path": "app/postgres_adapter.py",
+      "reason": "shows read-only PostgreSQL access for realistic tabular business data"
+    },
+    {
+      "label": "Evidence verifier",
+      "path": "app/verifier.py",
+      "reason": "shows deterministic checks that keep LLM conclusions tied to evidence"
+    },
+    {
+      "label": "Evaluation scenarios",
+      "path": "evals/scenarios.jsonl",
+      "reason": "shows the project is evaluated against repeatable agent behavior cases"
+    }
+  ],
+  "not_claimed": [
+    "No external AI Engineer review has been accepted yet.",
+    "No confirmed external users are claimed.",
+    "No production deployment or business adoption is claimed."
+  ],
+  "outcome_badge_snapshot": {
+    "ai_review": "0 accepted",
+    "ci_tests": "178 passing",
+    "confirmed_users": "0 accepted",
+    "external_feedback": "0 accepted"
+  },
+  "project": "Data Quality Agent",
+  "public_slot_url": "https://github.com/sunnnn2005/data-quality-agent/issues/26",
+  "purpose": "Give one external AI/ML reviewer a single low-friction card for inspecting the agent and submitting public evidence.",
+  "resume_safe_summary": "Published a one-page AI Engineer reviewer card with 6 inspection targets, 3 run commands, 5 review prompts, public submission links, and a zero-review baseline.",
+  "resume_status": "review_card_ready_not_claimable",
+  "review_minutes": 12,
+  "review_prompt_count": 5,
+  "review_prompts": [
+    "Does the model choose tools from evidence, or does the code force a fixed workflow?",
+    "Are tool outputs fed back into the agent before the final report is produced?",
+    "Are findings, hypotheses, recommendations, evidence, confidence, and limitations separated?",
+    "Where would prompt injection, sensitive data, or unsupported claims be blocked?",
+    "What one change would make this more credible for an AI Engineer Intern resume?"
+  ],
+  "submit_review_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+  "target_metric": "ai_engineer_review_items"
+}

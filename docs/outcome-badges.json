@@ -5,7 +5,7 @@
       "color": "brightgreen",
       "id": "ci-tests",
       "label": "tests",
-      "message": "175 passing",
+      "message": "178 passing",
       "policy": "Engineering-quality signal backed by local and GitHub Actions test output.",
       "resume_claimable": true,
       "schemaVersion": 1,

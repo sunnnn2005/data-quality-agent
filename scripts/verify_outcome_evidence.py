@@ -65,6 +65,7 @@ STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 GITHUB_DISCOVERY_PROFILE_PATH = ROOT / "docs" / "github-discovery-profile.json"
 GITHUB_PUBLIC_STATS_PATH = ROOT / "docs" / "github-public-stats-snapshot.json"
 OUTCOME_BADGES_PATH = ROOT / "docs" / "outcome-badges.json"
+AI_ENGINEER_REVIEWER_CARD_PATH = ROOT / "docs" / "ai-engineer-reviewer-card.json"
 PILOT_EVIDENCE_QUICKLINK_PATH = ROOT / "docs" / "pilot-evidence-quicklink.json"
 PILOT_LAUNCH_CONTROL_ROOM_PATH = ROOT / "docs" / "pilot-launch-control-room.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
@@ -154,6 +155,7 @@ def verify_manifest() -> dict[str, int]:
     github_discovery = load_payload(GITHUB_DISCOVERY_PROFILE_PATH)
     github_public_stats = load_payload(GITHUB_PUBLIC_STATS_PATH)
     outcome_badges = load_payload(OUTCOME_BADGES_PATH)
+    ai_engineer_reviewer_card = load_payload(AI_ENGINEER_REVIEWER_CARD_PATH)
     pilot_evidence_quicklink = load_payload(PILOT_EVIDENCE_QUICKLINK_PATH)
     pilot_launch_control_room = load_payload(PILOT_LAUNCH_CONTROL_ROOM_PATH)
     business_case_intake = load_payload(BUSINESS_CASE_INTAKE_PATH)
@@ -594,7 +596,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 175:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 178:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -973,7 +975,7 @@ def verify_manifest() -> dict[str, int]:
                     ("confirmed_external_users", 0),
                     ("external_feedback_items", 0),
                     ("github_stars", 0),
-                    ("passing_tests", 175),
+                    ("passing_tests", 178),
                 ):
                     if counts.get(key) != expected_value:
                         raise AssertionError(f"outcome collection {key} expected {expected_value!r}")
@@ -1359,7 +1361,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 175:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 178:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -2319,7 +2321,7 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 175", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 178", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 
@@ -2340,7 +2342,7 @@ def verify_manifest() -> dict[str, int]:
 
     resume_metric_phrases = (
         "github issues | 25",
-        "automated tests | 175",
+        "automated tests | 178",
         "github views | 9",
         "github unique visitors | 3",
         "github clones | 79",
@@ -2355,7 +2357,7 @@ def verify_manifest() -> dict[str, int]:
     badges_by_id = {badge["id"]: badge for badge in outcome_badges.get("badges", [])}
     if outcome_badges.get("badge_count") != 6:
         raise AssertionError("outcome badges must expose six badge artifacts")
-    if badges_by_id.get("ci-tests", {}).get("message") != "175 passing":
+    if badges_by_id.get("ci-tests", {}).get("message") != "178 passing":
         raise AssertionError("outcome badges must display the current passing test count")
     for blocked_badge in ("github-stars", "confirmed-users", "external-feedback", "ai-review"):
         if badges_by_id.get(blocked_badge, {}).get("resume_claimable") is not False:
@@ -2363,13 +2365,32 @@ def verify_manifest() -> dict[str, int]:
         if badges_by_id.get(blocked_badge, {}).get("color") != "lightgrey":
             raise AssertionError(f"outcome badge {blocked_badge} must render grey while blocked")
 
+    if ai_engineer_reviewer_card.get("target_metric") != "ai_engineer_review_items":
+        raise AssertionError("AI Engineer reviewer card must target AI Engineer review evidence")
+    if ai_engineer_reviewer_card.get("current_count") != 0:
+        raise AssertionError("AI Engineer reviewer card must preserve zero accepted reviews")
+    if ai_engineer_reviewer_card.get("inspection_target_count") != 6:
+        raise AssertionError("AI Engineer reviewer card must expose six inspection targets")
+    if ai_engineer_reviewer_card.get("command_count") != 3:
+        raise AssertionError("AI Engineer reviewer card must expose three review commands")
+    if ai_engineer_reviewer_card.get("review_prompt_count") != 5:
+        raise AssertionError("AI Engineer reviewer card must expose five review prompts")
+    if ai_engineer_reviewer_card.get("outcome_badge_snapshot", {}).get("ai_review") != "0 accepted":
+        raise AssertionError("AI Engineer reviewer card must not claim accepted AI reviews")
+    target_paths = {target.get("path") for target in ai_engineer_reviewer_card.get("inspection_targets", [])}
+    for required_path in ("app/tool_agent.py", "app/llm.py", "app/postgres_adapter.py", "app/verifier.py"):
+        if required_path not in target_paths:
+            raise AssertionError(f"AI Engineer reviewer card missing inspection path: {required_path}")
+
     index_page = (ROOT / "docs" / "index.html").read_text().lower()
-    if "<strong>175</strong><span>automated tests passing locally and in ci</span>" not in index_page:
+    if "<strong>178</strong><span>automated tests passing locally and in ci</span>" not in index_page:
         raise AssertionError("public homepage must display the current passing test count")
     if "outcome-pipeline-board.md" not in index_page or "outcome pipeline" not in index_page:
         raise AssertionError("public homepage must link reviewers to the outcome pipeline board")
     if "outcome-badges.md" not in index_page or "outcome badges" not in index_page:
         raise AssertionError("public homepage must link reviewers to outcome badges")
+    if "ai-engineer-reviewer-card.md" not in index_page or "ai engineer reviewer card" not in index_page:
+        raise AssertionError("public homepage must link reviewers to the AI Engineer reviewer card")
     if "github-public-stats-snapshot.md" not in index_page or "github public stats" not in index_page:
         raise AssertionError("public homepage must link reviewers to GitHub public stats")
 
