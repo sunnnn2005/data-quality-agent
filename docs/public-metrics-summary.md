@@ -120,6 +120,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | First 10 reviewer target metrics | 6 |
 | First 10 reviewer not-sent entries | 10 |
 | First 10 reviewer completed entries | 0 |
+| First 10 outreach execution log | 1 |
+| First 10 outreach copy-ready messages | 10 |
+| First 10 outreach public issue entrypoints | 10 |
+| First 10 outreach not-sent entries | 10 |
+| First 10 outreach accepted evidence | 0 |
 | Outcome collection page | 1 |
 | Outcome collection actions | 5 |
 | Outcome collection submission paths | 6 |
@@ -177,7 +182,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 45 |
+| Application evidence links | 46 |
 | GitHub discovery profile | 1 |
 | GitHub discovery topics | 16 |
 | GitHub discovery reviewer entrypoints | 6 |
@@ -311,6 +316,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Reviewer action queue with 8 concrete outreach tasks, 5 public evidence goals, 8 not-contacted baseline entries, and zero completed reviews claimed
 - Reviewer outreach execution pack with 8 ready-to-send messages, 8 follow-up rules, 8 not-sent baseline entries, and zero sent outreach claimed
 - Reviewer outreach status board tracking 8 reviewer slots, 5 status stages, and zero sent/replied/accepted outreach claims
+- First-10 outreach execution log with 10 copy-ready reviewer messages, 10 public issue entrypoints, 10 not-sent entries, and zero claimable external outcomes
 - Resume outcome metrics board tracking 6 outcome metrics, 0 claimable outcome lines, 6 blocked outcome lines, and honest user/feedback/star baselines
 - Resume outcome action checklist with 5 concrete next actions, 4 evaluated public GitHub issues, 0 accepted public evidence items, and 8 not-sent reviewer outreach slots
 - Reviewer submission hub with 6 public submission paths, 6 tracked outcome metrics, 23 required evidence fields, and zero current outcome claims upgraded
@@ -331,7 +337,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 23 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
-- 45 application evidence links in a recruiter-ready evidence pack
+- 46 application evidence links in a recruiter-ready evidence pack
 - GitHub discovery profile with 16 precise topics, 6 reviewer entrypoints, public homepage metadata, and zero-star baseline
 - Pilot evidence quicklink with 3 short reviewer actions, 12 required evidence fields, 3 target outcome metrics, and zero-count baselines
 - Pilot launch control room with 4 public issue threads, 5 launch gates, 4 target outcome metrics, and 3 reviewer-send paths

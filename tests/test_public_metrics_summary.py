@@ -114,6 +114,11 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["first_10_reviewer_target_metrics"] == 6
     assert payload["verified_project_outcomes"]["first_10_reviewer_not_sent"] == 10
     assert payload["verified_project_outcomes"]["first_10_reviewer_completed"] == 0
+    assert payload["verified_project_outcomes"]["first_10_outreach_execution_log"] == 1
+    assert payload["verified_project_outcomes"]["first_10_outreach_messages"] == 10
+    assert payload["verified_project_outcomes"]["first_10_outreach_public_issue_entrypoints"] == 10
+    assert payload["verified_project_outcomes"]["first_10_outreach_not_sent"] == 10
+    assert payload["verified_project_outcomes"]["first_10_outreach_accepted_evidence"] == 0
     assert payload["verified_project_outcomes"]["outcome_collection_page"] == 1
     assert payload["verified_project_outcomes"]["outcome_collection_actions"] == 5
     assert payload["verified_project_outcomes"]["outcome_collection_submission_paths"] == 6
@@ -161,7 +166,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["recruiter_pitch_resume_bullets"] == 3
     assert payload["verified_project_outcomes"]["recruiter_pitch_target_roles"] == 4
     assert payload["verified_project_outcomes"]["application_evidence_pack"] == 1
-    assert payload["verified_project_outcomes"]["application_evidence_links"] == 45
+    assert payload["verified_project_outcomes"]["application_evidence_links"] == 46
     assert payload["verified_project_outcomes"]["github_discovery_profile"] == 1
     assert payload["verified_project_outcomes"]["github_discovery_topics"] == 16
     assert payload["verified_project_outcomes"]["github_discovery_reviewer_entrypoints"] == 6
@@ -344,7 +349,11 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         "Outcome collection page with 5 next actions, 6 submission paths, 23 required evidence fields, 0 confirmed users, 0 feedback items, and 0 GitHub stars"
         in payload["resume_safe_signals"]
     )
-    assert "45 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
+    assert (
+        "First-10 outreach execution log with 10 copy-ready reviewer messages, 10 public issue entrypoints, 10 not-sent entries, and zero claimable external outcomes"
+        in payload["resume_safe_signals"]
+    )
+    assert "46 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
     assert any("GitHub discovery profile with 16 precise topics" in signal for signal in payload["resume_safe_signals"])
     assert any("Pilot launch control room with 4 public issue threads" in signal for signal in payload["resume_safe_signals"])
     assert any("Resume outcome adjudication report with 5 outcome categories" in signal for signal in payload["resume_safe_signals"])

@@ -78,6 +78,7 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "pilot_launch_control_room": f"{scorecard['repo']}/blob/main/docs/pilot-launch-control-room.md",
             "resume_outcome_adjudication": f"{scorecard['repo']}/blob/main/docs/resume-outcome-adjudication.md",
             "first_10_reviewer_sprint": f"{scorecard['repo']}/blob/main/docs/first-10-reviewer-sprint.md",
+            "first_10_outreach_execution_log": f"{scorecard['repo']}/blob/main/docs/first-10-outreach-execution-log.md",
         },
         "verified_outcome_numbers": {
             "passing_tests": headline["passing_tests"],
@@ -160,6 +161,10 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "first_10_reviewer_target_metrics": outcomes["first_10_reviewer_target_metrics"],
             "first_10_reviewer_not_sent": outcomes["first_10_reviewer_not_sent"],
             "first_10_reviewer_completed": outcomes["first_10_reviewer_completed"],
+            "first_10_outreach_messages": outcomes["first_10_outreach_messages"],
+            "first_10_outreach_public_issue_entrypoints": outcomes["first_10_outreach_public_issue_entrypoints"],
+            "first_10_outreach_not_sent": outcomes["first_10_outreach_not_sent"],
+            "first_10_outreach_accepted_evidence": outcomes["first_10_outreach_accepted_evidence"],
             "real_model_run_commands": outcomes["real_model_run_commands"],
             "real_model_evidence_fields": outcomes["real_model_evidence_fields"],
             "real_model_capture_required_fields": outcomes["real_model_capture_required_fields"],
@@ -245,14 +250,14 @@ This generated pack gives recruiters and interviewers a compact review path for 
 
 def verify_application_evidence_pack(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
-        "application_link_count": 45,
+        "application_link_count": 46,
         "resume_bullet_count": 3,
         "target_role_count": 4,
         "passing_tests": 151,
         "verified_resume_claims": 84,
     }
     if len(payload["application_links"]) != expected["application_link_count"]:
-            raise AssertionError("application evidence pack must include 45 application links")
+            raise AssertionError("application evidence pack must include 46 application links")
     if len(payload["resume_bullets"]) != expected["resume_bullet_count"]:
         raise AssertionError("application evidence pack must include 3 resume bullets")
     if len(payload["target_roles"]) != expected["target_role_count"]:
