@@ -46,6 +46,8 @@ def test_refresh_public_metrics_workflow_updates_resume_evidence_sources():
     assert "tests/test_resume_outcome_scoreboard.py" in run_commands
     assert "python scripts/build_reviewer_send_queue.py" in run_commands
     assert "tests/test_reviewer_send_queue.py" in run_commands
+    assert "python scripts/build_first_reviewer_send_kit.py" in run_commands
+    assert "tests/test_first_reviewer_send_kit.py" in run_commands
     assert "python scripts/verify_outcome_evidence.py" in run_commands
     assert (
         "tests/test_github_discovery_profile.py tests/test_pilot_evidence_quicklink.py tests/test_pilot_launch_control_room.py "
