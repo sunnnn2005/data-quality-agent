@@ -65,13 +65,14 @@ jobs:
           python scripts/build_resume_claim_upgrade_ledger.py
           python scripts/build_resume_outcome_scoreboard.py
           python scripts/build_reviewer_send_queue.py
+          python scripts/build_reviewer_quickstart_router.py
           python scripts/build_public_metrics_summary.py
           python scripts/build_live_project_scorecard.py
           python scripts/build_application_evidence_pack.py
       - name: Verify resume evidence
         run: |
           python scripts/verify_outcome_evidence.py
-          python -m pytest tests/test_github_discovery_profile.py tests/test_pilot_evidence_quicklink.py tests/test_pilot_launch_control_room.py tests/test_resume_outcome_adjudication.py tests/test_first_10_reviewer_sprint.py tests/test_star_growth_kit.py tests/test_public_metrics_summary.py tests/test_business_impact_ledger.py tests/test_reviewer_evidence_kit.py tests/test_resume_traction_proof.py tests/test_reviewer_action_queue.py tests/test_reviewer_outreach_execution_pack.py tests/test_reviewer_outreach_status_board.py tests/test_resume_outcome_metrics.py tests/test_resume_outcome_action_checklist.py tests/test_reviewer_submission_hub.py tests/test_public_reviewer_call.py tests/test_reviewer_share_kit.py tests/test_outcome_collection_page.py tests/test_resume_claim_upgrade_ledger.py tests/test_resume_outcome_scoreboard.py tests/test_reviewer_send_queue.py
+          python -m pytest tests/test_github_discovery_profile.py tests/test_pilot_evidence_quicklink.py tests/test_pilot_launch_control_room.py tests/test_resume_outcome_adjudication.py tests/test_first_10_reviewer_sprint.py tests/test_star_growth_kit.py tests/test_public_metrics_summary.py tests/test_business_impact_ledger.py tests/test_reviewer_evidence_kit.py tests/test_resume_traction_proof.py tests/test_reviewer_action_queue.py tests/test_reviewer_outreach_execution_pack.py tests/test_reviewer_outreach_status_board.py tests/test_resume_outcome_metrics.py tests/test_resume_outcome_action_checklist.py tests/test_reviewer_submission_hub.py tests/test_public_reviewer_call.py tests/test_reviewer_share_kit.py tests/test_outcome_collection_page.py tests/test_resume_claim_upgrade_ledger.py tests/test_resume_outcome_scoreboard.py tests/test_reviewer_send_queue.py tests/test_reviewer_quickstart_router.py
       - name: Commit refreshed metrics
         uses: stefanzweifel/git-auto-commit-action@v5
         with:

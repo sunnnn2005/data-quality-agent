@@ -1,0 +1,103 @@
+{
+  "current_zero_counts": {
+    "ai_engineer_review_items": 0,
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
+  "generated_by": "scripts/build_reviewer_quickstart_router.py",
+  "manual_counting_rule": "Do not increase any outcome metric until a non-owner public GitHub issue includes permission, contains no private data, and passes the external reviewer evidence gate.",
+  "prioritized_next_send": {
+    "public_issue": "https://github.com/sunnnn2005/data-quality-agent/issues/26",
+    "reviewer_profile": "AI engineer, mentor, or ML systems reviewer",
+    "slot_id": "slot_07_ai_engineer_review",
+    "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+    "target_metric": "ai_engineer_review_items"
+  },
+  "project": "Data Quality Agent",
+  "purpose": "Route external reviewers to the shortest evidence path for their available time and background, so public feedback can become resume-countable only after the evidence gate accepts it.",
+  "resume_safe_summary": "Published a reviewer quickstart router with 5 evidence paths mapped to feedback, confirmed-use, reproducible-run, AI-review, and business-case outcome metrics while preserving zero current claims.",
+  "route_count": 5,
+  "routes": [
+    {
+      "best_for": "A peer, recruiter, or classmate who can open the public demo and leave one specific note.",
+      "evidence_to_collect": [
+        "exact demo path opened",
+        "one useful or confusing workflow detail",
+        "permission sentence if the reviewer allows the evidence to count"
+      ],
+      "id": "five_minute_demo_feedback",
+      "label": "I only have 5 minutes",
+      "resume_claim_unlocked_after_acceptance": "after acceptance: external feedback from a non-owner reviewer",
+      "review_path": "https://sunnnn2005.github.io/data-quality-agent/",
+      "submission_path_id": "try_public_demo",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_metric": "external_feedback_items"
+    },
+    {
+      "best_for": "Someone who can open the demo or quickstart and confirm the observed result.",
+      "evidence_to_collect": [
+        "command or URL used",
+        "observed result",
+        "environment",
+        "permission sentence if the reviewer allows the evidence to count"
+      ],
+      "id": "eight_minute_confirmed_use",
+      "label": "I can confirm I tried it",
+      "resume_claim_unlocked_after_acceptance": "after acceptance: confirmed external user or reviewer run",
+      "review_path": "https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html",
+      "submission_path_id": "confirm_external_run",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md",
+      "target_metric": "confirmed_external_users"
+    },
+    {
+      "best_for": "A developer who can run Docker, the API, or a sanitized replay path.",
+      "evidence_to_collect": [
+        "endpoint or command used",
+        "dataset shape without raw rows",
+        "report status and finding count",
+        "selected tools shown in the trace"
+      ],
+      "id": "ten_minute_replay",
+      "label": "I can run the project",
+      "resume_claim_unlocked_after_acceptance": "after acceptance: reproducible external run evidence",
+      "review_path": "https://github.com/sunnnn2005/data-quality-agent",
+      "submission_path_id": "submit_reproducible_issue",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md",
+      "target_metric": "reproducible_feedback_items"
+    },
+    {
+      "best_for": "An AI/ML engineer, mentor, or advanced student who can inspect the tool-calling loop.",
+      "evidence_to_collect": [
+        "implementation paths inspected",
+        "strongest AI-agent signal",
+        "least credible gap",
+        "permission sentence if the reviewer allows the evidence to count"
+      ],
+      "id": "ai_engineer_review",
+      "label": "I can review the agent architecture",
+      "resume_claim_unlocked_after_acceptance": "after acceptance: external AI Engineer project review",
+      "review_path": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md",
+      "submission_path_id": "submit_ai_engineer_review",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+      "target_metric": "ai_engineer_review_items"
+    },
+    {
+      "best_for": "A data analyst, operator, or student who has seen messy spreadsheet, ticket, sales, or ops data.",
+      "evidence_to_collect": [
+        "anonymized workflow",
+        "data-quality problem",
+        "business impact",
+        "permission sentence if the reviewer allows the evidence to count"
+      ],
+      "id": "business_case_review",
+      "label": "I can describe a real messy-data problem",
+      "resume_claim_unlocked_after_acceptance": "after acceptance: business-case feedback tied to a real workflow",
+      "review_path": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-case-intake.md",
+      "submission_path_id": "submit_business_case",
+      "submission_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "target_metric": "business_case_feedback_items"
+    }
+  ]
+}
