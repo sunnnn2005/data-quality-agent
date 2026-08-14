@@ -70,11 +70,17 @@
       "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md",
       "label": "Public discovery traffic",
       "resume_line": "Captured public GitHub interest in the rolling 14-day window: 9 views, 3 unique visitors, 79 clones, and 50 unique cloners without counting them as users."
+    },
+    {
+      "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-availability-snapshot.md",
+      "label": "Public availability",
+      "resume_line": "Verified 4/4 public project surfaces and 3/3 main-branch workflows in a generated availability snapshot without claiming production SLA."
     }
   ],
-  "claimable_now_count": 4,
+  "claimable_now_count": 5,
   "current_public_counts": {
     "ai_engineer_review_items": 0,
+    "available_public_endpoints": 4,
     "business_case_feedback_items": 0,
     "confirmed_external_users": 0,
     "external_feedback_items": 0,
@@ -84,7 +90,10 @@
     "github_unique_cloners": 50,
     "github_unique_visitors": 3,
     "github_views": 9,
-    "reproducible_feedback_items": 0
+    "main_branch_workflow_count": 3,
+    "public_endpoint_count": 4,
+    "reproducible_feedback_items": 0,
+    "successful_main_branch_workflows": 3
   },
   "generated_by": "scripts/build_resume_outcome_scoreboard.py",
   "not_claimed": [
@@ -95,9 +104,10 @@
     "GitHub stars"
   ],
   "project": "Data Quality Agent",
+  "public_availability_policy": "This snapshot proves public entrypoint reachability and recent workflow health only. Do not claim production uptime SLA, active users, customer adoption, or paid availability monitoring from this artifact.",
   "public_interest_policy": "Traffic, views, and clones are repository-interest signals only. Do not claim these as confirmed users, customer feedback, production adoption, or successful business outcomes.",
   "purpose": "Give recruiters and reviewers a single resume outcome scoreboard: what is claimable now, what is blocked, and which public evidence unlocks stronger user, feedback, business, AI-review, and GitHub-star claims.",
-  "resume_safe_summary": "Published a resume outcome scoreboard with 4 currently claimable evidence-backed lines, 6 blocked outcome claims, 7 remaining reviewer evidence items, public traffic separated from users, and zero external-user, feedback, business-validation, AI-review, or star claims.",
+  "resume_safe_summary": "Published a resume outcome scoreboard with 5 currently claimable evidence-backed lines, 6 blocked outcome claims, 7 remaining reviewer evidence items, public traffic and availability separated from users, and zero external-user, feedback, business-validation, AI-review, or star claims.",
   "reviewer_funnel": {
     "funnel_stage_count": 4,
     "open_gap_count": 4,

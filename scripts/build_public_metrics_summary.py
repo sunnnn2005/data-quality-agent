@@ -1358,7 +1358,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "resume_outcome_adjudication_blocked_categories": 5,
         "resume_outcome_adjudication_claimable_categories": 0,
         "resume_outcome_scoreboard": 1,
-        "resume_outcome_scoreboard_claimable_now": 4,
+        "resume_outcome_scoreboard_claimable_now": 5,
         "resume_outcome_scoreboard_blocked": 6,
         "resume_outcome_scoreboard_remaining_evidence": 7,
         "evidence_acceptance_checklist": 1,

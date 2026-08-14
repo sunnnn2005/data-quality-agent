@@ -11,6 +11,7 @@ RESUME_TRACTION_PROOF_PATH = ROOT / "docs" / "resume-traction-proof.json"
 REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 AI_ENGINEER_READINESS_PATH = ROOT / "docs" / "ai-engineer-readiness.json"
 GITHUB_TRAFFIC_SNAPSHOT_PATH = ROOT / "docs" / "github-traffic-snapshot.json"
+PUBLIC_AVAILABILITY_SNAPSHOT_PATH = ROOT / "docs" / "public-availability-snapshot.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "resume-outcome-scoreboard.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "resume-outcome-scoreboard.md"
 
@@ -27,6 +28,7 @@ def build_resume_outcome_scoreboard() -> dict[str, Any]:
     funnel = load_json(REVIEWER_FUNNEL_BOARD_PATH)
     ai_readiness = load_json(AI_ENGINEER_READINESS_PATH)
     traffic = load_json(GITHUB_TRAFFIC_SNAPSHOT_PATH)
+    availability = load_json(PUBLIC_AVAILABILITY_SNAPSHOT_PATH)
     traffic_metrics = traffic["traffic_metrics"]
 
     unlocked = [
@@ -56,6 +58,15 @@ def build_resume_outcome_scoreboard() -> dict[str, Any]:
                 f"{traffic_metrics['unique_cloners']} unique cloners without counting them as users."
             ),
             "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md",
+        },
+        {
+            "label": "Public availability",
+            "resume_line": (
+                f"Verified {availability['available_endpoint_count']}/{availability['endpoint_count']} public project "
+                f"surfaces and {availability['successful_workflow_count']}/{availability['workflow_count']} main-branch "
+                "workflows in a generated availability snapshot without claiming production SLA."
+            ),
+            "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-availability-snapshot.md",
         },
     ]
 
@@ -91,8 +102,13 @@ def build_resume_outcome_scoreboard() -> dict[str, Any]:
             "github_unique_visitors": traffic_metrics["unique_visitors"],
             "github_clones": traffic_metrics["clone_count"],
             "github_unique_cloners": traffic_metrics["unique_cloners"],
+            "available_public_endpoints": availability["available_endpoint_count"],
+            "public_endpoint_count": availability["endpoint_count"],
+            "successful_main_branch_workflows": availability["successful_workflow_count"],
+            "main_branch_workflow_count": availability["workflow_count"],
         },
         "public_interest_policy": traffic["resume_policy"],
+        "public_availability_policy": availability["resume_policy"],
         "reviewer_funnel": {
             "funnel_stage_count": funnel["funnel_stage_count"],
             "open_gap_count": funnel["open_gap_count"],
@@ -106,8 +122,8 @@ def build_resume_outcome_scoreboard() -> dict[str, Any]:
         "resume_safe_summary": (
             f"Published a resume outcome scoreboard with {len(unlocked)} currently claimable evidence-backed lines, "
             f"{upgrade['blocked_row_count']} blocked outcome claims, {funnel['total_remaining_evidence_items']} remaining "
-            "reviewer evidence items, public traffic separated from users, and zero external-user, feedback, "
-            "business-validation, AI-review, or star claims."
+            "reviewer evidence items, public traffic and availability separated from users, and zero external-user, "
+            "feedback, business-validation, AI-review, or star claims."
         ),
         "not_claimed": [
             "external users",
@@ -178,8 +194,8 @@ def render_markdown(payload: dict[str, Any]) -> str:
 
 
 def verify_resume_outcome_scoreboard(payload: dict[str, Any]) -> dict[str, Any]:
-    if payload["claimable_now_count"] != 4:
-        raise AssertionError("scoreboard must keep exactly four currently claimable evidence-backed lines")
+    if payload["claimable_now_count"] != 5:
+        raise AssertionError("scoreboard must keep exactly five currently claimable evidence-backed lines")
     if payload["blocked_outcome_count"] != 6:
         raise AssertionError("scoreboard must keep six outcome claims blocked before public evidence")
     if payload["reviewer_funnel"]["remaining_evidence_items"] != 7:
@@ -203,12 +219,31 @@ def verify_resume_outcome_scoreboard(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("unique visitors cannot exceed total views")
     if payload["current_public_counts"]["github_unique_cloners"] > payload["current_public_counts"]["github_clones"]:
         raise AssertionError("unique cloners cannot exceed total clones")
+    if payload["current_public_counts"]["available_public_endpoints"] > payload["current_public_counts"]["public_endpoint_count"]:
+        raise AssertionError("available public endpoints cannot exceed endpoint count")
+    if (
+        payload["current_public_counts"]["successful_main_branch_workflows"]
+        > payload["current_public_counts"]["main_branch_workflow_count"]
+    ):
+        raise AssertionError("successful workflows cannot exceed workflow count")
     policy = payload["public_interest_policy"].lower()
     for phrase in ("do not claim", "confirmed users", "customer feedback", "production adoption"):
         if phrase not in policy:
             raise AssertionError(f"scoreboard must preserve public-interest policy phrase: {phrase}")
+    availability_policy = payload["public_availability_policy"].lower()
+    for phrase in ("do not claim", "production uptime sla", "active users", "customer adoption"):
+        if phrase not in availability_policy:
+            raise AssertionError(f"scoreboard must preserve availability policy phrase: {phrase}")
     joined = json.dumps(payload, sort_keys=True).lower()
-    for required in ("tool calling", "guardrails", "structured output", "evidence traces", "evaluation", "unique visitors"):
+    for required in (
+        "tool calling",
+        "guardrails",
+        "structured output",
+        "evidence traces",
+        "evaluation",
+        "unique visitors",
+        "public project surfaces",
+    ):
         if required not in joined:
             raise AssertionError(f"scoreboard must preserve AI Engineer signal: {required}")
     markdown = render_markdown(payload)
