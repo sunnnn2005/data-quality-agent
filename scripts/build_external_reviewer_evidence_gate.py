@@ -3,6 +3,9 @@ import re
 import subprocess
 from pathlib import Path
 from typing import Any
+from urllib.error import URLError
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,6 +20,7 @@ BUSINESS_CASE_LABELS = {"business-case"}
 AI_ENGINEER_REVIEW_LABELS = {"ai-engineer-review"}
 BUSINESS_DATA_REPLAY_LABELS = {"business-data-replay"}
 REPO = "sunnnn2005/data-quality-agent"
+PUBLIC_ISSUES_API = f"https://api.github.com/repos/{REPO}/issues"
 TRACKED_LABELS = sorted(
     EXTERNAL_RUN_LABELS | BUSINESS_CASE_LABELS | AI_ENGINEER_REVIEW_LABELS | BUSINESS_DATA_REPLAY_LABELS
 )
@@ -210,6 +214,7 @@ def count_accepted(evaluations: list[dict[str, Any]]) -> dict[str, int]:
 def collect_public_reviewer_issues() -> tuple[list[dict[str, Any]], dict[str, Any]]:
     issues_by_number: dict[int, dict[str, Any]] = {}
     errors: list[str] = []
+    used_public_api = False
     for label in TRACKED_LABELS:
         try:
             completed = subprocess.run(
@@ -234,21 +239,53 @@ def collect_public_reviewer_issues() -> tuple[list[dict[str, Any]], dict[str, An
                 cwd=ROOT,
             )
         except (FileNotFoundError, subprocess.CalledProcessError) as exc:
-            errors.append(f"{label}: {exc}")
-            continue
-        for issue in json.loads(completed.stdout):
+            try:
+                issues = _collect_public_issues_by_label(label)
+                used_public_api = True
+            except (URLError, TimeoutError, json.JSONDecodeError) as api_exc:
+                errors.append(f"{label}: gh={exc.__class__.__name__}; public_api={api_exc.__class__.__name__}")
+                continue
+        else:
+            issues = json.loads(completed.stdout)
+        for issue in issues:
             number = issue.get("number")
             if isinstance(number, int):
                 issues_by_number[number] = issue
 
     issues = [issues_by_number[number] for number in sorted(issues_by_number)]
     return issues, {
-        "source": "github_issues",
+        "source": "github_public_api" if used_public_api else "github_issues",
         "repo": REPO,
         "tracked_labels": TRACKED_LABELS,
         "collected_issue_count": len(issues),
         "error_count": len(errors),
         "errors": errors,
+    }
+
+
+def _collect_public_issues_by_label(label: str) -> list[dict[str, Any]]:
+    query = urlencode({"state": "all", "labels": label, "per_page": "100"})
+    request = Request(
+        f"{PUBLIC_ISSUES_API}?{query}",
+        headers={
+            "Accept": "application/vnd.github+json",
+            "User-Agent": "data-quality-agent-external-reviewer-evidence-gate",
+            "X-GitHub-Api-Version": "2022-11-28",
+        },
+    )
+    with urlopen(request, timeout=15) as response:
+        payload = json.loads(response.read().decode("utf-8"))
+    return [_normalize_public_api_issue(issue) for issue in payload if "pull_request" not in issue]
+
+
+def _normalize_public_api_issue(issue: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "number": issue.get("number"),
+        "title": issue.get("title"),
+        "url": issue.get("html_url"),
+        "author": {"login": (issue.get("user") or {}).get("login", "")},
+        "labels": [{"name": label.get("name", "")} for label in issue.get("labels", [])],
+        "body": issue.get("body") or "",
     }
 
 
@@ -298,6 +335,7 @@ def build_external_reviewer_evidence_gate(issues: list[dict[str, Any]] | None = 
             "Business-data replay issues require a sanitized data source type, dataset shape, agent run summary, and catch-or-miss feedback.",
             "Issues containing sensitive-data risk terms are rejected until redacted.",
             "The default artifact collects tracked public GitHub issues before applying the evidence gate.",
+            "When GitHub CLI auth is unavailable, collection falls back to the public GitHub Issues API.",
         ],
         "resume_safe_summary": (
             "Published a CI-verified external reviewer evidence gate that validates issue body fields, explicit "
@@ -384,8 +422,8 @@ def verify_external_reviewer_evidence_gate(payload: dict[str, Any]) -> dict[str,
         raise AssertionError("external reviewer evidence gate must link the 3 queued reviewer segments")
     if payload["accepted_counts"] != expected_zero:
         raise AssertionError("external reviewer evidence gate must not count evidence before accepted public issues")
-    if len(payload["gate_rules"]) != 8:
-        raise AssertionError("external reviewer evidence gate must document eight counting rules")
+    if len(payload["gate_rules"]) != 9:
+        raise AssertionError("external reviewer evidence gate must document nine counting rules")
     for required in (
         "Self-authored issues do not count as external evidence.",
         "Reviewer must grant explicit permission before a run or feedback is counted.",
@@ -393,10 +431,11 @@ def verify_external_reviewer_evidence_gate(payload: dict[str, Any]) -> dict[str,
         "Business-data replay issues require a sanitized data source type, dataset shape, agent run summary, and catch-or-miss feedback.",
         "Issues containing sensitive-data risk terms are rejected until redacted.",
         "The default artifact collects tracked public GitHub issues before applying the evidence gate.",
+        "When GitHub CLI auth is unavailable, collection falls back to the public GitHub Issues API.",
     ):
         if required not in payload["gate_rules"]:
             raise AssertionError(f"external reviewer evidence gate missing rule: {required}")
-    if payload["issue_collection"]["source"] not in {"github_issues", "provided_issues"}:
+    if payload["issue_collection"]["source"] not in {"github_issues", "github_public_api", "provided_issues"}:
         raise AssertionError("external reviewer evidence gate must document issue collection source")
     for required in (
         "No accepted external reviewer issue exists yet.",

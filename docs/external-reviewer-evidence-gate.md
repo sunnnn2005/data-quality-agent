@@ -52,6 +52,7 @@ This generated gate validates public reviewer issues before they can become resu
 - Business-data replay issues require a sanitized data source type, dataset shape, agent run summary, and catch-or-miss feedback.
 - Issues containing sensitive-data risk terms are rejected until redacted.
 - The default artifact collects tracked public GitHub issues before applying the evidence gate.
+- When GitHub CLI auth is unavailable, collection falls back to the public GitHub Issues API.
 
 ## Resume-Safe Summary
 

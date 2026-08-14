@@ -1,9 +1,11 @@
 from scripts.build_external_reviewer_evidence_gate import (
     build_external_reviewer_evidence_gate,
+    collect_public_reviewer_issues,
     evaluate_issue,
     render_markdown,
     verify_external_reviewer_evidence_gate,
 )
+import scripts.build_external_reviewer_evidence_gate as evidence_gate
 
 
 VALID_EXTERNAL_RUN_BODY = """## Reviewer role
@@ -204,7 +206,7 @@ def test_external_reviewer_evidence_gate_starts_from_zero_without_fake_claims():
     markdown = render_markdown(payload)
 
     assert verification["external_reviewer_evidence_gate_verified"] is True
-    assert payload["issue_collection"]["source"] in {"github_issues", "provided_issues"}
+    assert payload["issue_collection"]["source"] in {"github_issues", "github_public_api", "provided_issues"}
     assert payload["issue_collection"]["collected_issue_count"] == payload["evaluated_issue_count"]
     assert payload["accepted_issue_count"] == 0
     assert payload["accepted_counts"]["external_feedback_items"] == 0
@@ -328,3 +330,23 @@ def test_external_reviewer_evidence_gate_rejects_self_authored_missing_permissio
     assert "docs-only review is not a confirmed business-data replay" in docs_only_replay["failure_reasons"]
     assert replay_missing_permission["accepted"] is False
     assert "missing confirmed anonymized replay permission" in replay_missing_permission["failure_reasons"]
+
+
+def test_external_reviewer_evidence_gate_falls_back_to_public_api_when_gh_auth_fails(monkeypatch):
+    def fake_run(*args, **kwargs):
+        raise evidence_gate.subprocess.CalledProcessError(returncode=1, cmd=args[0])
+
+    def fake_public_api(label):
+        if label != "feedback":
+            return []
+        return [issue(VALID_EXTERNAL_RUN_BODY)]
+
+    monkeypatch.setattr(evidence_gate.subprocess, "run", fake_run)
+    monkeypatch.setattr(evidence_gate, "_collect_public_issues_by_label", fake_public_api)
+
+    issues, collection = collect_public_reviewer_issues()
+
+    assert collection["source"] == "github_public_api"
+    assert collection["error_count"] == 0
+    assert collection["collected_issue_count"] == 1
+    assert issues[0]["number"] == 31

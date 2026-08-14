@@ -2119,11 +2119,14 @@ def verify_manifest() -> dict[str, int]:
                     raise AssertionError("external reviewer evidence gate must link 3 outreach queue entries")
                 if external_reviewer_gate.get("accepted_issue_count") != 0:
                     raise AssertionError("external reviewer evidence gate must preserve zero accepted issue baseline")
-                if len(external_reviewer_gate.get("gate_rules", [])) != 8:
-                    raise AssertionError("external reviewer evidence gate must document 8 validation rules")
+                if len(external_reviewer_gate.get("gate_rules", [])) != 9:
+                    raise AssertionError("external reviewer evidence gate must document 9 validation rules")
                 if not any("Business-data replay issues require" in rule for rule in external_reviewer_gate.get("gate_rules", [])):
                     raise AssertionError("external reviewer evidence gate must document business-data replay evidence rules")
-                if external_reviewer_gate.get("issue_collection", {}).get("source") != "github_issues":
+                if external_reviewer_gate.get("issue_collection", {}).get("source") not in {
+                    "github_issues",
+                    "github_public_api",
+                }:
                     raise AssertionError("external reviewer evidence gate must collect public GitHub issues by default")
                 for key in (
                     "external_feedback_items",
