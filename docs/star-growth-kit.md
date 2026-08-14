@@ -24,9 +24,19 @@ This generated kit documents ethical ways to improve public GitHub traction with
 | ai-agent | yes |
 | data-engineering | yes |
 | data-quality | yes |
+| data-reliability | yes |
+| docker | yes |
 | fastapi | yes |
 | github-actions | yes |
+| llm | yes |
+| llm-agent | yes |
+| openai | yes |
+| pandas | yes |
+| postgres | yes |
+| pydantic | yes |
 | python | yes |
+| quality-monitoring | yes |
+| tool-calling | yes |
 
 Topic readiness: `True`
 

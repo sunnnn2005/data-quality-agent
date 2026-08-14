@@ -1,0 +1,71 @@
+{
+  "current_public_counts": {
+    "adoption_metric_forks": 1,
+    "adoption_metric_stars": 0,
+    "forks": 1,
+    "stars": 0,
+    "watchers": 0
+  },
+  "description": "Local-first data reliability agent with dataset profiling, typed findings, quality scoring, and report traces.",
+  "discovery_ready": true,
+  "generated_by": "scripts/build_github_discovery_profile.py",
+  "homepage_url": "https://sunnnn2005.github.io/data-quality-agent/",
+  "is_private": false,
+  "missing_topics": [],
+  "not_claimed": [
+    "GitHub stars beyond the current public count",
+    "organic discovery results",
+    "external contributors",
+    "external users",
+    "customer feedback"
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Verify the public GitHub discovery surface that can help real reviewers, contributors, and recruiters find the project without inflating stars or usage.",
+  "repo": "https://github.com/sunnnn2005/data-quality-agent",
+  "required_topics": [
+    "ai-agent",
+    "data-engineering",
+    "data-quality",
+    "data-reliability",
+    "docker",
+    "fastapi",
+    "github-actions",
+    "llm",
+    "llm-agent",
+    "openai",
+    "pandas",
+    "postgres",
+    "pydantic",
+    "python",
+    "quality-monitoring",
+    "tool-calling"
+  ],
+  "resume_safe_summary": "Published a CI-verified GitHub discovery profile with 16 relevant repository topics, public homepage metadata, reviewer entrypoints, and honest zero-star baseline.",
+  "reviewer_entrypoints": [
+    "https://github.com/sunnnn2005/data-quality-agent",
+    "https://sunnnn2005.github.io/data-quality-agent/",
+    "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/application-evidence-pack.md",
+    "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/resume-claim-upgrade-ledger.md",
+    "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+    "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md"
+  ],
+  "topic_count": 16,
+  "topics": [
+    "ai-agent",
+    "data-engineering",
+    "data-quality",
+    "data-reliability",
+    "docker",
+    "fastapi",
+    "github-actions",
+    "llm",
+    "llm-agent",
+    "openai",
+    "pandas",
+    "postgres",
+    "pydantic",
+    "python",
+    "quality-monitoring",
+    "tool-calling"
+  ]
+}

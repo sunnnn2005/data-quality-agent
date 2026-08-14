@@ -15,6 +15,9 @@ def test_star_growth_kit_tracks_ethical_growth_without_inflating_stars():
     assert payload["current_public_counts"]["forks"] == 1
     assert payload["current_public_counts"]["issues_total"] == 14
     assert payload["topic_readiness"]["ready"] is True
+    assert len(payload["topic_readiness"]["required_topics"]) == 16
+    assert "llm-agent" in payload["topic_readiness"]["current_topics"]
+    assert "tool-calling" in payload["topic_readiness"]["current_topics"]
     assert len(payload["ethical_growth_actions"]) == 4
     assert len(payload["resume_upgrade_rules"]) == 4
     assert payload["traffic_snapshot"]["source"] == "GitHub traffic API rolling 14-day window"

@@ -89,11 +89,19 @@
       "ai-agent",
       "data-engineering",
       "data-quality",
+      "data-reliability",
       "docker",
       "fastapi",
       "github-actions",
+      "llm",
+      "llm-agent",
+      "openai",
       "pandas",
-      "python"
+      "postgres",
+      "pydantic",
+      "python",
+      "quality-monitoring",
+      "tool-calling"
     ],
     "missing_topics": [],
     "ready": true,
@@ -101,9 +109,19 @@
       "ai-agent",
       "data-engineering",
       "data-quality",
+      "data-reliability",
+      "docker",
       "fastapi",
       "github-actions",
-      "python"
+      "llm",
+      "llm-agent",
+      "openai",
+      "pandas",
+      "postgres",
+      "pydantic",
+      "python",
+      "quality-monitoring",
+      "tool-calling"
     ]
   },
   "traffic_snapshot": {

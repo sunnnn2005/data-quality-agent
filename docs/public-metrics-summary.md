@@ -10,7 +10,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Forks | 1 |
 | Watchers | 0 |
 | GitHub issues | 14 |
-| Passing CI tests | 146 |
+| Passing CI tests | 147 |
 | External feedback items | 0 |
 | Confirmed external users | 0 |
 | Reproducible feedback items | 0 |
@@ -170,7 +170,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Recruiter-safe resume bullets | 3 |
 | Recruiter pitch target roles | 4 |
 | Application evidence pack | 1 |
-| Application evidence links | 40 |
+| Application evidence links | 41 |
 | AI Engineer review intake | 1 |
 | AI Engineer review paths | 6 |
 | AI Engineer review questions | 6 |
@@ -210,7 +210,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Feedback intake outcome signals | 4 |
 | Feedback intake captured evidence groups | 5 |
 | Star growth kit | 1 |
-| Star growth required topics | 6 |
+| Star growth required topics | 16 |
 | Star growth ethical actions | 4 |
 | Star growth resume upgrade rules | 4 |
 | Business-case intake | 1 |
@@ -254,7 +254,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 ## Resume-Safe Signals
 
 - Public demo and v0.3.0 release
-- 146 passing CI tests
+- 147 passing CI tests
 - 4 support-ticket issue categories
 - 3 evidence-ranked root-cause hypotheses
 - 4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs
@@ -307,12 +307,13 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 23 reviewer paths in a CI-verified live project scorecard
 - CI-verified OpenAPI contract covering 6 integration endpoints
 - 3 recruiter-safe resume bullets for 4 target roles
-- 40 application evidence links in a recruiter-ready evidence pack
+- 41 application evidence links in a recruiter-ready evidence pack
+- GitHub discovery profile with 16 precise topics, 6 reviewer entrypoints, public homepage metadata, and zero-star baseline
 - AI Engineer review intake with 6 review paths, 6 reviewer questions, 5 countable-evidence conditions, and zero accepted reviews
 - 3 pilot outreach messages and 10 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
 - Feedback intake system with 5 required sections, 5 demo paths, 4 outcome signals, and 5 captured evidence groups
-- Star growth kit with 6 verified repo topics, 4 ethical growth actions, and 4 resume upgrade rules with traffic context without inflating current stars
+- Star growth kit with 16 verified repo topics, 4 ethical growth actions, and 4 resume upgrade rules with traffic context without inflating current stars
 - Business-case intake path with 8 required sections, 5 tried paths, 8 outcome signals, and 8 captured evidence groups including 9 resume outcome fields
 - Business-data replay packet with 3 safe replay paths, 8 evidence fields, 5 safety requirements, and zero current external replay claims
 - Business replay demo with 8 anonymized rows, 5 findings, 4 failed check types, 4 business-rule references, and deterministic verification

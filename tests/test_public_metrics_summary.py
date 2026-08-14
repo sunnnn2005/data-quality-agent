@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 146
+    assert payload["public_metrics"]["test_count"] == 147
     assert payload["public_metrics"]["github_view_count"] >= 0
     assert payload["public_metrics"]["github_unique_visitors"] <= payload["public_metrics"]["github_view_count"]
     assert payload["public_metrics"]["github_clone_count"] >= 0
@@ -154,7 +154,10 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["recruiter_pitch_resume_bullets"] == 3
     assert payload["verified_project_outcomes"]["recruiter_pitch_target_roles"] == 4
     assert payload["verified_project_outcomes"]["application_evidence_pack"] == 1
-    assert payload["verified_project_outcomes"]["application_evidence_links"] == 40
+    assert payload["verified_project_outcomes"]["application_evidence_links"] == 41
+    assert payload["verified_project_outcomes"]["github_discovery_profile"] == 1
+    assert payload["verified_project_outcomes"]["github_discovery_topics"] == 16
+    assert payload["verified_project_outcomes"]["github_discovery_reviewer_entrypoints"] == 6
     assert payload["verified_project_outcomes"]["reviewer_share_channels"] == 5
     assert payload["verified_project_outcomes"]["reviewer_share_ready_messages"] == 5
     assert payload["verified_project_outcomes"]["reviewer_share_not_sent"] == 5
@@ -205,7 +208,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["feedback_intake_outcomes"] == 4
     assert payload["verified_project_outcomes"]["feedback_intake_captured_fields"] == 5
     assert payload["verified_project_outcomes"]["star_growth_kit"] == 1
-    assert payload["verified_project_outcomes"]["star_growth_required_topics"] == 6
+    assert payload["verified_project_outcomes"]["star_growth_required_topics"] == 16
     assert payload["verified_project_outcomes"]["star_growth_ethical_actions"] == 4
     assert payload["verified_project_outcomes"]["star_growth_resume_upgrade_rules"] == 4
     assert payload["verified_project_outcomes"]["business_case_intake"] == 1
@@ -321,7 +324,8 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         "Outcome collection page with 5 next actions, 6 submission paths, 23 required evidence fields, 0 confirmed users, 0 feedback items, and 0 GitHub stars"
         in payload["resume_safe_signals"]
     )
-    assert "40 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
+    assert "41 application evidence links in a recruiter-ready evidence pack" in payload["resume_safe_signals"]
+    assert any("GitHub discovery profile with 16 precise topics" in signal for signal in payload["resume_safe_signals"])
     assert any("Resume claim upgrade ledger with 6 outcome metrics" in signal for signal in payload["resume_safe_signals"])
     assert any("Reviewer share kit with 5 copy-ready messages" in signal for signal in payload["resume_safe_signals"])
     assert any("Business impact ledger with 0 accepted business-impact signals" in signal for signal in payload["resume_safe_signals"])
@@ -361,7 +365,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         in payload["resume_safe_signals"]
     )
     assert (
-        "Star growth kit with 6 verified repo topics, 4 ethical growth actions, and 4 resume upgrade rules with traffic context without inflating current stars"
+            "Star growth kit with 16 verified repo topics, 4 ethical growth actions, and 4 resume upgrade rules with traffic context without inflating current stars"
         in payload["resume_safe_signals"]
     )
     assert (

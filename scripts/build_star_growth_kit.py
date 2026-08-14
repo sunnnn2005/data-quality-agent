@@ -16,9 +16,19 @@ REQUIRED_TOPICS = {
     "ai-agent",
     "data-engineering",
     "data-quality",
+    "data-reliability",
+    "docker",
     "fastapi",
     "github-actions",
+    "llm",
+    "llm-agent",
+    "openai",
+    "pandas",
+    "postgres",
+    "pydantic",
     "python",
+    "quality-monitoring",
+    "tool-calling",
 }
 
 

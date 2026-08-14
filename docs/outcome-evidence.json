@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 146,
-      "resume_signal": "146 passing CI tests",
+      "metric_value": 147,
+      "resume_signal": "147 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 40 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 41 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 40,
+      "metric_value": 41,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -779,6 +779,16 @@
       "resume_signal": "CI-verified resume claim upgrade ledger",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-claim-upgrade-ledger.json"
+    },
+    {
+      "claim": "The project publishes a GitHub discovery profile verifying 16 precise repository topics, public homepage metadata, 6 reviewer entrypoints, and the current zero-star baseline without claiming organic discovery or adoption.",
+      "evidence_type": "generated_artifact",
+      "id": "github-discovery-profile",
+      "metric_name": "github_discovery_profile",
+      "metric_value": 1,
+      "resume_signal": "CI-verified GitHub discovery profile",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/github-discovery-profile.json"
     }
   ],
   "not_claimed": [

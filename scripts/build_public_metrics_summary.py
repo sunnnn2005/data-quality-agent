@@ -59,6 +59,7 @@ OUTCOME_UPGRADE_PLAYBOOK_PATH = ROOT / "docs" / "outcome-upgrade-playbook.json"
 REVIEWER_FEEDBACK_PACKET_PATH = ROOT / "docs" / "reviewer-feedback-packet.json"
 FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
+GITHUB_DISCOVERY_PROFILE_PATH = ROOT / "docs" / "github-discovery-profile.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
 BUSINESS_DATA_REPLAY_PACKET_PATH = ROOT / "docs" / "business-data-replay-packet.json"
 REAL_MODEL_RUNBOOK_PATH = ROOT / "docs" / "real-model-runbook.json"
@@ -70,7 +71,7 @@ RESUME_CLAIM_UPGRADE_LEDGER_PATH = ROOT / "docs" / "resume-claim-upgrade-ledger.
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 SCORECARD_REVIEWER_PATH_COUNT = 23
-APPLICATION_EVIDENCE_LINK_COUNT = 40
+APPLICATION_EVIDENCE_LINK_COUNT = 41
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -133,6 +134,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     reviewer_packet = load_json(REVIEWER_FEEDBACK_PACKET_PATH)
     feedback_intake = load_json(FEEDBACK_INTAKE_QUALITY_PATH)
     star_growth = load_json(STAR_GROWTH_KIT_PATH)
+    github_discovery = load_json(GITHUB_DISCOVERY_PROFILE_PATH)
     business_case_intake = load_json(BUSINESS_CASE_INTAKE_PATH)
     replay_packet = load_json(BUSINESS_DATA_REPLAY_PACKET_PATH)
     real_model_runbook = load_json(REAL_MODEL_RUNBOOK_PATH)
@@ -321,6 +323,9 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "recruiter_pitch_target_roles": len(recruiter_pitch["target_roles"]),
             "application_evidence_pack": 1,
             "application_evidence_links": APPLICATION_EVIDENCE_LINK_COUNT,
+            "github_discovery_profile": 1,
+            "github_discovery_topics": github_discovery["topic_count"],
+            "github_discovery_reviewer_entrypoints": len(github_discovery["reviewer_entrypoints"]),
             "ai_engineer_review_intake": 1,
             "ai_engineer_review_paths": ai_engineer_review_intake["review_path_count"],
             "ai_engineer_review_questions": ai_engineer_review_intake["review_question_count"],
@@ -631,6 +636,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "CI-verified OpenAPI contract covering 6 integration endpoints",
             f"{len(recruiter_pitch['resume_bullets'])} recruiter-safe resume bullets for {len(recruiter_pitch['target_roles'])} target roles",
             f"{APPLICATION_EVIDENCE_LINK_COUNT} application evidence links in a recruiter-ready evidence pack",
+            (
+                f"GitHub discovery profile with {github_discovery['topic_count']} precise topics, "
+                f"{len(github_discovery['reviewer_entrypoints'])} reviewer entrypoints, public homepage metadata, "
+                "and zero-star baseline"
+            ),
             (
                 f"AI Engineer review intake with {ai_engineer_review_intake['review_path_count']} review paths, "
                 f"{ai_engineer_review_intake['review_question_count']} reviewer questions, "
@@ -968,7 +978,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 146,
+        "test_count": 147,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -1134,7 +1144,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 40,
+        "application_evidence_links": 41,
+        "github_discovery_profile": 1,
+        "github_discovery_topics": 16,
+        "github_discovery_reviewer_entrypoints": 6,
         "ai_engineer_review_intake": 1,
         "ai_engineer_review_paths": 6,
         "ai_engineer_review_questions": 6,
@@ -1182,7 +1195,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "feedback_intake_outcomes": 4,
         "feedback_intake_captured_fields": 5,
         "star_growth_kit": 1,
-        "star_growth_required_topics": 6,
+        "star_growth_required_topics": 16,
         "star_growth_ethical_actions": 4,
         "star_growth_resume_upgrade_rules": 4,
         "business_case_intake": 1,
