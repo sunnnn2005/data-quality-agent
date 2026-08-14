@@ -99,6 +99,9 @@ def build_business_pilot_offer() -> dict[str, Any]:
         "generated_by": "scripts/build_business_pilot_offer.py",
         "public_url": "https://sunnnn2005.github.io/data-quality-agent/business-pilot-offer.html",
         "public_pilot_issue": PILOT_ISSUE_URL,
+        "evidence_checklist_url": (
+            "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-pilot-evidence-checklist.md"
+        ),
         "purpose": (
             "Turn the project from a portfolio demo into a safe pilot-ready offer for people who can bring "
             "anonymized business-shaped data or a real data-quality workflow problem."
@@ -158,6 +161,8 @@ def render_markdown(payload: dict[str, Any]) -> str:
 Public page: [{payload["public_url"]}]({payload["public_url"]})
 
 Public pilot issue: [{payload["public_pilot_issue"]}]({payload["public_pilot_issue"]})
+
+Evidence checklist: [{payload["evidence_checklist_url"]}]({payload["evidence_checklist_url"]})
 
 ## Pilot Scope
 
@@ -287,6 +292,7 @@ def render_html(payload: dict[str, Any]) -> str:
       <p>{html.escape(payload["resume_safe_summary"])}</p>
       <div class="links">{submissions}</div>
       <div class="links"><a href="{html.escape(payload["public_pilot_issue"])}">Open public pilot issue</a></div>
+      <div class="links"><a href="{html.escape(payload["evidence_checklist_url"])}">Open evidence checklist</a></div>
     </section>
   </main>
 </body>
@@ -310,6 +316,8 @@ def verify_business_pilot_offer(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("business pilot issue must stay classified as an entrypoint, not outcome evidence")
     if not payload["public_pilot_issue"].endswith("/issues/31"):
         raise AssertionError("business pilot offer must point to the public pilot issue")
+    if not payload["evidence_checklist_url"].endswith("/docs/business-pilot-evidence-checklist.md"):
+        raise AssertionError("business pilot offer must link to the evidence checklist")
     if any(count != 0 for count in payload["current_public_counts"].values()):
         raise AssertionError("business pilot offer must preserve zero external pilot counts")
     joined = json.dumps(payload, sort_keys=True).lower()

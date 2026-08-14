@@ -12,6 +12,7 @@
     "synthetic-but-business-shaped export that mirrors a real workflow",
     "written business case when data cannot be shared"
   ],
+  "evidence_checklist_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-pilot-evidence-checklist.md",
   "evidence_gate_count": 6,
   "evidence_gates": [
     "non-owner reviewer or pilot contact",

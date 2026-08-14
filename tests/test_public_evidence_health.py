@@ -22,6 +22,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "two-minute-review-card",
         "business-pilot-offer-page",
         "business-pilot-offer",
+        "business-pilot-evidence-checklist",
         "resume-live-proof-snapshot",
         "business-pilot-offer-issue",
         "first-external-review-card-page",
@@ -84,6 +85,12 @@ def test_public_evidence_health_requires_core_public_signals():
     } <= check_ids
     replay_packet = next(check for check in PUBLIC_CHECKS if check["id"] == "business-data-replay-packet")
     assert "business_data_replay.md" in replay_packet["expected_texts"]
+    pilot_checklist = next(check for check in PUBLIC_CHECKS if check["id"] == "business-pilot-evidence-checklist")
+    assert pilot_checklist["url"].endswith("/business-pilot-evidence-checklist.json")
+    assert pilot_checklist["expected_json"]["outcome_track_count"] == 4
+    assert pilot_checklist["expected_json"]["claimable_now"] == []
+    assert "selected tools or agent trace summary" in pilot_checklist["expected_texts"]
+    assert "measured company impact" in pilot_checklist["expected_texts"]
     feedback_entrypoints = next(check for check in PUBLIC_CHECKS if check["id"] == "demo-feedback-entrypoints")
     assert feedback_entrypoints["expected_text"] == "Try It & Leave Feedback"
     assert {

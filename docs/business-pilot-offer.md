@@ -6,6 +6,8 @@ Public page: [https://sunnnn2005.github.io/data-quality-agent/business-pilot-off
 
 Public pilot issue: [https://github.com/sunnnn2005/data-quality-agent/issues/31](https://github.com/sunnnn2005/data-quality-agent/issues/31)
 
+Evidence checklist: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-pilot-evidence-checklist.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-pilot-evidence-checklist.md)
+
 ## Pilot Scope
 
 | Step | Name | Owner | Output |

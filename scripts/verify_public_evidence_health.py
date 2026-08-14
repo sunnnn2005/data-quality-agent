@@ -316,6 +316,27 @@ PUBLIC_CHECKS = [
         "evidence_type": "json",
     },
     {
+        "id": "business-pilot-evidence-checklist",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/business-pilot-evidence-checklist.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "outcome_track_count": 4,
+            "template_check_count": 5,
+            "passed_template_check_count": 5,
+            "claimable_now": [],
+        },
+        "expected_text": "zero current business-pilot outcome claims",
+        "expected_texts": [
+            "confirmed_external_users",
+            "business_case_feedback_items",
+            "reproducible_feedback_items",
+            "external_feedback_items",
+            "selected tools or agent trace summary",
+            "measured company impact",
+        ],
+        "evidence_type": "json",
+    },
+    {
         "id": "resume-live-proof-snapshot",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-live-proof-snapshot.json",
         "expected_json": {

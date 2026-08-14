@@ -1,0 +1,100 @@
+{
+  "blocked_until_public_evidence": [
+    "confirmed_external_users",
+    "business_case_feedback_items",
+    "reproducible_feedback_items",
+    "external_feedback_items"
+  ],
+  "claimable_now": [],
+  "current_public_counts": {
+    "business_case_feedback_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "reproducible_feedback_items": 0
+  },
+  "generated_by": "scripts/build_business_pilot_evidence_checklist.py",
+  "not_claimed": [
+    "completed business pilot",
+    "confirmed external user",
+    "real enterprise customer",
+    "measured company impact"
+  ],
+  "outcome_track_count": 4,
+  "outcome_tracks": [
+    {
+      "accepted_source": "business_data_replay.md issue",
+      "current_value": 0,
+      "future_resume_line": "Validated the agent with an external reviewer on an anonymized business-shaped dataset.",
+      "metric": "confirmed_external_users",
+      "minimum_before_claim": 1,
+      "required_public_evidence": [
+        "non-owner reviewer",
+        "replay path tried",
+        "dataset shape",
+        "agent run summary",
+        "usefulness rating",
+        "permission to count confirmed anonymized replay",
+        "no private data confirmation"
+      ]
+    },
+    {
+      "accepted_source": "business_case_review.md issue",
+      "current_value": 0,
+      "future_resume_line": "Collected public business-case feedback mapping agent findings to a real workflow risk.",
+      "metric": "business_case_feedback_items",
+      "minimum_before_claim": 1,
+      "required_public_evidence": [
+        "business context",
+        "data-quality problem",
+        "business impact",
+        "fields involved",
+        "project evidence mapping",
+        "business-case counting permission",
+        "business-impact counting permission"
+      ]
+    },
+    {
+      "accepted_source": "business_data_replay.md issue with reproducible run evidence",
+      "current_value": 0,
+      "future_resume_line": "Converted external replay feedback into a reproducible quality-rule improvement.",
+      "metric": "reproducible_feedback_items",
+      "minimum_before_claim": 1,
+      "required_public_evidence": [
+        "command or endpoint used",
+        "observed report status",
+        "finding count",
+        "selected tools or agent trace summary",
+        "catch-or-miss feedback",
+        "redacted output summary"
+      ]
+    },
+    {
+      "accepted_source": "demo_feedback.md or business_data_replay.md issue",
+      "current_value": 0,
+      "future_resume_line": "Incorporated external reviewer feedback into the agent evidence workflow.",
+      "metric": "external_feedback_items",
+      "minimum_before_claim": 1,
+      "required_public_evidence": [
+        "specific path tried",
+        "observed result",
+        "main feedback",
+        "permission to count external feedback",
+        "no private data confirmation"
+      ]
+    }
+  ],
+  "passed_template_check_count": 5,
+  "project": "Data Quality Agent",
+  "public_offer_url": "https://sunnnn2005.github.io/data-quality-agent/business-pilot-offer.html",
+  "public_pilot_issue": "https://github.com/sunnnn2005/data-quality-agent/issues/31",
+  "purpose": "Define the exact public evidence needed before business pilot usage, external users, feedback, or business-impact claims can be added to a resume.",
+  "resume_safe_summary": "Published a business pilot evidence checklist with 4 outcome tracks, explicit public evidence requirements, template coverage checks, and zero current business-pilot outcome claims.",
+  "template_check_count": 5,
+  "template_checks": {
+    "business_case_collects_impact": true,
+    "business_case_maps_project_evidence": true,
+    "replay_blocks_private_data": true,
+    "replay_collects_agent_trace": true,
+    "replay_collects_usefulness_rating": true
+  }
+}
