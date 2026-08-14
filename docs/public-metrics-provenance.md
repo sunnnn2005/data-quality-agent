@@ -16,7 +16,7 @@ This generated artifact explains where public outcome metrics come from and whet
 | --- | ---: | --- | --- | --- |
 | github_stars | 0 | GitHub public repository count via update_adoption_metrics.py | `baseline_only` | May claim the exact public star count only; never imply growth beyond GitHub's public number. |
 | github_forks | 1 | GitHub public repository count via update_adoption_metrics.py | `claimable` | May claim the exact public fork baseline because it is visible on GitHub. |
-| passing_tests | 190 | pytest collection and CI evidence via update_adoption_metrics.py | `claimable` | May claim passing test count after local and CI verification. |
+| passing_tests | 191 | pytest collection and CI evidence via update_adoption_metrics.py | `claimable` | May claim passing test count after local and CI verification. |
 | confirmed_external_users | 0 | docs/external-reviewer-evidence-gate.json accepted_counts | `blocked_until_accepted_evidence` | Counts only accepted public reviewer issues with explicit permission and non-owner authorship. |
 | external_feedback_items | 0 | docs/external-reviewer-evidence-gate.json accepted_counts | `blocked_until_accepted_evidence` | Counts only accepted public reviewer issues that pass the evidence gate. |
 | business_case_feedback_items | 0 | docs/external-reviewer-evidence-gate.json accepted_counts | `blocked_until_accepted_evidence` | Counts only accepted anonymized business-case reviews. |

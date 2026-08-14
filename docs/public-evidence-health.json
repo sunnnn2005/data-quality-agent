@@ -1,5 +1,5 @@
 {
-  "check_count": 76,
+  "check_count": 77,
   "checks": [
     {
       "evidence_type": "html",
@@ -125,6 +125,18 @@
         "implemented_count",
         "partial_count",
         "tool_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "agent-maturity-audit",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-maturity-audit.json",
+      "verified_fields": [
+        "audit_row_count",
+        "maturity_level",
+        "project"
       ]
     },
     {
@@ -842,6 +854,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 76,
+  "passed_count": 77,
   "status": "PASS"
 }
