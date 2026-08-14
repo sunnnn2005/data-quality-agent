@@ -13,7 +13,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert verification["public_metrics_summary_verified"] is True
     assert payload["public_metrics"]["stars"] == 0
     assert payload["public_metrics"]["forks"] == 1
-    assert payload["public_metrics"]["test_count"] == 208
+    assert payload["public_metrics"]["test_count"] == 209
     assert payload["public_metrics"]["tracked_public_metrics"] == 8
     assert payload["public_metrics"]["claimable_public_metrics"] == 2
     assert payload["public_metrics"]["github_view_count"] >= 0

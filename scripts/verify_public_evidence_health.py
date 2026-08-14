@@ -52,7 +52,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "208 passing CI tests",
+            "209 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -111,7 +111,7 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 208},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 209},
         "evidence_type": "json",
     },
     {
@@ -385,6 +385,25 @@ PUBLIC_CHECKS = [
             "Do not claim customer feedback",
             "Do not claim enterprise or production adoption",
             "Do not convert GitHub traffic views into user counts",
+        ],
+        "evidence_type": "json",
+    },
+    {
+        "id": "resume-outcome-conversion-plan",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-outcome-conversion-plan.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "claimable_now_count": 6,
+            "blocked_outcome_count": 6,
+            "conversion_row_count": 6,
+        },
+        "expected_text": "blocked_until_public_evidence",
+        "expected_texts": [
+            "one-click-evidence-links.html",
+            "ai_engineer_review_items",
+            "github_stars",
+            "outreach attempts alone do not count",
+            "zero upgraded outcome claims",
         ],
         "evidence_type": "json",
     },

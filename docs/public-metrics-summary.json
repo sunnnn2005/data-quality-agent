@@ -52,7 +52,7 @@
     "reproducible_feedback_items": 0,
     "stars": 0,
     "successful_main_branch_workflows": 3,
-    "test_count": 208,
+    "test_count": 209,
     "tracked_public_metrics": 8,
     "watchers": 0
   },
@@ -61,7 +61,7 @@
   "resume_policy": "Use public demo, release, CI, container, support-ticket outcomes, and readiness metrics now. Do not claim external users, customer feedback, or production adoption until corresponding public metrics are greater than zero.",
   "resume_safe_signals": [
     "Public demo and v0.3.0 release",
-    "208 passing CI tests",
+    "209 passing CI tests",
     "4 support-ticket issue categories",
     "3 evidence-ranked root-cause hypotheses",
     "4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs",

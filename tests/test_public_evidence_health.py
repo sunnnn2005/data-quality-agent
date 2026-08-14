@@ -24,6 +24,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "external-run-quickstart-page",
         "external-reviewer-outreach-tracker",
         "external-reviewer-evidence-gate",
+        "resume-outcome-conversion-plan",
         "api-smoke-report",
         "performance-baseline",
         "demo-usage-baseline",
@@ -189,6 +190,11 @@ def test_public_evidence_health_requires_core_public_signals():
     assert send_queue["expected_json"]["sent_count"] == 0
     assert "https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html" in send_queue["expected_texts"]
     assert "zero upgraded resume outcome claims" in send_queue["expected_texts"]
+    conversion = next(check for check in PUBLIC_CHECKS if check["id"] == "resume-outcome-conversion-plan")
+    assert conversion["expected_json"]["conversion_row_count"] == 6
+    assert conversion["expected_json"]["blocked_outcome_count"] == 6
+    assert "one-click-evidence-links.html" in conversion["expected_texts"]
+    assert "outreach attempts alone do not count" in conversion["expected_texts"]
 
 
 def test_public_evidence_health_verifier_rejects_failed_checks():
