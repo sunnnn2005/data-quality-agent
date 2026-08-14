@@ -29,7 +29,7 @@ The public demo includes a reproducible support-ticket export that returns a fai
 | First 10 reviewer sprint | [`docs/first-10-reviewer-sprint.md`](docs/first-10-reviewer-sprint.md) turns the outcome goal into 10 concrete external-review slots across 6 target metrics with zero sent outreach and zero upgraded claims |
 | Public release | [`v0.3.0`](docs/releases/v0.3.0.md) release notes and GitHub Release |
 | Container image | `ghcr.io/sunnnn2005/data-quality-agent:latest` published from `main` |
-| Test suite | 150 automated tests passing locally and in GitHub Actions |
+| Test suite | 151 automated tests passing locally and in GitHub Actions |
 | Live project scorecard | [`docs/live-project-scorecard.md`](docs/live-project-scorecard.md) gives reviewers one page for the demo, release, container, CI, claims, agent capabilities, and honest adoption baselines |
 | AI Engineer readiness | [`docs/ai-engineer-readiness.md`](docs/ai-engineer-readiness.md) maps the project to 8 implemented AI skill signals, 1 partial signal, and 1 not-claimed signal for AI Engineer Intern applications |
 | AI Engineer review intake | [`docs/ai-engineer-review-intake.md`](docs/ai-engineer-review-intake.md) gives external reviewers 6 review paths, 6 questions, and 5 countable-evidence conditions for permissioned AI Engineer feedback |
