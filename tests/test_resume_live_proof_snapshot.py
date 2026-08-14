@@ -12,7 +12,7 @@ def test_resume_live_proof_snapshot_is_concise_and_honest():
 
     assert verification["resume_live_proof_snapshot_verified"] is True
     assert verification["resume_safe_bullet_count"] == 4
-    assert payload["verified_now"]["passing_test_baseline"] == 224
+    assert payload["verified_now"]["passing_test_baseline"] == 225
     assert payload["verified_now"]["verified_resume_claims"] == 94
     assert payload["verified_now"]["implemented_agent_capabilities"] == 16
     assert payload["verified_now"]["public_evidence_health"] == "103/103 public evidence checks passing"
