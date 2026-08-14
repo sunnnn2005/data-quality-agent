@@ -1,5 +1,5 @@
 {
-  "check_count": 120,
+  "check_count": 121,
   "checks": [
     {
       "evidence_type": "html",
@@ -1046,6 +1046,17 @@
     },
     {
       "evidence_type": "json",
+      "id": "outcome-launch-day-tracker",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-launch-day-tracker.json",
+      "verified_fields": [
+        "baseline",
+        "project"
+      ]
+    },
+    {
+      "evidence_type": "json",
       "id": "reviewer-outreach-execution-pack",
       "passed": true,
       "status_code": 200,
@@ -1350,6 +1361,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 120,
+  "passed_count": 121,
   "status": "PASS"
 }

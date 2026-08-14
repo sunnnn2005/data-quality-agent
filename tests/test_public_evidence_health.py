@@ -80,6 +80,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "first-outcome-evidence-request",
         "first-outcome-evidence-request-page",
         "reviewer-send-queue",
+        "outcome-launch-day-tracker",
         "reviewer-landing-page",
         "reviewer-outreach-console",
         "pilot-outreach-kit",
@@ -174,6 +175,15 @@ def test_public_evidence_health_requires_core_public_signals():
     assert first_outcome_request_page["url"].endswith("/first-outcome-evidence-request.html")
     assert "Submit public review" in first_outcome_request_page["expected_texts"]
     assert "Locked Resume Line" in first_outcome_request_page["expected_texts"]
+    launch_day = next(check for check in PUBLIC_CHECKS if check["id"] == "outcome-launch-day-tracker")
+    assert launch_day["url"].endswith("/outcome-launch-day-tracker.json")
+    assert launch_day["expected_json"]["baseline"]["planned_send_count"] == 5
+    assert launch_day["expected_json"]["baseline"]["recorded_outreach_event_count"] == 0
+    assert launch_day["expected_json"]["baseline"]["accepted_external_evidence_count"] == 0
+    assert launch_day["expected_json"]["baseline"]["github_stars_claimed"] == 0
+    assert launch_day["expected_json"]["baseline"]["resume_outcome_claimable_now"] is False
+    assert "review_slot_07" in launch_day["expected_texts"]
+    assert "outreach_execution_only" in launch_day["expected_texts"]
     llm_value = next(check for check in PUBLIC_CHECKS if check["id"] == "llm-value-comparison")
     assert llm_value["url"].endswith("/llm-value-comparison.json")
     assert llm_value["expected_json"]["scenario_count"] == 14

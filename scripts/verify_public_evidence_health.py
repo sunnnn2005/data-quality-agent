@@ -1407,6 +1407,30 @@ PUBLIC_CHECKS = [
         "evidence_type": "json",
     },
     {
+        "id": "outcome-launch-day-tracker",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-launch-day-tracker.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "baseline": {
+                "planned_send_count": 5,
+                "recorded_outreach_event_count": 0,
+                "sent_count": 0,
+                "accepted_external_evidence_count": 0,
+                "github_stars_claimed": 0,
+                "resume_outcome_claimable_now": False,
+            },
+        },
+        "expected_text": "real resume-countable external result",
+        "expected_texts": [
+            "public non-owner GitHub issues",
+            "outreach from being counted as users or feedback",
+            "No external users, feedback, business impact, production deployment, or GitHub stars are claimed.",
+            "review_slot_07",
+            "outreach_execution_only",
+        ],
+        "evidence_type": "json",
+    },
+    {
         "id": "reviewer-outreach-execution-pack",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-outreach-execution-pack.json",
         "expected_json": {
