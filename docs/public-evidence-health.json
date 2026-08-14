@@ -1,5 +1,5 @@
 {
-  "check_count": 102,
+  "check_count": 103,
   "checks": [
     {
       "evidence_type": "html",
@@ -146,6 +146,17 @@
         "pilot_status",
         "project",
         "public_issue_status"
+      ]
+    },
+    {
+      "evidence_type": "json",
+      "id": "resume-live-proof-snapshot",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/resume-live-proof-snapshot.json",
+      "verified_fields": [
+        "project",
+        "purpose"
       ]
     },
     {
@@ -1143,6 +1154,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 102,
+  "passed_count": 103,
   "status": "PASS"
 }
