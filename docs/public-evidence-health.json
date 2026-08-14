@@ -1,5 +1,5 @@
 {
-  "check_count": 87,
+  "check_count": 88,
   "checks": [
     {
       "evidence_type": "html",
@@ -681,6 +681,20 @@
     },
     {
       "evidence_type": "json",
+      "id": "reviewer-send-queue",
+      "passed": true,
+      "status_code": 200,
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-send-queue.json",
+      "verified_fields": [
+        "accepted_evidence_count",
+        "not_sent_count",
+        "project",
+        "queue_count",
+        "sent_count"
+      ]
+    },
+    {
+      "evidence_type": "json",
       "id": "reviewer-outreach-execution-pack",
       "passed": true,
       "status_code": 200,
@@ -985,6 +999,6 @@
   ],
   "failed_count": 0,
   "generated_by": "scripts/verify_public_evidence_health.py",
-  "passed_count": 87,
+  "passed_count": 88,
   "status": "PASS"
 }
