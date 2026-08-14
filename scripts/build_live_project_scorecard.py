@@ -161,9 +161,10 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 def verify_live_project_scorecard(payload: dict[str, Any]) -> dict[str, Any]:
     headline = payload["headline_metrics"]
     footprint = payload["live_footprint"]
+    evidence = load_json(OUTCOME_EVIDENCE_PATH)
     expected = {
         "passing_tests": 226,
-        "verified_resume_claims": 94,
+        "verified_resume_claims": len(evidence["claims"]),
         "implemented_agent_capabilities": 16,
         "agent_tools_allowed": 9,
         "agent_matrix_implemented_capabilities": 13,

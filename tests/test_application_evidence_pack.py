@@ -1,4 +1,6 @@
 from scripts.build_application_evidence_pack import (
+    load_json,
+    SCORECARD_PATH,
     build_application_evidence_pack_payload,
     render_markdown,
     verify_application_evidence_pack,
@@ -44,7 +46,9 @@ def test_application_evidence_pack_gives_recruiters_verified_review_path():
     assert "first_10_outreach_execution_log" in payload["application_links"]
     assert len(payload["resume_bullets"]) == 3
     assert payload["verified_outcome_numbers"]["passing_tests"] == 226
-    assert payload["verified_outcome_numbers"]["verified_resume_claims"] == 94
+    assert payload["verified_outcome_numbers"]["verified_resume_claims"] == load_json(SCORECARD_PATH)["headline_metrics"][
+        "verified_resume_claims"
+    ]
     assert payload["verified_outcome_numbers"]["outcome_collection_actions"] == 5
     assert payload["verified_outcome_numbers"]["outcome_collection_submission_paths"] == 6
     assert payload["verified_outcome_numbers"]["outcome_collection_evidence_fields"] == 24

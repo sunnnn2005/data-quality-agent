@@ -266,12 +266,13 @@ This generated pack gives recruiters and interviewers a compact review path for 
 
 
 def verify_application_evidence_pack(payload: dict[str, Any]) -> dict[str, Any]:
+    scorecard = load_json(SCORECARD_PATH)
     expected = {
         "application_link_count": 50,
         "resume_bullet_count": 3,
         "target_role_count": 4,
         "passing_tests": 226,
-        "verified_resume_claims": 94,
+        "verified_resume_claims": scorecard["headline_metrics"]["verified_resume_claims"],
     }
     if len(payload["application_links"]) != expected["application_link_count"]:
         raise AssertionError("application evidence pack must include 50 application links")

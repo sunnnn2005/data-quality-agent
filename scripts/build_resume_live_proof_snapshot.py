@@ -13,6 +13,7 @@ PUBLIC_STATS_PATH = ROOT / "docs" / "github-public-stats-snapshot.json"
 PUBLIC_HEALTH_PATH = ROOT / "docs" / "public-evidence-health.json"
 LIVE_SCORECARD_PATH = ROOT / "docs" / "live-project-scorecard.json"
 BUSINESS_PILOT_PATH = ROOT / "docs" / "business-pilot-offer.json"
+OUTCOME_EVIDENCE_PATH = ROOT / "docs" / "outcome-evidence.json"
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -147,12 +148,13 @@ def render_markdown(payload: dict[str, Any]) -> str:
 def verify_resume_live_proof_snapshot(payload: dict[str, Any]) -> dict[str, Any]:
     verified = payload["verified_now"]
     links = payload["evidence_links"]
+    evidence = load_json(OUTCOME_EVIDENCE_PATH)
     if len(payload["resume_safe_bullets"]) != 4:
         raise AssertionError("resume live proof snapshot must provide four resume-safe bullets")
     if verified["passing_test_baseline"] != 226:
         raise AssertionError("snapshot must preserve the verified 226-test baseline")
-    if verified["verified_resume_claims"] != 94:
-        raise AssertionError("snapshot must preserve 94 verified resume claims")
+    if verified["verified_resume_claims"] != len(evidence["claims"]):
+        raise AssertionError("snapshot must preserve the current verified resume claim count")
     if verified["implemented_agent_capabilities"] != 16:
         raise AssertionError("snapshot must preserve 16 implemented agent capabilities")
     if verified["github_stars"] < 0 or verified["github_forks"] < 0:

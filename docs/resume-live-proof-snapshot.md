@@ -21,7 +21,7 @@ Give recruiters a concise, resume-safe snapshot of public proof without inflatin
 | Public Release | v0.3.0 |
 | Container Image Published | True |
 | Passing Test Baseline | 226 |
-| Verified Resume Claims | 94 |
+| Verified Resume Claims | 95 |
 | Implemented Agent Capabilities | 16 |
 | Agent Tools Allowed | 9 |
 | Rejected Unsafe Postgres Queries | 3 |
@@ -36,7 +36,7 @@ Give recruiters a concise, resume-safe snapshot of public proof without inflatin
 
 - Built and released a public, containerized LLM data-quality agent with a GitHub Pages demo, OpenAPI contract, GHCR image, and CI-verified evidence artifacts.
 - Implemented 16 agent-readiness capabilities including tool selection, read-only data checks, guardrails, structured reports, observability artifacts, and deterministic fallback paths.
-- Maintained a resume-safe proof system with 226 passing test baseline, 94 verified claim entries, and 103/103 public evidence checks passing.
+- Maintained a resume-safe proof system with 226 passing test baseline, 95 verified claim entries, and 103/103 public evidence checks passing.
 - Published a redacted business-data pilot offer and public GitHub issue to collect external business replay evidence without claiming completed pilots or enterprise adoption.
 
 ## Blocked Until External Evidence

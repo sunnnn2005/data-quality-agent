@@ -46,7 +46,7 @@ This generated artifact gives recruiters and technical reviewers one place to ve
 
 | Metric | Value |
 | --- | --- |
-| Verified resume claims | 94 |
+| Verified resume claims | 95 |
 | Passing tests | 226 |
 | Target roles | AI Engineer Intern, Software Engineer Intern, Data Engineering Intern, Data Science Intern |
 

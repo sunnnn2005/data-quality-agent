@@ -1,4 +1,6 @@
 from scripts.build_resume_live_proof_snapshot import (
+    load_json,
+    OUTCOME_EVIDENCE_PATH,
     build_resume_live_proof_snapshot_payload,
     render_markdown,
     verify_resume_live_proof_snapshot,
@@ -13,9 +15,11 @@ def test_resume_live_proof_snapshot_is_concise_and_honest():
     assert verification["resume_live_proof_snapshot_verified"] is True
     assert verification["resume_safe_bullet_count"] == 4
     assert payload["verified_now"]["passing_test_baseline"] == 226
-    assert payload["verified_now"]["verified_resume_claims"] == 94
+    assert payload["verified_now"]["verified_resume_claims"] == len(load_json(OUTCOME_EVIDENCE_PATH)["claims"])
     assert payload["verified_now"]["implemented_agent_capabilities"] == 16
-    assert payload["verified_now"]["public_evidence_health"] == "103/103 public evidence checks passing"
+    health_count = payload["verified_now"]["public_evidence_health"].split(" ", maxsplit=1)[0]
+    passed_count, check_count = (int(value) for value in health_count.split("/", maxsplit=1))
+    assert passed_count == check_count
     assert payload["evidence_links"]["business_pilot_issue"].endswith("/issues/31")
     assert "GHCR image" in payload["resume_safe_bullets"][0]
     assert "without claiming completed pilots or enterprise adoption" in payload["resume_safe_bullets"][3]

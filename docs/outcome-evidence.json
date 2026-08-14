@@ -919,6 +919,16 @@
       "resume_signal": "CI-verified evidence gap diagnostics",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/evidence-gap-diagnostics.json"
+    },
+    {
+      "claim": "The project publishes a real reviewer outreach playbook with 5 contact pools, 5 evidence targets, copy-ready asks, recorder commands, and strict counting boundaries for turning future non-owner reviews into resume-safe outcome evidence without claiming adoption or feedback yet.",
+      "evidence_type": "generated_artifact",
+      "id": "real-reviewer-outreach-playbook",
+      "metric_name": "real_reviewer_outreach_playbook",
+      "metric_value": 1,
+      "resume_signal": "CI-verified real reviewer outreach playbook",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/real-reviewer-outreach-playbook.json"
     }
   ],
   "not_claimed": [

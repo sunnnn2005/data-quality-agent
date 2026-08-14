@@ -87,6 +87,7 @@ OUTCOME_SPRINT_PLAN_PATH = ROOT / "docs" / "outcome-sprint-plan.json"
 ONE_CLICK_EVIDENCE_LINKS_PATH = ROOT / "docs" / "one-click-evidence-links.json"
 RESUME_CLAIM_MATERIALIZER_PATH = ROOT / "docs" / "resume-claim-materializer.json"
 EVIDENCE_GAP_DIAGNOSTICS_PATH = ROOT / "docs" / "evidence-gap-diagnostics.json"
+REAL_REVIEWER_OUTREACH_PLAYBOOK_PATH = ROOT / "docs" / "real-reviewer-outreach-playbook.json"
 PUBLIC_HEALTH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "public-evidence-health.yml"
 PUBLIC_METRICS_REFRESH_WORKFLOW_PATH = ROOT / ".github" / "workflows" / "refresh-public-metrics.yml"
 PUBLIC_HEALTH_SCRIPT_PATH = ROOT / "scripts" / "verify_public_evidence_health.py"
@@ -189,6 +190,7 @@ def verify_manifest() -> dict[str, int]:
     one_click_evidence_links = load_payload(ONE_CLICK_EVIDENCE_LINKS_PATH)
     resume_claim_materializer = load_payload(RESUME_CLAIM_MATERIALIZER_PATH)
     evidence_gap_diagnostics = load_payload(EVIDENCE_GAP_DIAGNOSTICS_PATH)
+    real_reviewer_outreach_playbook = load_payload(REAL_REVIEWER_OUTREACH_PLAYBOOK_PATH)
     history = [json.loads(line) for line in HISTORY_PATH.read_text().splitlines() if line.strip()]
     resume_page = RESUME_EVIDENCE_PATH.read_text().lower()
     feedback_log = FEEDBACK_LOG_PATH.read_text().lower()
@@ -1163,6 +1165,70 @@ def verify_manifest() -> dict[str, int]:
                         raise AssertionError(f"evidence gap diagnostics page missing {required}")
                 if claim.get("metric_value") != 1:
                     raise AssertionError("evidence_gap_diagnostics claim must use metric_value=1")
+            elif metric_name == "real_reviewer_outreach_playbook":
+                playbook_script = (ROOT / "scripts" / "build_real_reviewer_outreach_playbook.py").read_text()
+                playbook_tests = (ROOT / "tests" / "test_real_reviewer_outreach_playbook.py").read_text()
+                playbook_page = (ROOT / "docs" / "real-reviewer-outreach-playbook.md").read_text()
+                expected_zero_counts = {
+                    "accepted_public_evidence": 0,
+                    "ai_engineer_review_items": 0,
+                    "confirmed_external_users": 0,
+                    "external_feedback_items": 0,
+                    "github_stars_claimable": 0,
+                }
+                if real_reviewer_outreach_playbook.get("current_baseline") != expected_zero_counts:
+                    raise AssertionError("real reviewer outreach playbook must preserve zero current outcome counts")
+                if real_reviewer_outreach_playbook.get("contact_pool_count") != 5:
+                    raise AssertionError("real reviewer outreach playbook must expose 5 contact pools")
+                if real_reviewer_outreach_playbook.get("outreach_step_count") != 5:
+                    raise AssertionError("real reviewer outreach playbook must expose 5 outreach steps")
+                first_action = real_reviewer_outreach_playbook.get("first_action", {})
+                if first_action.get("metric") != "ai_engineer_review_items":
+                    raise AssertionError("real reviewer outreach playbook must prioritize AI Engineer review evidence")
+                if first_action.get("slot_id") != "review_slot_07":
+                    raise AssertionError("real reviewer outreach playbook first action must map to review_slot_07")
+                target_metrics = {
+                    step.get("target_metric") for step in real_reviewer_outreach_playbook.get("outreach_steps", [])
+                }
+                required_metrics = {
+                    "ai_engineer_review_items",
+                    "business_case_feedback_items",
+                    "confirmed_external_users",
+                    "external_feedback_items",
+                    "reproducible_feedback_items",
+                }
+                if target_metrics != required_metrics:
+                    raise AssertionError("real reviewer outreach playbook target metrics mismatch")
+                for step in real_reviewer_outreach_playbook.get("outreach_steps", []):
+                    if step.get("resume_outcome_after_send") is not False:
+                        raise AssertionError("sending reviewer outreach must not create a resume outcome")
+                    record_command = step.get("record_after_real_send", "")
+                    if "--status sent" not in record_command or "--slot-id review_slot_" not in record_command:
+                        raise AssertionError("real reviewer outreach playbook must include recorder commands")
+                joined = json.dumps(real_reviewer_outreach_playbook, sort_keys=True).lower()
+                for required in (
+                    "non-owner public github issue",
+                    "permission",
+                    "no private data",
+                    "evidence gate",
+                    "message sent",
+                    "external user",
+                    "external feedback",
+                    "ai engineer review",
+                    "business pilot",
+                    "github star growth",
+                ):
+                    if required not in joined:
+                        raise AssertionError(f"real reviewer outreach playbook missing boundary: {required}")
+                if "verify_real_reviewer_outreach_playbook" not in playbook_script:
+                    raise AssertionError("real reviewer outreach playbook script must include a verifier")
+                if "test_real_reviewer_outreach_playbook_turns_zero_baseline_into_next_sends" not in playbook_tests:
+                    raise AssertionError("real reviewer outreach playbook must include a dedicated test")
+                for required in ("Real Reviewer Outreach Playbook", "Current Baseline", "Counting Policy"):
+                    if required not in playbook_page:
+                        raise AssertionError(f"real reviewer outreach playbook page missing {required}")
+                if claim.get("metric_value") != 1:
+                    raise AssertionError("real_reviewer_outreach_playbook claim must use metric_value=1")
             elif metric_name == "resume_claim_upgrade_ledger":
                 claim_script = (ROOT / "scripts" / "build_resume_claim_upgrade_ledger.py").read_text()
                 claim_tests = (ROOT / "tests" / "test_resume_claim_upgrade_ledger.py").read_text()
