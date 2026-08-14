@@ -17,5 +17,7 @@ def test_outcome_pipeline_board_connects_distribution_to_resume_claims():
     assert payload["current_baseline"]["published_public_broadcasts"] == 1
     assert payload["current_baseline"]["sent_reviewer_messages"] == 0
     assert payload["current_baseline"]["accepted_external_evidence_items"] == 0
+    assert "docs/github-public-stats-snapshot.json" in payload["resume_metric_paths"][-1]["evidence_required"]
     assert "record_reviewer_outreach_event.py" in markdown
+    assert "github-public-stats-snapshot.json" in markdown
     assert "# Outcome Pipeline Board" in markdown

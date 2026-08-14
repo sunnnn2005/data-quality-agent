@@ -20,6 +20,7 @@
     "Send three real reviewer messages using the reviewer send queue.",
     "Record each sent message with scripts/record_reviewer_outreach_event.py.",
     "Ask reviewers to submit public, redacted GitHub issues through the reviewer submission hub.",
+    "Regenerate docs/github-public-stats-snapshot.json before claiming any GitHub star count.",
     "Run the external reviewer evidence gate before changing any resume outcome number."
   ],
   "pipeline_stage_count": 5,
@@ -93,7 +94,7 @@
     },
     {
       "current_count": 0,
-      "evidence_required": "Public GitHub star count from the repository, not private messages or self-claims.",
+      "evidence_required": "Public GitHub star count from docs/github-public-stats-snapshot.json, not private messages or self-claims.",
       "first_resume_threshold": 5,
       "next_action": "Share the demo and README with reviewers only after asking for real use or feedback, not empty stars.",
       "resume_claimable": false,

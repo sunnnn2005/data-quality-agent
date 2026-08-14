@@ -45,6 +45,7 @@ This generated board connects distribution activity to resume-safe outcome claim
 - Send three real reviewer messages using the reviewer send queue.
 - Record each sent message with scripts/record_reviewer_outreach_event.py.
 - Ask reviewers to submit public, redacted GitHub issues through the reviewer submission hub.
+- Regenerate docs/github-public-stats-snapshot.json before claiming any GitHub star count.
 - Run the external reviewer evidence gate before changing any resume outcome number.
 
 ## Resume-Safe Summary

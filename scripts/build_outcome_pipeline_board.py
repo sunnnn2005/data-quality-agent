@@ -8,6 +8,7 @@ PUBLIC_LAUNCH_PATH = ROOT / "docs" / "public-launch-broadcast.json"
 OUTREACH_STATUS_PATH = ROOT / "docs" / "reviewer-outreach-status-board.json"
 ACCEPTED_ROLLUP_PATH = ROOT / "docs" / "accepted-evidence-rollup.json"
 ADOPTION_METRICS_PATH = ROOT / "docs" / "adoption-metrics.json"
+GITHUB_PUBLIC_STATS_PATH = ROOT / "docs" / "github-public-stats-snapshot.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "outcome-pipeline-board.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "outcome-pipeline-board.md"
 
@@ -30,12 +31,13 @@ def build_outcome_pipeline_board() -> dict[str, Any]:
     outreach = load_json(OUTREACH_STATUS_PATH)
     accepted = load_json(ACCEPTED_ROLLUP_PATH)
     adoption = load_json(ADOPTION_METRICS_PATH)
+    github_public_stats = load_json(GITHUB_PUBLIC_STATS_PATH) if GITHUB_PUBLIC_STATS_PATH.exists() else {}
 
     published_broadcasts = public_launch["published_broadcast_count"]
     sent_messages = outreach["sent_count"]
     public_issues = outreach["public_issue_submitted_count"]
     accepted_issues = accepted["accepted_issue_count"]
-    stars = adoption["stars"]
+    stars = github_public_stats.get("public_stats", {}).get("stars", adoption["stars"])
 
     stages = [
         _stage_status("public_launch_published", published_broadcasts, 1),
@@ -84,7 +86,7 @@ def build_outcome_pipeline_board() -> dict[str, Any]:
             "resume_claimable": False,
             "first_resume_threshold": 5,
             "next_action": "Share the demo and README with reviewers only after asking for real use or feedback, not empty stars.",
-            "evidence_required": "Public GitHub star count from the repository, not private messages or self-claims.",
+            "evidence_required": "Public GitHub star count from docs/github-public-stats-snapshot.json, not private messages or self-claims.",
         },
     ]
 
@@ -118,6 +120,7 @@ def build_outcome_pipeline_board() -> dict[str, Any]:
             "Send three real reviewer messages using the reviewer send queue.",
             "Record each sent message with scripts/record_reviewer_outreach_event.py.",
             "Ask reviewers to submit public, redacted GitHub issues through the reviewer submission hub.",
+            "Regenerate docs/github-public-stats-snapshot.json before claiming any GitHub star count.",
             "Run the external reviewer evidence gate before changing any resume outcome number.",
         ],
         "resume_status": "distribution_started_outcomes_not_claimable",

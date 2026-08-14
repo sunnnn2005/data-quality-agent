@@ -63,6 +63,7 @@ REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 FEEDBACK_INTAKE_QUALITY_PATH = ROOT / "docs" / "feedback-intake-quality.json"
 STAR_GROWTH_KIT_PATH = ROOT / "docs" / "star-growth-kit.json"
 GITHUB_DISCOVERY_PROFILE_PATH = ROOT / "docs" / "github-discovery-profile.json"
+GITHUB_PUBLIC_STATS_PATH = ROOT / "docs" / "github-public-stats-snapshot.json"
 PILOT_EVIDENCE_QUICKLINK_PATH = ROOT / "docs" / "pilot-evidence-quicklink.json"
 PILOT_LAUNCH_CONTROL_ROOM_PATH = ROOT / "docs" / "pilot-launch-control-room.json"
 BUSINESS_CASE_INTAKE_PATH = ROOT / "docs" / "business-case-intake.json"
@@ -150,6 +151,7 @@ def verify_manifest() -> dict[str, int]:
     feedback_intake = load_payload(FEEDBACK_INTAKE_QUALITY_PATH)
     star_growth = load_payload(STAR_GROWTH_KIT_PATH)
     github_discovery = load_payload(GITHUB_DISCOVERY_PROFILE_PATH)
+    github_public_stats = load_payload(GITHUB_PUBLIC_STATS_PATH)
     pilot_evidence_quicklink = load_payload(PILOT_EVIDENCE_QUICKLINK_PATH)
     pilot_launch_control_room = load_payload(PILOT_LAUNCH_CONTROL_ROOM_PATH)
     business_case_intake = load_payload(BUSINESS_CASE_INTAKE_PATH)
@@ -590,7 +592,7 @@ def verify_manifest() -> dict[str, int]:
                 if claim.get("metric_value") != 1:
                     raise AssertionError("public_traction_dashboard claim must use metric_value=1")
             elif metric_name == "public_metrics_summary":
-                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 172:
+                if public_metrics_summary.get("public_metrics", {}).get("test_count") != 174:
                     raise AssertionError("public metrics summary must include the current CI test count")
                 if public_metrics_summary.get("public_metrics", {}).get("external_feedback_items") != 0:
                     raise AssertionError("public metrics summary must preserve the zero-feedback baseline")
@@ -969,7 +971,7 @@ def verify_manifest() -> dict[str, int]:
                     ("confirmed_external_users", 0),
                     ("external_feedback_items", 0),
                     ("github_stars", 0),
-                    ("passing_tests", 172),
+                    ("passing_tests", 174),
                 ):
                     if counts.get(key) != expected_value:
                         raise AssertionError(f"outcome collection {key} expected {expected_value!r}")
@@ -1355,7 +1357,7 @@ def verify_manifest() -> dict[str, int]:
                         f"{claim.get('metric_value')} but application evidence pack has "
                         f"{len(application_pack.get('application_links', {}))}"
                     )
-                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 172:
+                if application_pack.get("verified_outcome_numbers", {}).get("passing_tests") != 174:
                     raise AssertionError("application evidence pack must include current passing test count")
                 if application_pack.get("verified_outcome_numbers", {}).get("verified_resume_claims") != len(claims):
                     raise AssertionError("application evidence pack must summarize current claim count")
@@ -2261,6 +2263,7 @@ def verify_manifest() -> dict[str, int]:
             "issues: read",
             "scripts/update_feedback_metrics.py",
             "scripts/update_adoption_metrics.py",
+            "scripts/build_github_public_stats_snapshot.py",
             "scripts/build_github_traffic_snapshot.py",
             "scripts/build_star_growth_kit.py",
             "scripts/build_public_metrics_summary.py",
@@ -2313,13 +2316,28 @@ def verify_manifest() -> dict[str, int]:
 
     if "public-metrics-summary" in claim_ids:
         metrics_page = (ROOT / "docs" / "public-metrics-summary.md").read_text().lower()
-        for phrase in ("passing ci tests | 172", "confirmed external users | 0", "forks | 1"):
+        for phrase in ("passing ci tests | 174", "confirmed external users | 0", "forks | 1"):
             if phrase not in metrics_page:
                 raise AssertionError(f"public metrics summary page missing phrase: {phrase}")
 
+    public_stats_page = (ROOT / "docs" / "github-public-stats-snapshot.md").read_text().lower()
+    public_stats = github_public_stats.get("public_stats", {})
+    if github_public_stats.get("repo") != "https://github.com/sunnnn2005/data-quality-agent":
+        raise AssertionError("GitHub public stats snapshot must point to the project repository")
+    for key in ("stars", "forks", "watchers", "subscribers", "open_issues"):
+        if not isinstance(public_stats.get(key), int) or public_stats[key] < 0:
+            raise AssertionError(f"GitHub public stats snapshot must provide non-negative {key}")
+    if public_stats.get("stars") != metrics.get("stars"):
+        raise AssertionError("GitHub public stats stars must match adoption metrics stars")
+    if public_stats.get("forks") != metrics.get("forks"):
+        raise AssertionError("GitHub public stats forks must match adoption metrics forks")
+    for phrase in ("stars | 0", "confirmed users", "customer feedback", "stars above the live public count"):
+        if phrase not in public_stats_page:
+            raise AssertionError(f"GitHub public stats page missing phrase: {phrase}")
+
     resume_metric_phrases = (
         "github issues | 25",
-        "automated tests | 172",
+        "automated tests | 174",
         "github views | 9",
         "github unique visitors | 3",
         "github clones | 79",
@@ -2332,10 +2350,12 @@ def verify_manifest() -> dict[str, int]:
             raise AssertionError(f"resume evidence page missing current public metric phrase: {phrase}")
 
     index_page = (ROOT / "docs" / "index.html").read_text().lower()
-    if "<strong>172</strong><span>automated tests passing locally and in ci</span>" not in index_page:
+    if "<strong>174</strong><span>automated tests passing locally and in ci</span>" not in index_page:
         raise AssertionError("public homepage must display the current passing test count")
     if "outcome-pipeline-board.md" not in index_page or "outcome pipeline" not in index_page:
         raise AssertionError("public homepage must link reviewers to the outcome pipeline board")
+    if "github-public-stats-snapshot.md" not in index_page or "github public stats" not in index_page:
+        raise AssertionError("public homepage must link reviewers to GitHub public stats")
 
     if "community-growth-baseline" in claim_ids:
         if "8 issue templates" not in resume_page or "9 public contribution or feedback channels" not in resume_page:
