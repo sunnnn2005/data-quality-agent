@@ -1,0 +1,163 @@
+{
+  "project": "Data Quality Agent",
+  "generated_by": "scripts/build_llm_agent_checklist_verdict.py",
+  "purpose": "Answer whether the current project qualifies as a real LLM agent against an interview-style checklist.",
+  "source_artifacts": [
+    "docs/agent-maturity-audit.json",
+    "docs/agent-capability-matrix.json"
+  ],
+  "status_counts": {
+    "yes": 10,
+    "partial": 4,
+    "not_yet": 2
+  },
+  "verdict": "The project is a real LLM-agent foundation: it has LLM-driven tool selection, controlled tools, state, loops, dynamic paths, guardrails, structured output, and evidence checks. It is not yet a mature enterprise agent because real-model accepted traces, embedding-backed RAG, production observability, and external user evidence are still incomplete or not claimed.",
+  "resume_safe_positioning": "Call it an LLM-powered data quality agent, not a production enterprise AI agent.",
+  "rows": [
+    {
+      "id": "goal",
+      "question": "Does it have a clear task goal?",
+      "status": "yes",
+      "evidence": "The agent investigates one dataset and returns quality status, risks, root-cause hypotheses, and remediation actions.",
+      "resume_signal": "bounded AI task definition"
+    },
+    {
+      "id": "llm_decision",
+      "question": "Does the LLM make process decisions?",
+      "status": "yes",
+      "evidence": "The tool loop uses tool_choice=auto and records selected tools, rationale, evidence summary, and stop reason.",
+      "resume_signal": "LLM-driven tool selection"
+    },
+    {
+      "id": "tools",
+      "question": "Does it have multiple callable tools?",
+      "status": "yes",
+      "evidence": "9 allowlisted tools are exposed and unknown tools are rejected.",
+      "resume_signal": "controlled tool calling"
+    },
+    {
+      "id": "loop",
+      "question": "Does it run a multi-step observe-decide-act loop?",
+      "status": "yes",
+      "evidence": "Tool results are appended as role=tool messages before the next model step.",
+      "resume_signal": "multi-step agent loop"
+    },
+    {
+      "id": "dynamic_path",
+      "question": "Can different datasets trigger different execution paths?",
+      "status": "yes",
+      "evidence": "The strategy tool chooses different checks for transaction, support-ticket, customer, and generic tables.",
+      "resume_signal": "adaptive data-quality investigation"
+    },
+    {
+      "id": "state",
+      "question": "Does it preserve state and evidence?",
+      "status": "yes",
+      "evidence": "AgentRunReport stores status, final answer, planning steps, tool calls, attached report, evaluation, and trace_id.",
+      "resume_signal": "stateful agent reporting"
+    },
+    {
+      "id": "safety",
+      "question": "Does it have permission boundaries?",
+      "status": "yes",
+      "evidence": "The agent is read-only, uses a tool allowlist, limits database access, redacts sensitive fields, and verifies reports.",
+      "resume_signal": "AI safety guardrails"
+    },
+    {
+      "id": "fallback",
+      "question": "Does it handle failures safely?",
+      "status": "yes",
+      "evidence": "Missing OPENAI_API_KEY returns a structured DISABLED fallback and deterministic checks remain available.",
+      "resume_signal": "production-minded fallback"
+    },
+    {
+      "id": "structured_output",
+      "question": "Is the output structured and verifiable?",
+      "status": "yes",
+      "evidence": "QualityReport and AgentRunReport are Pydantic models with findings, hypotheses, evidence, telemetry, and verification.",
+      "resume_signal": "machine-verifiable AI output"
+    },
+    {
+      "id": "facts_inference",
+      "question": "Are facts, inferences, and recommendations separated?",
+      "status": "yes",
+      "evidence": "The report separates findings, likely causes, root-cause hypotheses, recommended steps, evidence, and limitations.",
+      "resume_signal": "evidence-backed reasoning"
+    },
+    {
+      "id": "memory",
+      "question": "Does memory influence future reasoning?",
+      "status": "partial",
+      "evidence": "The agent can retrieve sanitized prior traces and recurring incident patterns, but accepted feedback labels do not yet tune ranking.",
+      "upgrade": "Use accepted and needs-review hypothesis labels to update future root-cause ranking.",
+      "resume_signal": "dataset memory foundation"
+    },
+    {
+      "id": "rag",
+      "question": "Does it use RAG or knowledge retrieval?",
+      "status": "partial",
+      "evidence": "It retrieves source-cited local business rules, but does not yet use embedding-backed vector search.",
+      "upgrade": "Add optional embedding-backed retrieval for larger business-rule and incident documents.",
+      "resume_signal": "source-cited retrieval foundation"
+    },
+    {
+      "id": "observability",
+      "question": "Does it expose production-grade observability?",
+      "status": "partial",
+      "evidence": "Trace ids, tool previews, fallback status, latency, token/cost fields, and SQLite traces exist, but there is no full dashboard.",
+      "upgrade": "Expose aggregate latency, cost, retry, and per-tool success metrics.",
+      "resume_signal": "agent observability foundation"
+    },
+    {
+      "id": "evaluation",
+      "question": "Does it prove LLM value with evals?",
+      "status": "partial",
+      "evidence": "Scenario evals cover status accuracy, finding recall, evidence support, fallback, report-tool use, and latency.",
+      "upgrade": "Add a larger labeled eval set comparing fixed checks versus LLM-assisted investigation.",
+      "resume_signal": "agent evaluation harness"
+    },
+    {
+      "id": "real_model",
+      "question": "Has a real paid or approved model trace been accepted?",
+      "status": "not_yet",
+      "evidence": "Real-model runbook, capture gate, and preflight exist, but accepted_real_model_run_count is still 0.",
+      "upgrade": "Run one explicit OpenAI-compatible tool-calling trace, redact it, and pass the capture verifier.",
+      "resume_signal": "blocked until real-model evidence exists"
+    },
+    {
+      "id": "enterprise_usage",
+      "question": "Does it prove enterprise production users or customers?",
+      "status": "not_yet",
+      "evidence": "Public metrics intentionally show zero confirmed external users and no enterprise production deployment claim.",
+      "upgrade": "Collect non-owner public reviews, external runs, or permissioned business-data replay issues.",
+      "resume_signal": "blocked until public external evidence exists"
+    }
+  ],
+  "recommended_next_agent": {
+    "name": "Business Data Quality Copilot",
+    "why": "This is the best next version for AI Engineer Intern applications because it connects the current agent loop to realistic business tables, evidence-backed root-cause analysis, and reviewer-visible outcomes.",
+    "must_add": [
+      "read-only PostgreSQL or warehouse adapter with schema inspection",
+      "LLM-selected tools for schema, freshness, duplicates, drift, and business-rule checks",
+      "RAG over business rules or incident notes with source citations",
+      "real-model trace capture with token, latency, retry, and cost telemetry",
+      "labeled eval set comparing deterministic workflow versus LLM agent",
+      "public reviewer path for redacted business-data replay evidence"
+    ]
+  },
+  "blocked_claims": [
+    "enterprise production users",
+    "customer adoption",
+    "accepted real-model benchmark run",
+    "embedding-backed RAG",
+    "external user feedback",
+    "autonomous write actions"
+  ],
+  "resume_upgrade_after_next_step": "After one accepted real-model trace and one public non-owner replay, the resume can shift from 'LLM-powered data quality agent' to 'tool-calling LLM agent evaluated on real business-shaped data'.",
+  "cross_checks": {
+    "maturity_rows": 20,
+    "maturity_implemented": 15,
+    "allowed_tools": 9,
+    "accepted_real_model_runs": 0
+  }
+}
