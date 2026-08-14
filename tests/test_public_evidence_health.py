@@ -119,7 +119,7 @@ def test_public_evidence_health_requires_core_public_signals():
     assert "earn_first_star" in action_checklist["expected_texts"]
     assert "The checklist does not claim users, feedback, business impact, or stars." in action_checklist["expected_texts"]
     outcome_collection = next(check for check in PUBLIC_CHECKS if check["id"] == "outcome-collection-page")
-    assert outcome_collection["url"].endswith("/outcome-collection.html")
+    assert outcome_collection["url"].endswith("/docs/outcome-collection.html")
     assert outcome_collection["expected_text"] == "Turn reviews into resume-safe evidence"
     assert "Submit Evidence" in outcome_collection["expected_texts"]
     assert "Do not post raw customer data" in outcome_collection["expected_texts"]

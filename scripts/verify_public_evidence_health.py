@@ -67,7 +67,7 @@ PUBLIC_CHECKS = [
     },
     {
         "id": "outcome-collection-page",
-        "url": "https://sunnnn2005.github.io/data-quality-agent/outcome-collection.html",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-collection.html",
         "expected_text": "Turn reviews into resume-safe evidence",
         "expected_texts": [
             "Submit Evidence",
