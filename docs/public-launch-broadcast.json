@@ -1,0 +1,34 @@
+{
+  "broadcast_count": 1,
+  "current_outcome_counts": {
+    "ai_engineer_review_items": 0,
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "github_stars": 0
+  },
+  "generated_by": "scripts/build_public_launch_broadcast.py",
+  "not_claimed": [
+    "external users",
+    "external feedback",
+    "accepted AI Engineer reviews",
+    "GitHub stars"
+  ],
+  "project": "Data Quality Agent",
+  "public_broadcasts": [
+    {
+      "audience": "non-owner reviewers, AI Engineer reviewers, data peers, and open-source contributors",
+      "channel": "GitHub issue comment",
+      "counts_as_outcome": false,
+      "id": "github_issue_19_launch_update",
+      "privacy_boundary": "The broadcast asks reviewers not to include private data, secrets, customer rows, emails, addresses, API keys, or proprietary screenshots.",
+      "public_url": "https://github.com/sunnnn2005/data-quality-agent/issues/19#issuecomment-5289908319",
+      "published": true,
+      "purpose": "Route real reviewers to the public demo, external run quickstart, AI Engineer review slot, reviewer submission hub, and evidence acceptance checklist.",
+      "why_not_outcome": "Owner-authored launch comments are distribution evidence only; they are not external users, feedback, accepted reviews, or stars."
+    }
+  ],
+  "published_broadcast_count": 1,
+  "purpose": "Record public distribution actions that make external review possible without converting owner-authored launch posts into resume outcomes.",
+  "resume_safe_summary": "Published 1 public GitHub launch update routing reviewers to the demo, quickstart, AI Engineer review slot, and evidence gates while preserving zero external outcome counts.",
+  "resume_status": "public_launch_published_not_outcome_evidence"
+}
