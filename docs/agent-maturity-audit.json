@@ -1,0 +1,163 @@
+{
+  "audit_row_count": 20,
+  "audit_rows": [
+    {
+      "area": "Task goal",
+      "evidence": "The agent investigates one dataset and returns quality status, risks, root-cause hypotheses, and remediation actions.",
+      "resume_signal": "bounded AI task definition",
+      "status": "implemented"
+    },
+    {
+      "area": "LLM decision-making",
+      "evidence": "The Chat Completions tool loop uses tool_choice=auto so the model chooses the next tool from the allowlist.",
+      "resume_signal": "LLM-driven tool selection",
+      "status": "implemented"
+    },
+    {
+      "area": "Controlled tools",
+      "evidence": "The toolbox exposes 9 structured allowlisted tools and rejects unknown tool names.",
+      "resume_signal": "safe tool calling",
+      "status": "implemented"
+    },
+    {
+      "area": "Agent loop",
+      "evidence": "Tool results are appended as role=tool messages before the next model step.",
+      "resume_signal": "multi-step agent execution",
+      "status": "implemented"
+    },
+    {
+      "area": "Dynamic execution path",
+      "evidence": "The strategy tool chooses different checks for transaction, support-ticket, customer, and generic tables.",
+      "resume_signal": "adaptive data-quality investigation",
+      "status": "implemented"
+    },
+    {
+      "area": "State management",
+      "evidence": "AgentRunReport stores status, final answer, tool calls, attached report, evaluation, and trace_id.",
+      "resume_signal": "stateful agent reporting",
+      "status": "implemented"
+    },
+    {
+      "area": "Planning and replanning",
+      "evidence": "The model can inspect strategy, profile, memory, checks, and report tools iteratively, but there is no explicit editable plan object yet.",
+      "next_step": "Add a compact plan state with current hypothesis, next tool, and stop reason after each loop.",
+      "resume_signal": "agent planning roadmap",
+      "status": "partial"
+    },
+    {
+      "area": "Termination conditions",
+      "evidence": "The loop stops on final model answer, attached quality report, disabled model fallback, or max-round budget.",
+      "resume_signal": "bounded autonomous loop",
+      "status": "implemented"
+    },
+    {
+      "area": "Permissions and safety",
+      "evidence": "The agent is read-only, uses a tool allowlist, limits database access, redacts sensitive fields, and verifies final reports.",
+      "resume_signal": "AI safety boundary",
+      "status": "implemented"
+    },
+    {
+      "area": "Error handling and fallback",
+      "evidence": "Missing OPENAI_API_KEY returns a structured DISABLED fallback instead of failing the API.",
+      "resume_signal": "production-minded fallback",
+      "status": "implemented"
+    },
+    {
+      "area": "Context management",
+      "evidence": "The model receives dataset metadata, profiles, redacted samples, and finding evidence rather than full private tables.",
+      "resume_signal": "privacy-aware prompting",
+      "status": "implemented"
+    },
+    {
+      "area": "Memory",
+      "evidence": "The agent can retrieve sanitized prior traces and recurring incident patterns, but feedback labels do not yet update ranking.",
+      "next_step": "Use accepted and needs-review hypothesis labels to adjust later root-cause ranking.",
+      "resume_signal": "dataset memory",
+      "status": "partial"
+    },
+    {
+      "area": "RAG",
+      "evidence": "The agent retrieves source-cited local business rules, but embedding/vector search is not implemented yet.",
+      "next_step": "Add optional embedding-backed retrieval for larger business-rule and incident documents.",
+      "resume_signal": "source-cited retrieval",
+      "status": "partial"
+    },
+    {
+      "area": "Structured output",
+      "evidence": "QualityReport and AgentRunReport are Pydantic models with findings, hypotheses, evidence, telemetry, and verification.",
+      "resume_signal": "machine-verifiable AI output",
+      "status": "implemented"
+    },
+    {
+      "area": "Fact/inference separation",
+      "evidence": "The report separates findings, likely causes, root-cause hypotheses, recommended actions, evidence, and limitations.",
+      "resume_signal": "evidence-backed reasoning",
+      "status": "implemented"
+    },
+    {
+      "area": "Guardrails and verification",
+      "evidence": "ReportVerifier checks evidence support, known fields, sensitive terms, unsupported LLM evidence, and score bounds.",
+      "resume_signal": "deterministic AI guardrails",
+      "status": "implemented"
+    },
+    {
+      "area": "Observability",
+      "evidence": "Trace ids, tool-call previews, fallback status, latency, token/cost fields, and SQLite trace persistence exist, but there is no full monitoring dashboard.",
+      "next_step": "Expose aggregate latency, cost, retry, and per-tool success metrics in a dashboard.",
+      "resume_signal": "agent observability",
+      "status": "partial"
+    },
+    {
+      "area": "Evaluation",
+      "evidence": "Scenario evals cover status accuracy, finding recall, evidence support, fallback, report-tool usage, and latency.",
+      "next_step": "Add a larger labeled eval set for tool-choice accuracy, false positives, evidence support, and cost.",
+      "resume_signal": "agent evaluation harness",
+      "status": "partial"
+    },
+    {
+      "area": "Deployment and versioning",
+      "evidence": "The repo publishes a FastAPI app, Docker image, public demo docs, OpenAPI artifact, CI, release notes, and public evidence checks.",
+      "resume_signal": "shipping discipline",
+      "status": "implemented"
+    },
+    {
+      "area": "Real-model production evidence",
+      "evidence": "The repo has a real-model runbook, capture gate, and preflight, but accepted_real_model_run_count is still 0.",
+      "next_step": "Run one explicit paid or approved OpenAI-compatible trace, redact it, and pass the capture verifier.",
+      "resume_signal": "blocked until real model evidence",
+      "status": "not_claimed"
+    }
+  ],
+  "cross_checks": {
+    "accepted_real_model_runs": 0,
+    "agent_readiness_implemented": 16,
+    "ai_engineer_signals": 8,
+    "allowed_tools": 9,
+    "capability_matrix_implemented": 13,
+    "real_model_preflight_status": "not_ready"
+  },
+  "generated_by": "scripts/build_agent_maturity_audit.py",
+  "maturity_level": "real_llm_agent_foundation",
+  "not_claimed": [
+    "production users",
+    "customer feedback",
+    "enterprise deployment",
+    "embedding-backed RAG",
+    "accepted real-model benchmark run",
+    "autonomous write actions"
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Map the project against a practical 20-point LLM agent maturity checklist so resume claims stay evidence-backed and weak areas remain explicit.",
+  "resume_safe_summary": "Published a 20-point LLM agent maturity audit with 14 implemented areas, 5 partial areas, 9 controlled tools, structured output, guardrails, traceability, and an explicit zero accepted-real-model-run boundary.",
+  "source_artifacts": [
+    "docs/agent-capability-matrix.json",
+    "docs/agent-readiness.json",
+    "docs/ai-engineer-readiness.json",
+    "docs/real-model-preflight.json"
+  ],
+  "status_counts": {
+    "implemented": 14,
+    "not_claimed": 1,
+    "partial": 5
+  }
+}

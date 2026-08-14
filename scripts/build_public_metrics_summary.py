@@ -15,6 +15,7 @@ INCIDENT_PATTERN_MEMORY_PATH = ROOT / "docs" / "incident-pattern-memory.json"
 AGENT_OBSERVABILITY_PATH = ROOT / "docs" / "agent-observability.json"
 AGENT_SAFETY_PATH = ROOT / "docs" / "agent-safety-boundaries.json"
 AGENT_CAPABILITY_MATRIX_PATH = ROOT / "docs" / "agent-capability-matrix.json"
+AGENT_MATURITY_AUDIT_PATH = ROOT / "docs" / "agent-maturity-audit.json"
 LOCAL_REVIEWER_DEMO_PATH = ROOT / "docs" / "local-reviewer-demo.json"
 RUNNABLE_RELEASE_PACKET_PATH = ROOT / "docs" / "runnable-release-packet.json"
 EXTERNAL_RUN_EVIDENCE_PACKET_PATH = ROOT / "docs" / "external-run-evidence-packet.json"
@@ -101,6 +102,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     observability = load_json(AGENT_OBSERVABILITY_PATH)
     safety = load_json(AGENT_SAFETY_PATH)
     capability_matrix = load_json(AGENT_CAPABILITY_MATRIX_PATH)
+    maturity_audit = load_json(AGENT_MATURITY_AUDIT_PATH)
     local_demo = load_json(LOCAL_REVIEWER_DEMO_PATH)
     runnable_release = load_json(RUNNABLE_RELEASE_PACKET_PATH)
     external_run_evidence = load_json(EXTERNAL_RUN_EVIDENCE_PACKET_PATH)
@@ -217,6 +219,11 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "agent_matrix_implemented_capabilities": capability_matrix["implemented_count"],
             "agent_matrix_partial_capabilities": capability_matrix["partial_count"],
             "agent_matrix_not_claimed_count": capability_matrix["not_claimed_count"],
+            "agent_maturity_audit": 1,
+            "agent_maturity_audit_rows": maturity_audit["audit_row_count"],
+            "agent_maturity_implemented_areas": maturity_audit["status_counts"]["implemented"],
+            "agent_maturity_partial_areas": maturity_audit["status_counts"]["partial"],
+            "agent_maturity_not_claimed_areas": maturity_audit["status_counts"]["not_claimed"],
             "local_reviewer_demo": 1,
             "local_reviewer_seeded_rows": local_demo["seeded_business_table"]["row_count"],
             "local_reviewer_routes": len(local_demo["reviewer_routes"]),
@@ -1135,6 +1142,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | AI Engineer readiness implemented signals | {outcomes["ai_engineer_readiness_implemented_signals"]} |
 | AI Engineer readiness partial signals | {outcomes["ai_engineer_readiness_partial_signals"]} |
 | AI Engineer readiness not-claimed signals | {outcomes["ai_engineer_readiness_not_claimed_signals"]} |
+| Agent maturity audit | {outcomes["agent_maturity_audit"]} |
+| Agent maturity audit rows | {outcomes["agent_maturity_audit_rows"]} |
+| Agent maturity implemented areas | {outcomes["agent_maturity_implemented_areas"]} |
+| Agent maturity partial areas | {outcomes["agent_maturity_partial_areas"]} |
+| Agent maturity not-claimed areas | {outcomes["agent_maturity_not_claimed_areas"]} |
 | Recommended remediation actions | {outcomes["recommended_actions"]} |
 | Implemented LLM agent-readiness capabilities | {outcomes["implemented_agent_capabilities"]} |
 | Partial agent-readiness capabilities documented | {outcomes["partial_agent_capabilities"]} |
@@ -1460,6 +1472,11 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "ai_engineer_readiness_implemented_signals": 8,
         "ai_engineer_readiness_partial_signals": 1,
         "ai_engineer_readiness_not_claimed_signals": 1,
+        "agent_maturity_audit": 1,
+        "agent_maturity_audit_rows": 20,
+        "agent_maturity_implemented_areas": 14,
+        "agent_maturity_partial_areas": 5,
+        "agent_maturity_not_claimed_areas": 1,
         "recommended_actions": 5,
         "implemented_agent_capabilities": 16,
     }

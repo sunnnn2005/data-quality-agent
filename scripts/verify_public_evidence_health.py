@@ -128,6 +128,23 @@ PUBLIC_CHECKS = [
         "evidence_type": "json",
     },
     {
+        "id": "agent-maturity-audit",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-maturity-audit.json",
+        "expected_json": {
+            "project": "Data Quality Agent",
+            "audit_row_count": 20,
+            "maturity_level": "real_llm_agent_foundation",
+        },
+        "expected_text": "20-point LLM agent maturity checklist",
+        "expected_texts": [
+            "LLM decision-making",
+            "Controlled tools",
+            "Agent loop",
+            "accepted real-model benchmark run",
+        ],
+        "evidence_type": "json",
+    },
+    {
         "id": "real-model-evidence-capture",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/real-model-evidence-capture.json",
         "expected_json": {

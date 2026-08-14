@@ -289,6 +289,11 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | AI Engineer readiness implemented signals | 8 |
 | AI Engineer readiness partial signals | 1 |
 | AI Engineer readiness not-claimed signals | 1 |
+| Agent maturity audit | 1 |
+| Agent maturity audit rows | 20 |
+| Agent maturity implemented areas | 14 |
+| Agent maturity partial areas | 5 |
+| Agent maturity not-claimed areas | 1 |
 | Recommended remediation actions | 5 |
 | Implemented LLM agent-readiness capabilities | 16 |
 | Partial agent-readiness capabilities documented | 4 |
