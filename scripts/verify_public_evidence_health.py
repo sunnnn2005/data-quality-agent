@@ -246,7 +246,7 @@ PUBLIC_CHECKS = [
         },
         "expected_text": "resume_safe_bullets",
         "expected_texts": [
-            "102/102 public evidence checks passing",
+            "103/103 public evidence checks passing",
             "business_pilot_issue",
             "blocked_until_external_evidence",
             "confirmed external users",
