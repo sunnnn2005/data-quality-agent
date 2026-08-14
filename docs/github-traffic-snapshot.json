@@ -1,12 +1,7 @@
 {
   "clones": {
-    "count": 79,
+    "count": 1240,
     "daily": [
-      {
-        "count": 0,
-        "timestamp": "2026-07-30T00:00:00Z",
-        "uniques": 0
-      },
       {
         "count": 0,
         "timestamp": "2026-07-31T00:00:00Z",
@@ -71,11 +66,16 @@
         "count": 28,
         "timestamp": "2026-08-12T00:00:00Z",
         "uniques": 17
+      },
+      {
+        "count": 1161,
+        "timestamp": "2026-08-13T00:00:00Z",
+        "uniques": 263
       }
     ],
-    "uniques": 50
+    "uniques": 301
   },
-  "generated_at": "2026-08-14T06:18:07.130379+00:00",
+  "generated_at": "2026-08-14T12:36:03.937099+00:00",
   "generated_by": "scripts/build_github_traffic_snapshot.py",
   "not_claimed": [
     "confirmed users from traffic alone",
@@ -128,8 +128,8 @@
   ],
   "traffic_available": true,
   "traffic_metrics": {
-    "clone_count": 79,
-    "unique_cloners": 50,
+    "clone_count": 1240,
+    "unique_cloners": 301,
     "unique_visitors": 3,
     "view_count": 9
   },
@@ -137,11 +137,6 @@
   "views": {
     "count": 9,
     "daily": [
-      {
-        "count": 0,
-        "timestamp": "2026-07-30T00:00:00Z",
-        "uniques": 0
-      },
       {
         "count": 0,
         "timestamp": "2026-07-31T00:00:00Z",
@@ -205,6 +200,11 @@
       {
         "count": 0,
         "timestamp": "2026-08-12T00:00:00Z",
+        "uniques": 0
+      },
+      {
+        "count": 0,
+        "timestamp": "2026-08-13T00:00:00Z",
         "uniques": 0
       }
     ],

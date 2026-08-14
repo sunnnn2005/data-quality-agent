@@ -1,14 +1,22 @@
+import json
+from pathlib import Path
+
 from scripts.build_resume_outcome_scoreboard import (
     build_resume_outcome_scoreboard,
     render_markdown,
     verify_resume_outcome_scoreboard,
 )
 
+ROOT = Path(__file__).resolve().parents[1]
+
 
 def test_resume_outcome_scoreboard_separates_claimable_and_locked_outcomes():
     payload = build_resume_outcome_scoreboard()
     verification = verify_resume_outcome_scoreboard(payload)
     markdown = render_markdown(payload)
+    traffic = json.loads((ROOT / "docs" / "github-traffic-snapshot.json").read_text())[
+        "traffic_metrics"
+    ]
 
     assert verification["resume_outcome_scoreboard_verified"] is True
     assert payload["claimable_now_count"] == 6
@@ -16,10 +24,10 @@ def test_resume_outcome_scoreboard_separates_claimable_and_locked_outcomes():
     assert payload["reviewer_funnel"]["remaining_evidence_items"] == 7
     assert payload["current_public_counts"]["github_forks"] == 1
     assert payload["current_public_counts"]["github_stars"] == 0
-    assert payload["current_public_counts"]["github_views"] == 9
-    assert payload["current_public_counts"]["github_unique_visitors"] == 3
-    assert payload["current_public_counts"]["github_clones"] == 79
-    assert payload["current_public_counts"]["github_unique_cloners"] == 50
+    assert payload["current_public_counts"]["github_views"] == traffic["view_count"]
+    assert payload["current_public_counts"]["github_unique_visitors"] == traffic["unique_visitors"]
+    assert payload["current_public_counts"]["github_clones"] == traffic["clone_count"]
+    assert payload["current_public_counts"]["github_unique_cloners"] == traffic["unique_cloners"]
     assert payload["current_public_counts"]["available_public_endpoints"] == 4
     assert payload["current_public_counts"]["public_endpoint_count"] == 4
     assert payload["current_public_counts"]["successful_main_branch_workflows"] == 3

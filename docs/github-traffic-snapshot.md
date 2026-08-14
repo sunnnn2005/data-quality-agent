@@ -9,8 +9,8 @@ This generated artifact captures GitHub's rolling traffic window as a public-int
 | Traffic available | True |
 | View count | 9 |
 | Unique visitors | 3 |
-| Clone count | 79 |
-| Unique cloners | 50 |
+| Clone count | 1240 |
+| Unique cloners | 301 |
 
 Traffic window: GitHub traffic API rolling 14-day window
 

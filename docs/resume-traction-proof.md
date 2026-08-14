@@ -15,8 +15,8 @@ This generated artifact turns public project evidence into resume-safe traction 
 | Reproducible Feedback Items | 0 |
 | Github Views | 9 |
 | Github Unique Visitors | 3 |
-| Github Clones | 79 |
-| Github Unique Cloners | 50 |
+| Github Clones | 1240 |
+| Github Unique Cloners | 301 |
 
 ## Claimable Now
 
@@ -26,7 +26,7 @@ This generated artifact turns public project evidence into resume-safe traction 
 | public release | Published v0.3.0 release and runnable GHCR container image. | [https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.3.0](https://github.com/sunnnn2005/data-quality-agent/releases/tag/v0.3.0) | `claimable` |
 | verified engineering quality | Maintained 212 passing CI tests across agent, API, evidence, and safety checks. | [https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml](https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml) | `claimable` |
 | evidence collection system | Built a reviewer evidence system with 5 public issue templates and 5 privacy/permission steps. | [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-evidence-kit.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-evidence-kit.md) | `claimable` |
-| early repository interest | Captured GitHub's rolling 14-day traffic snapshot with 9 views, 3 unique visitors, 79 clones, and 50 unique cloners without counting traffic as users. | [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md) | `claimable` |
+| early repository interest | Captured GitHub's rolling 14-day traffic snapshot with 9 views, 3 unique visitors, 1240 clones, and 301 unique cloners without counting traffic as users. | [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md) | `claimable` |
 | public availability evidence | Verified 4/4 public project surfaces and 3/3 main-branch workflows in a generated availability snapshot. | [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-availability-snapshot.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-availability-snapshot.md) | `claimable` |
 
 ## Future Outcome Claims

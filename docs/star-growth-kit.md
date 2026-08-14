@@ -14,8 +14,8 @@ This generated kit documents ethical ways to improve public GitHub traction with
 | Confirmed External Users | 0 |
 | Github Views 14D | 9 |
 | Github Unique Visitors 14D | 3 |
-| Github Clones 14D | 79 |
-| Github Unique Cloners 14D | 50 |
+| Github Clones 14D | 1240 |
+| Github Unique Cloners 14D | 301 |
 
 ## Topic Readiness
 

@@ -34,7 +34,7 @@
     },
     {
       "evidence": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md",
-      "resume_phrase": "Captured GitHub's rolling 14-day traffic snapshot with 9 views, 3 unique visitors, 79 clones, and 50 unique cloners without counting traffic as users.",
+      "resume_phrase": "Captured GitHub's rolling 14-day traffic snapshot with 9 views, 3 unique visitors, 1240 clones, and 301 unique cloners without counting traffic as users.",
       "signal": "early repository interest",
       "status": "claimable"
     },
@@ -89,8 +89,8 @@
     "confirmed_external_users": 0,
     "external_feedback_items": 0,
     "forks": 1,
-    "github_clones": 79,
-    "github_unique_cloners": 50,
+    "github_clones": 1240,
+    "github_unique_cloners": 301,
     "github_unique_visitors": 3,
     "github_views": 9,
     "issues_total": 25,

@@ -70,7 +70,7 @@
     {
       "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/github-traffic-snapshot.md",
       "label": "Public discovery traffic",
-      "resume_line": "Captured public GitHub interest in the rolling 14-day window: 9 views, 3 unique visitors, 79 clones, and 50 unique cloners without counting them as users."
+      "resume_line": "Captured public GitHub interest in the rolling 14-day window: 9 views, 3 unique visitors, 1240 clones, and 301 unique cloners without counting them as users."
     },
     {
       "evidence_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/public-availability-snapshot.md",
@@ -94,10 +94,10 @@
     "business_problem_cases": 1,
     "confirmed_external_users": 0,
     "external_feedback_items": 0,
-    "github_clones": 79,
+    "github_clones": 1240,
     "github_forks": 1,
     "github_stars": 0,
-    "github_unique_cloners": 50,
+    "github_unique_cloners": 301,
     "github_unique_visitors": 3,
     "github_views": 9,
     "main_branch_workflow_count": 3,
@@ -115,10 +115,10 @@
   ],
   "project": "Data Quality Agent",
   "proof_page_url": "https://sunnnn2005.github.io/data-quality-agent/outcome-proof-page.html",
-  "public_health_check_count": 90,
+  "public_health_check_count": 93,
   "public_health_status": "PASS",
   "purpose": "Give recruiters and external reviewers one public page that separates verified outcomes from blocked future claims and routes reviewers to the exact evidence actions that can unlock stronger resume metrics.",
-  "resume_safe_summary": "Published an outcome proof page with 6 verified resume-safe proof cards, 6 blocked future outcome cards, 5 reviewer action paths, and public evidence health at 90/90 PASS.",
+  "resume_safe_summary": "Published an outcome proof page with 6 verified resume-safe proof cards, 6 blocked future outcome cards, 5 reviewer action paths, and public evidence health at 93/93 PASS.",
   "reviewer_action_count": 5,
   "reviewer_actions": [
     {
