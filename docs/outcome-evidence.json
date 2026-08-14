@@ -29,8 +29,8 @@
       "evidence_type": "ci",
       "id": "ci-tests",
       "metric_name": "test_count",
-      "metric_value": 144,
-      "resume_signal": "144 passing CI tests",
+      "metric_value": 145,
+      "resume_signal": "145 passing CI tests",
       "status": "verified",
       "url": "https://github.com/sunnnn2005/data-quality-agent/actions/workflows/test.yml"
     },
@@ -299,11 +299,11 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/recruiter-pitch.json"
     },
     {
-      "claim": "The project publishes a recruiter-ready evidence pack with 38 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
+      "claim": "The project publishes a recruiter-ready evidence pack with 39 application links, verified outcome numbers, resume bullets, an email attachment note, an interview opening, review order, and honest adoption baselines.",
       "evidence_type": "artifact",
       "id": "application-evidence-pack",
       "metric_name": "application_evidence_link_count",
-      "metric_value": 38,
+      "metric_value": 39,
       "resume_signal": "CI-verified application evidence pack",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/application-evidence-pack.json"
@@ -729,6 +729,16 @@
       "resume_signal": "CI-verified reviewer submission hub",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/reviewer-submission-hub.json"
+    },
+    {
+      "claim": "The project publishes a public outcome collection page with 5 next actions, 6 submission paths, 23 required evidence fields, zero-count outcome baselines, and privacy boundaries for collecting future resume-safe evidence.",
+      "evidence_type": "generated_artifact",
+      "id": "outcome-collection-page",
+      "metric_name": "outcome_collection_page",
+      "metric_value": 1,
+      "resume_signal": "CI-verified public outcome collection page",
+      "status": "verified",
+      "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/outcome-collection.json"
     },
     {
       "claim": "The project publishes a public reviewer call for 3 reviewer segments, 6 submission paths, 8 outreach tasks, 23 required evidence fields, conservative counting rules, and zero current outcome counts upgraded.",

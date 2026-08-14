@@ -1,0 +1,129 @@
+{
+  "actions": [
+    {
+      "completion_check": "One outreach slot has status sent and no resume outcome is claimed yet.",
+      "current_count": 0,
+      "evidence_path": "docs/reviewer-outreach-status-board.md",
+      "id": "send_first_reviewer_request",
+      "owner_action": "Send one message from the reviewer outreach execution pack to a real non-owner reviewer, then update the status board from not_sent to sent.",
+      "remaining_to_claim": 1,
+      "status": "next_action_needed",
+      "target_metric": "external_feedback_items",
+      "title": "Send one prepared reviewer request"
+    },
+    {
+      "completion_check": "External reviewer evidence gate accepts one non-owner issue.",
+      "current_count": 0,
+      "evidence_path": "docs/external-reviewer-evidence-gate.md",
+      "id": "collect_first_public_run_issue",
+      "owner_action": "Ask the reviewer to submit a public issue with path tried, command or URL evidence, observed result, main feedback, no-private-data checkbox, and permission to count.",
+      "remaining_to_claim": 1,
+      "status": "next_action_needed",
+      "target_metric": "confirmed_external_users",
+      "title": "Collect one accepted public reviewer run issue"
+    },
+    {
+      "completion_check": "One public ai-engineer-review issue passes the evidence gate.",
+      "current_count": 0,
+      "evidence_path": "docs/ai-engineer-review-intake.md",
+      "id": "collect_ai_engineer_review",
+      "owner_action": "Ask an AI/ML systems reviewer to inspect the tool-calling loop, PostgreSQL adapter, guardrails, trace evidence, and AI Engineer readiness document.",
+      "remaining_to_claim": 1,
+      "status": "next_action_needed",
+      "target_metric": "ai_engineer_review_items",
+      "title": "Collect one AI Engineer review"
+    },
+    {
+      "completion_check": "One business-case public issue passes the evidence gate without sensitive data.",
+      "current_count": 0,
+      "evidence_path": "docs/business-case-intake.md",
+      "id": "collect_business_case",
+      "owner_action": "Ask a data/ops reviewer for an anonymized data-quality scenario and map it to the agent findings, business impact, fields involved, and useful next action.",
+      "remaining_to_claim": 1,
+      "status": "next_action_needed",
+      "target_metric": "business_case_feedback_items",
+      "title": "Collect one anonymized business-case validation"
+    },
+    {
+      "completion_check": "docs/adoption-metrics.json and the public GitHub stargazers page show at least 1 star.",
+      "current_count": 0,
+      "evidence_path": "docs/star-growth-kit.md",
+      "id": "earn_first_star",
+      "owner_action": "Share the public demo, review page, and README with relevant student builders or data engineers; do not buy, trade, or request fake stars.",
+      "remaining_to_claim": 1,
+      "status": "next_action_needed",
+      "target_metric": "github_stars",
+      "title": "Earn the first organic GitHub star"
+    }
+  ],
+  "current_counts": {
+    "confirmed_external_users": 0,
+    "external_feedback_items": 0,
+    "github_forks": 1,
+    "github_stars": 0,
+    "passing_tests": 145
+  },
+  "generated_by": "scripts/build_outcome_collection_page.py",
+  "not_claimed": [
+    "No external users are claimed while confirmed_external_users is zero.",
+    "No customer feedback is claimed while external_feedback_items is zero.",
+    "No GitHub star growth is claimed while stars is zero.",
+    "Do not post raw customer data, secrets, private emails, addresses, API keys, or production rows."
+  ],
+  "project": "Data Quality Agent",
+  "purpose": "Give external reviewers one public page for trying the project, submitting countable evidence, and seeing which outcome claims are still blocked.",
+  "required_evidence_field_count": 23,
+  "resume_safe_summary": "Published a public outcome collection page with 5 next actions, 6 submission paths, 23 required evidence fields, 0 confirmed users, 0 feedback items, and 0 GitHub stars.",
+  "submission_path_count": 6,
+  "submission_paths": [
+    {
+      "counting_rule": "Counts only after a non-owner public issue grants permission and passes the evidence gate.",
+      "id": "try_public_demo",
+      "minutes": 5,
+      "review_url": "https://sunnnn2005.github.io/data-quality-agent/",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
+      "target_metric": "external_feedback_items"
+    },
+    {
+      "counting_rule": "Counts only when the reviewer ran or opened a runnable path and submitted observed-result evidence.",
+      "id": "confirm_external_run",
+      "minutes": 8,
+      "review_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-quickstart.md",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md",
+      "target_metric": "confirmed_external_users"
+    },
+    {
+      "counting_rule": "Counts only when reproduction steps are specific enough for the maintainer to retry.",
+      "id": "submit_reproducible_issue",
+      "minutes": 10,
+      "review_url": "https://github.com/sunnnn2005/data-quality-agent",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md",
+      "target_metric": "reproducible_feedback_items"
+    },
+    {
+      "counting_rule": "Counts only when the business case is anonymized, permissioned, and contains no raw production data.",
+      "id": "submit_business_case",
+      "minutes": 12,
+      "review_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-case-intake.md",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md",
+      "target_metric": "business_case_feedback_items"
+    },
+    {
+      "counting_rule": "Counts only when an external reviewer inspects implementation evidence and grants permission.",
+      "id": "submit_ai_engineer_review",
+      "minutes": 12,
+      "review_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md",
+      "target_metric": "ai_engineer_review_items"
+    },
+    {
+      "counting_rule": "Counts only from GitHub public star data; never asks for fake engagement.",
+      "id": "star_or_fork_if_useful",
+      "minutes": 1,
+      "review_url": "https://github.com/sunnnn2005/data-quality-agent",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/stargazers",
+      "target_metric": "github_stars"
+    }
+  ],
+  "tracked_action_count": 5
+}

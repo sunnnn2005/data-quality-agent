@@ -31,6 +31,7 @@ REVIEWER_OUTREACH_STATUS_BOARD_PATH = ROOT / "docs" / "reviewer-outreach-status-
 RESUME_OUTCOME_METRICS_PATH = ROOT / "docs" / "resume-outcome-metrics.json"
 RESUME_OUTCOME_ACTION_CHECKLIST_PATH = ROOT / "docs" / "resume-outcome-action-checklist.json"
 REVIEWER_SUBMISSION_HUB_PATH = ROOT / "docs" / "reviewer-submission-hub.json"
+OUTCOME_COLLECTION_PATH = ROOT / "docs" / "outcome-collection.json"
 PUBLIC_REVIEWER_CALL_PATH = ROOT / "docs" / "public-reviewer-call.json"
 REVIEWER_SHARE_KIT_PATH = ROOT / "docs" / "reviewer-share-kit.json"
 API_SMOKE_REPORT_PATH = ROOT / "docs" / "api-smoke-report.json"
@@ -68,7 +69,7 @@ REVIEWER_FUNNEL_BOARD_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "public-metrics-summary.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "public-metrics-summary.md"
 SCORECARD_REVIEWER_PATH_COUNT = 23
-APPLICATION_EVIDENCE_LINK_COUNT = 38
+APPLICATION_EVIDENCE_LINK_COUNT = 39
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -103,6 +104,7 @@ def build_public_metrics_summary() -> dict[str, Any]:
     resume_outcome_metrics = load_json(RESUME_OUTCOME_METRICS_PATH)
     resume_outcome_action_checklist = load_json(RESUME_OUTCOME_ACTION_CHECKLIST_PATH)
     reviewer_submission_hub = load_json(REVIEWER_SUBMISSION_HUB_PATH)
+    outcome_collection = load_json(OUTCOME_COLLECTION_PATH)
     public_reviewer_call = load_json(PUBLIC_REVIEWER_CALL_PATH)
     reviewer_share_kit = load_json(REVIEWER_SHARE_KIT_PATH)
     api_smoke = load_json(API_SMOKE_REPORT_PATH)
@@ -259,6 +261,10 @@ def build_public_metrics_summary() -> dict[str, Any]:
             "reviewer_submission_paths": reviewer_submission_hub["submission_path_count"],
             "reviewer_submission_target_metrics": reviewer_submission_hub["target_metric_count"],
             "reviewer_submission_required_fields": reviewer_submission_hub["total_required_evidence_fields"],
+            "outcome_collection_page": 1,
+            "outcome_collection_actions": outcome_collection["tracked_action_count"],
+            "outcome_collection_submission_paths": outcome_collection["submission_path_count"],
+            "outcome_collection_evidence_fields": outcome_collection["required_evidence_field_count"],
             "public_reviewer_call": 1,
             "public_reviewer_call_segments": public_reviewer_call["reviewer_segment_count"],
             "public_reviewer_call_submission_paths": public_reviewer_call["linked_submission_paths"],
@@ -544,6 +550,14 @@ def build_public_metrics_summary() -> dict[str, Any]:
                 f"{reviewer_submission_hub['total_required_evidence_fields']} required evidence fields, and zero current outcome claims upgraded"
             ),
             (
+                f"Outcome collection page with {outcome_collection['tracked_action_count']} next actions, "
+                f"{outcome_collection['submission_path_count']} submission paths, "
+                f"{outcome_collection['required_evidence_field_count']} required evidence fields, "
+                f"{outcome_collection['current_counts']['confirmed_external_users']} confirmed users, "
+                f"{outcome_collection['current_counts']['external_feedback_items']} feedback items, and "
+                f"{outcome_collection['current_counts']['github_stars']} GitHub stars"
+            ),
+            (
                 f"Public reviewer call linked to {public_reviewer_call['reviewer_segment_count']} reviewer segments, "
                 f"{public_reviewer_call['linked_submission_paths']} submission paths, "
                 f"{public_reviewer_call['linked_outreach_tasks']} outreach tasks, and "
@@ -793,6 +807,10 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Reviewer submission paths | {outcomes["reviewer_submission_paths"]} |
 | Reviewer submission target metrics | {outcomes["reviewer_submission_target_metrics"]} |
 | Reviewer submission required fields | {outcomes["reviewer_submission_required_fields"]} |
+| Outcome collection page | {outcomes["outcome_collection_page"]} |
+| Outcome collection actions | {outcomes["outcome_collection_actions"]} |
+| Outcome collection submission paths | {outcomes["outcome_collection_submission_paths"]} |
+| Outcome collection evidence fields | {outcomes["outcome_collection_evidence_fields"]} |
 | Public reviewer call | {outcomes["public_reviewer_call"]} |
 | Public reviewer call segments | {outcomes["public_reviewer_call_segments"]} |
 | Public reviewer call submission paths | {outcomes["public_reviewer_call_submission_paths"]} |
@@ -939,7 +957,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
     expected_metrics = {
         "stars": 0,
         "forks": 1,
-        "test_count": 144,
+        "test_count": 145,
         "external_feedback_items": 0,
         "confirmed_external_users": 0,
     }
@@ -1052,6 +1070,10 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "reviewer_submission_paths": 6,
         "reviewer_submission_target_metrics": 6,
         "reviewer_submission_required_fields": 23,
+        "outcome_collection_page": 1,
+        "outcome_collection_actions": 5,
+        "outcome_collection_submission_paths": 6,
+        "outcome_collection_evidence_fields": 23,
         "public_reviewer_call": 1,
         "public_reviewer_call_segments": 3,
         "public_reviewer_call_submission_paths": 6,
@@ -1101,7 +1123,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "recruiter_pitch_resume_bullets": 3,
         "recruiter_pitch_target_roles": 4,
         "application_evidence_pack": 1,
-        "application_evidence_links": 38,
+        "application_evidence_links": 39,
         "ai_engineer_review_intake": 1,
         "ai_engineer_review_paths": 6,
         "ai_engineer_review_questions": 6,

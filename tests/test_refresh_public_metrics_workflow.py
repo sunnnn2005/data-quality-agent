@@ -35,13 +35,14 @@ def test_refresh_public_metrics_workflow_updates_resume_evidence_sources():
     assert "python scripts/build_public_reviewer_call.py" in run_commands
     assert "python scripts/build_reviewer_share_kit.py" in run_commands
     assert "python scripts/build_reviewer_outreach_status_board.py" in run_commands
+    assert "python scripts/build_outcome_collection_page.py" in run_commands
     assert "python scripts/verify_outcome_evidence.py" in run_commands
     assert (
         "tests/test_reviewer_evidence_kit.py tests/test_resume_traction_proof.py "
         "tests/test_reviewer_action_queue.py tests/test_reviewer_outreach_execution_pack.py "
         "tests/test_reviewer_outreach_status_board.py "
         "tests/test_resume_outcome_metrics.py tests/test_resume_outcome_action_checklist.py tests/test_reviewer_submission_hub.py "
-        "tests/test_public_reviewer_call.py tests/test_reviewer_share_kit.py"
+        "tests/test_public_reviewer_call.py tests/test_reviewer_share_kit.py tests/test_outcome_collection_page.py"
     ) in run_commands
     assert run_commands.index("python scripts/build_resume_traction_proof.py") < run_commands.index(
         "python scripts/build_public_metrics_summary.py"
@@ -74,6 +75,9 @@ def test_refresh_public_metrics_workflow_updates_resume_evidence_sources():
         "python scripts/build_reviewer_outreach_status_board.py"
     )
     assert run_commands.index("python scripts/build_reviewer_outreach_status_board.py") < run_commands.index(
+        "python scripts/build_outcome_collection_page.py"
+    )
+    assert run_commands.index("python scripts/build_outcome_collection_page.py") < run_commands.index(
         "python scripts/build_public_metrics_summary.py"
     )
     assert "stefanzweifel/git-auto-commit-action@v5" in uses

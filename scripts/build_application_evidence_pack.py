@@ -69,6 +69,7 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "resume_outcome_metrics": f"{scorecard['repo']}/blob/main/docs/resume-outcome-metrics.md",
             "resume_outcome_action_checklist": f"{scorecard['repo']}/blob/main/docs/resume-outcome-action-checklist.md",
             "reviewer_submission_hub": f"{scorecard['repo']}/blob/main/docs/reviewer-submission-hub.md",
+            "outcome_collection": "https://sunnnn2005.github.io/data-quality-agent/outcome-collection.html",
             "public_reviewer_call": f"{scorecard['repo']}/blob/main/docs/public-reviewer-call.md",
             "reviewer_share_kit": f"{scorecard['repo']}/blob/main/docs/reviewer-share-kit.md",
         },
@@ -122,6 +123,9 @@ def build_application_evidence_pack_payload() -> dict[str, Any]:
             "resume_outcome_next_actions_needed": outcomes["resume_outcome_next_actions_needed"],
             "reviewer_submission_paths": outcomes["reviewer_submission_paths"],
             "reviewer_submission_required_fields": outcomes["reviewer_submission_required_fields"],
+            "outcome_collection_actions": outcomes["outcome_collection_actions"],
+            "outcome_collection_submission_paths": outcomes["outcome_collection_submission_paths"],
+            "outcome_collection_evidence_fields": outcomes["outcome_collection_evidence_fields"],
             "public_reviewer_call_segments": outcomes["public_reviewer_call_segments"],
             "public_reviewer_call_outreach_tasks": outcomes["public_reviewer_call_outreach_tasks"],
             "public_reviewer_call_evidence_fields": outcomes["public_reviewer_call_evidence_fields"],
@@ -215,14 +219,14 @@ This generated pack gives recruiters and interviewers a compact review path for 
 
 def verify_application_evidence_pack(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
-        "application_link_count": 38,
+        "application_link_count": 39,
         "resume_bullet_count": 3,
         "target_role_count": 4,
-        "passing_tests": 144,
-        "verified_resume_claims": 78,
+        "passing_tests": 145,
+        "verified_resume_claims": 79,
     }
     if len(payload["application_links"]) != expected["application_link_count"]:
-            raise AssertionError("application evidence pack must include 38 application links")
+            raise AssertionError("application evidence pack must include 39 application links")
     if len(payload["resume_bullets"]) != expected["resume_bullet_count"]:
         raise AssertionError("application evidence pack must include 3 resume bullets")
     if len(payload["target_roles"]) != expected["target_role_count"]:

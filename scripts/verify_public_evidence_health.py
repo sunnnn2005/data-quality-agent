@@ -49,7 +49,7 @@ PUBLIC_CHECKS = [
         "expected_text": "business-impact-artifact",
         "expected_texts": [
             "external-run-evidence-packet",
-            "144 passing CI tests",
+            "145 passing CI tests",
             "accepted-evidence-rollup",
             "real-model-evidence-capture",
             "reviewer-action-queue",
@@ -62,8 +62,21 @@ PUBLIC_CHECKS = [
     {
         "id": "adoption-metrics",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/adoption-metrics.json",
-        "expected_json": {"stars": 0, "forks": 1, "test_count": 144},
+        "expected_json": {"stars": 0, "forks": 1, "test_count": 145},
         "evidence_type": "json",
+    },
+    {
+        "id": "outcome-collection-page",
+        "url": "https://sunnnn2005.github.io/data-quality-agent/outcome-collection.html",
+        "expected_text": "Turn reviews into resume-safe evidence",
+        "expected_texts": [
+            "Submit Evidence",
+            "No external users are claimed",
+            "Do not post raw customer data",
+            "Start 8-minute review",
+            "Action checklist",
+        ],
+        "evidence_type": "html",
     },
     {
         "id": "openapi-contract",

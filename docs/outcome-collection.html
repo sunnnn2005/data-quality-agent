@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Quality Agent Outcome Collection</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0f14;
+      --panel: #121821;
+      --panel-2: #182131;
+      --text: #f6f8fb;
+      --muted: #a9b5c9;
+      --line: #2b3548;
+      --accent: #5eead4;
+      --accent-2: #8ab4ff;
+      --warn: #ffd166;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 16% 4%, rgba(94, 234, 212, .16), transparent 28rem),
+        radial-gradient(circle at 88% 0%, rgba(138, 180, 255, .16), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    a { color: inherit; }
+    .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 48px 0; }
+    header { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr); gap: 28px; align-items: center; min-height: 64vh; }
+    .eyebrow { color: var(--accent); font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    h1 { font-size: clamp(42px, 7vw, 78px); letter-spacing: 0; line-height: .95; margin: 14px 0 18px; }
+    .lede { color: var(--muted); font-size: clamp(18px, 2.2vw, 23px); max-width: 760px; margin: 0 0 24px; }
+    .actions, .path-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .button { align-items: center; background: var(--accent); border: 1px solid rgba(255,255,255,.12); border-radius: 8px; color: #061f1b; display: inline-flex; font-weight: 800; min-height: 42px; padding: 0 14px; text-decoration: none; }
+    .button.secondary { background: rgba(255,255,255,.07); color: var(--text); }
+    .metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .metric, .card, .path, .guardrail { background: rgba(18, 24, 33, .9); border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
+    .metric strong { display: block; font-size: 34px; line-height: 1; margin-bottom: 6px; }
+    .metric span, .card p, .path p, .guardrail li { color: var(--muted); }
+    section { border-top: 1px solid var(--line); padding: 42px 0; }
+    h2 { font-size: clamp(28px, 4vw, 42px); letter-spacing: 0; line-height: 1; margin: 0 0 16px; }
+    .section-copy { color: var(--muted); max-width: 840px; margin: 0 0 22px; font-size: 17px; }
+    .cards { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+    .card h3, .path h3 { margin: 8px 0; font-size: 18px; }
+    .tag, .path span { color: var(--warn); font-size: 12px; font-weight: 900; text-transform: uppercase; }
+    .paths { display: grid; gap: 12px; }
+    .path { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: center; }
+    .guardrail ul { margin: 0; padding-left: 18px; }
+    footer { color: var(--muted); border-top: 1px solid var(--line); padding: 28px 0 0; }
+    @media (max-width: 860px) {
+      header, .path { grid-template-columns: 1fr; }
+      .cards, .metrics { grid-template-columns: 1fr; }
+      .shell { width: min(100% - 28px, 1120px); padding: 28px 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div>
+        <div class="eyebrow">Public outcome collection</div>
+        <h1>Turn reviews into resume-safe evidence</h1>
+        <p class="lede">
+          This page gives reviewers one public path to try Data Quality Agent, submit evidence, and help convert
+          currently blocked outcome claims into verified resume signals.
+        </p>
+        <div class="actions">
+          <a class="button" href="review.html">Start 8-minute review</a>
+          <a class="button secondary" href="reviewer-submission-hub.md">Submission hub</a>
+          <a class="button secondary" href="resume-outcome-action-checklist.md">Action checklist</a>
+          <a class="button secondary" href="public-metrics-summary.md">Public metrics</a>
+        </div>
+      </div>
+      <div class="metrics" aria-label="Current outcome counts">
+        <div class="metric"><strong>0</strong><span>confirmed external users</span></div>
+        <div class="metric"><strong>0</strong><span>public feedback items</span></div>
+        <div class="metric"><strong>0</strong><span>public GitHub stars</span></div>
+        <div class="metric"><strong>145</strong><span>passing tests</span></div>
+      </div>
+    </header>
+
+    <section>
+      <h2>Next Outcome Actions</h2>
+      <p class="section-copy">Give external reviewers one public page for trying the project, submitting countable evidence, and seeing which outcome claims are still blocked.</p>
+      <div class="cards">
+        <article class="card">
+          <div class="tag">external_feedback_items</div>
+          <h3>Send one prepared reviewer request</h3>
+          <p>Send one message from the reviewer outreach execution pack to a real non-owner reviewer, then update the status board from not_sent to sent.</p>
+          <p><strong>Done when:</strong> One outreach slot has status sent and no resume outcome is claimed yet.</p>
+          <a href="docs/reviewer-outreach-status-board.md">Evidence path</a>
+        </article>
+        
+
+        <article class="card">
+          <div class="tag">confirmed_external_users</div>
+          <h3>Collect one accepted public reviewer run issue</h3>
+          <p>Ask the reviewer to submit a public issue with path tried, command or URL evidence, observed result, main feedback, no-private-data checkbox, and permission to count.</p>
+          <p><strong>Done when:</strong> External reviewer evidence gate accepts one non-owner issue.</p>
+          <a href="docs/external-reviewer-evidence-gate.md">Evidence path</a>
+        </article>
+        
+
+        <article class="card">
+          <div class="tag">ai_engineer_review_items</div>
+          <h3>Collect one AI Engineer review</h3>
+          <p>Ask an AI/ML systems reviewer to inspect the tool-calling loop, PostgreSQL adapter, guardrails, trace evidence, and AI Engineer readiness document.</p>
+          <p><strong>Done when:</strong> One public ai-engineer-review issue passes the evidence gate.</p>
+          <a href="docs/ai-engineer-review-intake.md">Evidence path</a>
+        </article>
+        
+
+        <article class="card">
+          <div class="tag">business_case_feedback_items</div>
+          <h3>Collect one anonymized business-case validation</h3>
+          <p>Ask a data/ops reviewer for an anonymized data-quality scenario and map it to the agent findings, business impact, fields involved, and useful next action.</p>
+          <p><strong>Done when:</strong> One business-case public issue passes the evidence gate without sensitive data.</p>
+          <a href="docs/business-case-intake.md">Evidence path</a>
+        </article>
+        
+
+        <article class="card">
+          <div class="tag">github_stars</div>
+          <h3>Earn the first organic GitHub star</h3>
+          <p>Share the public demo, review page, and README with relevant student builders or data engineers; do not buy, trade, or request fake stars.</p>
+          <p><strong>Done when:</strong> docs/adoption-metrics.json and the public GitHub stargazers page show at least 1 star.</p>
+          <a href="docs/star-growth-kit.md">Evidence path</a>
+        </article>
+        
+      </div>
+    </section>
+
+    <section>
+      <h2>Submit Evidence</h2>
+      <p class="section-copy">
+        Countable evidence must be public, non-owner, permissioned, and free of raw private data.
+      </p>
+      <div class="paths">
+        <article class="path">
+          <div>
+            <span>5 min</span>
+            <h3>Try Public Demo</h3>
+            <p>Counts only after a non-owner public issue grants permission and passes the evidence gate.</p>
+          </div>
+          <div class="path-actions">
+            <a class="button secondary" href="https://sunnnn2005.github.io/data-quality-agent/">Review</a>
+            <a class="button" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md">Submit Evidence</a>
+          </div>
+        </article>
+        
+
+        <article class="path">
+          <div>
+            <span>8 min</span>
+            <h3>Confirm External Run</h3>
+            <p>Counts only when the reviewer ran or opened a runnable path and submitted observed-result evidence.</p>
+          </div>
+          <div class="path-actions">
+            <a class="button secondary" href="https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-quickstart.md">Review</a>
+            <a class="button" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md">Submit Evidence</a>
+          </div>
+        </article>
+        
+
+        <article class="path">
+          <div>
+            <span>10 min</span>
+            <h3>Submit Reproducible Issue</h3>
+            <p>Counts only when reproduction steps are specific enough for the maintainer to retry.</p>
+          </div>
+          <div class="path-actions">
+            <a class="button secondary" href="https://github.com/sunnnn2005/data-quality-agent">Review</a>
+            <a class="button" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=bug_report.md">Submit Evidence</a>
+          </div>
+        </article>
+        
+
+        <article class="path">
+          <div>
+            <span>12 min</span>
+            <h3>Submit Business Case</h3>
+            <p>Counts only when the business case is anonymized, permissioned, and contains no raw production data.</p>
+          </div>
+          <div class="path-actions">
+            <a class="button secondary" href="https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-case-intake.md">Review</a>
+            <a class="button" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md">Submit Evidence</a>
+          </div>
+        </article>
+        
+
+        <article class="path">
+          <div>
+            <span>12 min</span>
+            <h3>Submit Ai Engineer Review</h3>
+            <p>Counts only when an external reviewer inspects implementation evidence and grants permission.</p>
+          </div>
+          <div class="path-actions">
+            <a class="button secondary" href="https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md">Review</a>
+            <a class="button" href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md">Submit Evidence</a>
+          </div>
+        </article>
+        
+
+        <article class="path">
+          <div>
+            <span>1 min</span>
+            <h3>Star Or Fork If Useful</h3>
+            <p>Counts only from GitHub public star data; never asks for fake engagement.</p>
+          </div>
+          <div class="path-actions">
+            <a class="button secondary" href="https://github.com/sunnnn2005/data-quality-agent">Review</a>
+            <a class="button" href="https://github.com/sunnnn2005/data-quality-agent/stargazers">Submit Evidence</a>
+          </div>
+        </article>
+        
+      </div>
+    </section>
+
+    <section>
+      <h2>Counting Boundaries</h2>
+      <div class="guardrail">
+        <ul><li>No external users are claimed while confirmed_external_users is zero.</li>
+<li>No customer feedback is claimed while external_feedback_items is zero.</li>
+<li>No GitHub star growth is claimed while stars is zero.</li>
+<li>Do not post raw customer data, secrets, private emails, addresses, API keys, or production rows.</li></ul>
+      </div>
+    </section>
+
+    <footer>
+      Generated by <code>scripts/build_outcome_collection_page.py</code>. Published a public outcome collection page with 5 next actions, 6 submission paths, 23 required evidence fields, 0 confirmed users, 0 feedback items, and 0 GitHub stars.
+    </footer>
+  </main>
+</body>
+</html>
