@@ -43,6 +43,8 @@ def test_refresh_public_metrics_workflow_updates_resume_evidence_sources():
     assert "python scripts/build_outcome_collection_page.py" in run_commands
     assert "python scripts/build_resume_outcome_scoreboard.py" in run_commands
     assert "tests/test_resume_outcome_scoreboard.py" in run_commands
+    assert "python scripts/build_reviewer_send_queue.py" in run_commands
+    assert "tests/test_reviewer_send_queue.py" in run_commands
     assert "python scripts/verify_outcome_evidence.py" in run_commands
     assert (
         "tests/test_github_discovery_profile.py tests/test_pilot_evidence_quicklink.py tests/test_pilot_launch_control_room.py tests/test_resume_outcome_adjudication.py "
@@ -118,6 +120,9 @@ def test_refresh_public_metrics_workflow_updates_resume_evidence_sources():
         "python scripts/build_resume_outcome_scoreboard.py"
     )
     assert run_commands.index("python scripts/build_resume_outcome_scoreboard.py") < run_commands.index(
+        "python scripts/build_reviewer_send_queue.py"
+    )
+    assert run_commands.index("python scripts/build_reviewer_send_queue.py") < run_commands.index(
         "python scripts/build_public_metrics_summary.py"
     )
     assert "stefanzweifel/git-auto-commit-action@v5" in uses
