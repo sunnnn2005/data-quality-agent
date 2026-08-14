@@ -393,7 +393,7 @@ PUBLIC_CHECKS = [
             "Are the 5 findings mapped to the right business risks?",
             "Are the 3 high-priority actions useful and specific enough?",
             "Are the 4 owner handoffs believable for a real data/ops team?",
-            "Self-authored issue does not count as external feedback",
+            "A self-authored issue does not count as external feedback",
         ],
         "evidence_type": "html",
     },

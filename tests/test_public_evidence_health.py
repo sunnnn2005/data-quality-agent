@@ -86,7 +86,7 @@ def test_public_evidence_health_requires_core_public_signals():
     assert "explicit permission" in resolution_review["expected_texts"]
     resolution_issue = next(check for check in PUBLIC_CHECKS if check["id"] == "business-resolution-review-issue")
     assert resolution_issue["url"].endswith("/issues/30")
-    assert "Self-authored issue does not count as external feedback" in resolution_issue["expected_texts"]
+    assert "A self-authored issue does not count as external feedback" in resolution_issue["expected_texts"]
     traffic = next(check for check in PUBLIC_CHECKS if check["id"] == "github-traffic-snapshot")
     assert "confirmed users from traffic alone" in traffic["expected_texts"]
     refresh = next(check for check in PUBLIC_CHECKS if check["id"] == "public-metrics-refresh-workflow")
