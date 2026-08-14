@@ -8,14 +8,14 @@ This project demonstrates AI Engineer intern readiness through API integration, 
 
 ## Resume Bullet
 
-Built an OpenAI-compatible data-quality LLM agent for CSV and read-only PostgreSQL business data, with 7 controlled tools, dynamic tool selection, structured reports, trace/cost telemetry, deterministic guardrails, safe fallback, and CI-verified evidence artifacts.
+Built an OpenAI-compatible data-quality LLM agent for CSV and read-only PostgreSQL business data, with 9 controlled tools, dynamic tool selection, structured reports, trace/cost telemetry, deterministic guardrails, safe fallback, and CI-verified evidence artifacts.
 
 ## Skill Signals
 
 | Signal | Status | Evidence |
 | --- | --- | --- |
 | OpenAI-compatible chat-completions integration | `implemented` | app/llm.py supports OPENAI_API_KEY, OPENAI_BASE_URL, model selection, retries, timeouts, JSON response parsing, and cost estimation. |
-| LLM tool calling with feedback loop | `implemented` | app/tool_agent.py lets the model choose from 7 allowed tools, appends tool results back into messages, and loops until final answer or max step budget. |
+| LLM tool calling with feedback loop | `implemented` | app/tool_agent.py lets the model choose from 9 allowed tools, appends tool results back into messages, and loops until final answer or max step budget. |
 | Real business-data interface | `implemented` | FastAPI exposes /business-data/agent-report for CSV exports and /postgres/support-tickets/agent-report for a read-only PostgreSQL table. |
 | Structured AI output | `implemented` | AgentRunReport and QualityReport are Pydantic response models with findings, hypotheses, recommendations, evidence, verification, telemetry, and trace_id. |
 | Deterministic report guardrails | `implemented` | ReportVerifier checks evidence support, known columns, sensitive terms, unsupported LLM evidence, action coverage, and score bounds. |
@@ -31,7 +31,7 @@ Built an OpenAI-compatible data-quality LLM agent for CSV and read-only PostgreS
 | --- | ---: |
 | Agent Readiness Implemented | 16 |
 | Capability Matrix Implemented | 13 |
-| Allowed Tools | 7 |
+| Allowed Tools | 9 |
 | Business Replay Rows | 8 |
 | Business Replay Findings | 5 |
 | Real Model Run Commands | 5 |
@@ -41,7 +41,7 @@ Built an OpenAI-compatible data-quality LLM agent for CSV and read-only PostgreS
 
 ## Resume-Safe Lines
 
-- Built an OpenAI-compatible data-quality LLM agent for CSV and read-only PostgreSQL business data, with 7 controlled tools, dynamic tool selection, structured reports, trace/cost telemetry, deterministic guardrails, safe fallback, and CI-verified evidence artifacts.
+- Built an OpenAI-compatible data-quality LLM agent for CSV and read-only PostgreSQL business data, with 9 controlled tools, dynamic tool selection, structured reports, trace/cost telemetry, deterministic guardrails, safe fallback, and CI-verified evidence artifacts.
 - Explained LLM decisions through tool-call traces, evidence-backed findings, verification status, prompt version, token usage, latency, and estimated cost fields.
 
 ## Not Resume-Safe Yet

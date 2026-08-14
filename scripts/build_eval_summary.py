@@ -18,6 +18,8 @@ REQUIRED_AGENT_TOOLS = [
     "profile_dataset",
     "select_quality_strategy",
     "retrieve_dataset_memory",
+    "inspect_primary_key_integrity",
+    "analyze_numeric_distribution",
     "run_quality_checks",
     "retrieve_business_rules",
     "build_quality_report",
@@ -145,7 +147,7 @@ def verify_eval_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "deterministic_finding_recall": 1.0,
         "deterministic_evidence_support_rate": 1.0,
         "tool_agent_fallback_success_rate": 1.0,
-        "available_tool_count": 7,
+        "available_tool_count": 9,
         "strategy_recommendation_recall_floor": 0.75,
     }
     if payload["scenario_count"] != expected["scenario_count"]:
@@ -162,7 +164,13 @@ def verify_eval_summary(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("eval summary must cover all allowed agent tools")
     if tool_planning["required_tools_present"] is not True:
         raise AssertionError("eval summary must verify required agent tools are present")
-    for tool in ("retrieve_dataset_memory", "retrieve_business_rules", "build_quality_report"):
+    for tool in (
+        "retrieve_dataset_memory",
+        "inspect_primary_key_integrity",
+        "analyze_numeric_distribution",
+        "retrieve_business_rules",
+        "build_quality_report",
+    ):
         if tool not in tool_planning["tool_names"]:
             raise AssertionError(f"eval summary missing required tool: {tool}")
     if (

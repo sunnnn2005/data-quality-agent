@@ -42,7 +42,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Mock LLM calls | 2 |
 | Mock LLM tokens | 360 |
 | Mock estimated cost USD | 8.1e-05 |
-| Allowed agent tools | 7 |
+| Allowed agent tools | 9 |
 | Rejected unsafe PostgreSQL queries | 3 |
 | Report verifier rules | 6 |
 | Agent capability matrix | 1 |
@@ -323,7 +323,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 3 recurring incident patterns retrieved from sanitized traces
 - 2 observed run traces with fallback and verification status
 - 2 mocked LLM calls with 360 tokens, prompt version, latency, retry budget, and estimated cost telemetry
-- 7 allowed agent tools and 3 rejected unsafe PostgreSQL queries
+- 9 allowed agent tools and 3 rejected unsafe PostgreSQL queries
 - CI-verified agent capability matrix with 13 implemented LLM-agent checklist items, 4 partial maturity areas, and 1 explicit not-claimed area
 - Local Docker Compose reviewer demo with 8 seeded PostgreSQL rows and 3 review paths
 - Runnable release packet with 3 runnable surfaces, 4 acceptance checks, and 6 required API paths

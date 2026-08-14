@@ -66,7 +66,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Passing Tests | 187 |
 | Verified Resume Claims | 84 |
 | Implemented Agent Capabilities | 16 |
-| Agent Tools Allowed | 7 |
+| Agent Tools Allowed | 9 |
 | Openapi Required Endpoints | 6 |
 | Support Ticket Issue Categories | 4 |
 | Rejected Unsafe Postgres Queries | 3 |
@@ -170,7 +170,7 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 
 ## Resume Bullets
 
-- Built an LLM tool-calling data-quality agent for real business CSV and read-only PostgreSQL data, with 7 allowed tools, dynamic strategy selection, memory-informed planning, source-cited business-rule retrieval, 6 verified API integration endpoints, and safe model-key fallback.
+- Built an LLM tool-calling data-quality agent for real business CSV and read-only PostgreSQL data, with 9 allowed tools, dynamic strategy selection, memory-informed planning, source-cited business-rule retrieval, 6 verified API integration endpoints, and safe model-key fallback.
 - Published a public demo, v0.3.0 release, GHCR container image, and CI-verified live project scorecard with 187 passing tests, 84 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
 - Added enterprise-style guardrails for agent reliability, including read-only PostgreSQL query limits, 3 rejected unsafe SQL queries, sensitive-field redaction, trace observability, incident-pattern memory, evidence-backed root-cause hypotheses, and deterministic report verification.
 

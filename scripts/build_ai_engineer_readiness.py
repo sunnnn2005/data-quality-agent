@@ -36,7 +36,10 @@ def build_ai_engineer_readiness_payload() -> dict[str, Any]:
         {
             "id": "tool-calling-agent-loop",
             "resume_signal": "LLM tool calling with feedback loop",
-            "evidence": "app/tool_agent.py lets the model choose from 7 allowed tools, appends tool results back into messages, and loops until final answer or max step budget.",
+            "evidence": (
+                f"app/tool_agent.py lets the model choose from {capability_matrix['tool_count']} allowed tools, "
+                "appends tool results back into messages, and loops until final answer or max step budget."
+            ),
             "status": "implemented",
         },
         {
@@ -185,7 +188,7 @@ def verify_ai_engineer_readiness(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("AI readiness must preserve 1 not-claimed signal")
     counts = payload["evidence_counts"]
     expected_counts = {
-        "allowed_tools": 7,
+        "allowed_tools": 9,
         "business_replay_rows": 8,
         "business_replay_findings": 5,
         "real_model_capture_accepted_runs": 0,

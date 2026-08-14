@@ -1,7 +1,7 @@
 {
   "evidence_counts": {
     "agent_readiness_implemented": 16,
-    "allowed_tools": 7,
+    "allowed_tools": 9,
     "application_evidence_links": 50,
     "business_replay_findings": 5,
     "business_replay_rows": 8,
@@ -22,9 +22,9 @@
   "partial_signal_count": 1,
   "project": "Data Quality Agent",
   "readiness_summary": "This project demonstrates AI Engineer intern readiness through API integration, tool calling, structured output, guardrails, observability, evaluation, and real business-data connectors; it does not yet claim production users or accepted real-model benchmark runs.",
-  "resume_bullet": "Built an OpenAI-compatible data-quality LLM agent for CSV and read-only PostgreSQL business data, with 7 controlled tools, dynamic tool selection, structured reports, trace/cost telemetry, deterministic guardrails, safe fallback, and CI-verified evidence artifacts.",
+  "resume_bullet": "Built an OpenAI-compatible data-quality LLM agent for CSV and read-only PostgreSQL business data, with 9 controlled tools, dynamic tool selection, structured reports, trace/cost telemetry, deterministic guardrails, safe fallback, and CI-verified evidence artifacts.",
   "resume_safe": [
-    "Built an OpenAI-compatible data-quality LLM agent for CSV and read-only PostgreSQL business data, with 7 controlled tools, dynamic tool selection, structured reports, trace/cost telemetry, deterministic guardrails, safe fallback, and CI-verified evidence artifacts.",
+    "Built an OpenAI-compatible data-quality LLM agent for CSV and read-only PostgreSQL business data, with 9 controlled tools, dynamic tool selection, structured reports, trace/cost telemetry, deterministic guardrails, safe fallback, and CI-verified evidence artifacts.",
     "Explained LLM decisions through tool-call traces, evidence-backed findings, verification status, prompt version, token usage, latency, and estimated cost fields."
   ],
   "skill_signals": [
@@ -35,7 +35,7 @@
       "status": "implemented"
     },
     {
-      "evidence": "app/tool_agent.py lets the model choose from 7 allowed tools, appends tool results back into messages, and loops until final answer or max step budget.",
+      "evidence": "app/tool_agent.py lets the model choose from 9 allowed tools, appends tool results back into messages, and loops until final answer or max step budget.",
       "id": "tool-calling-agent-loop",
       "resume_signal": "LLM tool calling with feedback loop",
       "status": "implemented"

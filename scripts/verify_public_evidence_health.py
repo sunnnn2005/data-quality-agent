@@ -115,14 +115,14 @@ PUBLIC_CHECKS = [
     {
         "id": "agent-safety-boundaries",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-safety-boundaries.json",
-        "expected_json": {"tool_allowlist_count": 7, "postgres_rejected_write_query_count": 3},
+        "expected_json": {"tool_allowlist_count": 9, "postgres_rejected_write_query_count": 3},
         "expected_text": "formal security audit",
         "evidence_type": "json",
     },
     {
         "id": "agent-capability-matrix",
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-capability-matrix.json",
-        "expected_json": {"tool_count": 7, "implemented_count": 13, "partial_count": 4},
+        "expected_json": {"tool_count": 9, "implemented_count": 13, "partial_count": 4},
         "expected_text": "enterprise production deployment",
         "expected_texts": ["llm-decision-making", "tool-feedback-loop", "production-adoption"],
         "evidence_type": "json",

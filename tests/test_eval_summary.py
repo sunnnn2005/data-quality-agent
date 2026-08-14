@@ -11,13 +11,13 @@ def test_eval_summary_publishes_resume_safe_agent_metrics():
     assert payload["deterministic_baseline"]["finding_recall"] == 1.0
     assert payload["deterministic_baseline"]["evidence_support_rate"] == 1.0
     assert payload["tool_agent_disabled_fallback"]["fallback_success_rate"] == 1.0
-    assert payload["tool_planning_coverage"]["available_tool_count"] == 7
+    assert payload["tool_planning_coverage"]["available_tool_count"] == 9
     assert payload["tool_planning_coverage"]["required_tools_present"] is True
     assert payload["tool_planning_coverage"]["scenario_strategy_recommendation_recall"] >= 0.88
     assert "paid model benchmark results" in payload["not_claimed"]
     assert "Evaluation Summary" in markdown
     assert "Tool-agent disabled fallback success | 1.0" in markdown
-    assert "Available agent tools | 7" in markdown
+    assert "Available agent tools | 9" in markdown
 
 
 def test_eval_summary_verifies_tool_planning_coverage_for_agent_claims():

@@ -10,7 +10,7 @@ This generated artifact maps Data Quality Agent against a practical LLM-agent ch
 | Partial maturity areas | 4 |
 | Planned capabilities | 1 |
 | Not-claimed areas | 1 |
-| Allowed tools | 7 |
+| Allowed tools | 9 |
 
 ## Agent Definition
 
@@ -22,6 +22,8 @@ LLM decision-making + controlled tools + stateful loop + dynamic path + bounded 
 - `profile_dataset`
 - `select_quality_strategy`
 - `retrieve_dataset_memory`
+- `inspect_primary_key_integrity`
+- `analyze_numeric_distribution`
 - `run_quality_checks`
 - `retrieve_business_rules`
 - `build_quality_report`
@@ -32,9 +34,9 @@ LLM decision-making + controlled tools + stateful loop + dynamic path + bounded 
 | --- | --- | --- | --- |
 | Does the agent have a bounded task goal? | implemented | LLMDataQualityAgent.run asks the model to investigate one dataset and determine quality status, primary risks, and remediation actions. |  |
 | Does the LLM choose the next step instead of following a fixed path? | implemented | The Chat Completions loop exposes tools with tool_choice=auto, and model-selected tool calls determine which toolbox function runs next. |  |
-| Are there multiple structured tools with a whitelist? | implemented | 7 allowed tools: get_dataset_contract, profile_dataset, select_quality_strategy, retrieve_dataset_memory, run_quality_checks, retrieve_business_rules, build_quality_report. |  |
+| Are there multiple structured tools with a whitelist? | implemented | 9 allowed tools: get_dataset_contract, profile_dataset, select_quality_strategy, retrieve_dataset_memory, inspect_primary_key_integrity, analyze_numeric_distribution, run_quality_checks, retrieve_business_rules, build_quality_report. |  |
 | Are tool results fed back to the LLM? | implemented | Each tool result is appended as a role=tool message before the next model call. |  |
-| Can different input shapes trigger different plans? | implemented | select_quality_strategy returned 5 checks for orders_daily: schema_required_columns, missing_values, duplicate_primary_key, schema_drift, email_completeness. |  |
+| Can different input shapes trigger different plans? | implemented | select_quality_strategy returned 7 checks for orders_daily: schema_required_columns, missing_values, volume_anomaly, duplicate_primary_key, freshness_sla, negative_amount, numeric_outliers. |  |
 | Does the agent preserve task state and evidence? | implemented | AgentRunReport stores status, final_answer, tool_calls, quality_report, evaluation, and trace_id; RunTraceStore persists sanitized run traces when TRACE_DB_PATH is configured. |  |
 | Does the loop know when to stop? | implemented | The loop stops when the model returns no tool calls, when build_quality_report attaches a final report, or after six rounds. |  |
 | Are tool and database permissions bounded? | implemented | Tool dispatch rejects unknown tools, PostgreSQL is read-only, and 3 unsafe SQL examples are rejected. |  |
@@ -52,7 +54,7 @@ LLM decision-making + controlled tools + stateful loop + dynamic path + bounded 
 
 ## Resume-Safe Summary
 
-Published a CI-verified agent capability matrix showing 13 implemented LLM-agent capabilities, 4 partial maturity areas, 7 allowed tools, safe fallback, read-only business-data boundaries, and no inflated production-user claims.
+Published a CI-verified agent capability matrix showing 13 implemented LLM-agent capabilities, 4 partial maturity areas, 9 allowed tools, safe fallback, read-only business-data boundaries, and no inflated production-user claims.
 
 ## Not Claimed
 

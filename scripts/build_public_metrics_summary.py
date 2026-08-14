@@ -1191,7 +1191,7 @@ def verify_public_metrics_summary(payload: dict[str, Any]) -> dict[str, Any]:
         "model_telemetry_artifact": 1,
         "mock_model_calls": 2,
         "mock_model_tokens": 360,
-        "tool_allowlist_count": 7,
+        "tool_allowlist_count": 9,
         "postgres_rejected_write_query_count": 3,
         "verifier_rule_count": 6,
         "agent_capability_matrix": 1,

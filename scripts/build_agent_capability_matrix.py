@@ -247,7 +247,7 @@ This generated artifact maps Data Quality Agent against a practical LLM-agent ch
 
 def verify_agent_capability_matrix(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
-        "tool_count": 7,
+        "tool_count": 9,
         "implemented_count": 13,
         "partial_count": 4,
         "planned_count": 1,
@@ -259,6 +259,8 @@ def verify_agent_capability_matrix(payload: dict[str, Any]) -> dict[str, Any]:
     required_tools = {
         "select_quality_strategy",
         "retrieve_dataset_memory",
+        "inspect_primary_key_integrity",
+        "analyze_numeric_distribution",
         "retrieve_business_rules",
         "build_quality_report",
     }

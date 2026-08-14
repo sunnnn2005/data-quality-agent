@@ -91,6 +91,12 @@ def test_toolbox_exposes_data_quality_tools():
     checks = toolbox.dispatch("run_quality_checks", {})
     report = toolbox.dispatch("build_quality_report", {})
     strategy = toolbox.dispatch("select_quality_strategy", {})
+    key_integrity = toolbox.dispatch("inspect_primary_key_integrity", {})
+    numeric_distribution = toolbox.dispatch("analyze_numeric_distribution", {})
+    requested_distribution = toolbox.dispatch(
+        "analyze_numeric_distribution",
+        {"columns": ["order_total", "missing_column"]},
+    )
 
     assert contract["primary_key"] == DATASETS["orders_daily"].primary_key
     assert profile["row_count"] > 0
@@ -98,7 +104,23 @@ def test_toolbox_exposes_data_quality_tools():
     assert report["status"] == "FAIL"
     assert report["llm_assessment"]["enabled"] is False
     assert report["root_cause_hypotheses"]
-    assert strategy["recommended_next_tools"] == ["profile_dataset", "run_quality_checks", "build_quality_report"]
+    assert strategy["recommended_next_tools"] == [
+        "profile_dataset",
+        "inspect_primary_key_integrity",
+        "analyze_numeric_distribution",
+        "run_quality_checks",
+        "build_quality_report",
+    ]
+    assert key_integrity["risk"] == "duplicate_keys"
+    assert key_integrity["duplicate_key_count"] >= 1
+    assert numeric_distribution["inspected_column_count"] >= 1
+    assert any(item.get("iqr_outlier_count", 0) >= 1 for item in numeric_distribution["numeric_summaries"])
+    assert requested_distribution["inspected_column_count"] == 2
+    assert any(item["column"] == "order_total" and item["count"] > 0 for item in requested_distribution["numeric_summaries"])
+    assert any(
+        item["column"] == "missing_column" and item["error"] == "column_not_found"
+        for item in requested_distribution["numeric_summaries"]
+    )
 
 
 def test_toolbox_retrieves_sanitized_dataset_memory():
@@ -152,6 +174,7 @@ def test_toolbox_selects_different_quality_strategies_by_dataset_shape():
     assert "negative_amount" in payments_strategy["recommended_checks"]
     assert "numeric_outliers" in payments_strategy["recommended_checks"]
     assert "email_completeness" in customer_strategy["recommended_checks"]
+    assert "analyze_numeric_distribution" in payments_strategy["recommended_next_tools"]
     assert payments_strategy["strategy"] != customer_strategy["strategy"]
 
 
@@ -202,10 +225,20 @@ def test_llm_tool_calling_agent_runs_tool_loop():
                             {
                                 "id": "call_2",
                                 "type": "function",
-                                "function": {"name": "run_quality_checks", "arguments": "{}"},
+                                "function": {"name": "inspect_primary_key_integrity", "arguments": "{}"},
                             },
                             {
                                 "id": "call_3",
+                                "type": "function",
+                                "function": {"name": "analyze_numeric_distribution", "arguments": "{}"},
+                            },
+                            {
+                                "id": "call_4",
+                                "type": "function",
+                                "function": {"name": "run_quality_checks", "arguments": "{}"},
+                            },
+                            {
+                                "id": "call_5",
                                 "type": "function",
                                 "function": {"name": "build_quality_report", "arguments": "{}"},
                             },
@@ -235,8 +268,16 @@ def test_llm_tool_calling_agent_runs_tool_loop():
 
     assert report.status == "FAIL"
     assert report.quality_report is not None
-    assert [call.tool_name for call in report.tool_calls] == ["profile_dataset", "run_quality_checks", "build_quality_report"]
+    assert [call.tool_name for call in report.tool_calls] == [
+        "profile_dataset",
+        "inspect_primary_key_integrity",
+        "analyze_numeric_distribution",
+        "run_quality_checks",
+        "build_quality_report",
+    ]
     assert report.evaluation["used_required_report_tool"] is True
+    assert report.evaluation["used_primary_key_integrity_tool"] is True
+    assert report.evaluation["used_numeric_distribution_tool"] is True
 
 
 def test_llm_tool_calling_agent_records_model_telemetry_without_raw_prompt():

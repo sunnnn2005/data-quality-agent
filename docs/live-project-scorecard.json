@@ -32,7 +32,7 @@
   "generated_by": "scripts/build_live_project_scorecard.py",
   "headline_metrics": {
     "agent_matrix_implemented_capabilities": 13,
-    "agent_tools_allowed": 7,
+    "agent_tools_allowed": 9,
     "implemented_agent_capabilities": 16,
     "openapi_required_endpoints": 6,
     "passing_tests": 187,

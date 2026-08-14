@@ -94,6 +94,39 @@ class DataQualityToolbox:
             {
                 "type": "function",
                 "function": {
+                    "name": "inspect_primary_key_integrity",
+                    "description": (
+                        "Inspect whether the configured primary key exists, has nulls, and contains duplicate keys. "
+                        "Use this when entity identity or idempotent ingestion could be the root cause."
+                    ),
+                    "parameters": {"type": "object", "properties": {}, "additionalProperties": False},
+                },
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "analyze_numeric_distribution",
+                    "description": (
+                        "Return bounded aggregate statistics and IQR outlier counts for numeric columns. "
+                        "Use this for amounts, counts, prices, durations, or other numeric business measures."
+                    ),
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "columns": {
+                                "type": "array",
+                                "items": {"type": "string"},
+                                "maxItems": 8,
+                                "description": "Optional numeric columns to inspect. Defaults to all numeric columns.",
+                            }
+                        },
+                        "additionalProperties": False,
+                    },
+                },
+            },
+            {
+                "type": "function",
+                "function": {
                     "name": "run_quality_checks",
                     "description": "Run schema, freshness, missingness, duplicate-key, volume, domain, and outlier checks.",
                     "parameters": {"type": "object", "properties": {}, "additionalProperties": False},
@@ -137,6 +170,8 @@ class DataQualityToolbox:
             "profile_dataset": self._profile_dataset,
             "select_quality_strategy": self._select_quality_strategy,
             "retrieve_dataset_memory": self._retrieve_dataset_memory,
+            "inspect_primary_key_integrity": self._inspect_primary_key_integrity,
+            "analyze_numeric_distribution": self._analyze_numeric_distribution,
             "run_quality_checks": self._run_quality_checks,
             "retrieve_business_rules": self._retrieve_business_rules,
             "build_quality_report": self._build_quality_report,
@@ -187,7 +222,13 @@ class DataQualityToolbox:
             "dataset_id": self.dataset.id,
             "strategy": reason,
             "recommended_checks": list(dict.fromkeys(checks)),
-            "recommended_next_tools": ["profile_dataset", "run_quality_checks", "build_quality_report"],
+            "recommended_next_tools": [
+                "profile_dataset",
+                "inspect_primary_key_integrity",
+                "analyze_numeric_distribution",
+                "run_quality_checks",
+                "build_quality_report",
+            ],
         }
 
     def _retrieve_dataset_memory(self, arguments: dict[str, Any]) -> dict[str, Any]:
@@ -235,6 +276,103 @@ class DataQualityToolbox:
                 for trace in memory.recent_traces[:limit]
             ],
             "memory_available": True,
+        }
+
+    def _inspect_primary_key_integrity(self, _: dict[str, Any]) -> dict[str, Any]:
+        primary_key = self.dataset.primary_key
+        if primary_key not in self.frame.columns:
+            return {
+                "dataset_id": self.dataset.id,
+                "primary_key": primary_key,
+                "primary_key_exists": False,
+                "row_count": len(self.frame),
+                "null_count": None,
+                "duplicate_key_count": None,
+                "duplicate_row_count": None,
+                "sample_duplicate_keys": [],
+                "risk": "primary_key_missing",
+            }
+
+        series = self.frame[primary_key]
+        duplicated_mask = series.duplicated(keep=False)
+        duplicated_values = series[duplicated_mask].dropna().astype(str)
+        sample_duplicate_keys = sorted(duplicated_values.unique().tolist())[:5]
+        null_count = int(series.isna().sum())
+        duplicate_row_count = int(duplicated_mask.sum())
+        duplicate_key_count = int(duplicated_values.nunique())
+        risk = "pass"
+        if null_count and duplicate_key_count:
+            risk = "null_and_duplicate_keys"
+        elif null_count:
+            risk = "null_keys"
+        elif duplicate_key_count:
+            risk = "duplicate_keys"
+
+        return {
+            "dataset_id": self.dataset.id,
+            "primary_key": primary_key,
+            "primary_key_exists": True,
+            "row_count": len(self.frame),
+            "null_count": null_count,
+            "duplicate_key_count": duplicate_key_count,
+            "duplicate_row_count": duplicate_row_count,
+            "sample_duplicate_keys": sample_duplicate_keys,
+            "risk": risk,
+        }
+
+    def _analyze_numeric_distribution(self, arguments: dict[str, Any]) -> dict[str, Any]:
+        requested_columns = arguments.get("columns")
+        if isinstance(requested_columns, list) and requested_columns:
+            candidate_columns = [column for column in requested_columns if isinstance(column, str)]
+        else:
+            candidate_columns = list(self.frame.select_dtypes(include="number").columns)
+
+        summaries = []
+        for column in candidate_columns[:8]:
+            if column not in self.frame.columns:
+                summaries.append({"column": column, "error": "column_not_found"})
+                continue
+            series = pd.to_numeric(self.frame[column], errors="coerce")
+            non_null = series.dropna()
+            if non_null.empty:
+                summaries.append(
+                    {
+                        "column": column,
+                        "count": 0,
+                        "missing_count": int(series.isna().sum()),
+                        "error": "no_numeric_values",
+                    }
+                )
+                continue
+            q1 = float(non_null.quantile(0.25))
+            q3 = float(non_null.quantile(0.75))
+            iqr = q3 - q1
+            lower_fence = q1 - (1.5 * iqr)
+            upper_fence = q3 + (1.5 * iqr)
+            outliers = non_null[(non_null < lower_fence) | (non_null > upper_fence)]
+            summaries.append(
+                {
+                    "column": column,
+                    "count": int(non_null.count()),
+                    "missing_count": int(series.isna().sum()),
+                    "min": round(float(non_null.min()), 4),
+                    "max": round(float(non_null.max()), 4),
+                    "mean": round(float(non_null.mean()), 4),
+                    "median": round(float(non_null.median()), 4),
+                    "std": round(float(non_null.std(ddof=0)), 4),
+                    "q1": round(q1, 4),
+                    "q3": round(q3, 4),
+                    "iqr": round(iqr, 4),
+                    "lower_fence": round(lower_fence, 4),
+                    "upper_fence": round(upper_fence, 4),
+                    "iqr_outlier_count": int(outliers.count()),
+                }
+            )
+
+        return {
+            "dataset_id": self.dataset.id,
+            "inspected_column_count": len(summaries),
+            "numeric_summaries": summaries,
         }
 
     def _run_quality_checks(self, _: dict[str, Any]) -> dict[str, Any]:
@@ -400,6 +538,22 @@ class LLMDataQualityAgent:
     def _preview_result(self, result: dict[str, Any]) -> dict[str, Any]:
         if "findings" in result:
             return {"finding_count": len(result["findings"])}
+        if "sample_duplicate_keys" in result:
+            return {
+                "primary_key": result.get("primary_key"),
+                "risk": result.get("risk"),
+                "duplicate_key_count": result.get("duplicate_key_count"),
+                "null_count": result.get("null_count"),
+            }
+        if "numeric_summaries" in result:
+            return {
+                "inspected_column_count": result.get("inspected_column_count"),
+                "outlier_columns": [
+                    item["column"]
+                    for item in result.get("numeric_summaries", [])
+                    if item.get("iqr_outlier_count", 0) > 0
+                ],
+            }
         if "recommended_checks" in result:
             return {
                 "strategy": result.get("strategy"),
@@ -446,6 +600,8 @@ class LLMDataQualityAgent:
             "used_strategy_tool": "select_quality_strategy" in names,
             "used_required_report_tool": "build_quality_report" in names,
             "used_profile_tool": "profile_dataset" in names,
+            "used_primary_key_integrity_tool": "inspect_primary_key_integrity" in names,
+            "used_numeric_distribution_tool": "analyze_numeric_distribution" in names,
             "used_check_tool": "run_quality_checks" in names,
             "used_memory_tool": "retrieve_dataset_memory" in names,
             "used_business_rules_tool": "retrieve_business_rules" in names,

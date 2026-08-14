@@ -218,7 +218,7 @@ def verify_real_model_runbook(payload: dict[str, Any]) -> dict[str, Any]:
         "current_real_model_runs": 0,
         "current_mock_model_calls": 2,
         "current_mock_tokens": 360,
-        "tool_count": 7,
+        "tool_count": 9,
         "run_command_count": 5,
         "evidence_field_count": 15,
         "acceptance_criteria_count": 8,

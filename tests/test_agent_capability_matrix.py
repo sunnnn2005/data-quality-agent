@@ -11,13 +11,15 @@ def test_agent_capability_matrix_maps_real_agent_requirements_without_inflation(
     markdown = render_markdown(payload)
 
     assert verification["agent_capability_matrix_verified"] is True
-    assert payload["tool_count"] == 7
+    assert payload["tool_count"] == 9
     assert payload["implemented_count"] == 13
     assert payload["partial_count"] == 4
     assert payload["planned_count"] == 1
     assert payload["not_claimed_count"] == 1
     assert "select_quality_strategy" in payload["tool_names"]
     assert "retrieve_dataset_memory" in payload["tool_names"]
+    assert "inspect_primary_key_integrity" in payload["tool_names"]
+    assert "analyze_numeric_distribution" in payload["tool_names"]
     assert "retrieve_business_rules" in payload["tool_names"]
     assert any(item["id"] == "llm-decision-making" for item in payload["capabilities"])
     assert any(item["id"] == "tool-feedback-loop" for item in payload["capabilities"])

@@ -1,6 +1,6 @@
 {
   "deterministic_baseline": {
-    "average_latency_ms": 0.36,
+    "average_latency_ms": 0.79,
     "evidence_support_rate": 1.0,
     "finding_recall": 1.0,
     "status_accuracy": 1.0
@@ -12,7 +12,7 @@
     "external human-labeled evaluation set"
   ],
   "project": "Data Quality Agent",
-  "resume_safe_summary": "Built a 14-scenario eval harness measuring status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, report attachment, latency, and 7-tool planning coverage.",
+  "resume_safe_summary": "Built a 14-scenario eval harness measuring status accuracy, finding recall, evidence support, fallback behavior, report-tool usage, report attachment, latency, and 9-tool planning coverage.",
   "scenario_count": 14,
   "tool_agent_disabled_fallback": {
     "average_latency_ms": 0.07,
@@ -22,12 +22,14 @@
     "status_accuracy": 1.0
   },
   "tool_planning_coverage": {
-    "available_tool_count": 7,
+    "available_tool_count": 9,
     "required_tools": [
       "get_dataset_contract",
       "profile_dataset",
       "select_quality_strategy",
       "retrieve_dataset_memory",
+      "inspect_primary_key_integrity",
+      "analyze_numeric_distribution",
       "run_quality_checks",
       "retrieve_business_rules",
       "build_quality_report"
@@ -329,6 +331,8 @@
       "profile_dataset",
       "select_quality_strategy",
       "retrieve_dataset_memory",
+      "inspect_primary_key_integrity",
+      "analyze_numeric_distribution",
       "run_quality_checks",
       "retrieve_business_rules",
       "build_quality_report"

@@ -1157,13 +1157,19 @@ def verify_manifest() -> dict[str, int]:
                 eval_tests = (ROOT / "tests" / "test_eval_summary.py").read_text()
                 eval_script = (ROOT / "scripts" / "build_eval_summary.py").read_text()
                 planning = eval_summary.get("tool_planning_coverage", {})
-                if planning.get("available_tool_count") != 7:
-                    raise AssertionError("tool-planning eval must verify the 7-tool allowlist")
+                if planning.get("available_tool_count") != 9:
+                    raise AssertionError("tool-planning eval must verify the 9-tool allowlist")
                 if planning.get("required_tools_present") is not True:
                     raise AssertionError("tool-planning eval must verify required tools are present")
                 if planning.get("scenario_strategy_recommendation_recall", 0) < 0.88:
                     raise AssertionError("tool-planning eval must meet the strategy recommendation threshold")
-                for tool in ("select_quality_strategy", "retrieve_dataset_memory", "retrieve_business_rules"):
+                for tool in (
+                    "select_quality_strategy",
+                    "retrieve_dataset_memory",
+                    "inspect_primary_key_integrity",
+                    "analyze_numeric_distribution",
+                    "retrieve_business_rules",
+                ):
                     if tool not in planning.get("tool_names", []):
                         raise AssertionError(f"tool-planning eval missing agent tool: {tool}")
                 if "build_tool_planning_coverage" not in eval_script:
@@ -1278,8 +1284,8 @@ def verify_manifest() -> dict[str, int]:
                 matrix_script = (ROOT / "scripts" / "build_agent_capability_matrix.py").read_text()
                 if claim.get("metric_value") != 1:
                     raise AssertionError("agent capability matrix claim must use metric_value=1")
-                if capability_matrix.get("tool_count") != 7:
-                    raise AssertionError("agent capability matrix must verify seven allowed tools")
+                if capability_matrix.get("tool_count") != 9:
+                    raise AssertionError("agent capability matrix must verify nine allowed tools")
                 if capability_matrix.get("implemented_count") != 13:
                     raise AssertionError("agent capability matrix must verify 13 implemented capabilities")
                 if capability_matrix.get("partial_count") != 4:
@@ -1940,7 +1946,7 @@ def verify_manifest() -> dict[str, int]:
                     "evidence_field_count": 15,
                     "acceptance_criteria_count": 8,
                     "safety_gate_count": 5,
-                    "tool_count": 7,
+                    "tool_count": 9,
                 }
                 for key, value in expected.items():
                     if real_model_runbook.get(key) != value:

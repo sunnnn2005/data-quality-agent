@@ -11,7 +11,7 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 | Implemented Agent Capabilities | 16 |
 | Support Ticket Issue Categories | 4 |
 | Openapi Required Endpoints | 6 |
-| Agent Tools Allowed | 7 |
+| Agent Tools Allowed | 9 |
 | Agent Matrix Implemented Capabilities | 13 |
 | Unsafe Postgres Queries Rejected | 3 |
 

@@ -37,7 +37,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["model_telemetry_artifact"] == 1
     assert payload["verified_project_outcomes"]["mock_model_calls"] == 2
     assert payload["verified_project_outcomes"]["mock_model_tokens"] == 360
-    assert payload["verified_project_outcomes"]["tool_allowlist_count"] == 7
+    assert payload["verified_project_outcomes"]["tool_allowlist_count"] == 9
     assert payload["verified_project_outcomes"]["postgres_rejected_write_query_count"] == 3
     assert payload["verified_project_outcomes"]["verifier_rule_count"] == 6
     assert payload["verified_project_outcomes"]["agent_capability_matrix"] == 1
@@ -288,7 +288,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
         "4 business risk areas mapped to 3 high-priority actions and 4 owner handoffs"
         in payload["resume_safe_signals"]
     )
-    assert "7 allowed agent tools and 3 rejected unsafe PostgreSQL queries" in payload["resume_safe_signals"]
+    assert "9 allowed agent tools and 3 rejected unsafe PostgreSQL queries" in payload["resume_safe_signals"]
     assert (
         "Local Docker Compose reviewer demo with 8 seeded PostgreSQL rows and 3 review paths"
         in payload["resume_safe_signals"]

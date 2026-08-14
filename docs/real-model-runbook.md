@@ -15,7 +15,7 @@ Define the exact evidence gate for converting the existing mocked tool-calling t
 | Current mocked tokens | 360 |
 | Prompt version | `tool-agent-v3` |
 | Implemented agent capabilities | 13 |
-| Allowed agent tools | 7 |
+| Allowed agent tools | 9 |
 
 ## Agent Routes
 

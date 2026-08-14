@@ -108,7 +108,7 @@ This generated artifact summarizes the local safety boundaries around the LLM ag
 
 def verify_agent_safety_boundaries(payload: dict[str, Any]) -> dict[str, Any]:
     expected = {
-        "tool_allowlist_count": 7,
+        "tool_allowlist_count": 9,
         "postgres_rejected_write_query_count": 3,
         "verifier_rule_count": 6,
     }
@@ -121,7 +121,13 @@ def verify_agent_safety_boundaries(payload: dict[str, Any]) -> dict[str, Any]:
         raise AssertionError("LLM prompt payload must redact sensitive fields")
     if payload["agent_disabled_fallback_verified"] is not True:
         raise AssertionError("agent must return a safe disabled fallback without model credentials")
-    for required_tool in ("select_quality_strategy", "run_quality_checks", "build_quality_report"):
+    for required_tool in (
+        "select_quality_strategy",
+        "inspect_primary_key_integrity",
+        "analyze_numeric_distribution",
+        "run_quality_checks",
+        "build_quality_report",
+    ):
         if required_tool not in payload["tool_allowlist"]:
             raise AssertionError(f"tool allowlist missing {required_tool}")
     for required in ("finding_evidence_required", "sensitive_value_redaction", "quality_score_bounds"):

@@ -165,7 +165,7 @@ def verify_live_project_scorecard(payload: dict[str, Any]) -> dict[str, Any]:
         "passing_tests": 187,
         "verified_resume_claims": 84,
         "implemented_agent_capabilities": 16,
-        "agent_tools_allowed": 7,
+        "agent_tools_allowed": 9,
         "agent_matrix_implemented_capabilities": 13,
         "unsafe_postgres_queries_rejected": 3,
     }

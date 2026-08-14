@@ -14,7 +14,7 @@
       "status": "implemented"
     },
     {
-      "evidence": "7 allowed tools: get_dataset_contract, profile_dataset, select_quality_strategy, retrieve_dataset_memory, run_quality_checks, retrieve_business_rules, build_quality_report.",
+      "evidence": "9 allowed tools: get_dataset_contract, profile_dataset, select_quality_strategy, retrieve_dataset_memory, inspect_primary_key_integrity, analyze_numeric_distribution, run_quality_checks, retrieve_business_rules, build_quality_report.",
       "id": "controlled-tools",
       "question": "Are there multiple structured tools with a whitelist?",
       "status": "implemented"
@@ -26,7 +26,7 @@
       "status": "implemented"
     },
     {
-      "evidence": "select_quality_strategy returned 5 checks for orders_daily: schema_required_columns, missing_values, duplicate_primary_key, schema_drift, email_completeness.",
+      "evidence": "select_quality_strategy returned 7 checks for orders_daily: schema_required_columns, missing_values, volume_anomaly, duplicate_primary_key, freshness_sla, negative_amount, numeric_outliers.",
       "id": "dynamic-path",
       "question": "Can different input shapes trigger different plans?",
       "status": "implemented"
@@ -134,13 +134,15 @@
   "partial_count": 4,
   "planned_count": 1,
   "project": "Data Quality Agent",
-  "resume_safe_summary": "Published a CI-verified agent capability matrix showing 13 implemented LLM-agent capabilities, 4 partial maturity areas, 7 allowed tools, safe fallback, read-only business-data boundaries, and no inflated production-user claims.",
-  "tool_count": 7,
+  "resume_safe_summary": "Published a CI-verified agent capability matrix showing 13 implemented LLM-agent capabilities, 4 partial maturity areas, 9 allowed tools, safe fallback, read-only business-data boundaries, and no inflated production-user claims.",
+  "tool_count": 9,
   "tool_names": [
     "get_dataset_contract",
     "profile_dataset",
     "select_quality_strategy",
     "retrieve_dataset_memory",
+    "inspect_primary_key_integrity",
+    "analyze_numeric_distribution",
     "run_quality_checks",
     "retrieve_business_rules",
     "build_quality_report"

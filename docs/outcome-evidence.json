@@ -259,17 +259,17 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-observability.json"
     },
     {
-      "claim": "The project verifies 7 allowed agent tools, 3 rejected unsafe PostgreSQL queries, sensitive-field redaction, disabled fallback, and 6 report verifier rules without claiming a formal security audit.",
+      "claim": "The project verifies 9 allowed agent tools, 3 rejected unsafe PostgreSQL queries, sensitive-field redaction, disabled fallback, and 6 report verifier rules without claiming a formal security audit.",
       "evidence_type": "artifact",
       "id": "agent-safety-boundaries",
       "metric_name": "tool_allowlist_count",
-      "metric_value": 7,
+      "metric_value": 9,
       "resume_signal": "CI-verified agent safety boundaries",
       "status": "verified",
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/agent-safety-boundaries.json"
     },
     {
-      "claim": "The project publishes a generated capability matrix mapping the agent against a practical LLM-agent checklist, with 13 implemented capabilities, 4 partial maturity areas, 7 allowed tools, and explicit not-claimed production adoption.",
+      "claim": "The project publishes a generated capability matrix mapping the agent against a practical LLM-agent checklist, with 13 implemented capabilities, 4 partial maturity areas, 9 allowed tools, and explicit not-claimed production adoption.",
       "evidence_type": "artifact",
       "id": "agent-capability-matrix",
       "metric_name": "agent_capability_matrix",
@@ -459,7 +459,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/eval-summary.json"
     },
     {
-      "claim": "The project publishes an eval artifact that verifies the LLM agent exposes 7 allowed tools and recommends relevant quality checks across 14 dataset scenarios without claiming paid model benchmark results.",
+      "claim": "The project publishes an eval artifact that verifies the LLM agent exposes 9 allowed tools and recommends relevant quality checks across 14 dataset scenarios without claiming paid model benchmark results.",
       "evidence_type": "artifact",
       "id": "tool-planning-eval",
       "metric_name": "tool_planning_eval",

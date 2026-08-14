@@ -18,11 +18,13 @@
     "profile_dataset",
     "select_quality_strategy",
     "retrieve_dataset_memory",
+    "inspect_primary_key_integrity",
+    "analyze_numeric_distribution",
     "run_quality_checks",
     "retrieve_business_rules",
     "build_quality_report"
   ],
-  "tool_allowlist_count": 7,
+  "tool_allowlist_count": 9,
   "verifier_rule_count": 6,
   "verifier_rules": [
     "finding_evidence_required",
