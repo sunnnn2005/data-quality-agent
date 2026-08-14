@@ -6,7 +6,7 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 
 | Metric | Value |
 | --- | ---: |
-| Passing Tests | 226 |
+| Passing Tests | 229 |
 | Verified Resume Claims | 95 |
 | Implemented Agent Capabilities | 16 |
 | Support Ticket Issue Categories | 4 |
@@ -85,7 +85,7 @@ This generated scorecard gives reviewers one place to inspect the project's publ
 
 ## Resume-Safe Summary
 
-Live project scorecard: public demo, v0.3.0 release, container image, 226 passing CI tests, 95 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
+Live project scorecard: public demo, v0.3.0 release, container image, 229 passing CI tests, 95 verified resume claims, and 16 implemented LLM agent-readiness capabilities.
 
 ## Not Claimed
 
