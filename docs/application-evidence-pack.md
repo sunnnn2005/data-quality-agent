@@ -133,9 +133,9 @@ Public, containerized LLM data-quality agent with CI-verified evidence artifacts
 | Resume Claim Upgrade Claimable Rows | 0 |
 | Github Discovery Topics | 16 |
 | Github Discovery Reviewer Entrypoints | 6 |
-| Pilot Evidence Quicklink Actions | 3 |
-| Pilot Evidence Quicklink Fields | 12 |
-| Pilot Evidence Quicklink Target Metrics | 3 |
+| Pilot Evidence Quicklink Actions | 4 |
+| Pilot Evidence Quicklink Fields | 17 |
+| Pilot Evidence Quicklink Target Metrics | 4 |
 | Pilot Launch Public Issue Threads | 4 |
 | Pilot Launch Gates | 5 |
 | Pilot Launch Target Outcomes | 4 |

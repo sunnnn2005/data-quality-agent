@@ -195,9 +195,9 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | GitHub discovery topics | 16 |
 | GitHub discovery reviewer entrypoints | 6 |
 | Pilot evidence quicklink | 1 |
-| Pilot evidence quicklink actions | 3 |
-| Pilot evidence quicklink fields | 12 |
-| Pilot evidence quicklink target metrics | 3 |
+| Pilot evidence quicklink actions | 4 |
+| Pilot evidence quicklink fields | 17 |
+| Pilot evidence quicklink target metrics | 4 |
 | Pilot launch control room | 1 |
 | Pilot launch public issue threads | 4 |
 | Pilot launch gates | 5 |
@@ -349,7 +349,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - 3 recruiter-safe resume bullets for 4 target roles
 - 48 application evidence links in a recruiter-ready evidence pack
 - GitHub discovery profile with 16 precise topics, 6 reviewer entrypoints, public homepage metadata, and zero-star baseline
-- Pilot evidence quicklink with 3 short reviewer actions, 12 required evidence fields, 3 target outcome metrics, and zero-count baselines
+- Pilot evidence quicklink with 4 short reviewer actions, 17 required evidence fields, 4 target outcome metrics, and zero-count baselines
 - Pilot launch control room with 4 public issue threads, 5 launch gates, 4 target outcome metrics, and 3 reviewer-send paths
 - Resume outcome adjudication report with 5 outcome categories, 0 claimable external categories, 5 blocked categories, and explicit unlock conditions
 - AI Engineer review intake with 6 review paths, 6 reviewer questions, 5 countable-evidence conditions, and zero accepted reviews

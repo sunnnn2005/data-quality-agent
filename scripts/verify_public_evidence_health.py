@@ -494,9 +494,9 @@ PUBLIC_CHECKS = [
         "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/pilot-evidence-quicklink.json",
         "expected_json": {
             "project": "Data Quality Agent",
-            "action_count": 3,
-            "total_evidence_fields": 12,
-            "target_metric_count": 3,
+            "action_count": 4,
+            "total_evidence_fields": 17,
+            "target_metric_count": 4,
         },
         "expected_text": "CI-verified pilot evidence quicklink",
         "expected_texts": [

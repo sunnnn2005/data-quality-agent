@@ -1403,19 +1403,28 @@ def verify_manifest() -> dict[str, int]:
             elif metric_name == "pilot_evidence_quicklink":
                 quicklink_script = (ROOT / "scripts" / "build_pilot_evidence_quicklink.py").read_text()
                 quicklink_tests = (ROOT / "tests" / "test_pilot_evidence_quicklink.py").read_text()
-                if pilot_evidence_quicklink.get("action_count") != 3:
-                    raise AssertionError("pilot evidence quicklink must verify 3 short evidence actions")
-                if pilot_evidence_quicklink.get("total_evidence_fields") != 12:
-                    raise AssertionError("pilot evidence quicklink must verify 12 evidence fields")
-                if pilot_evidence_quicklink.get("target_metric_count") != 3:
-                    raise AssertionError("pilot evidence quicklink must verify 3 target metrics")
+                if pilot_evidence_quicklink.get("action_count") != 4:
+                    raise AssertionError("pilot evidence quicklink must verify 4 short evidence actions")
+                if pilot_evidence_quicklink.get("total_evidence_fields") != 17:
+                    raise AssertionError("pilot evidence quicklink must verify 17 evidence fields")
+                if pilot_evidence_quicklink.get("target_metric_count") != 4:
+                    raise AssertionError("pilot evidence quicklink must verify 4 target metrics")
                 counts = pilot_evidence_quicklink.get("current_counts", {})
                 for key in ("external_feedback_items", "confirmed_external_users", "business_case_feedback_items"):
                     if counts.get(key) != 0:
                         raise AssertionError(f"pilot evidence quicklink must preserve zero baseline for {key}")
-                for required in ("external users", "customer feedback", "submitted external business cases"):
+                for required in (
+                    "external users",
+                    "customer feedback",
+                    "external reproducible replays",
+                    "submitted external business cases",
+                ):
                     if required not in pilot_evidence_quicklink.get("not_claimed", []):
                         raise AssertionError(f"pilot evidence quicklink must not claim {required}")
+                joined = json.dumps(pilot_evidence_quicklink, sort_keys=True).lower()
+                for required in ("business_data_replay.md", "selected tools shown in the agent trace"):
+                    if required not in joined:
+                        raise AssertionError(f"pilot evidence quicklink missing replay evidence path: {required}")
                 if "verify_pilot_evidence_quicklink" not in quicklink_script:
                     raise AssertionError("pilot evidence quicklink must include a script verifier")
                 if "test_pilot_evidence_quicklink_routes_reviewers_to_real_countable_outcomes" not in quicklink_tests:

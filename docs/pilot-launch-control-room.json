@@ -64,7 +64,7 @@
     }
   ],
   "purpose": "Centralize the public launch, pilot evidence links, issue threads, target metrics, and blocked resume claims so future outcome numbers can be earned from external evidence instead of self-authored notes.",
-  "quicklink_action_count": 3,
+  "quicklink_action_count": 4,
   "quicklink_public_url": "https://sunnnn2005.github.io/data-quality-agent/pilot-evidence-quicklink.html",
   "ready_gate_count": 3,
   "resume_safe_summary": "Published a CI-verified pilot launch control room with 4 public issue threads, 5 launch gates, 4 target outcome metrics, and 3 reviewer-send paths while keeping external usage and feedback claims blocked at zero until public evidence arrives.",

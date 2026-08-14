@@ -207,8 +207,8 @@ Quicklink: [{payload["quicklink_public_url"]}]({payload["quicklink_public_url"]}
 
 
 def verify_pilot_launch_control_room(payload: dict[str, Any]) -> dict[str, Any]:
-    if payload["quicklink_action_count"] != 3:
-        raise AssertionError("pilot launch control room must link to the 3-action quicklink")
+    if payload["quicklink_action_count"] != 4:
+        raise AssertionError("pilot launch control room must link to the 4-action quicklink")
     if payload["public_issue_thread_count"] != 4:
         raise AssertionError("pilot launch control room must track 4 public issue threads")
     if payload["launch_gate_count"] != 5:

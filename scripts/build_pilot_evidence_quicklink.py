@@ -48,7 +48,7 @@ def build_pilot_evidence_quicklink() -> dict[str, Any]:
             "id": "run_container_or_local",
             "label": "Run the container or local demo",
             "time_box_minutes": 8,
-            "open_url": f"{repo}/blob/main/docs/external-run-quickstart.html",
+            "open_url": "https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html",
             "submit_url": f"{repo}/issues/new?template=external_run_review.md",
             "target_metric": "confirmed_external_users",
             "counts_after": "public observed-result evidence from a non-owner reviewer",
@@ -57,6 +57,22 @@ def build_pilot_evidence_quicklink() -> dict[str, Any]:
                 "environment",
                 "observed result",
                 "permission to count this as an external run",
+            ],
+        },
+        {
+            "id": "replay_business_data",
+            "label": "Replay business-shaped data",
+            "time_box_minutes": 10,
+            "open_url": f"{repo}/blob/main/docs/business-data-replay-packet.md",
+            "submit_url": f"{repo}/issues/new?template=business_data_replay.md",
+            "target_metric": "reproducible_feedback_items",
+            "counts_after": "redacted replay evidence with dataset shape, agent trace, and permission to count",
+            "evidence_to_submit": [
+                "command or endpoint used",
+                "dataset shape and non-sensitive field names",
+                "report status and finding count",
+                "selected tools shown in the agent trace",
+                "what the agent caught or missed",
             ],
         },
         {
@@ -81,8 +97,9 @@ def build_pilot_evidence_quicklink() -> dict[str, Any]:
         "page": "docs/pilot-evidence-quicklink.html",
         "public_url": "https://sunnnn2005.github.io/data-quality-agent/pilot-evidence-quicklink.html",
         "purpose": (
-            "Give a reviewer one short public link that routes them to three countable pilot-evidence actions "
-            "while preserving zero-user, zero-feedback, and zero-business-case baselines until public evidence exists."
+            "Give a reviewer one short public link that routes them to four countable pilot-evidence actions "
+            "while preserving zero-user, zero-feedback, zero-replay, and zero-business-case baselines until public "
+            "evidence exists."
         ),
         "action_count": len(actions),
         "actions": actions,
@@ -92,17 +109,19 @@ def build_pilot_evidence_quicklink() -> dict[str, Any]:
         "current_counts": {
             "external_feedback_items": feedback["external_feedback_items"],
             "confirmed_external_users": feedback["confirmed_external_users"],
+            "reproducible_feedback_items": feedback["reproducible_feedback_items"],
             "business_case_feedback_items": feedback["business_case_feedback_items"],
             "github_stars": adoption["stars"],
         },
         "resume_safe_summary": (
-            "Published a CI-verified pilot evidence quicklink that gives external reviewers 3 short evidence actions, "
-            "12 required evidence fields, public submission links, and explicit zero-count baselines before any outcome "
+            "Published a CI-verified pilot evidence quicklink that gives external reviewers 4 short evidence actions, "
+            "17 required evidence fields, public submission links, and explicit zero-count baselines before any outcome "
             "claim is upgraded."
         ),
         "not_claimed": [
             "external users",
             "customer feedback",
+            "external reproducible replays",
             "submitted external business cases",
             "GitHub stars beyond the current public count",
         ],
@@ -131,7 +150,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
 
 Public page: [{payload["public_url"]}]({payload["public_url"]})
 
-## Three Countable Actions
+## {payload["action_count"]} Countable Actions
 
 | Action | Minutes | Target Metric | Open | Submit Evidence | Counting Rule |
 | --- | ---: | --- | --- | --- | --- |
@@ -170,7 +189,7 @@ def render_html(payload: dict[str, Any]) -> str:
             <a href="{action['submit_url']}">Submit evidence</a>
           </div>
         </article>
-        """
+        """.strip()
         for action in payload["actions"]
     )
     counts = "\n".join(
@@ -249,12 +268,12 @@ def render_html(payload: dict[str, Any]) -> str:
 
 
 def verify_pilot_evidence_quicklink(payload: dict[str, Any]) -> dict[str, Any]:
-    if payload["action_count"] != 3:
-        raise AssertionError("pilot evidence quicklink must expose 3 short evidence actions")
-    if payload["target_metric_count"] != 3:
-        raise AssertionError("pilot evidence quicklink must target 3 outcome metrics")
-    if payload["total_evidence_fields"] != 12:
-        raise AssertionError("pilot evidence quicklink must collect 12 evidence fields")
+    if payload["action_count"] != 4:
+        raise AssertionError("pilot evidence quicklink must expose 4 short evidence actions")
+    if payload["target_metric_count"] != 4:
+        raise AssertionError("pilot evidence quicklink must target 4 outcome metrics")
+    if payload["total_evidence_fields"] != 17:
+        raise AssertionError("pilot evidence quicklink must collect 17 evidence fields")
     if payload["source_submission_hub_paths"] != 6:
         raise AssertionError("pilot evidence quicklink must be grounded in the submission hub")
     if any(value != 0 for value in payload["current_counts"].values() if isinstance(value, int)):
@@ -267,6 +286,7 @@ def verify_pilot_evidence_quicklink(payload: dict[str, Any]) -> dict[str, Any]:
         "Pilot evidence quicklink",
         "Try the public demo",
         "Run the container or local demo",
+        "Replay business-shaped data",
         "Submit an anonymized business problem",
         "Current counts stay honest",
         "Not claimed yet",

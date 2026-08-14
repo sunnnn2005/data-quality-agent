@@ -47,11 +47,10 @@
       <div>
         <div class="eyebrow">Pilot evidence quicklink</div>
         <h1>One link for real feedback, runs, and business problems.</h1>
-        <p class="lede">Give a reviewer one short public link that routes them to three countable pilot-evidence actions while preserving zero-user, zero-feedback, and zero-business-case baselines until public evidence exists.</p>
+        <p class="lede">Give a reviewer one short public link that routes them to four countable pilot-evidence actions while preserving zero-user, zero-feedback, zero-replay, and zero-business-case baselines until public evidence exists.</p>
       </div>
     </header>
-    <div class="grid">
-        <article>
+    <div class="grid"><article>
           <span>5 min</span>
           <h2>Try the public demo</h2>
           <p>Counts toward <code>external_feedback_items</code> only after non-owner public feedback issue with permission to count.</p>
@@ -61,21 +60,27 @@
             <a href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md">Submit evidence</a>
           </div>
         </article>
-        
-
-        <article>
+<article>
           <span>8 min</span>
           <h2>Run the container or local demo</h2>
           <p>Counts toward <code>confirmed_external_users</code> only after public observed-result evidence from a non-owner reviewer.</p>
           <ul><li>command, URL, or page used</li><li>environment</li><li>observed result</li><li>permission to count this as an external run</li></ul>
           <div class="card-actions">
-            <a href="https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-quickstart.html">Open</a>
+            <a href="https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html">Open</a>
             <a href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md">Submit evidence</a>
           </div>
         </article>
-        
-
-        <article>
+<article>
+          <span>10 min</span>
+          <h2>Replay business-shaped data</h2>
+          <p>Counts toward <code>reproducible_feedback_items</code> only after redacted replay evidence with dataset shape, agent trace, and permission to count.</p>
+          <ul><li>command or endpoint used</li><li>dataset shape and non-sensitive field names</li><li>report status and finding count</li><li>selected tools shown in the agent trace</li><li>what the agent caught or missed</li></ul>
+          <div class="card-actions">
+            <a href="https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-data-replay-packet.md">Open</a>
+            <a href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md">Submit evidence</a>
+          </div>
+        </article>
+<article>
           <span>10 min</span>
           <h2>Submit an anonymized business problem</h2>
           <p>Counts toward <code>business_case_feedback_items</code> only after anonymized public issue with no raw production data.</p>
@@ -84,12 +89,12 @@
             <a href="https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-case-intake.md">Open</a>
             <a href="https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md">Submit evidence</a>
           </div>
-        </article>
-        </div>
+        </article></div>
     <section>
       <h2>Current counts stay honest</h2>
       <ul><li><code>external_feedback_items</code>: 0</li>
 <li><code>confirmed_external_users</code>: 0</li>
+<li><code>reproducible_feedback_items</code>: 0</li>
 <li><code>business_case_feedback_items</code>: 0</li>
 <li><code>github_stars</code>: 0</li></ul>
     </section>
@@ -97,12 +102,13 @@
       <h2>Not claimed yet</h2>
       <ul><li>external users</li>
 <li>customer feedback</li>
+<li>external reproducible replays</li>
 <li>submitted external business cases</li>
 <li>GitHub stars beyond the current public count</li></ul>
     </section>
     <section>
       <h2>Resume-safe summary</h2>
-      <p>Published a CI-verified pilot evidence quicklink that gives external reviewers 3 short evidence actions, 12 required evidence fields, public submission links, and explicit zero-count baselines before any outcome claim is upgraded.</p>
+      <p>Published a CI-verified pilot evidence quicklink that gives external reviewers 4 short evidence actions, 17 required evidence fields, public submission links, and explicit zero-count baselines before any outcome claim is upgraded.</p>
     </section>
   </main>
 </body>

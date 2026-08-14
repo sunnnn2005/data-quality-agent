@@ -121,8 +121,9 @@ def test_public_evidence_health_requires_core_public_signals():
     assert "No external reviewer run is claimed yet." in quickstart["expected_texts"]
     quicklink = next(check for check in PUBLIC_CHECKS if check["id"] == "pilot-evidence-quicklink")
     assert quicklink["url"].endswith("/pilot-evidence-quicklink.json")
-    assert quicklink["expected_json"]["action_count"] == 3
-    assert quicklink["expected_json"]["total_evidence_fields"] == 12
+    assert quicklink["expected_json"]["action_count"] == 4
+    assert quicklink["expected_json"]["total_evidence_fields"] == 17
+    assert quicklink["expected_json"]["target_metric_count"] == 4
     assert "zero-count baselines" in quicklink["expected_texts"]
     control_room = next(check for check in PUBLIC_CHECKS if check["id"] == "pilot-launch-control-room")
     assert control_room["url"].endswith("/pilot-launch-control-room.json")

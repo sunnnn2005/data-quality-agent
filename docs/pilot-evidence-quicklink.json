@@ -1,5 +1,5 @@
 {
-  "action_count": 3,
+  "action_count": 4,
   "actions": [
     {
       "counts_after": "non-owner public feedback issue with permission to count",
@@ -26,10 +26,26 @@
       ],
       "id": "run_container_or_local",
       "label": "Run the container or local demo",
-      "open_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/external-run-quickstart.html",
+      "open_url": "https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html",
       "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=external_run_review.md",
       "target_metric": "confirmed_external_users",
       "time_box_minutes": 8
+    },
+    {
+      "counts_after": "redacted replay evidence with dataset shape, agent trace, and permission to count",
+      "evidence_to_submit": [
+        "command or endpoint used",
+        "dataset shape and non-sensitive field names",
+        "report status and finding count",
+        "selected tools shown in the agent trace",
+        "what the agent caught or missed"
+      ],
+      "id": "replay_business_data",
+      "label": "Replay business-shaped data",
+      "open_url": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-data-replay-packet.md",
+      "submit_url": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_data_replay.md",
+      "target_metric": "reproducible_feedback_items",
+      "time_box_minutes": 10
     },
     {
       "counts_after": "anonymized public issue with no raw production data",
@@ -51,21 +67,23 @@
     "business_case_feedback_items": 0,
     "confirmed_external_users": 0,
     "external_feedback_items": 0,
-    "github_stars": 0
+    "github_stars": 0,
+    "reproducible_feedback_items": 0
   },
   "generated_by": "scripts/build_pilot_evidence_quicklink.py",
   "not_claimed": [
     "external users",
     "customer feedback",
+    "external reproducible replays",
     "submitted external business cases",
     "GitHub stars beyond the current public count"
   ],
   "page": "docs/pilot-evidence-quicklink.html",
   "project": "Data Quality Agent",
   "public_url": "https://sunnnn2005.github.io/data-quality-agent/pilot-evidence-quicklink.html",
-  "purpose": "Give a reviewer one short public link that routes them to three countable pilot-evidence actions while preserving zero-user, zero-feedback, and zero-business-case baselines until public evidence exists.",
-  "resume_safe_summary": "Published a CI-verified pilot evidence quicklink that gives external reviewers 3 short evidence actions, 12 required evidence fields, public submission links, and explicit zero-count baselines before any outcome claim is upgraded.",
+  "purpose": "Give a reviewer one short public link that routes them to four countable pilot-evidence actions while preserving zero-user, zero-feedback, zero-replay, and zero-business-case baselines until public evidence exists.",
+  "resume_safe_summary": "Published a CI-verified pilot evidence quicklink that gives external reviewers 4 short evidence actions, 17 required evidence fields, public submission links, and explicit zero-count baselines before any outcome claim is upgraded.",
   "source_submission_hub_paths": 6,
-  "target_metric_count": 3,
-  "total_evidence_fields": 12
+  "target_metric_count": 4,
+  "total_evidence_fields": 17
 }

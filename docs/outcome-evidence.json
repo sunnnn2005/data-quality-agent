@@ -791,7 +791,7 @@
       "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/docs/github-discovery-profile.json"
     },
     {
-      "claim": "The project publishes a pilot evidence quicklink with 3 short reviewer actions, 12 required evidence fields, 3 target outcome metrics, public submission links, and zero-count baselines before any user, feedback, or business-case outcome is claimed.",
+      "claim": "The project publishes a pilot evidence quicklink with 4 short reviewer actions, 17 required evidence fields, 4 target outcome metrics, public submission links, business-data replay evidence, and zero-count baselines before any user, feedback, replay, or business-case outcome is claimed.",
       "evidence_type": "generated_artifact",
       "id": "pilot-evidence-quicklink",
       "metric_name": "pilot_evidence_quicklink",

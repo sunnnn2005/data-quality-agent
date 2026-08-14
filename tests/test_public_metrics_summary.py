@@ -176,9 +176,9 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["github_discovery_topics"] == 16
     assert payload["verified_project_outcomes"]["github_discovery_reviewer_entrypoints"] == 6
     assert payload["verified_project_outcomes"]["pilot_evidence_quicklink"] == 1
-    assert payload["verified_project_outcomes"]["pilot_evidence_quicklink_actions"] == 3
-    assert payload["verified_project_outcomes"]["pilot_evidence_quicklink_fields"] == 12
-    assert payload["verified_project_outcomes"]["pilot_evidence_quicklink_target_metrics"] == 3
+    assert payload["verified_project_outcomes"]["pilot_evidence_quicklink_actions"] == 4
+    assert payload["verified_project_outcomes"]["pilot_evidence_quicklink_fields"] == 17
+    assert payload["verified_project_outcomes"]["pilot_evidence_quicklink_target_metrics"] == 4
     assert payload["verified_project_outcomes"]["pilot_launch_control_room"] == 1
     assert payload["verified_project_outcomes"]["pilot_launch_public_issue_threads"] == 4
     assert payload["verified_project_outcomes"]["pilot_launch_gates"] == 5

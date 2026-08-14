@@ -11,7 +11,7 @@ def test_pilot_launch_control_room_tracks_real_outcome_path_without_claiming_it(
     markdown = render_markdown(payload)
 
     assert verification["pilot_launch_control_room_verified"] is True
-    assert payload["quicklink_action_count"] == 3
+    assert payload["quicklink_action_count"] == 4
     assert payload["public_issue_thread_count"] == 4
     assert payload["launch_gate_count"] == 5
     assert payload["ready_gate_count"] == 3
