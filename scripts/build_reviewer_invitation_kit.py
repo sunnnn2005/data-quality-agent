@@ -6,9 +6,11 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 FEEDBACK_METRICS_PATH = ROOT / "docs" / "feedback-metrics.json"
 REVIEWER_FUNNEL_PATH = ROOT / "docs" / "reviewer-funnel-board.json"
+ONE_CLICK_EVIDENCE_LINKS_PATH = ROOT / "docs" / "one-click-evidence-links.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "reviewer-invitation-kit.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "reviewer-invitation-kit.md"
 PUBLIC_REVIEW_REQUEST_URL = "https://github.com/sunnnn2005/data-quality-agent/issues/17"
+ONE_CLICK_EVIDENCE_LINKS_URL = "https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html"
 AI_ENGINEER_REVIEW_URL = "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md"
 AI_ENGINEER_REVIEW_INTAKE_URL = (
     "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md"
@@ -22,7 +24,21 @@ def load_json(path: Path) -> dict[str, Any]:
 def build_reviewer_invitation_kit_payload() -> dict[str, Any]:
     feedback = load_json(FEEDBACK_METRICS_PATH)
     funnel = load_json(REVIEWER_FUNNEL_PATH)
+    one_click = load_json(ONE_CLICK_EVIDENCE_LINKS_PATH)
     stages = {stage["id"]: stage for stage in funnel["funnel_stages"]}
+    short_share_card = {
+        "title": "Review Data Quality Agent in 8-12 minutes",
+        "primary_url": ONE_CLICK_EVIDENCE_LINKS_URL,
+        "backup_url": "https://sunnnn2005.github.io/data-quality-agent/",
+        "target_metrics": [link["target_metric"] for link in one_click["links"]],
+        "copy_message": (
+            "Could you spend 8-12 minutes reviewing my Data Quality Agent project? "
+            "This one-click page lets you choose AI Engineer review, confirmed external use, product feedback, "
+            "or an anonymized business-case note: "
+            f"{ONE_CLICK_EVIDENCE_LINKS_URL}. Please submit only public, non-private evidence if you are comfortable."
+        ),
+        "counts_only_after": one_click["counting_rule"],
+    }
     invitation_targets = [
         {
             "target": "classmate_quick_demo",
@@ -34,7 +50,8 @@ def build_reviewer_invitation_kit_payload() -> dict[str, Any]:
             "submission_url": stages["visit_public_demo"]["submission_url"],
             "message": (
                 "Could you spend 8 minutes trying my public Data Quality Agent demo and leave one GitHub issue "
-                "with anything confusing, useful, or broken? I am tracking feedback publicly instead of claiming users without proof."
+                "with anything confusing, useful, or broken? The shortest route is the one-click evidence page: "
+                f"{ONE_CLICK_EVIDENCE_LINKS_URL}. I am tracking feedback publicly instead of claiming users without proof."
             ),
         },
         {
@@ -61,7 +78,8 @@ def build_reviewer_invitation_kit_payload() -> dict[str, Any]:
             "message": (
                 "I am improving this project for AI Engineer internship applications. Could you review whether the LLM tool-calling loop, "
                 "business-data connector, structured output, guardrails, and evidence trail look credible enough for an intern interview? "
-                "If yes, please leave a public AI Engineer review issue with the path you inspected."
+                "If yes, please use the one-click evidence page or leave a public AI Engineer review issue with the path you inspected: "
+                f"{ONE_CLICK_EVIDENCE_LINKS_URL}."
             ),
         },
         {
@@ -74,7 +92,8 @@ def build_reviewer_invitation_kit_payload() -> dict[str, Any]:
             "submission_url": stages["confirm_external_use"]["submission_url"],
             "message": (
                 "If you already tried the Data Quality Agent demo or ran the repo locally, could you leave a short public note saying "
-                "what path you used and whether the result was understandable? I only count confirmed external use when it is public and specific."
+                "what path you used and whether the result was understandable? The one-click evidence page has the confirmed-use form: "
+                f"{ONE_CLICK_EVIDENCE_LINKS_URL}. I only count confirmed external use when it is public and specific."
             ),
         },
         {
@@ -87,7 +106,8 @@ def build_reviewer_invitation_kit_payload() -> dict[str, Any]:
             "submission_url": stages["submit_business_case"]["submission_url"],
             "message": (
                 "Do you have an anonymized data-quality problem this project should handle, such as duplicate IDs, stale exports, "
-                "missing routing fields, or suspicious numeric values? A public business-case issue with no raw data would help me test real usefulness."
+                "missing routing fields, or suspicious numeric values? A public business-case issue with no raw data would help me test real usefulness. "
+                f"The one-click evidence page is here: {ONE_CLICK_EVIDENCE_LINKS_URL}."
             ),
         },
         {
@@ -100,7 +120,8 @@ def build_reviewer_invitation_kit_payload() -> dict[str, Any]:
             "submission_url": stages["visit_public_demo"]["submission_url"],
             "message": (
                 "I am collecting public review evidence for a data-quality LLM agent project. If anyone can try the demo, "
-                "please leave one GitHub issue with what worked, what broke, or what would make it more useful for real data workflows."
+                "please leave one GitHub issue with what worked, what broke, or what would make it more useful for real data workflows. "
+                f"Fastest path: {ONE_CLICK_EVIDENCE_LINKS_URL}."
             ),
         },
     ]
@@ -124,6 +145,15 @@ def build_reviewer_invitation_kit_payload() -> dict[str, Any]:
             "purpose": "Single public issue for sharing review paths and collecting the first external feedback item.",
             "status": "open_for_reviewers",
         },
+        "short_share_card": short_share_card,
+        "one_click_evidence_links": {
+            "url": ONE_CLICK_EVIDENCE_LINKS_URL,
+            "link_count": one_click["link_count"],
+            "target_metric_count": one_click["target_metric_count"],
+            "accepted_issue_count": one_click["accepted_issue_count"],
+            "claimable_resume_metric_count": one_click["claimable_resume_metric_count"],
+            "counting_rule": one_click["counting_rule"],
+        },
         "invitation_count": len(invitation_targets),
         "distinct_funnel_stage_count": len({target["funnel_stage"] for target in invitation_targets}),
         "public_evidence_path_count": len({target["counts_toward"] for target in invitation_targets}),
@@ -144,7 +174,7 @@ def build_reviewer_invitation_kit_payload() -> dict[str, Any]:
         ],
         "not_claimed": funnel["not_claimed"],
         "resume_safe_summary": (
-            "Published 6 copy-ready reviewer invitations tied to 5 public evidence paths, including AI Engineer review evidence, with explicit zero-feedback baselines."
+            "Published 6 copy-ready reviewer invitations plus a short one-click reviewer share card tied to 5 public evidence paths, including AI Engineer review evidence, with explicit zero-feedback baselines."
         ),
     }
 
@@ -152,6 +182,8 @@ def build_reviewer_invitation_kit_payload() -> dict[str, Any]:
 def render_markdown(payload: dict[str, Any]) -> str:
     baseline = "\n".join(f"| {key.replace('_', ' ').title()} | {value} |" for key, value in payload["current_baseline"].items())
     review_request = payload["public_review_request"]
+    share_card = payload["short_share_card"]
+    one_click = payload["one_click_evidence_links"]
     invitations = "\n\n".join(
         "\n".join(
             [
@@ -193,6 +225,23 @@ Issue #{review_request["issue_number"]}: [{review_request["url"]}]({review_reque
 
 {review_request["purpose"]}
 
+## One-Click Reviewer Share Card
+
+**{share_card["title"]}**
+
+- Primary: [{share_card["primary_url"]}]({share_card["primary_url"]})
+- Backup: [{share_card["backup_url"]}]({share_card["backup_url"]})
+- One-click links: {one_click["link_count"]}
+- Target metrics: {one_click["target_metric_count"]}
+- Accepted issue count: {one_click["accepted_issue_count"]}
+- Claimable resume metric count: {one_click["claimable_resume_metric_count"]}
+
+Copy message:
+
+> {share_card["copy_message"]}
+
+Counting boundary: {share_card["counts_only_after"]}
+
 ## Invitations
 
 {invitations}
@@ -222,6 +271,8 @@ def verify_reviewer_invitation_kit(payload: dict[str, Any]) -> dict[str, Any]:
         "invitation_count": 6,
         "distinct_funnel_stages": 5,
         "counting_rule_count": 5,
+        "one_click_link_count": 4,
+        "one_click_target_metric_count": 4,
         "current_external_feedback_items": 0,
         "current_confirmed_external_users": 0,
         "current_ai_engineer_review_items": 0,
@@ -236,7 +287,21 @@ def verify_reviewer_invitation_kit(payload: dict[str, Any]) -> dict[str, Any]:
     if len(stages) != expected["distinct_funnel_stages"]:
         raise AssertionError("reviewer invitation kit must cover five funnel stages")
     if len(payload["counting_rules"]) != expected["counting_rule_count"]:
-        raise AssertionError("reviewer invitation kit must include four counting rules")
+        raise AssertionError("reviewer invitation kit must include five counting rules")
+    share_card = payload["short_share_card"]
+    one_click = payload["one_click_evidence_links"]
+    if not share_card["primary_url"].endswith("/one-click-evidence-links.html"):
+        raise AssertionError("reviewer invitation kit must publish a one-click share-card URL")
+    if "8-12 minutes" not in share_card["title"] or "8-12 minutes" not in share_card["copy_message"]:
+        raise AssertionError("reviewer invitation kit share card must preserve the short review ask")
+    if one_click["link_count"] != expected["one_click_link_count"]:
+        raise AssertionError("reviewer invitation kit must link four one-click evidence paths")
+    if one_click["target_metric_count"] != expected["one_click_target_metric_count"]:
+        raise AssertionError("reviewer invitation kit must cover four one-click target metrics")
+    if one_click["accepted_issue_count"] != 0 or one_click["claimable_resume_metric_count"] != 0:
+        raise AssertionError("reviewer invitation kit must not convert one-click links into accepted evidence")
+    if "Opening a one-click issue link is not evidence by itself" not in one_click["counting_rule"]:
+        raise AssertionError("reviewer invitation kit must preserve the one-click evidence counting boundary")
     baseline = payload["current_baseline"]
     if baseline["external_feedback_items"] != expected["current_external_feedback_items"]:
         raise AssertionError("reviewer invitation kit must preserve current feedback baseline")

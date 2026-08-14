@@ -22,6 +22,23 @@ Issue #17: [https://github.com/sunnnn2005/data-quality-agent/issues/17](https://
 
 Single public issue for sharing review paths and collecting the first external feedback item.
 
+## One-Click Reviewer Share Card
+
+**Review Data Quality Agent in 8-12 minutes**
+
+- Primary: [https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html](https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html)
+- Backup: [https://sunnnn2005.github.io/data-quality-agent/](https://sunnnn2005.github.io/data-quality-agent/)
+- One-click links: 4
+- Target metrics: 4
+- Accepted issue count: 0
+- Claimable resume metric count: 0
+
+Copy message:
+
+> Could you spend 8-12 minutes reviewing my Data Quality Agent project? This one-click page lets you choose AI Engineer review, confirmed external use, product feedback, or an anonymized business-case note: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html. Please submit only public, non-private evidence if you are comfortable.
+
+Counting boundary: Opening a one-click issue link is not evidence by itself. A metric counts only after a non-owner submits the public issue, includes permission, includes no private data, and passes the evidence gate.
+
 ## Invitations
 
 ### classmate_quick_demo -> UC Davis classmate or student developer
@@ -32,7 +49,7 @@ Single public issue for sharing review paths and collecting the first external f
 - Entry: [https://sunnnn2005.github.io/data-quality-agent/](https://sunnnn2005.github.io/data-quality-agent/)
 - Submission: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md)
 
-Could you spend 8 minutes trying my public Data Quality Agent demo and leave one GitHub issue with anything confusing, useful, or broken? I am tracking feedback publicly instead of claiming users without proof.
+Could you spend 8 minutes trying my public Data Quality Agent demo and leave one GitHub issue with anything confusing, useful, or broken? The shortest route is the one-click evidence page: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html. I am tracking feedback publicly instead of claiming users without proof.
 
 ### technical_friend_local_replay -> student developer comfortable with local setup
 
@@ -52,7 +69,7 @@ Could you clone my Data Quality Agent repo, run the local replay path, and submi
 - Entry: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-review-intake.md)
 - Submission: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md)
 
-I am improving this project for AI Engineer internship applications. Could you review whether the LLM tool-calling loop, business-data connector, structured output, guardrails, and evidence trail look credible enough for an intern interview? If yes, please leave a public AI Engineer review issue with the path you inspected.
+I am improving this project for AI Engineer internship applications. Could you review whether the LLM tool-calling loop, business-data connector, structured output, guardrails, and evidence trail look credible enough for an intern interview? If yes, please use the one-click evidence page or leave a public AI Engineer review issue with the path you inspected: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html.
 
 ### confirmed_use_note -> reviewer who tried the demo or local repo
 
@@ -62,7 +79,7 @@ I am improving this project for AI Engineer internship applications. Could you r
 - Entry: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-feedback-packet.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/reviewer-feedback-packet.md)
 - Submission: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md)
 
-If you already tried the Data Quality Agent demo or ran the repo locally, could you leave a short public note saying what path you used and whether the result was understandable? I only count confirmed external use when it is public and specific.
+If you already tried the Data Quality Agent demo or ran the repo locally, could you leave a short public note saying what path you used and whether the result was understandable? The one-click evidence page has the confirmed-use form: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html. I only count confirmed external use when it is public and specific.
 
 ### data_practitioner_business_case -> data analyst, operations teammate, or small-business operator
 
@@ -72,7 +89,7 @@ If you already tried the Data Quality Agent demo or ran the repo locally, could 
 - Entry: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-problem-casebook.md)
 - Submission: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=business_case_review.md)
 
-Do you have an anonymized data-quality problem this project should handle, such as duplicate IDs, stale exports, missing routing fields, or suspicious numeric values? A public business-case issue with no raw data would help me test real usefulness.
+Do you have an anonymized data-quality problem this project should handle, such as duplicate IDs, stale exports, missing routing fields, or suspicious numeric values? A public business-case issue with no raw data would help me test real usefulness. The one-click evidence page is here: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html.
 
 ### club_or_discord_batch -> data science club, Discord, or Slack group
 
@@ -82,7 +99,7 @@ Do you have an anonymized data-quality problem this project should handle, such 
 - Entry: [https://sunnnn2005.github.io/data-quality-agent/](https://sunnnn2005.github.io/data-quality-agent/)
 - Submission: [https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md](https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md)
 
-I am collecting public review evidence for a data-quality LLM agent project. If anyone can try the demo, please leave one GitHub issue with what worked, what broke, or what would make it more useful for real data workflows.
+I am collecting public review evidence for a data-quality LLM agent project. If anyone can try the demo, please leave one GitHub issue with what worked, what broke, or what would make it more useful for real data workflows. Fastest path: https://sunnnn2005.github.io/data-quality-agent/one-click-evidence-links.html.
 
 ## Success Thresholds
 
@@ -104,7 +121,7 @@ I am collecting public review evidence for a data-quality LLM agent project. If 
 
 ## Resume-Safe Summary
 
-Published 6 copy-ready reviewer invitations tied to 5 public evidence paths, including AI Engineer review evidence, with explicit zero-feedback baselines.
+Published 6 copy-ready reviewer invitations plus a short one-click reviewer share card tied to 5 public evidence paths, including AI Engineer review evidence, with explicit zero-feedback baselines.
 
 ## Not Claimed
 
