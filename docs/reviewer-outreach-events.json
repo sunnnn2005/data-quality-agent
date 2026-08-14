@@ -1,0 +1,4 @@
+{
+  "events": [],
+  "purpose": "Append only real reviewer outreach events after a message is actually sent, a private reply is received, or a public redacted GitHub issue is submitted."
+}

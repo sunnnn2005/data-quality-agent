@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTREACH_PACK_PATH = ROOT / "docs" / "reviewer-outreach-execution-pack.json"
 SHARE_KIT_PATH = ROOT / "docs" / "reviewer-share-kit.json"
 RESUME_OUTCOME_METRICS_PATH = ROOT / "docs" / "resume-outcome-metrics.json"
+OUTREACH_EVENTS_PATH = ROOT / "docs" / "reviewer-outreach-events.json"
 OUTPUT_JSON_PATH = ROOT / "docs" / "reviewer-outreach-status-board.json"
 OUTPUT_MD_PATH = ROOT / "docs" / "reviewer-outreach-status-board.md"
 
@@ -15,10 +16,50 @@ def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text())
 
 
+def load_outreach_events(path: Path = OUTREACH_EVENTS_PATH) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+    payload = load_json(path)
+    events = payload.get("events", [])
+    if not isinstance(events, list):
+        raise AssertionError("reviewer outreach events must be a list")
+    return events
+
+
+def apply_outreach_events(slots: list[dict[str, Any]], events: list[dict[str, Any]]) -> None:
+    slot_by_id = {slot["slot_id"]: slot for slot in slots}
+    allowed_statuses = {"sent", "replied_private", "public_issue_submitted"}
+    for event in events:
+        slot_id = event.get("slot_id")
+        if slot_id not in slot_by_id:
+            raise AssertionError(f"unknown outreach slot_id: {slot_id}")
+        status = event.get("status")
+        if status not in allowed_statuses:
+            raise AssertionError("outreach events can only record sent, replied_private, or public_issue_submitted")
+        slot = slot_by_id[slot_id]
+        slot["status"] = status
+        slot["reviewer_contact"] = event.get("reviewer_contact")
+        slot["channel_used"] = event.get("channel_used")
+        slot["sent_at"] = event.get("sent_at") or slot["sent_at"]
+        slot["last_event_at"] = event.get("event_at")
+        slot["reply_received"] = status in {"replied_private", "public_issue_submitted"}
+        slot["public_evidence_url"] = event.get("public_evidence_url")
+        slot["permission_to_count"] = bool(event.get("permission_to_count", False))
+        slot["no_private_data_confirmed"] = bool(event.get("no_private_data_confirmed", False))
+        if status == "public_issue_submitted" and not slot["public_evidence_url"]:
+            raise AssertionError("public_issue_submitted events require public_evidence_url")
+        slot["next_action"] = {
+            "sent": "Wait for a reply or ask the reviewer to submit public redacted evidence.",
+            "replied_private": "Ask for a public redacted GitHub issue with permission to count.",
+            "public_issue_submitted": "Run the external reviewer evidence gate before counting any resume outcome.",
+        }[status]
+
+
 def build_reviewer_outreach_status_board() -> dict[str, Any]:
     outreach = load_json(OUTREACH_PACK_PATH)
     share_kit = load_json(SHARE_KIT_PATH)
     outcome_metrics = load_json(RESUME_OUTCOME_METRICS_PATH)
+    events = load_outreach_events()
 
     stages = [
         {
@@ -58,9 +99,14 @@ def build_reviewer_outreach_status_board() -> dict[str, Any]:
                 "channel": item["channel"],
                 "counts_toward": item["counts_toward"],
                 "status": "not_sent",
+                "reviewer_contact": None,
+                "channel_used": None,
                 "sent_at": None,
+                "last_event_at": None,
                 "reply_received": False,
                 "public_evidence_url": None,
+                "permission_to_count": False,
+                "no_private_data_confirmed": False,
                 "accepted_by_gate": False,
                 "next_action": "Send manually only after choosing a real reviewer.",
                 "resume_counting_rule": (
@@ -69,6 +115,7 @@ def build_reviewer_outreach_status_board() -> dict[str, Any]:
                 "privacy_boundary": item["privacy_boundary"],
             }
         )
+    apply_outreach_events(slots, events)
 
     tracked_counts = {item["metric"]: item["current_count"] for item in outcome_metrics["tracked_outcomes"]}
     current_counts = {
@@ -90,9 +137,11 @@ def build_reviewer_outreach_status_board() -> dict[str, Any]:
         "source_share_channel_count": share_kit["share_channel_count"],
         "status_stage_count": len(stages),
         "outreach_slot_count": len(slots),
-        "not_sent_count": len(slots),
-        "sent_count": 0,
-        "reply_count": 0,
+        "recorded_event_count": len(events),
+        "not_sent_count": sum(1 for slot in slots if slot["status"] == "not_sent"),
+        "sent_count": sum(1 for slot in slots if slot["status"] == "sent"),
+        "reply_count": sum(1 for slot in slots if slot["reply_received"]),
+        "public_issue_submitted_count": sum(1 for slot in slots if slot["status"] == "public_issue_submitted"),
         "accepted_evidence_count": 0,
         "resume_upgrade_count": 0,
         "current_outcome_counts": current_counts,
@@ -117,8 +166,8 @@ def build_reviewer_outreach_status_board() -> dict[str, Any]:
         "resume_status": "tracking_ready_not_claimable",
         "resume_safe_summary": (
             f"Published a CI-verified outreach status board tracking {len(slots)} reviewer slots across "
-            f"{len(stages)} status stages, {len(current_counts)} evidence goals, and zero sent, replied, "
-            "accepted-evidence, or resume-upgrade claims."
+            f"{len(stages)} status stages, {len(current_counts)} evidence goals, {len(events)} recorded outreach "
+            "events, and zero accepted-evidence or resume-upgrade claims."
         ),
     }
 
@@ -154,6 +203,16 @@ This generated board tracks reviewer outreach execution without claiming results
 | --- | --- | --- | --- |
 {slots}
 
+## Recorded Events
+
+| Metric | Count |
+| --- | ---: |
+| Recorded outreach events | {payload["recorded_event_count"]} |
+| Sent messages | {payload["sent_count"]} |
+| Replies or public submissions | {payload["reply_count"]} |
+| Public issues submitted | {payload["public_issue_submitted_count"]} |
+| Accepted evidence | {payload["accepted_evidence_count"]} |
+
 ## Current Outcome Counts
 
 | Metric | Count |
@@ -176,9 +235,6 @@ def verify_reviewer_outreach_status_board(payload: dict[str, Any]) -> dict[str, 
         "source_share_channel_count": 5,
         "status_stage_count": 5,
         "outreach_slot_count": 8,
-        "not_sent_count": 8,
-        "sent_count": 0,
-        "reply_count": 0,
         "accepted_evidence_count": 0,
         "resume_upgrade_count": 0,
     }
@@ -194,14 +250,19 @@ def verify_reviewer_outreach_status_board(payload: dict[str, Any]) -> dict[str, 
     for value in payload.get("current_outcome_counts", {}).values():
         if value != 0:
             raise AssertionError("status board must preserve zero current outcome counts")
+    counted_statuses = {"not_sent", "sent", "replied_private", "public_issue_submitted"}
+    if payload["not_sent_count"] + payload["sent_count"] + sum(
+        1 for slot in payload["outreach_slots"] if slot["status"] in {"replied_private", "public_issue_submitted"}
+    ) != expected["outreach_slot_count"]:
+        raise AssertionError("status board slot status counts must cover every outreach slot")
     for slot in payload["outreach_slots"]:
-        if slot["status"] != "not_sent":
-            raise AssertionError("status board must start every outreach slot as not_sent")
-        if slot["sent_at"] is not None:
+        if slot["status"] not in counted_statuses:
+            raise AssertionError("status board contains an unsupported outreach status")
+        if slot["status"] == "not_sent" and slot["sent_at"] is not None:
             raise AssertionError("status board must not fabricate sent timestamps")
-        if slot["reply_received"] is not False:
+        if slot["status"] == "not_sent" and slot["reply_received"] is not False:
             raise AssertionError("status board must not fabricate reviewer replies")
-        if slot["public_evidence_url"] is not None:
+        if slot["status"] != "public_issue_submitted" and slot["public_evidence_url"] is not None:
             raise AssertionError("status board must not fabricate public evidence URLs")
         if slot["accepted_by_gate"] is not False:
             raise AssertionError("status board must not fabricate accepted evidence")

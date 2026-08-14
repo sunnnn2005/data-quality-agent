@@ -53,6 +53,7 @@ def test_refresh_public_metrics_workflow_updates_resume_evidence_sources():
         "tests/test_business_impact_ledger.py tests/test_reviewer_evidence_kit.py tests/test_resume_traction_proof.py "
         "tests/test_reviewer_action_queue.py tests/test_reviewer_outreach_execution_pack.py "
         "tests/test_reviewer_outreach_status_board.py "
+        "tests/test_record_reviewer_outreach_event.py "
         "tests/test_resume_outcome_metrics.py tests/test_resume_outcome_action_checklist.py tests/test_reviewer_submission_hub.py "
         "tests/test_public_reviewer_call.py tests/test_reviewer_share_kit.py tests/test_outcome_collection_page.py"
     ) in run_commands
