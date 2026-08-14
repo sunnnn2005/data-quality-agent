@@ -172,6 +172,7 @@ PUBLIC_CHECKS = [
             "project": "Data Quality Agent",
             "accepted_issue_count": 0,
             "accepted_counts": {
+                "accepted_real_model_runs": 0,
                 "ai_engineer_review_items": 0,
                 "business_case_feedback_items": 0,
                 "confirmed_external_users": 0,
