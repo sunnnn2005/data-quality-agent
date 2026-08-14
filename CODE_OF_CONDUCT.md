@@ -7,6 +7,7 @@ Data Quality Agent is a small public project for learning, review, and reproduci
 - Be respectful when giving or receiving feedback.
 - Keep reviews focused on the project, code, documentation, reproducibility, and data-quality workflows.
 - Share only public, redacted, non-sensitive information.
+- Do not post private data, customer records, credentials, raw production rows, or personal contact information.
 - Assume mistakes can be fixed through clear evidence, tests, and focused discussion.
 - Help new contributors understand the smallest useful next step.
 
