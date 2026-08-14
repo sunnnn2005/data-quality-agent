@@ -14,7 +14,7 @@
     "external_feedback_items": 0,
     "reproducible_feedback_items": 0
   },
-  "evaluated_issue_count": 14,
+  "evaluated_issue_count": 15,
   "evaluations": [
     {
       "accepted": false,
@@ -342,6 +342,7 @@
         "missing no-private-data AI review checkbox",
         "missing AI Engineer review counting permission",
         "missing inspected path or command evidence",
+        "missing LLM value comparison inspection",
         "missing strongest ai engineer signals evidence",
         "missing missing or weak ai engineer signals evidence"
       ],
@@ -450,6 +451,47 @@
       ],
       "title": "Business resolution review: validate support-operations remediation brief",
       "url": "https://github.com/sunnnn2005/data-quality-agent/issues/30"
+    },
+    {
+      "accepted": false,
+      "author": "sunnnn2005",
+      "counts_toward": [],
+      "evidence_type": "business_data_replay",
+      "extracted_business_impact": {},
+      "failure_reasons": [
+        "self-authored issue",
+        "contains sensitive-data risk terms",
+        "missing no-sensitive-data replay checkbox",
+        "missing confirmed anonymized replay permission",
+        "missing external feedback permission",
+        "missing business-data replay path tried",
+        "missing data source type evidence",
+        "missing dataset shape evidence",
+        "missing agent run summary evidence",
+        "missing what did it catch or miss? evidence",
+        "missing replay run summary field: Command or endpoint used:",
+        "missing replay run summary field: Report status:",
+        "missing replay run summary field: Finding count:",
+        "missing replay run summary field: Selected tools shown in the agent trace:"
+      ],
+      "issue_number": 31,
+      "labels": [
+        "business-case",
+        "business-data-replay",
+        "feedback",
+        "pilot"
+      ],
+      "rejected_counts_toward": [
+        "confirmed_external_users",
+        "external_feedback_items"
+      ],
+      "sensitive_hits": [
+        "raw production rows",
+        "secret",
+        "token"
+      ],
+      "title": "Business pilot offer: collect redacted data-quality replay evidence",
+      "url": "https://github.com/sunnnn2005/data-quality-agent/issues/31"
     }
   ],
   "gate_rules": [
@@ -457,7 +499,7 @@
     "Reviewer must grant explicit permission before a run or feedback is counted.",
     "A docs-only review does not count as a confirmed run.",
     "Commands or URLs used, observed result, and main feedback must be non-placeholder text.",
-    "AI Engineer review issues require no-private-data confirmation, explicit permission, inspected paths, and concrete signal feedback.",
+    "AI Engineer review issues require no-private-data confirmation, explicit permission, inspected paths, LLM value-comparison inspection, and concrete signal feedback.",
     "Business-data replay issues require a sanitized data source type, dataset shape, agent run summary, and catch-or-miss feedback.",
     "Issues containing sensitive-data risk terms are rejected until redacted.",
     "The default artifact collects tracked public GitHub issues before applying the evidence gate.",
@@ -465,7 +507,7 @@
   ],
   "generated_by": "scripts/build_external_reviewer_evidence_gate.py",
   "issue_collection": {
-    "collected_issue_count": 14,
+    "collected_issue_count": 15,
     "error_count": 0,
     "errors": [],
     "repo": "sunnnn2005/data-quality-agent",
@@ -488,6 +530,6 @@
   ],
   "project": "Data Quality Agent",
   "purpose": "Validate public reviewer issues before they can increase resume-safe user, feedback, reproducible-run, business-case, or AI Engineer review metrics.",
-  "rejected_issue_count": 14,
+  "rejected_issue_count": 15,
   "resume_safe_summary": "Published a CI-verified external reviewer evidence gate that validates issue body fields, explicit permission, non-owner authorship, runnable-path evidence, and sensitive-data guardrails before any reviewer issue can increase resume-safe usage, feedback, or AI Engineer review metrics."
 }

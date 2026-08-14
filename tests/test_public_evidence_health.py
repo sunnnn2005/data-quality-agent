@@ -38,6 +38,7 @@ def test_public_evidence_health_requires_core_public_signals():
         "external-run-collection-issue",
         "external-reviewer-request-pack",
         "external-run-review-template",
+        "ai-engineer-review-template",
         "external-run-quickstart-page",
         "external-reviewer-outreach-tracker",
         "external-reviewer-evidence-gate",
@@ -184,6 +185,10 @@ def test_public_evidence_health_requires_core_public_signals():
     template = next(check for check in PUBLIC_CHECKS if check["id"] == "external-run-review-template")
     assert "Permission to count publicly" in template["expected_texts"]
     assert "This can be counted as public external run evidence." in template["expected_texts"]
+    ai_template = next(check for check in PUBLIC_CHECKS if check["id"] == "ai-engineer-review-template")
+    assert ai_template["url"].endswith("/ai_engineer_review.md")
+    assert "LLM value comparison: `docs/llm-value-comparison.md`" in ai_template["expected_texts"]
+    assert "You may count this public issue as external AI Engineer project feedback." in ai_template["expected_texts"]
     quickstart = next(check for check in PUBLIC_CHECKS if check["id"] == "external-run-quickstart-page")
     assert quickstart["url"].endswith("/external-run-quickstart.html")
     assert "Comment on Issue #18" in quickstart["expected_texts"]

@@ -202,9 +202,9 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert payload["verified_project_outcomes"]["reviewer_share_ready_messages"] == 5
     assert payload["verified_project_outcomes"]["reviewer_share_not_sent"] == 5
     assert payload["verified_project_outcomes"]["ai_engineer_review_intake"] == 1
-    assert payload["verified_project_outcomes"]["ai_engineer_review_paths"] == 6
+    assert payload["verified_project_outcomes"]["ai_engineer_review_paths"] == 7
     assert payload["verified_project_outcomes"]["ai_engineer_review_questions"] == 6
-    assert payload["verified_project_outcomes"]["ai_engineer_review_countable_conditions"] == 6
+    assert payload["verified_project_outcomes"]["ai_engineer_review_countable_conditions"] == 7
     assert payload["verified_project_outcomes"]["pilot_outreach_messages"] == 3
     assert payload["verified_project_outcomes"]["pilot_review_paths"] == 10
     assert payload["verified_project_outcomes"]["pilot_program_segments"] == 3
@@ -386,7 +386,7 @@ def test_public_metrics_summary_keeps_resume_metrics_honest():
     assert any("Business impact ledger with 0 accepted business-impact signals" in signal for signal in payload["resume_safe_signals"])
     assert any("Resume traction proof with 6 claimable launch/quality/traffic/availability signals" in signal for signal in payload["resume_safe_signals"])
     assert (
-            "AI Engineer review intake with 6 review paths, 6 reviewer questions, 6 countable-evidence conditions, and zero accepted reviews"
+            "AI Engineer review intake with 7 review paths, 6 reviewer questions, 7 countable-evidence conditions, and zero accepted reviews"
             in payload["resume_safe_signals"]
         )
     assert any("External reviewer outreach tracker with 3 queued reviewer segments" in signal for signal in payload["resume_safe_signals"])

@@ -11,6 +11,7 @@ assignees: ""
 - [ ] AI Engineer readiness page: `docs/ai-engineer-readiness.md`
 - [ ] Agent maturity audit: `docs/agent-maturity-audit.md`
 - [ ] Agent capability matrix: `docs/agent-capability-matrix.md`
+- [ ] LLM value comparison: `docs/llm-value-comparison.md`
 - [ ] Structured API contract: `app/models.py` or `docs/openapi.json`
 - [ ] LLM tool loop and planning trace: `app/tool_agent.py`
 - [ ] Outcome evidence policy: `docs/resume-outcome-action-checklist.md`

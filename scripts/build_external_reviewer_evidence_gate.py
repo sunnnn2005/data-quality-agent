@@ -168,6 +168,12 @@ def evaluate_issue(issue: dict[str, Any]) -> dict[str, Any]:
             inspected = _section_text(body, "Path or command used")
         if not _non_placeholder(inspected):
             failure_reasons.append("missing inspected path or command evidence")
+        if not (
+            _checked(body, "LLM value comparison: `docs/llm-value-comparison.md`")
+            or "docs/llm-value-comparison.md" in inspected
+            or "llm-value-comparison" in body.lower()
+        ):
+            failure_reasons.append("missing LLM value comparison inspection")
         for heading in ("Strongest AI Engineer signals", "Missing or weak AI Engineer signals"):
             if not _non_placeholder(_section_text(body, heading)):
                 failure_reasons.append(f"missing {heading.lower()} evidence")
@@ -333,7 +339,7 @@ def build_external_reviewer_evidence_gate(issues: list[dict[str, Any]] | None = 
             "Reviewer must grant explicit permission before a run or feedback is counted.",
             "A docs-only review does not count as a confirmed run.",
             "Commands or URLs used, observed result, and main feedback must be non-placeholder text.",
-            "AI Engineer review issues require no-private-data confirmation, explicit permission, inspected paths, and concrete signal feedback.",
+            "AI Engineer review issues require no-private-data confirmation, explicit permission, inspected paths, LLM value-comparison inspection, and concrete signal feedback.",
             "Business-data replay issues require a sanitized data source type, dataset shape, agent run summary, and catch-or-miss feedback.",
             "Issues containing sensitive-data risk terms are rejected until redacted.",
             "The default artifact collects tracked public GitHub issues before applying the evidence gate.",
@@ -429,7 +435,7 @@ def verify_external_reviewer_evidence_gate(payload: dict[str, Any]) -> dict[str,
     for required in (
         "Self-authored issues do not count as external evidence.",
         "Reviewer must grant explicit permission before a run or feedback is counted.",
-        "AI Engineer review issues require no-private-data confirmation, explicit permission, inspected paths, and concrete signal feedback.",
+        "AI Engineer review issues require no-private-data confirmation, explicit permission, inspected paths, LLM value-comparison inspection, and concrete signal feedback.",
         "Business-data replay issues require a sanitized data source type, dataset shape, agent run summary, and catch-or-miss feedback.",
         "Issues containing sensitive-data risk terms are rejected until redacted.",
         "The default artifact collects tracked public GitHub issues before applying the evidence gate.",

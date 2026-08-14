@@ -76,12 +76,13 @@ AI engineer with data tooling experience.
 ## What did you inspect?
 
 - [x] README and AI Engineer readiness docs
+- [x] LLM value comparison: `docs/llm-value-comparison.md`
 - [x] app/tool_agent.py
 - [x] app/postgres_adapter.py
 
 ## Strongest AI Engineer signals
 
-The project shows tool calling, evidence-backed reports, read-only data access, and telemetry.
+The project shows tool calling, adaptive strategy selection, evidence-backed reports, read-only data access, and telemetry.
 
 ## Missing or weak AI Engineer signals
 
@@ -289,6 +290,15 @@ def test_external_reviewer_evidence_gate_rejects_self_authored_missing_permissio
             labels=["ai-engineer-review"],
         )
     )
+    missing_value_comparison = evaluate_issue(
+        issue(
+            VALID_AI_ENGINEER_REVIEW_BODY.replace(
+                "- [x] LLM value comparison: `docs/llm-value-comparison.md`\n",
+                "",
+            ),
+            labels=["ai-engineer-review"],
+        )
+    )
     business_case_missing_impact_permission = evaluate_issue(
         issue(
             VALID_BUSINESS_CASE_BODY.replace(
@@ -325,6 +335,8 @@ def test_external_reviewer_evidence_gate_rejects_self_authored_missing_permissio
     assert "contains sensitive-data risk terms" in sensitive["failure_reasons"]
     assert opted_out["accepted"] is False
     assert "reviewer opted out of public counting" in opted_out["failure_reasons"]
+    assert missing_value_comparison["accepted"] is False
+    assert "missing LLM value comparison inspection" in missing_value_comparison["failure_reasons"]
     assert business_case_missing_impact_permission["accepted"] is False
     assert "missing business-impact counting permission" in business_case_missing_impact_permission["failure_reasons"]
     assert docs_only_replay["accepted"] is False

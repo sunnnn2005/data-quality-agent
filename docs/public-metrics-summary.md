@@ -73,7 +73,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | External reviewer outreach source messages | 3 |
 | External reviewer evidence gate | 1 |
 | External reviewer evidence gate rules | 9 |
-| External reviewer evidence gate collected public issues | 14 |
+| External reviewer evidence gate collected public issues | 15 |
 | External reviewer evidence gate accepted issues | 0 |
 | External reviewer evidence gate linked queue entries | 3 |
 | Accepted evidence rollup | 1 |
@@ -222,9 +222,9 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 | Evidence acceptance accepted issues | 0 |
 | Evidence acceptance rejected issues | 14 |
 | AI Engineer review intake | 1 |
-| AI Engineer review paths | 6 |
+| AI Engineer review paths | 7 |
 | AI Engineer review questions | 6 |
-| AI Engineer review countable conditions | 6 |
+| AI Engineer review countable conditions | 7 |
 | Pilot outreach messages | 3 |
 | Pilot review paths | 10 |
 | Pilot program segments | 3 |
@@ -336,7 +336,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - External reviewer request pack linked to issue #18 with 3 copy-ready messages, 3 run paths, 8 evidence fields, and zero-count baseline
 - External-run quickstart page with 3 reviewer run paths, 8 evidence fields, public issue #18, and privacy boundaries
 - External reviewer outreach tracker with 3 queued reviewer segments, 3 source messages, 3 not-contacted baseline entries, and public-evidence rules
-- External reviewer evidence gate with 9 validation rules, 14 collected public GitHub issues, 3 linked outreach queue entries, 0 accepted public reviewer issues, and sensitive-data safeguards
+- External reviewer evidence gate with 9 validation rules, 15 collected public GitHub issues, 3 linked outreach queue entries, 0 accepted public reviewer issues, and sensitive-data safeguards
 - Accepted evidence rollup with 5 tracked outcome metrics, 0 accepted reviewer issues, and 5 blocked claims until public evidence exists
 - Business impact ledger with 0 accepted business-impact signals, anonymized workflow fields, and blocked resume claims until public evidence exists
 - Reviewer evidence kit with 5 public issue templates, 5 copy-ready privacy and permission steps, and zero current external outcome counts
@@ -373,7 +373,7 @@ This page collects public adoption, feedback, release, CI, and outcome metrics i
 - Pilot evidence quicklink with 4 short reviewer actions, 17 required evidence fields, 4 target outcome metrics, and zero-count baselines
 - Pilot launch control room with 4 public issue threads, 5 launch gates, 4 target outcome metrics, and 3 reviewer-send paths
 - Resume outcome adjudication report with 5 outcome categories, 0 claimable external categories, 5 blocked categories, and explicit unlock conditions
-- AI Engineer review intake with 6 review paths, 6 reviewer questions, 6 countable-evidence conditions, and zero accepted reviews
+- AI Engineer review intake with 7 review paths, 6 reviewer questions, 7 countable-evidence conditions, and zero accepted reviews
 - 3 pilot outreach messages and 10 review paths for collecting real feedback
 - 3 pilot participant segments across a 3-week feedback plan
 - Feedback intake system with 7 required sections, 4 demo paths, 4 outcome signals, and 7 captured evidence groups

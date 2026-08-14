@@ -10,6 +10,7 @@ Collect public, permissioned reviewer feedback specifically about AI Engineer re
 
 - Ai Engineer Readiness: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-readiness.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-readiness.md)
 - Agent Capability Matrix: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-capability-matrix.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-capability-matrix.md)
+- Llm Value Comparison: [https://sunnnn2005.github.io/data-quality-agent/llm-value-comparison.html](https://sunnnn2005.github.io/data-quality-agent/llm-value-comparison.html)
 - Openapi Contract: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/api-contract.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/api-contract.md)
 - Business Replay Demo: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-replay-demo.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-replay-demo.md)
 - Real Model Evidence Capture: [https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-evidence-capture.md](https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-evidence-capture.md)
@@ -30,6 +31,7 @@ Collect public, permissioned reviewer feedback specifically about AI Engineer re
 - Issue uses ai_engineer_review.md or includes equivalent answers.
 - Reviewer grants permission to count the public issue.
 - Review includes at least one inspected path or command.
+- Review confirms inspection of the LLM value comparison or equivalent adaptive-strategy evidence.
 - Reviewer confirms the issue contains no private business data, secrets, or raw production rows.
 - Review does not include private customer data, secrets, or raw business rows.
 
@@ -42,6 +44,7 @@ Collect public, permissioned reviewer feedback specifically about AI Engineer re
 | Has No Private Data Checkbox | True |
 | Asks Strongest Signal | True |
 | Asks Missing Signal | True |
+| Mentions Llm Value Comparison | True |
 | Mentions Tool Calling | True |
 | Mentions Planning Trace | True |
 
@@ -54,7 +57,7 @@ Collect public, permissioned reviewer feedback specifically about AI Engineer re
 
 ## Resume-Safe Summary
 
-Published an AI Engineer review intake path with 6 review paths, 6 reviewer questions, 6 countable-evidence conditions, and an explicit zero-review baseline.
+Published an AI Engineer review intake path with 7 review paths, 6 reviewer questions, 7 countable-evidence conditions including LLM value-comparison inspection, and an explicit zero-review baseline.
 
 ## Not Claimed
 

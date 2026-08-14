@@ -1,10 +1,11 @@
 {
-  "countable_condition_count": 6,
+  "countable_condition_count": 7,
   "countable_conditions": [
     "Issue is created by a non-owner reviewer.",
     "Issue uses ai_engineer_review.md or includes equivalent answers.",
     "Reviewer grants permission to count the public issue.",
     "Review includes at least one inspected path or command.",
+    "Review confirms inspection of the LLM value comparison or equivalent adaptive-strategy evidence.",
     "Reviewer confirms the issue contains no private business data, secrets, or raw production rows.",
     "Review does not include private customer data, secrets, or raw business rows."
   ],
@@ -23,13 +24,14 @@
   "partial_ai_signals": 1,
   "project": "Data Quality Agent",
   "purpose": "Collect public, permissioned reviewer feedback specifically about AI Engineer readiness.",
-  "resume_safe_summary": "Published an AI Engineer review intake path with 6 review paths, 6 reviewer questions, 6 countable-evidence conditions, and an explicit zero-review baseline.",
+  "resume_safe_summary": "Published an AI Engineer review intake path with 7 review paths, 6 reviewer questions, 7 countable-evidence conditions including LLM value-comparison inspection, and an explicit zero-review baseline.",
   "resume_status": "review_intake_ready_not_claimable",
-  "review_path_count": 6,
+  "review_path_count": 7,
   "review_paths": {
     "agent_capability_matrix": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/agent-capability-matrix.md",
     "ai_engineer_readiness": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/ai-engineer-readiness.md",
     "business_replay_demo": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/business-replay-demo.md",
+    "llm_value_comparison": "https://sunnnn2005.github.io/data-quality-agent/llm-value-comparison.html",
     "openapi_contract": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/api-contract.md",
     "real_model_evidence_capture": "https://github.com/sunnnn2005/data-quality-agent/blob/main/docs/real-model-evidence-capture.md",
     "review_issue_template": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=ai_engineer_review.md"
@@ -50,6 +52,7 @@
     "has_no_private_data_checkbox": true,
     "has_not_count_checkbox": true,
     "has_permission_checkbox": true,
+    "mentions_llm_value_comparison": true,
     "mentions_planning_trace": true,
     "mentions_tool_calling": true
   }

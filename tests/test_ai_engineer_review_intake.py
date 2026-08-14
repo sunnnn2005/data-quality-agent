@@ -11,14 +11,16 @@ def test_ai_engineer_review_intake_collects_targeted_external_feedback_without_c
     markdown = render_markdown(payload)
 
     assert verification["ai_engineer_review_intake_verified"] is True
-    assert payload["review_path_count"] == 6
+    assert payload["review_path_count"] == 7
     assert payload["review_question_count"] == 6
-    assert payload["countable_condition_count"] == 6
+    assert payload["countable_condition_count"] == 7
     assert payload["implemented_ai_signals"] == 8
     assert payload["current_counts"]["accepted_ai_engineer_reviews"] == 0
     assert payload["current_counts"]["external_ai_feedback_items"] == 0
     assert payload["template_checks"]["has_permission_checkbox"] is True
     assert payload["template_checks"]["has_no_private_data_checkbox"] is True
+    assert payload["template_checks"]["mentions_llm_value_comparison"] is True
     assert payload["template_checks"]["mentions_planning_trace"] is True
     assert "AI Engineer Review Intake" in markdown
+    assert "Llm Value Comparison" in markdown
     assert "tool calling" in markdown.lower()

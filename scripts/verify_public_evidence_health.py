@@ -600,6 +600,19 @@ PUBLIC_CHECKS = [
         "evidence_type": "source",
     },
     {
+        "id": "ai-engineer-review-template",
+        "url": "https://raw.githubusercontent.com/sunnnn2005/data-quality-agent/main/.github/ISSUE_TEMPLATE/ai_engineer_review.md",
+        "expected_text": "AI Engineer review",
+        "expected_texts": [
+            "LLM value comparison: `docs/llm-value-comparison.md`",
+            "LLM tool calling",
+            "Multi-step tool feedback loop",
+            "You may count this public issue as external AI Engineer project feedback.",
+            "Do not count this issue publicly.",
+        ],
+        "evidence_type": "source",
+    },
+    {
         "id": "external-run-quickstart-page",
         "url": "https://sunnnn2005.github.io/data-quality-agent/external-run-quickstart.html",
         "expected_text": "External run quickstart",

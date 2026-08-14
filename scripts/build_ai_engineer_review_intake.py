@@ -22,6 +22,7 @@ def build_ai_engineer_review_intake() -> dict[str, Any]:
     review_paths = {
         "ai_engineer_readiness": application_pack["application_links"]["ai_engineer_readiness"],
         "agent_capability_matrix": application_pack["application_links"]["agent_capability_matrix"],
+        "llm_value_comparison": "https://sunnnn2005.github.io/data-quality-agent/llm-value-comparison.html",
         "openapi_contract": application_pack["application_links"]["api_contract"],
         "business_replay_demo": application_pack["application_links"]["business_replay_demo"],
         "real_model_evidence_capture": application_pack["application_links"]["real_model_evidence_capture"],
@@ -40,6 +41,7 @@ def build_ai_engineer_review_intake() -> dict[str, Any]:
         "Issue uses ai_engineer_review.md or includes equivalent answers.",
         "Reviewer grants permission to count the public issue.",
         "Review includes at least one inspected path or command.",
+        "Review confirms inspection of the LLM value comparison or equivalent adaptive-strategy evidence.",
         "Reviewer confirms the issue contains no private business data, secrets, or raw production rows.",
         "Review does not include private customer data, secrets, or raw business rows.",
     ]
@@ -63,6 +65,7 @@ def build_ai_engineer_review_intake() -> dict[str, Any]:
             "has_no_private_data_checkbox": "This issue contains no private business data" in template_text,
             "asks_strongest_signal": "What was strongest?" in template_text,
             "asks_missing_signal": "What was not credible enough yet?" in template_text,
+            "mentions_llm_value_comparison": "docs/llm-value-comparison.md" in template_text,
             "mentions_tool_calling": "LLM tool calling" in template_text,
             "mentions_planning_trace": "planning trace" in template_text.lower(),
         },
@@ -72,8 +75,9 @@ def build_ai_engineer_review_intake() -> dict[str, Any]:
         },
         "resume_status": "review_intake_ready_not_claimable",
         "resume_safe_summary": (
-            "Published an AI Engineer review intake path with 6 review paths, 6 reviewer questions, "
-            "6 countable-evidence conditions, and an explicit zero-review baseline."
+            "Published an AI Engineer review intake path with 7 review paths, 6 reviewer questions, "
+            "7 countable-evidence conditions including LLM value-comparison inspection, and an explicit "
+            "zero-review baseline."
         ),
         "not_claimed": [
             "AI Engineer reviewers have not submitted accepted public feedback yet.",
@@ -133,12 +137,12 @@ This generated artifact gives external reviewers a focused way to judge whether 
 
 
 def verify_ai_engineer_review_intake(payload: dict[str, Any]) -> dict[str, Any]:
-    if payload["review_path_count"] != 6:
-        raise AssertionError("AI Engineer review intake must expose 6 review paths")
+    if payload["review_path_count"] != 7:
+        raise AssertionError("AI Engineer review intake must expose 7 review paths")
     if payload["review_question_count"] != 6:
         raise AssertionError("AI Engineer review intake must define 6 review questions")
-    if payload["countable_condition_count"] != 6:
-        raise AssertionError("AI Engineer review intake must define 6 countable conditions")
+    if payload["countable_condition_count"] != 7:
+        raise AssertionError("AI Engineer review intake must define 7 countable conditions")
     if not all(payload["template_checks"].values()):
         raise AssertionError("AI Engineer review template is missing required fields")
     if payload["implemented_ai_signals"] != 8:
@@ -152,6 +156,7 @@ def verify_ai_engineer_review_intake(payload: dict[str, Any]) -> dict[str, Any]:
         ("tool calling", "tool-calling"),
         ("structured",),
         ("guardrails",),
+        ("llm value comparison", "adaptive-strategy"),
         ("permission",),
         ("non-owner",),
     ]
