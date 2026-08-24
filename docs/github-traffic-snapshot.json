@@ -4,7 +4,7 @@
     "daily": [],
     "uniques": 0
   },
-  "generated_at": "2026-08-23T16:46:08.797957+00:00",
+  "generated_at": "2026-08-24T16:59:03.091214+00:00",
   "generated_by": "scripts/build_github_traffic_snapshot.py",
   "not_claimed": [
     "confirmed users from traffic alone",
