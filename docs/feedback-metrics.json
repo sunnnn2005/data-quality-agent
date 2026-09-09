@@ -33,7 +33,7 @@
     }
   ],
   "feedback_issue_template": "https://github.com/sunnnn2005/data-quality-agent/issues/new?template=demo_feedback.md",
-  "generated_at": "2026-09-08T19:27:39.283411+00:00",
+  "generated_at": "2026-09-09T19:18:52.572724+00:00",
   "repo": "https://github.com/sunnnn2005/data-quality-agent",
   "reproducible_feedback_items": 0,
   "resume_policy": "Do not claim users, customer feedback, or production adoption until these metrics are greater than zero and backed by public issues.",
